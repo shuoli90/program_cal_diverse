@@ -65,4 +65,5 @@ class GPTModel:
             for prompt, response in zip(prompts, responses_list):
                 for item in response:
                     item['generated_text'] = f"{prompt} {item['generated_text']}"
-        return responses
+        gen_text = [item['generated_text'] for response in responses_list for item in response]
+        return gen_text

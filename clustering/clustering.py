@@ -1,0 +1,155 @@
+from typing import List, Optional
+import tempfile
+import os
+import shutil
+import docker
+import logging
+import traceback 
+import glob 
+from collections import defaultdict
+
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
+
+
+clustering_abs_dir = os.path.dirname(os.path.abspath(__file__))
+docker_driver_abs_path = os.path.join(clustering_abs_dir, "docker_driver.py")
+docker_file_abs_path = os.path.join(clustering_abs_dir, "Dockerfile")
+
+
+def build_docker_image(path_to_dockerfile):
+    tag = 'python-test-case-runner'
+    client = docker.from_env()
+    images = client.images.list()
+    for image in images:
+        if tag in image.tags or f"{tag}:latest" in image.tags:
+            print(f"Image with tag '{tag}' already exists. Using existing image.")
+            return client, image
+    # Build the Docker image
+    image, build_log = client.images.build(path=path_to_dockerfile, tag=tag)
+    return client, image
+
+
+def instrument_code_docker(generated_code: str, testcase_inputs: List[str], testcase_outputs: List[str], 
+                                  image, client, docker_working_dir = None, n_test_cases=-1):
+    
+    if docker_working_dir is None: 
+        docker_working_dir = tempfile.mkdtemp()
+        
+    if not os.path.exists(docker_working_dir):
+        raise ValueError(f"{docker_working_dir} does not exist.")
+    
+    code_path = os.path.join(docker_working_dir, "soln.py")
+    with open(code_path, "w") as f:
+        f.write(generated_code)
+        
+    shutil.copy(docker_driver_abs_path, os.path.join(docker_working_dir, "driver.py"))
+    
+    for i, testcase_input in enumerate(testcase_inputs):
+        input_path = os.path.join(docker_working_dir, f"input.{i}.txt")
+        with open(input_path, "w") as f:
+            f.write(testcase_input)
+    
+    volumes = {docker_working_dir: {'bind': '/usr/src/app/tc_dir', 'mode': 'rw'}}
+    try: 
+        logging.info(f"Now running tc_gen.py...")
+        container = client.containers.run(
+            image.tags[0],
+            detach=True,
+            volumes=volumes,
+            command=f"python tc_dir/tc_gen.py {n_test_cases} tc_dir",
+        )
+        logging.info(f"Done running tc_gen.py, stopping container {container.id}.")
+        container.stop()
+        logging.info(f"Done stopp container for tc_gen.py, removing container {container.id}.")
+        # Remove the container
+        container.remove()
+        logging.info(f"Done removing container {container.id}")
+    except Exception as e:
+        traceback_str = traceback.format_exc()
+        logging.error(f"Failed to run tc_gen.py with testcase_dir {docker_working_dir} and image {image}.")
+        logging.error(traceback_str)
+
+    output_files = glob.glob(os.path.join(docker_working_dir, "output.*.txt"))
+    outputs = []
+    for output_file in output_files:
+        with open(output_file, "r") as f:
+            outputs.append(f.read())
+    return outputs
+
+
+def report_coherence(program_2_testcase_2_output):
+    # if syntax or runtime error, then it is not coherent
+    program_2_coherence = {}
+    program_2_n_outputs = {}
+    program_2_n_coherent = {}
+    for program, testcase_2_output in program_2_testcase_2_output.items():
+        n_outputs = len(testcase_2_output)
+        n_coherent = len([output for output in testcase_2_output if output not in ["Syntax Error", "Runtime Error"]] )
+        program_2_n_outputs[program] = n_outputs
+        program_2_n_coherent[program] = n_coherent
+        program_2_coherence[program] = n_coherent / n_outputs
+    return program_2_coherence, program_2_n_outputs, program_2_n_coherent
+
+
+def report_accuracy(program_2_testcase_2_output, expected_outputs):
+    program_2_accuracy = {}
+    for program, testcase_2_output in program_2_testcase_2_output.items():
+        n_correct = len([output for output, expected_output in zip(testcase_2_output, expected_outputs) if output == expected_output])
+        program_2_accuracy[program] = n_correct / len(testcase_2_output)
+    return program_2_accuracy
+
+
+def make_semantic_string(program_2_testcase_2_output, testcase_inputs): 
+    program_2_semantic_string = {}
+    for program, testcase_2_output in program_2_testcase_2_output.items():
+        s = ""
+        for i, testcase_input in enumerate(testcase_inputs):
+            s += f"testcase_input: {testcase_input}, output: {testcase_2_output[i]}\n"
+        program_2_semantic_string[program] = s
+    semantic_strings_2_programs = defaultdict(list)
+    for program, semantic_string in program_2_semantic_string.items():
+        semantic_strings_2_programs[semantic_string].append(program)
+    return program_2_semantic_string, semantic_strings_2_programs
+    
+
+def make_clusters_iterative(programs: List[str],
+                    testcases: List[str], 
+                    generations: List[str], 
+                    outputs: Optional[List[str]] = None, 
+                    report_coherence=False, 
+                    report_accuracy=False, 
+                    n_test_cases=-1):
+    if report_accuracy:
+        if outputs is None:
+            raise ValueError("Need outputs to report accuracy.")
+        if len(testcases) != len(outputs):
+            raise ValueError("Number of testcases and outputs must match.")
+        
+    client, tcgen_image = build_docker_image(clustering_abs_dir)
+    
+    program_2_testcase_2_output = {}
+    for i, program in enumerate(programs):
+        outputs = instrument_code_docker(program, testcases, generations, tcgen_image, client, n_test_cases=n_test_cases)
+        program_2_testcase_2_output[program] = outputs
+        
+    if report_coherence:
+        program_2_coherence, program_2_n_outputs, program_2_n_coherent = report_coherence(program_2_testcase_2_output)
+    else: 
+        program_2_coherence = program_2_n_outputs = program_2_n_coherent = None
+    
+    if report_accuracy:
+        ## TODO: convert inputs and outputs to a dict of index 2 output to avoid any sorting/ordering issues and bugs
+        program_2_accuracy = report_accuracy(program_2_testcase_2_output, outputs)
+    else:
+        program_2_accuracy = None
+        
+    program_2_semantic_string, semantic_strings_2_programs = make_semantic_string(program_2_testcase_2_output, testcases)
+    
+    return program_2_semantic_string, semantic_strings_2_programs, program_2_coherence, program_2_n_outputs, program_2_n_coherent, program_2_accuracy
+        
+    
+    
+        
+    
+    

@@ -1,0 +1,11 @@
+numpy 
+scipy
+sympy
+networkx
+matplotlib
+pandas
+# sortedcontainers
+# numba
+# cython
+# pythonds
+# geopy

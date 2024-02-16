@@ -31,7 +31,7 @@ def build_docker_image(path_to_dockerfile):
 
 
 def instrument_code_docker(generated_code: str, testcase_inputs: List[str], testcase_outputs: List[str], 
-                                  image, client, docker_working_dir = None, n_test_cases=-1):
+                                  image, client, docker_working_dir = None, n_test_cases=-1, indiv_tc_timeout=5, verbose_docker=False):
     
     if docker_working_dir is None: 
         docker_working_dir = tempfile.mkdtemp()
@@ -51,13 +51,14 @@ def instrument_code_docker(generated_code: str, testcase_inputs: List[str], test
             f.write(testcase_input)
     
     volumes = {docker_working_dir: {'bind': '/usr/src/app/tc_dir', 'mode': 'rw'}}
+    
     try: 
-        logging.info(f"Now running tc_gen.py...")
+        logging.info(f"Now running docker container for tc_gen.py with testcase_dir {docker_working_dir} and image {image}.")
         container = client.containers.run(
             image.tags[0],
             detach=True,
             volumes=volumes,
-            command=f"python tc_dir/tc_gen.py {n_test_cases} tc_dir",
+            command=f"python tc_dir/driver.py /usr/src/app/tc_dir {indiv_tc_timeout} {verbose_docker} {n_test_cases}",
         )
         logging.info(f"Done running tc_gen.py, stopping container {container.id}.")
         container.stop()

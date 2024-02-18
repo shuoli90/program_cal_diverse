@@ -1,8 +1,5 @@
 import torch
-import functools
 from collections import defaultdict
-from evaluate import load
-from models.opensource import NLIModel, TextGenerationModel
 
 CONTRADICT, NEUTRAL, AGREE = 0, 1, 2
 llh_shift = torch.tensor(5.0)

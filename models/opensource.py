@@ -1,6 +1,5 @@
 from transformers import pipeline
 import functools
-import numpy as np
 
 class OpensourceModel:
     

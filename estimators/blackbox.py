@@ -44,6 +44,7 @@ class VerbalizedConfidence():
 
 class Eccentricity():
     def __init__(self, device='cuda'):
+        pass
     
     def compute_scores(self, batch_prompts, batch_responses, **kwargs):
         '''
@@ -62,6 +63,7 @@ class Eccentricity():
     
 class Degree():
     def __init__(self, device='cuda'):
+        pass
     
     def compute_scores(self, batch_prompts, batch_responses, **kwargs):
         '''
@@ -79,6 +81,7 @@ class Degree():
 
 class SpectralEigv():
     def __init__(self, device='cuda'):
+        pass
 
     def compute_scores(self, batch_prompts, batch_responses, **kwargs):
         sim_mats = [pc.get_sim_mat(responses) for responses in batch_responses]

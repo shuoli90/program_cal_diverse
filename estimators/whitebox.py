@@ -61,14 +61,6 @@ def get_neg_loglikelihoods(model, tokenizer, messages):
 
     return result
 
-# whitebox methods
-def _logmeanexp(x, dim, ignore_negative_inf=False):
-    if ignore_negative_inf:
-        cnt = (x > -torch.inf).sum(dim)
-    else:
-        cnt = torch.tensor(x.shape[dim])
-    return torch.logsumexp(x, dim=dim) - torch.log(cnt)
-    
 class WhiteBox():
 
     def __init__(self):

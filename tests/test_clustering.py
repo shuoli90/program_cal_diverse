@@ -13,3 +13,5 @@ if __name__ == '__main__':
     for unique, count in zip(*results):
         print(f"Unique: {unique} Count: {count}")
     
+    sim_mat = clustering.get_sim_mat(outputs)
+    breakpoint()

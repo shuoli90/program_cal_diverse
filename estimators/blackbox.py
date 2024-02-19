@@ -1,4 +1,11 @@
 import re
+import numpy as np
+from utils import clustering as pc
+
+def spectral_projected(batch_sim_mat, threshold=0.5):
+    # sim_mats: list of similarity matrices using semantic similarity model or jacard similarity
+    clusterer = pc.SpetralClustering(eigv_threshold=threshold)
+    return [clusterer.proj(sim_mat) for sim_mat in batch_sim_mat]
 
 class VerbalizedConfidence():
     def __init__(self, pipe=None):
@@ -34,3 +41,47 @@ class VerbalizedConfidence():
             verbal_conf = self.pipe.generate(combo_text, max_length=cur_length+10, return_full_text=False)[0]['generated_text']
             Cs.append(self.extract_confidence(verbal_conf))
         return Cs
+
+class Eccentricity():
+    def __init__(self, device='cuda'):
+    
+    def compute_scores(self, batch_prompts, batch_responses, **kwargs):
+        '''
+        Input:
+            batch_prompts: a batch of prompts[prompt_1, ..., prompt_B]
+            batch_responses: a batch of sequences [[r_1^1, ..., r_{n_1}^1], ..., [r_1^1, ..., r_{n_B}^B]]
+        Output:
+            batch_U: a batch of uncertainties [U^1, ..., U^B]
+            batch_Cs: a batch of confidence sequences [[C_1^1, ..., C_{n_1}^1], ..., [C_1^B, ..., C_{n_B}^B]]
+        '''
+        batch_sim_mats = [pc.get_sim_mat(responses) for responses in batch_responses]
+        batch_projected = spectral_projected(batch_sim_mats, threshold=0.1)
+        batch_Cs = [-np.linalg.norm(projected-projected.mean(0)[None, :],2,axis=1) for projected in batch_projected]
+        batch_U = [np.linalg.norm(projected-projected.mean(0)[None, :],2).clip(-1, 1) for projected in batch_projected]
+        return batch_U, batch_Cs
+    
+class Degree():
+    def __init__(self, device='cuda'):
+    
+    def compute_scores(self, batch_prompts, batch_responses, **kwargs):
+        '''
+        Input:
+            batch_prompts: a batch of prompts [p^1, ..., p^B]
+            batch_responses: a batch of sequences [[r_1^1, ..., r_{n_1}^1], ..., [r_1^1, ..., r_{n_B}^B]]
+        Output:
+            batch_U: a batch of uncertainties [U^1, ..., U^B]
+            batch_Cs: a batch of confidence sequences [[C_1^1, ..., C_{n_1}^1], ..., [C_1^B, ..., C_{n_B}^B]]
+        '''
+        batch_W = [pc.get_sim_mat(responses) for responses in batch_responses]
+        batch_Cs = [np.mean(W, axis=1) for W in batch_W]
+        batch_U = [1/W.shape[0]-np.sum(W)/W.shape[0]**2 for W in batch_W]
+        return batch_U, batch_Cs
+
+class SpectralEigv():
+    def __init__(self, device='cuda'):
+
+    def compute_scores(self, batch_prompts, batch_responses, **kwargs):
+        sim_mats = [pc.get_sim_mat(responses) for responses in batch_responses]
+        clusterer = pc.SpetralClustering(eigv_threshold=None,
+                                         temperature=self.temperature)
+        return [clusterer.get_eigvs(_).clip(0 if self.adjust else -1).sum() for _ in sim_mats]

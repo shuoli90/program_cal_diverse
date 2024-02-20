@@ -33,8 +33,8 @@ def build_docker_image(path_to_dockerfile):
     return client, image
 
 
-def instrument_code_docker(generated_code: str, testcase_inputs: List[str], testcase_outputs: List[str], 
-                                  image, client, docker_working_dir = None, n_test_cases=-1, indiv_tc_timeout=5, verbose_docker=False):
+def instrument_code_docker(generated_code: str, testcase_inputs: List[str], image, client, 
+                           docker_working_dir = None, n_test_cases=-1, indiv_tc_timeout=5, verbose_docker=False):
     
     if docker_working_dir is None: 
         docker_working_dir = tempfile.mkdtemp()
@@ -150,6 +150,9 @@ def make_clusters_iterative(programs: List[str],
         
     program_2_semantic_string, semantic_strings_2_programs = make_semantic_string(program_2_testcase_2_output, testcases)
     
+    # cleanup 
+    client.images.remove(tcgen_image.id)
+    
     return program_2_semantic_string, semantic_strings_2_programs, program_2_coherence, program_2_n_outputs, program_2_n_coherent, program_2_accuracy
         
     
@@ -218,6 +221,9 @@ def make_clusters_parallel(programs: List[str],
         program_2_accuracy = None
 
     program_2_semantic_string, semantic_strings_2_programs = make_semantic_string(program_2_testcase_2_output, testcases)
+    
+    # cleanup 
+    client.images.remove(tcgen_image.id)
 
     return program_2_semantic_string, semantic_strings_2_programs, program_2_coherence, program_2_n_outputs, program_2_n_coherent, program_2_accuracy
 

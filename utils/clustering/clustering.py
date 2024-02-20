@@ -10,6 +10,8 @@ from collections import defaultdict
 import joblib
 from joblib import Parallel, delayed
 import contextlib
+import yaml
+from dataclasses import dataclass
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -96,10 +98,11 @@ def report_coherence(program_2_testcase_2_output):
     return program_2_coherence, program_2_n_outputs, program_2_n_coherent
 
 
-def report_accuracy(program_2_testcase_2_output, expected_outputs):
+# TODO: need to pay attention here
+def report_accuracy(program_2_testcase_2_output, expected_outputs: List[List[str]]):
     program_2_accuracy = {}
-    for program, testcase_2_output in program_2_testcase_2_output.items():
-        n_correct = len([output for output, expected_output in zip(testcase_2_output, expected_outputs) if output == expected_output])
+    for (program, testcase_2_output), expected_output in zip(program_2_testcase_2_output.items(), expected_outputs):
+        n_correct = len([output for output, expected_output in zip(testcase_2_output, expected_output) if output.strip() == expected_output.strip()])
         program_2_accuracy[program] = n_correct / len(testcase_2_output)
     return program_2_accuracy
 
@@ -119,7 +122,6 @@ def make_semantic_string(program_2_testcase_2_output, testcase_inputs):
 
 def make_clusters_iterative(programs: List[str],
                     testcases: List[str], 
-                    generations: List[str], 
                     outputs: Optional[List[str]] = None, 
                     report_coherence=False, 
                     report_accuracy=False, 
@@ -134,7 +136,7 @@ def make_clusters_iterative(programs: List[str],
     
     program_2_testcase_2_output = {}
     for i, program in enumerate(programs):
-        outputs = instrument_code_docker(program, testcases, generations, tcgen_image, client, n_test_cases=n_test_cases)
+        outputs = instrument_code_docker(program, testcases, tcgen_image, client, n_test_cases=n_test_cases)
         program_2_testcase_2_output[program] = outputs
         
     if report_coherence:
@@ -179,14 +181,13 @@ from typing import List, Optional
 import joblib
 from tqdm import tqdm
 
-def process_program(program, testcases, generations, tcgen_image, client, n_test_cases):
-    outputs = instrument_code_docker(program, testcases, generations, tcgen_image, client, n_test_cases=n_test_cases)
+def process_program(program, testcases, tcgen_image, client, n_test_cases):
+    outputs = instrument_code_docker(program, testcases, tcgen_image, client, n_test_cases=n_test_cases)
     return program, outputs
 
 def make_clusters_parallel(programs: List[str],
-                           testcases: List[str],
-                           generations: List[str],
-                           outputs: Optional[List[str]] = None,
+                           testcases_list: List[List[str]],
+                           outputs_list: List[List[str]],
                            report_coherence=False,
                            report_accuracy=False,
                            n_test_cases=-1,
@@ -194,7 +195,7 @@ def make_clusters_parallel(programs: List[str],
     if report_accuracy:
         if outputs is None:
             raise ValueError("Need outputs to report accuracy.")
-        if len(testcases) != len(outputs):
+        if len(testcases_list) != len(outputs_list):
             raise ValueError("Number of testcases and outputs must match.")
 
     client, tcgen_image = build_docker_image(clustering_abs_dir)
@@ -203,8 +204,8 @@ def make_clusters_parallel(programs: List[str],
 
     with tqdm_joblib(tqdm(desc="Processing programs", total=len(programs))):
         results = joblib.Parallel(n_jobs=n_jobs, backend='threading')(
-            joblib.delayed(process_program)(program, testcases, generations, tcgen_image, client, n_test_cases)
-            for program in programs
+            joblib.delayed(process_program)(program, testcases, tcgen_image, client, n_test_cases)
+            for program, testcases in zip(programs, testcases_list)
         )
 
     for program, outputs in results:
@@ -216,7 +217,7 @@ def make_clusters_parallel(programs: List[str],
         program_2_coherence = program_2_n_outputs = program_2_n_coherent = None
 
     if report_accuracy:
-        program_2_accuracy = report_accuracy(program_2_testcase_2_output, outputs)
+        program_2_accuracy = report_accuracy(program_2_testcase_2_output, ...) 
     else:
         program_2_accuracy = None
 
@@ -227,4 +228,47 @@ def make_clusters_parallel(programs: List[str],
 
     return program_2_semantic_string, semantic_strings_2_programs, program_2_coherence, program_2_n_outputs, program_2_n_coherent, program_2_accuracy
 
+
+@dataclass
+class Config:
+    input_file: str
+    output_dir: str
+    report_coherence: bool
+    report_accuracy: bool
+    n_test_cases: int
+    n_jobs: int
+
+def read_config(config_path: str) -> Config:
+    with open(config_path, 'r') as file:
+        config_dict = yaml.safe_load(file)
+    return Config(**config_dict)
+
+
+## TODO: you should refactor all things to use testcase_id: input, testcase_id: output to be more explicit and to reduce any risks of bugs
+
+def main(config_path: str):
+    config = read_config(config_path)
+    
+    # Load programs, test cases, and expected outputs from the input file
+    programs, testcases, outputs = load_data(config.input_file)
+    
+    # Run the clustering
+    results = make_clusters_parallel(
+        programs,
+        testcases,
+        outputs,
+        config.report_coherence,
+        config.report_accuracy,
+        config.n_test_cases,
+        config.n_jobs
+    )
+    
+    # Save results to the output directory
+    save_results(results, config.output_dir)
+    
+    
+if __name__ == "__main__":
+    import sys
+    main(sys.argv[1])
+    
 

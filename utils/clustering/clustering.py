@@ -7,6 +7,9 @@ import logging
 import traceback 
 import glob 
 from collections import defaultdict
+import joblib
+from joblib import Parallel, delayed
+import contextlib
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -150,7 +153,72 @@ def make_clusters_iterative(programs: List[str],
     return program_2_semantic_string, semantic_strings_2_programs, program_2_coherence, program_2_n_outputs, program_2_n_coherent, program_2_accuracy
         
     
-    
+
+@contextlib.contextmanager
+def tqdm_joblib(tqdm_object):
+    """Context manager to patch joblib to report into tqdm progress bar given as argument"""
+    class TqdmBatchCompletionCallback(joblib.parallel.BatchCompletionCallBack):
+        def __call__(self, *args, **kwargs):
+            tqdm_object.update(n=self.batch_size)
+            return super().__call__(*args, **kwargs)
+
+    old_batch_callback = joblib.parallel.BatchCompletionCallBack
+    joblib.parallel.BatchCompletionCallBack = TqdmBatchCompletionCallback
+    try:
+        yield tqdm_object
+    finally:
+        joblib.parallel.BatchCompletionCallBack = old_batch_callback
+        tqdm_object.close()
+
         
     
-    
+from typing import List, Optional
+import joblib
+from tqdm import tqdm
+
+def process_program(program, testcases, generations, tcgen_image, client, n_test_cases):
+    outputs = instrument_code_docker(program, testcases, generations, tcgen_image, client, n_test_cases=n_test_cases)
+    return program, outputs
+
+def make_clusters_parallel(programs: List[str],
+                           testcases: List[str],
+                           generations: List[str],
+                           outputs: Optional[List[str]] = None,
+                           report_coherence=False,
+                           report_accuracy=False,
+                           n_test_cases=-1,
+                           n_jobs=-1):
+    if report_accuracy:
+        if outputs is None:
+            raise ValueError("Need outputs to report accuracy.")
+        if len(testcases) != len(outputs):
+            raise ValueError("Number of testcases and outputs must match.")
+
+    client, tcgen_image = build_docker_image(clustering_abs_dir)
+
+    program_2_testcase_2_output = {}
+
+    with tqdm_joblib(tqdm(desc="Processing programs", total=len(programs))):
+        results = joblib.Parallel(n_jobs=n_jobs, backend='threading')(
+            joblib.delayed(process_program)(program, testcases, generations, tcgen_image, client, n_test_cases)
+            for program in programs
+        )
+
+    for program, outputs in results:
+        program_2_testcase_2_output[program] = outputs
+
+    if report_coherence:
+        program_2_coherence, program_2_n_outputs, program_2_n_coherent = report_coherence(program_2_testcase_2_output)
+    else:
+        program_2_coherence = program_2_n_outputs = program_2_n_coherent = None
+
+    if report_accuracy:
+        program_2_accuracy = report_accuracy(program_2_testcase_2_output, outputs)
+    else:
+        program_2_accuracy = None
+
+    program_2_semantic_string, semantic_strings_2_programs = make_semantic_string(program_2_testcase_2_output, testcases)
+
+    return program_2_semantic_string, semantic_strings_2_programs, program_2_coherence, program_2_n_outputs, program_2_n_coherent, program_2_accuracy
+
+

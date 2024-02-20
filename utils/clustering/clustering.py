@@ -12,6 +12,10 @@ from joblib import Parallel, delayed
 import contextlib
 import yaml
 from dataclasses import dataclass
+from typing import List, Optional, Dict
+import joblib
+from tqdm import tqdm
+import re
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -35,8 +39,8 @@ def build_docker_image(path_to_dockerfile):
     return client, image
 
 
-def instrument_code_docker(generated_code: str, testcase_inputs: List[str], image, client, 
-                           docker_working_dir = None, n_test_cases=-1, indiv_tc_timeout=5, verbose_docker=False):
+def instrument_code_docker(generated_code: str, testcase_inputs: Dict[str, str], orig_testcase_outputs: Dict[str, str],
+                           image, client, docker_working_dir = None, n_test_cases=-1, indiv_tc_timeout=5, verbose_docker=False):
     
     if docker_working_dir is None: 
         docker_working_dir = tempfile.mkdtemp()
@@ -50,8 +54,8 @@ def instrument_code_docker(generated_code: str, testcase_inputs: List[str], imag
         
     shutil.copy(docker_driver_abs_path, os.path.join(docker_working_dir, "driver.py"))
     
-    for i, testcase_input in enumerate(testcase_inputs):
-        input_path = os.path.join(docker_working_dir, f"input.{i}.txt")
+    for testcase_id, testcase_input in testcase_inputs.items():
+        input_path = os.path.join(docker_working_dir, f"input.{testcase_id}.txt")
         with open(input_path, "w") as f:
             f.write(testcase_input)
     
@@ -77,46 +81,50 @@ def instrument_code_docker(generated_code: str, testcase_inputs: List[str], imag
         logging.error(traceback_str)
 
     output_files = glob.glob(os.path.join(docker_working_dir, "output.*.txt"))
-    outputs = []
+    testcase_outputs = {}
+    
     for output_file in output_files:
+        output_number = re.search(r"output.(\d+).txt", output_file).group(1)
         with open(output_file, "r") as f:
-            outputs.append(f.read())
-    return outputs
+            testcase_outputs[output_number] = f.read()
+            
+    output_record = {
+        "code": generated_code, 
+        "testcase_outputs": testcase_outputs, 
+        "testcase_inputs": testcase_inputs, 
+        "orig_testcase_outputs": orig_testcase_outputs
+    }
+    return output_record
 
-
-def report_coherence(program_2_testcase_2_output):
-    # if syntax or runtime error, then it is not coherent
+def report_coherence(output_records: List[Dict]):
     program_2_coherence = {}
     program_2_n_outputs = {}
     program_2_n_coherent = {}
-    for program, testcase_2_output in program_2_testcase_2_output.items():
-        n_outputs = len(testcase_2_output)
-        n_coherent = len([output for output in testcase_2_output if output not in ["Syntax Error", "Runtime Error"]] )
-        program_2_n_outputs[program] = n_outputs
-        program_2_n_coherent[program] = n_coherent
-        program_2_coherence[program] = n_coherent / n_outputs
+    for output_record in output_records:
+        n_outputs = len(output_record["testcase_outputs"])
+        n_coherent = len([output for output in output_record["testcase_outputs"].values() if output not in ["Syntax Error", "Runtime Error"]])
+        program_2_n_outputs[output_record["code"]] = n_outputs
+        program_2_n_coherent[output_record["code"]] = n_coherent
+        program_2_coherence[output_record["code"]] = n_coherent / n_outputs
     return program_2_coherence, program_2_n_outputs, program_2_n_coherent
 
-
-# TODO: need to pay attention here
-def report_accuracy(program_2_testcase_2_output, expected_outputs: List[List[str]]):
+def report_accuracy(output_records: List[Dict]):
     program_2_accuracy = {}
-    for (program, testcase_2_output), expected_output in zip(program_2_testcase_2_output.items(), expected_outputs):
-        n_correct = len([output for output, expected_output in zip(testcase_2_output, expected_output) if output.strip() == expected_output.strip()])
-        program_2_accuracy[program] = n_correct / len(testcase_2_output)
+    for output_record in output_records:
+        n_correct = len([output for output, expected_output in zip(output_record["testcase_outputs"].values(), output_record["orig_testcase_outputs"].values()) if output.strip() == expected_output.strip()])
+        program_2_accuracy[output_record["code"]] = n_correct / len(output_record["testcase_outputs"])
     return program_2_accuracy
 
-
-def make_semantic_string(program_2_testcase_2_output, testcase_inputs): 
+def make_semantic_strings(output_records: List[Dict]):
     program_2_semantic_string = {}
-    for program, testcase_2_output in program_2_testcase_2_output.items():
-        s = ""
-        for i, testcase_input in enumerate(testcase_inputs):
-            s += f"testcase_input: {testcase_input}, output: {testcase_2_output[i]}\n"
-        program_2_semantic_string[program] = s
     semantic_strings_2_programs = defaultdict(list)
-    for program, semantic_string in program_2_semantic_string.items():
-        semantic_strings_2_programs[semantic_string].append(program)
+    for output_record in output_records:
+        semantic_string = ""
+        for testcase_id, testcase_input in output_record["testcase_inputs"].items():
+            testcase_output = output_record["testcase_outputs"][testcase_id]
+            semantic_string += f"testcase_input: {testcase_input}, output: {testcase_output}\n"
+        program_2_semantic_string[output_record["code"]] = semantic_string
+        semantic_strings_2_programs[semantic_string].append(output_record["code"])
     return program_2_semantic_string, semantic_strings_2_programs
     
 
@@ -134,23 +142,23 @@ def make_clusters_iterative(programs: List[str],
         
     client, tcgen_image = build_docker_image(clustering_abs_dir)
     
-    program_2_testcase_2_output = {}
+    output_records = []
     for i, program in enumerate(programs):
-        outputs = instrument_code_docker(program, testcases, tcgen_image, client, n_test_cases=n_test_cases)
-        program_2_testcase_2_output[program] = outputs
+        record = instrument_code_docker(program, testcases, tcgen_image, client, n_test_cases=n_test_cases)
+        output_records.append(record)
         
     if report_coherence:
-        program_2_coherence, program_2_n_outputs, program_2_n_coherent = report_coherence(program_2_testcase_2_output)
+        program_2_coherence, program_2_n_outputs, program_2_n_coherent = report_coherence(output_records)
     else: 
         program_2_coherence = program_2_n_outputs = program_2_n_coherent = None
     
     if report_accuracy:
         ## TODO: convert inputs and outputs to a dict of index 2 output to avoid any sorting/ordering issues and bugs
-        program_2_accuracy = report_accuracy(program_2_testcase_2_output, outputs)
+        program_2_accuracy = report_accuracy(output_records)
     else:
         program_2_accuracy = None
         
-    program_2_semantic_string, semantic_strings_2_programs = make_semantic_string(program_2_testcase_2_output, testcases)
+    program_2_semantic_string, semantic_strings_2_programs = make_semantic_strings(output_records)
     
     # cleanup 
     client.images.remove(tcgen_image.id)
@@ -177,55 +185,42 @@ def tqdm_joblib(tqdm_object):
 
         
     
-from typing import List, Optional
-import joblib
-from tqdm import tqdm
-
-def process_program(program, testcases, tcgen_image, client, n_test_cases):
-    outputs = instrument_code_docker(program, testcases, tcgen_image, client, n_test_cases=n_test_cases)
-    return program, outputs
-
 def make_clusters_parallel(programs: List[str],
-                           testcases_list: List[List[str]],
-                           outputs_list: List[List[str]],
-                           report_coherence=False,
-                           report_accuracy=False,
-                           n_test_cases=-1,
-                           n_jobs=-1):
+                            testcases: List[str], 
+                            outputs: Optional[List[str]] = None, 
+                            report_coherence=False, 
+                            report_accuracy=False, 
+                            n_test_cases=-1, 
+                            n_jobs=-1):
     if report_accuracy:
         if outputs is None:
             raise ValueError("Need outputs to report accuracy.")
-        if len(testcases_list) != len(outputs_list):
+        if len(testcases) != len(outputs):
             raise ValueError("Number of testcases and outputs must match.")
-
+        
     client, tcgen_image = build_docker_image(clustering_abs_dir)
-
-    program_2_testcase_2_output = {}
-
-    with tqdm_joblib(tqdm(desc="Processing programs", total=len(programs))):
-        results = joblib.Parallel(n_jobs=n_jobs, backend='threading')(
-            joblib.delayed(process_program)(program, testcases, tcgen_image, client, n_test_cases)
-            for program, testcases in zip(programs, testcases_list)
-        )
-
-    for program, outputs in results:
-        program_2_testcase_2_output[program] = outputs
-
+    
+    with tqdm_joblib(tqdm(desc="Processing Programs", total=len(programs))) as progress_bar:
+        output_records = Parallel(n_jobs=n_jobs, backend='threading')(delayed(instrument_code_docker)(
+            program, testcases, tcgen_image, client, n_test_cases=n_test_cases
+        ) for program in programs)
+    
     if report_coherence:
-        program_2_coherence, program_2_n_outputs, program_2_n_coherent = report_coherence(program_2_testcase_2_output)
-    else:
+        program_2_coherence, program_2_n_outputs, program_2_n_coherent = report_coherence(output_records)
+    else: 
         program_2_coherence = program_2_n_outputs = program_2_n_coherent = None
-
+    
     if report_accuracy:
-        program_2_accuracy = report_accuracy(program_2_testcase_2_output, ...) 
+        ## TODO: convert inputs and outputs to a dict of index 2 output to avoid any sorting/ordering issues and bugs
+        program_2_accuracy = report_accuracy(output_records)
     else:
         program_2_accuracy = None
-
-    program_2_semantic_string, semantic_strings_2_programs = make_semantic_string(program_2_testcase_2_output, testcases)
+        
+    program_2_semantic_string, semantic_strings_2_programs = make_semantic_strings(output_records)
     
     # cleanup 
     client.images.remove(tcgen_image.id)
-
+    
     return program_2_semantic_string, semantic_strings_2_programs, program_2_coherence, program_2_n_outputs, program_2_n_coherent, program_2_accuracy
 
 

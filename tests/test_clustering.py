@@ -94,27 +94,39 @@ def test_instrument_generated_code_squared_docker():
 
 
 def test_report_coherence():
-    program_2_testcase_2_output = {
-        'prog1': ['Output 1', 'Syntax Error', 'Output 2'],
-        'prog2': ['Runtime Error', 'Output 3', 'Output 4']
-    }
+    output_records = [
+        {
+            "code": "prog1",
+            "testcase_outputs": {"0": "Output 1", "1": "Syntax Error", "2": "Output 2"}
+        },
+        {
+            "code": "prog2",
+            "testcase_outputs": {"0": "Runtime Error", "1": "Output 3", "2": "Output 4"}
+        }
+    ]
     expected_coherence = {'prog1': 2/3, 'prog2': 2/3}
     expected_n_outputs = {'prog1': 3, 'prog2': 3}
     expected_n_coherent = {'prog1': 2, 'prog2': 2}
 
-    coherence, n_outputs, n_coherent = clustering.report_coherence(program_2_testcase_2_output)
+    coherence, n_outputs, n_coherent = clustering.report_coherence(output_records)
 
     assert dicts_are_close(coherence, expected_coherence)
     assert n_outputs == expected_n_outputs
     assert n_coherent == expected_n_coherent
 
-
 def test_make_semantic_string():
-    program_2_testcase_2_output = {
-        'prog1': ['Output 1', 'Output 2'],
-        'prog2': ['Output 3', 'Output 4']
-    }
-    testcase_inputs = ['Input 1', 'Input 2']
+    output_records = [
+        {
+            "code": "prog1",
+            "testcase_inputs": {"0": "Input 1", "1": "Input 2"},
+            "testcase_outputs": {"0": "Output 1", "1": "Output 2"}
+        },
+        {
+            "code": "prog2",
+            "testcase_inputs": {"0": "Input 1", "1": "Input 2"},
+            "testcase_outputs": {"0": "Output 3", "1": "Output 4"}
+        }
+    ]
     expected_semantic_string = {
         'prog1': "testcase_input: Input 1, output: Output 1\ntestcase_input: Input 2, output: Output 2\n",
         'prog2': "testcase_input: Input 1, output: Output 3\ntestcase_input: Input 2, output: Output 4\n"
@@ -124,30 +136,16 @@ def test_make_semantic_string():
         "testcase_input: Input 1, output: Output 3\ntestcase_input: Input 2, output: Output 4\n": ['prog2']
     })
 
-    semantic_string, semantic_strings_2_programs = clustering.make_semantic_string(program_2_testcase_2_output, testcase_inputs)
+    semantic_string, semantic_strings_2_programs = clustering.make_semantic_strings(output_records)
 
     assert semantic_string == expected_semantic_string
     assert dict(semantic_strings_2_programs) == dict(expected_semantic_strings_2_programs)
 
 
-def test_report_accuracy():
-    program_2_testcase_2_output = {
-        'prog1': ['Output 1', 'Output 2', 'Output 3'],
-        'prog2': ['Output 1', 'Wrong Output', 'Output 3']
-    }
-    expected_outputs = ['Output 1', 'Output 2', 'Output 3']
-    expected_accuracy = {'prog1': 1.0, 'prog2': 2/3}
-
-    accuracy_output = clustering.report_accuracy(program_2_testcase_2_output, expected_outputs)
-
-    assert dicts_are_close(accuracy_output, expected_accuracy)
-
-    
 def test_make_clusters_iterative():
     # Setup
     programs = ["print(input())", "print(int(input()) ** 2)"]
     testcases = ["3", "4"]
-    generations = ["gen1", "gen2"]
     expected_outputs = ["3", "16"]
     expected_semantic_strings = {
         programs[0]: "testcase_input: 3, output: 3\ntestcase_input: 4, output: 4\n",
@@ -156,7 +154,7 @@ def test_make_clusters_iterative():
 
     # Test
     results = clustering.make_clusters_iterative(
-        programs, testcases, generations, report_accuracy=True, outputs=expected_outputs
+        programs, testcases, expected_outputs, report_accuracy=True, n_test_cases=-1
     )
     program_2_semantic_string, semantic_strings_2_programs, program_2_coherence, program_2_n_outputs, program_2_n_coherent, program_2_accuracy = results
 
@@ -168,11 +166,31 @@ def test_make_clusters_iterative():
     assert program_2_n_outputs == {'prog1': 2, 'prog2': 2}
     assert program_2_n_coherent == {'prog1': 2, 'prog2': 2}
 
+
+def test_report_accuracy():
+    output_records = [
+        {
+            "code": "prog1",
+            "testcase_outputs": {"0": "Output 1", "1": "Output 2", "2": "Output 3"},
+            "orig_testcase_outputs": {"0": "Output 1", "1": "Output 2", "2": "Output 3"}
+        },
+        {
+            "code": "prog2",
+            "testcase_outputs": {"0": "Output 1", "1": "Wrong Output", "2": "Output 3"},
+            "orig_testcase_outputs": {"0": "Output 1", "1": "Output 2", "2": "Output 3"}
+        }
+    ]
+    expected_accuracy = {'prog1': 1.0, 'prog2': 2/3}
+
+    accuracy_output = clustering.report_accuracy(output_records)
+
+    assert dicts_are_close(accuracy_output, expected_accuracy)
+    
+
 def test_make_clusters_parallel():
     # Setup
     programs = ["print(input())", "print(int(input()) ** 2)"]
     testcases = ["3", "4"]
-    generations = ["gen1", "gen2"]
     expected_outputs = ["3", "16"]
     expected_semantic_strings = {
         programs[0]: "testcase_input: 3, output: 3\ntestcase_input: 4, output: 4\n",
@@ -181,7 +199,7 @@ def test_make_clusters_parallel():
 
     # Test
     results = clustering.make_clusters_parallel(
-        programs, testcases, generations, report_accuracy=True, outputs=expected_outputs, n_jobs=2
+        programs, testcases, expected_outputs, report_accuracy=True, n_test_cases=-1, n_jobs=2
     )
     program_2_semantic_string, semantic_strings_2_programs, program_2_coherence, program_2_n_outputs, program_2_n_coherent, program_2_accuracy = results
 
@@ -192,7 +210,6 @@ def test_make_clusters_parallel():
     assert dicts_are_close(program_2_coherence, {'prog1': 1.0, 'prog2': 1.0})
     assert program_2_n_outputs == {'prog1': 2, 'prog2': 2}
     assert program_2_n_coherent == {'prog1': 2, 'prog2': 2}
-
     
 
 if __name__ == '__main__':

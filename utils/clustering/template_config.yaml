@@ -1,0 +1,8 @@
+input_file: "path/to/input/file.jsonl" # should be jsonl, each line is a json object/dict 
+output_dir: "path/to/output/directory"
+generations_column: "generated_code"
+input_testcases_column: "testcases"
+report_coherence: true
+report_accuracy: false
+n_test_cases: -1
+n_jobs: -1

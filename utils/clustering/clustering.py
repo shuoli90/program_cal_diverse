@@ -1,4 +1,4 @@
-from typing import List, Optional, Union
+from typing import List, Optional, Union, Dict, Tuple
 import tempfile
 import os
 import shutil
@@ -18,6 +18,7 @@ from tqdm import tqdm
 import re
 import requests
 import warnings
+import json 
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -254,10 +255,12 @@ def make_clusters_parallel(programs: List[str],
 class Config:
     input_file: str
     output_dir: str
-    report_coherence: bool
-    report_accuracy: bool
-    n_test_cases: int
-    n_jobs: int
+    generations_column: str = "generated_code"
+    input_testcases_column: str = "testcases"
+    report_coherence: bool = True
+    report_accuracy: bool = False
+    n_test_cases: int = -1
+    n_jobs: int = -1
 
 def read_config(config_path: str) -> Config:
     with open(config_path, 'r') as file:
@@ -266,6 +269,47 @@ def read_config(config_path: str) -> Config:
 
 
 ## TODO: you should refactor all things to use testcase_id: input, testcase_id: output to be more explicit and to reduce any risks of bugs
+
+def load_data(input_file: str, config: Config) -> Tuple[List[str], Dict[str, str], Dict[str, str]]:
+    import pandas as pd
+    df = pd.read_json(input_file, lines=True, orient="records")
+    programs = [] 
+    testcases = []
+    outputs = []
+    from tqdm import tqdm
+    for i, row in tqdm(df.iterrows(), total=len(df)):
+        _testcases = row[config.input_testcases_column]
+        _outputs = row["outputs"]
+        _generated = row[config.generations_column]
+        if isinstance(_generated, list):
+            for generated_code in _generated:
+                programs.append(generated_code)
+                testcases.append(_testcases)
+                outputs.append(_outputs)
+        else:
+            programs.append(_generated)
+            testcases.append(_testcases)
+            outputs.append(_outputs)
+    return programs, testcases, outputs
+
+def save_results(results: Tuple[Dict, Dict, Dict, Dict, Dict, Dict], output_dir: str):
+    program_2_semantic_string, semantic_strings_2_programs, program_2_coherence, program_2_n_outputs, program_2_n_coherent, program_2_accuracy = results
+    if not os.path.exists(output_dir):
+        logging.info(f"Creating output directory {output_dir}")
+        os.makedirs(output_dir, exist_ok=True)
+    with open(os.path.join(output_dir, "program_2_semantic_string.json"), "w") as f:
+        json.dump(program_2_semantic_string, f)
+    with open(os.path.join(output_dir, "semantic_strings_2_programs.json"), "w") as f:
+        json.dump(semantic_strings_2_programs, f)
+    with open(os.path.join(output_dir, "program_2_coherence.json"), "w") as f:
+        json.dump(program_2_coherence, f)
+    with open(os.path.join(output_dir, "program_2_n_outputs.json"), "w") as f:
+        json.dump(program_2_n_outputs, f)
+    with open(os.path.join(output_dir, "program_2_n_coherent.json"), "w") as f:
+        json.dump(program_2_n_coherent, f)
+    with open(os.path.join(output_dir, "program_2_accuracy.json"), "w") as f:
+        json.dump(program_2_accuracy, f)
+    logging.info(f"Saved results to {output_dir}")
 
 def main(config_path: str):
     config = read_config(config_path)

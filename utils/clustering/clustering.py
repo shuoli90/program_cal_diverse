@@ -1,4 +1,4 @@
-from typing import List, Optional
+from typing import List, Optional, Union
 import tempfile
 import os
 import shutil
@@ -16,6 +16,8 @@ from typing import List, Optional, Dict
 import joblib
 from tqdm import tqdm
 import re
+import requests
+import warnings
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -25,21 +27,23 @@ clustering_abs_dir = os.path.dirname(os.path.abspath(__file__))
 docker_driver_abs_path = os.path.join(clustering_abs_dir, "docker_driver.py")
 docker_file_abs_path = os.path.join(clustering_abs_dir, "Dockerfile")
 
+import uuid 
 
-def build_docker_image(path_to_dockerfile):
+def build_docker_image(path_to_dockerfile, version_tag=None):
     tag = 'python-test-case-runner'
     client = docker.from_env()
     images = client.images.list()
+    version_tag = version_tag or "latest"
     for image in images:
-        if tag in image.tags or f"{tag}:latest" in image.tags:
+        if tag in image.tags or f"{tag}:{version_tag}" in image.tags:
             print(f"Image with tag '{tag}' already exists. Using existing image.")
             return client, image
     # Build the Docker image
-    image, build_log = client.images.build(path=path_to_dockerfile, tag=tag)
+    image, build_log = client.images.build(path=path_to_dockerfile, tag=f"{tag}:{version_tag}")
     return client, image
 
 
-def instrument_code_docker(generated_code: str, testcase_inputs: Dict[str, str], orig_testcase_outputs: Dict[str, str],
+def instrument_code_docker(generated_code: str, testcase_inputs: Dict[str, str], orig_testcase_outputs: Union[Dict[str, str], None],
                            image, client, docker_working_dir = None, n_test_cases=-1, indiv_tc_timeout=5, verbose_docker=False):
     
     if docker_working_dir is None: 
@@ -69,6 +73,9 @@ def instrument_code_docker(generated_code: str, testcase_inputs: Dict[str, str],
             volumes=volumes,
             command=f"python tc_dir/driver.py /usr/src/app/tc_dir {indiv_tc_timeout} {verbose_docker} {n_test_cases}",
         )
+        # print the container logs 
+        for line in container.logs(stream=True):
+            print(line.strip().decode('utf-8'))
         logging.info(f"Done running tc_gen.py, stopping container {container.id}.")
         container.stop()
         logging.info(f"Done stopp container for tc_gen.py, removing container {container.id}.")
@@ -87,6 +94,10 @@ def instrument_code_docker(generated_code: str, testcase_inputs: Dict[str, str],
         output_number = re.search(r"output.(\d+).txt", output_file).group(1)
         with open(output_file, "r") as f:
             testcase_outputs[output_number] = f.read()
+            
+    # make sure the number of outputs is the same as the number of inputs
+    if len(testcase_outputs) != len(testcase_inputs):
+        raise ValueError(f"Number of outputs ({len(testcase_outputs)}) does not match the number of inputs ({len(testcase_inputs)}); outputs: {testcase_outputs}, inputs: {testcase_inputs}")
             
     output_record = {
         "code": generated_code, 
@@ -129,11 +140,12 @@ def make_semantic_strings(output_records: List[Dict]):
     
 
 def make_clusters_iterative(programs: List[str],
-                    testcases: List[str], 
-                    outputs: Optional[List[str]] = None, 
-                    report_coherence=False, 
-                    report_accuracy=False, 
-                    n_test_cases=-1):
+                    testcases: Dict[str, str],
+                    outputs: Optional[Dict[str, str]] = None,
+                    do_report_coherence=False, 
+                    do_report_accuracy=False, 
+                    n_test_cases=-1, 
+                    verbose_docker=False): 
     if report_accuracy:
         if outputs is None:
             raise ValueError("Need outputs to report accuracy.")
@@ -144,15 +156,15 @@ def make_clusters_iterative(programs: List[str],
     
     output_records = []
     for i, program in enumerate(programs):
-        record = instrument_code_docker(program, testcases, tcgen_image, client, n_test_cases=n_test_cases)
+        record = instrument_code_docker(program, testcases, outputs, tcgen_image, client, n_test_cases=n_test_cases, verbose_docker=verbose_docker)
         output_records.append(record)
         
-    if report_coherence:
+    if do_report_coherence:
         program_2_coherence, program_2_n_outputs, program_2_n_coherent = report_coherence(output_records)
     else: 
         program_2_coherence = program_2_n_outputs = program_2_n_coherent = None
     
-    if report_accuracy:
+    if do_report_accuracy:
         ## TODO: convert inputs and outputs to a dict of index 2 output to avoid any sorting/ordering issues and bugs
         program_2_accuracy = report_accuracy(output_records)
     else:
@@ -161,7 +173,11 @@ def make_clusters_iterative(programs: List[str],
     program_2_semantic_string, semantic_strings_2_programs = make_semantic_strings(output_records)
     
     # cleanup 
-    client.images.remove(tcgen_image.id)
+    try: 
+        client.images.remove(tcgen_image.id)
+    # allow httperror to be raised
+    except requests.exceptions.HTTPError as e:
+        warnings.warn(f"Error removing image: {e}, generally this should be okay in case someone else is using the image")
     
     return program_2_semantic_string, semantic_strings_2_programs, program_2_coherence, program_2_n_outputs, program_2_n_coherent, program_2_accuracy
         
@@ -188,10 +204,11 @@ def tqdm_joblib(tqdm_object):
 def make_clusters_parallel(programs: List[str],
                             testcases: List[str], 
                             outputs: Optional[List[str]] = None, 
-                            report_coherence=False, 
-                            report_accuracy=False, 
+                            do_report_coherence=False, 
+                            do_report_accuracy=False, 
                             n_test_cases=-1, 
-                            n_jobs=-1):
+                            n_jobs=-1, 
+                            verbose_docker=False):
     if report_accuracy:
         if outputs is None:
             raise ValueError("Need outputs to report accuracy.")
@@ -202,15 +219,15 @@ def make_clusters_parallel(programs: List[str],
     
     with tqdm_joblib(tqdm(desc="Processing Programs", total=len(programs))) as progress_bar:
         output_records = Parallel(n_jobs=n_jobs, backend='threading')(delayed(instrument_code_docker)(
-            program, testcases, tcgen_image, client, n_test_cases=n_test_cases
+            program, testcases, outputs, tcgen_image, client, n_test_cases=n_test_cases, verbose_docker=verbose_docker
         ) for program in programs)
     
-    if report_coherence:
+    if do_report_coherence:
         program_2_coherence, program_2_n_outputs, program_2_n_coherent = report_coherence(output_records)
     else: 
         program_2_coherence = program_2_n_outputs = program_2_n_coherent = None
     
-    if report_accuracy:
+    if do_report_accuracy:
         ## TODO: convert inputs and outputs to a dict of index 2 output to avoid any sorting/ordering issues and bugs
         program_2_accuracy = report_accuracy(output_records)
     else:
@@ -219,7 +236,11 @@ def make_clusters_parallel(programs: List[str],
     program_2_semantic_string, semantic_strings_2_programs = make_semantic_strings(output_records)
     
     # cleanup 
-    client.images.remove(tcgen_image.id)
+    try: 
+        client.images.remove(tcgen_image.id)
+    # allow httperror to be raised
+    except requests.exceptions.HTTPError as e:
+        warnings.warn(f"Error removing image: {e}, generally this should be okay in case someone else is using the image")
     
     return program_2_semantic_string, semantic_strings_2_programs, program_2_coherence, program_2_n_outputs, program_2_n_coherent, program_2_accuracy
 

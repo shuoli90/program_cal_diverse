@@ -9,7 +9,7 @@ import subprocess
 if __name__ == '__main__':
     ## read in tc_dir as first argument
     tc_dir = sys.argv[1]
-    timeout = sys.argv[2]
+    timeout = int(sys.argv[2])
     verbose = sys.argv[3] if len(sys.argv) > 3 else False
     
     # then get all input.*.txt files in tc_dir

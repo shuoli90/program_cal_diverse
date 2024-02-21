@@ -93,7 +93,7 @@ def instrument_code_docker(generated_code: str, testcase_inputs: Dict[str, str],
     for output_file in output_files:
         output_number = re.search(r"output.(\d+).txt", output_file).group(1)
         with open(output_file, "r") as f:
-            testcase_outputs[output_number] = f.read()
+            testcase_outputs[output_number] = f.read().strip()
             
     # make sure the number of outputs is the same as the number of inputs
     if len(testcase_outputs) != len(testcase_inputs):
@@ -122,7 +122,10 @@ def report_coherence(output_records: List[Dict]):
 def report_accuracy(output_records: List[Dict]):
     program_2_accuracy = {}
     for output_record in output_records:
-        n_correct = len([output for output, expected_output in zip(output_record["testcase_outputs"].values(), output_record["orig_testcase_outputs"].values()) if output.strip() == expected_output.strip()])
+        n_correct = 0 
+        for tc_key, output in output_record["testcase_outputs"].items():
+            if output.strip() == output_record["orig_testcase_outputs"][tc_key].strip():
+                n_correct += 1
         program_2_accuracy[output_record["code"]] = n_correct / len(output_record["testcase_outputs"])
     return program_2_accuracy
 
@@ -146,7 +149,7 @@ def make_clusters_iterative(programs: List[str],
                     do_report_accuracy=False, 
                     n_test_cases=-1, 
                     verbose_docker=False): 
-    if report_accuracy:
+    if do_report_accuracy:
         if outputs is None:
             raise ValueError("Need outputs to report accuracy.")
         if len(testcases) != len(outputs):
@@ -158,6 +161,8 @@ def make_clusters_iterative(programs: List[str],
     for i, program in enumerate(programs):
         record = instrument_code_docker(program, testcases, outputs, tcgen_image, client, n_test_cases=n_test_cases, verbose_docker=verbose_docker)
         output_records.append(record)
+        
+    # import pdb; pdb.set_trace()
         
     if do_report_coherence:
         program_2_coherence, program_2_n_outputs, program_2_n_coherent = report_coherence(output_records)
@@ -209,7 +214,7 @@ def make_clusters_parallel(programs: List[str],
                             n_test_cases=-1, 
                             n_jobs=-1, 
                             verbose_docker=False):
-    if report_accuracy:
+    if do_report_accuracy:
         if outputs is None:
             raise ValueError("Need outputs to report accuracy.")
         if len(testcases) != len(outputs):

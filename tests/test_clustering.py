@@ -8,6 +8,8 @@ import pytest
 import shutil
 import numpy as np
 from collections import defaultdict
+import requests
+import warnings
 
 ## helper
 def dicts_are_close(dict1, dict2, atol=1e-8):
@@ -30,8 +32,8 @@ def test_lite_build_docker_image():
         f.write(dockerfile_content)
 
     # Test
-    client, image = clustering.build_docker_image(temp_dir)
-    assert image.tags[0] == 'python-test-case-runner:latest'
+    client, image = clustering.build_docker_image(temp_dir, version_tag="test-lite")
+    assert image.tags[0] == 'python-test-case-runner:test-lite'
 
     # Cleanup
     client.images.remove(image.id)
@@ -45,8 +47,12 @@ def test_real_build_docker_image():
 
     # Check if the image has the correct tag
     assert 'python-test-case-runner:latest' in image.tags
-
-    client.images.remove(image.id)
+    
+    try: 
+        client.images.remove(image.id)
+    # allow httperror to be raised
+    except requests.exceptions.HTTPError as e:
+        warnings.warn(f"Error removing image: {e}, generally this should be okay in case someone else is using the image")
     
 
 generated_code_squared = """
@@ -63,34 +69,36 @@ if __name__ == '__main__':
 """
 
 def test_instrument_generated_code_squared_docker():
-    testcase_inputs = ["3", "4"]
-    expected_outputs = [
-        "Input: 3\nSquared: 9",
-        "Input: 4\nSquared: 16"
-    ]
+    testcase_inputs = {"0": "3", "1": "4"}
+    expected_outputs = {"0": "Input: 3\nSquared: 9", "1": "Input: 4\nSquared: 16"}
+    orig_testcase_outputs = {"0": "9", "1": "16"}
     client, image = clustering.build_docker_image(clustering.clustering_abs_dir)
-    docker_working_dir = tempfile.mkdtemp()
 
     # Test
-    outputs = clustering.instrument_code_docker(
+    output_record = clustering.instrument_code_docker(
         generated_code_squared, 
         testcase_inputs, 
+        orig_testcase_outputs,
         image, 
         client, 
-        docker_working_dir, 
         n_test_cases=-1, 
         indiv_tc_timeout=20, 
         verbose_docker=True
     )
 
     # Check the outputs
-    assert len(outputs) == len(testcase_inputs)
-    for output, expected_output in zip(outputs, expected_outputs):
-        assert output.strip() == expected_output
+    testcase_outputs = output_record["testcase_outputs"]
+    assert len(testcase_outputs) == len(testcase_inputs)
+    for testcase_id, expected_output in expected_outputs.items():
+        assert testcase_outputs[testcase_id].strip() == expected_output
 
     # Cleanup
-    shutil.rmtree(docker_working_dir)
-    client.images.remove(image.id)
+    try: 
+        client.images.remove(image.id)
+    # allow httperror to be raised
+    except requests.exceptions.HTTPError as e:
+        warnings.warn(f"Error removing image: {e}, generally this should be okay in case someone else is using the image")
+    
 
 
 def test_report_coherence():
@@ -141,12 +149,12 @@ def test_make_semantic_string():
     assert semantic_string == expected_semantic_string
     assert dict(semantic_strings_2_programs) == dict(expected_semantic_strings_2_programs)
 
-
+@pytest.mark.test_clusters
 def test_make_clusters_iterative():
     # Setup
     programs = ["print(input())", "print(int(input()) ** 2)"]
-    testcases = ["3", "4"]
-    expected_outputs = ["3", "16"]
+    testcases = {"0": "3", "1": "4"}
+    expected_outputs = {"0": "9", "1": "16"}
     expected_semantic_strings = {
         programs[0]: "testcase_input: 3, output: 3\ntestcase_input: 4, output: 4\n",
         programs[1]: "testcase_input: 3, output: 9\ntestcase_input: 4, output: 16\n"
@@ -154,19 +162,19 @@ def test_make_clusters_iterative():
 
     # Test
     results = clustering.make_clusters_iterative(
-        programs, testcases, expected_outputs, report_accuracy=True, n_test_cases=-1
+        programs, testcases, expected_outputs, do_report_coherence=True, do_report_accuracy=True, n_test_cases=-1, verbose_docker=True
     )
     program_2_semantic_string, semantic_strings_2_programs, program_2_coherence, program_2_n_outputs, program_2_n_coherent, program_2_accuracy = results
 
     # Check the results
     assert program_2_semantic_string == expected_semantic_strings
-    assert program_2_accuracy[programs[0]] == 1.0
-    assert program_2_accuracy[programs[1]] == 0.5
-    assert dicts_are_close(program_2_coherence, {'prog1': 1.0, 'prog2': 1.0})
-    assert program_2_n_outputs == {'prog1': 2, 'prog2': 2}
-    assert program_2_n_coherent == {'prog1': 2, 'prog2': 2}
+    assert program_2_accuracy[programs[0]] == 0.0
+    assert program_2_accuracy[programs[1]] == 1.0
+    assert dicts_are_close(program_2_coherence, {programs[0]: 1.0, programs[1]: 1.0})
+    assert program_2_n_outputs == {programs[0]: 2, programs[1]: 2}
+    assert program_2_n_coherent == {programs[0]: 2, programs[1]: 2}
 
-
+@pytest.mark.test_clusters
 def test_report_accuracy():
     output_records = [
         {
@@ -186,12 +194,12 @@ def test_report_accuracy():
 
     assert dicts_are_close(accuracy_output, expected_accuracy)
     
-
+@pytest.mark.test_clusters
 def test_make_clusters_parallel():
     # Setup
     programs = ["print(input())", "print(int(input()) ** 2)"]
-    testcases = ["3", "4"]
-    expected_outputs = ["3", "16"]
+    testcases = {"0": "3", "1": "4"}
+    expected_outputs = {"0": "9", "1": "16"}
     expected_semantic_strings = {
         programs[0]: "testcase_input: 3, output: 3\ntestcase_input: 4, output: 4\n",
         programs[1]: "testcase_input: 3, output: 9\ntestcase_input: 4, output: 16\n"
@@ -199,17 +207,17 @@ def test_make_clusters_parallel():
 
     # Test
     results = clustering.make_clusters_parallel(
-        programs, testcases, expected_outputs, report_accuracy=True, n_test_cases=-1, n_jobs=2
+        programs, testcases, expected_outputs, do_report_coherence=True, do_report_accuracy=True, n_test_cases=-1, n_jobs=2, verbose_docker=True
     )
     program_2_semantic_string, semantic_strings_2_programs, program_2_coherence, program_2_n_outputs, program_2_n_coherent, program_2_accuracy = results
 
     # Check the results
     assert program_2_semantic_string == expected_semantic_strings
-    assert program_2_accuracy[programs[0]] == 1.0
-    assert program_2_accuracy[programs[1]] == 0.5
-    assert dicts_are_close(program_2_coherence, {'prog1': 1.0, 'prog2': 1.0})
-    assert program_2_n_outputs == {'prog1': 2, 'prog2': 2}
-    assert program_2_n_coherent == {'prog1': 2, 'prog2': 2}
+    assert program_2_accuracy[programs[0]] == 0.0
+    assert program_2_accuracy[programs[1]] == 1.0
+    assert dicts_are_close(program_2_coherence, {programs[0]: 1.0, programs[1]: 1.0})
+    assert program_2_n_outputs == {programs[0]: 2, programs[1]: 2}
+    assert program_2_n_coherent == {programs[0]: 2, programs[1]: 2}
     
 
 if __name__ == '__main__':

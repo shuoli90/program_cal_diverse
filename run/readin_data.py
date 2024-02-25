@@ -6,9 +6,11 @@ sys.path.insert(0,
 import argparse
 import pandas as pd
 import json
+import numpy as np
 from models import gpt, opensource
 from utils import textprocessing
 from utils.clustering import clustering
+from indicators import uncertainty_blackbox
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Read in data')
@@ -49,7 +51,7 @@ if __name__ == '__main__':
     count = 0
     # iterate over the dataframe
     for index, row in df.iterrows():
-        if index > 100:
+        if index > 30:
             break
         result = {}
         prompt = row['description_string']
@@ -103,6 +105,25 @@ if __name__ == '__main__':
         print('semantic count', len(semantic_strings_2_programs.keys()))
         result['program_2_semantic_string'] = program_2_semantic_string
         result['semantic_strings_2_programs'] = semantic_strings_2_programs
+
+        # create similarity matrix
+        similarity_matrix = np.zeros((len(programs), len(programs)))
+        for i in range(len(programs)):
+            for j in range(len(programs)):
+                program_i = programs[i]
+                program_j = programs[j]
+                if program_2_semantic_string[program_i] == program_2_semantic_string[program_j]:
+                    similarity_matrix[i, j] = 1
+        ecc = uncertainty_blackbox.Eccentricity()([similarity_matrix])
+        degree = uncertainty_blackbox.Degree()([similarity_matrix])
+        spectral = uncertainty_blackbox.SpectralEigv()([similarity_matrix])
+        result['ecc_u'] = [num.astype(np.float64).tolist() for num in ecc[0]]
+        result['ecc_confidence'] = [num.astype(np.float64).tolist() for num in ecc[1]]
+        result['degree_u'] = [num.astype(np.float64) for num in degree[0]]
+        result['degree_confidence'] = [num.astype(np.float64).tolist() for num in degree[1]]
+        result['spectral_u'] = [num.astype(np.float64).tolist() for num in spectral]
+        
+        result['similarity_matrix'] = similarity_matrix.tolist()
 
         results.append(result)
         if count % 10 == 0:

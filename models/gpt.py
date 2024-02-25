@@ -52,6 +52,7 @@ class GPTModel:
                 n=num_return_sequences,
                 max_tokens=max_length,
                 temperature=temperature if do_sample else 0,
+                
                 # **kwargs # to be refined
             )
             completions.append(response)

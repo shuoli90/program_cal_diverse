@@ -49,7 +49,7 @@ def instrument_code_docker(generated_code: str, testcase_inputs: Dict[str, str],
     
     if docker_working_dir is None: 
         docker_working_dir = tempfile.mkdtemp()
-        
+    
     if not os.path.exists(docker_working_dir):
         raise ValueError(f"{docker_working_dir} does not exist.")
     

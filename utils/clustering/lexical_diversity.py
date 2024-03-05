@@ -9,13 +9,23 @@ import contextlib
 from nltk import ngrams 
 from typing import List, Callable
 from sacrebleu.metrics import BLEU
+import re
+from transformers import AutoTokenizer
+from dataclasses import dataclass
+from tqdm import tqdm
 
-bleu = BLEU(tokenize="None")
+bleu = BLEU(tokenize=None)
 
 newline_pattern = re.compile(r'\n')
 
 gpt2_tokenizer = GPT2Tokenizer.from_pretrained('gpt2')
-codebert_tokenizer = AutoTokenizer.from_pretrained("microsoft/codebert-base")
+_codebert_tokenzier = AutoTokenizer.from_pretrained("microsoft/codebert-base")
+
+def codebert_tokenizer(code_str):
+    encoded_input = _codebert_tokenzier(code_str)
+    tokens = _codebert_tokenzier.convert_ids_to_tokens(encoded_input['input_ids'])
+    return tokens
+    
 
 def get_relevant_tokens_lexer(code_str):
     # Convert the string to a bytes-like object
@@ -87,20 +97,20 @@ def get_relevant_tokens_tokenizer(code_str, tokenizer = codebert_tokenizer):
 
 
 
-def tokenize_for_self_bleu(code_str, ftokenizer: Callable[str]) -> List[str]:
+def tokenize_for_self_bleu(code_str, ftokenizer: Callable[[str], List[str]]) -> List[str]:
     tokens = ftokenizer(code_str)
     tokens = [newline_pattern.sub("NEWLINE", token) for token in tokens]
     return " ".join(tokens)
 
 # \mathrm{DP}(Y)=\frac{1}{|Y|(|Y|-1)} \sum_{y \in Y} \sum_{y^{\prime} \in Y, y^{\prime} \neq y} 1-\Delta\left(y, y^{\prime}\right)
 
-def self_bleu_metric(src: str, tgt: str, ftokenizer: Callable[str]) -> float:
+def self_bleu_metric(src: str, tgt: str, ftokenizer: Callable[[str], List[str]]) -> float:
     src_tokens = tokenize_for_self_bleu(src, ftokenizer)
     tgt_tokens = tokenize_for_self_bleu(tgt, ftokenizer)
-    return 1 - bleu.sentences_score(src_tokens, [tgt_tokens]).score
+    return 100 - bleu.sentence_score(src_tokens, [tgt_tokens]).score
 
 # https://aclanthology.org/P19-1177.pdf
-def iterative_corpus_self_bleu(sentences: List[str], ftokenizer: Callable[str], normalize: bool = True) -> float:
+def iterative_corpus_self_bleu(sentences: List[str], ftokenizer: Callable[[str], List[str]], normalize: bool = True) -> float:
     total_self_bleu = 0
     n = len(sentences)
     for i in range(n):
@@ -126,18 +136,19 @@ def tqdm_joblib(tqdm_object):
         tqdm_object.close()
         
         
-def parallel_corpus_self_bleu(sentences: List[str], ftokenizer: Callable[str], n_jobs: int = -1, normalize: bool = True) -> float:
+def parallel_corpus_self_bleu(sentences: List[str], ftokenizer: Callable[[str], List[str]], n_jobs: int = -1, normalize: bool = True) -> float:
     total_self_bleu = 0
     n = len(sentences)
     total_pairs = n * (n-1) / 2
-    with tqdm_joblib(total=total_pairs) as progress_bar:
+    # with tqdm_joblib(tqdm(desc="Generating test cases", total=len(problem_ids))) as progress_bar:
+    with tqdm_joblib(tqdm(desc="Calculating self-bleu", total=total_pairs)) as progress_bar:
         total_self_bleu = sum(Parallel(n_jobs=n_jobs)(delayed(self_bleu_metric)(sentences[i], sentences[j], ftokenizer) for i in range(n) for j in range(i+1, n)))
     return (total_self_bleu / total_pairs) if normalize else total_self_bleu
     
 
 # https://aclanthology.org/N16-1014.pdf
-def distinct_n(corpus: List[str], n: int, ftokenizer: Callable[str]) -> float:
-    ngrams_list = [ngrams(ftokenizer(seq), n) for seq in cluster]
+def distinct_n(corpus: List[str], n: int, ftokenizer: Callable[[str], List[str]]) -> float:
+    ngrams_list = [list(ngrams(ftokenizer(seq), n)) for seq in corpus]
     ngrams_set = set()
     for ngrams_seq in ngrams_list:
         ngrams_set.update(ngrams_seq)

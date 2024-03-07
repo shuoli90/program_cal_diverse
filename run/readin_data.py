@@ -64,7 +64,7 @@ if __name__ == '__main__':
             # replace '\n\n' and '\n\n\n' with '\n
             prompt = prompt.replace('\n\n\n', '\n').replace('\n\n', '\n') + 'write the funciton and a main function to call the function in python, using the form of markdown\n\n'
             # Generate text
-            generateds, generated_nlls = pipe.generate(prompt, temperature=args.temperature,
+            generateds, generated_lls = pipe.generate(prompt, temperature=args.temperature,
                                     max_length=args.max_length,
                                     do_sample=True if args.num_return_sequences > 1 else False,
                                     num_return_sequences=args.num_return_sequences,
@@ -140,7 +140,7 @@ if __name__ == '__main__':
             # whitebox method
             semantic_set_ids = [semantic_ids[program_2_semantic_string[program]] for program in programs]
             se_scores = se.compute_scores(semantic_set_ids=[torch.tensor(semantic_set_ids)], nlls=generated_nlls)
-            result['nll'] = [[np.sum(item) for item in nll] for nll in generated_nlls]
+            result['nll'] = [[np.sum(item) for item in ll] for ll in generated_lls]
             result['se'] = [num.numpy().astype(np.float64).tolist() for num in se_scores]
 
             results.append(result)

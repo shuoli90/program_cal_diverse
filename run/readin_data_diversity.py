@@ -11,6 +11,8 @@ from models import gpt, opensource
 from utils import textprocessing
 from utils.clustering import clustering
 from utils.clustering import lexical_diversity
+from dataclasses import dataclass
+import yaml
 
 
 @dataclass
@@ -43,16 +45,17 @@ if __name__ == '__main__':
     else:
         pipe = opensource.OpensourceModel(model_name=args.model)
 
-    if args.template == 'vanilla':
-        prompt = textprocessing.vanilla_template(args.prompt)
-    else:
-        raise ValueError("Unknow template")
+    # if args.template == 'vanilla':
+    #     prompt = textprocessing.vanilla_template(args.prompt)
+    # else:
+    #     raise ValueError("Unknow template")
 
     # Read in data
+    print(f'reading in data from {args.root}/{args.folder}/{args.split}.jsonl')
     path = os.path.join(args.root, args.folder, f'{args.split}.jsonl')
     df = pd.read_json(path, lines=True, orient='records')
-    df['length'] = df['description_string'].apply(len)
-    df = df[df['length'] < 1000]
+    # df['length'] = df['description_string'].apply(len)
+    # df = df[df['length'] < 1000]
 
     results = []
     count = 0
@@ -72,6 +75,7 @@ if __name__ == '__main__':
                                    do_sample=True if args.num_return_sequences > 1 else False,
                                    num_return_sequences=args.num_return_sequences,
                                    return_full_text=False)
+        
         programs = [textprocessing.extract_function(g) for g in generateds]
         result['description'] = prompt
         result['programs'] = programs
@@ -106,7 +110,9 @@ if __name__ == '__main__':
 
         # semantic_clustering
         program_2_semantic_string, semantic_strings_2_programs = clustering.make_semantic_strings(output_records)
-        print('semantic count', len(semantic_strings_2_programs.keys()))
+        semantic_count = len(semantic_strings_2_programs.keys())
+        print('semantic count', semantic_count)
+        result['semantic_count'] = semantic_count
         result['program_2_semantic_string'] = program_2_semantic_string
         result['semantic_strings_2_programs'] = semantic_strings_2_programs
 
@@ -121,6 +127,7 @@ if __name__ == '__main__':
         result['distinct_2'] = distinct_2
         result['distinct_3'] = distinct_3
         result['corpus_self_bleu'] = corpus_self_bleu
+        # print(result)
         
 
         results.append(result)
@@ -138,7 +145,7 @@ if __name__ == '__main__':
     
     # concatenate all the results, summarize the statistics
     df_results = pd.DataFrame(results)
-    df_results_stats = df_results[['coherence', 'n_outputs', 'n_coherent', 'distinct_1', 'distinct_2', 'distinct_3', 'corpus_self_bleu']]
+    df_results_stats = df_results[['coherence', 'semantic_count', 'n_outputs', 'n_coherent', 'distinct_1', 'distinct_2', 'distinct_3', 'corpus_self_bleu']]
     described = df_results_stats.describe()
     print(described)
     # save the statistics

@@ -1,0 +1,9 @@
+root: str = '../data'
+    folder: str = 'codenet'
+    split: str = 'val'
+    model: str = 'gpt-3.5-turbo'
+    prompt: str = 'Once upon a time'
+    template: str = 'vanilla'
+    temperature: float = 1.0
+    max_length: int = 512
+    num_return_sequences: int = 1

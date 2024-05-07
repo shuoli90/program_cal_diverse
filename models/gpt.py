@@ -13,8 +13,9 @@ dotenv_path = Path('.env')
 load_dotenv(dotenv_path=dotenv_path)
 
 client = OpenAI(
-    api_key=os.getenv('YOU_OPENAI_API_KEY'),
+    api_key=,
 )
+
 
 def chat_gpt(prompt):
     response = client.chat.completions.create(

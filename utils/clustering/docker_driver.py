@@ -5,6 +5,7 @@ import sys
 import glob 
 import os
 import subprocess
+import traceback
 
 if __name__ == '__main__':
     ## read in tc_dir as first argument
@@ -24,18 +25,33 @@ if __name__ == '__main__':
         # else write to output.*.txt
         if verbose:
             print(f'Running {soln_file} < {input_file} > {output_file}')
-        p = subprocess.run(['python', soln_file], stdin=open(input_file, 'r'), stdout=open(output_file, 'w'), stderr=subprocess.PIPE, timeout=timeout)
-        if p.returncode != 0:
-            err = p.stderr.decode('utf-8')
+            
+        try: 
+            p = subprocess.run(['python', soln_file], stdin=open(input_file, 'r'), stdout=open(output_file, 'w'), stderr=subprocess.PIPE, timeout=timeout)
+            if p.returncode != 0:
+                err = p.stderr.decode('utf-8')
+                if verbose:
+                    print(f'Error running {soln_file} < {input_file} > {output_file}')
+                    print(err)
+                if "SyntaxError" in err:
+                    with open(output_file, 'w') as f:
+                        f.write("Syntax Error")
+                else:
+                    with open(output_file, 'w') as f:
+                        f.write("Runtime Error")
+                        
+        except subprocess.TimeoutExpired:
+            if verbose:
+                print(f'Timeout running {soln_file} < {input_file} > {output_file}')
+            with open(output_file, 'w') as f:
+                f.write("Timeout")
+                
+        except Exception as e:
             if verbose:
                 print(f'Error running {soln_file} < {input_file} > {output_file}')
-                print(err)
-            if "SyntaxError" in err:
-                with open(output_file, 'w') as f:
-                    f.write("Syntax Error")
-            else:
-                with open(output_file, 'w') as f:
-                    f.write("Runtime Error")
+            traceback.print_exc()
+            raise e
+        
         else:
             if verbose:
                 print(f'Finished running {soln_file} < {input_file} > {output_file}')

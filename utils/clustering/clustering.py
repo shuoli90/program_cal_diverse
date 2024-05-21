@@ -45,7 +45,7 @@ def build_docker_image(path_to_dockerfile, version_tag=None):
 
 
 def instrument_code_docker(generated_code: str, testcase_inputs: Dict[str, str], orig_testcase_outputs: Union[Dict[str, str], None],
-                           image, client, docker_working_dir = None, n_test_cases=-1, indiv_tc_timeout=5, verbose_docker=False):
+                           image, client, docker_working_dir = None, n_test_cases=-1, indiv_tc_timeout=5, verbose_docker=True):
     
     if docker_working_dir is None: 
         docker_working_dir = tempfile.mkdtemp()
@@ -149,7 +149,7 @@ def make_clusters_iterative(programs: List[str],
                     do_report_coherence=False, 
                     do_report_accuracy=False, 
                     n_test_cases=-1, 
-                    verbose_docker=False): 
+                    verbose_docker=True): 
     if do_report_accuracy:
         if outputs is None:
             raise ValueError("Need outputs to report accuracy.")
@@ -214,7 +214,7 @@ def make_clusters_parallel(programs: List[str],
                             do_report_accuracy=False, 
                             n_test_cases=-1, 
                             n_jobs=-1, 
-                            verbose_docker=False):
+                            verbose_docker=True):
     if do_report_accuracy:
         if outputs is None:
             raise ValueError("Need outputs to report accuracy.")

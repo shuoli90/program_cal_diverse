@@ -27,8 +27,25 @@ logger = logging.getLogger(__name__)
 clustering_abs_dir = os.path.dirname(os.path.abspath(__file__))
 docker_driver_abs_path = os.path.join(clustering_abs_dir, "docker_driver.py")
 docker_file_abs_path = os.path.join(clustering_abs_dir, "Dockerfile")
+open_ended_wrapper_abs_path = os.path.join(clustering_abs_dir, "open_ended_wrapper.py")
 
 import uuid 
+
+## REPLACE F 
+
+## REPLACE EXTRACT_ARGUMENTS
+
+def format_open_ended_code(f_code: str, extract_arguments_code: str) -> str:
+    with open(open_ended_wrapper_abs_path, "r") as f:
+        wrapper_code = f.read()
+    formatted_wrapper = wrapper_code.replace("## REPLACE F", f_code).replace("## REPLACE EXTRACT_ARGUMENTS", extract_arguments_code)
+    assert "## REPLACE F" not in formatted_wrapper, "F not replaced in formatted wrapper"
+    assert "## REPLACE EXTRACT_ARGUMENTS" not in formatted_wrapper, "extract_arguments not replaced in formatted wrapper"
+    
+    # assert "def f(" in formatted_wrapper, "f function not found in formatted wrapper"
+    # assert "def extract_arguments(" in formatted_wrapper, "extract_arguments function not found in formatted wrapper"
+    return formatted_wrapper
+
 
 def build_docker_image(path_to_dockerfile, version_tag=None):
     tag = 'python-test-case-runner'

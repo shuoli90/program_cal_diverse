@@ -31,19 +31,17 @@ open_ended_wrapper_abs_path = os.path.join(clustering_abs_dir, "open_ended_wrapp
 
 import uuid 
 
-## REPLACE F 
-
-## REPLACE EXTRACT_ARGUMENTS
 
 def format_open_ended_code(f_code: str, extract_arguments_code: str) -> str:
+    """
+    Call this function to format the open-ended code with the f() function and extract_arguments() function
+    for the open-ended scenario, to then be evaluated in the Docker container.
+    """
     with open(open_ended_wrapper_abs_path, "r") as f:
         wrapper_code = f.read()
     formatted_wrapper = wrapper_code.replace("## REPLACE F", f_code).replace("## REPLACE EXTRACT_ARGUMENTS", extract_arguments_code)
     assert "## REPLACE F" not in formatted_wrapper, "F not replaced in formatted wrapper"
     assert "## REPLACE EXTRACT_ARGUMENTS" not in formatted_wrapper, "extract_arguments not replaced in formatted wrapper"
-    
-    # assert "def f(" in formatted_wrapper, "f function not found in formatted wrapper"
-    # assert "def extract_arguments(" in formatted_wrapper, "extract_arguments function not found in formatted wrapper"
     return formatted_wrapper
 
 
@@ -62,7 +60,8 @@ def build_docker_image(path_to_dockerfile, version_tag=None):
 
 
 def instrument_code_docker(generated_code: str, testcase_inputs: Dict[str, str], orig_testcase_outputs: Union[Dict[str, str], None],
-                           image, client, docker_working_dir = None, n_test_cases=-1, indiv_tc_timeout=5, verbose_docker=True):
+                           image, client, docker_working_dir = None, n_test_cases=-1, indiv_tc_timeout=5, verbose_docker=True, 
+                           open_ended=False):
     
     if docker_working_dir is None: 
         docker_working_dir = tempfile.mkdtemp()
@@ -89,7 +88,7 @@ def instrument_code_docker(generated_code: str, testcase_inputs: Dict[str, str],
             image.tags[0],
             detach=True,
             volumes=volumes,
-            command=f"python tc_dir/driver.py /usr/src/app/tc_dir {indiv_tc_timeout} {verbose_docker} {n_test_cases}",
+            command=f"python tc_dir/driver.py /usr/src/app/tc_dir {indiv_tc_timeout} {verbose_docker} {n_test_cases} {open_ended}",
         )
         # print the container logs 
         for line in container.logs(stream=True):
@@ -166,7 +165,8 @@ def make_clusters_iterative(programs: List[str],
                     do_report_coherence=False, 
                     do_report_accuracy=False, 
                     n_test_cases=-1, 
-                    verbose_docker=True): 
+                    verbose_docker=True, 
+                    open_ended=False):
     if do_report_accuracy:
         if outputs is None:
             raise ValueError("Need outputs to report accuracy.")
@@ -177,8 +177,9 @@ def make_clusters_iterative(programs: List[str],
     
     output_records = []
     for i, program in enumerate(programs):
-        record = instrument_code_docker(program, testcases, outputs, tcgen_image, client, n_test_cases=n_test_cases, verbose_docker=verbose_docker)
+        record = instrument_code_docker(program, testcases, outputs, tcgen_image, client, n_test_cases=n_test_cases, verbose_docker=verbose_docker, open_ended=open_ended)
         output_records.append(record)
+        
         
     # import pdb; pdb.set_trace()
         
@@ -231,7 +232,8 @@ def make_clusters_parallel(programs: List[str],
                             do_report_accuracy=False, 
                             n_test_cases=-1, 
                             n_jobs=-1, 
-                            verbose_docker=True):
+                            verbose_docker=True, 
+                            open_ended=False):
     if do_report_accuracy:
         if outputs is None:
             raise ValueError("Need outputs to report accuracy.")
@@ -242,7 +244,7 @@ def make_clusters_parallel(programs: List[str],
     
     with tqdm_joblib(tqdm(desc="Processing Programs", total=len(programs))) as progress_bar:
         output_records = Parallel(n_jobs=n_jobs, backend='threading')(delayed(instrument_code_docker)(
-            program, testcases, outputs, tcgen_image, client, n_test_cases=n_test_cases, verbose_docker=verbose_docker
+            program, testcases, outputs, tcgen_image, client, n_test_cases=n_test_cases, verbose_docker=verbose_docker, open_ended=open_ended
         ) for program in programs)
     
     if do_report_coherence:

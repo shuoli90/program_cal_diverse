@@ -51,14 +51,9 @@ if __name__ == '__main__':
 #         return text
     
 def extract_python_code(text):
-    # Define a regular expression pattern to capture Python code blocks
-    pattern = re.compile(r'def\s+.*?if\s+__name__\s+==\s+"__main__":\s+main\(\)', re.DOTALL)
-    # Search for the pattern in the provided text
-    match = pattern.search(text)
-    if match:
-        # If a match is found, return the code block
-        return match.group()
+    pattern = re.compile(r"```python\n(.*?)\n```", re.DOTALL)
+    matches = pattern.findall(text)
+    if matches:
+        return matches[0]
     else:
-        # If no match is found, return a message indicating no code was found
-        # return "No Python code found."
         pass

@@ -6,6 +6,8 @@ import os
 from typing import TextIO
 
 """
+high level idea for f and extract_arguments: 
+
 def f(...):
     pass
     

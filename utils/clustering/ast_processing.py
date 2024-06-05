@@ -4,9 +4,11 @@ import os
 import sys
 sys.path.insert(0, os.path.abspath(os.path.dirname(__file__)))
 from obfuscation.bobskater_obfuscator import obfuscateString
+
 import joblib
 from tqdm import tqdm
 from joblib import Parallel, delayed
+import contextlib
 
 
 # def obfuscateString(s, *args, **kwargs):
@@ -121,7 +123,7 @@ class AllSubtreeAnalysis:
             return subtrees
         return [subtree for subtree in subtrees if subtree.height <= height]
     
-    @staticmethid 
+    @staticmethod
     def subtrees_as_string(subtrees): 
         return [subtree.as_string() for subtree in subtrees]
     

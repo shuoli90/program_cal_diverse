@@ -4,6 +4,9 @@ import os
 import sys
 sys.path.insert(0, os.path.abspath(os.path.dirname(__file__)))
 from obfuscation.bobskater_obfuscator import obfuscateString
+import joblib
+from tqdm import tqdm
+from joblib import Parallel, delayed
 
 
 # def obfuscateString(s, *args, **kwargs):
@@ -133,5 +136,70 @@ class AllSubtreeAnalysis:
     
     def get_obfuscated_subtrees(self, max_height = None):
         subtrees = self.filter_below_height(self.obf_subtrees, max_height)
-        reutrn self.subtrees_as_string(subtrees)
+        return self.subtrees_as_string(subtrees)
+    
+    def get_subtrees(self, typ: str, max_height = None):
+        if typ == "plain":
+            return self.get_plain_subtrees(max_height)
+        elif typ == "stripped":
+            return self.get_stripped_subtrees(max_height)
+        elif typ == "obfuscated":
+            return self.get_obfuscated_subtrees(max_height)
+        else:
+            raise ValueError("Invalid type, must be one of 'plain', 'stripped', or 'obfuscated'")
+    
+    
+
+@contextlib.contextmanager
+def tqdm_joblib(tqdm_object):
+    """Context manager to patch joblib to report into tqdm progress bar given as argument"""
+    class TqdmBatchCompletionCallback(joblib.parallel.BatchCompletionCallBack):
+        def __call__(self, *args, **kwargs):
+            tqdm_object.update(n=self.batch_size)
+            return super().__call__(*args, **kwargs)
+
+    old_batch_callback = joblib.parallel.BatchCompletionCallBack
+    joblib.parallel.BatchCompletionCallBack = TqdmBatchCompletionCallback
+    try:
+        yield tqdm_object
+    finally:
+        joblib.parallel.BatchCompletionCallBack = old_batch_callback
+        tqdm_object.close()
+
+
+# with tqdm_joblib(tqdm(desc="Processing Programs", total=len(programs))) as progress_bar:
+#         output_records = Parallel(n_jobs=n_jobs, backend='threading')(delayed(instrument_code_docker)(
+#             program, testcases, outputs, tcgen_image, client, n_test_cases=n_test_cases, verbose_docker=verbose_docker, open_ended=open_ended
+#         ) for program in programs)
+
+
+
+def parallel_subtree_analysis(source_codes, n_jobs = -1, heights=[3,4,5,6]): 
+    assert len(heights) > 0, "Must provide at least one height to analyze"
+    assert min(heights) >= 1, "Height must be at least 1"
+    assert max(heights) <= 10, "Height must be at most 10"
+    assert all(isinstance(height, int) for height in heights), "All heights must be integers"
+
+    _subtree_analysis = lambda source_code: AllSubtreeAnalysis(source_code)
+    with tqdm_joblib(tqdm(desc="Processing Programs", total=len(source_codes))) as progress_bar:
+        results = Parallel(n_jobs=n_jobs)(delayed(_subtree_analysis)(source_code) for source_code in source_codes)
+    result_dict = {
+        "plain_subtrees": {}, 
+        "stripped_subtrees": {},
+        "obfuscated_subtrees": {}
+    }
+    def prop_distinct(subtrees, height, typ: str):
+        plain_subtrees = [t.get_subtrees(typ, height) for t in results]
+        prop_distinct_plain = len(set(plain_subtrees)) / len(plain_subtrees)
+        return prop_distinct_plain
+        
+    for height in tqdm(heights, desc="Processing Heights"):
+        result_dict["prop_distinct_plain"][height] = prop_distinct(results, height, "plain")
+        result_dict["prop_distinct_stripped"][height] = prop_distinct(results, height, "stripped")
+        result_dict["prop_distinct_obfuscated"][height] = prop_distinct(results, height, "obfuscated")
+        
+    return result_dict
+
+
+    
     

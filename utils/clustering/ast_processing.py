@@ -9,6 +9,7 @@ import joblib
 from tqdm import tqdm
 from joblib import Parallel, delayed
 import contextlib
+import traceback
 
 
 # def obfuscateString(s, *args, **kwargs):
@@ -112,10 +113,20 @@ def subtrees_from_code(source_code, obfuscate=False, strip_all=False):
 class AllSubtreeAnalysis: 
     def __init__(self, source_code):
         self.source_code = source_code
-        self.orig_ast = ast.parse(source_code)
-        self.plain_subtrees = subtrees_from_code(source_code)
-        self.strip_subtrees = subtrees_from_code(source_code, strip_all=True)
-        self.obf_subtrees = subtrees_from_code(source_code, obfuscate=True)
+        try: 
+            self.orig_ast = ast.parse(source_code)
+            self.plain_subtrees = subtrees_from_code(source_code)
+            self.strip_subtrees = subtrees_from_code(source_code, strip_all=True)
+            self.obf_subtrees = subtrees_from_code(source_code, obfuscate=True)
+        except Exception as e:
+            self.orig_ast = []
+            self.plain_subtrees = []
+            self.strip_subtrees = []
+            self.obf_subtrees = []
+            print(f"Error processing source code: {source_code}")
+            traceback.print_exc()
+            raise e
+            
      
     @staticmethod
     def filter_below_height(subtrees, height = None):
@@ -182,7 +193,14 @@ def parallel_subtree_analysis(source_codes, n_jobs = -1, heights=[3,4,5,6]):
     assert max(heights) <= 10, "Height must be at most 10"
     assert all(isinstance(height, int) for height in heights), "All heights must be integers"
 
-    _subtree_analysis = lambda source_code: AllSubtreeAnalysis(source_code)
+    # _subtree_analysis = lambda source_code: AllSubtreeAnalysis(source_code)
+    def _subtree_analysis(source_code):
+        try: 
+            return AllSubtreeAnalysis(source_code)
+        except Exception as e:
+            print(f"Error processing source code: {source_code}")
+            print(e)
+            return None
     with tqdm_joblib(tqdm(desc="Processing Programs", total=len(source_codes))) as progress_bar:
         results = Parallel(n_jobs=n_jobs)(delayed(_subtree_analysis)(source_code) for source_code in source_codes)
     result_dict = {
@@ -191,14 +209,17 @@ def parallel_subtree_analysis(source_codes, n_jobs = -1, heights=[3,4,5,6]):
         "obfuscated_subtrees": {}
     }
     def prop_distinct(subtrees, height, typ: str):
-        plain_subtrees = [t.get_subtrees(typ, height) for t in results]
-        prop_distinct_plain = len(set(plain_subtrees)) / len(plain_subtrees)
+        # get subtrees and flatten
+        # if None, there likely was an error processing the source code
+        subtrees = [subtree for t in subtrees if t is not None for subtree in t.get_subtrees(typ, height)]
+        # get proportion of distinct subtrees
+        prop_distinct_plain = len(set(subtrees)) / len(subtrees)
         return prop_distinct_plain
         
     for height in tqdm(heights, desc="Processing Heights"):
-        result_dict["prop_distinct_plain"][height] = prop_distinct(results, height, "plain")
-        result_dict["prop_distinct_stripped"][height] = prop_distinct(results, height, "stripped")
-        result_dict["prop_distinct_obfuscated"][height] = prop_distinct(results, height, "obfuscated")
+        result_dict["plain_subtrees"][height] = prop_distinct(results, height, "plain")
+        result_dict["stripped_subtrees"][height] = prop_distinct(results, height, "stripped")
+        result_dict["obfuscated_subtrees"][height] = prop_distinct(results, height, "obfuscated")
         
     return result_dict
 

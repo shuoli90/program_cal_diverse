@@ -17,6 +17,7 @@ if __name__ == '__main__':
     
     # then get all input.*.txt files in tc_dir
     input_files = glob.glob(os.path.join(tc_dir, 'input.*.txt'))
+    soln_printed = False
     
     # for each input_file, run os.path.join(tc_dir, soln.py) < input_file, use subprocess and feed in 
     for i, input_file in enumerate(input_files):
@@ -41,6 +42,10 @@ if __name__ == '__main__':
                 if verbose:
                     print(f'Error running {soln_file} < {input_file} > {output_file}')
                     print(err)
+                    if not soln_printed:
+                        with open(soln_file, 'r') as f:
+                            print(f.read())
+                            soln_printed = True
                 if "SyntaxError" in err:
                     with open(output_file, 'w') as f:
                         f.write("Syntax Error")

@@ -16,6 +16,8 @@ if __name__ == "__main__":
     def test_format_open_ended_code():
         f_code = """
 def f(N, A):
+    # use a type hint for List jsut for testing purposes
+    foo_list : List[int] = []
     if len(A) != N:
         print("Length of A is not N")
     else: 

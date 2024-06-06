@@ -17,6 +17,8 @@ if __name__ == '__main__':
     
     # then get all input.*.txt files in tc_dir
     input_files = glob.glob(os.path.join(tc_dir, 'input.*.txt'))
+    soln_printed = False
+    already_timeout = True
     
     # for each input_file, run os.path.join(tc_dir, soln.py) < input_file, use subprocess and feed in 
     for i, input_file in enumerate(input_files):
@@ -30,7 +32,12 @@ if __name__ == '__main__':
                 print(f'Running {soln_file} {input_file} > {output_file}')
             else: 
                 print(f'Running {soln_file} < {input_file} > {output_file}')
-            
+        
+        if already_timeout:
+            with open(output_file, 'w') as f:
+                f.write("Timeout")
+            continue
+        
         try: 
             if open_ended:
                 p = subprocess.run(['python', soln_file, input_file], stdout=open(output_file, 'w'), stderr=subprocess.PIPE, timeout=timeout)
@@ -41,6 +48,10 @@ if __name__ == '__main__':
                 if verbose:
                     print(f'Error running {soln_file} < {input_file} > {output_file}')
                     print(err)
+                    if not soln_printed:
+                        with open(soln_file, 'r') as f:
+                            print(f.read())
+                            soln_printed = True
                 if "SyntaxError" in err:
                     with open(output_file, 'w') as f:
                         f.write("Syntax Error")
@@ -53,6 +64,7 @@ if __name__ == '__main__':
                 print(f'Timeout running {soln_file} < {input_file} > {output_file}')
             with open(output_file, 'w') as f:
                 f.write("Timeout")
+            already_timeout = True
                 
         except Exception as e:
             if verbose:

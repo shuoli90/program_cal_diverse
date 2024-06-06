@@ -11,6 +11,7 @@ from models import gpt, opensource
 from utils import textprocessing
 from utils.clustering import clustering
 from utils.clustering import lexical_diversity
+from utils.clustering.ast_processing import AllSubtreeAnalysis, AstSubTree, parallel_subtree_analysis
 from dataclasses import dataclass
 import yaml
 from tqdm import tqdm
@@ -19,7 +20,7 @@ from functools import partial
 
 @dataclass
 class Arguments:
-    path_to_dataset: str = '../data/codenet/open_ended/open_ended_final/dataset.jsonl'
+    path_to_dataset: str = '../data/open_ended/open_ended_final/dataset.jsonl'
     model: str = 'gpt-3.5-turbo'
     template: str = 'open_ended_default'
     temperature: float = 1.0
@@ -34,14 +35,11 @@ def readin_template(template_arg):
     if template_arg == None: 
         return "## DESCRIPTION\n"
     else: 
-        path_to_template = os.path.join(os.path.dirname(__file__), f"../templates/{template_arg}.txt")
+        path_to_template = os.path.join(os.path.dirname(__file__), f"../prompt_templates/{template_arg}.txt")
         with open(path_to_template, 'r') as file:
             template = file.read()
         return template
     
-
-# def format_null_template(promot): 
-#     return prompt 
 
 def _format_template(prompt, template: str): 
     formatted_prompt = template.replace("## DESCRIPTION", prompt)
@@ -61,7 +59,7 @@ if __name__ == '__main__':
     
     # make sure the template is valid
     prompt_template = readin_template(args.template)
-    format_template_fun = partial(_format_template, template=template)
+    format_template_fun = partial(_format_template, template=prompt_template)
 
     
     # Setup generation pipeline
@@ -73,6 +71,8 @@ if __name__ == '__main__':
     # Read in data
     print(f'reading in data from {args.path_to_dataset}')
     df = pd.read_json(args.path_to_dataset, lines=True, orient='records')
+    # get first 2 rows
+    # df = df.iloc[:2]
 
     # setup docker client
     client, image = clustering.build_docker_image(clustering.clustering_abs_dir)
@@ -89,6 +89,7 @@ if __name__ == '__main__':
         result['index'] = index
         # prompt = row["prompt"]
         prompt = row['description_string']
+        extract_arguments_fun = row["extract_args_fun"]
         
         # format the prompt
         formatted_prompt = format_template_fun(prompt)
@@ -97,6 +98,7 @@ if __name__ == '__main__':
         generateds_program = pipe.generate(
             formatted_prompt, 
             temperature=args.temperature,
+            num_return_sequences=args.num_return_sequences,
             # TODO: add more args
             max_length=args.max_length,
             do_sample=True, 
@@ -104,26 +106,28 @@ if __name__ == '__main__':
         )
         
         programs = [textprocessing.extract_python_code(g) for g in generateds_program]
+        formatted_programs = [clustering.format_open_ended_code(program, extract_arguments_fun) for program in programs]
  
         # if all items in programs are None, skip
-        if all([program is None for program in programs]):
-            continue
+        # if all([program is None for program in programs]):
+        #     continue
         result['description'] = prompt
         result['programs'] = programs
+        result['formatted_programs'] = formatted_programs
         testcase_inputs = row['input_testcases']
         result['input_testcases'] = testcase_inputs
         # testcase_outputs = row['output_testcases'] # no output testcases
 
         # Test
         output_records = [clustering.instrument_code_docker(
-            program, 
+            formatted_program, 
             testcase_inputs, 
-            testcase_outputs,
+            None, # testcase_outputs is None
             image, 
             client,
             n_test_cases=-1, 
             indiv_tc_timeout=60, 
-            verbose_docker=True) for program in programs if program is not None]
+            verbose_docker=True) for formatted_program in formatted_programs if formatted_program is not None]
         result['output_records'] = output_records
 
         # report coherence
@@ -162,23 +166,39 @@ if __name__ == '__main__':
             distinct_1 = lexical_diversity.distinct_n(programs, 1, lexical_diversity.codebert_tokenizer)
             distinct_2 = lexical_diversity.distinct_n(programs, 2, lexical_diversity.codebert_tokenizer)
             distinct_3 = lexical_diversity.distinct_n(programs, 3, lexical_diversity.codebert_tokenizer)
+            distinct_4 = lexical_diversity.distinct_n(programs, 4, lexical_diversity.codebert_tokenizer)
+            distinct_5 = lexical_diversity.distinct_n(programs, 5, lexical_diversity.codebert_tokenizer)
+            distinct_6 = lexical_diversity.distinct_n(programs, 6, lexical_diversity.codebert_tokenizer)
             corpus_self_bleu = lexical_diversity.parallel_corpus_self_bleu(programs, lexical_diversity.codebert_tokenizer, n_jobs=-1, normalize=True)
             result['distinct_1'] = distinct_1
             result['distinct_2'] = distinct_2
             result['distinct_3'] = distinct_3
+            result['distinct_4'] = distinct_4
+            result['distinct_5'] = distinct_5
+            result['distinct_6'] = distinct_6
             result['corpus_self_bleu'] = corpus_self_bleu
+            parallel_subtree_results = parallel_subtree_analysis(programs, n_jobs=-1, heights=[3,4,5,6])
+            for key, height_results in parallel_subtree_results.items():
+                for height, v in height_results.items():
+                    result[f"{key}_{height}"] = v
         else:
             result['distinct_1'] = 0.0
             result['distinct_2'] = 0.0
             result['distinct_3'] = 0.0
+            result['distinct_4'] = 0.0
+            result['distinct_5'] = 0.0
+            result['distinct_6'] = 0.0
             result['corpus_self_bleu'] = 0.0
+            for key in ['plain_subtrees', 'stripped_subtrees', 'obfuscated_subtrees']:
+                for height in [3,4,5,6]:
+                    result[f"{key}_{height}"] = 0.0
         # except ValueError as e:
         #     print('error')
         #     continue
         results.append(result)
         if count % 10 == 0:
             # save results to jsonl
-            with open(f'../collected/{args.model}_temp_{args.temperature}_top_p_{args.top_p}_max_length_{args.max_length}_num_return_sequences_{args.num_return_sequences}_repetition_penalty_{args.repetition_penalty}_results.jsonl', 'w') as f:
+            with open(f'../collected/open_ended_{args.model}_temp_{args.temperature}_top_p_{args.top_p}_max_length_{args.max_length}_num_return_sequences_{args.num_return_sequences}_repetition_penalty_{args.repetition_penalty}_results.jsonl', 'w') as f:
                 for result in results:
                     f.write(json.dumps(result) + '\n')
             count += 1
@@ -186,16 +206,18 @@ if __name__ == '__main__':
         #     continue
 
     # save results to jsonl
-    with open(f'../collected/{args.model}_temp_{args.temperature}_top_p_{args.top_p}_max_length_{args.max_length}_num_return_sequences_{args.num_return_sequences}_repetition_penalty_{args.repetition_penalty}_results.jsonl', 'w') as f:
+    with open(f'../collected/open_ended_{args.model}_temp_{args.temperature}_top_p_{args.top_p}_max_length_{args.max_length}_num_return_sequences_{args.num_return_sequences}_repetition_penalty_{args.repetition_penalty}_results.jsonl', 'w') as f:
         for result in results:
             f.write(json.dumps(result) + '\n')
     
     # concatenate all the results, summarize the statistics
     df_results = pd.DataFrame(results)
-    df_results_stats = df_results[['coherence', 'semantic_count', 'n_outputs', 'n_coherent', 'distinct_1', 'distinct_2', 'distinct_3', 'corpus_self_bleu']]
+    results_stats_keys = ['coherence', 'semantic_count', 'n_outputs', 'n_coherent', 'distinct_1', 'distinct_2', 'distinct_3', 'corpus_self_bleu'] 
+    results_stats_keys = results_stats_keys + [f"{key}_{height}" for key in ['plain_subtrees', 'stripped_subtrees', 'obfuscated_subtrees'] for height in [3,4,5,6]]
+    df_results_stats = df_results[results_stats_keys]
     described = df_results_stats.describe()
     print(described)
     # save the statistics
-    described.to_csv(f'../collected/{args.model}_temp_{args.temperature}_top_p_{args.top_p}_max_length_{args.max_length}_num_return_sequences_{args.num_return_sequences}_repetition_penalty_{args.repetition_penalty}_results_stats.csv')
+    described.to_csv(f'../collected/open_ended_{args.model}_temp_{args.temperature}_top_p_{args.top_p}_max_length_{args.max_length}_num_return_sequences_{args.num_return_sequences}_repetition_penalty_{args.repetition_penalty}_results_stats.csv')
     
     print('Done')

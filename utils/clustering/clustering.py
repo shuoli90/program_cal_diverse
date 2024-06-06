@@ -7,7 +7,6 @@ import logging
 import traceback 
 import glob 
 from collections import defaultdict
-import joblib
 from joblib import Parallel, delayed
 import contextlib
 import yaml
@@ -130,11 +129,22 @@ def report_coherence(output_records: List[Dict]):
     program_2_n_coherent = {}
     for output_record in output_records:
         n_outputs = len(output_record["testcase_outputs"])
-        n_coherent = len([output for output in output_record["testcase_outputs"].values() if output not in ["Syntax Error", "Runtime Error"]])
+        n_coherent = len([output for output in output_record["testcase_outputs"].values() if output not in ["Syntax Error", "Runtime Error", "Timeout"]])
         program_2_n_outputs[output_record["code"]] = n_outputs
         program_2_n_coherent[output_record["code"]] = n_coherent
         program_2_coherence[output_record["code"]] = n_coherent / n_outputs
     return program_2_coherence, program_2_n_outputs, program_2_n_coherent
+
+def avg_coherence(output_records: List[Dict], strict=True)
+    n_outputs_list = [len(output_record["testcase_outputs"]) for output_record in output_records]
+    n_coherent_list = [len([output for output in output_record["testcase_outputs"].values() if output not in ["Syntax Error", "Runtime Error"]]) for output_record in output_records]
+    coherent_list = [n_coherent / n_outputs for n_coherent, n_outputs in zip(n_coherent_list, n_outputs_list)]
+    if strict: 
+        coherent_list = [coherent for coherent in coherent_list if coherent == 1.0]
+    return sum(coherent_list) / len(coherent_list)
+    
+    
+    
 
 def report_accuracy(output_records: List[Dict]):
     program_2_accuracy = {}

@@ -116,3 +116,4 @@ def extract_python_code(text):
         python_code += block.strip() + "\n"
 
     return python_code.strip()
+

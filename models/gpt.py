@@ -11,9 +11,14 @@ from transformers import AutoTokenizer
 
 dotenv_path = Path('.env')
 load_dotenv(dotenv_path=dotenv_path)
-
+with open("/home/alex/Documents/PennPhD/trustml_key.txt", "r") as f:
+    api_key = f.read().strip()
+with open("/home/alex/Documents/PennPhD/trustml_organization.txt", "r") as f:
+    organization = f.read().strip()
+    
 client = OpenAI(
-    api_key=,
+    api_key=api_key, 
+    organization=organization
 )
 
 
@@ -26,11 +31,18 @@ def chat_gpt(prompt):
 
 @retry(wait=wait_random_exponential(min=1, max=60), stop=stop_after_attempt(6))
 def chatcompletions_with_backoff(model, messages, n, **kwargs):
-    return client.chat.completions.create(
-        model=model, 
-        messages=messages,
-        n=n,
-        **kwargs)
+    if model in ["gpt-3.5-turbo-instruct", "babbage-002", "davinci-002"]:
+        return client.completions.create(
+            model=model, 
+            prompt=messages[0]['content'],
+            n=n,
+            **kwargs)
+    else: 
+        return client.chat.completions.create(
+            model=model, 
+            messages=messages,
+            n=n,
+            **kwargs)
 
 class GPTModel:
 
@@ -58,9 +70,14 @@ class GPTModel:
             completions.append(response)
         responses_list = []
         for completion in completions:
-            responses = [{'generated_text': choice.message.content.strip()}
-                for choice
-                in completion.choices]
+            if self.model_name in ["gpt-3.5-turbo-instruct", "babbage-002", "davinci-002"]:
+                responses = [{'generated_text': choice.text.strip()}
+                            for choice
+                            in completion.choices]
+            else: 
+                responses = [{'generated_text': choice.message.content.strip()}
+                    for choice
+                    in completion.choices]
             responses_list.append(responses)
         if return_full_text:
             for prompt, response in zip(prompts, responses_list):

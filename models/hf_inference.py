@@ -11,11 +11,11 @@ text_inference_template_path = os.path.join(project_dir, "text_inference_server.
 class HFInferenceModel:
     
     def __init__(self, url="http://127.0.0.1:8080", timeout=100): 
-        client = Client(url, timeout=timeout)
+        self.client = Client(url, timeout=timeout)
 
     def generate(self, prompt, max_new_tokens=512, num_samples=20, temperature=1.0, 
                     do_sample=True, top_p=1.0, top_k=50, **kwargs):
-        completions = client.generate(
+        completions = self.client.generate(
             prompt,
             max_new_tokens=max_new_tokens,
             do_sample=do_sample,

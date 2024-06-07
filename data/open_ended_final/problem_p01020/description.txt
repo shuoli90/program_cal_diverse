@@ -1,0 +1,23 @@
+Problem E: Lonely Adventurer
+  For his 13th birthday celebration, boy G went on a boat trip with his father. However, in the middle of the voyage, the ship was struck by a storm and overturned. When he woke up, he found himself on a deserted island. Influenced by his adventurer father, he decided to survive on the island without being discouraged by this situation. He managed to survive by hunting and cooking animals, gathering nuts, and camping under a large tree. However, it seems that something is wrong with the island lately. All the animals behave strangely, and this may be a sign of something bad. He must escape from this island as soon as possible.
+  However, he doesn't know how to leave the island. He can see another island beyond the sea, but he cannot find a way to get there. One day, while walking along the coast in despair, he suddenly discovered N boats. After examining them, he found that they all worked well. Okay, let's escape to the other island using this boat. However, he thinks that he may have to start the same survival life on the next island. To avoid this, he decided to carry all the boats as a backup. He needs to do this before something happens on this island.
+Problem
+For each boat i (1 ≤ i ≤ N) of the N boats, the time required to move from island A to island B (from island B to island A) is given in minutes as Ti. Boy G wants to transport all the boats from the island A where he is initially located to the island B as soon as possible. Output the shortest time (minutes) required for him to transport the boats. Boats can be connected up to two at a time, and the time required at that time is equal to the time required for the slower of the two boats. For example, if you carry two boats that take 2 minutes and 4 minutes, it takes 4 minutes to move from island A to island B (from island B to island A). If you carry two boats that take 3 minutes each, it will take 3 minutes. The time required to switch boats can be ignored.
+Input
+An integer N is given on the first line.The second line contains N integers Ti separated by spaces.
+Constraints
+The input satisfies the following conditions.
+1 ≤ N ≤ 1000
+1 ≤ Ti ≤ 10000
+Output
+Output the shortest time (minutes) required to transport all the boats on one line.
+Sample Input 1
+4
+1 2 3 4
+Sample Output 1
+11
+Sample Input 2
+5
+3 3 3 3 3
+Sample Output 2
+21

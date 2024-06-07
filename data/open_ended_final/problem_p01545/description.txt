@@ -1,0 +1,35 @@
+ Moving 
+Taro is going to move. Since Taro has a lot of luggage, he decided to ask the moving company to carry them. Since there are various weights of luggage, he asked the moving company to place them in an easy-to-understand way by placing them in order from the lightest. However, the person from the moving company placed the luggage in random order. Therefore, Taro tried to rearrange the luggage, but since the luggage is heavy, it requires physical strength to carry. Each luggage can be moved to any location between other luggage or the end of the luggage from its current location. However, to carry a certain luggage, it takes the same amount of physical strength as the weight of that luggage. Taro doesn't have much physical strength, so he decided to think of a way to arrange the luggage from the lightest without using too much physical strength.
+Input
+nx1 x2 ... xn
+n represents the number of luggage held by Taro
+From x1 to xn, each represents the weight of each luggage, and they are currently listed in order of x1, x2,..., xn.
+Constraints
+1 ≤ n ≤ 1051 ≤ xi ≤ n (1 ≤ i ≤ n)xi ≠ xj (1 ≤ i, j ≤ n and i ≠ j)
+All inputs are integers.
+Output
+S
+Output the minimum total physical strength required to arrange the luggage from lightest to heaviest, followed by a new line.
+Sample Input 1
+4
+1 4 2 3
+Output for the Sample Input 1
+4
+If you move the weight 4 to the right end, it will be in order from lightest to heaviest.
+Sample Input 2
+5
+1 5 3 2 4
+Output for the Sample Input 2
+7
+If you move the weight 2 to the right of the weight 1, and move the weight 5 to the right end, it will be in order from lightest to heaviest.
+Sample Input 3
+7
+1 2 3 4 5 6 7
+Output for the Sample Input 3
+0
+They are already in order from lightest to heaviest.
+Sample Input 4
+8
+6 2 1 3 8 5 4 7
+Output for the Sample Input 4
+19

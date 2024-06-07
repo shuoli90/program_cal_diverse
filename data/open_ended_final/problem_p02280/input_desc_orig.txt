@@ -1,0 +1,32 @@
+### Canonicalized Input Description:
+
+An integer \( n \) (1 ≤ \( n \) ≤ 25), representing some quantity or size.
+A list of \( n \) tuples, where each tuple contains three integers \( id \), \( left \), and \( right \):
+- \( id \) (0 ≤ \( id \) < n), representing a unique identifier.
+- \( left \) (−1 ≤ \( left \) < n), representing a relationship or connection.
+- \( right \) (−1 ≤ \( right \) < n), representing another relationship or connection.
+
+### Example Input:
+
+```
+9
+0 1 4
+1 2 3
+2 -1 -1
+3 -1 -1
+4 5 8
+5 6 7
+6 -1 -1
+7 -1 -1
+8 -1 -1
+```
+
+### Function Signature:
+Write a function `f(n, nodes)` that takes in the input:
+```python
+def f(n: int, nodes: List[Tuple[int, int, int]]):
+    '''
+    n: an integer
+    nodes: a list of tuples, where each tuple contains three integers
+    '''
+```

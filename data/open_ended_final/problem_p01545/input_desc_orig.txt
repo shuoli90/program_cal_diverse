@@ -1,0 +1,22 @@
+### Canonicalized Input Description:
+
+An integer \( n \) (1 ≤ \( n \) ≤ 10^5), representing some quantity or size.
+A list of integers \( X \) of size \( n \), where each integer \( X[i] \) (1 ≤ \( X[i] \) ≤ \( n \)) represents some value and all elements are unique.
+
+### Example Input:
+
+```
+4
+1 4 2 3
+```
+
+### Function Signature:
+Write a function `f(n, X)` that takes in the input.
+
+```python
+def f(n: int, X: List[int]):
+    '''
+    n: an integer
+    X: a list of integers
+    '''
+```

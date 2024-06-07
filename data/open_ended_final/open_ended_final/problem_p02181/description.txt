@@ -1,0 +1,31 @@
+G: AOR-String
+Problem
+Given $N$ strings $S_i$.
+Determine the maximum number of occurrences of the string "AOR" in any possible concatenation of the strings $S_i$.
+Constraints
+$1 \leq N \leq 10^5$
+$1 \leq |S_i| \leq 20$
+$S_i$ consists of uppercase letters of the alphabet
+Input
+ The input is provided in the following format:
+$N$
+$S_1$
+…
+$S_N$
+Output
+Print the maximum number of occurrences of the string "AOR" in any possible concatenation of the strings $S_i$. Print a newline character at the end.
+Sample Input
+2
+AORA
+OR
+Sample Output
+2
+Sample Input 2
+5
+AB
+CA
+ORA
+XX
+AOR
+Sample Output 2
+2

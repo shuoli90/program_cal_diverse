@@ -1,0 +1,21 @@
+def extract_arguments(fh):
+    N, M = map(int, fh.readline().strip().split())
+    students = [tuple(map(int, fh.readline().strip().split())) for _ in range(N)]
+    checkpoints = [tuple(map(int, fh.readline().strip().split())) for _ in range(M)]
+    return N, M, students, checkpoints
+
+# Example usage
+#if __name__ == "__main__":
+#    import sys
+#    input_path = sys.argv[1]
+#    with open(input_path, 'r') as fh:
+#        N, M, students, checkpoints = extract_arguments(fh)
+#    f(N, M, students, checkpoints)
+
+
+### Explanation
+
+#1. **Extract Arguments Function**: 
+#   - We read the first line to get `N` and `M`.
+#   - We read the next `N` lines to get the coordinates of the students.
+#   - We read the next `M` lines to get the coordinates of the checkpoints.

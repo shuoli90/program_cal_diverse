@@ -1,0 +1,48 @@
+## Note! not fully human checked
+import random
+
+def generate_tree(N):
+    edges = []
+    for i in range(2, N + 1):
+        edges.append((random.randint(1, i - 1), i))
+    return edges
+
+def tcgen():
+    N = random.randint(2, 2 * 10**5)
+    
+    edges = generate_tree(N)
+    
+    # Generate the string s with at least one '1'
+    s = ['0'] * N
+    liked_vertices_count = random.randint(1, N)
+    liked_indices = random.sample(range(N), liked_vertices_count)
+    for idx in liked_indices:
+        s[idx] = '1'
+    s = ''.join(s)
+    
+    test_case = [str(N)]
+    for a, b in edges:
+        test_case.append(f"{a} {b}")
+    test_case.append(s)
+    
+    return '\n'.join(test_case)
+
+# Generate a test case and print it
+#print(tcgen())
+
+
+### Explanation:
+
+#1. **Tree Generation**:
+#   - The function `generate_tree` builds a tree with `N` vertices.
+#   - It ensures that the tree is connected by connecting each new vertex `i` to a previously existing vertex `[1, i-1]`.
+   
+#2. **String s Generation**:
+#   - The string `s` is generated with exactly `N` characters.
+#   - At least one character in `s` is '1' to ensure Snuke likes at least one vertex.
+   
+#3. **Combine All Parts**:
+#   - Combine the number of vertices `N`, the list of edges, and the string `s` into one test case.
+#   - Format the output as specified in the problem statement.
+
+#This test case generator will produce random but valid inputs for the problem statement, adhering to the given constraints.

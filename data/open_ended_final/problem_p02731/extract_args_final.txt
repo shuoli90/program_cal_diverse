@@ -1,0 +1,9 @@
+def extract_arguments(fh):
+    L = int(fh.readline().strip())
+    return L
+
+#if __name__ == "__main__":
+#    input_path = sys.argv[1]
+#    with open(input_path, 'r') as fh: 
+#        L = extract_arguments(fh)
+#    f(L)

@@ -1,0 +1,39 @@
+Sure! Below is a test case generator for the given problem statement:
+
+```python
+import random
+
+def tcgen():
+    datasets = []
+    
+    for _ in range(random.randint(1, 120)):
+        # b, r, g, c, s are integers between 0 and 200
+        b = random.randint(0, 200)
+        r = random.randint(0, 200)
+        g = random.randint(0, 200)
+        c = random.randint(0, 200)
+        s = random.randint(0, 200)
+        # t is an integer less than or equal to 1000
+        t = random.randint(1, 1000)
+        
+        datasets.append(f"{b} {r} {g} {c} {s} {t}")
+        
+    # Append the end of input marker
+    datasets.append("0 0 0 0 0 0")
+    
+    return datasets
+
+# Generate a sample test case
+sample_test_case = tcgen()
+for data in sample_test_case:
+    print(data)
+```
+
+### Explanation:
+1. This script generates a list of datasets. Each dataset contains six integers: `b`, `r`, `g`, `c`, `s`, and `t`.
+2. The integers `b`, `r`, `g`, `c`, `s` are randomly chosen between 0 and 200 (inclusive).
+3. The integer `t` is randomly chosen between 1 and 1000 (inclusive).
+4. The outer loop runs a random number of times between 1 and 120 to simulate multiple datasets.
+5. Finally, a line "0 0 0 0 0 0" is added to mark the end of input.
+
+You can use the generated test cases to validate your solution for the given problem.

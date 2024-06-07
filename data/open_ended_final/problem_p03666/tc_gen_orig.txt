@@ -1,0 +1,29 @@
+Sure, I can write a test case generator for the given problem statement. The test case generator will create random values for \(N\), \(A\), \(B\), \(C\), and \(D\) within the given constraints. Here's the code:
+
+```python
+import random
+
+def tcgen():
+    # Generate random values within the given constraints
+    N = random.randint(3, 500000)
+    A = random.randint(0, 10**9)
+    B = random.randint(0, 10**9)
+    C = random.randint(0, 10**9)
+    D = random.randint(C, 10**9)  # Ensure D >= C
+
+    return N, A, B, C, D
+
+# Example usage
+if __name__ == "__main__":
+    for _ in range(10):  # Generate 10 test cases
+        N, A, B, C, D = tcgen()
+        print(f"{N} {A} {B} {C} {D}")
+```
+
+### Explanation:
+1. **N**: Randomly chosen between 3 and 500000.
+2. **A** and **B**: Randomly chosen between 0 and \(10^9\).
+3. **C**: Randomly chosen between 0 and \(10^9\).
+4. **D**: Randomly chosen between **C** and \(10^9\) to ensure that \(C \leq D\).
+
+This generator ensures that all generated values fall within the specified constraints of the problem. You can run the script to generate multiple test cases and use them to test your solution.

@@ -1,0 +1,42 @@
+To generate test cases for the given problem, follow these steps:
+
+1. Randomly determine the number of vertices \(N\).
+2. For each vertex \(i\) (where \(1 \leq i \leq N\)), generate the distances \(A_i\) and \(B_i\). 
+3. Ensure that the constraints \(0 \leq A_i, B_i \leq N-1\) are satisfied.
+
+Below is the Python code to generate the test cases:
+
+```python
+import random
+
+def tcgen():
+    # Step 1: Generate a random integer N (number of vertices)
+    N = random.randint(2, 10**5)
+    
+    # Step 2: Generate the distances Ai and Bi for each vertex
+    A = [random.randint(0, N-1) for _ in range(N)]
+    B = [random.randint(0, N-1) for _ in range(N)]
+    
+    # Step 3: Create the output format
+    # N
+    # A_1 B_1
+    # A_2 B_2
+    # ...
+    # A_N B_N
+    test_case = f"{N}\n"
+    for i in range(N):
+        test_case += f"{A[i]} {B[i]}\n"
+    
+    return test_case
+
+# Example of generating and printing a test case
+if __name__ == "__main__":
+    print(tcgen())
+```
+
+### Explanation:
+- The `tcgen` function first generates a random integer \(N\) which is the number of vertices in the graph.
+- Then, it generates two lists `A` and `B`, each containing \(N\) integers. These integers are random and between \(0\) and \(N-1\) inclusive to satisfy the constraints.
+- It finally formats these values into the required input format and returns the test case as a string.
+
+You can run this function multiple times to generate different test cases for your problem. Make sure to include edge cases like the minimum and maximum values for \(N\), and cases where \(A\) and \(B\) have specific patterns (e.g., all zeros, all maximum values, etc.) to thoroughly test the solution.

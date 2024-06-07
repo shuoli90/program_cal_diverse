@@ -1,0 +1,26 @@
+Distance between Two Cities
+Create a program that calculates and outputs the surface distance between two cities on Earth, given their latitude and longitude. Assume that the Earth is a sphere with a radius of 6,378.1 km, and that the surface distance between two points is the shortest distance along the surface of the sphere. Also, assume that for cities in the southern hemisphere, only south latitudes between 0 and -90 degrees are used, and for cities west of the Greenwich meridian, only east longitudes between 180 and 360 degrees are used. The surface distance should be calculated in km, rounded to the nearest integer value.
+The latitude and longitude of some major cities are shown below:
+CityLatitude (degrees)Longitude (degrees)
+Tokyo35.68139.77
+Singapore1.37103.92
+Sydney-33.95151.18
+Chicago41.78272.25
+Buenos Aires-34.58301.52
+London51.15359.82
+Input
+The input consists of multiple datasets. The end of the input is indicated by four consecutive -1s. Each dataset is given in the following format:
+a b c d
+The latitude a and longitude b of the first city, and the latitude c and longitude d of the second city are given on a single line separated by a space. All input values are given as real numbers.
+There are no more than 30 datasets.
+Output
+For each dataset, output the surface distance between the two cities on a single line.
+Sample Input
+35.68 139.77 51.15 359.82
+1.37 103.92 41.78 272.25
+51.15 359.82 -34.58 301.52
+-1 -1 -1 -1
+Output for the Sample Input
+9609
+15092
+11112

@@ -1,0 +1,21 @@
+### Input Description:
+
+1. An integer \( N \) (1 ≤ \( N \) ≤ 1000), representing some quantity or size.
+2. A list of \( N \) integers \( T \), where each integer \( T[i] \) (1 ≤ \( T[i] \) ≤ 10000).
+
+### Example Input:
+
+```
+4
+1 2 3 4
+```
+
+### Function Signature:
+Write a function `f(N, T)` that takes in the input.
+```python
+def f(N: int, T: List[int]):
+    '''
+    N: an integer
+    T: a list of integers
+    '''
+```

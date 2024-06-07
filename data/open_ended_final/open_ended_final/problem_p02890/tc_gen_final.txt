@@ -1,0 +1,13 @@
+import random
+
+def tcgen():
+    # Generate a random integer N where 1 ≤ N ≤ 3 * 10^5
+    N = random.randint(1, 3 * 10**5)
+    
+    # Generate a list A of size N where each integer A_i (1 ≤ A_i ≤ N)
+    A = [random.randint(1, N) for _ in range(N)]
+    
+    output_str = f"{N}\n"
+    output_str += ' '.join(map(str, A))
+    return output_str
+

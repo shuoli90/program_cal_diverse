@@ -1,0 +1,29 @@
+### Input Description:
+
+An integer \(N\) (1 ≤ \(N\) ≤ 10^4), representing some quantity or size.
+An integer \(M\) (0 ≤ \(M\) ≤ 10^5), representing some other quantity or size.
+A list of \(M\) tuples, where each tuple consists of two integers \(s_i\) and \(t_i\) (0 ≤ \(s_i, t_i\) ≤ \(N-1\) and \(s_i \neq t_i\)).
+
+### Example Input:
+
+```
+6 7
+0 2
+2 1
+1 0
+2 3
+4 3
+4 5
+5 4
+```
+
+### Function Signature:
+Write a function `f(N, M, pairs)` that takes in the input.
+```python
+def f(N: int, M: int, pairs: List[Tuple[int, int]]):
+    '''
+    N: an integer 
+    M: an integer
+    pairs: a list of tuples, each containing two integers
+    '''
+```

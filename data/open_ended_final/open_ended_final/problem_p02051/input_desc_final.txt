@@ -1,0 +1,33 @@
+### Input Description
+
+1. An integer \( N \) (1 ≤ \( N \) ≤ 2000), representing some quantity or size.
+2. An integer \( M \) (1 ≤ \( M \) ≤ 2000), representing another quantity or size.
+3. \( M \) lines follow, each containing three integers \( a_i \), \( b_i \), and \( c_i \) where \( 1 ≤ a_i < b_i ≤ N \) and \( 1 ≤ c_i ≤ 3 \).
+4. An integer \( Q \) (1 ≤ \( Q \) ≤ 2000), representing yet another quantity or size.
+5. \( Q \) lines follow, each containing two integers \( d_j \) and \( e_j \) where \( 1 ≤ d_j ≤ N \) and \( 0 ≤ e_j ≤ 100000 \).
+
+### Example Input:
+
+```
+4 3
+1 3 2
+2 4 1
+1 2 3
+2
+4 6
+2 4
+```
+
+### Function Signature:
+Write a function `f(inputs)` that takes in the input as a list of tuples.
+```python
+def f(inputs: List[Tuple[int, int, List[Tuple[int, int, int]], int, List[Tuple[int, int]]]]):
+    '''
+    inputs: a list of tuples where each tuple contains:
+        - an integer N
+        - an integer M
+        - a list of M tuples, each containing three integers (a_i, b_i, c_i)
+        - an integer Q
+        - a list of Q tuples, each containing two integers (d_j, e_j)
+    '''
+```

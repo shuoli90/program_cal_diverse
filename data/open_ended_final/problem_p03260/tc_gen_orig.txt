@@ -1,0 +1,35 @@
+Sure, here is a test case generator for the given problem statement:
+
+```python
+import random
+
+def tcgen(): 
+    A = random.randint(1, 3)
+    B = random.randint(1, 3)
+    
+    return A, B
+
+# Example of generating a test case
+A, B = tcgen()
+print(f"{A} {B}")
+```
+
+This generator function `tcgen` will produce random values for `A` and `B` within the given constraints (1 ≤ A, B ≤ 3). Each generated test case will consist of two integers \(A\) and \(B\).
+
+For completeness, here's how you might use the generated test case in a test:
+
+```python
+# Example of using the test case in a function
+def is_odd_product_possible(A, B):
+    for C in range(1, 4):
+        if (A * B * C) % 2 == 1:
+            return "Yes"
+    return "No"
+
+# Generate a test case
+A, B = tcgen()
+print(f"Test case: A = {A}, B = {B}")
+print("Output:", is_odd_product_possible(A, B))
+```
+
+This function `is_odd_product_possible` checks if there exists an integer \(C\) (1 ≤ \(C\) ≤ 3) such that \(A \times B \times C\) is an odd number, and prints "Yes" if such \(C\) exists and "No" otherwise.

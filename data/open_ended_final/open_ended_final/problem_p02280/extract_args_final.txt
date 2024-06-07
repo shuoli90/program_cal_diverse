@@ -1,0 +1,22 @@
+def extract_arguments(fh):
+    n = int(fh.readline().strip())
+    nodes = []
+    for _ in range(n):
+        node_info = list(map(int, fh.readline().strip().split()))
+        nodes.append(node_info)
+    return n, nodes
+
+#if __name__ == "__main__":
+#    import sys
+#    input_path = sys.argv[1]
+#    with open(input_path, 'r') as fh:
+#        n, nodes = extract_arguments(fh)
+#    # Use the extracted arguments to call the process function
+#    process_tree(n, nodes)
+
+
+### Explanation:
+
+#1. **Extract Arguments Function**:
+#   - Reads the number of nodes `n`.
+#   - Reads the `n` lines representing each node's information and stores it in a list of tuples.

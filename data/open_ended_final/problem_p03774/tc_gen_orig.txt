@@ -1,0 +1,41 @@
+Sure, I can help you write a test case generator for the given problem. Here's a Python function that generates random test cases for the problem statement you provided:
+
+```python
+import random
+
+def tcgen():
+    # Constants
+    MIN_COORD = -10**8
+    MAX_COORD = 10**8
+    
+    # Random values for N and M within given constraints
+    N = random.randint(1, 50)
+    M = random.randint(1, 50)
+    
+    # Generate random coordinates for N students
+    students = [(random.randint(MIN_COORD, MAX_COORD), random.randint(MIN_COORD, MAX_COORD)) for _ in range(N)]
+    
+    # Generate random coordinates for M checkpoints
+    checkpoints = [(random.randint(MIN_COORD, MAX_COORD), random.randint(MIN_COORD, MAX_COORD)) for _ in range(M)]
+    
+    return N, M, students, checkpoints
+
+def print_test_case(N, M, students, checkpoints):
+    print(f"{N} {M}")
+    for (a, b) in students:
+        print(f"{a} {b}")
+    for (c, d) in checkpoints:
+        print(f"{c} {d}")
+
+# Example usage
+N, M, students, checkpoints = tcgen()
+print_test_case(N, M, students, checkpoints)
+```
+
+This script generates a test case by:
+1. Randomly selecting values for \( N \) (number of students) and \( M \) (number of checkpoints) within the given constraints.
+2. Randomly generating coordinates for each student and each checkpoint within the range \([-10^8, 10^8]\).
+
+The `print_test_case` function is then used to print the generated test case in the required format.
+
+You can run this script to generate random test cases for your problem statement. Each time you run the script, it will print a different test case. If you want to generate multiple test cases at once, you can simply call the `tcgen` function multiple times in a loop.

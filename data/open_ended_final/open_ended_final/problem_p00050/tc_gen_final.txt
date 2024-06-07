@@ -1,0 +1,36 @@
+import random
+import string
+
+def generate_random_word():
+    length = random.randint(1, 10)
+    letters = string.ascii_lowercase
+    return ''.join(random.choice(letters) for i in range(length))
+
+def tcgen():
+    max_length = 1000
+    words = []
+    current_length = 0
+    
+    # Ensure we include "apple" and "peach" at least once
+    words.append("apple")
+    words.append("peach")
+    current_length += len("apple") + len("peach") + 2  # +2 for spaces
+    
+    while current_length < max_length:
+        word = generate_random_word()
+        if current_length + len(word) + 1 > max_length:
+            break
+        words.append(word)
+        current_length += len(word) + 1
+    
+    random.shuffle(words)
+    
+    text = ' '.join(words)
+    return text
+
+# Example Usage
+#if __name__ == "__main__":
+#    test_input = tcgen()
+#    print(f"Input: {test_input}")
+
+

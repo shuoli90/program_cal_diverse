@@ -1,0 +1,43 @@
+Sure! Here is a test case generator for the problem statement "Distance between Two Cities":
+
+```python
+import random
+
+def generate_random_latitude():
+    # Latitude ranges from -90 to 90 degrees.
+    return random.uniform(-90, 90)
+
+def generate_random_longitude():
+    # Longitude ranges from 0 to 360 degrees.
+    return random.uniform(0, 360)
+
+def tcgen(num_datasets):
+    test_cases = []
+    
+    for _ in range(num_datasets):
+        a = generate_random_latitude()
+        b = generate_random_longitude()
+        c = generate_random_latitude()
+        d = generate_random_longitude()
+        
+        test_cases.append(f"{a} {b} {c} {d}")
+    
+    test_cases.append("-1 -1 -1 -1")
+    
+    return test_cases
+
+# Example usage
+if __name__ == "__main__":
+    num_datasets = random.randint(1, 30)
+    test_cases = tcgen(num_datasets)
+    for test_case in test_cases:
+        print(test_case)
+```
+
+Explanation:
+1. **Latitude Generation**: Latitudes are generated in the range of -90 to 90 degrees using `random.uniform`.
+2. **Longitude Generation**: Longitudes are generated in the range of 0 to 360 degrees using `random.uniform`.
+3. **Multiple Datasets**: The function can generate up to 30 datasets as specified, each consisting of four values (latitude and longitude of two cities).
+4. **End of Input**: The sequence `-1 -1 -1 -1` is appended to indicate the end of input.
+
+This script generates random test cases for the problem, ensuring that the latitudes and longitudes are within the valid range. Each dataset ends with the marker indicating the end of input, as required by the problem statement.

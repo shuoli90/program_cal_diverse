@@ -1,0 +1,20 @@
+
+def extract_arguments(fh):
+    inputs = []
+    while True:
+        line = fh.readline().strip()
+        if line == "0 0":
+            break
+        N, M = map(int, line.split())
+        coins = list(map(int, fh.readline().strip().split()))
+        inputs.append((N, M, coins))
+    return inputs
+
+#if __name__ == "__main__":
+#    import sys
+#    input_path = sys.argv[1]
+#    with open(input_path, 'r') as fh: 
+#        inputs = extract_arguments(fh)
+#    results = process_inputs(inputs)
+#    for result in results:
+#        print(result)

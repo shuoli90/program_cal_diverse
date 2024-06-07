@@ -28,8 +28,9 @@ def chat_gpt(prompt):
         messages=[{"role": "user", "content": prompt}]
     )
     return response.choices[0].message.content.strip()
-
-@retry(wait=wait_random_exponential(min=1, max=60), stop=stop_after_attempt(6))
+# openai.InternalServerError
+# @retry(wait=wait_random_exponential(min=1, max=60), stop=stop_after_attempt(6))
+@retry(wait=wait_random_exponential(min=2, max=60), stop=stop_after_attempt(10), retry_error_callback=(lambda e: isinstance(e, openai.InternalServerError)))
 def chatcompletions_with_backoff(model, messages, n, **kwargs):
     if model in ["gpt-3.5-turbo-instruct", "babbage-002", "davinci-002"]:
         return client.completions.create(

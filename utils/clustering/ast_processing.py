@@ -132,7 +132,7 @@ class AllSubtreeAnalysis:
     def filter_below_height(subtrees, height = None):
         if height is None:
             return subtrees
-        return [subtree for subtree in subtrees if subtree.height <= height]
+        return [subtree for subtree in subtrees if subtree.height == height]
     
     @staticmethod
     def subtrees_as_string(subtrees): 
@@ -213,7 +213,7 @@ def parallel_subtree_analysis(source_codes, n_jobs = -1, heights=[3,4,5,6]):
         # if None, there likely was an error processing the source code
         subtrees = [subtree for t in subtrees if t is not None for subtree in t.get_subtrees(typ, height)]
         # get proportion of distinct subtrees
-        prop_distinct_plain = len(set(subtrees)) / len(subtrees)
+        prop_distinct_plain = len(set(subtrees)) / len(subtrees) if len(subtrees) > 0 else 0
         return prop_distinct_plain
         
     for height in tqdm(heights, desc="Processing Heights"):

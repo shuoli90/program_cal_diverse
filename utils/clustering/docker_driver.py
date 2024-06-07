@@ -18,7 +18,7 @@ if __name__ == '__main__':
     # then get all input.*.txt files in tc_dir
     input_files = glob.glob(os.path.join(tc_dir, 'input.*.txt'))
     soln_printed = False
-    already_timeout = True
+    already_timeout = False
     
     # for each input_file, run os.path.join(tc_dir, soln.py) < input_file, use subprocess and feed in 
     for i, input_file in enumerate(input_files):

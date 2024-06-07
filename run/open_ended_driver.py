@@ -12,18 +12,18 @@ if not os.path.exists(EXPERIMENT_OUTPUT_ROOT):
 # params: model, temperature, top_p, num_return_sequences, template
 CONFIGS = [
         
-        ['davinci-002', 1.6, 1.0, 20, 'open_ended_default'],
-        ['gpt-3.5-turbo-instruct', 1.6, 1.0, 20, 'open_ended_default'],
+        # ['davinci-002', 1.0, 1.0, 20, 'open_ended_default'],
+        # ['gpt-3.5-turbo-instruct', 1.0, 1.0, 20, 'open_ended_default'],
         
         ['gpt-3.5-turbo-instruct', 0.4, 1.0, 20, 'open_ended_default'],
         ['gpt-3.5-turbo-instruct', 0.7, 1.0, 20, 'open_ended_default'],
-        ['gpt-3.5-turbo-instruct', 1.0, 1.0, 20, 'open_ended_default'],
-        ['gpt-3.5-turbo-instruct', 1.3, 1.0, 20, 'open_ended_default'],
+        # ['gpt-3.5-turbo-instruct', 1.0, 1.0, 20, 'open_ended_default'],
+        # ['gpt-3.5-turbo-instruct', 1.3, 1.0, 20, 'open_ended_default'],
         
         ['davinci-002', 0.4, 1.0, 20, 'open_ended_default'],
         ['davinci-002', 0.7, 1.0, 20, 'open_ended_default'],
-        ['davinci-002', 1.0, 1.0, 20, 'open_ended_default'],
-        ['davinci-002', 1.3, 1.0, 20, 'open_ended_default']
+        # ['davinci-002', 1.0, 1.0, 20, 'open_ended_default'],
+        # ['davinci-002', 1.3, 1.0, 20, 'open_ended_default']
         
         
     ]
@@ -50,11 +50,19 @@ def run_experiment(config_path, log_file_path):
     """Run the script with the given configuration file and stream logs."""
     command = ['python', 'gen_eval_open_ended.py', config_path]
     print(f"Running command: {' '.join(command)}")
-    with subprocess.Popen(command, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True, errors='replace', encoding='utf-8') as proc, \
-         open(log_file_path, 'w', encoding='utf-8', errors='replace') as log_file:
-        for line in proc.stdout:  # Process output line by line
-            sys.stdout.write(line)  # Print to console
-            log_file.write(line)  # Write to log file
+    # with subprocess.Popen(command, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True, errors='replace', encoding='utf-8') as proc, \
+    #      open(log_file_path, 'w', encoding='utf-8', errors='replace') as log_file:
+    #     for line in proc.stdout:  # Process output line by line
+    #         sys.stdout.write(line)  # Print to console
+    #         log_file.write(line)  # Write to log file
+    
+    # with os.popen(" ".join(command), 'r', ) as proc, open(log_file_path, 'w', encoding='utf-8', errors='ignore') as log_file:
+    #     for line in proc:
+    #         sys.stdout.write(line)  # Print to console
+    #         log_file.write(line)  # Write to log file
+    command = command + ["2>&1 | tee", log_file_path]
+    os.system(" ".join(command))
+            
     # from inside the experiment
     #experiment_string = f"{args.model}_temp_{args.temperature}_top_p_{args.top_p}_max_length_{args.max_length}_num_return_sequences_{args.num_return_sequences}_repetition_penalty_{args.repetition_penalty}_{datetime.datetime.now().strftime('%Y-%m-%d_%H-%M-%S')}"
     # experiment_output_dir = os.path.join(args.experiment_output_root, experiment_string)        
@@ -121,7 +129,7 @@ def main(configurations):
     for config in configurations:
         yaml_path = create_yaml_config(*config, config_dir)
         print(f"Running experiment with configuration {config}")
-        results = run_experiment(yaml_path, os.path.join(logs_dir, f'log_{config[0]}_{config[1]}_{config[2]}_{config[3]}_{config[4]}.log'))
+        results = run_experiment(yaml_path, os.path.join(logs_dir, f'log_{config[0]}_{config[1]}_{config[2]}_{config[3]}_{config[4]}_{datetime.now().strftime("%Y-%m-%d_%H-%M-%S")}.txt'))
         if results is not None:
             with open(driver_stats_file, 'a') as f:
                 f.write('\t'.join([str(results[k]) for k in keys]) + '\n')

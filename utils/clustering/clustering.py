@@ -109,7 +109,9 @@ def instrument_code_docker(generated_code: str, testcase_inputs: Dict[str, str],
     for output_file in output_files:
         output_number = re.search(r"output.(\d+).txt", output_file).group(1)
         with open(output_file, "r") as f:
-            testcase_outputs[output_number] = f.read().strip()
+            full_str = f.read().strip()
+            # take first 5000 characters
+            testcase_outputs[output_number] = full_str[:5000]
             
     # make sure the number of outputs is the same as the number of inputs
     if len(testcase_outputs) != len(testcase_inputs):
@@ -135,13 +137,13 @@ def report_coherence(output_records: List[Dict]):
         program_2_coherence[output_record["code"]] = n_coherent / n_outputs
     return program_2_coherence, program_2_n_outputs, program_2_n_coherent
 
-def avg_coherence(output_records: List[Dict], strict=True)
+def get_coherence(output_records: List[Dict], strict=True): 
     n_outputs_list = [len(output_record["testcase_outputs"]) for output_record in output_records]
-    n_coherent_list = [len([output for output in output_record["testcase_outputs"].values() if output not in ["Syntax Error", "Runtime Error"]]) for output_record in output_records]
+    n_coherent_list = [len([output for output in output_record["testcase_outputs"].values() if output not in ["Syntax Error", "Runtime Error", "Timeout"]]) for output_record in output_records]
     coherent_list = [n_coherent / n_outputs for n_coherent, n_outputs in zip(n_coherent_list, n_outputs_list)]
     if strict: 
         coherent_list = [coherent for coherent in coherent_list if coherent == 1.0]
-    return sum(coherent_list) / len(coherent_list)
+    return coherent_list
     
     
     

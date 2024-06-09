@@ -10,6 +10,13 @@ from tqdm import tqdm
 from joblib import Parallel, delayed
 import contextlib
 import traceback
+import ast
+from astor import to_source
+import copy
+
+import ast
+import copy
+
 
 
 # def obfuscateString(s, *args, **kwargs):
@@ -37,12 +44,6 @@ import traceback
 
 ### Capabilities: Return a list of all subtrees 
 
-import ast
-from astor import to_source
-import copy
-
-import ast
-import copy
 
 
 class StripIDValueVisitor(ast.NodeTransformer):

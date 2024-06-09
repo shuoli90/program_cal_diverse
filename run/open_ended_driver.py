@@ -4,24 +4,42 @@ import yaml
 import subprocess
 from datetime import datetime
 
-EXPERIMENT_OUTPUT_ROOT = "/home/data1/cal_diverse/open_ended_results/"
+# EXPERIMENT_OUTPUT_ROOT = "/home/data1/cal_diverse/open_ended_results/"
+EXPERIMENT_OUTPUT_ROOT = "/data1/shypula/prog_diversity/open_ended/"
 if not os.path.exists(EXPERIMENT_OUTPUT_ROOT):
     os.makedirs(EXPERIMENT_OUTPUT_ROOT, exist_ok=True)
     print(f"Created directory {EXPERIMENT_OUTPUT_ROOT}.")
+    
+PATH_TO_HF_TOKEN="/home/shypula/hf_token.txt"
 
 # params: model, temperature, top_p, num_return_sequences, template
 CONFIGS = [
+            ['meta-llama/Meta-Llama-3-8B-Instruct', 0.5, 1.0, 30, 'open_ended_default'],
+            ['meta-llama/Meta-Llama-3-8B', 0.5, 1.0, 30, 'open_ended_default'],
+            
+            ['meta-llama/Meta-Llama-3-8B-Instruct', 1.0, 1.0, 30, 'open_ended_default'],
+            ['meta-llama/Meta-Llama-3-8B', 1.0, 1.0, 30, 'open_ended_default'],
+            
+            ['meta-llama/Meta-Llama-3-8B-Instruct', 1.5, 1.0, 30, 'open_ended_default'],
+            ['meta-llama/Meta-Llama-3-8B', 1.5, 1.0, 30, 'open_ended_default'],
+            
+            ['meta-llama/Meta-Llama-3-8B-Instruct', 2.0, 1.0, 30, 'open_ended_default'],
+            ['meta-llama/Meta-Llama-3-8B', 2.0, 1.0, 30, 'open_ended_default'],
+            
+            ['meta-llama/Meta-Llama-3-8B-Instruct', 2.5, 1.0, 30, 'open_ended_default'],
+            ['meta-llama/Meta-Llama-3-8B', 2.5, 1.0, 30, 'open_ended_default'],
+            
         
         # ['davinci-002', 1.0, 1.0, 20, 'open_ended_default'],
         # ['gpt-3.5-turbo-instruct', 1.0, 1.0, 20, 'open_ended_default'],
         
-        ['gpt-3.5-turbo-instruct', 0.4, 1.0, 20, 'open_ended_default'],
-        ['gpt-3.5-turbo-instruct', 0.7, 1.0, 20, 'open_ended_default'],
+        # `['gpt-3.5-turbo-instruct', 0.4, 1.0, 20, 'open_ended_default'],`
+        # ['gpt-3.5-turbo-instruct', 0.7, 1.0, 20, 'open_ended_default'],
         # ['gpt-3.5-turbo-instruct', 1.0, 1.0, 20, 'open_ended_default'],
-        # ['gpt-3.5-turbo-instruct', 1.3, 1.0, 20, 'open_ended_default'],
+        # ['gpt-3.5-turbo-instruct', 1.3, 1.0, 20, 'open_ended_default']
         
-        ['davinci-002', 0.4, 1.0, 20, 'open_ended_default'],
-        ['davinci-002', 0.7, 1.0, 20, 'open_ended_default'],
+        # ['davinci-002', 0.4, 1.0, 20, 'open_ended_default'],
+        # ['davinci-002', 0.7, 1.0, 20, 'open_ended_default'],
         # ['davinci-002', 1.0, 1.0, 20, 'open_ended_default'],
         # ['davinci-002', 1.3, 1.0, 20, 'open_ended_default']
         
@@ -31,7 +49,7 @@ CONFIGS = [
 def create_yaml_config(model, temperature, top_p, num_return_sequences, template, config_dir): 
     """Create YAML configuration file."""
     config = {
-        'path_to_dataset': '../data/open_ended/open_ended_final/dataset.jsonl',
+        'path_to_dataset': '../data/open_ended_final/dataset.jsonl',
         "experiment_output_root": EXPERIMENT_OUTPUT_ROOT,
         'model': model,
         'template': template,
@@ -39,9 +57,18 @@ def create_yaml_config(model, temperature, top_p, num_return_sequences, template
         'top_p': top_p,
         'max_length': 1500,
         'num_return_sequences': num_return_sequences,
-        'repetition_penalty': 1.0
+        'repetition_penalty': 1.0, 
+        'parallel_samples': 5, 
+        'port': 9999, 
+        'devices_list': '4,5,6,7',
+        'startup_timeout': 600,
+        'volume': 'saved_models',
+        'generation_timeout': 100,
+        'path_to_hf_token': PATH_TO_HF_TOKEN
     }
-    file_path = os.path.join(config_dir, f'config_{model}_{temperature}_{top_p}_{num_return_sequences}_{template}.yaml')
+    
+    model_name_clean = model.replace('/', '-')
+    file_path = os.path.join(config_dir, f'config_{model_name_clean}_{temperature}_{top_p}_{num_return_sequences}_{template}.yaml')
     with open(file_path, 'w') as file:
         yaml.dump(config, file)
     return file_path
@@ -76,7 +103,7 @@ def run_experiment(config_path, log_file_path):
     # read back in config
     with open(config_path, 'r') as f:
         config = yaml.safe_load(f)
-    model = config['model']
+    model = config['model'].replace('/', '-')
     temperature = config['temperature']
     top_p = config['top_p']
     num_return_sequences = config['num_return_sequences']
@@ -89,7 +116,7 @@ def run_experiment(config_path, log_file_path):
     dirs = [d for d in os.listdir(EXPERIMENT_OUTPUT_ROOT) if os.path.isdir(os.path.join(EXPERIMENT_OUTPUT_ROOT, d))]
     if len(dirs) == 0:
         print("No directories found.")
-        import pdb; pdb.set_trace()
+        # import pdb; pdb.set_trace()
         return None
     time_sorted_dirs = sorted(dirs, key=lambda x: datetime.strptime(x[-19:], '%Y-%m-%d_%H-%M-%S'), reverse=True)
     latest_dir = time_sorted_dirs[0]

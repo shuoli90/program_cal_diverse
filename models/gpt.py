@@ -11,9 +11,9 @@ from transformers import AutoTokenizer
 
 dotenv_path = Path('.env')
 load_dotenv(dotenv_path=dotenv_path)
-with open("/home/alex/Documents/PennPhD/trustml_key.txt", "r") as f:
+with open("/home/shypula/trustml_key.txt", "r") as f:
     api_key = f.read().strip()
-with open("/home/alex/Documents/PennPhD/trustml_organization.txt", "r") as f:
+with open("/home/shypula/trustml_organization.txt", "r") as f:
     organization = f.read().strip()
     
 client = OpenAI(

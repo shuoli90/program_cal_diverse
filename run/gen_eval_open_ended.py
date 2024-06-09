@@ -7,7 +7,7 @@ import argparse
 import pandas as pd
 import json
 import numpy as np
-from models import gpt, opensource
+from models import gpt, opensource, hf_inference
 from utils import textprocessing
 from utils.clustering import clustering
 from utils.clustering.clustering import tqdm_joblib
@@ -33,6 +33,14 @@ class Arguments:
     max_length: int = 768
     num_return_sequences: int = 10
     repetition_penalty: float = 1.0
+    parallel_samples: int = 5
+    port: int = 9999
+    devices_list: str = '4,5,6,7'
+    startup_timeout: int = 600
+    generation_timeout: int = 100
+    volume: str = 'saved_models'
+    path_to_hf_token: str = None
+    
     
     
 def readin_template(template_arg): 
@@ -66,7 +74,8 @@ if __name__ == '__main__':
     prompt_template = readin_template(args.template)
     format_template_fun = partial(_format_template, template=prompt_template)
     
-    experiment_string = f"{args.model}_temp_{args.temperature}_top_p_{args.top_p}_max_length_{args.max_length}_num_return_sequences_{args.num_return_sequences}_repetition_penalty_{args.repetition_penalty}_{datetime.datetime.now().strftime('%Y-%m-%d_%H-%M-%S')}"
+    model_name_clean = args.model.replace("/", "-")
+    experiment_string = f"{model_name_clean}_temp_{args.temperature}_top_p_{args.top_p}_max_length_{args.max_length}_num_return_sequences_{args.num_return_sequences}_repetition_penalty_{args.repetition_penalty}_{datetime.datetime.now().strftime('%Y-%m-%d_%H-%M-%S')}"
     experiment_output_dir = os.path.join(args.experiment_output_root, experiment_string)
     os.makedirs(experiment_output_dir, exist_ok=False) # there should be no existing directory (H-M)
     
@@ -74,7 +83,19 @@ if __name__ == '__main__':
     if 'gpt' in args.model or 'davinci' in args.model:
         pipe = gpt.GPTModel(model_name=args.model)
     else:
-        pipe = opensource.OpensourceModel(model_name=args.model)
+        # pipe = opensource.OpensourceModel(model_name=args.model)
+        with open(args.path_to_hf_token, "r") as f:
+            hf_key = f.read().strip()
+        pipe = hf_inference.HFInferenceService(model_name=args.model, 
+                                                parallel_samples=max(args.parallel_samples,args.num_return_sequences),
+                                                port=args.port,
+                                                devices_list=args.devices_list,
+                                                volume=args.volume,
+                                                startup_timeout=args.startup_timeout,
+                                                generation_timeout=args.generation_timeout,
+                                                hf_key=hf_key)
+                                                
+                                               
 
     # Read in data
     print(f'reading in data from {args.path_to_dataset}')
@@ -271,5 +292,9 @@ if __name__ == '__main__':
     with open(os.path.join(experiment_output_dir, 'results_stats_mean.tsv'), 'w') as f:
         for k, v in mean.items():
             f.write(f"{k}\t{v}\n")
+            
+    if "gpt" not in args.model:
+        pipe.stop_service()
+        pipe.remove_service()
     
     print('Done')

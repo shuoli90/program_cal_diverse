@@ -25,6 +25,14 @@ class HFInferenceModel:
         # remove best_of because we use num_samples
         if "best_of" in kwargs:
             kwargs.pop("best_of")
+        if "return_dict_in_generate" in kwargs:
+            kwargs.pop("return_dict_in_generate")
+        if 'num_return_sequences' in kwargs:
+            num_samples = kwargs.pop('num_return_sequences')
+        if 'max_length' in kwargs:
+            max_new_tokens = kwargs.pop('max_length')
+        if top_p == 1.0 or kwargs.get("top_p", 1.0) == 1.0:
+            top_p = None
         completions = self.client.generate(
             prompt,
             max_new_tokens=max_new_tokens,

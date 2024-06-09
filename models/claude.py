@@ -7,8 +7,8 @@ from dotenv import load_dotenv
 bedrock_runtime = boto3.client(
     service_name="bedrock-runtime",
     region_name="us-west-2",
-    aws_access_key_id=YOUR_AWS_ACCESS_KEY_ID,      # optional - set this value if you haven't run `aws configure` 
-    aws_secret_access_key=YOUR_AWS_SECRETE_ACCESS_KEY,  # optional - set this value if you haven't run `aws configure`
+    aws_access_key_id=YOUR_KEY_ID,      # optional - set this value if you haven't run `aws configure` 
+    aws_secret_access_key=YOUR_ACCESS_KEY,  # optional - set this value if you haven't run `aws configure`
     # aws_session_token=SESSION_TOKEN,   # optional - set this value if you haven't run `aws configure`
 )
 

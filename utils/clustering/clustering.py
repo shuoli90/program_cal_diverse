@@ -135,7 +135,7 @@ def report_coherence(output_records: List[Dict]):
         program_2_coherence[output_record["code"]] = n_coherent / n_outputs
     return program_2_coherence, program_2_n_outputs, program_2_n_coherent
 
-def avg_coherence(output_records: List[Dict], strict=True)
+def avg_coherence(output_records: List[Dict], strict=True):
     n_outputs_list = [len(output_record["testcase_outputs"]) for output_record in output_records]
     n_coherent_list = [len([output for output in output_record["testcase_outputs"].values() if output not in ["Syntax Error", "Runtime Error"]]) for output_record in output_records]
     coherent_list = [n_coherent / n_outputs for n_coherent, n_outputs in zip(n_coherent_list, n_outputs_list)]

@@ -7,7 +7,7 @@ import argparse
 import pandas as pd
 import json
 import numpy as np
-from models import gpt, opensource
+from models import opensource, claude, gpt
 from utils import textprocessing
 from utils.clustering import clustering
 from utils.clustering import lexical_diversity
@@ -48,6 +48,8 @@ if __name__ == '__main__':
     # Setup generation pipeline
     if 'gpt' in args.model or 'davinci' in args.model:
         pipe = gpt.GPTModel(model_name=args.model)
+    elif args.model in ['SONNET', 'HAIKU', 'OPUS']:
+        pipe = claude.ClaudeModel(model_name=args.model)
     else:
         pipe = opensource.OpensourceModel(model_name=args.model)
 
@@ -79,7 +81,7 @@ if __name__ == '__main__':
             prompt, temperature=args.temperature,
             max_length=1024,
             do_sample= False, return_dict_in_generate=True, output_scores=True,
-            repetition_penalty=20.0)
+            repetition_penalty=20.0, num_return_sequences=args.num_return_sequences)
         # programs = [textprocessing.extract_function(g) for g in generateds_program]
         programs = [textprocessing.extract_python_code(g) for g in generateds_program]
  

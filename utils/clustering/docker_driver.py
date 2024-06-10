@@ -18,7 +18,7 @@ if __name__ == '__main__':
     # then get all input.*.txt files in tc_dir
     input_files = glob.glob(os.path.join(tc_dir, 'input.*.txt'))
     soln_printed = False
-    already_timeout = False
+    already_errored = False
     
     # for each input_file, run os.path.join(tc_dir, soln.py) < input_file, use subprocess and feed in 
     for i, input_file in enumerate(input_files):
@@ -33,9 +33,10 @@ if __name__ == '__main__':
             else: 
                 print(f'Running {soln_file} < {input_file} > {output_file}')
         
-        if already_timeout:
+        if already_errored: 
             with open(output_file, 'w') as f:
-                f.write("Timeout")
+                # f.write("Timeout")
+                f.write("Error")
             continue
         
         try: 
@@ -53,9 +54,11 @@ if __name__ == '__main__':
                             print(f.read())
                             soln_printed = True
                 if "SyntaxError" in err:
+                    already_errored = True
                     with open(output_file, 'w') as f:
                         f.write("Syntax Error")
                 else:
+                    already_errored = True
                     with open(output_file, 'w') as f:
                         f.write("Runtime Error")
                         
@@ -64,7 +67,7 @@ if __name__ == '__main__':
                 print(f'Timeout running {soln_file} < {input_file} > {output_file}')
             with open(output_file, 'w') as f:
                 f.write("Timeout")
-            already_timeout = True
+            already_errored = True
                 
         except Exception as e:
             if verbose:

@@ -131,7 +131,7 @@ def report_coherence(output_records: List[Dict]):
     program_2_n_coherent = {}
     for output_record in output_records:
         n_outputs = len(output_record["testcase_outputs"])
-        n_coherent = len([output for output in output_record["testcase_outputs"].values() if output not in ["Syntax Error", "Runtime Error", "Timeout", "Error"]
+        n_coherent = len([output for output in output_record["testcase_outputs"].values() if output not in ["Syntax Error", "Runtime Error", "Timeout", "Error"]])
         program_2_n_outputs[output_record["code"]] = n_outputs
         program_2_n_coherent[output_record["code"]] = n_coherent
         program_2_coherence[output_record["code"]] = n_coherent / n_outputs

@@ -14,20 +14,49 @@ PATH_TO_HF_TOKEN="/home/shypula/hf_token.txt"
 
 # params: model, temperature, top_p, num_return_sequences, template
 CONFIGS = [
-            ['meta-llama/Meta-Llama-3-8B-Instruct', 0.5, 1.0, 30, 'open_ended_default'],
-            ['meta-llama/Meta-Llama-3-8B', 0.5, 1.0, 30, 'open_ended_default'],
+    
+            ['meta-llama/Meta-Llama-3-70B-Instruct', 0.5, 1.0, 30, 'open_ended_default'],
+            ['meta-llama/Meta-Llama-3-70B', 0.5, 1.0, 30, 'open_ended_default'],
             
-            ['meta-llama/Meta-Llama-3-8B-Instruct', 1.0, 1.0, 30, 'open_ended_default'],
-            ['meta-llama/Meta-Llama-3-8B', 1.0, 1.0, 30, 'open_ended_default'],
+            ['meta-llama/Meta-Llama-3-70B-Instruct', 0.75, 1.0, 30, 'open_ended_default'],
+            ['meta-llama/Meta-Llama-3-70B', 0.75, 1.0, 30, 'open_ended_default'],
             
-            ['meta-llama/Meta-Llama-3-8B-Instruct', 1.5, 1.0, 30, 'open_ended_default'],
-            ['meta-llama/Meta-Llama-3-8B', 1.5, 1.0, 30, 'open_ended_default'],
+            ['meta-llama/Meta-Llama-3-70B-Instruct', 1.0, 1.0, 30, 'open_ended_default'],
+            ['meta-llama/Meta-Llama-3-70B', 1.0, 1.0, 30, 'open_ended_default'],
             
-            ['meta-llama/Meta-Llama-3-8B-Instruct', 2.0, 1.0, 30, 'open_ended_default'],
-            ['meta-llama/Meta-Llama-3-8B', 2.0, 1.0, 30, 'open_ended_default'],
+            ['meta-llama/Meta-Llama-3-70B-Instruct', 1.25, 1.0, 30, 'open_ended_default'],
+            ['meta-llama/Meta-Llama-3-70B', 1.25, 1.0, 30, 'open_ended_default'],
             
-            ['meta-llama/Meta-Llama-3-8B-Instruct', 2.5, 1.0, 30, 'open_ended_default'],
-            ['meta-llama/Meta-Llama-3-8B', 2.5, 1.0, 30, 'open_ended_default'],
+            ['meta-llama/Meta-Llama-3-70B-Instruct', 1.5, 1.0, 30, 'open_ended_default'],
+            ['meta-llama/Meta-Llama-3-70B', 1.5, 1.0, 30, 'open_ended_default'],
+            
+            ['meta-llama/Meta-Llama-3-70B-Instruct', 1.75, 1.0, 30, 'open_ended_default'],
+            ['meta-llama/Meta-Llama-3-70B', 1.75, 1.0, 30, 'open_ended_default'],
+            
+            ['meta-llama/Meta-Llama-3-70B-Instruct', 2.0, 1.0, 30, 'open_ended_default'],
+            ['meta-llama/Meta-Llama-3-70B', 2.0, 1.0, 30, 'open_ended_default'],
+            
+            ['meta-llama/Meta-Llama-3-70B-Instruct', 2.25, 1.0, 30, 'open_ended_default'],
+            ['meta-llama/Meta-Llama-3-70B', 2.25, 1.0, 30, 'open_ended_default'],
+            
+            ['meta-llama/Meta-Llama-3-70B-Instruct', 2.5, 1.0, 30, 'open_ended_default'],
+            ['meta-llama/Meta-Llama-3-70B', 2.5, 1.0, 30, 'open_ended_default'],
+            
+            
+            # ['meta-llama/Meta-Llama-3-8B-Instruct', 0.5, 1.0, 30, 'open_ended_default'],
+            # ['meta-llama/Meta-Llama-3-8B', 0.5, 1.0, 30, 'open_ended_default'],
+            
+            # ['meta-llama/Meta-Llama-3-8B-Instruct', 1.0, 1.0, 30, 'open_ended_default'],
+            # ['meta-llama/Meta-Llama-3-8B', 1.0, 1.0, 30, 'open_ended_default'],
+            
+            # ['meta-llama/Meta-Llama-3-8B-Instruct', 1.5, 1.0, 30, 'open_ended_default'],
+            # ['meta-llama/Meta-Llama-3-8B', 1.5, 1.0, 30, 'open_ended_default'],
+            
+            # ['meta-llama/Meta-Llama-3-8B-Instruct', 2.0, 1.0, 30, 'open_ended_default'],
+            # ['meta-llama/Meta-Llama-3-8B', 2.0, 1.0, 30, 'open_ended_default'],
+            
+            # ['meta-llama/Meta-Llama-3-8B-Instruct', 2.5, 1.0, 30, 'open_ended_default'],
+            # ['meta-llama/Meta-Llama-3-8B', 2.5, 1.0, 30, 'open_ended_default'],
             
         
         # ['davinci-002', 1.0, 1.0, 20, 'open_ended_default'],
@@ -61,9 +90,9 @@ def create_yaml_config(model, temperature, top_p, num_return_sequences, template
         'parallel_samples': 5, 
         'port': 9999, 
         'devices_list': '4,5,6,7',
-        'startup_timeout': 600,
+        'startup_timeout': 2000,
         'volume': 'saved_models',
-        'generation_timeout': 100,
+        'generation_timeout': 1000,
         'path_to_hf_token': PATH_TO_HF_TOKEN
     }
     

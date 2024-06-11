@@ -13,67 +13,98 @@ if not os.path.exists(EXPERIMENT_OUTPUT_ROOT):
 PATH_TO_HF_TOKEN="/home/shypula/hf_token.txt"
 
 # params: model, temperature, top_p, num_return_sequences, template
-CONFIGS = [
-    
-            ['meta-llama/Meta-Llama-3-70B-Instruct', 0.5, 1.0, 30, 'open_ended_default'],
-            ['meta-llama/Meta-Llama-3-70B', 0.5, 1.0, 30, 'open_ended_default'],
+CONFIGS = [  
+           
+        #    ['meta-llama/Meta-Llama-3-8B', 1.0, 1.0, 30, 'open_ended_default'],
+        #    ['meta-llama/Meta-Llama-3-8B', 1.0, 1.0, 30, 'open_ended_two_shot'],
+        #    ['meta-llama/Meta-Llama-3-8B', 1.0, 1.0, 30, 'open_ended_two_shot_cot'],
+           
+        #    ['meta-llama/Meta-Llama-3-8B-Instruct', 1.0, 1.0, 30, 'open_ended_default'],
+        #    ['meta-llama/Meta-Llama-3-8B-Instruct', 1.0, 1.0, 30, 'open_ended_two_shot'],
+        #    ['meta-llama/Meta-Llama-3-8B-Instruct', 1.0, 1.0, 30, 'open_ended_two_shot_cot'],
+           
+        #    ['meta-llama/Meta-Llama-3-70B', 1.0, 1.0, 30, 'open_ended_default'],
+        #     ['meta-llama/Meta-Llama-3-70B', 1.0, 1.0, 30, 'open_ended_two_shot'],
+        #     ['meta-llama/Meta-Llama-3-70B', 1.0, 1.0, 30, 'open_ended_two_shot_cot'],
+            
+        #     ['meta-llama/Meta-Llama-3-70B-Instruct', 1.0, 1.0, 30, 'open_ended_default'],
+        #     ['meta-llama/Meta-Llama-3-70B-Instruct', 1.0, 1.0, 30, 'open_ended_two_shot'],
+        #     ['meta-llama/Meta-Llama-3-70B-Instruct', 1.0, 1.0, 30, 'open_ended_two_shot_cot'],
+            
+        #     ## grid search over temperature and top_p, use 8B-Instruct and 70B-Instruct
+            
+        #     ['meta-llama/Meta-Llama-3-8B-Instruct', 0.75, 1.0, 30, 'open_ended_default'],
+        #     ['meta-llama/Meta-Llama-3-8B-Instruct', 1.0, 1.0, 30, 'open_ended_default'],
+        #     ['meta-llama/Meta-Llama-3-8B-Instruct', 1.25, 1.0, 30, 'open_ended_default'],
+        #     ['meta-llama/Meta-Llama-3-8B-Instruct', 1.5, 1.0, 30, 'open_ended_default'],
+        #     ['meta-llama/Meta-Llama-3-8B-Instruct', 1.75, 1.0, 30, 'open_ended_default'],
+        #     ['meta-llama/Meta-Llama-3-8B-Instruct', 2.0, 1.0, 30, 'open_ended_default'],
+            
+            ['meta-llama/Meta-Llama-3-8B-Instruct', 0.75, 0.9, 30, 'open_ended_default'],
+            ['meta-llama/Meta-Llama-3-8B-Instruct', 1.0, 0.9, 30, 'open_ended_default'],
+            ['meta-llama/Meta-Llama-3-8B-Instruct', 1.25, 0.9, 30, 'open_ended_default'],
+            ['meta-llama/Meta-Llama-3-8B-Instruct', 1.5, 0.9, 30, 'open_ended_default'],
+            ['meta-llama/Meta-Llama-3-8B-Instruct', 1.75, 0.9, 30, 'open_ended_default'],
+            ['meta-llama/Meta-Llama-3-8B-Instruct', 2.0, 0.9, 30, 'open_ended_default'],
+            
+            ['meta-llama/Meta-Llama-3-8B-Instruct', 0.75, 0.8, 30, 'open_ended_default'],
+            ['meta-llama/Meta-Llama-3-8B-Instruct', 1.0, 0.8, 30, 'open_ended_default'],
+            ['meta-llama/Meta-Llama-3-8B-Instruct', 1.25, 0.8, 30, 'open_ended_default'],
+            ['meta-llama/Meta-Llama-3-8B-Instruct', 1.5, 0.8, 30, 'open_ended_default'],
+            ['meta-llama/Meta-Llama-3-8B-Instruct', 1.75, 0.8, 30, 'open_ended_default'],
+            ['meta-llama/Meta-Llama-3-8B-Instruct', 2.0, 0.8, 30, 'open_ended_default'],
+            
+            ['meta-llama/Meta-Llama-3-8B-Instruct', 0.75, 0.7, 30, 'open_ended_default'],
+            ['meta-llama/Meta-Llama-3-8B-Instruct', 1.0, 0.7, 30, 'open_ended_default'],
+            ['meta-llama/Meta-Llama-3-8B-Instruct', 1.25, 0.7, 30, 'open_ended_default'],
+            ['meta-llama/Meta-Llama-3-8B-Instruct', 1.5, 0.7, 30, 'open_ended_default'],
+            ['meta-llama/Meta-Llama-3-8B-Instruct', 1.75, 0.7, 30, 'open_ended_default'],
+            ['meta-llama/Meta-Llama-3-8B-Instruct', 2.0, 0.7, 30, 'open_ended_default'],
+            
+            # repeat for 70B-Instruct
             
             ['meta-llama/Meta-Llama-3-70B-Instruct', 0.75, 1.0, 30, 'open_ended_default'],
-            ['meta-llama/Meta-Llama-3-70B', 0.75, 1.0, 30, 'open_ended_default'],
-            
             ['meta-llama/Meta-Llama-3-70B-Instruct', 1.0, 1.0, 30, 'open_ended_default'],
-            ['meta-llama/Meta-Llama-3-70B', 1.0, 1.0, 30, 'open_ended_default'],
-            
             ['meta-llama/Meta-Llama-3-70B-Instruct', 1.25, 1.0, 30, 'open_ended_default'],
-            ['meta-llama/Meta-Llama-3-70B', 1.25, 1.0, 30, 'open_ended_default'],
-            
             ['meta-llama/Meta-Llama-3-70B-Instruct', 1.5, 1.0, 30, 'open_ended_default'],
-            ['meta-llama/Meta-Llama-3-70B', 1.5, 1.0, 30, 'open_ended_default'],
-            
             ['meta-llama/Meta-Llama-3-70B-Instruct', 1.75, 1.0, 30, 'open_ended_default'],
-            ['meta-llama/Meta-Llama-3-70B', 1.75, 1.0, 30, 'open_ended_default'],
-            
             ['meta-llama/Meta-Llama-3-70B-Instruct', 2.0, 1.0, 30, 'open_ended_default'],
-            ['meta-llama/Meta-Llama-3-70B', 2.0, 1.0, 30, 'open_ended_default'],
             
-            ['meta-llama/Meta-Llama-3-70B-Instruct', 2.25, 1.0, 30, 'open_ended_default'],
-            ['meta-llama/Meta-Llama-3-70B', 2.25, 1.0, 30, 'open_ended_default'],
+            ['meta-llama/Meta-Llama-3-70B-Instruct', 0.75, 0.9, 30, 'open_ended_default'],
+            ['meta-llama/Meta-Llama-3-70B-Instruct', 1.0, 0.9, 30, 'open_ended_default'],
+            ['meta-llama/Meta-Llama-3-70B-Instruct', 1.25, 0.9, 30, 'open_ended_default'],
+            ['meta-llama/Meta-Llama-3-70B-Instruct', 1.5, 0.9, 30, 'open_ended_default'],
+            ['meta-llama/Meta-Llama-3-70B-Instruct', 1.75, 0.9, 30, 'open_ended_default'],
+            ['meta-llama/Meta-Llama-3-70B-Instruct', 2.0, 0.9, 30, 'open_ended_default'],
             
-            ['meta-llama/Meta-Llama-3-70B-Instruct', 2.5, 1.0, 30, 'open_ended_default'],
-            ['meta-llama/Meta-Llama-3-70B', 2.5, 1.0, 30, 'open_ended_default'],
+            ['meta-llama/Meta-Llama-3-70B-Instruct', 0.75, 0.8, 30, 'open_ended_default'],
+            ['meta-llama/Meta-Llama-3-70B-Instruct', 1.0, 0.8, 30, 'open_ended_default'],
+            ['meta-llama/Meta-Llama-3-70B-Instruct', 1.25, 0.8, 30, 'open_ended_default'],
+            ['meta-llama/Meta-Llama-3-70B-Instruct', 1.5, 0.8, 30, 'open_ended_default'],
+            ['meta-llama/Meta-Llama-3-70B-Instruct', 1.75, 0.8, 30, 'open_ended_default'],
+            ['meta-llama/Meta-Llama-3-70B-Instruct', 2.0, 0.8, 30, 'open_ended_default'],
             
-            
-            # ['meta-llama/Meta-Llama-3-8B-Instruct', 0.5, 1.0, 30, 'open_ended_default'],
-            # ['meta-llama/Meta-Llama-3-8B', 0.5, 1.0, 30, 'open_ended_default'],
-            
-            # ['meta-llama/Meta-Llama-3-8B-Instruct', 1.0, 1.0, 30, 'open_ended_default'],
-            # ['meta-llama/Meta-Llama-3-8B', 1.0, 1.0, 30, 'open_ended_default'],
-            
-            # ['meta-llama/Meta-Llama-3-8B-Instruct', 1.5, 1.0, 30, 'open_ended_default'],
-            # ['meta-llama/Meta-Llama-3-8B', 1.5, 1.0, 30, 'open_ended_default'],
-            
-            # ['meta-llama/Meta-Llama-3-8B-Instruct', 2.0, 1.0, 30, 'open_ended_default'],
-            # ['meta-llama/Meta-Llama-3-8B', 2.0, 1.0, 30, 'open_ended_default'],
-            
-            # ['meta-llama/Meta-Llama-3-8B-Instruct', 2.5, 1.0, 30, 'open_ended_default'],
-            # ['meta-llama/Meta-Llama-3-8B', 2.5, 1.0, 30, 'open_ended_default'],
-            
-        
-        # ['davinci-002', 1.0, 1.0, 20, 'open_ended_default'],
-        # ['gpt-3.5-turbo-instruct', 1.0, 1.0, 20, 'open_ended_default'],
-        
-        # `['gpt-3.5-turbo-instruct', 0.4, 1.0, 20, 'open_ended_default'],`
-        # ['gpt-3.5-turbo-instruct', 0.7, 1.0, 20, 'open_ended_default'],
-        # ['gpt-3.5-turbo-instruct', 1.0, 1.0, 20, 'open_ended_default'],
-        # ['gpt-3.5-turbo-instruct', 1.3, 1.0, 20, 'open_ended_default']
-        
-        # ['davinci-002', 0.4, 1.0, 20, 'open_ended_default'],
-        # ['davinci-002', 0.7, 1.0, 20, 'open_ended_default'],
-        # ['davinci-002', 1.0, 1.0, 20, 'open_ended_default'],
-        # ['davinci-002', 1.3, 1.0, 20, 'open_ended_default']
-        
-        
+            ['meta-llama/Meta-Llama-3-70B-Instruct', 0.75, 0.7, 30, 'open_ended_default'],
+            ['meta-llama/Meta-Llama-3-70B-Instruct', 1.0, 0.7, 30, 'open_ended_default'],
+            ['meta-llama/Meta-Llama-3-70B-Instruct', 1.25, 0.7, 30, 'open_ended_default'],
+            ['meta-llama/Meta-Llama-3-70B-Instruct', 1.5, 0.7, 30, 'open_ended_default'],
+            ['meta-llama/Meta-Llama-3-70B-Instruct', 1.75, 0.7, 30, 'open_ended_default'],
+            ['meta-llama/Meta-Llama-3-70B-Instruct', 2.0, 0.7, 30, 'open_ended_default'],
+    
     ]
+
+def validate_config(config):
+    assert len(config) == 5, f"Configuration must have 5 elements, got {len(config)}."
+    assert isinstance(config[0], str), f"Model must be a string, got {type(config[0])}."
+    assert isinstance(config[1], float), f"Temperature must be a float, got {type(config[1])}."
+    assert isinstance(config[2], float), f"Top-p must be a float, got {type(config[2])}."
+    assert isinstance(config[3], int), f"Number of return sequences must be an integer, got {type(config[3])}."
+    assert isinstance(config[4], str), f"Template must be a string, got {type(config[4])}."
+    assert config[1] > 0, f"Temperature must be greater than 0, got {config[1]}."
+    assert config[2] > 0, f"Top-p must be greater than 0, got {config[2]}."
+    assert config[3] > 0, f"Number of return sequences must be greater than 0, got {config[3]}."
+    assert config[4] in ['open_ended_default', 'open_ended_two_shot', 'open_ended_two_shot_cot'], f"Template must be one of 'open_ended_default', 'open_ended_two_shot', 'open_ended_two_shot_cot', got {config[4]}."
+    return True
 
 def create_yaml_config(model, temperature, top_p, num_return_sequences, template, config_dir): 
     """Create YAML configuration file."""
@@ -89,7 +120,7 @@ def create_yaml_config(model, temperature, top_p, num_return_sequences, template
         'repetition_penalty': 1.0, 
         'parallel_samples': 5, 
         'port': 9999, 
-        'devices_list': '4,5,6,7',
+        'devices_list': '0,1,2,3,4,5,6,7',
         'startup_timeout': 2000,
         'volume': 'saved_models',
         'generation_timeout': 1000,
@@ -151,19 +182,23 @@ def run_experiment(config_path, log_file_path):
     latest_dir = time_sorted_dirs[0]
     results_file = os.path.join(EXPERIMENT_OUTPUT_ROOT, latest_dir, 'results_stats_mean.tsv')
     # read in as dict
-    with open(results_file, 'r') as f:
-        lines = f.readlines()
-    results = {}
-    for line in lines:
-        k, v = line.strip().split('\t')
-        results[k] = v
-    results.update(config)
-        
-    # coherence	semantic_count	distinct_1	distinct_2	distinct_3	distinct_4	distinct_5	distinct_6	corpus_self_bleu	plain_subtrees_3	plain_subtrees_4	plain_subtrees_5	plain_subtrees_6	stripped_subtrees_3	stripped_subtrees_4	stripped_subtrees_5	stripped_subtrees_6	obfuscated_subtrees_3	obfuscated_subtrees_4	obfuscated_subtrees_5	obfuscated_subtrees_6
-    results["model"] = model
-    print(f"Results for experiment {model}_temp_{temperature}_top_p_{top_p}_num_return_sequences_{num_return_sequences}:")
-    print(results)
-    return results
+    try: 
+        with open(results_file, 'r') as f:
+            lines = f.readlines()
+        results = {}
+        for line in lines:
+            k, v = line.strip().split('\t')
+            results[k] = v
+        results.update(config)
+            
+        # coherence	semantic_count	distinct_1	distinct_2	distinct_3	distinct_4	distinct_5	distinct_6	corpus_self_bleu	plain_subtrees_3	plain_subtrees_4	plain_subtrees_5	plain_subtrees_6	stripped_subtrees_3	stripped_subtrees_4	stripped_subtrees_5	stripped_subtrees_6	obfuscated_subtrees_3	obfuscated_subtrees_4	obfuscated_subtrees_5	obfuscated_subtrees_6
+        results["model"] = model
+        print(f"Results for experiment {model}_temp_{temperature}_top_p_{top_p}_num_return_sequences_{num_return_sequences}:")
+        print(results)
+        return results
+    except Exception as e:
+        print(f"Error reading in results file: {e}")
+        return None
     
     
     
@@ -174,21 +209,30 @@ def main(configurations):
         raise FileNotFoundError(f"Configuration directory {config_dir} not found.")
     # os.makedirs(config_dir, exist_ok=True)
 
-    logs_dir = '../logs'
+    logs_dir = '/data1/shypula/prog_diversity/open_ended_logs/'
     os.makedirs(logs_dir, exist_ok=True)
     
     driver_stats_file = os.path.join(EXPERIMENT_OUTPUT_ROOT, f"{datetime.now().strftime('%Y-%m-%d_%H-%M-%S')}_driver_stats.tsv")
     keys = ['model', 'temperature', 'top_p', 'num_return_sequences', 'template', 'coherence', 'semantic_count', 'distinct_1', 'distinct_2', 'distinct_3', 'distinct_4', 'distinct_5', 'distinct_6', 'corpus_self_bleu', 'plain_subtrees_3', 'plain_subtrees_4', 'plain_subtrees_5', 'plain_subtrees_6', 'stripped_subtrees_3', 'stripped_subtrees_4', 'stripped_subtrees_5', 'stripped_subtrees_6', 'obfuscated_subtrees_3', 'obfuscated_subtrees_4', 'obfuscated_subtrees_5', 'obfuscated_subtrees_6']
     with open(driver_stats_file, 'w') as f:
         f.write('\t'.join(keys) + '\n')
+        
+    assert all([validate_config(config) for config in configurations]), "Invalid configuration."
 
     for config in configurations:
         yaml_path = create_yaml_config(*config, config_dir)
         print(f"Running experiment with configuration {config}")
-        results = run_experiment(yaml_path, os.path.join(logs_dir, f'log_{config[0]}_{config[1]}_{config[2]}_{config[3]}_{config[4]}_{datetime.now().strftime("%Y-%m-%d_%H-%M-%S")}.txt'))
+        # results = run_experiment(yaml_path, os.path.join(logs_dir, f'log_{config[0]}_{config[1]}_{config[2]}_{config[3]}_{config[4]}_{datetime.now().strftime("%Y-%m-%d_%H-%M-%S")}.txt'))
+        results = run_experiment(yaml_path, os.path.join(logs_dir, f'log_{config[0].replace("/", "-")}_{config[1]}_{config[2]}_{config[3]}_{config[4]}_{datetime.now().strftime("%Y-%m-%d_%H-%M-%S")}.txt'))
         if results is not None:
             with open(driver_stats_file, 'a') as f:
                 f.write('\t'.join([str(results[k]) for k in keys]) + '\n')
+        else: 
+            with open(driver_stats_file, 'a') as f:
+                # write error message
+                # get the params for the header, and error the rest 
+                f.write('\t'.join([str(config[0]), str(config[1]), str(config[2]), str(config[3]), str(config[4])] + ['ERROR']*21) + '\n')
+                
         
 
         print(f"Experiment {config} completed.")

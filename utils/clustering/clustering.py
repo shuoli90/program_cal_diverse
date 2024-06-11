@@ -87,7 +87,7 @@ def instrument_code_docker(generated_code: str, testcase_inputs: Dict[str, str],
             image.tags[0],
             detach=True,
             volumes=volumes,
-            command=f"python tc_dir/driver.py /usr/src/app/tc_dir {indiv_tc_timeout} {verbose_docker} {n_test_cases} {open_ended}",
+            command=f"python tc_dir/driver.py /usr/src/app/tc_dir {indiv_tc_timeout} {verbose_docker} {n_test_cases} {open_ended}"
         )
         # print the container logs 
         for line in container.logs(stream=True):

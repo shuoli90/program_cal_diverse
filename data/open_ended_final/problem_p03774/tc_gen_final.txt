@@ -1,0 +1,31 @@
+import random
+
+def make_testcase():
+    # Constants
+    MIN_COORD = -10**8
+    MAX_COORD = 10**8
+    
+    # Random values for N and M within given constraints
+    N = random.randint(1, 50)
+    M = random.randint(1, 50)
+    
+    # Generate random coordinates for N students
+    students = [(random.randint(MIN_COORD, MAX_COORD), random.randint(MIN_COORD, MAX_COORD)) for _ in range(N)]
+    
+    # Generate random coordinates for M checkpoints
+    checkpoints = [(random.randint(MIN_COORD, MAX_COORD), random.randint(MIN_COORD, MAX_COORD)) for _ in range(M)]
+    
+    return N, M, students, checkpoints
+
+def format_testcase(N, M, students, checkpoints):
+    s = f"{N} {M}\n"
+    for (a, b) in students:
+        s += f"{a} {b}\n"
+    for (c, d) in checkpoints:
+        s += f"{c} {d}\n"
+    return s
+
+def tcgen():
+    N, M, students, checkpoints = make_testcase()
+    return format_testcase(N, M, students, checkpoints)
+

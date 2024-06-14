@@ -1,0 +1,58 @@
+### Input Description:
+
+1. An integer \( N \) (1 ≤ \( N \) ≤ 10000), representing some quantity or size.
+
+### Example Input:
+
+```
+1000
+
+```
+
+### Function Signature:
+
+Write a function `f(N)` that takes in the input.
+```python
+def f(N: int):
+    '''
+    N: an integer
+    '''
+
+Now please implement the function f; do not return anything, the function f should print the result of the operation.
+It should terminate within 30 seconds.
+
+def f(N: int):
+    print(n**2)
+
+### Input Description:
+
+1. A floating point number \( N \) (1 ≤ \( N \) ≤ 10000), representing some quantity or size.
+
+### Example Input:
+
+```
+143.23
+```
+
+### Function Signature:
+Write a function `f(N)` that takes in the input.
+```python
+def f(N: float):
+    '''
+    N: a float
+    '''
+
+Now please implement the function f; do not return anything, the function f should print the result of the operation.
+It should terminate within 30 seconds.
+
+def f(N: float):
+    i = 0
+    while N > 1:
+        N = N / 2
+        i += 1
+    print(i)
+
+## DESCRIPTION 
+
+Now please implement the function f; do not return anything, the function f should print the result of the operation.
+It should terminate within 30 seconds.

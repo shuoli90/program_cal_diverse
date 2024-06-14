@@ -1,0 +1,74 @@
+Let's start by writing the function to extract arguments from the input file for the problem statement "Distance between Two Cities". Then, we will write the function to process these arguments. 
+
+First, we will write an `extract_arguments` function that reads the input and returns a list of tuples, where each tuple contains the latitude and longitude of two cities. Finally, we will write the `calculate_distances` function that takes this list of tuples, calculates the surface distance for each pair of cities, and prints the results.
+
+### Extract Arguments Function
+
+```python
+import sys
+import math
+
+def extract_arguments(fh):
+    datasets = []
+    while True:
+        line = fh.readline().strip()
+        if line == "-1 -1 -1 -1":
+            break
+        a, b, c, d = map(float, line.split())
+        datasets.append((a, b, c, d))
+    return datasets
+
+def haversine(lat1, lon1, lat2, lon2):
+    R = 6378.1  # Radius of the Earth in km
+    lat1, lon1, lat2, lon2 = map(math.radians, [lat1, lon1, lat2, lon2])
+    
+    dlat = lat2 - lat1
+    dlon = lon2 - lon1
+    
+    a = (math.sin(dlat / 2) ** 2 +
+         math.cos(lat1) * math.cos(lat2) * math.sin(dlon / 2) ** 2)
+    
+    c = 2 * math.atan2(math.sqrt(a), math.sqrt(1 - a))
+    
+    distance = R * c
+    return round(distance)
+
+def calculate_distances(datasets):
+    results = []
+    for dataset in datasets:
+        a, b, c, d = dataset
+        distance = haversine(a, b, c, d)
+        results.append(distance)
+        print(distance)
+
+if __name__ == "__main__":
+    input_path = sys.argv[1]
+    with open(input_path, 'r') as fh:
+        datasets = extract_arguments(fh)
+    calculate_distances(datasets)
+```
+
+### Explanation
+
+1. **`extract_arguments(fh)`**:
+    - Reads the input line by line.
+    - Stops reading when it encounters the line `"-1 -1 -1 -1"`.
+    - Converts each line into a tuple of four floating-point numbers representing the latitude and longitude of two cities.
+    - Appends each tuple to the `datasets` list.
+    - Returns `datasets`.
+
+2. **`haversine(lat1, lon1, lat2, lon2)`**:
+    - Implements the Haversine formula to calculate the great-circle distance between two points on a sphere given their longitudes and latitudes.
+    - Returns the distance in kilometers, rounded to the nearest integer.
+
+3. **`calculate_distances(datasets)`**:
+    - Iterates over the list of tuples.
+    - For each tuple, calculates the distance using the `haversine` function.
+    - Prints the calculated distance.
+
+4. **`__main__` block**:
+    - Reads the input file path from the command line.
+    - Calls `extract_arguments` to parse the input file.
+    - Calls `calculate_distances` to process the parsed input and print the distances.
+
+This solution extracts the input, processes it, and outputs the required distances as specified in the problem statement.

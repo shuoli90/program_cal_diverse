@@ -1,0 +1,8 @@
+import random
+
+def tcgen():
+    # Generate a random integer L within the given constraints (1 ≤ L ≤ 1000)
+    L = random.randint(1, 1000)
+    
+    return str(L)
+

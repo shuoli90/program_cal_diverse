@@ -1,0 +1,20 @@
+### Input Description:
+
+- An integer \( n \) (1 ≤ \( n \) ≤ 10^8), representing some length or size.
+- An integer \( k \) (1 ≤ \( k \) ≤ \( n \)), representing an index position.
+- An integer \( x0 \) (0 ≤ \( x0 \) ≤ 9), representing an initial value.
+
+### Example Input:
+```
+20 10 1
+```
+
+### Function Signature:
+```python
+def f(n: int, k: int, x0: int):
+    '''
+    n: an integer
+    k: an integer
+    x0: an integer
+    '''
+```

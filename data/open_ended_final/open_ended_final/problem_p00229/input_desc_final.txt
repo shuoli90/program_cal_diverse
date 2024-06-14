@@ -1,0 +1,33 @@
+### Input Description:
+
+1. An integer \( b \) (0 ≤ \( b \) ≤ 200), representing a certain quantity.
+2. An integer \( r \) (0 ≤ \( r \) ≤ 200), representing another quantity.
+3. An integer \( g \) (0 ≤ \( g \) ≤ 200), representing yet another quantity.
+4. An integer \( c \) (0 ≤ \( c \) ≤ 200), representing a different quantity.
+5. An integer \( s \) (0 ≤ \( s \) ≤ 200), representing another distinct quantity.
+6. An integer \( t \) (0 ≤ \( t \) ≤ 1000), representing the total count or size.
+
+The input consists of multiple datasets. 
+
+### Example Input:
+
+```
+3 2 30 3 26 226
+9 0 18 3 20 118
+5 5 12 2 15 203
+7 4 19 2 22 197
+7 4 24 4 17 209
+```
+
+### Function Signature:
+
+Write a function `f(inputs)` that takes in the list of tuples. Each tuple contains six integers representing the variables \( b, r, g, c, s, t \).
+
+```python
+from typing import List, Tuple
+
+def f(inputs: List[Tuple[int, int, int, int, int, int]]):
+    '''
+    inputs: a list of tuples, where each tuple contains six integers
+    '''
+```

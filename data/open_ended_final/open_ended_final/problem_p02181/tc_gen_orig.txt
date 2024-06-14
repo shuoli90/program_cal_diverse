@@ -1,0 +1,36 @@
+Here's a test case generator for the problem statement "G: AOR-String":
+
+```python
+import random
+import string
+
+def tcgen():
+    # Generate a random integer N within the given constraints
+    N = random.randint(1, 10**5)
+    
+    # Generate a list of N strings, where each string has a length between 1 and 20 characters
+    S = []
+    for _ in range(N):
+        length = random.randint(1, 20)
+        s = ''.join(random.choices(string.ascii_uppercase, k=length))
+        S.append(s)
+    
+    return N, S
+
+# Example usage of the test case generator
+def print_test_case():
+    N, S = tcgen()
+    print(N)
+    for s in S:
+        print(s)
+
+# Print a generated test case
+print_test_case()
+```
+
+### Explanation:
+1. **N:** This is a random integer between 1 and 100,000, representing the number of strings.
+2. **S:** This is a list of N strings. Each string is composed of uppercase English letters and has a length between 1 and 20 characters.
+3. **Usage:** The `print_test_case` function demonstrates how to use the generator to print the generated test case in the required format.
+
+Given the constraints, the generated test cases will be within the bounds of what the problem statement specifies. You can incorporate this generator into your testing framework to automatically generate and evaluate test cases for the problem.

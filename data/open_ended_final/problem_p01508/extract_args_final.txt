@@ -1,0 +1,44 @@
+def extract_arguments(fh):
+    # Read all lines from the file handle
+    lines = fh.readlines()
+    
+    # Initialize an empty list to store all test cases
+    test_cases = []
+    
+    index = 0
+    case_number = 1
+    
+    while index < len(lines):
+        # Read the number of vertices
+        N = int(lines[index].strip())
+        
+        if N == 0:
+            break
+        
+        index += 1
+        vertices = []
+        
+        # Read the N vertices
+        for _ in range(N):
+            x, y = map(int, lines[index].strip().split())
+            vertices.append((x, y))
+            index += 1
+        
+        # Append the extracted test case to the list
+        test_cases.append((case_number, N, vertices))
+        case_number += 1
+    
+    return test_cases
+
+
+#if __name__ == "__main__":
+#    input_path = sys.argv[1]
+#    with open(input_path, 'r') as fh:
+#        test_cases = extract_arguments(fh)
+#    f(test_cases)
+
+
+#1. **Extracting Arguments**:
+#   - `extract_arguments` reads the input file line by line.
+#   - It constructs a list of test cases where each test case is a tuple `(case_number, N, vertices)`.
+#   - Each test case ends when we reach "0" in the input.

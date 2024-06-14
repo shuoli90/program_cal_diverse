@@ -1,0 +1,14 @@
+def tcgen():
+    H = random.randint(1, 100)  # Height of the amidakuji lines
+    W = random.randint(1, 8)    # Number of vertical lines
+    K = random.randint(1, W)    # Position of the vertical line to reach
+    
+    output = f"{H}\n{W}\n{K}\n"
+    return output
+
+
+### Explanation:
+#- **H** is randomly chosen between 1 and 100 (inclusive).
+#- **W** is randomly chosen between 1 and 8 (inclusive).
+#- **K** is randomly chosen between 1 and W (inclusive).
+

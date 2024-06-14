@@ -1,0 +1,64 @@
+To generate test cases for the "Binary Tree" problem, we need to follow these steps:
+
+1. Randomly generate the number of nodes \( n \).
+2. Create a valid binary tree structure with \( n \) nodes, ensuring each node has unique IDs from 0 to \( n-1 \) and valid left and right children.
+
+Here's a Python function to generate such test cases:
+
+```python
+import random
+
+def generate_binary_tree(n):
+    """ Generates a random binary tree with n nodes. """
+    nodes = list(range(n))
+    random.shuffle(nodes)
+    
+    tree = {i: (-1, -1) for i in nodes}
+    
+    for i in range(n):
+        if 2 * i + 1 < n:
+            tree[nodes[i]] = (nodes[2 * i + 1], tree[nodes[i]][1])
+        if 2 * i + 2 < n:
+            tree[nodes[i]] = (tree[nodes[i]][0], nodes[2 * i + 2])
+
+    return tree
+
+def tcgen():
+    n = random.randint(1, 25)
+    tree = generate_binary_tree(n)
+    
+    result = []
+    result.append(str(n))
+
+    for node in sorted(tree.keys()):
+        left, right = tree[node]
+        result.append(f"{node} {left} {right}")
+    
+    return result
+
+# Generate a test case and print it
+test_case = tcgen()
+for line in test_case:
+    print(line)
+```
+
+### Explanation:
+1. `generate_binary_tree(n)`: This function builds a valid binary tree with \( n \) nodes. It shuffles the node IDs to ensure randomness and then assigns left and right children based on the complete binary tree structure.
+2. `tcgen()`: This function calls `generate_binary_tree(n)` and formats the output as specified in the problem statement.
+3. The `for` loop at the end prints the generated test case in the required format.
+
+### Example Output:
+Running this generator might produce an output like:
+```
+8
+0 1 2
+1 3 4
+2 5 6
+3 7 -1
+4 -1 -1
+5 -1 -1
+6 -1 -1
+7 -1 -1
+```
+
+This output represents a binary tree with 8 nodes, where the nodes and their respective children are listed in the format specified in the problem statement. Each node ID is followed by the IDs of its left and right children, with `-1` representing the absence of a child.

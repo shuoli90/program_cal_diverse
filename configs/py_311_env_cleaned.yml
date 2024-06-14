@@ -1,0 +1,329 @@
+channels:
+- conda-forge
+- defaults
+dependencies:
+- _libgcc_mutex
+- _openmp_mutex
+- alsa-lib
+- anyio
+- argon2-cffi
+- argon2-cffi-bindings
+- arrow
+- asttokens
+- async-lru
+- attr
+- attrs
+- babel
+- beautifulsoup4
+- bleach
+- brotli-python
+- bzip2
+- ca-certificates
+- cached-property
+- cached_property
+- cairo
+- certifi
+- cffi
+- charset-normalizer
+- comm
+- dbus
+- debugpy
+- decorator
+- defusedxml
+- entrypoints
+- exceptiongroup
+- executing
+- expat
+- fftw
+- flit-core
+- font-ttf-dejavu-sans-mono
+- font-ttf-inconsolata
+- font-ttf-source-code-pro
+- font-ttf-ubuntu
+- fontconfig
+- fonts-conda-ecosystem
+- fonts-conda-forge
+- fqdn
+- freetype
+- gettext
+- gettext-tools
+- glib
+- glib-tools
+- graphite2
+- gst-plugins-base
+- gstreamer
+- gstreamer-orc
+- h11
+- h2
+- harfbuzz
+- hpack
+- httpcore
+- httpx
+- hyperframe
+- icu
+- idna
+- importlib-metadata
+- importlib_metadata
+- importlib_resources
+- ipykernel
+- ipython
+- ipywidgets
+- isoduration
+- jack
+- jedi
+- jinja2
+- jpeg
+- json5
+- jsonpointer
+- jsonschema
+- jsonschema-specifications
+- jsonschema-with-format-nongpl
+- jupyter
+- jupyter-lsp
+- jupyter_client
+- jupyter_console
+- jupyter_core
+- jupyter_events
+- jupyter_server
+- jupyter_server_terminals
+- jupyterlab
+- jupyterlab_pygments
+- jupyterlab_server
+- jupyterlab_widgets
+- keyutils
+- krb5
+- lame
+- ld_impl_linux-64
+- libasprintf
+- libasprintf-devel
+- libblas
+- libcap
+- libcblas
+- libclang
+- libclang13
+- libcups
+- libdb
+- libedit
+- libevent
+- libexpat
+- libffi
+- libflac
+- libgcc-ng
+- libgcrypt
+- libgettextpo
+- libgettextpo-devel
+- libgfortran-ng
+- libgfortran5
+- libglib
+- libgomp
+- libgpg-error
+- libiconv
+- liblapack
+- libllvm15
+- libnsl
+- libogg
+- libopenblas
+- libopus
+- libpng
+- libpq
+- libsndfile
+- libsodium
+- libsqlite
+- libstdcxx-ng
+- libsystemd0
+- libtool
+- libudev1
+- libuuid
+- libvorbis
+- libxcb
+- libxkbcommon
+- libxml2
+- libzlib
+- lz4-c
+- markupsafe
+- matplotlib-inline
+- mistune
+- mpg123
+- mysql-common
+- mysql-libs
+- nbclient
+- nbconvert
+- nbconvert-core
+- nbconvert-pandoc
+- nbformat
+- ncurses
+- nest-asyncio
+- notebook
+- notebook-shim
+- nspr
+- nss
+- numpy
+- openssl
+- overrides
+- packaging
+- pandas
+- pandoc
+- pandocfilters
+- parso
+- pcre2
+- pexpect
+- pickleshare
+- pip
+- pixman
+- pkgutil-resolve-name
+- platformdirs
+- ply
+- prometheus_client
+- prompt-toolkit
+- prompt_toolkit
+- psutil
+- pthread-stubs
+- ptyprocess
+- pulseaudio
+- pure_eval
+- pycparser
+- pygments
+- pyqt
+- pyqt5-sip
+- pysocks
+- python
+- python-dateutil
+- python-fastjsonschema
+- python-json-logger
+- python-tzdata
+- python_abi
+- pytz
+- pyyaml
+- pyzmq
+- qt-main
+- qtconsole-base
+- qtpy
+- readline
+- referencing
+- requests
+- rfc3339-validator
+- rfc3986-validator
+- rpds-py
+- send2trash
+- setuptools
+- sip
+- six
+- sniffio
+- soupsieve
+- sqlite
+- stack_data
+- terminado
+- tinycss2
+- tk
+- toml
+- tomli
+- tornado
+- traitlets
+- types-python-dateutil
+- typing-extensions
+- typing_extensions
+- typing_utils
+- tzdata
+- uri-template
+- urllib3
+- wcwidth
+- webcolors
+- webencodings
+- websocket-client
+- wheel
+- widgetsnbextension
+- xcb-util
+- xcb-util-image
+- xcb-util-keysyms
+- xcb-util-renderutil
+- xcb-util-wm
+- xorg-kbproto
+- xorg-libice
+- xorg-libsm
+- xorg-libx11
+- xorg-libxau
+- xorg-libxdmcp
+- xorg-libxext
+- xorg-libxrender
+- xorg-renderproto
+- xorg-xextproto
+- xorg-xproto
+- xz
+- yaml
+- zeromq
+- zipp
+- zlib
+- zstd
+- pip:
+  - absl-py
+  - aiohttp
+  - aiosignal
+  - annotated-types
+  - astor
+  - astunparse
+  - black
+  - cachetools
+  - click
+  - colorama
+  - contourpy
+  - cycler
+  - dill
+  - distro
+  - docker
+  - filelock
+  - fonttools
+  - frozenlist
+  - fsspec
+  - huggingface-hub
+  - iniconfig
+  - joblib
+  - kiwisolver
+  - lxml
+  - matplotlib
+  - mpmath
+  - multidict
+  - mypy-extensions
+  - networkx
+  - nltk
+  - nvidia-cublas-cu12
+  - nvidia-cuda-cupti-cu12
+  - nvidia-cuda-nvrtc-cu12
+  - nvidia-cuda-runtime-cu12
+  - nvidia-cudnn-cu12
+  - nvidia-cufft-cu12
+  - nvidia-curand-cu12
+  - nvidia-cusolver-cu12
+  - nvidia-cusparse-cu12
+  - nvidia-nccl-cu12
+  - nvidia-nvjitlink-cu12
+  - nvidia-nvtx-cu12
+  - openai
+  - pathspec
+  - pillow
+  - pluggy
+  - portalocker
+  - pydantic
+  - pydantic-core
+  - pyparsing
+  - pytest
+  - python-dotenv
+  - regex
+  - sacrebleu
+  - safetensors
+  - scikit-learn
+  - scipy
+  - sympy
+  - tabulate
+  - tenacity
+  - text-generation
+  - threadpoolctl
+  - tokenizers
+  - torch
+  - torchaudio
+  - torchvision
+  - tqdm
+  - transformers
+  - triton
+  - yarl
+name: py311
+prefix: /home/shypula/anaconda3/envs/py311

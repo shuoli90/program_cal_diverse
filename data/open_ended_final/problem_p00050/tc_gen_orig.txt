@@ -1,0 +1,46 @@
+Sure, I can help with that. The test case generator for the "Apples and Peaches" problem needs to create random lines of English text with a length of 1000 characters or less, including alphanumeric characters, spaces, and symbols. The text should contain occurrences of the words "apple" and "peach" to ensure the test cases are meaningful.
+
+Here's a Python function that generates such test cases:
+
+```python
+import random
+import string
+
+def generate_random_word():
+    length = random.randint(1, 10)
+    letters = string.ascii_lowercase
+    return ''.join(random.choice(letters) for i in range(length))
+
+def tcgen():
+    max_length = 1000
+    words = []
+    current_length = 0
+    
+    # Ensure we include "apple" and "peach" at least once
+    words.append("apple")
+    words.append("peach")
+    current_length += len("apple") + len("peach") + 2  # +2 for spaces
+    
+    while current_length < max_length:
+        word = generate_random_word()
+        if current_length + len(word) + 1 > max_length:
+            break
+        words.append(word)
+        current_length += len(word) + 1
+    
+    random.shuffle(words)
+    
+    text = ' '.join(words)
+    return text
+
+# Example Usage
+if __name__ == "__main__":
+    test_input = tcgen()
+    print(f"Input: {test_input}")
+```
+
+This function generates a random line of text with a length of up to 1000 characters. It ensures that the words "apple" and "peach" are included at least once. The function uses `generate_random_word` to create random words of length between 1 and 10 characters, constructs the text, shuffles the words, and joins them into a single string.
+
+The `tcgen` function returns a string that can be used as a test input. You can run the script and see the generated test case.
+
+Feel free to modify the function to better suit any specific needs or constraints you might have.

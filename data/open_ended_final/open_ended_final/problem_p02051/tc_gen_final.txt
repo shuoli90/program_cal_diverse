@@ -1,0 +1,60 @@
+import random
+
+def tcgen():
+    # Number of rooms and warp buttons
+    N = random.randint(1, 2000)
+    M = random.randint(1, 2000)
+
+    # Generating warp buttons
+    warp_buttons = []
+    for _ in range(M):
+        a = random.randint(1, N-1)  # Ensure ai < bi
+        b = random.randint(a + 1, N)
+        c = random.randint(1, 3)
+        warp_buttons.append((a, b, c))
+
+    # Number of adventures
+    Q = random.randint(1, 2000)
+    
+    # Generating adventures
+    adventures = []
+    for _ in range(Q):
+        d = random.randint(1, N)
+        e = random.randint(0, 100000)  # arbitrary upper limit; consistent with input constraints
+        adventures.append((d, e))
+
+    # Formatting the test case
+    test_case = f"{N} {M}\n"
+    for a, b, c in warp_buttons:
+        test_case += f"{a} {b} {c}\n"
+    test_case += f"{Q}\n"
+    for d, e in adventures:
+        test_case += f"{d} {e}\n"
+
+    return test_case
+
+# Example usage
+#print(tcgen())
+
+
+### Explanation:
+
+#1. **Number of Rooms and Warp Buttons:**
+#   - `N` is chosen randomly between 1 and 2000.
+#   - `M` is chosen randomly between 1 and 2000.
+
+#2. **Warp Buttons Generation:**
+#   - For each warp button, `a` is chosen such that it is between 1 and `N-1` (ensuring `a < b`).
+#   - `b` is chosen such that it is between `a+1` and `N`.
+#   - `c` is chosen randomly between 1 and 3.
+
+#3. **Number of Adventures:**
+#   - `Q` is chosen randomly between 1 and 2000.
+
+#4. **Adventures Generation:**
+#   - For each adventure, `d` (the room where the escape button was pressed) is chosen between 1 and `N`.
+#   - `e` (the number of coins obtained) is chosen randomly between 0 and 10000 (assuming a reasonable upper limit for the number of coins).
+
+#5. **Formatting the Test Case:**
+#   - The output is formatted according to the problem statement, first printing `N` and `M`, followed by the warp button details, then `Q`, and finally the adventure details.
+

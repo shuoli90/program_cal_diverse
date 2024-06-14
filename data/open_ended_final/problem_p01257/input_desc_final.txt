@@ -1,0 +1,35 @@
+### Input Description:
+
+1. An integer \(N\) (1 ≤ \(N\) ≤ 10), representing some quantity or size.
+2. An integer \(M\) (0 ≤ \(M\) ≤ 100000), representing another quantity or size.
+3. A list of \(N\) integers, each representing a value, where each integer is between 1 and 100000.
+
+The input consists of multiple data sets. Each dataset is described by two lines. The first line contains the integers \(N\) and \(M\). The second line contains \(N\) integers. 
+
+### Example Input:
+```
+6 330
+1 5 10 50 100 500
+7 127
+1 2 4 8 16 32 64
+2 10000
+1000 2000
+```
+
+### Function Signature:
+Write a function `f(inputs)` that takes in the input as a list of tuples. Each tuple contains:
+- An integer \(N\)
+- An integer \(M\)
+- A list of \(N\) integers
+
+```python
+from typing import List, Tuple
+
+def f(inputs: List[Tuple[int, int, List[int]]]):
+    '''
+    inputs: a list of tuples, each containing:
+        - an integer N
+        - an integer M
+        - a list of N integers
+    '''
+```

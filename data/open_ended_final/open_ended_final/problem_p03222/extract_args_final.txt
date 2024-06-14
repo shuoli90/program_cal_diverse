@@ -1,0 +1,9 @@
+def extract_arguments(fh):
+    H, W, K = map(int, fh.readline().strip().split())
+    return H, W, K
+
+#if __name__ == "__main__":
+#    input_path = sys.argv[1]
+#    with open(input_path, 'r') as fh: 
+#        H, W, K = extract_arguments(fh)
+#    f(H, W, K)

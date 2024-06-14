@@ -1,0 +1,45 @@
+Sure, I can help with that. Here’s a Python function that generates test cases for the given problem statement:
+
+```python
+import random
+
+def generate_permutation(n):
+    perm = list(range(1, n + 1))
+    random.shuffle(perm)
+    return perm
+
+def tcgen():
+    N = random.randint(1, 2 * 10**5)
+    permutation = generate_permutation(N)
+    
+    return N, permutation
+
+def format_test_case(N, permutation):
+    formatted_input = f"{N}\n" + " ".join(map(str, permutation))
+    return formatted_input
+
+# Example usage:
+N, permutation = tcgen()
+test_case = format_test_case(N, permutation)
+print(test_case)
+```
+
+### Explanation
+
+1. **generate_permutation(n)**: This function generates a random permutation of integers from 1 to \( n \).
+
+2. **tcgen()**: This function generates a random test case:
+    - It first selects a random value for \( N \) between 1 and 200,000.
+    - Then, it generates a random permutation of integers from 1 to \( N \).
+
+3. **format_test_case(N, permutation)**: This function formats the generated test case as a string suitable for input.
+
+### Example Output
+Running the `tcgen` function and formatting the output will give a test case like:
+
+```
+5
+3 5 1 2 4
+```
+
+You can then use this formatted test case as input for your competitive programming problem.

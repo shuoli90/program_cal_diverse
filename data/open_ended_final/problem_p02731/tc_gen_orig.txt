@@ -1,0 +1,17 @@
+Sure! Here is a test case generator for the given problem statement:
+
+```python
+import random
+
+def tcgen():
+    # Generate a random integer L within the given constraints (1 ≤ L ≤ 1000)
+    L = random.randint(1, 1000)
+    
+    return L
+
+# Example usage:
+for _ in range(10):  # Generate 10 random test cases
+    print(tcgen())
+```
+
+This function `tcgen` generates a random integer `L` within the range of 1 to 1000, inclusive. You can use this to create multiple test cases for the problem. Each call to `tcgen` will produce a new value for `L` which you can then use as input for testing your solution to the problem.

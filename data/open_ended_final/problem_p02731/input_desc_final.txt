@@ -1,0 +1,19 @@
+### Input Description:
+
+An integer \( L \) (1 ≤ \( L \) ≤ 1000), representing some positive quantity or size.
+
+### Example Input:
+
+```
+13
+```
+
+### Function Signature:
+
+Write a function `f(L)` that takes in the input.
+```python
+def f(L: int):
+    '''
+    L: an integer
+    '''
+```

@@ -1,0 +1,4 @@
+## DESCRIPTION 
+
+Now please implement the function f; do not return anything, the function f should print the result of the operation.
+It should terminate within 30 seconds.

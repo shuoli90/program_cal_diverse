@@ -1,0 +1,5 @@
+
+def extract_arguments(fh):
+    text = fh.readline().strip()
+    return text
+

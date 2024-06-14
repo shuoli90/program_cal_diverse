@@ -1,0 +1,32 @@
+
+import random
+
+def generate_random_latitude():
+    # Latitude ranges from -90 to 90 degrees.
+    return random.uniform(-90, 90)
+
+def generate_random_longitude():
+    # Longitude ranges from 0 to 360 degrees.
+    return random.uniform(0, 360)
+
+def tcgen(num_datasets):
+    test_cases = []
+    
+    for _ in range(num_datasets):
+        a = generate_random_latitude()
+        b = generate_random_longitude()
+        c = generate_random_latitude()
+        d = generate_random_longitude()
+        
+        test_cases.append(f"{a} {b} {c} {d}")
+    
+    test_cases.append("-1 -1 -1 -1")
+    
+    return test_cases
+
+# Example usage
+#if __name__ == "__main__":
+#    num_datasets = random.randint(1, 30)
+#    test_cases = tcgen(num_datasets)
+#    for test_case in test_cases:
+#        print(test_case)

@@ -1,0 +1,18 @@
+def extract_arguments(fh):
+    datasets = []
+    while True:
+        line = fh.readline().strip()
+        if line == "-1 -1 -1 -1":
+            break
+        a, b, c, d = map(float, line.split())
+        datasets.append((a, b, c, d))
+    return datasets
+
+### Explanation
+
+#1. **`extract_arguments(fh)`**:
+#    - Reads the input line by line.
+#    - Stops reading when it encounters the line `"-1 -1 -1 -1"`.
+#    - Converts each line into a tuple of four floating-point numbers representing the latitude and longitude of two cities.
+#    - Appends each tuple to the `datasets` list.
+#    - Returns `datasets`.

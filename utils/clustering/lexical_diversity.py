@@ -152,7 +152,7 @@ def distinct_n(corpus: List[str], n: int, ftokenizer: Callable[[str], List[str]]
     ngrams_set = set()
     for ngrams_seq in ngrams_list:
         ngrams_set.update(ngrams_seq)
-    return len(ngrams_set) / sum(map(len, ngrams_list))
+    return len(ngrams_set) / sum(map(len, ngrams_list)) if sum(map(len, ngrams_list)) > 0 else 0.0
 
 
 

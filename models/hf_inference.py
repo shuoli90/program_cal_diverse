@@ -6,6 +6,7 @@ import subprocess
 import time
 import logging
 import json
+from tqdm import tqdm
 
 import sys
 project_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
@@ -21,7 +22,7 @@ class HFInferenceModel:
         self.client = Client(self.url, timeout=timeout)
 
     def generate(self, prompt, max_new_tokens=512, num_samples=20, temperature=1.0, 
-                    do_sample=True, top_p=1.0, top_k=50, **kwargs):
+                    do_sample=True, top_p=1.0, top_k=None, batch_size=None, **kwargs):
         # remove best_of because we use num_samples
         if "best_of" in kwargs:
             kwargs.pop("best_of")
@@ -33,22 +34,31 @@ class HFInferenceModel:
             max_new_tokens = kwargs.pop('max_length')
         if top_p == 1.0 or kwargs.get("top_p", 1.0) == 1.0:
             top_p = None
-        completions = self.client.generate(
-            prompt,
-            max_new_tokens=max_new_tokens,
-            do_sample=do_sample,
-            temperature=temperature,
-            top_p=top_p,
-            top_k=top_k,
-            best_of=num_samples,
-            **kwargs
-        )
-        # get all completions from output
-        best_of_sequences = [
-            completions.details.best_of_sequences[i].generated_text
-            for i in range(len(completions.details.best_of_sequences))
-        ]
-        all_responses = [completions.generated_text] + best_of_sequences
+            
+        batch_size = batch_size or num_samples # if batch_size is None, use num_samples
+        
+        # repeat until we get all completions, with batch_size
+        pbar = tqdm(total=num_samples, desc=f"Generating {num_samples} samples")
+        all_responses = []
+        while len(all_responses) < num_samples:    
+            completions = self.client.generate(
+                prompt,
+                max_new_tokens=max_new_tokens,
+                do_sample=do_sample,
+                temperature=temperature,
+                top_p=top_p,
+                top_k=top_k,
+                best_of=batch_size,
+                **kwargs
+            )
+            # get all completions from output
+            best_of_sequences = [
+                completions.details.best_of_sequences[i].generated_text
+                for i in range(len(completions.details.best_of_sequences))
+            ]
+            new_responses = [completions.generated_text] + best_of_sequences
+            all_responses.extend(new_responses)
+            pbar.update(len(new_responses))
     
         return all_responses
 
@@ -75,8 +85,8 @@ class HFInferenceManager:
         #     model = f"data/{model}"
         model, max_best_of, port, devices_list, volume, startup_timeout = self.model_name, self.parallel_samples, self.port, self.devices_list, self.volume, self.startup_timeout
         # command = f"docker run --detach -e HUGGING_FACE_HUB_TOKEN={self.hf_key} -e NVIDIA_VISIBLE_DEVICES={devices_list} --shm-size 1g -p {port}:80 -v {volume}:/data ghcr.io/huggingface/text-generation-inference::2.0.4 --model-id {model} --max-best-of {max_best_of}"
-        # command = f"docker run --detach -e HUGGING_FACE_HUB_TOKEN={self.hf_key} --gpus '\"device={devices_list}\"' --shm-size 1g -p {port}:80 -v {volume}:/data ghcr.io/huggingface/text-generation-inference:2.0.4 --model-id {model} --max-best-of {max_best_of}"
-        command = f"docker run --detach -e HUGGING_FACE_HUB_TOKEN={self.hf_key} --gpus '\"device={devices_list}\"' --shm-size 1g -p {port}:80 -v {volume}:/data ghcr.io/huggingface/text-generation-inference:2.0 --model-id {model} --max-best-of {max_best_of}"
+        command = f"docker run --detach -e HUGGING_FACE_HUB_TOKEN={self.hf_key} --gpus '\"device={devices_list}\"' --shm-size 1g -p {port}:80 -v {volume}:/data ghcr.io/huggingface/text-generation-inference:2.0.4 --model-id {model} --max-best-of {max_best_of}"
+        # command = f"docker run --detach -e HUGGING_FACE_HUB_TOKEN={self.hf_key} --gpus '\"device={devices_list}\"' -e MAX_BATCH_SIZE=1 --shm-size 1g -p {port}:80 -v {volume}:/data ghcr.io/huggingface/text-generation-inference:2.0 --model-id {model} --max-best-of {max_best_of}"
         print("Starting container with command\n", command)
         container_id = subprocess.check_output(command, shell=True).decode().strip()
         # wait until the logs say Connected

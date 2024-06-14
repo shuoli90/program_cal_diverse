@@ -22,6 +22,39 @@ from functools import partial
 import datetime
 import traceback
 
+import signal
+import traceback
+
+
+
+# class SignalHandler:
+#     def __init__(self, pipe):
+#         self.pipe = pipe
+#         signal.signal(signal.SIGINT, self.handle_signal)
+
+#     def handle_signal(self, sig, frame):
+#         print("Signal received, handling it...")
+#         traceback.print_exc()
+#         if "gpt" not in args.model:  # Assuming `args.model` is defined elsewhere
+#             self.pipe.stop_service()
+#             self.pipe.remove_service()
+#         raise RuntimeError("Signal handling complete")  # Raising an exception to exit cleanly
+
+def _handler(pipe, sig, frame):
+    print("Signal received, handling it...")
+    traceback.print_exc()
+    if "gpt" not in args.model:  # Assuming `args.model` is defined elsewhere
+        pipe.stop_service()
+        pipe.remove_service()
+    raise RuntimeError("Signal handling complete")  # Raising an exception to exit cleanly
+
+from functools import partial
+
+def partial_handler(pipe):
+    return partial(_handler, pipe)
+
+
+
 
 @dataclass
 class Arguments:
@@ -41,6 +74,7 @@ class Arguments:
     generation_timeout: int = 100
     volume: str = 'saved_models'
     path_to_hf_token: str = None
+    batch_size: int = None
     
     
 template_dir = os.path.join(os.path.dirname(__file__), "../prompt_templates")
@@ -98,6 +132,8 @@ if __name__ == '__main__':
                                                 startup_timeout=args.startup_timeout,
                                                 generation_timeout=args.generation_timeout,
                                                 hf_key=hf_key)
+        sigint_handler = partial_handler(pipe)
+        signal.signal(signal.SIGINT, sigint_handler)
     try:                                                
 
         # Read in data
@@ -135,7 +171,8 @@ if __name__ == '__main__':
                 # TODO: add more args
                 max_length=args.max_length,
                 do_sample=True, 
-                return_dict_in_generate=True
+                return_dict_in_generate=True, 
+                batch_size=args.batch_size,
             )
             
             programs = [textprocessing.extract_python_code(g) for g in generateds_program]

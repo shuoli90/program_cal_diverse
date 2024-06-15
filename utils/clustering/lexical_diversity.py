@@ -39,7 +39,7 @@ def get_relevant_tokens_lexer(code_str):
         tokenize.ENCODING,
         tokenize.ENDMARKER,
         # tokenize.NEWLINE,
-        tokenize.INDENT,
+        tokenize.INDENT, # indents are usually 'obvious' ie an if statement will have an indent, a for statement will have an indent, etc; the dedent is more interesting
         tokenize.NL,
         # tokenize.COMMENT,
     }
@@ -51,11 +51,13 @@ def get_relevant_tokens_lexer(code_str):
         if token.type not in irrelevant_types:
             if token.type == tokenize.STRING or token.type == tokenize.COMMENT:
                 relevant_tokens.extend(token.string.split(" "))
-            relevant_tokens.append(token.string)
-        elif token.type == tokenize.DEDENT:
-            relevant_tokens.append("DEDENT")
+            elif token.type == tokenize.DEDENT:
+                relevant_tokens.append("DEDENT")
+            else: 
+                relevant_tokens.append(token.string)
     
     return relevant_tokens
+
 
 
 def get_relevant_tokens_tokenizer(code_str, tokenizer = codebert_tokenizer): 

@@ -250,13 +250,13 @@ if __name__ == '__main__':
             programs = [program for program in programs if program is not None]
 
             if len(programs) >= 2:
-                distinct_1 = lexical_diversity.distinct_n(programs, 1, lexical_diversity.codebert_tokenizer)
-                distinct_2 = lexical_diversity.distinct_n(programs, 2, lexical_diversity.codebert_tokenizer)
-                distinct_3 = lexical_diversity.distinct_n(programs, 3, lexical_diversity.codebert_tokenizer)
-                distinct_4 = lexical_diversity.distinct_n(programs, 4, lexical_diversity.codebert_tokenizer)
-                distinct_5 = lexical_diversity.distinct_n(programs, 5, lexical_diversity.codebert_tokenizer)
-                distinct_6 = lexical_diversity.distinct_n(programs, 6, lexical_diversity.codebert_tokenizer)
-                corpus_self_bleu = lexical_diversity.parallel_corpus_self_bleu(programs, lexical_diversity.codebert_tokenizer, n_jobs=8, normalize=True)
+                distinct_1 = lexical_diversity.distinct_n(programs, 1, lexical_diversity.get_relevant_tokens_lexer)
+                distinct_2 = lexical_diversity.distinct_n(programs, 2, lexical_diversity.get_relevant_tokens_lexer)
+                distinct_3 = lexical_diversity.distinct_n(programs, 3, lexical_diversity.get_relevant_tokens_lexer)
+                distinct_4 = lexical_diversity.distinct_n(programs, 4, lexical_diversity.get_relevant_tokens_lexer)
+                distinct_5 = lexical_diversity.distinct_n(programs, 5, lexical_diversity.get_relevant_tokens_lexer)
+                distinct_6 = lexical_diversity.distinct_n(programs, 6, lexical_diversity.get_relevant_tokens_lexer)
+                corpus_self_bleu = lexical_diversity.parallel_corpus_self_bleu(programs, lexical_diversity.get_relevant_tokens_lexer, n_jobs=8, normalize=True)
                 result['distinct_1'] = distinct_1
                 result['distinct_2'] = distinct_2
                 result['distinct_3'] = distinct_3

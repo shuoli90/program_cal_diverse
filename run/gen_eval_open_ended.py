@@ -283,18 +283,19 @@ if __name__ == '__main__':
                             result[f"{recordtype}_{key}_{height}"] = np.nan
                                                                                    
                                                                                    
-            # save the results
-            problem_id_dir = os.path.join(experiment_output_dir, f'problem_{problem_id}')   
-            os.makedirs(problem_id_dir, exist_ok=False)                 
-            for i, (generation, program, formatted_program, output_record, coherence) in enumerate(zip(generateds_program, programs, formatted_programs, output_records, coherences)):
-                with open(os.path.join(problem_id_dir, f'gen_{i}_coh_{coherence}.txt'), 'w') as f:
-                    f.write(generation)
-                with open(os.path.join(problem_id_dir, f'prog_{i}_coh_{coherence}.txt'), 'w') as f:
-                    f.write(program)
-                with open(os.path.join(problem_id_dir, f'formatted_prog_{i}_coh_{coherence}.txt'), 'w') as f:
-                    f.write(formatted_program)
-                with open(os.path.join(problem_id_dir, f'output_record_{i}_coh_{coherence}.json'), 'w') as f:
-                    f.write(json.dumps(output_record))
+                # save the results
+                if recordtype == 'all':
+                    problem_id_dir = os.path.join(experiment_output_dir, f'problem_{problem_id}')   
+                    os.makedirs(problem_id_dir, exist_ok=False)                 
+                    for i, (generation, program, formatted_program, output_record, coherence) in enumerate(zip(generateds_program, programs, formatted_programs, output_records, coherences)):
+                        with open(os.path.join(problem_id_dir, f'gen_{i}_coh_{coherence}.txt'), 'w') as f:
+                            f.write(generation)
+                        with open(os.path.join(problem_id_dir, f'prog_{i}_coh_{coherence}.txt'), 'w') as f:
+                            f.write(program)
+                        with open(os.path.join(problem_id_dir, f'formatted_prog_{i}_coh_{coherence}.txt'), 'w') as f:
+                            f.write(formatted_program)
+                        with open(os.path.join(problem_id_dir, f'output_record_{i}_coh_{coherence}.json'), 'w') as f:
+                            f.write(json.dumps(output_record))  
                     
             # with open(os.path.join(problem_id_dir, f'result.tsv'), 'w') as f:
             #     for k in ['coherence', 'semantic_count', 'distinct_3', 'distinct_4', 'distinct_5', 'plain_subtrees_3', 'plain_subtrees_4', 'plain_subtrees_5', 'plain_subtrees_6', 'stripped_subtrees_3', 'stripped_subtrees_4', 'stripped_subtrees_5', 'stripped_subtrees_6', 'obfuscated_subtrees_3', 'obfuscated_subtrees_4', 'obfuscated_subtrees_5', 'obfuscated_subtrees_6']:

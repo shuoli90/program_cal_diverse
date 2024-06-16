@@ -244,9 +244,9 @@ if __name__ == '__main__':
                 # lexical diversity metrics 
                 # def distinct_n(corpus: List[str], n: int, ftokenizer: Callable[str]) -> float:
                 # def parallel_corpus_self_bleu(sentences: List[str], ftokenizer: Callable[str], n_jobs: int = -1, normalize: bool = True) -> float:
-                programs = [program for program in programs if program is not None and len(program) > 0]
+                programs = [program for program in programs if program is not None] 
                 
-                if len(programs) >= 2:
+                if len([p for p in programs if len(p) > 0]) > 2:
                     # import pdb; pdb.set_trace()
                     import tokenize
                     try: 

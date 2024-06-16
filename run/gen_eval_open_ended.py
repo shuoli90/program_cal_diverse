@@ -236,7 +236,7 @@ if __name__ == '__main__':
                 semantic_count = len(semantic_strings_2_programs.keys())
                 print('semantic count', semantic_count)
                 result[f'{recordtype}_semantic_count'] = semantic_count
-                result[f'{recordtype}_semantic_proportion'] = semantic_count / len(records)
+                result[f'{recordtype}_semantic_proportion'] = semantic_count / len(records) if len(records) > 0 else np.nan
 
                 result[f'{recordtype}_program_2_semantic_string'] = program_2_semantic_string
                 result[f'{recordtype}_semantic_strings_2_programs'] = semantic_strings_2_programs

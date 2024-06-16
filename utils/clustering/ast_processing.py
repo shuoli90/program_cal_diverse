@@ -18,6 +18,7 @@ from ast import NodeTransformer
 
 import ast
 import copy
+from copy import deepcopy
 
 
 
@@ -175,18 +176,8 @@ def bottom_up_subtrees_for_ast(node, derivation_path=[], visited=set(), verbose=
         child_subtrees, child_max_height, child_is_new, child_visited_set = bottom_up_subtrees_for_ast(child, child_derivation, visited)
         # sanity check here 
         if not child_is_new: 
-            # if it was visited, then it should only propagate that node up to the next level 
-            if len(child_subtrees) != 1:
-                import pdb; pdb.set_trace()
             assert len(child_subtrees) == 1
-            if visited != child_visited_set:
-                import pdb; pdb.set_trace()
             assert visited == child_visited_set
-        else: 
-            pass
-            # if visited == child_visited_set:
-            #     import pdb; pdb.set_trace()
-            # assert visited != child_visited_set
         
         visited.update(child_visited_set)
         max_height = max(max_height, child_max_height)
@@ -244,7 +235,7 @@ def subtrees_from_code(source_code, obfuscate=False, strip_all=False, verbose=Fa
     tree = ast.parse(source_code)
     if strip_all:
         tree = strip_id_value(tree)
-    subtrees, _ = all_subtrees(tree, verbose=verbose)
+    subtrees = all_subtrees(tree, verbose=verbose)
     return subtrees  # Return the list of subtrees for the entire AST
 
 

@@ -13,6 +13,7 @@ import re
 from transformers import AutoTokenizer
 from dataclasses import dataclass
 from tqdm import tqdm
+from parso.python.tokenize import tokenize as parso_tokenize
 
 bleu = BLEU(tokenize=None)
 
@@ -35,6 +36,19 @@ def get_relevant_tokens_lexer(code_str):
     tokens = tokenize.tokenize(bytes_io.readline)
     
     # Define the irrelevant token types
+    relevant_tokens = _get_relevant_tokens(tokens)
+    
+    return relevant_tokens
+
+def get_relevant_tokens_parso(code_str): 
+    """
+    The python native tokenizer does not handle errors well, so we use the parso tokenizer instead which supports error handling
+    """
+    tokens = parso_tokenize(code_str, version_info=(3, 12))
+    relevant_tokens = _get_relevant_tokens(tokens)
+    return relevant_tokens
+
+def _get_relevant_tokens(tokens):
     irrelevant_types = {
         tokenize.ENCODING,
         tokenize.ENDMARKER,
@@ -55,8 +69,10 @@ def get_relevant_tokens_lexer(code_str):
                 relevant_tokens.append("DEDENT")
             else: 
                 relevant_tokens.append(token.string)
-    
     return relevant_tokens
+
+
+    
 
 
 

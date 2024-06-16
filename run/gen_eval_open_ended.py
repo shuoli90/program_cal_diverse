@@ -140,7 +140,7 @@ if __name__ == '__main__':
         print(f'reading in data from {args.path_to_dataset}')
         df = pd.read_json(args.path_to_dataset, lines=True, orient='records')
         # get first 5 rows
-        # df = df.iloc[:3]
+        df = df.iloc[:3]
 
         # setup docker client
         client, image = clustering.build_docker_image(clustering.clustering_abs_dir)
@@ -212,74 +212,78 @@ if __name__ == '__main__':
                     verbose_docker=True) for formatted_program in formatted_programs if formatted_program is not None)
             
             result['output_records'] = output_records
-            # report coherence
-            if type(output_records) is not list:
-                output_record = [output_records]
-            coherences = clustering.get_coherence(output_records, strict=False)
-            avg_coherence = np.mean([coherence == 1.0 for coherence in coherences])
-            result['coherence'] = avg_coherence
-                    
-                    
-            # coherence, n_outputs, n_coherent = clustering.report_coherence(output_records)
-            # result['coherence'] = coherence
-            # result['n_outputs'] = n_outputs
-            # result['n_coherent'] = n_coherent
-
-            # No accuracy conceptually exists for this task
-            # report accuracy
-            # accuracy = clustering.report_accuracy(output_records)
-            # accuracies = []
-            # for program in programs:
-            #     if program is not None:
-            #         accuracies.append(accuracy[program])
-            #     else:
-            #         accuracies.append(0.0)
-            # result['accuracy'] = accuracies
-
-            # semantic_clustering
-            program_2_semantic_string, semantic_strings_2_programs = clustering.make_semantic_strings(output_records)
-            semantic_count = len(semantic_strings_2_programs.keys())
-            print('semantic count', semantic_count)
-            result['semantic_count'] = semantic_count
-            result['program_2_semantic_string'] = program_2_semantic_string
-            result['semantic_strings_2_programs'] = semantic_strings_2_programs
-
-            # lexical diversity metrics 
-            # def distinct_n(corpus: List[str], n: int, ftokenizer: Callable[str]) -> float:
-            # def parallel_corpus_self_bleu(sentences: List[str], ftokenizer: Callable[str], n_jobs: int = -1, normalize: bool = True) -> float:
-            programs = [program for program in programs if program is not None]
-
-            if len(programs) >= 2:
-                distinct_1 = lexical_diversity.distinct_n(programs, 1, lexical_diversity.get_relevant_tokens_lexer)
-                distinct_2 = lexical_diversity.distinct_n(programs, 2, lexical_diversity.get_relevant_tokens_lexer)
-                distinct_3 = lexical_diversity.distinct_n(programs, 3, lexical_diversity.get_relevant_tokens_lexer)
-                distinct_4 = lexical_diversity.distinct_n(programs, 4, lexical_diversity.get_relevant_tokens_lexer)
-                distinct_5 = lexical_diversity.distinct_n(programs, 5, lexical_diversity.get_relevant_tokens_lexer)
-                distinct_6 = lexical_diversity.distinct_n(programs, 6, lexical_diversity.get_relevant_tokens_lexer)
-                corpus_self_bleu = lexical_diversity.parallel_corpus_self_bleu(programs, lexical_diversity.get_relevant_tokens_lexer, n_jobs=8, normalize=True)
-                result['distinct_1'] = distinct_1
-                result['distinct_2'] = distinct_2
-                result['distinct_3'] = distinct_3
-                result['distinct_4'] = distinct_4
-                result['distinct_5'] = distinct_5
-                result['distinct_6'] = distinct_6
-                result['corpus_self_bleu'] = corpus_self_bleu
-                parallel_subtree_results = parallel_subtree_analysis(programs, n_jobs=8, heights=[3,4,5,6])
-                for key, height_results in parallel_subtree_results.items():
-                    for height, v in height_results.items():
-                        result[f"{key}_{height}"] = v
-            else:
-                result['distinct_1'] = 0.0
-                result['distinct_2'] = 0.0
-                result['distinct_3'] = 0.0
-                result['distinct_4'] = 0.0
-                result['distinct_5'] = 0.0
-                result['distinct_6'] = 0.0
-                result['corpus_self_bleu'] = 0.0
-                for key in ['plain_subtrees', 'stripped_subtrees', 'obfuscated_subtrees']:
-                    for height in [3,4,5,6]:
-                        result[f"{key}_{height}"] = 0.0
+            coherent_records = clustering.get_coherent_records(output_records)
+            incoherent_records = clustering.get_incoherent_records(output_records)
+            result['coherent_records'] = coherent_records
+            result['incoherent_records'] = incoherent_records
             
+            recordtype_2_records = {
+                "all": output_records, 
+                 "coh": coherent_records, 
+                 "err": incoherent_records
+            }
+                
+            for recordtype, records in recordtype_2_records.items():
+                # report coherence
+                if type(records) is not list:
+                    records = [records]
+                coherences = clustering.get_coherence(records, strict=False)
+                avg_coherence = np.mean([coherence == 1.0 for coherence in coherences])
+                result[f'{recordtype}_coherence'] = avg_coherence
+
+                # semantic_clustering
+                program_2_semantic_string, semantic_strings_2_programs = clustering.make_semantic_strings(records)
+                semantic_count = len(semantic_strings_2_programs.keys())
+                print('semantic count', semantic_count)
+                result[f'{recordtype}_semantic_count'] = semantic_count
+                result[f'{recordtype}_semantic_proportion'] = semantic_count / len(records)
+
+                result[f'{recordtype}_program_2_semantic_string'] = program_2_semantic_string
+                result[f'{recordtype}_semantic_strings_2_programs'] = semantic_strings_2_programs
+
+                # lexical diversity metrics 
+                # def distinct_n(corpus: List[str], n: int, ftokenizer: Callable[str]) -> float:
+                # def parallel_corpus_self_bleu(sentences: List[str], ftokenizer: Callable[str], n_jobs: int = -1, normalize: bool = True) -> float:
+                programs = [program for program in programs if program is not None]
+
+                if len(programs) >= 2:
+                    # import pdb; pdb.set_trace()
+                    import tokenize
+                    try: 
+                        distinct_1 = lexical_diversity.distinct_n(programs, 1, lexical_diversity.get_relevant_tokens_parso)
+                        distinct_2 = lexical_diversity.distinct_n(programs, 2, lexical_diversity.get_relevant_tokens_parso)
+                        distinct_3 = lexical_diversity.distinct_n(programs, 3, lexical_diversity.get_relevant_tokens_parso)
+                        distinct_4 = lexical_diversity.distinct_n(programs, 4, lexical_diversity.get_relevant_tokens_parso)
+                        distinct_5 = lexical_diversity.distinct_n(programs, 5, lexical_diversity.get_relevant_tokens_parso)
+                        distinct_6 = lexical_diversity.distinct_n(programs, 6, lexical_diversity.get_relevant_tokens_parso)
+                    except tokenize.TokenError as e:
+                        import pdb; pdb.set_trace()
+                    corpus_self_bleu = lexical_diversity.parallel_corpus_self_bleu(programs, lexical_diversity.get_relevant_tokens_parso, n_jobs=8, normalize=True)
+                    result[f'{recordtype}_distinct_1'] = distinct_1
+                    result[f'{recordtype}_distinct_2'] = distinct_2
+                    result[f'{recordtype}_distinct_3'] = distinct_3
+                    result[f'{recordtype}_distinct_4'] = distinct_4
+                    result[f'{recordtype}_distinct_5'] = distinct_5
+                    result[f'{recordtype}_distinct_6'] = distinct_6
+                    result[f'{recordtype}_corpus_self_bleu'] = corpus_self_bleu
+                    parallel_subtree_results = parallel_subtree_analysis(programs, n_jobs=8, heights=[3,4,5,6])
+                    for key, height_results in parallel_subtree_results.items():
+                        for height, v in height_results.items():
+                            result[f"{recordtype}_{key}_{height}"] = v
+                else:
+                    result[f'{recordtype}_distinct_1'] = np.nan
+                    result[f'{recordtype}_distinct_2'] = np.nan
+                    result[f'{recordtype}_distinct_3'] = np.nan
+                    result[f'{recordtype}_distinct_4'] = np.nan
+                    result[f'{recordtype}_distinct_5'] = np.nan
+                    result[f'{recordtype}_distinct_6'] = np.nan
+                    result[f'{recordtype}_corpus_self_bleu'] = np.nan
+                    for key in ['plain_subtrees', 'stripped_subtrees', 'obfuscated_subtrees']:
+                        for height in [3,4,5,6]:
+                            result[f"{recordtype}_{key}_{height}"] = np.nan
+                                                                                   
+                                                                                   
+            # save the results
             problem_id_dir = os.path.join(experiment_output_dir, f'problem_{problem_id}')   
             os.makedirs(problem_id_dir, exist_ok=False)                 
             for i, (generation, program, formatted_program, output_record, coherence) in enumerate(zip(generateds_program, programs, formatted_programs, output_records, coherences)):
@@ -292,9 +296,17 @@ if __name__ == '__main__':
                 with open(os.path.join(problem_id_dir, f'output_record_{i}_coh_{coherence}.json'), 'w') as f:
                     f.write(json.dumps(output_record))
                     
+            # with open(os.path.join(problem_id_dir, f'result.tsv'), 'w') as f:
+            #     for k in ['coherence', 'semantic_count', 'distinct_3', 'distinct_4', 'distinct_5', 'plain_subtrees_3', 'plain_subtrees_4', 'plain_subtrees_5', 'plain_subtrees_6', 'stripped_subtrees_3', 'stripped_subtrees_4', 'stripped_subtrees_5', 'stripped_subtrees_6', 'obfuscated_subtrees_3', 'obfuscated_subtrees_4', 'obfuscated_subtrees_5', 'obfuscated_subtrees_6']:
+            #         f.write(f"{k}\t{result[k]}\n")]
+            
+            report_keys = ['coherence', 'semantic_count', 'semantic_proportion', 'distinct_3', 'distinct_4', 'distinct_5', 'plain_subtrees_3', 'plain_subtrees_4', 'plain_subtrees_5', 'plain_subtrees_6', 'stripped_subtrees_3', 'stripped_subtrees_4', 'stripped_subtrees_5', 'stripped_subtrees_6', 'obfuscated_subtrees_3', 'obfuscated_subtrees_4', 'obfuscated_subtrees_5', 'obfuscated_subtrees_6']
+            keys = [f"{recordtype}_{key}" for recordtype in ['all', 'coh', 'err'] for key in report_keys]
+            
             with open(os.path.join(problem_id_dir, f'result.tsv'), 'w') as f:
-                for k in ['coherence', 'semantic_count', 'distinct_3', 'distinct_4', 'distinct_5', 'plain_subtrees_3', 'plain_subtrees_4', 'plain_subtrees_5', 'plain_subtrees_6', 'stripped_subtrees_3', 'stripped_subtrees_4', 'stripped_subtrees_5', 'stripped_subtrees_6', 'obfuscated_subtrees_3', 'obfuscated_subtrees_4', 'obfuscated_subtrees_5', 'obfuscated_subtrees_6']:
+                for k in keys:
                     f.write(f"{k}\t{result[k]}\n")
+                
             # except ValueError as e:
             #     print('error')
             #     continue
@@ -317,10 +329,13 @@ if __name__ == '__main__':
         
         # concatenate all the results, summarize the statistics
         df_results = pd.DataFrame(results)
-        results_stats_keys = ['coherence', 'semantic_count', 'distinct_1', 'distinct_2', 'distinct_3', 'distinct_4', 'distinct_5', 'distinct_6', 'corpus_self_bleu']
+        results_stats_keys = ['coherence', 'semantic_count', 'semantic_proportion', 'distinct_1', 'distinct_2', 'distinct_3', 'distinct_4', 'distinct_5', 'distinct_6']
         results_stats_keys = results_stats_keys + [f"{key}_{height}" for key in ['plain_subtrees', 'stripped_subtrees', 'obfuscated_subtrees'] for height in [3,4,5,6]]
+        results_stats_keys = [f"{recordtype}_{key}" for recordtype in ['all', 'coh', 'err'] for key in results_stats_keys]
         df_results_stats = df_results[results_stats_keys]
-        described = df_results_stats.describe()
+        # described = df_results_stats.describe()
+        # remove np.nan for the describe
+        described = df_results_stats.dropna().describe()
         print(described)
         # save the statistics
         # described.to_csv(f'../collected/open_ended_{args.model}_temp_{args.temperature}_top_p_{args.top_p}_max_length_{args.max_length}_num_return_sequences_{args.num_return_sequences}_repetition_penalty_{args.repetition_penalty}_results_stats.csv')

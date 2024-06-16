@@ -5,7 +5,7 @@ import subprocess
 from datetime import datetime
 
 # EXPERIMENT_OUTPUT_ROOT = "/home/data1/cal_diverse/open_ended_results/"
-EXPERIMENT_OUTPUT_ROOT = "/data1/shypula/prog_diversity/open_ended/"
+EXPERIMENT_OUTPUT_ROOT = "/data1/shypula/prog_diversity/open_ended_debug/"
 if not os.path.exists(EXPERIMENT_OUTPUT_ROOT):
     os.makedirs(EXPERIMENT_OUTPUT_ROOT, exist_ok=True)
     print(f"Created directory {EXPERIMENT_OUTPUT_ROOT}.")
@@ -15,7 +15,8 @@ PATH_TO_HF_TOKEN="/home/shypula/hf_token.txt"
 # params: model, temperature, top_p, num_return_sequences, template
 CONFIGS = [  
            
-
+           ['meta-llama/Meta-Llama-3-8B-Instruct', 1.0, 1.0, 10, 'open_ended_default'],
+           ['meta-llama/Meta-Llama-3-8B-Instruct', 1.0, 1.0, 10, 'open_ended_two_shot'],
            
         #    ['meta-llama/Meta-Llama-3-8B', 1.0, 1.0, 30, 'open_ended_default'],
         #    ['meta-llama/Meta-Llama-3-8B', 1.0, 1.0, 30, 'open_ended_two_shot'],
@@ -98,13 +99,13 @@ CONFIGS = [
             # ['codellama/CodeLlama-34b-Instruct-hf', 1.0, 1.0, 30, 'open_ended_two_shot'],
             # ['codellama/CodeLlama-34b-Instruct-hf', 1.0, 1.0, 30, 'open_ended_two_shot_cot'],
             
-            ['codellama/CodeLlama-70b-Python-hf', 1.0, 1.0, 30, 'open_ended_default', 4],
-            ['codellama/CodeLlama-70b-Python-hf', 1.0, 1.0, 30, 'open_ended_two_shot', 4], 
-            ['codellama/CodeLlama-70b-Python-hf', 1.0, 1.0, 30, 'open_ended_two_shot_cot', 4],
+            # ['codellama/CodeLlama-70b-Python-hf', 1.0, 1.0, 30, 'open_ended_default', 4],
+            # ['codellama/CodeLlama-70b-Python-hf', 1.0, 1.0, 30, 'open_ended_two_shot', 4], 
+            # ['codellama/CodeLlama-70b-Python-hf', 1.0, 1.0, 30, 'open_ended_two_shot_cot', 4],
             
-            ['codellama/CodeLlama-70b-Instruct-hf', 1.0, 1.0, 30, 'open_ended_default', 4], 
-            ['codellama/CodeLlama-70b-Instruct-hf', 1.0, 1.0, 30, 'open_ended_two_shot', 4], 
-            ['codellama/CodeLlama-70b-Instruct-hf', 1.0, 1.0, 30, 'open_ended_two_shot_cot', 4]
+            # ['codellama/CodeLlama-70b-Instruct-hf', 1.0, 1.0, 30, 'open_ended_default', 4], 
+            # ['codellama/CodeLlama-70b-Instruct-hf', 1.0, 1.0, 30, 'open_ended_two_shot', 4], 
+            # ['codellama/CodeLlama-70b-Instruct-hf', 1.0, 1.0, 30, 'open_ended_two_shot_cot', 4]
             
             # ['meta-llama/CodeLlama-70b-Python-hf', 1.0, 1.0, 30, 'open_ended_two_shot', 30], 
             # ['meta-llama/CodeLlama-70b-Python-hf', 1.0, 1.0, 30, 'open_ended_two_shot_cot', 30],
@@ -143,7 +144,7 @@ def create_yaml_config(model, temperature, top_p, num_return_sequences, template
         'repetition_penalty': 1.0, 
         'parallel_samples': 5, 
         'port': 9999, 
-        'devices_list': '0,1,2,3,4,5,6,7',
+        'devices_list': '0,1,2,3',
         'startup_timeout': 2000,
         'volume': 'saved_models',
         'generation_timeout': 1000,
@@ -160,28 +161,10 @@ def run_experiment(config_path, log_file_path):
     """Run the script with the given configuration file and stream logs."""
     command = ['python', 'gen_eval_open_ended.py', config_path]
     print(f"Running command: {' '.join(command)}")
-    # with subprocess.Popen(command, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True, errors='replace', encoding='utf-8') as proc, \
-    #      open(log_file_path, 'w', encoding='utf-8', errors='replace') as log_file:
-    #     for line in proc.stdout:  # Process output line by line
-    #         sys.stdout.write(line)  # Print to console
-    #         log_file.write(line)  # Write to log file
     
-    # with os.popen(" ".join(command), 'r', ) as proc, open(log_file_path, 'w', encoding='utf-8', errors='ignore') as log_file:
-    #     for line in proc:
-    #         sys.stdout.write(line)  # Print to console
-    #         log_file.write(line)  # Write to log file
     command = command + ["2>&1 | tee", log_file_path]
     os.system(" ".join(command))
             
-    # from inside the experiment
-    #experiment_string = f"{args.model}_temp_{args.temperature}_top_p_{args.top_p}_max_length_{args.max_length}_num_return_sequences_{args.num_return_sequences}_repetition_penalty_{args.repetition_penalty}_{datetime.datetime.now().strftime('%Y-%m-%d_%H-%M-%S')}"
-    # experiment_output_dir = os.path.join(args.experiment_output_root, experiment_string)        
-    # mean = described.loc['mean']
-    # with open(os.path.join(experiment_output_dir, 'results_stats_mean.tsv'), 'w') as f:
-    #     for k, v in mean.items():
-    #         f.write(f"{k}\t{v}\n")
-    # find the directory, the latest one (because the time will be different)
-    # then read in the results_stats_mean.tsv file
     
     # read back in config
     with open(config_path, 'r') as f:
@@ -192,10 +175,6 @@ def run_experiment(config_path, log_file_path):
     num_return_sequences = config['num_return_sequences']
     
     
-    # matching_dirs = [d for d in os.listdir(EXPERIMENT_OUTPUT_ROOT) if os.path.isdir(os.path.join(EXPERIMENT_OUTPUT_ROOT, d)) and d.startswith(f"{model}_temp_{temperature}_top_p_{top_p}_num_return_sequences_{num_return_sequences}_repetition_penalty_")]
-    # if len(matching_dirs) == 0:
-    #     print("No matching directories found.")
-    #     return None
     dirs = [d for d in os.listdir(EXPERIMENT_OUTPUT_ROOT) if os.path.isdir(os.path.join(EXPERIMENT_OUTPUT_ROOT, d))]
     if len(dirs) == 0:
         print("No directories found.")
@@ -240,9 +219,32 @@ def main(configurations):
     os.makedirs(logs_dir, exist_ok=True)
     
     driver_stats_file = os.path.join(EXPERIMENT_OUTPUT_ROOT, f"{datetime.now().strftime('%Y-%m-%d_%H-%M-%S')}_driver_stats.tsv")
-    keys = ['model', 'temperature', 'top_p', 'num_return_sequences', 'template', 'coherence', 'semantic_count', 'distinct_1', 'distinct_2', 'distinct_3', 'distinct_4', 'distinct_5', 'distinct_6', 'corpus_self_bleu', 'plain_subtrees_3', 'plain_subtrees_4', 'plain_subtrees_5', 'plain_subtrees_6', 'stripped_subtrees_3', 'stripped_subtrees_4', 'stripped_subtrees_5', 'stripped_subtrees_6', 'obfuscated_subtrees_3', 'obfuscated_subtrees_4', 'obfuscated_subtrees_5', 'obfuscated_subtrees_6']
+    driver_pretty_stats_file = os.path.join(EXPERIMENT_OUTPUT_ROOT, f"{datetime.now().strftime('%Y-%m-%d_%H-%M-%S')}_driver_stats_pretty.txt")
+    
+    # keys = ['model', 'temperature', 'top_p', 'num_return_sequences', 'template', 'coherence', 'semantic_count', 'distinct_1', 'distinct_2', 'distinct_3', 'distinct_4', 'distinct_5', 'distinct_6', 'corpus_self_bleu', 'plain_subtrees_3', 'plain_subtrees_4', 'plain_subtrees_5', 'plain_subtrees_6', 'stripped_subtrees_3', 'stripped_subtrees_4', 'stripped_subtrees_5', 'stripped_subtrees_6', 'obfuscated_subtrees_3', 'obfuscated_subtrees_4', 'obfuscated_subtrees_5', 'obfuscated_subtrees_6']
+    # results_stats_keys = ['coherence', 'semantic_count', 'distinct_1', 'distinct_2', 'distinct_3', 'distinct_4', 'distinct_5', 'distinct_6']
+    #     results_stats_keys = results_stats_keys + [f"{key}_{height}" for key in ['plain_subtrees', 'stripped_subtrees', 'obfuscated_subtrees'] for height in [3,4,5,6]]
+    #     results_stats_keys = [f"{recordtype}_{key}" for recordtype in ['all', 'coherent', 'incoherent'] for key in results_stats_keys]
+    
+    keys = ['model', 'template', 'temperature', 'top_p', 'num_return_sequences']  
+    addtl_keys = ['coherence', 'semantic_count', 'semantic_proportion', 'distinct_1', 'distinct_2', 'distinct_3', 'distinct_4', 'distinct_5', 'distinct_6']
+    addtl_keys = addtl_keys + [f"{key}_{height}" for key in ['plain_subtrees', 'stripped_subtrees', 'obfuscated_subtrees'] for height in [3,4,5,6]]
+    addtl_keys = [f"{recordtype}_{key}" for recordtype in ['all', 'coh', 'err'] for key in addtl_keys]
+    keys = keys + addtl_keys
+    
+    string_keys = ['model', 'template']
+    param_keys = ['temperature', 'top_p', 'num_return_sequences']
+    result_keys = [k for k in keys if k not in string_keys + param_keys and "semantic_count" not in k]
+    
+    
     with open(driver_stats_file, 'w') as f:
         f.write('\t'.join(keys) + '\n')
+    
+    # pretty_column_widths = [46, 46] + [27] * (len(keys) - 2)
+    pretty_column_widths = [46, 15] + [max(len(k) + 2, 6) for k in keys[2:]]
+    with open(driver_pretty_stats_file, 'w') as f:
+    # Writing column headers with fixed width formatting
+        f.write(''.join([f"{k.ljust(pretty_column_widths[i])}" for i, k in enumerate(keys)]) + '\n')
         
     assert all([validate_config(config) for config in configurations]), "Invalid configuration."
     
@@ -254,16 +256,29 @@ def main(configurations):
         # results = run_experiment(yaml_path, os.path.join(logs_dir, f'log_{config[0]}_{config[1]}_{config[2]}_{config[3]}_{config[4]}_{datetime.now().strftime("%Y-%m-%d_%H-%M-%S")}.txt'))
         results = run_experiment(yaml_path, os.path.join(logs_dir, f'log_{config[0].replace("/", "-")}_{config[1]}_{config[2]}_{config[3]}_{config[4]}_{datetime.now().strftime("%Y-%m-%d_%H-%M-%S")}.txt'))
         if results is not None:
-            with open(driver_stats_file, 'a') as f:
-                f.write('\t'.join([str(results[k]) for k in keys]) + '\n')
+            
+            formatted_results = [] 
+            for k in keys:
+                if k in result_keys:
+                    formatted_results.append(round(float(results[k]) * 100, 2))
+                elif "semantic_count" in k:
+                    formatted_results.append(round(float(results[k]), 2))
+                elif k == "template": 
+                    formatted_results.append(results[k].replace("open_ended_", ""))
+                else:
+                    formatted_results.append(results[k])
+                    
         else: 
-            with open(driver_stats_file, 'a') as f:
-                # write error message
-                # get the params for the header, and error the rest 
-                f.write('\t'.join([str(config[0]), str(config[1]), str(config[2]), str(config[3]), str(config[4])] + ['ERROR']*21) + '\n')
+            # prepare an error message
+            # formatted_results = [str(config[0]), str(config[1]), str(config[2]), str(config[3]), str(config[4])] + ['ERROR']*(len(keys) - 5)
+            formatted_results = [str(config[0]), str(config[4]), str(config[1]), str(config[2]), str(config[3])] + ['ERROR']*(len(keys) - 5)
+            
+        with open(driver_stats_file, 'a') as f:
+                f.write('\t'.join([str(k) for k in formatted_results]) + '\n')
+            
+        with open(driver_pretty_stats_file, 'a') as f:
+            f.write(''.join([f"{str(k).ljust(pretty_column_widths[i])}" for i, k in enumerate(formatted_results)]) + '\n')
                 
-        
-
         print(f"Experiment {config} completed.")
         
     print("All experiments completed.")

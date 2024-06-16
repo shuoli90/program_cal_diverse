@@ -145,7 +145,19 @@ def get_coherence(output_records: List[Dict], strict=True):
     if strict: 
         coherent_list = [coherent for coherent in coherent_list if coherent == 1.0]
     return coherent_list
-    
+
+
+def record_is_coherent(output_record: Dict):
+    n_outputs = len(output_record["testcase_outputs"])
+    n_coherent = len([output for output in output_record["testcase_outputs"].values() if output not in ["Syntax Error", "Runtime Error", "Timeout", "Error"]])
+    return n_coherent == n_outputs
+
+
+def get_coherent_records(output_records: List[Dict]):
+    return list(filter(record_is_coherent, output_records))
+
+def get_incoherent_records(output_records: List[Dict]):
+    return list(filter(lambda x: not record_is_coherent(x), output_records))
     
     
 

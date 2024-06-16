@@ -140,7 +140,7 @@ if __name__ == '__main__':
         print(f'reading in data from {args.path_to_dataset}')
         df = pd.read_json(args.path_to_dataset, lines=True, orient='records')
         # get first 5 rows
-        df = df.iloc[:3]
+        # df = df.iloc[:3]
 
         # setup docker client
         client, image = clustering.build_docker_image(clustering.clustering_abs_dir)

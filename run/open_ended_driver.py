@@ -5,7 +5,7 @@ import subprocess
 from datetime import datetime
 
 # EXPERIMENT_OUTPUT_ROOT = "/home/data1/cal_diverse/open_ended_results/"
-EXPERIMENT_OUTPUT_ROOT = "/data1/shypula/prog_diversity/open_ended_debug/"
+EXPERIMENT_OUTPUT_ROOT = "/data1/shypula/prog_diversity/open_ended_v2/"
 if not os.path.exists(EXPERIMENT_OUTPUT_ROOT):
     os.makedirs(EXPERIMENT_OUTPUT_ROOT, exist_ok=True)
     print(f"Created directory {EXPERIMENT_OUTPUT_ROOT}.")
@@ -15,8 +15,58 @@ PATH_TO_HF_TOKEN="/home/shypula/hf_token.txt"
 # params: model, temperature, top_p, num_return_sequences, template
 CONFIGS = [  
            
-           ['meta-llama/Meta-Llama-3-8B-Instruct', 1.0, 1.0, 10, 'open_ended_default'],
-           ['meta-llama/Meta-Llama-3-8B-Instruct', 1.0, 1.0, 10, 'open_ended_two_shot'],
+           ['meta-llama/Meta-Llama-3-8B-Instruct', 1.0, 1.0, 100, 'open_ended_default', 25],
+           ['meta-llama/Meta-Llama-3-70B-Instruct', 1.0, 1.0, 100, 'open_ended_default', 25],                
+           
+           # go in increments of .2 until 1.2, then .1 until 2
+           ['meta-llama/Meta-Llama-3-8B-Instruct', 0.2, 1.0, 100, 'open_ended_default', 25], 
+              ['meta-llama/Meta-Llama-3-8B-Instruct', 0.4, 1.0, 100, 'open_ended_default', 25],
+                ['meta-llama/Meta-Llama-3-8B-Instruct', 0.6, 1.0, 100, 'open_ended_default', 25],
+                    ['meta-llama/Meta-Llama-3-8B-Instruct', 0.8, 1.0, 100, 'open_ended_default', 25],
+                        # ['meta-llama/Meta-Llama-3-8B-Instruct', 1.0, 1.0, 100, 'open_ended_default', 25],
+            
+            
+            ['meta-llama/Meta-Llama-3-8B-Instruct', 1.1, 1.0, 100, 'open_ended_default', 25],
+                ['meta-llama/Meta-Llama-3-8B-Instruct', 1.2, 1.0, 100, 'open_ended_default', 25],
+                    ['meta-llama/Meta-Llama-3-8B-Instruct', 1.3, 1.0, 100, 'open_ended_default', 25],
+                        ['meta-llama/Meta-Llama-3-8B-Instruct', 1.4, 1.0, 100, 'open_ended_default', 25],
+                            ['meta-llama/Meta-Llama-3-8B-Instruct', 1.5, 1.0, 100, 'open_ended_default', 25],
+                                ['meta-llama/Meta-Llama-3-8B-Instruct', 1.6, 1.0, 100, 'open_ended_default', 25],
+                                    ['meta-llama/Meta-Llama-3-8B-Instruct', 1.7, 1.0, 100, 'open_ended_default', 25],
+                                        ['meta-llama/Meta-Llama-3-8B-Instruct', 1.8, 1.0, 100, 'open_ended_default', 25],
+                                            ['meta-llama/Meta-Llama-3-8B-Instruct', 1.9, 1.0, 100, 'open_ended_default', 25],
+                                                ['meta-llama/Meta-Llama-3-8B-Instruct', 2.0, 1.0, 100, 'open_ended_default', 25],
+                                        
+                                        
+            ['meta-llama/Meta-Llama-3-70B-Instruct', 0.2, 1.0, 100, 'open_ended_default', 25], 
+                ['meta-llama/Meta-Llama-3-70B-Instruct', 0.4, 1.0, 100, 'open_ended_default', 25],
+                    ['meta-llama/Meta-Llama-3-70B-Instruct', 0.6, 1.0, 100, 'open_ended_default', 25],
+                        ['meta-llama/Meta-Llama-3-70B-Instruct', 0.8, 1.0, 100, 'open_ended_default', 25],  
+                            # ['meta-llama/Meta-Llama-3-70B-Instruct', 1.0, 1.0, 100, 'open_ended_default', 25],                
+                            
+            ['meta-llama/Meta-Llama-3-70B-Instruct', 1.1, 1.0, 100, 'open_ended_default', 25],
+                ['meta-llama/Meta-Llama-3-70B-Instruct', 1.2, 1.0, 100, 'open_ended_default', 25],
+                    ['meta-llama/Meta-Llama-3-70B-Instruct', 1.3, 1.0, 100, 'open_ended_default', 25],
+                        ['meta-llama/Meta-Llama-3-70B-Instruct', 1.4, 1.0, 100, 'open_ended_default', 25],
+                            ['meta-llama/Meta-Llama-3-70B-Instruct', 1.5, 1.0, 100, 'open_ended_default', 25],
+                                ['meta-llama/Meta-Llama-3-70B-Instruct', 1.6, 1.0, 100, 'open_ended_default', 25],
+                                    ['meta-llama/Meta-Llama-3-70B-Instruct', 1.7, 1.0, 100, 'open_ended_default', 25],  
+                                        ['meta-llama/Meta-Llama-3-70B-Instruct', 1.8, 1.0, 100, 'open_ended_default', 25],
+                                            ['meta-llama/Meta-Llama-3-70B-Instruct', 1.9, 1.0, 100, 'open_ended_default', 25],  
+                                                ['meta-llama/Meta-Llama-3-70B-Instruct', 2.0, 1.0, 100, 'open_ended_default', 25],  
+                                        
+                                
+            
+                    
+                    
+                    
+                    
+                    
+                    
+                
+                                        
+                            
+           
            
         #    ['meta-llama/Meta-Llama-3-8B', 1.0, 1.0, 30, 'open_ended_default'],
         #    ['meta-llama/Meta-Llama-3-8B', 1.0, 1.0, 30, 'open_ended_two_shot'],
@@ -144,7 +194,7 @@ def create_yaml_config(model, temperature, top_p, num_return_sequences, template
         'repetition_penalty': 1.0, 
         'parallel_samples': 5, 
         'port': 9999, 
-        'devices_list': '0,1,2,3',
+        'devices_list': '0,1,2,3,4,5,6,7',
         'startup_timeout': 2000,
         'volume': 'saved_models',
         'generation_timeout': 1000,
@@ -215,7 +265,7 @@ def main(configurations):
         raise FileNotFoundError(f"Configuration directory {config_dir} not found.")
     # os.makedirs(config_dir, exist_ok=True)
 
-    logs_dir = '/data1/shypula/prog_diversity/open_ended_logs/'
+    logs_dir = '/data1/shypula/prog_diversity/open_ended_logs_v2/'
     os.makedirs(logs_dir, exist_ok=True)
     
     driver_stats_file = os.path.join(EXPERIMENT_OUTPUT_ROOT, f"{datetime.now().strftime('%Y-%m-%d_%H-%M-%S')}_driver_stats.tsv")

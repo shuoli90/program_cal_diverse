@@ -336,7 +336,8 @@ if __name__ == '__main__':
         df_results_stats = df_results[results_stats_keys]
         # described = df_results_stats.describe()
         # remove np.nan for the describe
-        described = df_results_stats.dropna().describe()
+        # described = df_results_stats.dropna().describe()
+        described = df_results_stats.apply(lambda x: x.dropna().describe())
         print(described)
         # save the statistics
         # described.to_csv(f'../collected/open_ended_{args.model}_temp_{args.temperature}_top_p_{args.top_p}_max_length_{args.max_length}_num_return_sequences_{args.num_return_sequences}_repetition_penalty_{args.repetition_penalty}_results_stats.csv')

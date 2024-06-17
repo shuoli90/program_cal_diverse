@@ -63,6 +63,7 @@ if __name__ == '__main__':
     #     # return "No Python code found."
     #     pass
     
+    
 def extract_python_code(text):
     import re
 
@@ -71,41 +72,46 @@ def extract_python_code(text):
     block = ""
     stack = []
     block_active = False
-    previous_indent = None
+    previous_indent = 0
 
     for line in lines:
         stripped_line = line.lstrip()
         leading_spaces = len(line) - len(stripped_line)
-        
-        # Detect decorators and handle them as part of the upcoming block
-        if stripped_line.startswith('@'):
-            block += line + "\n"
-            continue
 
         # Check if the line starts a new block or is a continuation of a block
-        # if re.match(r"(def\s+\w+\s*\(|if\s+__name__\s*==\s*\"__main__\":)", stripped_line) and not block_active:
-        if re.match(r"(def\s+\w+\s*\(|class\s+\w+|if\s+__name__\s*==\s*\"__main__\":)", stripped_line) and not block_active:
+        if re.match(r"(def\s+\w+\s*\(|class\s+\w+|if\s+__name__\s*==\s*\"__main__\":)", stripped_line):
+            # import pdb; pdb.set_trace()
             if not block_active or leading_spaces > previous_indent:
-                if block_active:
-                    python_code += block.strip() + "\n\n"
-                    block = ""
+                # if block_active:
+                #     python_code += block.strip() + "\n\n"
+                #     block = ""
+                if not block_active: 
+                    previous_indent = leading_spaces
                 block_active = True
-                previous_indent = leading_spaces
-                stack.append(leading_spaces)
+                # stack.append(leading_spaces)
             block += line + "\n"
             continue
 
-        # Handle import statements outside of block checks (ie. at the beginning of the file)
-        if re.match(r"(from\s+[\w\.]+\s+import\s+[\w\.,\s*]+|import\s+[\w\.,\s*]+)", stripped_line) and not block_active:
+        # Handle import statements outside of block checks (ie. at the beginning of the file), decorators
+        # if re.match(r"(from\s+[\w\.]+\s+import\s+[\w\.,\s*]+|import\s+[\w\.,\s*]+)", stripped_line) and not block_active:
+        if re.match(r"(from\s+[\w\.]+\s+import\s+[\w\.,\s*]+|import\s+[\w\.,\s*]+|@)", stripped_line) and not block_active:
             python_code += stripped_line + "\n"
             continue
 
-        # If currently active in a block and the line is part of it
-        if block_active and leading_spaces > previous_indent:
+        # If currently active in a block and the line is part of it, or empty line
+        if block_active and (leading_spaces > previous_indent or not stripped_line):
             block += line + "\n"
+            continue
+        
+        # if empty line, skip
+        # if not stripped_line and block_active:
+            
+        #     continue
+        
         else:
             # If the line is not part of an active block, close off any active block
             if block_active:
+                # import pdb; pdb.set_trace()
                 # we should actually take the previous-indent and de-dent the block
                 lines = block.splitlines()
                 block = "\n".join([line[previous_indent:] for line in lines])
@@ -113,7 +119,7 @@ def extract_python_code(text):
                 python_code += block.strip() + "\n\n"
                 block = ""
                 block_active = False
-                stack.clear()
+                # stack.clear()
 
     # Add the last block if there's any (ie EOF I think w/out any dedent)
     if block_active and block:
@@ -122,4 +128,83 @@ def extract_python_code(text):
         python_code += block.strip() + "\n"
 
     return python_code.strip()
+    
+    
+    
+    
+    
+# def extract_python_code(text):
+#     import re
+
+#     lines = text.splitlines()
+#     python_code = ""
+#     block = ""
+#     # stack = []
+#     block_active = False
+#     previous_indent = None
+    
+#     current_indent = 0
+
+#     for line in lines:
+#         stripped_line = line.lstrip()
+#         leading_spaces = len(line) - len(stripped_line)
+        
+#         # Detect decorators and handle them as part of the upcoming block
+#         if stripped_line.startswith('@'):
+#             block += line + "\n"
+#             continue
+        
+#         # skip if line is empty
+#         if not stripped_line:
+#             continue
+
+#         # Check if the line starts a new block or is a continuation of a block
+#         # if re.match(r"(def\s+\w+\s*\(|if\s+__name__\s*==\s*\"__main__\":)", stripped_line) and not block_active:
+#         if re.match(r"(def\s+\w+\s*\(|class\s+\w+|if\s+__name__\s*==\s*\"__main__\":)", stripped_line):
+#             if not block_active or leading_spaces > previous_indent:
+#                 # if block_active:
+#                 #     lines = block.splitlines()
+#                 #     block = "\n".join([line[previous_indent:] for line in lines])
+#                 #     python_code += block.strip() + "\n\n"
+#                 #     block = ""
+#                 block_active = True
+#                 previous_indent = leading_spaces
+#                 # stack.append(leading_spaces)
+#             else: 
+#                 pass
+#                 # lines = block.splitlines()
+#                 # block = "\n".join([line[previous_indent:] for line in lines])
+#                 # python_code += block.strip() + "\n\n"
+                
+#             block += line + "\n"
+#             continue
+
+#         # Handle import statements outside of block checks (ie. at the beginning of the file)
+#         if re.match(r"(from\s+[\w\.]+\s+import\s+[\w\.,\s*]+|import\s+[\w\.,\s*]+)", stripped_line) and not block_active:
+#             python_code += stripped_line + "\n"
+#             # hoist 
+#             continue
+
+#         # If currently active in a block and the line is part of it
+#         if block_active and leading_spaces > previous_indent:
+#             block += line + "\n"
+#         else:
+#             # If the line is not part of an active block, close off any active block
+#             if block_active:
+#                 # we should actually take the previous-indent and de-dent the block
+#                 lines = block.splitlines()
+#                 block = "\n".join([line[previous_indent:] for line in lines])
+#                 # add the block to the python code
+#                 python_code += block.strip() + "\n\n"
+#                 block = ""
+#                 block_active = False
+#                 # stack.clear()
+
+#     # Add the last block if there's any (ie EOF I think w/out any dedent)
+#     if block_active and block:
+#         lines = block.splitlines()
+#         block = "\n".join([line[previous_indent:] for line in lines])
+#         python_code += block.strip() + "\n"
+
+#     return python_code.strip()
 

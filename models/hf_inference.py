@@ -41,6 +41,7 @@ class HFInferenceModel:
         pbar = tqdm(total=num_samples, desc=f"Generating {num_samples} samples")
         all_responses = []
         while len(all_responses) < num_samples:    
+            this_batch_size = min(batch_size, num_samples - len(all_responses))
             completions = self.client.generate(
                 prompt,
                 max_new_tokens=max_new_tokens,
@@ -48,7 +49,7 @@ class HFInferenceModel:
                 temperature=temperature,
                 top_p=top_p,
                 top_k=top_k,
-                best_of=batch_size,
+                best_of=this_batch_size,
                 **kwargs
             )
             # get all completions from output

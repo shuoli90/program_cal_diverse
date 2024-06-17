@@ -19,15 +19,14 @@
 ```
 
 ### Function Signature:
-Write a function `f(inputs)` that takes in the input as a list of tuples.
+Write a function `f(N, M, triples, Q, pairs)` that takes the input. 
 ```python
-def f(N: int, M: int, triple: List[Tuple[int, int, int]], Q: int, pairs: List[Tuple[int, int]]):
+def f(N: int, M: int, triples: List[Tuple[int, int, int]], Q: int, pairs: List[Tuple[int, int]]):
     '''
-    inputs: a list of tuples where each tuple contains:
-        - an integer N
-        - an integer M
-        - a list of M tuples, each containing three integers (a_i, b_i, c_i)
-        - an integer Q
-        - a list of Q tuples, each containing two integers (d_j, e_j)
+    N: int -> The first integer
+    M: int -> The second integer
+    triples: List[Tuple[int, int, int]] -> The list of triples
+    Q: int -> The third integer
+    pairs: List[Tuple[int, int]] -> The list of pairs
     '''
 ```

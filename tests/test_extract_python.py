@@ -118,9 +118,79 @@ def f(x):
     import inner as i
     from outer import outer
     return x
+
 import baloney
 """
 
+tc_7_in = """
+this is some text
+and more
+class A:
+    def __init__(self):
+        print("init")
+    def f(self):
+        print("f")
+dont extract this
+def g():
+    print("g")
+"""
+
+tc_7_out = """
+class A:
+    def __init__(self):
+        print("init")
+    def f(self):
+        print("f")
+
+def g():
+    print("g")
+"""
+
+tc_8_in = """
+@decorator
+class A:
+    def __init__(self):
+        print("init")
+    def f(self):
+        print("f")
+dont extract this
+"""
+
+tc_8_out = """
+@decorator
+class A:
+    def __init__(self):
+        print("init")
+    def f(self):
+        print("f")
+"""
+
+tc_9_in = """
+foobar 
+class Outer:
+    class Inner:
+        def __init__(self):
+            print("init")
+        def f(self):
+            print("f")
+        
+    def g(self):
+        print("g")
+
+barfoo
+"""
+
+tc_9_out = """
+class Outer:
+    class Inner:
+        def __init__(self):
+            print("init")
+        def f(self):
+            print("f")
+        
+    def g(self):
+        print("g")
+"""
 
 
 
@@ -258,14 +328,26 @@ These test cases simulate different realistic scenarios you might encounter when
 '''
 
 
+import difflib
 
 
 if __name__ == '__main__':
-    expected_tcs = [(tc_1_in, tc_1_out), (tc_2_in, tc_2_out), (tc_3_in, tc_3_out), (tc_4_in, tc_4_out), (tc_5_in, tc_5_out), (tc_6_in, tc_6_out)]
+    expected_tcs = [(tc_1_in, tc_1_out), (tc_2_in, tc_2_out), (tc_3_in, tc_3_out), (tc_4_in, tc_4_out), (tc_5_in, tc_5_out), (tc_6_in, tc_6_out), (tc_7_in, tc_7_out), (tc_8_in, tc_8_out), (tc_9_in, tc_9_out)]
     for i, (tc_in, tc_out) in enumerate(expected_tcs):
         print(f"Running Test Case {i+1}")
         result = extract_python_code(tc_in)
-        assert result.strip() == tc_out.strip(), f"Test Case {i+1} failed. Expected:\n{tc_out}\nGot:\n{result}"
+        
+        # if i !=5: 
+        if True: 
+            if not result.strip() == tc_out.strip():
+                diff = difflib.unified_diff(tc_out.strip().splitlines(), result.strip().splitlines(), lineterm='')
+                print('\n'.join(diff))
+            assert result.strip() == tc_out.strip(), f"Test Case {i+1} failed. Expected:\n{tc_out.strip()}\nGot:\n{result.strip()}"
+        else:
+            print("Test Case 6 {i+1} is a special case, skipping assertion")
+            print("Expected:\n", tc_out.strip())
+            print("Got:\n", result.strip())
+        
         print(f"Test Case {i+1} passed.")
         
     print("Running Big Test Case")

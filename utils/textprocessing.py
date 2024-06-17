@@ -76,9 +76,15 @@ def extract_python_code(text):
     for line in lines:
         stripped_line = line.lstrip()
         leading_spaces = len(line) - len(stripped_line)
+        
+        # Detect decorators and handle them as part of the upcoming block
+        if stripped_line.startswith('@'):
+            block += line + "\n"
+            continue
 
         # Check if the line starts a new block or is a continuation of a block
-        if re.match(r"(def\s+\w+\s*\(|if\s+__name__\s*==\s*\"__main__\":)", stripped_line) and not block_active:
+        # if re.match(r"(def\s+\w+\s*\(|if\s+__name__\s*==\s*\"__main__\":)", stripped_line) and not block_active:
+        if re.match(r"(def\s+\w+\s*\(|class\s+\w+|if\s+__name__\s*==\s*\"__main__\":)", stripped_line) and not block_active:
             if not block_active or leading_spaces > previous_indent:
                 if block_active:
                     python_code += block.strip() + "\n\n"

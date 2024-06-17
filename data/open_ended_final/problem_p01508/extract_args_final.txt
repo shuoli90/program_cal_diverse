@@ -25,7 +25,7 @@ def extract_arguments(fh):
             index += 1
         
         # Append the extracted test case to the list
-        test_cases.append((case_number, N, vertices))
+        test_cases.append((N, vertices))
         case_number += 1
     
     return test_cases

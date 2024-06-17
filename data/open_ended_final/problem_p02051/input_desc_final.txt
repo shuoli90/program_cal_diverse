@@ -21,7 +21,7 @@
 ### Function Signature:
 Write a function `f(inputs)` that takes in the input as a list of tuples.
 ```python
-def f(inputs: List[Tuple[int, int, List[Tuple[int, int, int]], int, List[Tuple[int, int]]]]):
+def f(N: int, M: int, triple: List[Tuple[int, int, int]], Q: int, pairs: List[Tuple[int, int]]):
     '''
     inputs: a list of tuples where each tuple contains:
         - an integer N

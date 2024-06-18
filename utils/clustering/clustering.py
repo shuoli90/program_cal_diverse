@@ -121,6 +121,7 @@ def instrument_code_docker(generated_code: str, testcase_inputs: Dict[str, str],
             if testcase_id not in testcase_outputs:
                 testcase_outputs[testcase_id] = "Error"
         print(f"Number of outputs ({len(testcase_outputs)}) does not match the number of inputs ({len(testcase_inputs)}); outputs: {testcase_outputs}, inputs: {testcase_inputs}!!!!!!!!")
+        print(f"Generated code: {generated_code}")
             
     output_record = {
         "code": generated_code, 

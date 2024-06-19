@@ -15,6 +15,8 @@ PATH_TO_HF_TOKEN="/home/shypula/hf_token.txt"
 # params: model, temperature, top_p, num_return_sequences, template
 CONFIGS = [  
            
+        #    ['meta-llama/Meta-Llama-3-8B-Instruct', 1.0, 1.0, 15, 'open_ended_default', 15],
+           
            ['meta-llama/Meta-Llama-3-8B-Instruct', 1.0, 1.0, 100, 'open_ended_default', 25],
            ['meta-llama/Meta-Llama-3-70B-Instruct', 1.0, 1.0, 100, 'open_ended_default', 25],                
            
@@ -182,7 +184,7 @@ def validate_config(config):
 def create_yaml_config(model, temperature, top_p, num_return_sequences, template, batch_size, config_dir):
     """Create YAML configuration file."""
     config = {
-        'path_to_dataset': '../data/open_ended_final/dataset.jsonl',
+        'path_to_dataset': '../data/open_ended_final/dataset_update.jsonl',
         "experiment_output_root": EXPERIMENT_OUTPUT_ROOT,
         'model': model,
         'template': template,

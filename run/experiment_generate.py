@@ -106,8 +106,8 @@ if __name__ == '__main__':
     
     model_name_clean = args.model.replace("/", "-")
     # experiment_string = f"{model_name_clean}_temp_{args.temperature}_top_p_{args.top_p}_max_length_{args.max_length}_num_return_sequences_{args.num_return_sequences}_repetition_penalty_{args.repetition_penalty}_{args.template}_{datetime.datetime.now().strftime('%Y-%m-%d_%H-%M-%S')}"
-    experiment_string = args.experiment_string
-    experiment_output_dir = os.path.join(args.experiment_output_root, experiment_string)
+    experiment_id= args.experiment_id
+    experiment_output_dir = os.path.join(args.experiment_output_root, experiment_id)
         
     os.makedirs(experiment_output_dir, exist_ok=False) # there should be no existing directory (H-M)
     

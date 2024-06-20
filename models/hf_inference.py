@@ -155,7 +155,7 @@ class HFInferenceService:
         self.manager.remove_generation_container()
         
     def generate(self, prompt, max_new_tokens=512, num_samples=20, temperature=1.0, 
-                    do_sample=True, top_p=1.0, top_k=50, **kwargs):
+                    do_sample=True, top_p=1.0, top_k=None, **kwargs):
         completions = self.model.generate(
             prompt,
             max_new_tokens=max_new_tokens,

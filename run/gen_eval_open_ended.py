@@ -24,6 +24,8 @@ import traceback
 
 import signal
 import traceback
+from transformers import AutoTokenizer
+
 
 
 
@@ -117,6 +119,11 @@ if __name__ == '__main__':
     experiment_output_dir = os.path.join(args.experiment_output_root, experiment_string)
     os.makedirs(experiment_output_dir, exist_ok=False) # there should be no existing directory (H-M)
     
+    if "tatsu" in args.model:
+        tokenizer = AutoTokenizer.from_pretrained(args.model) #, token=hf_key)
+    else: 
+        tokenizer = None
+    
     # Setup generation pipeline
     if 'gpt' in args.model or 'davinci' in args.model:
         pipe = gpt.GPTModel(model_name=args.model)
@@ -163,14 +170,23 @@ if __name__ == '__main__':
             # format the prompt
             formatted_prompt = format_template_fun(prompt)
             
+            if "tatsu" in args.model:
+                # alpaca-from max total-tokens = 2048
+                n_prompt_tokens = len(tokenizer(formatted_prompt)['input_ids'])
+                max_tokens = min(2000 - n_prompt_tokens, args.max_length)
+            else: 
+                max_tokens = args.max_length
+                
+            
             # Generate text
             generateds_program = pipe.generate(
                 formatted_prompt, 
                 temperature=args.temperature,
                 num_return_sequences=args.num_return_sequences,
                 # TODO: add more args
-                max_length=args.max_length,
+                max_length=max_tokens, 
                 do_sample=True, 
+                top_k=None,
                 return_dict_in_generate=True, 
                 batch_size=args.batch_size,
             )

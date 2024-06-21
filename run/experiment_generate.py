@@ -22,6 +22,7 @@ from functools import partial
 import datetime
 import traceback
 import logging
+from transformers import AutoTokenizer
 
 import signal
 import traceback
@@ -135,6 +136,11 @@ if __name__ == '__main__':
     # save config
     with open(os.path.join(experiment_output_dir, 'config.yaml'), 'w') as f:
         yaml.dump(args.__dict__, f)
+        
+    if "tatsu" in args.model:
+        tokenizer = AutoTokenizer.from_pretrained(args.model) #, token=hf_key)
+    else: 
+        tokenizer = None
     
     # Setup generation pipeline
     if 'gpt' in args.model or 'davinci' in args.model:
@@ -156,8 +162,6 @@ if __name__ == '__main__':
         sigint_handler = partial(handler, pipe, experiment_output_dir)
         signal.signal(signal.SIGINT, sigint_handler)
     try:                                                
-        if "70B-Instruct" in model_name_clean: 
-            raise ValueError("just testing this")
         # Read in data
         print(f'reading in data from {args.path_to_dataset}')
         df = pd.read_json(args.path_to_dataset, lines=True, orient='records')
@@ -189,15 +193,23 @@ if __name__ == '__main__':
             # format the prompt
             formatted_prompt = format_template_fun(prompt)
             result['formatted_prompt'] = formatted_prompt
+            if "tatsu" in args.model:
+                # alpaca-from max total-tokens = 2048
+                n_prompt_tokens = len(tokenizer(formatted_prompt)['input_ids'])
+                max_tokens = min(2000 - n_prompt_tokens, args.max_length)
+            else: 
+                max_tokens = args.max_length
+            
             
             # Generate text
             raw_generations = pipe.generate(
                 formatted_prompt, 
+                max_new_tokens=max_tokens,
+                num_samples=args.num_return_sequences,
                 temperature=args.temperature,
-                num_return_sequences=args.num_return_sequences,
-                # TODO: add more args
-                max_length=args.max_length,
                 do_sample=True, 
+                top_p=args.top_p,
+                top_k=None,
                 return_dict_in_generate=True, 
                 batch_size=args.batch_size,
             )
@@ -249,7 +261,7 @@ if __name__ == '__main__':
             pipe.stop_service()
             pipe.remove_service()
         
-        print('Done')
+        print(f"Done generating for {experiment_name} in {total_elapsed}")
         
     except Exception as e:
         # save some file if there is an error to communicate 

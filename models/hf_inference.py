@@ -7,6 +7,8 @@ import time
 import logging
 import json
 from tqdm import tqdm
+import random
+import requests
 
 import sys
 project_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
@@ -22,7 +24,7 @@ class HFInferenceModel:
         self.client = Client(self.url, timeout=timeout)
 
     def generate(self, prompt, max_new_tokens=512, num_samples=20, temperature=1.0, 
-                    do_sample=True, top_p=1.0, top_k=None, batch_size=None, **kwargs):
+                    do_sample=True, top_p=1.0, top_k=None, return_dict_in_generate=False, batch_size=None, **kwargs):
         # remove best_of because we use num_samples
         if "best_of" in kwargs:
             kwargs.pop("best_of")
@@ -30,28 +32,48 @@ class HFInferenceModel:
             kwargs.pop("return_dict_in_generate")
         if 'num_return_sequences' in kwargs:
             num_samples = kwargs.pop('num_return_sequences')
+            logging.warning(f"Overriding num_return_sequences with num_samples: {num_samples}, pay attention to this!!!!!")
         if 'max_length' in kwargs:
             max_new_tokens = kwargs.pop('max_length')
+            logging.warning(f"Overriding max_length with max_new_tokens: {max_new_tokens}, pay attention to this!!!!!")
         if top_p == 1.0 or kwargs.get("top_p", 1.0) == 1.0:
             top_p = None
             
         batch_size = batch_size or num_samples # if batch_size is None, use num_samples
         
+        # check for kwargs 
+        if kwargs:
+            logging.warning(f"Unused kwargs: {kwargs}")
+        
         # repeat until we get all completions, with batch_size
         pbar = tqdm(total=num_samples, desc=f"Generating {num_samples} samples")
         all_responses = []
+        max_retries = 5
+        retries_left = 5
+        backoff_factor = 0.2
         while len(all_responses) < num_samples:    
             this_batch_size = min(batch_size, num_samples - len(all_responses))
-            completions = self.client.generate(
-                prompt,
-                max_new_tokens=max_new_tokens,
-                do_sample=do_sample,
-                temperature=temperature,
-                top_p=top_p,
-                top_k=top_k,
-                best_of=this_batch_size,
-                **kwargs
-            )
+            try: 
+                completions = self.client.generate(
+                    prompt,
+                    max_new_tokens=max_new_tokens,
+                    do_sample=do_sample,
+                    temperature=temperature,
+                    top_p=top_p,
+                    top_k=top_k,
+                    best_of=this_batch_size,
+                )
+                retries_left = max_retries
+            except (ConnectionResetError, TimeoutError, requests.exceptions.RequestException) as e:
+                if retries_left == 0:
+                    logging.error(f"Connection reset error, no retries left, raising error")
+                    raise e
+                else:                    
+                    wait_time = backoff_factor * (2 ** (max_retries - retries_left)) 
+                    time.sleep(wait_time)
+                    retries_left -= 1
+                    continue
+                    
             # get all completions from output
             best_of_sequences = [
                 completions.details.best_of_sequences[i].generated_text
@@ -86,7 +108,7 @@ class HFInferenceManager:
         #     model = f"data/{model}"
         model, max_best_of, port, devices_list, volume, startup_timeout = self.model_name, self.parallel_samples, self.port, self.devices_list, self.volume, self.startup_timeout
         # command = f"docker run --detach -e HUGGING_FACE_HUB_TOKEN={self.hf_key} -e NVIDIA_VISIBLE_DEVICES={devices_list} --shm-size 1g -p {port}:80 -v {volume}:/data ghcr.io/huggingface/text-generation-inference::2.0.4 --model-id {model} --max-best-of {max_best_of}"
-        command = f"docker run --detach -e HUGGING_FACE_HUB_TOKEN={self.hf_key} --gpus '\"device={devices_list}\"' --shm-size 1g -p {port}:80 -v {volume}:/data ghcr.io/huggingface/text-generation-inference:2.0.4 --model-id {model} --max-best-of {max_best_of}"
+        command = f"docker run --detach -e HUGGING_FACE_HUB_TOKEN={self.hf_key} --cpus=30 --gpus '\"device={devices_list}\"' --shm-size 1g -p {port}:80 -v {volume}:/data ghcr.io/huggingface/text-generation-inference:2.0.4 --model-id {model} --max-best-of {max_best_of}"
         # command = f"docker run --detach -e HUGGING_FACE_HUB_TOKEN={self.hf_key} --gpus '\"device={devices_list}\"' -e MAX_BATCH_SIZE=1 --shm-size 1g -p {port}:80 -v {volume}:/data ghcr.io/huggingface/text-generation-inference:2.0 --model-id {model} --max-best-of {max_best_of}"
         print("Starting container with command\n", command)
         container_id = subprocess.check_output(command, shell=True).decode().strip()
@@ -155,15 +177,17 @@ class HFInferenceService:
         self.manager.remove_generation_container()
         
     def generate(self, prompt, max_new_tokens=512, num_samples=20, temperature=1.0, 
-                    do_sample=True, top_p=1.0, top_k=50, **kwargs):
+                    do_sample=True, top_p=1.0, top_k=None, return_dict_in_generate=False, batch_size=10, **kwargs):
         completions = self.model.generate(
             prompt,
             max_new_tokens=max_new_tokens,
+            num_samples=num_samples,
             do_sample=do_sample,
             temperature=temperature,
             top_p=top_p,
             top_k=top_k,
-            num_samples=num_samples,
+            # return_dict_in_generate=return_dict_in_generate,
+            batch_size=batch_size,
             **kwargs
         )
         return completions

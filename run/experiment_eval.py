@@ -204,7 +204,6 @@ if __name__ == '__main__':
             programs = [record["code"] for record in records if record["code"] is not None]
             
             if len([p for p in programs if len(p) > 0]) > 2:
-                # import pdb; pdb.set_trace()
                 import tokenize
                 for i in range(1, 7):
                     distinct_n = lexical_diversity.distinct_n(programs, i, lexical_diversity.get_relevant_tokens_parso, remove_comments=False)
@@ -219,32 +218,35 @@ if __name__ == '__main__':
                     for height, v in height_results.items():
                         result[f"{recordtype}_{key}_{height}"] = v
             else:
-                result[f'{recordtype}_distinct_1'] = np.nan
-                result[f'{recordtype}_distinct_2'] = np.nan
-                result[f'{recordtype}_distinct_3'] = np.nan
-                result[f'{recordtype}_distinct_4'] = np.nan
-                result[f'{recordtype}_distinct_5'] = np.nan
-                result[f'{recordtype}_distinct_6'] = np.nan
+                for i in range(1, 7):
+                    result[f'{recordtype}_distinct_{i}'] = np.nan
+                    result[f'{recordtype}_distinct_{i}_no_comments'] = np.nan
+                # result[f'{recordtype}_distinct_1'] = np.nan
+                # result[f'{recordtype}_distinct_2'] = np.nan
+                # result[f'{recordtype}_distinct_3'] = np.nan
+                # result[f'{recordtype}_distinct_4'] = np.nan
+                # result[f'{recordtype}_distinct_5'] = np.nan
+                # result[f'{recordtype}_distinct_6'] = np.nan
                 result[f'{recordtype}_corpus_self_bleu'] = np.nan
                 for key in ['plain_subtrees', 'stripped_subtrees', 'obfuscated_subtrees']:
                     for height in [3,4,5,6]:
                         result[f"{recordtype}_{key}_{height}"] = np.nan
                                                                                                                  
-        # save the results
-        if recordtype == 'all':
-            logging.info(f"Saving results for problem {problem_id}, coherence: {avg_coherence}, semantic count: {semantic_count}")
-            _programs = [record['code'] for record in records]
-            raw_generations = result['raw_generations']
+            # save the results
+            if recordtype == 'all':
+                logging.info(f"Saving results for problem {problem_id}, coherence: {avg_coherence}, semantic count: {semantic_count}")
+                _programs = [record['code'] for record in records]
+                raw_generations = result['raw_generations']
 
-            for i, (generation, program, formatted_program, output_record, coherence) in enumerate(zip(raw_generations, _programs, formatted_programs, output_records, coherences)):
-                with open(os.path.join(problem_id_dir, f'gen_{i}_coh_{coherence}.txt'), 'w') as f:
-                    f.write(generation)
-                with open(os.path.join(problem_id_dir, f'prog_{i}_coh_{coherence}.txt'), 'w') as f:
-                    f.write(program)
-                with open(os.path.join(problem_id_dir, f'formatted_prog_{i}_coh_{coherence}.txt'), 'w') as f:
-                    f.write(formatted_program)
-                with open(os.path.join(problem_id_dir, f'output_record_{i}_coh_{coherence}.json'), 'w') as f:
-                    f.write(json.dumps(output_record))  
+                for i, (generation, program, formatted_program, output_record, coherence) in enumerate(zip(raw_generations, _programs, formatted_programs, output_records, coherences)):
+                    with open(os.path.join(problem_id_dir, f'gen_{i}_coh_{coherence}.txt'), 'w') as f:
+                        f.write(generation)
+                    with open(os.path.join(problem_id_dir, f'prog_{i}_coh_{coherence}.txt'), 'w') as f:
+                        f.write(program)
+                    with open(os.path.join(problem_id_dir, f'formatted_prog_{i}_coh_{coherence}.txt'), 'w') as f:
+                        f.write(formatted_program)
+                    with open(os.path.join(problem_id_dir, f'output_record_{i}_coh_{coherence}.json'), 'w') as f:
+                        f.write(json.dumps(output_record))  
                 
         with open(os.path.join(problem_id_dir, f'result.tsv'), 'w') as f:
             for k in results_stats_keys:

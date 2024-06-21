@@ -16,7 +16,7 @@ from typing import List
 # make the keys for the results
 base_keys = ['model', 'template', 'temperature', 'top_p', 'num_return_sequences']  
 
-results_stats_keys = ['coherence', 'semantic_count', 'semantic_proportion', 'distinct_1', 'distinct_2', 'distinct_3', 'distinct_4', 'distinct_5', 'distinct_6']
+results_stats_keys = ['coherence', 'semantic_count', 'semantic_proportion', 'distinct_1', 'distinct_2', 'distinct_3', 'distinct_4', 'distinct_5', 'distinct_6', 'distinct_1_no_comments', 'distinct_2_no_comments', 'distinct_3_no_comments', 'distinct_4_no_comments', 'distinct_5_no_comments', 'distinct_6_no_comments']
 results_stats_keys = results_stats_keys + [f"{key}_{height}" for key in ['plain_subtrees', 'stripped_subtrees'] for height in [3,4,5,6]]
 results_stats_keys = [f"{recordtype}_{key}" for recordtype in ['all', 'coh', 'err'] for key in results_stats_keys]
 results_stats_keys.insert(4, 'coh_semantic_proportion_of_all')
@@ -65,12 +65,17 @@ def init_results_file(results_dir: str):
     return stats_file, stats_pretty_file
         
         
-def write_out_results(results: dict, config: Arguments, stats_file: str, stats_pretty_file: str):
+def write_out_results(results: dict, config: Arguments, stats_file: str, stats_pretty_file: str, is_error=False):
     results["model"] = config.model
     results["template"] = config.template.replace("open_ended_", "")
     results["temperature"] = config.temperature
     results["top_p"] = config.top_p
     results["num_return_sequences"] = config.num_return_sequences
+    
+    if is_error: 
+        for key in all_keys:
+            if key not in results:
+                results[key] = "ERROR"
     
     for key in all_keys:
         if key not in results:
@@ -100,7 +105,7 @@ def monitor_directories_and_run(configs_paths: List[str], experiment_directory):
                 os.system(f"python experiment_eval.py {config_path}")
                 
                 result = parse_results(directory)
-                write_out_results(result, config, stats_file, stats_pretty_file)
+                write_out_results(result, config, stats_file, stats_pretty_file, is_error=False)
                 configs_paths.remove(config_path)
                 logging.info(f"Finished {directory}, {len(configs_paths)} remaining.")
                 
@@ -109,6 +114,7 @@ def monitor_directories_and_run(configs_paths: List[str], experiment_directory):
                 with open(os.path.join(directory, 'error.txt'), 'r') as f:
                     error = f.read()
                 logging.error(f"Error in {directory}: {error}")
+                write_out_results({}, config, stats_file, stats_pretty_file, is_error=True)
                 configs_paths.remove(config_path)
                 
         if configs_paths:  # Only sleep if there are still directories to check

@@ -17,6 +17,8 @@ if __name__ == '__main__':
     
     # then get all input.*.txt files in tc_dir
     input_files = glob.glob(os.path.join(tc_dir, 'input.*.txt'))
+    # order 
+    input_files = sorted(input_files)
     soln_printed = False
     already_errored = False
     

@@ -15,7 +15,7 @@ from dataclasses import dataclass
 from tqdm import tqdm
 from parso.python.tokenize import tokenize as parso_tokenize
 
-bleu = BLEU(tokenize=None)
+bleu = BLEU(tokenize=None, effective_order=True)
 
 newline_pattern = re.compile(r'\n')
 

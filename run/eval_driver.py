@@ -35,13 +35,12 @@ def parse_results(results_dir: str):
         results = {}
         for line in lines:
             k, v = line.strip().split('\t')
-            if k in results_stats_keys:
-                results[k] = round(float(v) * 100, 2)
-            elif "semantic_count" in k:
-                results[k] = round(float(v), 2)
+            if "semantic_count" in k:
+                results[k] = str(round(float(v), 2))
+            elif k in results_stats_keys:
+                results[k] = str(round(float(v) * 100, 2))
             else:
                 results[k] = v
-            results[k] = v
         return results
     except Exception as e:
         print(f"Error reading in results file: {e}")
@@ -55,7 +54,7 @@ def parse_results(results_dir: str):
 def init_results_file(results_dir: str):
     stats_file = os.path.join(results_dir, 'driver_stats.tsv')
     stats_pretty_file = os.path.join(results_dir, 'driver_stats_pretty.tsv')
-    pretty_column_widths = [46, 15] + [max(len(k) + 2, 6) for k in keys[2:]]
+    pretty_column_widths = [46, 15] + [max(len(k) + 2, 6) for k in all_keys[2:]]
     
     with open(stats_file, 'w') as f:
         f.write('\t'.join(all_keys) + '\n')
@@ -84,33 +83,38 @@ def write_out_results(results: dict, config: Arguments, stats_file: str, stats_p
         f.write(''.join([f"{str(results[k]).ljust(pretty_column_widths[i])}" for i, k in enumerate(all_keys)]) + '\n')
 
 
-def monitor_directories_and_run(configs: List[Arguments]): 
+def monitor_directories_and_run(configs_paths: List[str], experiment_directory): 
     """Monitor a list of directories for the existence of results.jsonl."""
     # TODO: error handling (what if the experiment failed)
-    stats_file, stats_pretty_file = init_results_file(configs[0].experiment_output_root)
+    config_path_to_config = {config_path: load_arguments_from_yaml(config_path) for config_path in configs_paths}
+    stats_file, stats_pretty_file = init_results_file(experiment_directory)
     consecutive_sleeps = 0
-    while configs:
-        for config in configs: 
+    while configs_paths:
+        for config_path in configs_paths: 
+            config = config_path_to_config[config_path]
+            
             directory = config.experiment_output_dir
             
             if os.path.exists(os.path.join(directory, 'results.jsonl')):
-                logging.info(f"Running eval.py on {directory}")
-                os.system(f"python experiment_eval.py {directory}")
+                logging.info(f"Running `python experiment_eval.py {config_path}`")
+                os.system(f"python experiment_eval.py {config_path}")
+                
                 result = parse_results(directory)
                 write_out_results(result, config, stats_file, stats_pretty_file)
-                configs.remove(config)
+                configs_paths.remove(config_path)
+                logging.info(f"Finished {directory}, {len(configs_paths)} remaining.")
                 
             elif os.path.exists(os.path.join(directory, 'error.txt')):
                 logging.info(f"Error in {directory}")
                 with open(os.path.join(directory, 'error.txt'), 'r') as f:
                     error = f.read()
                 logging.error(f"Error in {directory}: {error}")
-                configs.remove(config)
+                configs_paths.remove(config_path)
                 
-        if configs:  # Only sleep if there are still directories to check
+        if configs_paths:  # Only sleep if there are still directories to check
             time.sleep(15)
             if (consecutive_sleeps % 20) == 0:
-                logging.info(f"Waiting for {len(configs)} directories to finish...")
+                logging.info(f"Waiting for {len(configs_paths)} directories to finish...")
             consecutive_sleeps += 1
             
 
@@ -121,16 +125,22 @@ if __name__ == "__main__":
     logging.basicConfig(level=logging.INFO)
     # log to experiment_directory/driver_logs   
     log_file = os.path.join(experiment_directory, "driver_logs", f"eval_{datetime.datetime.now().strftime('%Y-%m-%d_%H-%M-%S')}.log")
-    os.makedirs(os.path.dirname(log_file), exist_ok=False)
-    logging.basicConfig(filename=log_file, level=logging.INFO)
+    os.makedirs(os.path.dirname(log_file), exist_ok=True)
+    logging.basicConfig(level=logging.INFO, 
+                        handlers=[
+                            logging.FileHandler(log_file),  # File handler
+                            logging.StreamHandler(sys.stdout)  # Console handler
+                        ], 
+                        force=True)
     logging.info(f"Starting evaluation driver for {experiment_directory}")
 
     with open(os.path.join(experiment_directory, "all_configs_list.txt"), "r") as f:
         all_configs_paths = f.readlines()
+    all_configs_paths = [p.strip() for p in all_configs_paths]
+    
     assert isinstance(all_configs_paths, list), "all_configs must be a list"
-    assert all(os.path.exists(config_path) for config_path in all_configs_paths), "all paths must exist"
-    all_configs = [load_arguments_from_yaml(config_path) for config_path in all_configs_paths]
+    assert all(os.path.exists(config_path) for config_path in all_configs_paths), f"all paths must exist, {'\n'.join([p for p in all_configs_paths if not os.path.exists(p)])}\ndidn't exist"
     # load all the configs
     ## TODO: summarize results to the summary file as per previous driver
-    monitor_directories_and_run(all_configs)
+    monitor_directories_and_run(all_configs_paths, experiment_directory)
     

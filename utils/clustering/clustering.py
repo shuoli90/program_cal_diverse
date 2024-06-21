@@ -84,7 +84,8 @@ def instrument_code_docker(generated_code: str, testcase_inputs: Dict[str, str],
     error_occured = False
     
     try: 
-        logging.info(f"Now running docker container for tc_gen.py with testcase_dir {docker_working_dir} and image {image}.")
+        if verbose_instrument: 
+            logging.info(f"Now running docker container for tc_gen.py with testcase_dir {docker_working_dir} and image {image}.")
         container = client.containers.run(
             image.tags[0],
             detach=True,

@@ -28,7 +28,7 @@ import traceback
 
 from async_driver import Arguments, load_arguments_from_yaml
 from eval_driver import results_stats_keys
-
+import logging 
 
 # @dataclass
 # class Arguments:
@@ -102,11 +102,17 @@ if __name__ == '__main__':
     model_name_clean = args.model.replace("/", "-")
     # experiment_string = f"{model_name_clean}_temp_{args.temperature}_top_p_{args.top_p}_max_length_{args.max_length}_num_return_sequences_{args.num_return_sequences}_repetition_penalty_{args.repetition_penalty}_{args.template}_{datetime.datetime.now().strftime('%Y-%m-%d_%H-%M-%S')}"
     experiment_id= args.experiment_id
-    experiment_output_dir = os.path.join(args.experiment_output_root, experiment_id)
+    experiment_output_dir = args.experiment_output_dir
     results_file = os.path.join(experiment_output_dir, 'results.jsonl')
     assert os.path.exists(results_file)
-    
-
+    log_file = os.path.join(experiment_output_dir, 'eval_log.txt')
+    logging.basicConfig(level=logging.INFO,
+                        handlers=[
+                                logging.FileHandler(log_file),  # File handler
+                                logging.StreamHandler(sys.stdout)  # Console handler
+                            ], 
+                        force=True
+    )
 
     # setup docker client                           
     client, image = clustering.build_docker_image(clustering.clustering_abs_dir, max_pool_size=args.eval_workers, timeout=args.docker_communication_timeout)
@@ -117,7 +123,9 @@ if __name__ == '__main__':
         reformatted_results = []  
         for result in results: 
             new_result = copy.deepcopy(result)
-            programs = [textprocessing.extract_python_code(g) for g in generateds_program]
+            raw_generations = result['raw_generations']
+            extract_arguments_fun = result['extract_args_fun']
+            programs = [textprocessing.extract_python_code(g) for g in raw_generations]
             formatted_programs = [clustering.format_open_ended_code(program, extract_arguments_fun) for program in programs]
             new_result['programs'] = programs
             new_result['formatted_programs'] = formatted_programs
@@ -135,13 +143,13 @@ if __name__ == '__main__':
             submit_tuples.append((problem_id, generation_id, formatted_program, input_testcases))
 
     
-    
-    with tqdm_joblib(tqdm(desc="Processing Programs", total=len(formatted_programs))) as progress_bar:
+    logging.info(f"Starting evaluation for {experiment_id}, {len(submit_tuples)} programs")
+    with tqdm_joblib(tqdm(desc="Processing Programs", total=len(submit_tuples))) as progress_bar:
         output_records = Parallel(n_jobs=args.eval_workers, backend='threading')(delayed(clustering.instrument_code_docker)(
             generated_code=formatted_program, 
             testcase_inputs=testcase_inputs, 
             orig_testcase_outputs=None, # testcase_outputs is None
-            imeage=image, 
+            image=image, 
             client=client,
             n_test_cases=-1, 
             indiv_tc_timeout=60, 
@@ -169,6 +177,8 @@ if __name__ == '__main__':
                 "coh": coherent_records, 
                 "err": incoherent_records
         }
+        problem_id_dir = os.path.join(experiment_output_dir, f'problem_{problem_id}')   
+        os.makedirs(problem_id_dir, exist_ok=True) # we can set to false, for debugging                  
             
         for recordtype, records in recordtype_2_records.items():
             # report coherence
@@ -181,9 +191,9 @@ if __name__ == '__main__':
             # semantic_clustering
             program_2_semantic_string, semantic_strings_2_programs = clustering.make_semantic_strings(records)
             semantic_count = len(semantic_strings_2_programs.keys())
-            print('semantic count', semantic_count)
             result[f'{recordtype}_semantic_count'] = semantic_count
             result[f'{recordtype}_semantic_proportion'] = semantic_count / len(records) if len(records) > 0 else np.nan
+            
             if recordtype =="coh": 
                 result["coh_semantic_proportion_of_all"] = semantic_count / len(recordtype_2_records["all"]) if len(recordtype_2_records["all"]) > 0 else np.nan
 
@@ -204,7 +214,7 @@ if __name__ == '__main__':
                     
                 corpus_self_bleu = lexical_diversity.parallel_corpus_self_bleu(programs, lexical_diversity.get_relevant_tokens_parso, n_jobs=args.eval_workers, normalize=True)
                 result[f'{recordtype}_corpus_self_bleu'] = corpus_self_bleu
-                parallel_subtree_results = parallel_subtree_analysis(programs, n_jobs=args.eval_workers, heights=[3,4,5,6])
+                parallel_subtree_results = parallel_subtree_analysis(programs, n_jobs=args.eval_workers, heights=[3,4,5,6], verbose=False)
                 for key, height_results in parallel_subtree_results.items():
                     for height, v in height_results.items():
                         result[f"{recordtype}_{key}_{height}"] = v
@@ -222,9 +232,11 @@ if __name__ == '__main__':
                                                                                                                  
         # save the results
         if recordtype == 'all':
-            problem_id_dir = os.path.join(experiment_output_dir, f'problem_{problem_id}')   
-            os.makedirs(problem_id_dir, exist_ok=False)                 
-            for i, (generation, program, formatted_program, output_record, coherence) in enumerate(zip(generateds_program, programs, formatted_programs, output_records, coherences)):
+            logging.info(f"Saving results for problem {problem_id}, coherence: {avg_coherence}, semantic count: {semantic_count}")
+            _programs = [record['code'] for record in records]
+            raw_generations = result['raw_generations']
+
+            for i, (generation, program, formatted_program, output_record, coherence) in enumerate(zip(raw_generations, _programs, formatted_programs, output_records, coherences)):
                 with open(os.path.join(problem_id_dir, f'gen_{i}_coh_{coherence}.txt'), 'w') as f:
                     f.write(generation)
                 with open(os.path.join(problem_id_dir, f'prog_{i}_coh_{coherence}.txt'), 'w') as f:
@@ -239,6 +251,7 @@ if __name__ == '__main__':
                 f.write(f"{k}\t{result[k]}\n")
             
         final_results.append(result)
+        logging.info(f"Results for problem {problem_id} saved")
         
     # save results to jsonl
     with open(os.path.join(experiment_output_dir, 'results.jsonl'), 'w') as f:

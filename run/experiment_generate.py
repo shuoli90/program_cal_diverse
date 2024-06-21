@@ -115,16 +115,22 @@ if __name__ == '__main__':
     
     model_name_clean = args.model.replace("/", "-")
     # experiment_string = f"{model_name_clean}_temp_{args.temperature}_top_p_{args.top_p}_max_length_{args.max_length}_num_return_sequences_{args.num_return_sequences}_repetition_penalty_{args.repetition_penalty}_{args.template}_{datetime.datetime.now().strftime('%Y-%m-%d_%H-%M-%S')}"
-    experiment_id= args.experiment_id
+    # experiment_id= args.experiment_id
+    experiment_name = args.experiment_name
     experiment_output_dir = args.experiment_output_dir
     
+    os.makedirs(experiment_output_dir, exist_ok=True) # there should be no existing directory, but maybe for re-running
     
-        
-    os.makedirs(experiment_output_dir, exist_ok=False) # there should be no existing directory (H-M)
-    
-    logs_file = os.path.join(experiment_output_dir, 'generation_log.log')
-    logging.basicConfig(filename=logs_file, level=logging.INFO)
-    logging.info(f"Starting generations for {experiment_id}")
+    logs_file = os.path.join(experiment_output_dir, 'generation_log.txt')
+    # logging.basicConfig(filename=logs_file, level=logging.INFO, force=True)
+    logging.basicConfig(level=logging.INFO, 
+                        handlers=[
+                            logging.FileHandler(logs_file),  # File handler
+                            logging.StreamHandler(sys.stdout)  # Console handler
+                        ], 
+                        force=True
+    )
+    logging.info(f"Starting generations for {experiment_name}")
     
     # save config
     with open(os.path.join(experiment_output_dir, 'config.yaml'), 'w') as f:
@@ -150,7 +156,8 @@ if __name__ == '__main__':
         sigint_handler = partial(handler, pipe, experiment_output_dir)
         signal.signal(signal.SIGINT, sigint_handler)
     try:                                                
-
+        if "70B-Instruct" in model_name_clean: 
+            raise ValueError("just testing this")
         # Read in data
         print(f'reading in data from {args.path_to_dataset}')
         df = pd.read_json(args.path_to_dataset, lines=True, orient='records')
@@ -159,14 +166,14 @@ if __name__ == '__main__':
             logging.info(f"Limiting to {args.max_programs} programs")
             df = df.iloc[:args.max_programs]
 
-        # setup docker client
-        logging.info("Building Docker image")
-        client, image = clustering.build_docker_image(clustering.clustering_abs_dir)
-
         results = []
         count = 0
+        times = []
+        start = datetime.datetime.now()
         # iterate over the dataframe
         for index, row in tqdm(df.iterrows()):
+            this_start = datetime.datetime.now()
+            logging.info(f"Generating for index {index}")
             # try:
             result = {}
             result['model'] = args.model
@@ -184,7 +191,7 @@ if __name__ == '__main__':
             result['formatted_prompt'] = formatted_prompt
             
             # Generate text
-            generateds_program = pipe.generate(
+            raw_generations = pipe.generate(
                 formatted_prompt, 
                 temperature=args.temperature,
                 num_return_sequences=args.num_return_sequences,
@@ -195,19 +202,23 @@ if __name__ == '__main__':
                 batch_size=args.batch_size,
             )
             
-            programs = [textprocessing.extract_python_code(g) for g in generateds_program]
+            programs = [textprocessing.extract_python_code(g) for g in raw_generations]
             formatted_programs = [clustering.format_open_ended_code(program, extract_arguments_fun) for program in programs]
     
+            result["raw_generations"] = raw_generations
             result['description'] = prompt
             result['programs'] = programs
             result['formatted_programs'] = formatted_programs
             testcase_inputs = row['input_testcases']
             result['input_testcases'] = testcase_inputs
+            result['problem_id'] = problem_id
+            result['extract_args_fun'] = extract_arguments_fun
+            result['original_description_string'] = prompt
                                   
             problem_id_dir = os.path.join(experiment_output_dir, f'problem_{problem_id}')   
             problem_id_gen_dir = os.path.join(problem_id_dir, 'generated')
-            os.makedirs(problem_id_gen_dir, exist_ok=False)                 
-            for i, (generation, program, formatted_program) in enumerate(zip(generateds_program, programs, formatted_programs)):
+            os.makedirs(problem_id_gen_dir, exist_ok=True)  # may want to set this to False                 
+            for i, (generation, program, formatted_program) in enumerate(zip(raw_generations, programs, formatted_programs)):
                 with open(os.path.join(problem_id_gen_dir, f'gen_{i}_coh_.txt'), 'w') as f:
                     f.write(generation)
                 with open(os.path.join(problem_id_gen_dir, f'prog_{i}_coh.txt'), 'w') as f:
@@ -216,12 +227,23 @@ if __name__ == '__main__':
                     f.write(formatted_program)
                     
             results.append(result)
+            count += 1
+            this_end = datetime.datetime.now()
+            run_elapsed = this_end - this_start
+            times.append(run_elapsed)
+            logging.info(f"Finished index {index} in {run_elapsed}")
             
+        end = datetime.datetime.now()
+        total_elapsed = end - start
+        
+        logging.info(f"Finished all in {total_elapsed}")
 
         # save results to jsonl
+        logging.info("Saving results to jsonl")
         with open(os.path.join(experiment_output_dir, 'results.jsonl'), 'w') as f:
             for result in results:
                 f.write(json.dumps(result) + '\n')
+        logging.info("Done saving results to jsonl")
             
         if "gpt" not in args.model:
             pipe.stop_service()

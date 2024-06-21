@@ -140,7 +140,7 @@ if __name__ == '__main__':
         print(f'reading in data from {args.path_to_dataset}')
         df = pd.read_json(args.path_to_dataset, lines=True, orient='records')
         # get first 5 rows
-        df = df.iloc[:3]
+        # df = df.iloc[:3]
 
         # setup docker client
         client, image = clustering.build_docker_image(clustering.clustering_abs_dir)
@@ -236,7 +236,7 @@ if __name__ == '__main__':
                 semantic_count = len(semantic_strings_2_programs.keys())
                 print('semantic count', semantic_count)
                 result[f'{recordtype}_semantic_count'] = semantic_count
-                result[f'{recordtype}_semantic_proportion'] = semantic_count / len(records)
+                result[f'{recordtype}_semantic_proportion'] = semantic_count / len(records) if len(records) > 0 else np.nan
 
                 result[f'{recordtype}_program_2_semantic_string'] = program_2_semantic_string
                 result[f'{recordtype}_semantic_strings_2_programs'] = semantic_strings_2_programs
@@ -244,9 +244,9 @@ if __name__ == '__main__':
                 # lexical diversity metrics 
                 # def distinct_n(corpus: List[str], n: int, ftokenizer: Callable[str]) -> float:
                 # def parallel_corpus_self_bleu(sentences: List[str], ftokenizer: Callable[str], n_jobs: int = -1, normalize: bool = True) -> float:
-                programs = [program for program in programs if program is not None]
-
-                if len(programs) >= 2:
+                programs = [program for program in programs if program is not None] 
+                
+                if len([p for p in programs if len(p) > 0]) > 2:
                     # import pdb; pdb.set_trace()
                     import tokenize
                     try: 
@@ -283,18 +283,19 @@ if __name__ == '__main__':
                             result[f"{recordtype}_{key}_{height}"] = np.nan
                                                                                    
                                                                                    
-            # save the results
-            problem_id_dir = os.path.join(experiment_output_dir, f'problem_{problem_id}')   
-            os.makedirs(problem_id_dir, exist_ok=False)                 
-            for i, (generation, program, formatted_program, output_record, coherence) in enumerate(zip(generateds_program, programs, formatted_programs, output_records, coherences)):
-                with open(os.path.join(problem_id_dir, f'gen_{i}_coh_{coherence}.txt'), 'w') as f:
-                    f.write(generation)
-                with open(os.path.join(problem_id_dir, f'prog_{i}_coh_{coherence}.txt'), 'w') as f:
-                    f.write(program)
-                with open(os.path.join(problem_id_dir, f'formatted_prog_{i}_coh_{coherence}.txt'), 'w') as f:
-                    f.write(formatted_program)
-                with open(os.path.join(problem_id_dir, f'output_record_{i}_coh_{coherence}.json'), 'w') as f:
-                    f.write(json.dumps(output_record))
+                # save the results
+                if recordtype == 'all':
+                    problem_id_dir = os.path.join(experiment_output_dir, f'problem_{problem_id}')   
+                    os.makedirs(problem_id_dir, exist_ok=False)                 
+                    for i, (generation, program, formatted_program, output_record, coherence) in enumerate(zip(generateds_program, programs, formatted_programs, output_records, coherences)):
+                        with open(os.path.join(problem_id_dir, f'gen_{i}_coh_{coherence}.txt'), 'w') as f:
+                            f.write(generation)
+                        with open(os.path.join(problem_id_dir, f'prog_{i}_coh_{coherence}.txt'), 'w') as f:
+                            f.write(program)
+                        with open(os.path.join(problem_id_dir, f'formatted_prog_{i}_coh_{coherence}.txt'), 'w') as f:
+                            f.write(formatted_program)
+                        with open(os.path.join(problem_id_dir, f'output_record_{i}_coh_{coherence}.json'), 'w') as f:
+                            f.write(json.dumps(output_record))  
                     
             # with open(os.path.join(problem_id_dir, f'result.tsv'), 'w') as f:
             #     for k in ['coherence', 'semantic_count', 'distinct_3', 'distinct_4', 'distinct_5', 'plain_subtrees_3', 'plain_subtrees_4', 'plain_subtrees_5', 'plain_subtrees_6', 'stripped_subtrees_3', 'stripped_subtrees_4', 'stripped_subtrees_5', 'stripped_subtrees_6', 'obfuscated_subtrees_3', 'obfuscated_subtrees_4', 'obfuscated_subtrees_5', 'obfuscated_subtrees_6']:
@@ -335,7 +336,8 @@ if __name__ == '__main__':
         df_results_stats = df_results[results_stats_keys]
         # described = df_results_stats.describe()
         # remove np.nan for the describe
-        described = df_results_stats.dropna().describe()
+        # described = df_results_stats.dropna().describe()
+        described = df_results_stats.apply(lambda x: x.dropna().describe())
         print(described)
         # save the statistics
         # described.to_csv(f'../collected/open_ended_{args.model}_temp_{args.temperature}_top_p_{args.top_p}_max_length_{args.max_length}_num_return_sequences_{args.num_return_sequences}_repetition_penalty_{args.repetition_penalty}_results_stats.csv')

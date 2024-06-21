@@ -11,12 +11,14 @@ if __name__ == '__main__':
     ## read in tc_dir as first argument
     tc_dir = sys.argv[1]
     timeout = int(sys.argv[2])
-    verbose = sys.argv[3] if len(sys.argv) > 3 else False
+    verbose = bool(sys.argv[3]) if len(sys.argv) > 3 else False
     n_test_cases = int(sys.argv[4]) if len(sys.argv) > 4 else -1
     open_ended = sys.argv[4] if len(sys.argv) > 5 else False
     
     # then get all input.*.txt files in tc_dir
     input_files = glob.glob(os.path.join(tc_dir, 'input.*.txt'))
+    # order 
+    input_files = sorted(input_files)
     soln_printed = False
     already_errored = False
     
@@ -27,11 +29,11 @@ if __name__ == '__main__':
         # run soln.py < input_file > output_file
         # if syntax error or runtime error, write to output.*.txt
         # else write to output.*.txt
-        if verbose: 
-            if open_ended:
-                print(f'Running {soln_file} {input_file} > {output_file}')
-            else: 
-                print(f'Running {soln_file} < {input_file} > {output_file}')
+        # if verbose: 
+        #     if open_ended:
+        #         print(f'Running {soln_file} {input_file} > {output_file}')
+        #     else: 
+        #         print(f'Running {soln_file} < {input_file} > {output_file}')
         
         if already_errored: 
             with open(output_file, 'w') as f:

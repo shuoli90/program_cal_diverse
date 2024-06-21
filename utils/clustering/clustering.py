@@ -44,9 +44,9 @@ def format_open_ended_code(f_code: str, extract_arguments_code: str) -> str:
     return formatted_wrapper
 
 
-def build_docker_image(path_to_dockerfile, version_tag=None):
+def build_docker_image(path_to_dockerfile, max_pool_size=20, timeout=600, version_tag=None):
     tag = 'python-test-case-runner'
-    client = docker.from_env()
+    client = docker.from_env(max_pool_size=max_pool_size, timeout=timeout)
     images = client.images.list()
     version_tag = version_tag or "latest"
     for image in images:
@@ -59,8 +59,8 @@ def build_docker_image(path_to_dockerfile, version_tag=None):
 
 
 def instrument_code_docker(generated_code: str, testcase_inputs: Dict[str, str], orig_testcase_outputs: Union[Dict[str, str], None],
-                           image, client, docker_working_dir = None, n_test_cases=-1, indiv_tc_timeout=5, verbose_docker=True, 
-                           open_ended=False):
+                           image, client, docker_working_dir = None, n_test_cases=-1, indiv_tc_timeout=5, verbose_instrument=False, verbose_docker=True, 
+                           open_ended=False, problem_id=None, generation_id=None): 
     
     if docker_working_dir is None: 
         docker_working_dir = tempfile.mkdtemp()
@@ -81,8 +81,11 @@ def instrument_code_docker(generated_code: str, testcase_inputs: Dict[str, str],
     
     volumes = {docker_working_dir: {'bind': '/usr/src/app/tc_dir', 'mode': 'rw'}}
     
+    error_occured = False
+    
     try: 
-        logging.info(f"Now running docker container for tc_gen.py with testcase_dir {docker_working_dir} and image {image}.")
+        if verbose_instrument: 
+            logging.info(f"Now running docker container for tc_gen.py with testcase_dir {docker_working_dir} and image {image}.")
         container = client.containers.run(
             image.tags[0],
             detach=True,
@@ -90,18 +93,34 @@ def instrument_code_docker(generated_code: str, testcase_inputs: Dict[str, str],
             command=f"python tc_dir/driver.py /usr/src/app/tc_dir {indiv_tc_timeout} {verbose_docker} {n_test_cases} {open_ended}"
         )
         # print the container logs 
+        docker_logs = ""
+        
         for line in container.logs(stream=True):
-            print(line.strip().decode('utf-8'))
-        logging.info(f"Done running tc_gen.py, stopping container {container.id}.")
+            _line = line.strip().decode('utf-8')
+            if verbose_instrument:
+                logging.info(_line)
+            docker_logs += _line + "\n"
+        
+        if verbose_instrument:    
+            logging.info(f"Done running tc_gen.py, stopping container {container.id}.")
+            
+        # Stop the container
         container.stop()
-        logging.info(f"Done stopp container for tc_gen.py, removing container {container.id}.")
+        
+        if verbose_instrument:
+            logging.info(f"Done stopp container for tc_gen.py, removing container {container.id}.")
         # Remove the container
         container.remove()
-        logging.info(f"Done removing container {container.id}")
+        
+        if verbose_instrument:
+            logging.info(f"Done removing container {container.id}")
+            
     except Exception as e:
         traceback_str = traceback.format_exc()
         logging.error(f"Failed to run tc_gen.py with testcase_dir {docker_working_dir} and image {image}.")
         logging.error(traceback_str)
+        docker_logs = traceback_str
+        error_occured = True
 
     output_files = glob.glob(os.path.join(docker_working_dir, "output.*.txt"))
     testcase_outputs = {}
@@ -115,13 +134,23 @@ def instrument_code_docker(generated_code: str, testcase_inputs: Dict[str, str],
             
     # make sure the number of outputs is the same as the number of inputs
     if len(testcase_outputs) != len(testcase_inputs):
-        raise ValueError(f"Number of outputs ({len(testcase_outputs)}) does not match the number of inputs ({len(testcase_inputs)}); outputs: {testcase_outputs}, inputs: {testcase_inputs}")
-            
+        for testcase_id in testcase_inputs.keys():
+            if testcase_id not in testcase_outputs:
+                testcase_outputs[testcase_id] = "Unknown Error"
+        error_str = f"Number of outputs ({len(testcase_outputs)}) does not match the number of inputs ({len(testcase_inputs)}); outputs: {testcase_outputs}, inputs: {testcase_inputs}\n"
+        error_str += f"Generated code: {generated_code}"
+        logging.error(error_str)
+        docker_logs += error_str
+        error_occured = True
+        
     output_record = {
         "code": generated_code, 
         "testcase_outputs": testcase_outputs, 
         "testcase_inputs": testcase_inputs, 
-        "orig_testcase_outputs": orig_testcase_outputs
+        "orig_testcase_outputs": orig_testcase_outputs, 
+        "problem_id": problem_id,
+        "generation_id": generation_id, 
+        "error_string": docker_logs if error_occured else "No Error" 
     }
     return output_record
 
@@ -131,7 +160,7 @@ def report_coherence(output_records: List[Dict]):
     program_2_n_coherent = {}
     for output_record in output_records:
         n_outputs = len(output_record["testcase_outputs"])
-        n_coherent = len([output for output in output_record["testcase_outputs"].values() if output not in ["Syntax Error", "Runtime Error", "Timeout", "Error"]])
+        n_coherent = len([output for output in output_record["testcase_outputs"].values() if output not in ["Syntax Error", "Runtime Error", "Timeout", "Error", "Unknown Error"]])
         program_2_n_outputs[output_record["code"]] = n_outputs
         program_2_n_coherent[output_record["code"]] = n_coherent
         program_2_coherence[output_record["code"]] = n_coherent / n_outputs
@@ -140,7 +169,7 @@ def report_coherence(output_records: List[Dict]):
 
 def get_coherence(output_records: List[Dict], strict=True): 
     n_outputs_list = [len(output_record["testcase_outputs"]) for output_record in output_records]
-    n_coherent_list = [len([output for output in output_record["testcase_outputs"].values() if output not in ["Syntax Error", "Runtime Error", "Timeout", "Error"]]) for output_record in output_records]
+    n_coherent_list = [len([output for output in output_record["testcase_outputs"].values() if output not in ["Syntax Error", "Runtime Error", "Timeout", "Error", "Unknown Error"]]) for output_record in output_records]
     coherent_list = [n_coherent / n_outputs for n_coherent, n_outputs in zip(n_coherent_list, n_outputs_list)]
     if strict: 
         coherent_list = [coherent for coherent in coherent_list if coherent == 1.0]
@@ -149,7 +178,7 @@ def get_coherence(output_records: List[Dict], strict=True):
 
 def record_is_coherent(output_record: Dict):
     n_outputs = len(output_record["testcase_outputs"])
-    n_coherent = len([output for output in output_record["testcase_outputs"].values() if output not in ["Syntax Error", "Runtime Error", "Timeout", "Error"]])
+    n_coherent = len([output for output in output_record["testcase_outputs"].values() if output not in ["Syntax Error", "Runtime Error", "Timeout", "Error", "Unknown Error"]])
     return n_coherent == n_outputs
 
 

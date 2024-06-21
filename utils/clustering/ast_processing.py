@@ -20,6 +20,11 @@ import ast
 import copy
 from copy import deepcopy
 
+import logging
+
+logging.basicConfig(level=logging.INFO)
+
+
 
 
 # def obfuscateString(s, *args, **kwargs):
@@ -231,7 +236,11 @@ def all_subtrees(node, verbose=False):
 
 def subtrees_from_code(source_code, obfuscate=False, strip_all=False, verbose=False):
     if obfuscate:
-        source_code, _ = obfuscateString(source_code)
+        try: 
+            source_code, _ = obfuscateString(source_code)
+        except Exception as e:
+            # every now and then there is a bizzare error, so we'll skip it
+            source_code = ""
     tree = ast.parse(source_code)
     if strip_all:
         tree = strip_id_value(tree)
@@ -247,13 +256,23 @@ class AllSubtreeAnalysis:
             self.plain_subtrees = subtrees_from_code(source_code, verbose=verbose)
             self.strip_subtrees = subtrees_from_code(source_code, strip_all=True, verbose=verbose)
             self.obf_subtrees = subtrees_from_code(source_code, obfuscate=True, verbose=verbose)
+        except SyntaxError as e:
+            self.orig_ast = []
+            self.plain_subtrees = []
+            self.strip_subtrees = []
+            self.obf_subtrees = []
+            if verbose:
+                logging.info(f"Syntax Error processing source code: {source_code}")
+                print(e)
+            raise e
         except Exception as e:
             self.orig_ast = []
             self.plain_subtrees = []
             self.strip_subtrees = []
             self.obf_subtrees = []
-            print(f"Error processing source code: {source_code}")
-            traceback.print_exc()
+            logging.critical(f"Error processing source code")
+            err_msg = traceback.format_exc()
+            logging.critical(err_msg)
             raise e
             
      
@@ -316,7 +335,7 @@ def tqdm_joblib(tqdm_object):
 
 
 
-def parallel_subtree_analysis(source_codes, n_jobs = -1, heights=[3,4,5,6]): 
+def parallel_subtree_analysis(source_codes, n_jobs = -1, heights=[3,4,5,6], verbose=False):
     assert len(heights) > 0, "Must provide at least one height to analyze"
     assert min(heights) >= 1, "Height must be at least 1"
     assert max(heights) <= 10, "Height must be at most 10"
@@ -326,10 +345,16 @@ def parallel_subtree_analysis(source_codes, n_jobs = -1, heights=[3,4,5,6]):
     def _subtree_analysis(source_code):
         try: 
             return AllSubtreeAnalysis(source_code)
-        except Exception as e:
-            print(f"Error processing source code: {source_code}")
-            print(e)
+        except SyntaxError as e:
+            if verbose:
+                logging.info(f"Syntax Error processing source code: {source_code}")
+                logging.info(traceback.format_exc())
             return None
+        except Exception as e:
+            logging.critical(f"Error processing source code: {source_code}")
+            logging.critical(traceback.format_exc())
+            return None
+        
     with tqdm_joblib(tqdm(desc="Processing Programs", total=len(source_codes))) as progress_bar:
         results = Parallel(n_jobs=n_jobs)(delayed(_subtree_analysis)(source_code) for source_code in source_codes)
     result_dict = {

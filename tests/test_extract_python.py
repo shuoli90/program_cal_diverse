@@ -118,9 +118,314 @@ def f(x):
     import inner as i
     from outer import outer
     return x
+
 import baloney
 """
 
+tc_7_in = """
+this is some text
+and more
+class A:
+    def __init__(self):
+        print("init")
+    def f(self):
+        print("f")
+dont extract this
+def g():
+    print("g")
+"""
+
+tc_7_out = """
+class A:
+    def __init__(self):
+        print("init")
+    def f(self):
+        print("f")
+
+def g():
+    print("g")
+"""
+
+tc_8_in = """
+@decorator
+class A:
+    def __init__(self):
+        print("init")
+    def f(self):
+        print("f")
+dont extract this
+"""
+
+tc_8_out = """
+@decorator
+class A:
+    def __init__(self):
+        print("init")
+    def f(self):
+        print("f")
+"""
+
+tc_9_in = """
+foobar 
+class Outer:
+    class Inner:
+        def __init__(self):
+            print("init")
+        def f(self):
+            print("f")
+
+    def g(self):
+        print("g")
+
+barfoo
+"""
+
+tc_9_out = """
+class Outer:
+    class Inner:
+        def __init__(self):
+            print("init")
+        def f(self):
+            print("f")
+
+    def g(self):
+        print("g")
+"""
+
+tc_10_in = """
+Your python code using the concept of Segment Tree to solve this problem:
+
+```Python
+import sys
+from typing import List, Tuple
+
+class SegmentTree:
+    def __init__(self, n):
+        self.sum_tree = [0] * (4 * n)
+        self.range_tree = [0] * (4 * n)
+        self.size = 4 * n
+
+    def build_tree(self, arr, node, start, end):
+        if start == end:
+            self.sum_tree[node] = arr[start]
+            self.range_tree[node] = arr[start]
+        else:
+            mid = (start + end) // 2
+            self.build_tree(arr, 2 * node, start, mid)
+            self.build_tree(arr, 2 * node + 1, mid + 1, end)
+            self.sum_tree[node] = self.sum_tree[2 * node] + self.sum_tree[2 * node + 1]
+            self.range_tree[node] = max(self.range_tree[2 * node], self.range_tree[2 * node + 1])
+
+    def update_tree(self, node, start, end, x, y, val):
+        if start == end:
+            self.sum_tree[node] -= val
+            self.range_tree[node] = max(0, self.range_tree[node] - val)
+        else:
+            mid = (start + end) // 2
+            if x <= mid:
+                self.update_tree(2 * node, start, mid, x, y, val)
+            elif x > mid:
+                self.update_tree(2 * node + 1, mid + 1, end, x, y, val)
+            else:
+                self.update_tree(2 * node, start, mid, x, y, val)
+                self.update_tree(2 * node + 1, mid + 1, end, x, y, val)
+            self.sum_tree[node] = self.sum_tree[2 * node] + self.sum_tree[2 * node + 1]
+            self.range_tree[node] = max(self.range_tree[2 * node], self.range_tree[2 * node + 1])
+
+    def query_tree(self, node, start, end, l, r):
+        if start > r or end < l:
+            return 0
+        if start >= l and end <= r:
+            return self.range_tree[node]
+        mid = (start + end) // 2
+        p1 = self.query_tree(2 * node, start, mid, l, r)
+        p2 = self.query_tree(2 * node + 1, mid + 1, end, l, r)
+        return max(p1, p2)
+
+def f(N: int, M: int, triples: List[Tuple[int, int, int]], Q: int, pairs: List[Tuple[int, int]]) -> None:
+    st = SegmentTree(N)
+    st.build_tree([0] * N, 1, 0, N - 1)
+    for a, b, c in triples:
+        st.update_tree(1, 0, N - 1, a, min(b, N - 1), -c)
+    for d, e in pairs:
+        res = st.query_tree(1, 0, N - 1, d, min(e, N - 1))
+        print(res)
+"""
+
+
+tc_10_out = """
+import sys
+from typing import List, Tuple
+class SegmentTree:
+    def __init__(self, n):
+        self.sum_tree = [0] * (4 * n)
+        self.range_tree = [0] * (4 * n)
+        self.size = 4 * n
+
+    def build_tree(self, arr, node, start, end):
+        if start == end:
+            self.sum_tree[node] = arr[start]
+            self.range_tree[node] = arr[start]
+        else:
+            mid = (start + end) // 2
+            self.build_tree(arr, 2 * node, start, mid)
+            self.build_tree(arr, 2 * node + 1, mid + 1, end)
+            self.sum_tree[node] = self.sum_tree[2 * node] + self.sum_tree[2 * node + 1]
+            self.range_tree[node] = max(self.range_tree[2 * node], self.range_tree[2 * node + 1])
+
+    def update_tree(self, node, start, end, x, y, val):
+        if start == end:
+            self.sum_tree[node] -= val
+            self.range_tree[node] = max(0, self.range_tree[node] - val)
+        else:
+            mid = (start + end) // 2
+            if x <= mid:
+                self.update_tree(2 * node, start, mid, x, y, val)
+            elif x > mid:
+                self.update_tree(2 * node + 1, mid + 1, end, x, y, val)
+            else:
+                self.update_tree(2 * node, start, mid, x, y, val)
+                self.update_tree(2 * node + 1, mid + 1, end, x, y, val)
+            self.sum_tree[node] = self.sum_tree[2 * node] + self.sum_tree[2 * node + 1]
+            self.range_tree[node] = max(self.range_tree[2 * node], self.range_tree[2 * node + 1])
+
+    def query_tree(self, node, start, end, l, r):
+        if start > r or end < l:
+            return 0
+        if start >= l and end <= r:
+            return self.range_tree[node]
+        mid = (start + end) // 2
+        p1 = self.query_tree(2 * node, start, mid, l, r)
+        p2 = self.query_tree(2 * node + 1, mid + 1, end, l, r)
+        return max(p1, p2)
+
+def f(N: int, M: int, triples: List[Tuple[int, int, int]], Q: int, pairs: List[Tuple[int, int]]) -> None:
+    st = SegmentTree(N)
+    st.build_tree([0] * N, 1, 0, N - 1)
+    for a, b, c in triples:
+        st.update_tree(1, 0, N - 1, a, min(b, N - 1), -c)
+    for d, e in pairs:
+        res = st.query_tree(1, 0, N - 1, d, min(e, N - 1))
+        print(res)
+"""
+
+
+tc_11_in = """
+Your python code using the concept of Segment Tree to solve this problem:
+
+```Python
+    import sys
+    from typing import List, Tuple
+
+    class SegmentTree:
+        def __init__(self, n):
+            self.sum_tree = [0] * (4 * n)
+            self.range_tree = [0] * (4 * n)
+            self.size = 4 * n
+
+        def build_tree(self, arr, node, start, end):
+            if start == end:
+                self.sum_tree[node] = arr[start]
+                self.range_tree[node] = arr[start]
+            else:
+                mid = (start + end) // 2
+                self.build_tree(arr, 2 * node, start, mid)
+                self.build_tree(arr, 2 * node + 1, mid + 1, end)
+                self.sum_tree[node] = self.sum_tree[2 * node] + self.sum_tree[2 * node + 1]
+                self.range_tree[node] = max(self.range_tree[2 * node], self.range_tree[2 * node + 1])
+
+        def update_tree(self, node, start, end, x, y, val):
+            if start == end:
+                self.sum_tree[node] -= val
+                self.range_tree[node] = max(0, self.range_tree[node] - val)
+            else:
+                mid = (start + end) // 2
+                if x <= mid:
+                    self.update_tree(2 * node, start, mid, x, y, val)
+                elif x > mid:
+                    self.update_tree(2 * node + 1, mid + 1, end, x, y, val)
+                else:
+                    self.update_tree(2 * node, start, mid, x, y, val)
+                    self.update_tree(2 * node + 1, mid + 1, end, x, y, val)
+                self.sum_tree[node] = self.sum_tree[2 * node] + self.sum_tree[2 * node + 1]
+                self.range_tree[node] = max(self.range_tree[2 * node], self.range_tree[2 * node + 1])
+
+        def query_tree(self, node, start, end, l, r):
+            if start > r or end < l:
+                return 0
+            if start >= l and end <= r:
+                return self.range_tree[node]
+            mid = (start + end) // 2
+            p1 = self.query_tree(2 * node, start, mid, l, r)
+            p2 = self.query_tree(2 * node + 1, mid + 1, end, l, r)
+            return max(p1, p2)
+
+    def f(N: int, M: int, triples: List[Tuple[int, int, int]], Q: int, pairs: List[Tuple[int, int]]) -> None:
+        st = SegmentTree(N)
+        st.build_tree([0] * N, 1, 0, N - 1)
+        for a, b, c in triples:
+            st.update_tree(1, 0, N - 1, a, min(b, N - 1), -c)
+        for d, e in pairs:
+            res = st.query_tree(1, 0, N - 1, d, min(e, N - 1))
+            print(res)
+"""
+
+
+tc_11_out = """
+import sys
+from typing import List, Tuple
+class SegmentTree:
+    def __init__(self, n):
+        self.sum_tree = [0] * (4 * n)
+        self.range_tree = [0] * (4 * n)
+        self.size = 4 * n
+
+    def build_tree(self, arr, node, start, end):
+        if start == end:
+            self.sum_tree[node] = arr[start]
+            self.range_tree[node] = arr[start]
+        else:
+            mid = (start + end) // 2
+            self.build_tree(arr, 2 * node, start, mid)
+            self.build_tree(arr, 2 * node + 1, mid + 1, end)
+            self.sum_tree[node] = self.sum_tree[2 * node] + self.sum_tree[2 * node + 1]
+            self.range_tree[node] = max(self.range_tree[2 * node], self.range_tree[2 * node + 1])
+
+    def update_tree(self, node, start, end, x, y, val):
+        if start == end:
+            self.sum_tree[node] -= val
+            self.range_tree[node] = max(0, self.range_tree[node] - val)
+        else:
+            mid = (start + end) // 2
+            if x <= mid:
+                self.update_tree(2 * node, start, mid, x, y, val)
+            elif x > mid:
+                self.update_tree(2 * node + 1, mid + 1, end, x, y, val)
+            else:
+                self.update_tree(2 * node, start, mid, x, y, val)
+                self.update_tree(2 * node + 1, mid + 1, end, x, y, val)
+            self.sum_tree[node] = self.sum_tree[2 * node] + self.sum_tree[2 * node + 1]
+            self.range_tree[node] = max(self.range_tree[2 * node], self.range_tree[2 * node + 1])
+
+    def query_tree(self, node, start, end, l, r):
+        if start > r or end < l:
+            return 0
+        if start >= l and end <= r:
+            return self.range_tree[node]
+        mid = (start + end) // 2
+        p1 = self.query_tree(2 * node, start, mid, l, r)
+        p2 = self.query_tree(2 * node + 1, mid + 1, end, l, r)
+        return max(p1, p2)
+
+def f(N: int, M: int, triples: List[Tuple[int, int, int]], Q: int, pairs: List[Tuple[int, int]]) -> None:
+    st = SegmentTree(N)
+    st.build_tree([0] * N, 1, 0, N - 1)
+    for a, b, c in triples:
+        st.update_tree(1, 0, N - 1, a, min(b, N - 1), -c)
+    for d, e in pairs:
+        res = st.query_tree(1, 0, N - 1, d, min(e, N - 1))
+        print(res)
+"""
 
 
 
@@ -258,17 +563,29 @@ These test cases simulate different realistic scenarios you might encounter when
 '''
 
 
+import difflib
 
 
 if __name__ == '__main__':
-    expected_tcs = [(tc_1_in, tc_1_out), (tc_2_in, tc_2_out), (tc_3_in, tc_3_out), (tc_4_in, tc_4_out), (tc_5_in, tc_5_out), (tc_6_in, tc_6_out)]
+    expected_tcs = [(tc_1_in, tc_1_out), (tc_2_in, tc_2_out), (tc_3_in, tc_3_out), (tc_4_in, tc_4_out), (tc_5_in, tc_5_out), (tc_6_in, tc_6_out), (tc_7_in, tc_7_out), (tc_8_in, tc_8_out), (tc_9_in, tc_9_out), (tc_10_in, tc_10_out), (tc_11_in, tc_11_out)]
     for i, (tc_in, tc_out) in enumerate(expected_tcs):
         print(f"Running Test Case {i+1}")
         result = extract_python_code(tc_in)
-        assert result.strip() == tc_out.strip(), f"Test Case {i+1} failed. Expected:\n{tc_out}\nGot:\n{result}"
+        
+        # if i not in (5, 8): 
+        if True: 
+            if not result.strip() == tc_out.strip():
+                diff = difflib.unified_diff(tc_out.strip().splitlines(), result.strip().splitlines(), lineterm='')
+                print('\n'.join(diff))
+            assert result.strip() == tc_out.strip(), f"Test Case {i+1} failed. Expected:\n{tc_out.strip()}\nGot:\n{result.strip()}"
+        else:
+            print("Test Case 6 {i+1} is a special case, skipping assertion")
+            print(f"Expected:\n{tc_out.strip()}")
+            print(f"Got:\n{result.strip()}")
+        
         print(f"Test Case {i+1} passed.")
         
-    print("Running Big Test Case")
-    result = extract_python_code(big_tc)
-    print("extracted code, from here there should be no language\n")
-    print(result)
+    # print("Running Big Test Case")
+    # result = extract_python_code(big_tc)
+    # print("extracted code, from here there should be no language\n")
+    # print(result)

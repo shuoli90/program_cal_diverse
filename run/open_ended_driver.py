@@ -5,7 +5,7 @@ import subprocess
 from datetime import datetime
 
 # EXPERIMENT_OUTPUT_ROOT = "/home/data1/cal_diverse/open_ended_results/"
-EXPERIMENT_OUTPUT_ROOT = "/data1/shypula/prog_diversity/open_ended_debug/"
+EXPERIMENT_OUTPUT_ROOT = "/data1/shypula/prog_diversity/open_ended_v3_fixed_top_k/"
 if not os.path.exists(EXPERIMENT_OUTPUT_ROOT):
     os.makedirs(EXPERIMENT_OUTPUT_ROOT, exist_ok=True)
     print(f"Created directory {EXPERIMENT_OUTPUT_ROOT}.")
@@ -15,25 +15,52 @@ PATH_TO_HF_TOKEN="/home/shypula/hf_token.txt"
 # params: model, temperature, top_p, num_return_sequences, template
 CONFIGS = [  
            
-           ['meta-llama/Meta-Llama-3-8B-Instruct', 1.0, 1.0, 10, 'open_ended_default'],
-           ['meta-llama/Meta-Llama-3-8B-Instruct', 1.0, 1.0, 10, 'open_ended_two_shot'],
+           ['meta-llama/Meta-Llama-3-8B', 1.0, 1.0, 100, 'open_ended_default', 25], 
+           ['meta-llama/Meta-Llama-3-8B', 1.0, 1.0, 100, 'open_ended_two_shot', 25],
+           ['meta-llama/Meta-Llama-3-8B', 1.0, 1.0, 100, 'open_ended_two_shot_cot', 25],
            
-        #    ['meta-llama/Meta-Llama-3-8B', 1.0, 1.0, 30, 'open_ended_default'],
-        #    ['meta-llama/Meta-Llama-3-8B', 1.0, 1.0, 30, 'open_ended_two_shot'],
-        #    ['meta-llama/Meta-Llama-3-8B', 1.0, 1.0, 30, 'open_ended_two_shot_cot'],
+           ['meta-llama/Meta-Llama-3-8B-Instruct', 1.0, 1.0, 100, 'open_ended_default', 25],
+           ['meta-llama/Meta-Llama-3-8B-Instruct', 1.0, 1.0, 100, 'open_ended_two_shot', 25],
+           ['meta-llama/Meta-Llama-3-8B-Instruct', 1.0, 1.0, 100, 'open_ended_two_shot_cot', 25],
            
-        #    ['meta-llama/Meta-Llama-3-8B-Instruct', 1.0, 1.0, 30, 'open_ended_default'],
-        #    ['meta-llama/Meta-Llama-3-8B-Instruct', 1.0, 1.0, 30, 'open_ended_two_shot'],
-        #    ['meta-llama/Meta-Llama-3-8B-Instruct', 1.0, 1.0, 30, 'open_ended_two_shot_cot'],
-           
-        #    ['meta-llama/Meta-Llama-3-70B', 1.0, 1.0, 30, 'open_ended_default'],
-        #     ['meta-llama/Meta-Llama-3-70B', 1.0, 1.0, 30, 'open_ended_two_shot'],
-        #     ['meta-llama/Meta-Llama-3-70B', 1.0, 1.0, 30, 'open_ended_two_shot_cot'],
+           ['meta-llama/Meta-Llama-3-70B', 1.0, 1.0, 100, 'open_ended_default', 25],
+            ['meta-llama/Meta-Llama-3-70B', 1.0, 1.0, 100, 'open_ended_two_shot', 25],
+            ['meta-llama/Meta-Llama-3-70B', 1.0, 1.0, 100, 'open_ended_two_shot_cot', 25],
             
-        #     ['meta-llama/Meta-Llama-3-70B-Instruct', 1.0, 1.0, 30, 'open_ended_default'],
-        #     ['meta-llama/Meta-Llama-3-70B-Instruct', 1.0, 1.0, 30, 'open_ended_two_shot'],
-        #     ['meta-llama/Meta-Llama-3-70B-Instruct', 1.0, 1.0, 30, 'open_ended_two_shot_cot'],
+            ['meta-llama/Meta-Llama-3-70B-Instruct', 1.0, 1.0, 100, 'open_ended_default', 25],
+            ['meta-llama/Meta-Llama-3-70B-Instruct', 1.0, 1.0, 100, 'open_ended_two_shot', 25],
+            ['meta-llama/Meta-Llama-3-70B-Instruct', 1.0, 1.0, 100, 'open_ended_two_shot_cot', 25],
             
+            ['codellama/CodeLlama-7b-hf', 1.0, 1.0, 100, 'open_ended_default', 25],
+            ['codellama/CodeLlama-7b-hf', 1.0, 1.0, 100, 'open_ended_two_shot', 25],
+            ['codellama/CodeLlama-7b-hf', 1.0, 1.0, 100, 'open_ended_two_shot_cot', 25],
+            
+            ['codellama/CodeLlama-7b-Instruct-hf', 1.0, 1.0, 100, 'open_ended_default', 25],
+            ['codellama/CodeLlama-7b-Instruct-hf', 1.0, 1.0, 100, 'open_ended_two_shot', 25],
+            ['codellama/CodeLlama-7b-Instruct-hf', 1.0, 1.0, 100, 'open_ended_two_shot_cot', 25],
+            
+            ['codellama/CodeLlama-34b-hf', 1.0, 1.0, 100, 'open_ended_default', 25],
+            ['codellama/CodeLlama-34b-hf', 1.0, 1.0, 100, 'open_ended_two_shot', 25],
+            ['codellama/CodeLlama-34b-hf', 1.0, 1.0, 100, 'open_ended_two_shot_cot', 25],
+            
+            ['codellama/CodeLlama-34b-Instruct-hf', 1.0, 1.0, 100, 'open_ended_default', 25],
+            ['codellama/CodeLlama-34b-Instruct-hf', 1.0, 1.0, 100, 'open_ended_two_shot', 25],
+            ['codellama/CodeLlama-34b-Instruct-hf', 1.0, 1.0, 100, 'open_ended_two_shot_cot', 25],
+            
+            ['tatsu-lab/alpaca-7b-wdiff', 1.0, 1.0, 100, 'open_ended_two_shot_cot', 25],
+           ['tatsu-lab/alpaca-7b-wdiff', 1.0, 1.0, 100, 'open_ended_default', 25],
+           ['tatsu-lab/alpaca-7b-wdiff', 1.0, 1.0, 100, 'open_ended_two_shot', 25],
+
+           
+           ['tatsu-lab/alpaca-farm-sft10k-wdiff', 1.0, 1.0, 100, 'open_ended_default', 25],
+           ['tatsu-lab/alpaca-farm-sft10k-wdiff', 1.0, 1.0, 100, 'open_ended_two_shot', 25],   
+           ['tatsu-lab/alpaca-farm-sft10k-wdiff', 1.0, 1.0, 100, 'open_ended_two_shot_cot', 25],
+           
+           ['tatsu-lab/alpaca-farm-ppo-human-wdiff', 1.0, 1.0, 100, 'open_ended_default', 25],
+           ['tatsu-lab/alpaca-farm-ppo-human-wdiff', 1.0, 1.0, 100, 'open_ended_two_shot', 25],
+           ['tatsu-lab/alpaca-farm-ppo-human-wdiff', 1.0, 1.0, 100, 'open_ended_two_shot_cot', 25],
+            
+             
         #     ## grid search over temperature and top_p, use 8B-Instruct and 70B-Instruct
             
         #     ['meta-llama/Meta-Llama-3-8B-Instruct', 0.75, 1.0, 30, 'open_ended_default'],
@@ -99,13 +126,13 @@ CONFIGS = [
             # ['codellama/CodeLlama-34b-Instruct-hf', 1.0, 1.0, 30, 'open_ended_two_shot'],
             # ['codellama/CodeLlama-34b-Instruct-hf', 1.0, 1.0, 30, 'open_ended_two_shot_cot'],
             
-            # ['codellama/CodeLlama-70b-Python-hf', 1.0, 1.0, 30, 'open_ended_default', 4],
-            # ['codellama/CodeLlama-70b-Python-hf', 1.0, 1.0, 30, 'open_ended_two_shot', 4], 
-            # ['codellama/CodeLlama-70b-Python-hf', 1.0, 1.0, 30, 'open_ended_two_shot_cot', 4],
+            ['codellama/CodeLlama-70b-Python-hf', 1.0, 1.0, 100, 'open_ended_default', 4],
+            ['codellama/CodeLlama-70b-Python-hf', 1.0, 1.0, 100, 'open_ended_two_shot', 4], 
+            ['codellama/CodeLlama-70b-Python-hf', 1.0, 1.0, 100, 'open_ended_two_shot_cot', 4],
             
-            # ['codellama/CodeLlama-70b-Instruct-hf', 1.0, 1.0, 30, 'open_ended_default', 4], 
-            # ['codellama/CodeLlama-70b-Instruct-hf', 1.0, 1.0, 30, 'open_ended_two_shot', 4], 
-            # ['codellama/CodeLlama-70b-Instruct-hf', 1.0, 1.0, 30, 'open_ended_two_shot_cot', 4]
+            ['codellama/CodeLlama-70b-Instruct-hf', 1.0, 1.0, 100, 'open_ended_default', 4], 
+            ['codellama/CodeLlama-70b-Instruct-hf', 1.0, 1.0, 100, 'open_ended_two_shot', 4], 
+            ['codellama/CodeLlama-70b-Instruct-hf', 1.0, 1.0, 100, 'open_ended_two_shot_cot', 4]
             
             # ['meta-llama/CodeLlama-70b-Python-hf', 1.0, 1.0, 30, 'open_ended_two_shot', 30], 
             # ['meta-llama/CodeLlama-70b-Python-hf', 1.0, 1.0, 30, 'open_ended_two_shot_cot', 30],
@@ -132,7 +159,7 @@ def validate_config(config):
 def create_yaml_config(model, temperature, top_p, num_return_sequences, template, batch_size, config_dir):
     """Create YAML configuration file."""
     config = {
-        'path_to_dataset': '../data/open_ended_final/dataset.jsonl',
+        'path_to_dataset': '../data/open_ended_final/dataset_update.jsonl',
         "experiment_output_root": EXPERIMENT_OUTPUT_ROOT,
         'model': model,
         'template': template,
@@ -215,7 +242,7 @@ def main(configurations):
         raise FileNotFoundError(f"Configuration directory {config_dir} not found.")
     # os.makedirs(config_dir, exist_ok=True)
 
-    logs_dir = '/data1/shypula/prog_diversity/open_ended_logs/'
+    logs_dir = '/data1/shypula/prog_diversity/open_ended_logs_v2/'
     os.makedirs(logs_dir, exist_ok=True)
     
     driver_stats_file = os.path.join(EXPERIMENT_OUTPUT_ROOT, f"{datetime.now().strftime('%Y-%m-%d_%H-%M-%S')}_driver_stats.tsv")

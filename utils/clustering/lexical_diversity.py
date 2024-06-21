@@ -15,20 +15,22 @@ from dataclasses import dataclass
 from tqdm import tqdm
 from parso.python.tokenize import tokenize as parso_tokenize
 
-bleu = BLEU(tokenize=None)
+bleu = BLEU(tokenize=None, effective_order=True)
 
 newline_pattern = re.compile(r'\n')
 
 gpt2_tokenizer = GPT2Tokenizer.from_pretrained('gpt2')
 _codebert_tokenzier = AutoTokenizer.from_pretrained("microsoft/codebert-base")
 
-def codebert_tokenizer(code_str):
+def codebert_tokenizer(code_str, remove_comments = False):
+    if remove_comments:
+        code_str = re.sub(r"#.*", "", code_str)
     encoded_input = _codebert_tokenzier(code_str)
     tokens = _codebert_tokenzier.convert_ids_to_tokens(encoded_input['input_ids'])
     return tokens
     
 
-def get_relevant_tokens_lexer(code_str):
+def get_relevant_tokens_lexer(code_str, remove_comments = False):
     # Convert the string to a bytes-like object
     bytes_io = BytesIO(code_str.encode('utf-8'))
     
@@ -36,19 +38,19 @@ def get_relevant_tokens_lexer(code_str):
     tokens = tokenize.tokenize(bytes_io.readline)
     
     # Define the irrelevant token types
-    relevant_tokens = _get_relevant_tokens(tokens)
+    relevant_tokens = _get_relevant_tokens(tokens, remove_comments)
     
     return relevant_tokens
 
-def get_relevant_tokens_parso(code_str): 
+def get_relevant_tokens_parso(code_str, remove_comments = False):
     """
     The python native tokenizer does not handle errors well, so we use the parso tokenizer instead which supports error handling
     """
     tokens = parso_tokenize(code_str, version_info=(3, 12))
-    relevant_tokens = _get_relevant_tokens(tokens)
+    relevant_tokens = _get_relevant_tokens(tokens, remove_comments)
     return relevant_tokens
 
-def _get_relevant_tokens(tokens):
+def _get_relevant_tokens(tokens, remove_comments = False):
     irrelevant_types = {
         tokenize.ENCODING,
         tokenize.ENDMARKER,
@@ -57,6 +59,8 @@ def _get_relevant_tokens(tokens):
         tokenize.NL,
         # tokenize.COMMENT,
     }
+    if remove_comments:
+        irrelevant_types.add(tokenize.COMMENT)
     
     # Extract the relevant tokens, ignore irrelevant ones, and exclude the token type for string representation
     # relevant_tokens = [token.string for token in tokens if token.type not in irrelevant_types or token.type == tokenize.DEDENT]
@@ -76,8 +80,10 @@ def _get_relevant_tokens(tokens):
 
 
 
-def get_relevant_tokens_tokenizer(code_str, tokenizer = codebert_tokenizer): 
+def get_relevant_tokens_tokenizer(code_str, tokenizer = codebert_tokenizer, remove_comments = False):
     # get the tokens from the tokenizer
+    if remove_comments:
+        code_str = re.sub(r"#.*", "", code_str)
     tokens = tokenizer.tokenize(code_str)
     return tokens
 
@@ -165,8 +171,8 @@ def parallel_corpus_self_bleu(sentences: List[str], ftokenizer: Callable[[str], 
     
 
 # https://aclanthology.org/N16-1014.pdf
-def distinct_n(corpus: List[str], n: int, ftokenizer: Callable[[str], List[str]]) -> float:
-    ngrams_list = [list(ngrams(ftokenizer(seq), n)) for seq in corpus]
+def distinct_n(corpus: List[str], n: int, ftokenizer: Callable[[str], List[str]], remove_comments: bool = False) -> float:
+    ngrams_list = [list(ngrams(ftokenizer(seq, remove_comments), n)) for seq in corpus]
     ngrams_set = set()
     for ngrams_seq in ngrams_list:
         ngrams_set.update(ngrams_seq)

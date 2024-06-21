@@ -3,6 +3,8 @@ import sys
 import yaml
 import subprocess
 from datetime import datetime
+import time
+from dataclasses import dataclass
 
 # EXPERIMENT_OUTPUT_ROOT = "/home/data1/cal_diverse/open_ended_results/"
 ALL_EXPERIMENT_OUTPUT_ROOT = "/data1/shypula/prog_diversity/all_experiments/"
@@ -22,10 +24,11 @@ PORT=9999
 STARTUP_TIMEOUT=2000
 VOLUME="saved_models"
 GENERATION_TIMEOUT=1000
-EVAL_WORKERS=10
+EVAL_WORKERS=20
 EVAl_TIMEOUT=60
 DOCKER_MAX_WORKERS=10
 DOCKER_COMMUNICATION_TIMEOUT=2000
+
 
 
 CONFIGS = [  
@@ -35,6 +38,43 @@ CONFIGS = [
            ['meta-llama/Meta-Llama-3-8B', 1.0, 1.0, 100, 'open_ended_two_shot_cot', 25],
            
     ]
+
+
+@dataclass
+class Arguments:
+    experiment_id: str 
+    experiment_output_dir: str
+    experiment_output_root: str 
+    path_to_dataset: str = '../data/open_ended/open_ended_final/dataset.jsonl'
+    model: str = 'gpt-3.5-turbo'
+    template: str = 'open_ended_default'
+    temperature: float = 1.0
+    top_p: float = 1.0
+    max_length: int = 768
+    num_return_sequences: int = 10
+    repetition_penalty: float = 1.0
+    parallel_samples: int = 5
+    port: int = 9999
+    devices_list: str = '4,5,6,7'
+    startup_timeout: int = 600
+    generation_timeout: int = 100
+    volume: str = 'saved_models'
+    path_to_hf_token: str = None
+    batch_size: int = None
+    max_programs: int = -1
+    eval_workers: int = 10
+    eval_timeout: int = 60
+    docker_communication_timeout: int = 2000
+    reformat_results: bool = True
+    
+    
+
+def load_arguments_from_yaml(yaml_file):
+    with open(yaml_file, 'r') as file:
+        args_dict = yaml.safe_load(file)
+    return Arguments(**args_dict)
+
+
 
 def validate_config(config):
     assert len(config) == 5 or len(config) == 6, f"Configuration must have 5 elements or 6 elements, got {len(config)}."
@@ -51,7 +91,7 @@ def validate_config(config):
         assert isinstance(config[5], int), f"Batch size must be an integer, got {type(config[5])}."
     return True
 
-def create_config(model, temperature, top_p, num_return_sequences, template, batch_size): 
+def create_config(model, temperature, top_p, num_return_sequences, template, batch_size, driver_root): 
     """Create YAML configuration file."""
     # experiment_string = f"{model_name_clean}_temp_{args.temperature}_top_p_{args.top_p}_max_length_{args.max_length}_num_return_sequences_{args.num_return_sequences}_repetition_penalty_{args.repetition_penalty}_{args.template}_{datetime.datetime.now().strftime('%Y-%m-%d_%H-%M-%S')}"
     model_name_clean = model.replace('/', '-')
@@ -61,7 +101,8 @@ def create_config(model, temperature, top_p, num_return_sequences, template, bat
         'path_to_dataset': '../data/open_ended_final/dataset_update.jsonl',
         'experiment_name': f"{model.replace('/', '-')}_temp_{temperature}_top_p_{top_p}_num_return_sequences_{num_return_sequences}_{template}_{datetime.now().strftime('%Y-%m-%d_%H-%M-%S')}",
         'experiment_id': experiment_id,
-        "experiment_output_root": ALL_EXPERIMENT_OUTPUT_ROOT,
+        "experiment_output_root": driver_root,
+        'experiment_output_dir': os.path.join(driver_root, experiment_id),
         'model': model,
         'template': template,
         'temperature': temperature,
@@ -182,7 +223,7 @@ def main(configurations):
 
     config_path_list = []
     for config in configurations:
-        full_config = create_config(*config)
+        full_config = create_config(*config, driver_root=this_driver_root)
         experiment_name = full_config['experiment_name']
         config_path = os.path.join(this_driver_root, f'{experiment_name}.yaml')
         with open(config_path, 'w') as f:

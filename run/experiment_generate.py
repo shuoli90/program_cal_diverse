@@ -21,16 +21,19 @@ from tqdm import tqdm
 from functools import partial
 import datetime
 import traceback
+import logging
 
 import signal
 import traceback
 
 
 
-def handler(pipe, signum, frame):
+def handler(pipe, experiment_output_dir, signum, frame):
     print("Signal received, handling cleanup...")
     try:
         print("Stopping and removing the service...")
+        with open(os.path.join(experiment_output_dir, 'error.txt'), 'w') as f:
+            f.write("Signal received, stopping and removing the service.")
         pipe.stop_service()
         pipe.remove_service()
         print("Cleanup complete, exiting...")
@@ -41,32 +44,38 @@ def handler(pipe, signum, frame):
         sys.exit(0)  # Ensure the process exits
 
 from functools import partial
+import sys 
+# add dirname of this file to the path
+sys.path.append(os.path.dirname(__file__))
+# import the arguments class
+from async_driver import Arguments, load_arguments_from_yaml
 
 # def partial_handler(pipe, args): 
 #     return partial(handler, pipe, args)
 
 
-@dataclass
-class Arguments:
-    experiment_string: str
-    path_to_dataset: str = '../data/open_ended/open_ended_final/dataset.jsonl'
-    experiment_output_root: str = '../collected/'
-    model: str = 'gpt-3.5-turbo'
-    template: str = 'open_ended_default'
-    temperature: float = 1.0
-    top_p: float = 1.0
-    max_length: int = 768
-    num_return_sequences: int = 10
-    repetition_penalty: float = 1.0
-    parallel_samples: int = 5
-    port: int = 9999
-    devices_list: str = '4,5,6,7'
-    startup_timeout: int = 600
-    generation_timeout: int = 100
-    volume: str = 'saved_models'
-    path_to_hf_token: str = None
-    batch_size: int = None
-    max_programs: int = -1
+# @dataclass
+# class Arguments:
+#     experiment_id: str 
+#     experiment_output_dir: str
+#     experiment_output_root: str 
+#     path_to_dataset: str = '../data/open_ended/open_ended_final/dataset.jsonl'
+#     model: str = 'gpt-3.5-turbo'
+#     template: str = 'open_ended_default'
+#     temperature: float = 1.0
+#     top_p: float = 1.0
+#     max_length: int = 768
+#     num_return_sequences: int = 10
+#     repetition_penalty: float = 1.0
+#     parallel_samples: int = 5
+#     port: int = 9999
+#     devices_list: str = '4,5,6,7'
+#     startup_timeout: int = 600
+#     generation_timeout: int = 100
+#     volume: str = 'saved_models'
+#     path_to_hf_token: str = None
+#     batch_size: int = None
+#     max_programs: int = -1
     
     
 template_dir = os.path.join(os.path.dirname(__file__), "../prompt_templates")
@@ -90,10 +99,10 @@ def _format_template(prompt, template: str):
     return formatted_prompt
 
 
-def load_arguments_from_yaml(yaml_file):
-    with open(yaml_file, 'r') as file:
-        args_dict = yaml.safe_load(file)
-    return Arguments(**args_dict)
+# def load_arguments_from_yaml(yaml_file):
+#     with open(yaml_file, 'r') as file:
+#         args_dict = yaml.safe_load(file)
+#     return Arguments(**args_dict)
 
 
 if __name__ == '__main__':
@@ -107,9 +116,15 @@ if __name__ == '__main__':
     model_name_clean = args.model.replace("/", "-")
     # experiment_string = f"{model_name_clean}_temp_{args.temperature}_top_p_{args.top_p}_max_length_{args.max_length}_num_return_sequences_{args.num_return_sequences}_repetition_penalty_{args.repetition_penalty}_{args.template}_{datetime.datetime.now().strftime('%Y-%m-%d_%H-%M-%S')}"
     experiment_id= args.experiment_id
-    experiment_output_dir = os.path.join(args.experiment_output_root, experiment_id)
+    experiment_output_dir = args.experiment_output_dir
+    
+    
         
     os.makedirs(experiment_output_dir, exist_ok=False) # there should be no existing directory (H-M)
+    
+    logs_file = os.path.join(experiment_output_dir, 'generation_log.log')
+    logging.basicConfig(filename=logs_file, level=logging.INFO)
+    logging.info(f"Starting generations for {experiment_id}")
     
     # save config
     with open(os.path.join(experiment_output_dir, 'config.yaml'), 'w') as f:
@@ -122,6 +137,7 @@ if __name__ == '__main__':
         # pipe = opensource.OpensourceModel(model_name=args.model)
         with open(args.path_to_hf_token, "r") as f:
             hf_key = f.read().strip()
+        logging.info(f"Starting HF Inference Service with model {args.model}")
         pipe = hf_inference.HFInferenceService(model_name=args.model, 
                                                 parallel_samples=max(args.parallel_samples,args.num_return_sequences),
                                                 port=args.port,
@@ -131,7 +147,7 @@ if __name__ == '__main__':
                                                 generation_timeout=args.generation_timeout,
                                                 hf_key=hf_key)
         # sigint_handler = partial_handler(pipe)
-        sigint_handler = partial(handler, pipe)
+        sigint_handler = partial(handler, pipe, experiment_output_dir)
         signal.signal(signal.SIGINT, sigint_handler)
     try:                                                
 
@@ -140,9 +156,11 @@ if __name__ == '__main__':
         df = pd.read_json(args.path_to_dataset, lines=True, orient='records')
         # get first 5 rows
         if args.max_programs > 0:
+            logging.info(f"Limiting to {args.max_programs} programs")
             df = df.iloc[:args.max_programs]
 
         # setup docker client
+        logging.info("Building Docker image")
         client, image = clustering.build_docker_image(clustering.clustering_abs_dir)
 
         results = []
@@ -179,15 +197,13 @@ if __name__ == '__main__':
             
             programs = [textprocessing.extract_python_code(g) for g in generateds_program]
             formatted_programs = [clustering.format_open_ended_code(program, extract_arguments_fun) for program in programs]
-            
     
             result['description'] = prompt
             result['programs'] = programs
             result['formatted_programs'] = formatted_programs
             testcase_inputs = row['input_testcases']
             result['input_testcases'] = testcase_inputs
-    
-                                                                                   
+                                  
             problem_id_dir = os.path.join(experiment_output_dir, f'problem_{problem_id}')   
             problem_id_gen_dir = os.path.join(problem_id_dir, 'generated')
             os.makedirs(problem_id_gen_dir, exist_ok=False)                 
@@ -214,8 +230,15 @@ if __name__ == '__main__':
         print('Done')
         
     except Exception as e:
-        traceback.print_exc()
+        # save some file if there is an error to communicate 
+        traceback_str = traceback.format_exc()
+        with open(os.path.join(experiment_output_dir, 'error.txt'), 'w') as f:
+            f.write("Error during generation\n")
+            f.write(traceback_str)
+        logging.error(f"Error during generation: {e}")
         if "gpt" not in args.model:
+            logging.info("Stopping and removing the service...")
             pipe.stop_service()
             pipe.remove_service()
+            logging.info("Cleanup complete, exiting...")
         raise e

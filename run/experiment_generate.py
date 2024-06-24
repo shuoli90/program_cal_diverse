@@ -119,6 +119,7 @@ if __name__ == '__main__':
     # experiment_id= args.experiment_id
     experiment_name = args.experiment_name
     experiment_output_dir = args.experiment_output_dir
+    is_directed = args.is_directed
     
     os.makedirs(experiment_output_dir, exist_ok=True) # there should be no existing directory, but maybe for re-running
     
@@ -187,7 +188,7 @@ if __name__ == '__main__':
             
             prompt = row['description_string']
             problem_id = row['problem_id']
-            extract_arguments_fun = row["extract_args_fun"]
+            extract_arguments_fun = row["extract_args_fun"] if not is_directed else None
             
             # store the row info into result
             result.update(row.to_dict())
@@ -217,7 +218,10 @@ if __name__ == '__main__':
             )
             
             programs = [textprocessing.extract_python_code(g) for g in raw_generations]
-            formatted_programs = [clustering.format_open_ended_code(program, extract_arguments_fun) for program in programs]
+            if is_directed: 
+                formatted_programs = programs
+            else: 
+                formatted_programs = [clustering.format_open_ended_code(program, extract_arguments_fun) for program in programs]
     
             result["raw_generations"] = raw_generations
             result['description'] = prompt

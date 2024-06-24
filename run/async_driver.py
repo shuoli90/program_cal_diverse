@@ -18,7 +18,6 @@ if not os.path.exists(ALL_EXPERIMENT_OUTPUT_ROOT):
     
 PATH_TO_HF_TOKEN="/home/shypula/hf_token.txt"
 
-DEVICES="0,1,2,3,4,5,6,7"
 
 MAX_LENGTH=1500
 REPITITION_PENALTY=1.0
@@ -31,13 +30,21 @@ EVAL_WORKERS=20
 EVAl_TIMEOUT=60
 DOCKER_MAX_WORKERS=20
 DOCKER_COMMUNICATION_TIMEOUT=2000
-MAX_PROGRAMS=-1
+MAX_PROGRAMS=20
 
+######## Important / To-Change Parameters ########
 
+DIRECTED_DF_PATH="../data/high_solve_rate_problems/val_descriptions_and_testcases.jsonl"
+OPEN_DF_PATH='../data/open_ended/open_ended_final/dataset.jsonl'
+IS_DIRECTED=True
+
+PATH_TO_DATASET = DIRECTED_DF_PATH if IS_DIRECTED else OPEN_DF_PATH
+    
+DEVICES="0,1,2,3,4,5,6,7"
 
 CONFIGS = [  
            # params: model, temperature, top_p, num_return_sequences, template, batch_size
-           ['meta-llama/Meta-Llama-3-8B', 1.0, 1.0, 100, 'open_ended_default', 25], 
+           ['meta-llama/Meta-Llama-3-8B', 1.0, 1.0, 100, 'open_ended_default', 25],
            ['meta-llama/Meta-Llama-3-70B-Instruct', 1.0, 1.0, 100, 'open_ended_default', 25],
            ['codellama/CodeLlama-34b-Instruct-hf', 1.0, 1.0, 100, 'open_ended_default', 25],
            ['tatsu-lab/alpaca-7b-wdiff', 1.0, 1.0, 100, 'open_ended_two_shot_cot', 25],
@@ -169,6 +176,7 @@ class Arguments:
     eval_timeout: int = 60
     docker_communication_timeout: int = 2000
     reformat_results: bool = True
+    is_directed: bool = False
     
     
 
@@ -201,7 +209,7 @@ def create_config(model, temperature, top_p, num_return_sequences, template, bat
     experiment_name = f"{model_name_clean}_temp_{temperature}_top_p_{top_p}_num_return_sequences_{num_return_sequences}_{template}" 
     experiment_id = experiment_name + f"_{datetime.now().strftime('%Y-%m-%d_%H-%M-%S')}"
     config = {
-        'path_to_dataset': '../data/open_ended_final/dataset_update.jsonl',
+        'path_to_dataset': PATH_TO_DATASET
         'experiment_name': experiment_name,
         'experiment_id': experiment_id,
         "experiment_output_root": driver_root,
@@ -225,6 +233,7 @@ def create_config(model, temperature, top_p, num_return_sequences, template, bat
         'eval_timeout': EVAl_TIMEOUT,
         'docker_communication_timeout': DOCKER_COMMUNICATION_TIMEOUT, 
         'max_programs': MAX_PROGRAMS, 
+        'is_directed': IS_DIRECTED
         
     }
     return config 

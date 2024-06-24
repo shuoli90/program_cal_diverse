@@ -141,27 +141,29 @@ if __name__ == '__main__':
         tokenizer = AutoTokenizer.from_pretrained(args.model) #, token=hf_key)
     else: 
         tokenizer = None
-    
-    # Setup generation pipeline
-    if 'gpt' in args.model or 'davinci' in args.model:
-        pipe = gpt.GPTModel(model_name=args.model)
-    else:
-        # pipe = opensource.OpensourceModel(model_name=args.model)
-        with open(args.path_to_hf_token, "r") as f:
-            hf_key = f.read().strip()
-        logging.info(f"Starting HF Inference Service with model {args.model}")
-        pipe = hf_inference.HFInferenceService(model_name=args.model, 
-                                                parallel_samples=max(args.parallel_samples,args.num_return_sequences),
-                                                port=args.port,
-                                                devices_list=args.devices_list,
-                                                volume=args.volume,
-                                                startup_timeout=args.startup_timeout,
-                                                generation_timeout=args.generation_timeout,
-                                                hf_key=hf_key)
-        # sigint_handler = partial_handler(pipe)
-        sigint_handler = partial(handler, pipe, experiment_output_dir)
-        signal.signal(signal.SIGINT, sigint_handler)
+        
+    pipe = None # for error handling
     try:                                                
+        # Setup generation pipeline
+        if 'gpt' in args.model or 'davinci' in args.model:
+            pipe = gpt.GPTModel(model_name=args.model)
+        else:
+            # pipe = opensource.OpensourceModel(model_name=args.model)
+            with open(args.path_to_hf_token, "r") as f:
+                hf_key = f.read().strip()
+            logging.info(f"Starting HF Inference Service with model {args.model}")
+            pipe = hf_inference.HFInferenceService(model_name=args.model, 
+                                                    parallel_samples=max(args.parallel_samples,args.num_return_sequences),
+                                                    port=args.port,
+                                                    devices_list=args.devices_list,
+                                                    volume=args.volume,
+                                                    startup_timeout=args.startup_timeout,
+                                                    generation_timeout=args.generation_timeout,
+                                                    hf_key=hf_key)
+            # sigint_handler = partial_handler(pipe)
+            sigint_handler = partial(handler, pipe, experiment_output_dir)
+            signal.signal(signal.SIGINT, sigint_handler)
+                                             
         # Read in data
         print(f'reading in data from {args.path_to_dataset}')
         df = pd.read_json(args.path_to_dataset, lines=True, orient='records')
@@ -269,8 +271,8 @@ if __name__ == '__main__':
         with open(os.path.join(experiment_output_dir, 'error.txt'), 'w') as f:
             f.write("Error during generation\n")
             f.write(traceback_str)
-        logging.error(f"Error during generation: {e}")
-        if "gpt" not in args.model:
+        logging.error(f"Error during generation: {traceback_str}")
+        if "gpt" not in args.model and pipe is not None:
             logging.info("Stopping and removing the service...")
             pipe.stop_service()
             pipe.remove_service()

@@ -1,0 +1,4 @@
+## DESCRIPTION 
+
+Now please implement the solution in python. Read in the input from stdin; do not return anything. In the __name__ == "__main__" the script should print out the result.
+It should terminate within 30 seconds.

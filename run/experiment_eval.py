@@ -56,6 +56,7 @@ import logging
 #     eval_timeout: int = 60
 #     docker_communication_timeout: int = 2000
 #     reformat_results: bool = True
+#     is_directed: bool = False
     
     
 template_dir = os.path.join(os.path.dirname(__file__), "../prompt_templates")
@@ -99,6 +100,7 @@ if __name__ == '__main__':
     prompt_template = readin_template(args.template)
     format_template_fun = partial(_format_template, template=prompt_template)
     
+    is_directed = args.is_directed
     model_name_clean = args.model.replace("/", "-")
     # experiment_string = f"{model_name_clean}_temp_{args.temperature}_top_p_{args.top_p}_max_length_{args.max_length}_num_return_sequences_{args.num_return_sequences}_repetition_penalty_{args.repetition_penalty}_{args.template}_{datetime.datetime.now().strftime('%Y-%m-%d_%H-%M-%S')}"
     experiment_id= args.experiment_id
@@ -126,7 +128,10 @@ if __name__ == '__main__':
             raw_generations = result['raw_generations']
             extract_arguments_fun = result['extract_args_fun']
             programs = [textprocessing.extract_python_code(g) for g in raw_generations]
-            formatted_programs = [clustering.format_open_ended_code(program, extract_arguments_fun) for program in programs]
+            if is_directed: 
+                formatted_programs = programs
+            else: 
+                formatted_programs = [clustering.format_open_ended_code(program, extract_arguments_fun) for program in programs]
             new_result['programs'] = programs
             new_result['formatted_programs'] = formatted_programs
             reformatted_results.append(new_result)
@@ -139,8 +144,9 @@ if __name__ == '__main__':
     for result in results:
         problem_id = result['problem_id']
         input_testcases = result['input_testcases']
+        orig_outputs = result['output_testcases'] if is_directed else None
         for generation_id, formatted_program in enumerate(result['formatted_programs']):
-            submit_tuples.append((problem_id, generation_id, formatted_program, input_testcases))
+            submit_tuples.append((problem_id, generation_id, formatted_program, input_testcases, orig_outputs))
 
     
     logging.info(f"Starting evaluation for {experiment_id}, {len(submit_tuples)} programs")
@@ -148,7 +154,7 @@ if __name__ == '__main__':
         output_records = Parallel(n_jobs=args.eval_workers, backend='threading')(delayed(clustering.instrument_code_docker)(
             generated_code=formatted_program, 
             testcase_inputs=testcase_inputs, 
-            orig_testcase_outputs=None, # testcase_outputs is None
+            orig_testcase_outputs=orig_outputs,
             image=image, 
             client=client,
             n_test_cases=-1, 
@@ -157,7 +163,7 @@ if __name__ == '__main__':
             verbose_docker=True, 
             problem_id=problem_id,
             generation_id=generation_id,
-        ) for problem_id, generation_id, formatted_program, testcase_inputs in submit_tuples)
+        ) for problem_id, generation_id, formatted_program, testcase_inputs, orig_outputs in submit_tuples)
     
     final_results = []
     
@@ -166,6 +172,11 @@ if __name__ == '__main__':
         matching_records = [record for record in output_records if record['problem_id'] == problem_id]
         sorted_records = sorted(matching_records, key=lambda x: x['generation_id'], reverse=False)
         result['output_records'] = sorted_records
+        
+        # add these to the records
+        for record in sorted_records:
+            record["formatted_code"] = result['formatted_programs'][record['generation_id']]
+            record["raw_generation"] = result['raw_generations'][record['generation_id']]
 
         coherent_records = clustering.get_coherent_records(sorted_records)
         incoherent_records = clustering.get_incoherent_records(sorted_records) 
@@ -184,10 +195,17 @@ if __name__ == '__main__':
             # report coherence
             if type(records) is not list:
                 records = [records]
+                
             coherences = clustering.get_coherence(records, strict=False)
             avg_coherence = np.mean([coherence == 1.0 for coherence in coherences])
             result[f'{recordtype}_coherence'] = avg_coherence
-
+            if is_directed: 
+                accuracies = clustering.report_accuracy(records)
+                avg_acc = np.mean([v==1.0 for k, v in accuracies.items()])
+                result[f'{recordtype}_accuracy'] = avg_acc
+            else: 
+                result[f'{recordtype}_accuracy'] = np.nan
+                    
             # semantic_clustering
             program_2_semantic_string, semantic_strings_2_programs = clustering.make_semantic_strings(records)
             semantic_count = len(semantic_strings_2_programs.keys())
@@ -236,7 +254,8 @@ if __name__ == '__main__':
             if recordtype == 'all':
                 logging.info(f"Saving results for problem {problem_id}, coherence: {avg_coherence}, semantic count: {semantic_count}")
                 _programs = [record['code'] for record in records]
-                raw_generations = result['raw_generations']
+                formatted_programs = [record['formatted_code'] for record in records]
+                raw_generations = [record['raw_generation'] for record in records]
 
                 for i, (generation, program, formatted_program, output_record, coherence) in enumerate(zip(raw_generations, _programs, formatted_programs, output_records, coherences)):
                     with open(os.path.join(problem_id_dir, f'gen_{i}_coh_{coherence}.txt'), 'w') as f:

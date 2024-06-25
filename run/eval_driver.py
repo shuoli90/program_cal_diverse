@@ -16,7 +16,7 @@ from typing import List
 # make the keys for the results
 base_keys = ['model', 'template', 'temperature', 'top_p', 'num_return_sequences']  
 
-results_stats_keys = ['coherence', 'semantic_count', 'semantic_proportion', 'distinct_1', 'distinct_2', 'distinct_3', 'distinct_4', 'distinct_5', 'distinct_6', 'distinct_1_no_comments', 'distinct_2_no_comments', 'distinct_3_no_comments', 'distinct_4_no_comments', 'distinct_5_no_comments', 'distinct_6_no_comments']
+results_stats_keys = ['coherence', 'semantic_count', 'semantic_proportion', 'accuracy', 'distinct_1', 'distinct_2', 'distinct_3', 'distinct_4', 'distinct_5', 'distinct_6', 'distinct_1_no_comments', 'distinct_2_no_comments', 'distinct_3_no_comments', 'distinct_4_no_comments', 'distinct_5_no_comments', 'distinct_6_no_comments']
 results_stats_keys = results_stats_keys + [f"{key}_{height}" for key in ['plain_subtrees', 'stripped_subtrees'] for height in [3,4,5,6]]
 results_stats_keys = [f"{recordtype}_{key}" for recordtype in ['all', 'coh', 'err'] for key in results_stats_keys]
 results_stats_keys.insert(4, 'coh_semantic_proportion_of_all')
@@ -145,7 +145,9 @@ if __name__ == "__main__":
     all_configs_paths = [p.strip() for p in all_configs_paths]
     
     assert isinstance(all_configs_paths, list), "all_configs must be a list"
-    assert all(os.path.exists(config_path) for config_path in all_configs_paths), f"all paths must exist, {'\n'.join([p for p in all_configs_paths if not os.path.exists(p)])}\ndidn't exist"
+    newline = "\n"
+    assert all(os.path.exists(config_path) for config_path in all_configs_paths), f"all paths must exist, {newline.join([p for p in all_configs_paths if not os.path.exists(p)])}\ndidn't exist"
+
     # load all the configs
     ## TODO: summarize results to the summary file as per previous driver
     monitor_directories_and_run(all_configs_paths, experiment_directory)

@@ -187,7 +187,7 @@ if __name__ == '__main__':
             result['index'] = index
             
             prompt = row['description_string']
-            problem_id = row['problem_id']
+            problem_id = row['problem_id'] if not is_directed else row["codenet_problem_id"]
             extract_arguments_fun = row["extract_args_fun"] if not is_directed else None
             
             # store the row info into result

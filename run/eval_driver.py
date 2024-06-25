@@ -145,7 +145,9 @@ if __name__ == "__main__":
     all_configs_paths = [p.strip() for p in all_configs_paths]
     
     assert isinstance(all_configs_paths, list), "all_configs must be a list"
-    assert all(os.path.exists(config_path) for config_path in all_configs_paths), f"all paths must exist, {'\n'.join([p for p in all_configs_paths if not os.path.exists(p)])}\ndidn't exist"
+    newline = "\n"
+    assert all(os.path.exists(config_path) for config_path in all_configs_paths), f"all paths must exist, {newline.join([p for p in all_configs_paths if not os.path.exists(p)])}\ndidn't exist"
+
     # load all the configs
     ## TODO: summarize results to the summary file as per previous driver
     monitor_directories_and_run(all_configs_paths, experiment_directory)

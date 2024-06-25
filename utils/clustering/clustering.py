@@ -200,6 +200,8 @@ def report_accuracy(output_records: List[Dict]):
         program_2_accuracy[output_record["code"]] = n_correct / len(output_record["testcase_outputs"])
     return program_2_accuracy
 
+
+
 def make_semantic_strings(output_records: List[Dict]):
     program_2_semantic_string = {}
     semantic_strings_2_programs = defaultdict(list)

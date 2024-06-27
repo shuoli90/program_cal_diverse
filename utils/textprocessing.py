@@ -62,11 +62,82 @@ if __name__ == '__main__':
     #     # If no match is found, return a message indicating no code was found
     #     # return "No Python code found."
     #     pass
+
+# def extract_formatted_code(text):
+#     # Updated regex to handle optional language specifiers and varying whitespace
+#     text = re.sub(r"```Python\n", "```", text)
     
+#     pattern = r"```(.*?)```"
+    
+#     # re.DOTALL allows dot (.) to match across multiple lines
+#     matches = re.findall(pattern, text, re.DOTALL)
+    
+#     if matches:
+#         # import pdb; pdb.set_trace()
+#         # Remove all matched code blocks from the text
+#         # text = re.sub(pattern, "", text)
+#         for match in matches:
+#             text = re.sub(match, "", text, count=1)
+#         # Join all code blocks with a newline and ensure a newline at the end of each block
+#         combined_code_blocks = '\n'.join(match.strip() for match in matches)
+#         return combined_code_blocks, text
+#     return "", text  # Return an empty string if no matches are found
+
+# def extract_formatted_code(text):
+#     text = re.sub(r"```Python\n", "```\n", text)
+#     lines = text.split('\n')  # Split the input text into lines
+#     inside_code_block = False  # State to keep track of whether we're inside a code block
+#     code_blocks = []  # List to hold all extracted code blocks
+#     current_code = []  # Buffer to hold the current code block content
+    
+#     non_matching_code = []
+
+#     for line in lines:
+#         if line.strip().startswith('```'):  # Check if the line starts with ```
+#             if inside_code_block:
+#                 # If already inside a block, this ``` signifies the end
+#                 code_blocks.append('\n'.join(current_code).strip())
+#                 current_code = []  # Reset current code block buffer
+#                 inside_code_block = False  # Toggle the state to 'not in a block'
+#             else:
+#                 # If not inside a block, this ``` signifies the start of a new block
+#                 inside_code_block = True
+#         elif inside_code_block:
+#             # If we're inside a code block, add this line to the current code block buffer
+#             current_code.append(line)
+#         else:
+#             non_matching_code.append(line)
+    
+#     if current_code:
+#         code_blocks.append('\n'.join(current_code).strip())
+
+#     return '\n\n'.join(code_blocks), '\n'.join(non_matching_code)
+
+
+statement_patterns = re.compile(r"""
+                                def\s+\w+\s*\(|
+                                class\s+\w+|
+                                if\s+__name__\s*==\s*\"__main__\":|
+                                while\s+.*:\s*$|           # while statements, ends with colon and optional whitespace until end of line    
+                                for\s+\w+\s+in\s+.*:\s*$|  # for statements
+                                if\s+.*:\s*$|              # if statements
+                                elif\s+.*:\s*$|            # elif statements
+                                else\s*:\s*$|              # else statements
+                                try\s*:\s*$|               # try statements
+                                except\s+.*:\s*$|          # except statements
+                                finally\s*:\s*$|           # finally statements
+                                with\s+.*:\s*$|            # with statements
+                                async\s+def\s+\w+\s*\(  # async def statements
+                                """, re.VERBOSE)
     
 def extract_python_code(text):
+    import ast 
     import re
-
+    
+    # formatted_code, text = extract_formatted_code(text)
+    # this is to handle markdown formatted code blocks
+    text = re.sub(r"```Python\n", "```\n", text)
+    text = re.sub(r"```", "```\n", text)
     lines = text.splitlines()
     python_code = ""
     block = ""
@@ -75,11 +146,14 @@ def extract_python_code(text):
     previous_indent = 0
 
     for line in lines:
+        # if "while True:" in line:   
+        #     import pdb; pdb.set_trace()
         stripped_line = line.lstrip()
         leading_spaces = len(line) - len(stripped_line)
 
         # Check if the line starts a new block or is a continuation of a block
-        if re.match(r"(def\s+\w+\s*\(|class\s+\w+|if\s+__name__\s*==\s*\"__main__\":)", stripped_line):
+        
+        if statement_patterns.match(stripped_line):
             # import pdb; pdb.set_trace()
             if not block_active or leading_spaces > previous_indent:
                 # if block_active:
@@ -94,6 +168,15 @@ def extract_python_code(text):
 
         # Handle import statements outside of block checks (ie. at the beginning of the file), decorators
         # if re.match(r"(from\s+[\w\.]+\s+import\s+[\w\.,\s*]+|import\s+[\w\.,\s*]+)", stripped_line) and not block_active:
+        if not block_active and stripped_line and not stripped_line.startswith('@'):
+            try: 
+                parsed_node = ast.parse(stripped_line).body
+                if parsed_node and isinstance(parsed_node[0], ast.stmt) and not isinstance(parsed_node[0], ast.Expr): 
+                    python_code += stripped_line + "\n"
+                    continue
+            except SyntaxError:
+                pass
+        
         if re.match(r"(from\s+[\w\.]+\s+import\s+[\w\.,\s*]+|import\s+[\w\.,\s*]+|@)", stripped_line) and not block_active:
             python_code += stripped_line + "\n"
             continue

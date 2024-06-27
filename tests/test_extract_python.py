@@ -427,6 +427,87 @@ def f(N: int, M: int, triples: List[Tuple[int, int, int]], Q: int, pairs: List[T
         print(res)
 """
 
+tc_12_in = """
+
+```while True:
+    print("Infinite loop")
+```
+then a bunch of text
+
+```Python
+def f(x):
+    return x + 1
+```
+
+finally some more text
+
+"""
+
+tc_12_out = """
+while True:
+    print("Infinite loop")
+
+def f(x):
+    return x + 1
+"""
+
+tc_13_in = """
+here is some text
+for i in range(10):
+    print(i)
+this
+"""
+
+tc_13_out = """
+for i in range(10):
+    print(i)
+"""
+
+tc_14_in = """
+try to understand the : following 
+if you think about the following: when you may have a colon after if, or things like that like
+while True: but followed with text, 
+it shouldn't match"""
+
+tc_14_out = ""
+
+tc_15_in = """
+if 2+2 == 4:
+    print("math is correct")
+    
+more text
+
+elif 2+2 == 5:
+    print("math is wrong")
+
+else:
+    print("math is unknown")
+"""
+
+tc_15_out = """
+if 2+2 == 4:
+    print("math is correct")
+
+elif 2+2 == 5:
+    print("math is wrong")
+
+else:
+    print("math is unknown")
+"""
+
+tc_16_in = """
+Not this
+if I have some stuff here that doesn't make sense:
+    this should still pass
+"""
+
+tc_16_out = """
+if I have some stuff here that doesn't make sense:
+    this should still pass
+"""
+
+
+
 
 
 
@@ -566,9 +647,31 @@ These test cases simulate different realistic scenarios you might encounter when
 import difflib
 
 
+tc_pairs = [
+    (tc_1_in, tc_1_out),
+    (tc_2_in, tc_2_out),
+    (tc_3_in, tc_3_out),
+    (tc_4_in, tc_4_out),
+    (tc_5_in, tc_5_out),
+    (tc_6_in, tc_6_out),
+    (tc_7_in, tc_7_out),
+    (tc_8_in, tc_8_out),
+    (tc_9_in, tc_9_out),
+    (tc_10_in, tc_10_out),
+    (tc_11_in, tc_11_out),
+    (tc_12_in, tc_12_out), 
+    (tc_13_in, tc_13_out),
+    (tc_14_in, tc_14_out),
+    (tc_15_in, tc_15_out),
+    (tc_16_in, tc_16_out),  
+]
+
 if __name__ == '__main__':
-    expected_tcs = [(tc_1_in, tc_1_out), (tc_2_in, tc_2_out), (tc_3_in, tc_3_out), (tc_4_in, tc_4_out), (tc_5_in, tc_5_out), (tc_6_in, tc_6_out), (tc_7_in, tc_7_out), (tc_8_in, tc_8_out), (tc_9_in, tc_9_out), (tc_10_in, tc_10_out), (tc_11_in, tc_11_out)]
-    for i, (tc_in, tc_out) in enumerate(expected_tcs):
+    
+    for i, (tc_in, tc_out) in enumerate(tc_pairs):
+        # skip test case 10
+        # if i == 9 or i ==10: 
+        #     continue
         print(f"Running Test Case {i+1}")
         result = extract_python_code(tc_in)
         

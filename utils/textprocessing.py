@@ -114,7 +114,7 @@ if __name__ == '__main__':
 #     return '\n\n'.join(code_blocks), '\n'.join(non_matching_code)
 
 
-statement_patterns = re.compile(r"""
+block_patterns = re.compile(r"""
                                 def\s+\w+\s*\(|
                                 class\s+\w+|
                                 if\s+__name__\s*==\s*\"__main__\":|
@@ -153,7 +153,7 @@ def extract_python_code(text):
 
         # Check if the line starts a new block or is a continuation of a block
         
-        if statement_patterns.match(stripped_line):
+        if block_patterns.match(stripped_line):
             # import pdb; pdb.set_trace()
             if not block_active or leading_spaces > previous_indent:
                 # if block_active:
@@ -166,8 +166,7 @@ def extract_python_code(text):
             block += line + "\n"
             continue
 
-        # Handle import statements outside of block checks (ie. at the beginning of the file), decorators
-        # if re.match(r"(from\s+[\w\.]+\s+import\s+[\w\.,\s*]+|import\s+[\w\.,\s*]+)", stripped_line) and not block_active:
+        
         if not block_active and stripped_line and not stripped_line.startswith('@'):
             try: 
                 parsed_node = ast.parse(stripped_line).body
@@ -176,7 +175,8 @@ def extract_python_code(text):
                     continue
             except SyntaxError:
                 pass
-        
+            
+        # Handle import statements outside of block checks (ie. at the beginning of the file), decorators
         if re.match(r"(from\s+[\w\.]+\s+import\s+[\w\.,\s*]+|import\s+[\w\.,\s*]+|@)", stripped_line) and not block_active:
             python_code += stripped_line + "\n"
             continue
@@ -185,11 +185,6 @@ def extract_python_code(text):
         if block_active and (leading_spaces > previous_indent or not stripped_line):
             block += line + "\n"
             continue
-        
-        # if empty line, skip
-        # if not stripped_line and block_active:
-            
-        #     continue
         
         else:
             # If the line is not part of an active block, close off any active block

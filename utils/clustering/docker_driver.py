@@ -11,9 +11,11 @@ if __name__ == '__main__':
     ## read in tc_dir as first argument
     tc_dir = sys.argv[1]
     timeout = int(sys.argv[2])
-    verbose = bool(sys.argv[3]) if len(sys.argv) > 3 else False
+    verbose = sys.argv[3].lower() == 'true' if len(sys.argv) > 3 else False
     n_test_cases = int(sys.argv[4]) if len(sys.argv) > 4 else -1
-    open_ended = sys.argv[4] if len(sys.argv) > 5 else False
+    open_ended = sys.argv[5].lower() == 'true' if len(sys.argv) > 5 else False
+    if verbose:
+        print(f"tc_dir: {tc_dir}, timeout: {timeout}, verbose: {verbose}, n_test_cases: {n_test_cases}, open_ended: {open_ended}")
     
     # then get all input.*.txt files in tc_dir
     input_files = glob.glob(os.path.join(tc_dir, 'input.*.txt'))
@@ -24,7 +26,7 @@ if __name__ == '__main__':
     
     # for each input_file, run os.path.join(tc_dir, soln.py) < input_file, use subprocess and feed in 
     for i, input_file in enumerate(input_files):
-        output_file = input_file.replace('input', 'output')
+        output_file = input_file.replace('input', 'output') # input.56.txt -> output.56.txt
         soln_file = os.path.join(tc_dir, 'soln.py')
         # run soln.py < input_file > output_file
         # if syntax error or runtime error, write to output.*.txt
@@ -55,7 +57,7 @@ if __name__ == '__main__':
                         with open(soln_file, 'r') as f:
                             print(f.read())
                             soln_printed = True
-                if "SyntaxError" in err:
+                if "SyntaxError" in err: # maybe we need to catch import error, or other errors
                     already_errored = True
                     with open(output_file, 'w') as f:
                         f.write("Syntax Error")
@@ -63,6 +65,7 @@ if __name__ == '__main__':
                     already_errored = True
                     with open(output_file, 'w') as f:
                         f.write("Runtime Error")
+                        # f.write(err)
                         
         except subprocess.TimeoutExpired:
             if verbose:

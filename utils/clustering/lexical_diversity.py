@@ -14,6 +14,7 @@ from transformers import AutoTokenizer
 from dataclasses import dataclass
 from tqdm import tqdm
 from parso.python.tokenize import tokenize as parso_tokenize
+import numpy as np 
 
 bleu = BLEU(tokenize=None, effective_order=True)
 
@@ -176,7 +177,8 @@ def distinct_n(corpus: List[str], n: int, ftokenizer: Callable[[str], List[str]]
     ngrams_set = set()
     for ngrams_seq in ngrams_list:
         ngrams_set.update(ngrams_seq)
-    return len(ngrams_set) / sum(map(len, ngrams_list)) if sum(map(len, ngrams_list)) > 0 else 0.0
+    # TODO: return np.nan if there are no valid n-grams in the corpus
+    return len(ngrams_set) / sum(map(len, ngrams_list)) if sum(map(len, ngrams_list)) > 1 else np.nan
 
 
 

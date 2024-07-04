@@ -22,6 +22,7 @@ from functools import partial
 import datetime
 import traceback
 import copy 
+import shutil   
 
 import signal
 import traceback
@@ -118,15 +119,18 @@ if __name__ == '__main__':
 
     # setup docker client                           
     client, image = clustering.build_docker_image(clustering.clustering_abs_dir, max_pool_size=args.eval_workers, timeout=args.docker_communication_timeout)
+    # TODO: if we want to re-run eval with new testcases, we need to over-write the testcases 
     results_df = pd.read_json(results_file, lines=True, orient='records') 
     results = results_df.to_dict(orient='records')
    
     if args.reformat_results:
+        # TODO: if we want to re-run eval with new testcases, we need to over-write the testcases 
+        # TODO: if we want to re-run eval with new testcases, we need to over-write the testcases 
         reformatted_results = []  
         for result in results: 
             new_result = copy.deepcopy(result)
             raw_generations = result['raw_generations']
-            extract_arguments_fun = result['extract_args_fun']
+            extract_arguments_fun = result['extract_args_fun'] if not is_directed else None
             programs = [textprocessing.extract_python_code(g) for g in raw_generations]
             if is_directed: 
                 formatted_programs = programs
@@ -142,7 +146,7 @@ if __name__ == '__main__':
     submit_tuples = []
     from itertools import chain, repeat
     for result in results:
-        problem_id = result['problem_id']
+        problem_id = result['problem_id'] if not is_directed else result["codenet_problem_id"]
         input_testcases = result['input_testcases']
         orig_outputs = result['output_testcases'] if is_directed else None
         for generation_id, formatted_program in enumerate(result['formatted_programs']):
@@ -150,6 +154,7 @@ if __name__ == '__main__':
 
     
     logging.info(f"Starting evaluation for {experiment_id}, {len(submit_tuples)} programs")
+    # TODO:  in a perfect world we should count how many times the docker thing fails, it is rare, but we should just be aware... 
     with tqdm_joblib(tqdm(desc="Processing Programs", total=len(submit_tuples))) as progress_bar:
         output_records = Parallel(n_jobs=args.eval_workers, backend='threading')(delayed(clustering.instrument_code_docker)(
             generated_code=formatted_program, 
@@ -163,20 +168,29 @@ if __name__ == '__main__':
             verbose_docker=True, 
             problem_id=problem_id,
             generation_id=generation_id,
+            open_ended=(not is_directed)
         ) for problem_id, generation_id, formatted_program, testcase_inputs, orig_outputs in submit_tuples)
     
     final_results = []
     
+    # results is a list of dictionaries that corresponds to each PROBLEM_ID
+    # whereas, output_records is the result corresponding to each generation 
+    # we need to re-organize the generations back into each problem id
     for result in results: 
-        problem_id = result['problem_id']
+        # filter all the matching records from execution, because we unpacked them earlier for faster execution
+        problem_id = result['problem_id'] if not is_directed else result["codenet_problem_id"]
         matching_records = [record for record in output_records if record['problem_id'] == problem_id]
         sorted_records = sorted(matching_records, key=lambda x: x['generation_id'], reverse=False)
         result['output_records'] = sorted_records
         
-        # add these to the records
+        # this is a bit complex; but we also want to add the original code (raw, un-formatted), back into the 
+        # individual (generation) record for better logging + analysis
+        # so we move the lists of raw/formatted -> individual records
         for record in sorted_records:
             record["formatted_code"] = result['formatted_programs'][record['generation_id']]
             record["raw_generation"] = result['raw_generations'][record['generation_id']]
+            # add the original code here that is not formatted, but is extracted 
+            record["extracted_code"] = result['programs'][record['generation_id']]
 
         coherent_records = clustering.get_coherent_records(sorted_records)
         incoherent_records = clustering.get_incoherent_records(sorted_records) 
@@ -203,6 +217,7 @@ if __name__ == '__main__':
                 accuracies = clustering.report_accuracy(records)
                 avg_acc = np.mean([v==1.0 for k, v in accuracies.items()])
                 result[f'{recordtype}_accuracy'] = avg_acc
+                program_2_diff = clustering.get_differing_outputs(records)
             else: 
                 result[f'{recordtype}_accuracy'] = np.nan
                     
@@ -210,16 +225,17 @@ if __name__ == '__main__':
             program_2_semantic_string, semantic_strings_2_programs = clustering.make_semantic_strings(records)
             semantic_count = len(semantic_strings_2_programs.keys())
             result[f'{recordtype}_semantic_count'] = semantic_count
-            result[f'{recordtype}_semantic_proportion'] = semantic_count / len(records) if len(records) > 0 else np.nan
+            result[f'{recordtype}_semantic_proportion'] = semantic_count / len(records) if len(records) > 1 else np.nan
             
             if recordtype =="coh": 
-                result["coh_semantic_proportion_of_all"] = semantic_count / len(recordtype_2_records["all"]) if len(recordtype_2_records["all"]) > 0 else np.nan
+                result["coh_semantic_proportion_of_all"] = semantic_count / len(recordtype_2_records["all"]) if len(recordtype_2_records["all"]) > 1 else np.nan
 
             result[f'{recordtype}_program_2_semantic_string'] = program_2_semantic_string
             result[f'{recordtype}_semantic_strings_2_programs'] = semantic_strings_2_programs
 
             # lexical diversity metrics 
-            programs = [record["code"] for record in records if record["code"] is not None]
+            programs = [record["extracted_code"] for record in records] 
+            raw_programs = [record["raw_generation"] for record in records]
             
             if len([p for p in programs if len(p) > 0]) > 2:
                 import tokenize
@@ -228,6 +244,9 @@ if __name__ == '__main__':
                     result[f'{recordtype}_distinct_{i}'] = distinct_n
                     distinct_n_no_comments = lexical_diversity.distinct_n(programs, i, lexical_diversity.get_relevant_tokens_parso, remove_comments=True)
                     result[f'{recordtype}_distinct_{i}_no_comments'] = distinct_n_no_comments
+                    distinct_n_raw = lexical_diversity.distinct_n(raw_programs, i, lexical_diversity.codebert_tokenizer, remove_comments=False)
+                    result[f'{recordtype}_distinct_{i}_raw'] = distinct_n_raw
+                    ## todo: also add in the diversity with the raw programs - the extracted code
                     
                 corpus_self_bleu = lexical_diversity.parallel_corpus_self_bleu(programs, lexical_diversity.get_relevant_tokens_parso, n_jobs=args.eval_workers, normalize=True)
                 result[f'{recordtype}_corpus_self_bleu'] = corpus_self_bleu
@@ -239,6 +258,7 @@ if __name__ == '__main__':
                 for i in range(1, 7):
                     result[f'{recordtype}_distinct_{i}'] = np.nan
                     result[f'{recordtype}_distinct_{i}_no_comments'] = np.nan
+                    result[f'{recordtype}_distinct_{i}_raw'] = np.nan
                 # result[f'{recordtype}_distinct_1'] = np.nan
                 # result[f'{recordtype}_distinct_2'] = np.nan
                 # result[f'{recordtype}_distinct_3'] = np.nan
@@ -253,19 +273,34 @@ if __name__ == '__main__':
             # save the results
             if recordtype == 'all':
                 logging.info(f"Saving results for problem {problem_id}, coherence: {avg_coherence}, semantic count: {semantic_count}")
-                _programs = [record['code'] for record in records]
+                # _programs = [record['code'] for record in records]
+                _programs = [record['extracted_code'] for record in records]
                 formatted_programs = [record['formatted_code'] for record in records]
                 raw_generations = [record['raw_generation'] for record in records]
-
-                for i, (generation, program, formatted_program, output_record, coherence) in enumerate(zip(raw_generations, _programs, formatted_programs, output_records, coherences)):
-                    with open(os.path.join(problem_id_dir, f'gen_{i}_coh_{coherence}.txt'), 'w') as f:
+                tups = zip(raw_generations, _programs, formatted_programs, records, coherences, [v for v in accuracies.values()]) if is_directed else zip(raw_generations, _programs, formatted_programs, records, coherences, repeat(None))
+                
+                
+                
+                for i, (generation, program, formatted_program, output_record, coherence, accuracy) in enumerate(tups):
+                    
+                    suffix = f"coh_{coherence}_acc_{accuracy}" if is_directed else f"coh_{coherence}"
+                    generation_dir = os.path.join(problem_id_dir, f'generation_{i}_{suffix}')
+                    if os.path.exists(generation_dir):
+                        shutil.rmtree(generation_dir)
+                    os.makedirs(generation_dir, exist_ok=True)
+                    with open(os.path.join(generation_dir, f'gen.txt'), 'w') as f:
                         f.write(generation)
-                    with open(os.path.join(problem_id_dir, f'prog_{i}_coh_{coherence}.txt'), 'w') as f:
+                    with open(os.path.join(generation_dir, f'prog.txt'), 'w') as f:
                         f.write(program)
-                    with open(os.path.join(problem_id_dir, f'formatted_prog_{i}_coh_{coherence}.txt'), 'w') as f:
+                    with open(os.path.join(generation_dir, f'formatted_prog.txt'), 'w') as f:
                         f.write(formatted_program)
-                    with open(os.path.join(problem_id_dir, f'output_record_{i}_coh_{coherence}.json'), 'w') as f:
+                    with open(os.path.join(generation_dir, f'output_record.json'), 'w') as f:
                         f.write(json.dumps(output_record))  
+                    if is_directed: 
+                        diff = program_2_diff[program]
+                        with open(os.path.join(generation_dir, f'diff.txt'), 'w') as f:
+                            f.write(f"Accuracy: {accuracy}\n")
+                            f.write("\n".join(diff))
                 
         with open(os.path.join(problem_id_dir, f'result.tsv'), 'w') as f:
             for k in results_stats_keys:
@@ -275,12 +310,14 @@ if __name__ == '__main__':
         logging.info(f"Results for problem {problem_id} saved")
         
     # save results to jsonl
-    with open(os.path.join(experiment_output_dir, 'results.jsonl'), 'w') as f:
-        for result in final_results:
-            f.write(json.dumps(result) + '\n')
+    # with open(os.path.join(experiment_output_dir, 'results.jsonl'), 'w') as f:
+    #     for result in final_results:
+    #         f.write(json.dumps(result) + '\n')
+    
     
     # concatenate all the results, summarize the statistics
     df_results = pd.DataFrame(final_results)
+    df_results.to_json(os.path.join(experiment_output_dir, 'results.jsonl'), orient='records', lines=True)
     
     df_results_stats = df_results[results_stats_keys]
     described = df_results_stats.apply(lambda x: x.dropna().describe())

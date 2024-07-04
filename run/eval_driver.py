@@ -15,8 +15,8 @@ from typing import List
 
 # make the keys for the results
 base_keys = ['model', 'template', 'temperature', 'top_p', 'num_return_sequences']  
-
-results_stats_keys = ['coherence', 'semantic_count', 'semantic_proportion', 'accuracy', 'distinct_1', 'distinct_2', 'distinct_3', 'distinct_4', 'distinct_5', 'distinct_6', 'distinct_1_no_comments', 'distinct_2_no_comments', 'distinct_3_no_comments', 'distinct_4_no_comments', 'distinct_5_no_comments', 'distinct_6_no_comments']
+# result[f'{recordtype}_distinct_{i}_raw'] = distinct_n_raw
+results_stats_keys = ['coherence', 'semantic_count', 'semantic_proportion', 'accuracy', 'distinct_1', 'distinct_2', 'distinct_3', 'distinct_4', 'distinct_5', 'distinct_6', 'distinct_1_no_comments', 'distinct_2_no_comments', 'distinct_3_no_comments', 'distinct_4_no_comments', 'distinct_5_no_comments', 'distinct_6_no_comments', 'distinct_1_raw', 'distinct_2_raw', 'distinct_3_raw', 'distinct_4_raw', 'distinct_5_raw', 'distinct_6_raw']
 results_stats_keys = results_stats_keys + [f"{key}_{height}" for key in ['plain_subtrees', 'stripped_subtrees'] for height in [3,4,5,6]]
 results_stats_keys = [f"{recordtype}_{key}" for recordtype in ['all', 'coh', 'err'] for key in results_stats_keys]
 results_stats_keys.insert(4, 'coh_semantic_proportion_of_all')
@@ -67,7 +67,7 @@ def init_results_file(results_dir: str):
         
 def write_out_results(results: dict, config: Arguments, stats_file: str, stats_pretty_file: str, is_error=False):
     results["model"] = config.model
-    results["template"] = config.template.replace("open_ended_", "")
+    results["template"] = config.template.replace("open_ended_", "").replace("directed_", "")
     results["temperature"] = config.temperature
     results["top_p"] = config.top_p
     results["num_return_sequences"] = config.num_return_sequences
@@ -94,7 +94,7 @@ def monitor_directories_and_run(configs_paths: List[str], experiment_directory):
     config_path_to_config = {config_path: load_arguments_from_yaml(config_path) for config_path in configs_paths}
     stats_file, stats_pretty_file = init_results_file(experiment_directory)
     consecutive_sleeps = 0
-    while configs_paths:
+    while configs_paths: # terminates when configs_paths  == []
         for config_path in configs_paths: 
             config = config_path_to_config[config_path]
             

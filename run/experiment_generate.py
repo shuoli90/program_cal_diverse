@@ -168,6 +168,14 @@ if __name__ == '__main__':
         # Read in data
         print(f'reading in data from {args.path_to_dataset}')
         df = pd.read_json(args.path_to_dataset, lines=True, orient='records')
+        # if is_directed and "val" in args.path_to_dataset:
+        #     # data/high_solve_rate_problems/val_longer_code_problem_ids.txt
+        #     path_to_problem_ids = os.path.join(os.path.dirname(args.path_to_dataset), "val_longer_code_problem_ids.txt")
+        #     with open(path_to_problem_ids, 'r') as f:
+        #         problem_ids = [p.strip() for p in f.readlines()]
+        #     df = df[df["codenet_problem_id"].isin(problem_ids)]
+        #     df = df.reset_index(drop=True)
+            # assert len(df["codenet_problem_id"].unique()) == 15, f"Expected 15 problems, got {len(df['codenet_problem_id'].unique())}"
         # get first 5 rows
         if args.max_programs > 0:
             logging.info(f"Limiting to {args.max_programs} programs")
@@ -188,6 +196,7 @@ if __name__ == '__main__':
             
             prompt = row['description_string']
             problem_id = row['problem_id'] if not is_directed else row["codenet_problem_id"]
+            # problem_id = row['problem_id'] 
             extract_arguments_fun = row["extract_args_fun"] if not is_directed else None
             
             # store the row info into result
@@ -258,9 +267,11 @@ if __name__ == '__main__':
 
         # save results to jsonl
         logging.info("Saving results to jsonl")
-        with open(os.path.join(experiment_output_dir, 'results.jsonl'), 'w') as f:
-            for result in results:
-                f.write(json.dumps(result) + '\n')
+        # with open(os.path.join(experiment_output_dir, 'results.jsonl'), 'w') as f:
+        #     for result in results:
+        #         f.write(json.dumps(result) + '\n')
+        # import pdb; pdb.set_trace()
+        pd.DataFrame(results).to_json(os.path.join(experiment_output_dir, 'results.jsonl'), orient='records', lines=True)
         logging.info("Done saving results to jsonl")
             
         if "gpt" not in args.model:
@@ -278,7 +289,6 @@ if __name__ == '__main__':
         logging.error(f"Error during generation: {traceback_str}")
         if "gpt" not in args.model and pipe is not None:
             logging.info("Stopping and removing the service...")
-            pipe.stop_service()
-            pipe.remove_service()
+            pipe.stop_and_remove_if_running()
             logging.info("Cleanup complete, exiting...")
         raise e

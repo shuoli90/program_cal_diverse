@@ -106,22 +106,35 @@ class HFInferenceManager:
         # command = f"docker run --detach --gpus 1,2,3,4,5,6,7 --shm-size 1g -p {port}:80 -v {volume}:/data ghcr.io/huggingface/text-generation-inference:latest --model-id {model} --max-best-of {max_best_of}"
         # if not model.startswith("codellama"):
         #     model = f"data/{model}"
-        model, max_best_of, port, devices_list, volume, startup_timeout = self.model_name, self.parallel_samples, self.port, self.devices_list, self.volume, self.startup_timeout
-        # command = f"docker run --detach -e HUGGING_FACE_HUB_TOKEN={self.hf_key} -e NVIDIA_VISIBLE_DEVICES={devices_list} --shm-size 1g -p {port}:80 -v {volume}:/data ghcr.io/huggingface/text-generation-inference::2.0.4 --model-id {model} --max-best-of {max_best_of}"
-        command = f"docker run --detach -e HUGGING_FACE_HUB_TOKEN={self.hf_key} --cpus=30 --gpus '\"device={devices_list}\"' --shm-size 1g -p {port}:80 -v {volume}:/data ghcr.io/huggingface/text-generation-inference:2.0.4 --model-id {model} --max-best-of {max_best_of}"
-        # command = f"docker run --detach -e HUGGING_FACE_HUB_TOKEN={self.hf_key} --gpus '\"device={devices_list}\"' -e MAX_BATCH_SIZE=1 --shm-size 1g -p {port}:80 -v {volume}:/data ghcr.io/huggingface/text-generation-inference:2.0 --model-id {model} --max-best-of {max_best_of}"
-        print("Starting container with command\n", command)
-        container_id = subprocess.check_output(command, shell=True).decode().strip()
-        # wait until the logs say Connected
-        while True:
-            logging.info(f"Waiting for container to start with id {container_id} and timeout {startup_timeout} left")
-            logs = subprocess.check_output(f"docker logs {container_id}", shell=True).decode()
-            if "Connected" in logs:
-                break
-            time.sleep(5)
-            startup_timeout -= 5
-            if startup_timeout <= 0:
-                raise TimeoutError("Timeout waiting for container to start")
+        max_tries = 5
+        is_success=False
+        while max_tries > 0 and not is_success:
+            model, max_best_of, port, devices_list, volume, startup_timeout = self.model_name, self.parallel_samples, self.port, self.devices_list, self.volume, self.startup_timeout
+            # command = f"docker run --detach -e HUGGING_FACE_HUB_TOKEN={self.hf_key} -e NVIDIA_VISIBLE_DEVICES={devices_list} --shm-size 1g -p {port}:80 -v {volume}:/data ghcr.io/huggingface/text-generation-inference::2.0.4 --model-id {model} --max-best-of {max_best_of}"
+            # --cpus=30
+            command = f"docker run --detach -e NCCL_P2P_DISABLE=1 -e HUGGING_FACE_HUB_TOKEN={self.hf_key} --gpus '\"device={devices_list}\"' --shm-size 1g -p {port}:80 -v {volume}:/data ghcr.io/huggingface/text-generation-inference:2.0.4 --model-id {model} --max-best-of {max_best_of}"
+            # command = f"docker run --detach -e HUGGING_FACE_HUB_TOKEN={self.hf_key} --gpus '\"device={devices_list}\"' -e MAX_BATCH_SIZE=1 --shm-size 1g -p {port}:80 -v {volume}:/data ghcr.io/huggingface/text-generation-inference:2.0 --model-id {model} --max-best-of {max_best_of}"
+            print("Starting container with command\n", command)
+            container_id = subprocess.check_output(command, shell=True).decode().strip()
+            # wait until the logs say Connected
+            while True:
+                logging.info(f"Waiting for container to start with id {container_id} and timeout {startup_timeout} left")
+                logs = subprocess.check_output(f"docker logs {container_id}", shell=True).decode()
+                if "Connected" in logs:
+                    is_success=True
+                    break
+                if "Error" in logs:
+                    max_tries -= 1
+                    logging.error(f"Error starting container, {max_tries} left")
+                    logging.info(f"Stopping container with id {container_id}")
+                    self.stop_generation_container()
+                    logging.info(f"Removing container with id {container_id}")
+                    self.remove_generation_container()
+                    break
+                time.sleep(5)
+                startup_timeout -= 5
+                if startup_timeout <= 0:
+                    raise TimeoutError("Timeout waiting for container to start")
         self.container_id = container_id
         
     def restart_generation_container(self): 
@@ -175,6 +188,11 @@ class HFInferenceService:
         
     def remove_service(self):
         self.manager.remove_generation_container()
+        
+    def stop_and_remove_if_running(self):
+        if self.manager.is_container_running():
+            self.stop_service()
+            self.remove_service
         
     def generate(self, prompt, max_new_tokens=512, num_samples=20, temperature=1.0, 
                     do_sample=True, top_p=1.0, top_k=None, return_dict_in_generate=False, batch_size=10, **kwargs):

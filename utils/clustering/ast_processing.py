@@ -369,8 +369,7 @@ def parallel_subtree_analysis(source_codes, n_jobs = -1, heights=[3,4,5,6], verb
         subtrees = [subtree for t in subtrees if t is not None for subtree in t.get_subtrees(typ, height)]
         # get proportion of distinct subtrees
         
-        ### TODO: We should return np.nan to ignore this! 
-        prop_distinct_plain = len(set(subtrees)) / len(subtrees) if len(subtrees) > 0 else np.nan
+        prop_distinct_plain = len(set(subtrees)) / len(subtrees) if len(subtrees) > 1 else np.nan
         return prop_distinct_plain
         
     for height in tqdm(heights, desc="Processing Heights"):

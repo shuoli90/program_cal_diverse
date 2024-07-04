@@ -173,6 +173,9 @@ if __name__ == '__main__':
     
     final_results = []
     
+    # results is a list of dictionaries that corresponds to each PROBLEM_ID
+    # whereas, output_records is the result corresponding to each generation 
+    # we need to re-organize the generations back into each problem id
     for result in results: 
         # filter all the matching records from execution, because we unpacked them earlier for faster execution
         problem_id = result['problem_id'] if not is_directed else result["codenet_problem_id"]
@@ -180,12 +183,13 @@ if __name__ == '__main__':
         sorted_records = sorted(matching_records, key=lambda x: x['generation_id'], reverse=False)
         result['output_records'] = sorted_records
         
-        # add these to the records
+        # this is a bit complex; but we also want to add the original code (raw, un-formatted), back into the 
+        # individual (generation) record for better logging + analysis
+        # so we move the lists of raw/formatted -> individual records
         for record in sorted_records:
             record["formatted_code"] = result['formatted_programs'][record['generation_id']]
             record["raw_generation"] = result['raw_generations'][record['generation_id']]
             # add the original code here that is not formatted, but is extracted 
-            # TODO: make sure this is indeed the original code, and not the formatted code
             record["extracted_code"] = result['programs'][record['generation_id']]
 
         coherent_records = clustering.get_coherent_records(sorted_records)
@@ -218,7 +222,6 @@ if __name__ == '__main__':
                 result[f'{recordtype}_accuracy'] = np.nan
                     
             # semantic_clustering
-            ## TODO: correct the semantic diversity metric / semantic counts, etc if there are 1 or 2 valid programs only 
             program_2_semantic_string, semantic_strings_2_programs = clustering.make_semantic_strings(records)
             semantic_count = len(semantic_strings_2_programs.keys())
             result[f'{recordtype}_semantic_count'] = semantic_count
@@ -231,11 +234,6 @@ if __name__ == '__main__':
             result[f'{recordtype}_semantic_strings_2_programs'] = semantic_strings_2_programs
 
             # lexical diversity metrics 
-            #  is not None and record["code"] != ""
-            # programs = [record["code"] for record in records if record["code"]]
-            # TODO: be careful if None; and empty string!!! 
-            # TODO: be careful if None; and empty string!!! 
-            # TODO: be careful if None; and empty string!!! 
             programs = [record["extracted_code"] for record in records] 
             raw_programs = [record["raw_generation"] for record in records]
             

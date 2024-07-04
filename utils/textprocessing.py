@@ -113,48 +113,98 @@ if __name__ == '__main__':
 
 #     return '\n\n'.join(code_blocks), '\n'.join(non_matching_code)
 
+def extract_and_remove_multiline_comments(code):
+    # Define patterns for """ and '''
+    triple_double_quotes_pattern = r'\"\"\"(.*?)\"\"\"'
+    triple_single_quotes_pattern = r"\'\'\'(.*?)\'\'\'"
+
+    # Initialize an empty list to store extracted comments
+    extracted_comments = []
+
+    # Extract and remove triple-double-quoted comments
+    extracted_comments.extend(re.findall(triple_double_quotes_pattern, code, flags=re.DOTALL))
+    cleaned_code = re.sub(triple_double_quotes_pattern, '', code, flags=re.DOTALL)
+
+    # Extract and remove triple-single-quoted comments
+    extracted_comments.extend(re.findall(triple_single_quotes_pattern, cleaned_code, flags=re.DOTALL))
+    cleaned_code = re.sub(triple_single_quotes_pattern, '', cleaned_code, flags=re.DOTALL)
+
+    extracted_comments = '"""\n' + "\n".join(extracted_comments) + '\n"""' if extracted_comments else ""
+    
+    return extracted_comments, cleaned_code
+
 
 block_patterns = re.compile(r"""
                                 def\s+\w+\s*\(|
                                 class\s+\w+|
                                 if\s+__name__\s*==\s*\"__main__\":|
-                                while\s+.*:\s*$|           # while statements, ends with colon and optional whitespace until end of line    
-                                for\s+\w+\s+in\s+.*:\s*$|  # for statements
-                                if\s+.*:\s*$|              # if statements
-                                elif\s+.*:\s*$|            # elif statements
+                                while\s*.*:\s*$|           # while statements, ends with colon and optional whitespace until end of line    
+                                for\s+.*in\s+.*:\s*$|  # for statements
+                                # for\s+\w+\s+in\s+.*:\s*$|  # for statements
+                                if\s*.*:\s*$|              # if statements
+                                elif\s*.*:\s*$|            # elif statements
                                 else\s*:\s*$|              # else statements
                                 try\s*:\s*$|               # try statements
-                                except\s+.*:\s*$|          # except statements
+                                except\s*.*:\s*$|          # except statements
                                 finally\s*:\s*$|           # finally statements
-                                with\s+.*:\s*$|            # with statements
+                                with\s*.*:\s*$|            # with statements
                                 async\s+def\s+\w+\s*\(  # async def statements
                                 """, re.VERBOSE)
+
+
+block_patterns_allow_addtl = re.compile(r"""
+                        # while\s+.*:.*|           # while statements, ends with colon and optional whitespace until end of line
+                        # for\s+.*in\s+.*:.*|  # for statements
+                        if\s+.*:.*|              # if statements
+                        elif\s+.*:.*|            # elif statements
+                        else\s*:.*|              # else statements
+                        # try\s*:.*|               # try statements
+                        # except\s+.*:.*|          # except statements
+                        # finally\s*:.*|           # finally statements
+                        # with\s+.*:.*|            # with statements
+                        """, re.VERBOSE)
+
+# def clean_control_structures(code):
+#     # Regex that matches 'if', 'elif', 'else' at the start of a line followed by anything up to the first colon
+#     pattern = r'^(if|elif|else).*?:'
+    
+#     # Substitute matched patterns with the keyword followed by a colon
+#     cleaned_code = re.sub(pattern, r'\1:', code, flags=re.MULTILINE)
+#     return cleaned_code
+                                
     
 def extract_python_code(text):
     import ast 
     import re
     
+    
     # formatted_code, text = extract_formatted_code(text)
     # this is to handle markdown formatted code blocks
+    multiline_comments, text = extract_and_remove_multiline_comments(text)
     text = re.sub(r"```Python\n", "```\n", text)
     text = re.sub(r"```", "```\n", text)
     lines = text.splitlines()
-    python_code = ""
+    # python_code = ""
+    python_code = multiline_comments + "\n"
     block = ""
     stack = []
     block_active = False
     previous_indent = 0
 
-    for line in lines:
-        # if "while True:" in line:   
-        #     import pdb; pdb.set_trace()
-        stripped_line = line.lstrip()
+    for line_idx, line in enumerate(lines):
+        
+        
+        stripped_line = re.sub(r'#.*$', '', line)  # Remove comments
+        stripped_line = stripped_line.lstrip() 
         leading_spaces = len(line) - len(stripped_line)
 
         # Check if the line starts a new block or is a continuation of a block
         
+        if not block_active and not stripped_line:
+            python_code += line + "\n"
+            continue
+        
         if block_patterns.match(stripped_line):
-            # import pdb; pdb.set_trace()
             if not block_active or leading_spaces > previous_indent:
                 # if block_active:
                 #     python_code += block.strip() + "\n\n"
@@ -165,22 +215,7 @@ def extract_python_code(text):
                 # stack.append(leading_spaces)
             block += line + "\n"
             continue
-
         
-        if not block_active and stripped_line and not stripped_line.startswith('@'):
-            try: 
-                parsed_node = ast.parse(stripped_line).body
-                if parsed_node and isinstance(parsed_node[0], ast.stmt) and not isinstance(parsed_node[0], ast.Expr): 
-                    python_code += stripped_line + "\n"
-                    continue
-            except SyntaxError:
-                pass
-            
-        # Handle import statements outside of block checks (ie. at the beginning of the file), decorators
-        if re.match(r"(from\s+[\w\.]+\s+import\s+[\w\.,\s*]+|import\s+[\w\.,\s*]+|@)", stripped_line) and not block_active:
-            python_code += stripped_line + "\n"
-            continue
-
         # If currently active in a block and the line is part of it, or empty line
         if block_active and (leading_spaces > previous_indent or not stripped_line):
             block += line + "\n"
@@ -198,6 +233,55 @@ def extract_python_code(text):
                 block = ""
                 block_active = False
                 # stack.clear()
+        
+
+        # Handle import statements outside of block checks (ie. at the beginning of the file), decorators
+        if re.match(r"(from\s+[\w\.]+\s+import\s+[\w\.,\s*]+|import\s+[\w\.,\s*]+|@)", stripped_line) and not block_active:
+            python_code += stripped_line + "\n"
+            continue        
+
+        
+        if not block_active and stripped_line and not stripped_line.startswith('@'):
+        # if stripped_line and not stripped_line.startswith('@'):
+            try: 
+                parsed_node = ast.parse(stripped_line).body
+                if parsed_node: # and isinstance(parsed_node[0], ast.stmt) and not isinstance(parsed_node[0], ast.Expr): 
+                    if not (isinstance(parsed_node[0], ast.Expr) and isinstance(parsed_node[0].value, ast.Name)):
+                        python_code += line + "\n"
+                        continue
+            except SyntaxError:
+                pass
+            
+            # if "else:print(y + (1867,1911,1925,1988)[e - 1])" in line: 
+            #     import pdb; pdb.set_trace()
+            try: 
+                # if 'else:print("no")' in line:
+                #     import pdb; pdb.set_trace()
+                if block_patterns_allow_addtl.match(stripped_line):
+                    block_pattern_sub = re.sub(".*:", "", stripped_line)
+                    parsed_node = ast.parse(block_pattern_sub).body
+                    if (isinstance(parsed_node[0], ast.Expr) and not isinstance(parsed_node[0].value, ast.Name)):
+                        # see that the next line is not indented 
+                        if line_idx + 1 >= len(lines):
+                            python_code += line + "\n"
+                        else: 
+                            next_line = lines[line_idx + 1]
+                            next_stripped_line = re.sub(r'#.*$', '', next_line).lstrip()
+                            next_leading_spaces = len(next_line) - len(next_stripped_line)
+                            if next_leading_spaces <= leading_spaces:
+                                python_code += line + "\n"
+                                continue
+                        
+            except (SyntaxError, IndexError): 
+                pass
+                        
+            
+            
+        
+            
+        
+
+        
 
     # Add the last block if there's any (ie EOF I think w/out any dedent)
     if block_active and block:

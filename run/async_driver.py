@@ -8,7 +8,8 @@ from dataclasses import dataclass
 import subprocess
 
 
-RUN_NAME="directed_debug"
+RUN_NAME="Directed_Sweep"
+# RUN_NAME="directed_debug"
 
 ALL_EXPERIMENT_OUTPUT_ROOT = "/data1/shypula/prog_diversity/all_experiments/"
 
@@ -26,12 +27,14 @@ PORT=9999
 STARTUP_TIMEOUT=2000
 VOLUME="saved_models"
 GENERATION_TIMEOUT=1000
-EVAL_WORKERS=20
+EVAL_WORKERS=30
 EVAl_TIMEOUT=60
 DOCKER_MAX_WORKERS=20
 DOCKER_COMMUNICATION_TIMEOUT=2000
-MAX_PROGRAMS=3
-DIRECTED_DF_PATH="../data/high_solve_rate_problems/val_descriptions_and_testcases.jsonl"
+MAX_PROGRAMS=-1
+# MAX_PROGRAMS=20
+# DIRECTED_DF_PATH="../data/high_solve_rate_problems/val_descriptions_and_testcases.jsonl"
+DIRECTED_DF_PATH="/home/shypula/program_cal_diverse/data/high_solve_rate_problems/reprocessed_problem_descriptions_v7_train.jsonl"
 OPEN_DF_PATH='../data/open_ended/open_ended_final/dataset.jsonl'
 
 ######## Important / To-Change Parameters ########
@@ -40,114 +43,141 @@ IS_DIRECTED=True
 
 PATH_TO_DATASET = DIRECTED_DF_PATH if IS_DIRECTED else OPEN_DF_PATH
     
-# DEVICES="0,1,2,3,4,5,6,7"
-DEVICES="6,7"
+DEVICES="0,1,2,3,4,5,6,7"
+# DEVICES="6,7"
 
 CONFIGS = [  
            # params: model, temperature, top_p, num_return_sequences, template, batch_size
-           ['meta-llama/Meta-Llama-3-8B-Instruct', 1.0, 1.0, 20, 'directed_default', 10],
-           ['meta-llama/Meta-Llama-3-8B-Instruct', 1.0, 0.5, 20, 'directed_default', 10],
-        #    ['meta-llama/Meta-Llama-3-8B', 1.0, 1.0, 100, 'open_ended_default', 25],
-        #    ['meta-llama/Meta-Llama-3-70B-Instruct', 1.0, 1.0, 10, 'directed_default', 5],
-        #    ['codellama/CodeLlama-34b-Instruct-hf', 1.0, 1.0, 100, 'open_ended_default', 25],
-        #    ['tatsu-lab/alpaca-7b-wdiff', 1.0, 1.0, 100, 'open_ended_two_shot_cot', 25],
+            ['meta-llama/Meta-Llama-3-70B-Instruct', 1.0, 1.0, 100, 'directed_default', 25],
+           ['meta-llama/Meta-Llama-3-70B-Instruct', 1.0, 1.0, 100, 'directed_two_shot', 25],
+           ['meta-llama/Meta-Llama-3-70B-Instruct', 1.0, 1.0, 100, 'directed_two_shot_cot', 25],
+           
+           ['meta-llama/Meta-Llama-3-8B-Instruct', 1.0, 1.0, 100, 'directed_default', 25],
+           ['meta-llama/Meta-Llama-3-8B-Instruct', 1.0, 1.0, 100, 'directed_two_shot', 25], 
+           ['meta-llama/Meta-Llama-3-8B-Instruct', 1.0, 1.0, 100, 'directed_two_shot_cot', 25], 
+           
+           ['codellama/CodeLlama-34b-Instruct-hf', 1.0, 1.0, 100, 'directed_default', 25],
+              ['codellama/CodeLlama-34b-Instruct-hf', 1.0, 1.0, 100, 'directed_two_shot', 25],
+                ['codellama/CodeLlama-34b-Instruct-hf', 1.0, 1.0, 100, 'directed_two_shot_cot', 25],
+                    
+              ['codellama/CodeLlama-7b-Instruct-hf', 1.0, 1.0, 100, 'directed_default', 25],
+                ['codellama/CodeLlama-7b-Instruct-hf', 1.0, 1.0, 100, 'directed_two_shot', 25],
+                    ['codellama/CodeLlama-7b-Instruct-hf', 1.0, 1.0, 100, 'directed_two_shot_cot', 25],
+                    
+         ['meta-llama/Meta-Llama-3-70B', 1.0, 1.0, 100, 'directed_default', 25],
+           ['meta-llama/Meta-Llama-3-70B', 1.0, 1.0, 100, 'directed_two_shot', 25],
+           ['meta-llama/Meta-Llama-3-70B', 1.0, 1.0, 100, 'directed_two_shot_cot', 25],
+            
            
            
-        # #    ['meta-llama/Meta-Llama-3-8B', 1.0, 1.0, 100, 'open_ended_default', 25], 
-        #    ['meta-llama/Meta-Llama-3-8B', 1.0, 1.0, 100, 'open_ended_two_shot', 25],
-        #    ['meta-llama/Meta-Llama-3-8B', 1.0, 1.0, 100, 'open_ended_two_shot_cot', 25],
            
-        #    ['meta-llama/Meta-Llama-3-8B-Instruct', 1.0, 1.0, 100, 'open_ended_default', 25],
-        #    ['meta-llama/Meta-Llama-3-8B-Instruct', 1.0, 1.0, 100, 'open_ended_two_shot', 25],
-        #    ['meta-llama/Meta-Llama-3-8B-Instruct', 1.0, 1.0, 100, 'open_ended_two_shot_cot', 25],
+        #    ['meta-llama/Meta-Llama-3-70B-Instruct', 1.0, 1.0, 100, 'directed_default', 25],
+        #    ['meta-llama/Meta-Llama-3-70B-Instruct', 1.0, 1.0, 100, 'directed_two_shot', 25],
+        #    ['meta-llama/Meta-Llama-3-70B-Instruct', 1.0, 1.0, 100, 'directed_two_shot_cot', 25],
            
-        #    ['meta-llama/Meta-Llama-3-70B', 1.0, 1.0, 100, 'open_ended_default', 25],
-        #     ['meta-llama/Meta-Llama-3-70B', 1.0, 1.0, 100, 'open_ended_two_shot', 25],
-        #     ['meta-llama/Meta-Llama-3-70B', 1.0, 1.0, 100, 'open_ended_two_shot_cot', 25],
+        #    ['meta-llama/Meta-Llama-3-8B-Instruct', 1.0, 1.0, 100, 'directed_default', 25],
+        #    ['meta-llama/Meta-Llama-3-8B', 1.0, 1.0, 100, 'directed_default', 25],
+        #    ['codellama/CodeLlama-34b-Instruct-hf', 1.0, 1.0, 100, 'directed_default', 25],
+        #    ['tatsu-lab/alpaca-7b-wdiff', 1.0, 1.0, 100, 'directed_two_shot_cot', 25],
+           
+           
+           ['meta-llama/Meta-Llama-3-8B', 1.0, 1.0, 100, 'directed_default', 25], 
+           ['meta-llama/Meta-Llama-3-8B', 1.0, 1.0, 100, 'directed_two_shot', 25],
+           ['meta-llama/Meta-Llama-3-8B', 1.0, 1.0, 100, 'directed_two_shot_cot', 25],
+           
+        #    ['meta-llama/Meta-Llama-3-8B-Instruct', 1.0, 1.0, 100, 'directed_default', 25],
+        #    ['meta-llama/Meta-Llama-3-8B-Instruct', 1.0, 1.0, 100, 'directed_two_shot', 25],
+        #    ['meta-llama/Meta-Llama-3-8B-Instruct', 1.0, 1.0, 100, 'directed_two_shot_cot', 25],
+           
+        #    ['meta-llama/Meta-Llama-3-70B', 1.0, 1.0, 100, 'directed_default', 25],
+        #     ['meta-llama/Meta-Llama-3-70B', 1.0, 1.0, 100, 'directed_two_shot', 25],
+        #     ['meta-llama/Meta-Llama-3-70B', 1.0, 1.0, 100, 'directed_two_shot_cot', 25],
             
-        #     # ['meta-llama/Meta-Llama-3-70B-Instruct', 1.0, 1.0, 100, 'open_ended_default', 25],
-        #     ['meta-llama/Meta-Llama-3-70B-Instruct', 1.0, 1.0, 100, 'open_ended_two_shot', 25],
-        #     ['meta-llama/Meta-Llama-3-70B-Instruct', 1.0, 1.0, 100, 'open_ended_two_shot_cot', 25],
+        #     # ['meta-llama/Meta-Llama-3-70B-Instruct', 1.0, 1.0, 100, 'directed_default', 25],
             
-        #     ['codellama/CodeLlama-7b-hf', 1.0, 1.0, 100, 'open_ended_default', 25],
-        #     ['codellama/CodeLlama-7b-hf', 1.0, 1.0, 100, 'open_ended_two_shot', 25],
-        #     ['codellama/CodeLlama-7b-hf', 1.0, 1.0, 100, 'open_ended_two_shot_cot', 25],
             
-        #     ['codellama/CodeLlama-7b-Instruct-hf', 1.0, 1.0, 100, 'open_ended_default', 25],
-        #     ['codellama/CodeLlama-7b-Instruct-hf', 1.0, 1.0, 100, 'open_ended_two_shot', 25],
-        #     ['codellama/CodeLlama-7b-Instruct-hf', 1.0, 1.0, 100, 'open_ended_two_shot_cot', 25],
+            ['codellama/CodeLlama-7b-hf', 1.0, 1.0, 100, 'directed_default', 25],
+            ['codellama/CodeLlama-7b-hf', 1.0, 1.0, 100, 'directed_two_shot', 25],
+            ['codellama/CodeLlama-7b-hf', 1.0, 1.0, 100, 'directed_two_shot_cot', 25],
             
-        #     ['codellama/CodeLlama-34b-hf', 1.0, 1.0, 100, 'open_ended_default', 25],
-        #     ['codellama/CodeLlama-34b-hf', 1.0, 1.0, 100, 'open_ended_two_shot', 25],
-        #     ['codellama/CodeLlama-34b-hf', 1.0, 1.0, 100, 'open_ended_two_shot_cot', 25],
+            # ['codellama/CodeLlama-7b-Instruct-hf', 1.0, 1.0, 100, 'directed_default', 25],
+            # ['codellama/CodeLlama-7b-Instruct-hf', 1.0, 1.0, 100, 'directed_two_shot', 25],
+            # ['codellama/CodeLlama-7b-Instruct-hf', 1.0, 1.0, 100, 'directed_two_shot_cot', 25],
             
-        #     # ['codellama/CodeLlama-34b-Instruct-hf', 1.0, 1.0, 100, 'open_ended_default', 25],
-        #     ['codellama/CodeLlama-34b-Instruct-hf', 1.0, 1.0, 100, 'open_ended_two_shot', 25],
-        #     ['codellama/CodeLlama-34b-Instruct-hf', 1.0, 1.0, 100, 'open_ended_two_shot_cot', 25],
+            ['codellama/CodeLlama-34b-hf', 1.0, 1.0, 100, 'directed_default', 25],
+            ['codellama/CodeLlama-34b-hf', 1.0, 1.0, 100, 'directed_two_shot', 25],
+            ['codellama/CodeLlama-34b-hf', 1.0, 1.0, 100, 'directed_two_shot_cot', 25],
             
-        #     # ['tatsu-lab/alpaca-7b-wdiff', 1.0, 1.0, 100, 'open_ended_two_shot_cot', 25],
-        #     ['tatsu-lab/alpaca-7b-wdiff', 1.0, 1.0, 100, 'open_ended_default', 25],
-        #     ['tatsu-lab/alpaca-7b-wdiff', 1.0, 1.0, 100, 'open_ended_two_shot', 25],
+            # ['codellama/CodeLlama-34b-Instruct-hf', 1.0, 1.0, 100, 'directed_default', 25],
+            # ['codellama/CodeLlama-34b-Instruct-hf', 1.0, 1.0, 100, 'directed_two_shot', 25],
+            # ['codellama/CodeLlama-34b-Instruct-hf', 1.0, 1.0, 100, 'directed_two_shot_cot', 25],
+            
+            
+            
+            
+        #     # ['tatsu-lab/alpaca-7b-wdiff', 1.0, 1.0, 100, 'directed_two_shot_cot', 25],
+        #     ['tatsu-lab/alpaca-7b-wdiff', 1.0, 1.0, 100, 'directed_default', 25],
+        #     ['tatsu-lab/alpaca-7b-wdiff', 1.0, 1.0, 100, 'directed_two_shot', 25],
 
            
-        #    ['tatsu-lab/alpaca-farm-sft10k-wdiff', 1.0, 1.0, 100, 'open_ended_default', 25],
-        #    ['tatsu-lab/alpaca-farm-sft10k-wdiff', 1.0, 1.0, 100, 'open_ended_two_shot', 25],   
-        #    ['tatsu-lab/alpaca-farm-sft10k-wdiff', 1.0, 1.0, 100, 'open_ended_two_shot_cot', 25],
+        #    ['tatsu-lab/alpaca-farm-sft10k-wdiff', 1.0, 1.0, 100, 'directed_default', 25],
+        #    ['tatsu-lab/alpaca-farm-sft10k-wdiff', 1.0, 1.0, 100, 'directed_two_shot', 25],   
+        #    ['tatsu-lab/alpaca-farm-sft10k-wdiff', 1.0, 1.0, 100, 'directed_two_shot_cot', 25],
            
-        #    ['tatsu-lab/alpaca-farm-ppo-human-wdiff', 1.0, 1.0, 100, 'open_ended_default', 25],
-        #    ['tatsu-lab/alpaca-farm-ppo-human-wdiff', 1.0, 1.0, 100, 'open_ended_two_shot', 25],
-        #    ['tatsu-lab/alpaca-farm-ppo-human-wdiff', 1.0, 1.0, 100, 'open_ended_two_shot_cot', 25],
+        #    ['tatsu-lab/alpaca-farm-ppo-human-wdiff', 1.0, 1.0, 100, 'directed_default', 25],
+        #    ['tatsu-lab/alpaca-farm-ppo-human-wdiff', 1.0, 1.0, 100, 'directed_two_shot', 25],
+        #    ['tatsu-lab/alpaca-farm-ppo-human-wdiff', 1.0, 1.0, 100, 'directed_two_shot_cot', 25],
            
            
-        # #    ['meta-llama/Meta-Llama-3-8B-Instruct', 1.0, 1.0, 100, 'open_ended_default', 25],
-        # #    ['meta-llama/Meta-Llama-3-70B-Instruct', 1.0, 1.0, 100, 'open_ended_default', 25],                
+        # #    ['meta-llama/Meta-Llama-3-8B-Instruct', 1.0, 1.0, 100, 'directed_default', 25],
+        # #    ['meta-llama/Meta-Llama-3-70B-Instruct', 1.0, 1.0, 100, 'directed_default', 25],                
            
         #    # go in increments of .2 until 1.2, then .1 until 2
-        #    ['meta-llama/Meta-Llama-3-8B-Instruct', 0.2, 1.0, 100, 'open_ended_default', 25], 
-        #       ['meta-llama/Meta-Llama-3-8B-Instruct', 0.4, 1.0, 100, 'open_ended_default', 25],
-        #         ['meta-llama/Meta-Llama-3-8B-Instruct', 0.6, 1.0, 100, 'open_ended_default', 25],
-        #             ['meta-llama/Meta-Llama-3-8B-Instruct', 0.8, 1.0, 100, 'open_ended_default', 25],
-        #                 # ['meta-llama/Meta-Llama-3-8B-Instruct', 1.0, 1.0, 100, 'open_ended_default', 25],
+        #    ['meta-llama/Meta-Llama-3-8B-Instruct', 0.2, 1.0, 100, 'directed_default', 25], 
+        #       ['meta-llama/Meta-Llama-3-8B-Instruct', 0.4, 1.0, 100, 'directed_default', 25],
+        #         ['meta-llama/Meta-Llama-3-8B-Instruct', 0.6, 1.0, 100, 'directed_default', 25],
+        #             ['meta-llama/Meta-Llama-3-8B-Instruct', 0.8, 1.0, 100, 'directed_default', 25],
+        #                 # ['meta-llama/Meta-Llama-3-8B-Instruct', 1.0, 1.0, 100, 'directed_default', 25],
             
             
-        #     ['meta-llama/Meta-Llama-3-8B-Instruct', 1.1, 1.0, 100, 'open_ended_default', 25],
-        #         ['meta-llama/Meta-Llama-3-8B-Instruct', 1.2, 1.0, 100, 'open_ended_default', 25],
-        #             ['meta-llama/Meta-Llama-3-8B-Instruct', 1.3, 1.0, 100, 'open_ended_default', 25],
-        #                 ['meta-llama/Meta-Llama-3-8B-Instruct', 1.4, 1.0, 100, 'open_ended_default', 25],
-        #                     ['meta-llama/Meta-Llama-3-8B-Instruct', 1.5, 1.0, 100, 'open_ended_default', 25],
-        #                         ['meta-llama/Meta-Llama-3-8B-Instruct', 1.6, 1.0, 100, 'open_ended_default', 25],
-        #                             ['meta-llama/Meta-Llama-3-8B-Instruct', 1.7, 1.0, 100, 'open_ended_default', 25],
-        #                                 ['meta-llama/Meta-Llama-3-8B-Instruct', 1.8, 1.0, 100, 'open_ended_default', 25],
-        #                                     ['meta-llama/Meta-Llama-3-8B-Instruct', 1.9, 1.0, 100, 'open_ended_default', 25],
-        #                                         ['meta-llama/Meta-Llama-3-8B-Instruct', 2.0, 1.0, 100, 'open_ended_default', 25],
+        #     ['meta-llama/Meta-Llama-3-8B-Instruct', 1.1, 1.0, 100, 'directed_default', 25],
+        #         ['meta-llama/Meta-Llama-3-8B-Instruct', 1.2, 1.0, 100, 'directed_default', 25],
+        #             ['meta-llama/Meta-Llama-3-8B-Instruct', 1.3, 1.0, 100, 'directed_default', 25],
+        #                 ['meta-llama/Meta-Llama-3-8B-Instruct', 1.4, 1.0, 100, 'directed_default', 25],
+        #                     ['meta-llama/Meta-Llama-3-8B-Instruct', 1.5, 1.0, 100, 'directed_default', 25],
+        #                         ['meta-llama/Meta-Llama-3-8B-Instruct', 1.6, 1.0, 100, 'directed_default', 25],
+        #                             ['meta-llama/Meta-Llama-3-8B-Instruct', 1.7, 1.0, 100, 'directed_default', 25],
+        #                                 ['meta-llama/Meta-Llama-3-8B-Instruct', 1.8, 1.0, 100, 'directed_default', 25],
+        #                                     ['meta-llama/Meta-Llama-3-8B-Instruct', 1.9, 1.0, 100, 'directed_default', 25],
+        #                                         ['meta-llama/Meta-Llama-3-8B-Instruct', 2.0, 1.0, 100, 'directed_default', 25],
                                         
                                         
-        #     ['meta-llama/Meta-Llama-3-70B-Instruct', 0.2, 1.0, 100, 'open_ended_default', 25], 
-        #         ['meta-llama/Meta-Llama-3-70B-Instruct', 0.4, 1.0, 100, 'open_ended_default', 25],
-        #             ['meta-llama/Meta-Llama-3-70B-Instruct', 0.6, 1.0, 100, 'open_ended_default', 25],
-        #                 ['meta-llama/Meta-Llama-3-70B-Instruct', 0.8, 1.0, 100, 'open_ended_default', 25],  
-        #                     # ['meta-llama/Meta-Llama-3-70B-Instruct', 1.0, 1.0, 100, 'open_ended_default', 25],                
+        #     ['meta-llama/Meta-Llama-3-70B-Instruct', 0.2, 1.0, 100, 'directed_default', 25], 
+        #         ['meta-llama/Meta-Llama-3-70B-Instruct', 0.4, 1.0, 100, 'directed_default', 25],
+        #             ['meta-llama/Meta-Llama-3-70B-Instruct', 0.6, 1.0, 100, 'directed_default', 25],
+        #                 ['meta-llama/Meta-Llama-3-70B-Instruct', 0.8, 1.0, 100, 'directed_default', 25],  
+        #                     # ['meta-llama/Meta-Llama-3-70B-Instruct', 1.0, 1.0, 100, 'directed_default', 25],                
                             
-        #     ['meta-llama/Meta-Llama-3-70B-Instruct', 1.1, 1.0, 100, 'open_ended_default', 25],
-        #         ['meta-llama/Meta-Llama-3-70B-Instruct', 1.2, 1.0, 100, 'open_ended_default', 25],
-        #             ['meta-llama/Meta-Llama-3-70B-Instruct', 1.3, 1.0, 100, 'open_ended_default', 25],
-        #                 ['meta-llama/Meta-Llama-3-70B-Instruct', 1.4, 1.0, 100, 'open_ended_default', 25],
-        #                     ['meta-llama/Meta-Llama-3-70B-Instruct', 1.5, 1.0, 100, 'open_ended_default', 25],
-        #                         ['meta-llama/Meta-Llama-3-70B-Instruct', 1.6, 1.0, 100, 'open_ended_default', 25],
-        #                             ['meta-llama/Meta-Llama-3-70B-Instruct', 1.7, 1.0, 100, 'open_ended_default', 25],  
-        #                                 ['meta-llama/Meta-Llama-3-70B-Instruct', 1.8, 1.0, 100, 'open_ended_default', 25],
-        #                                     ['meta-llama/Meta-Llama-3-70B-Instruct', 1.9, 1.0, 100, 'open_ended_default', 25],  
-        #                                         ['meta-llama/Meta-Llama-3-70B-Instruct', 2.0, 1.0, 100, 'open_ended_default', 25],  
+        #     ['meta-llama/Meta-Llama-3-70B-Instruct', 1.1, 1.0, 100, 'directed_default', 25],
+        #         ['meta-llama/Meta-Llama-3-70B-Instruct', 1.2, 1.0, 100, 'directed_default', 25],
+        #             ['meta-llama/Meta-Llama-3-70B-Instruct', 1.3, 1.0, 100, 'directed_default', 25],
+        #                 ['meta-llama/Meta-Llama-3-70B-Instruct', 1.4, 1.0, 100, 'directed_default', 25],
+        #                     ['meta-llama/Meta-Llama-3-70B-Instruct', 1.5, 1.0, 100, 'directed_default', 25],
+        #                         ['meta-llama/Meta-Llama-3-70B-Instruct', 1.6, 1.0, 100, 'directed_default', 25],
+        #                             ['meta-llama/Meta-Llama-3-70B-Instruct', 1.7, 1.0, 100, 'directed_default', 25],  
+        #                                 ['meta-llama/Meta-Llama-3-70B-Instruct', 1.8, 1.0, 100, 'directed_default', 25],
+        #                                     ['meta-llama/Meta-Llama-3-70B-Instruct', 1.9, 1.0, 100, 'directed_default', 25],  
+        #                                         ['meta-llama/Meta-Llama-3-70B-Instruct', 2.0, 1.0, 100, 'directed_default', 25],  
            
            
            
-        #    ['codellama/CodeLlama-70b-Python-hf', 1.0, 1.0, 100, 'open_ended_default', 4],
-        #    ['codellama/CodeLlama-70b-Python-hf', 1.0, 1.0, 100, 'open_ended_two_shot', 4], 
-        #    ['codellama/CodeLlama-70b-Python-hf', 1.0, 1.0, 100, 'open_ended_two_shot_cot', 4],
+        #    ['codellama/CodeLlama-70b-Python-hf', 1.0, 1.0, 100, 'directed_default', 4],
+        #    ['codellama/CodeLlama-70b-Python-hf', 1.0, 1.0, 100, 'directed_two_shot', 4], 
+        #    ['codellama/CodeLlama-70b-Python-hf', 1.0, 1.0, 100, 'directed_two_shot_cot', 4],
             
-        #    ['codellama/CodeLlama-70b-Instruct-hf', 1.0, 1.0, 100, 'open_ended_default', 4], 
-        #    ['codellama/CodeLlama-70b-Instruct-hf', 1.0, 1.0, 100, 'open_ended_two_shot', 4], 
-        #    ['codellama/CodeLlama-70b-Instruct-hf', 1.0, 1.0, 100, 'open_ended_two_shot_cot', 4]
+        #    ['codellama/CodeLlama-70b-Instruct-hf', 1.0, 1.0, 100, 'directed_default', 4], 
+        #    ['codellama/CodeLlama-70b-Instruct-hf', 1.0, 1.0, 100, 'directed_two_shot', 4], 
+        #    ['codellama/CodeLlama-70b-Instruct-hf', 1.0, 1.0, 100, 'directed_two_shot_cot', 4]
            
     ]
 
@@ -265,7 +295,7 @@ def main(configurations):
 
     assert all([validate_config(config) for config in configurations]), "Invalid configuration."
     # check that there are no duplicates
-    assert len(set(tuple(config) for config in configurations)) == len(configurations), "Duplicate configurations."
+    assert len(set(tuple(config) for config in configurations)) == len(configurations), f"Duplicate configurations, duplicates were {[config for config in configurations if configurations.count(config) > 1]}"
     
     configurations = [reformat_config(config) for config in configurations]
 

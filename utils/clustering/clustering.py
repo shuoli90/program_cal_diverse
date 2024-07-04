@@ -45,7 +45,7 @@ def format_open_ended_code(f_code: str, extract_arguments_code: str) -> str:
 
 
 def build_docker_image(path_to_dockerfile, max_pool_size=20, timeout=600, version_tag=None):
-    tag = 'python-test-case-runner'
+    tag = 'python-test-case-runner-conda:latest'
     client = docker.from_env(max_pool_size=max_pool_size, timeout=timeout)
     images = client.images.list()
     version_tag = version_tag or "latest"
@@ -84,13 +84,16 @@ def instrument_code_docker(generated_code: str, testcase_inputs: Dict[str, str],
     error_occured = False
     
     try: 
+        command = f"python tc_dir/driver.py /usr/src/app/tc_dir {indiv_tc_timeout} {verbose_docker} {n_test_cases} {open_ended}"
         if verbose_instrument: 
             logging.info(f"Now running docker container for tc_gen.py with testcase_dir {docker_working_dir} and image {image}.")
+            logging.info(f"Running command: {command}")
+            
         container = client.containers.run(
             image.tags[0],
             detach=True,
             volumes=volumes,
-            command=f"python tc_dir/driver.py /usr/src/app/tc_dir {indiv_tc_timeout} {verbose_docker} {n_test_cases} {open_ended}"
+            command=command
         )
         # print the container logs 
         docker_logs = ""
@@ -145,9 +148,9 @@ def instrument_code_docker(generated_code: str, testcase_inputs: Dict[str, str],
         
     output_record = {
         "code": generated_code, 
-        "testcase_outputs": testcase_outputs, 
+        "testcase_outputs": testcase_outputs, # from exectuing this generation
         "testcase_inputs": testcase_inputs, 
-        "orig_testcase_outputs": orig_testcase_outputs, 
+        "orig_testcase_outputs": orig_testcase_outputs, # ground truth
         "problem_id": problem_id,
         "generation_id": generation_id, 
         "error_string": docker_logs if error_occured else "No Error" 
@@ -213,6 +216,17 @@ def make_semantic_strings(output_records: List[Dict]):
         program_2_semantic_string[output_record["code"]] = semantic_string
         semantic_strings_2_programs[semantic_string].append(output_record["code"])
     return program_2_semantic_string, semantic_strings_2_programs
+
+def get_differing_outputs(output_records: List[Dict]):
+    program_2_diffs = {}
+    for output_record in output_records:
+        diffs = []
+        for tc_key, output in output_record["testcase_outputs"].items():
+            if output.strip() != output_record["orig_testcase_outputs"][tc_key].strip():
+                # diffs.append((tc_key, output, output_record["orig_testcase_outputs"][tc_key]))
+                diffs.append(f"testcase_id: {tc_key}, output: {output}, expected_output: {output_record['orig_testcase_outputs'][tc_key]}")
+        program_2_diffs[output_record["code"]] = diffs 
+    return program_2_diffs
     
 
 def make_clusters_iterative(programs: List[str],

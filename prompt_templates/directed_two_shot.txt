@@ -1,0 +1,114 @@
+# Problem 
+
+Sorting Tuples
+  Write a program which reads $n$ items and sorts them. Each item has attributes $\{value, weight, type, date, name\}$ and they are represented by $\{$ integer, integer, upper-case letter, integer, string $\}$ respectively. Sort the items based on the following priorities.
+first by value (ascending)
+in case of a tie, by weight (ascending)
+in case of a tie, by type (ascending in lexicographic order)
+in case of a tie, by date (ascending)
+in case of a tie, by name (ascending in lexicographic order)
+Input
+  The input is given in the following format.
+$n$
+$v_0 \; w_0 \; t_0 \; d_0 \; s_0$
+$v_1 \; w_1 \; t_1 \; d_1 \; s_1$
+:
+$v_{n-1} \; w_{n-1} \; t_{n-1} \; d_{n-1} \; s_{n-1}$
+  In the first line, the number of items $n$. In the following $n$ lines, attributes of each item are given. $v_i \; w_i \; t_i \; d_i \; s_i$ represent value, weight, type, date and name of the $i$-th item respectively.
+Output
+  Print attributes of each item in order. Print an item in a line and adjacency attributes should be separated by a single space.
+Constraints
+$1 \leq n \leq 100,000$
+$0 \leq v_i \leq 1,000,000,000$
+$0 \leq w_i \leq 1,000,000,000$
+$t_i$ is a upper-case letter
+$0 \leq d_i \leq 2,000,000,000,000$
+$1 \leq $ size of $s_i \leq 20$
+$s_i \ne s_j$ if $(i \ne j)$
+Sample Input 1
+5
+105 24 C 1500000000000 white
+100 23 C 1500000000000 blue
+105 23 A 1480000000000 pink
+110 25 B 1500000000000 black
+110 20 A 1300000000000 gree
+Sample Output 1
+100 23 C 1500000000000 blue
+105 23 A 1480000000000 pink
+105 24 C 1500000000000 white
+110 20 A 1300000000000 gree
+110 25 B 1500000000000 black
+
+# Solution
+
+def solve():
+    from sys import stdin
+    f_i = stdin
+    
+    n = int(f_i.readline())
+    
+    items = (f_i.readline().split() for i in range(n))
+    items = [(int(v), int(w), t, int(d), n) for v, w, t, d, n in items]
+    items.sort()
+    items = (' '.join(map(str, i)) for i in items)
+    
+    print('\n'.join(items))
+
+if __name__ == '__main__':
+    solve()
+
+# Problem 
+
+Koto City is a famous city with a grid-like road system, as shown in the figure below. Roads extending north-south and east-west are arranged at intervals of 1 km. Assume that Koto Station located at the southwesternmost intersection of Koto City is (0,0), and the position reached by going x km east and y km north from there is expressed as (x,y) (0 ≤ x,y).
+In anticipation of an increase in tourists due to the Olympics to be held in five years, the city has decided to build a new subway line starting from Koto Station. Currently, a plan is being made to lay rails from Koto Station to Shin-Koto Station, which will be newly built as the next station from Koto Station. The rails will be laid straight from Koto Station to Shin-Koto Station. Therefore, the length of the rails is √(x2+y2) when the location of Shin-Koto Station is expressed as (x,y). The cost of laying rails is required as much as the length of the rails laid, even if the length of the rails is a decimal such as 1.5 km.
+The location (x,y) of Shin-Koto Station has not yet been determined, and it is planned to be located in a place that satisfies the following conditions:
+It is an intersection. That is, x and y are integers, respectively.
+The shortest distance walked along the road from Koto Station is exactly D, that is, x + y = D.
+Among those that satisfy the above two conditions, choose the location of Shin-Koto Station so that the difference between the budget for rails that the city specifies and the cost of the rails |√(x2+y2) - E| is minimized. Here, |A| represents the absolute value of A. Your task is to create a program that outputs the cost difference between the cost of laying the rails and the budget when Shin-Koto Station is built as described above. 
+Input
+The input is composed of multiple data sets, and the number of data sets included in one input is up to 100. The format of each data set is as follows:
+D E
+D (1 ≤ D ≤ 100) is an integer representing the shortest distance walked along the road from Koto Station to Shin-Koto Station. E (1 ≤ E ≤ 100) is an integer representing the budget for rail construction.
+The end of the input is indicated by a line consisting of two zeros separated by a space.
+Output
+For each data set, output the difference between the cost of laying the rails when the rails are laid as described above and the budget in one line. There should be no absolute error greater than 10-3. If you do not output a newline at the end of each line or output unnecessary characters, it will be judged as incorrect answer, so be careful.
+Sample Input
+2 1
+7 5
+7 6
+7 7
+76 5
+8 41
+0 0
+Output for Sample Input
+0.4142135624
+0
+0.0827625303
+0
+48.7401153702
+33
+Hint
+For the first data set, the intersections that are 2 km along the road from Koto Station are expected to be candidates for the location of Shin-Koto Station
+******************************************************
+
+import math
+import sys
+def main():
+    while True:
+        d,e = map(int,input().split())
+        ans = sys.maxsize
+        if not d and not e:
+            return
+        for x in range(d+1):
+            y = d-x
+            ans = min(ans, abs(math.sqrt(float(x)**2+float(y)**2)-e))
+        print(ans)
+if __name__ == '__main__':
+    main()
+
+# Problem
+
+## DESCRIPTION 
+
+# Solution
+

@@ -138,8 +138,10 @@ if __name__ == '__main__':
     with open(os.path.join(experiment_output_dir, 'config.yaml'), 'w') as f:
         yaml.dump(args.__dict__, f)
         
-    if "tatsu" in args.model:
-        tokenizer = AutoTokenizer.from_pretrained(args.model) #, token=hf_key)
+    if "tatsu" or "codellama" in args.model.lower():
+        with open(args.path_to_hf_token, "r") as f:
+            hf_key = f.read().strip()
+        tokenizer = AutoTokenizer.from_pretrained(args.model, token=hf_key)
     else: 
         tokenizer = None
         
@@ -209,6 +211,11 @@ if __name__ == '__main__':
                 # alpaca-from max total-tokens = 2048
                 n_prompt_tokens = len(tokenizer(formatted_prompt)['input_ids'])
                 max_tokens = min(2000 - n_prompt_tokens, args.max_length)
+                
+            elif "codellama" in args.model.lower():
+                n_prompt_tokens = len(tokenizer(formatted_prompt)['input_ids'])
+                max_tokens = min(4000 - n_prompt_tokens, args.max_length)
+                
             else: 
                 max_tokens = args.max_length
             

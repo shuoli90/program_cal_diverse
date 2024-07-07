@@ -8,7 +8,7 @@ from dataclasses import dataclass
 import subprocess
 
 
-RUN_NAME="Directed_Sweep"
+RUN_NAME="Model_Prompt_Temp_Sweep"
 # RUN_NAME="directed_debug"
 
 ALL_EXPERIMENT_OUTPUT_ROOT = "/data1/shypula/prog_diversity/all_experiments/"
@@ -27,19 +27,20 @@ PORT=9999
 STARTUP_TIMEOUT=2000
 VOLUME="saved_models"
 GENERATION_TIMEOUT=1000
-EVAL_WORKERS=30
+EVAL_WORKERS=20
 EVAl_TIMEOUT=60
 DOCKER_MAX_WORKERS=20
 DOCKER_COMMUNICATION_TIMEOUT=2000
 MAX_PROGRAMS=-1
+USE_PREVIOUS_EXECUTIONS=False
 # MAX_PROGRAMS=20
 # DIRECTED_DF_PATH="../data/high_solve_rate_problems/val_descriptions_and_testcases.jsonl"
 DIRECTED_DF_PATH="/home/shypula/program_cal_diverse/data/high_solve_rate_problems/reprocessed_problem_descriptions_v7_train.jsonl"
-OPEN_DF_PATH='../data/open_ended/open_ended_final/dataset.jsonl'
+OPEN_DF_PATH='../data/open_ended_final/dataset_update.jsonl'
 
 ######## Important / To-Change Parameters ########
 
-IS_DIRECTED=True
+IS_DIRECTED=False
 
 PATH_TO_DATASET = DIRECTED_DF_PATH if IS_DIRECTED else OPEN_DF_PATH
     
@@ -48,25 +49,44 @@ DEVICES="0,1,2,3,4,5,6,7"
 
 CONFIGS = [  
            # params: model, temperature, top_p, num_return_sequences, template, batch_size
-            ['meta-llama/Meta-Llama-3-70B-Instruct', 1.0, 1.0, 100, 'directed_default', 25],
-           ['meta-llama/Meta-Llama-3-70B-Instruct', 1.0, 1.0, 100, 'directed_two_shot', 25],
-           ['meta-llama/Meta-Llama-3-70B-Instruct', 1.0, 1.0, 100, 'directed_two_shot_cot', 25],
+            ['meta-llama/Meta-Llama-3-70B', 1.0, 1.0, 100, 'open_ended_default', 25],
+            
+           ['meta-llama/Meta-Llama-3-70B-Instruct', 1.0, 1.0, 100, 'open_ended_default', 25],
+           ['meta-llama/Meta-Llama-3-70B-Instruct', 1.0, 1.0, 100, 'open_ended_two_shot_cot', 25],
            
-           ['meta-llama/Meta-Llama-3-8B-Instruct', 1.0, 1.0, 100, 'directed_default', 25],
-           ['meta-llama/Meta-Llama-3-8B-Instruct', 1.0, 1.0, 100, 'directed_two_shot', 25], 
-           ['meta-llama/Meta-Llama-3-8B-Instruct', 1.0, 1.0, 100, 'directed_two_shot_cot', 25], 
+           ['codellama/CodeLlama-7b-Instruct-hf', 1.0, 1.0, 100, 'open_ended_default', 25],
+           ['codellama/CodeLlama-34b-hf', 1.0, 1.0, 100, 'open_ended_two_shot_cot', 25],
            
-           ['codellama/CodeLlama-34b-Instruct-hf', 1.0, 1.0, 100, 'directed_default', 25],
-              ['codellama/CodeLlama-34b-Instruct-hf', 1.0, 1.0, 100, 'directed_two_shot', 25],
-                ['codellama/CodeLlama-34b-Instruct-hf', 1.0, 1.0, 100, 'directed_two_shot_cot', 25],
+           ['codellama/CodeLlama-70b-Python-hf', 1.0, 1.0, 100, 'open_ended_default', 4],
+           ['codellama/CodeLlama-70b-Python-hf', 1.0, 1.0, 100, 'open_ended_two_shot', 4], 
+           ['codellama/CodeLlama-70b-Python-hf', 1.0, 1.0, 100, 'open_ended_two_shot_cot', 4],
+            
+           ['codellama/CodeLlama-70b-Instruct-hf', 1.0, 1.0, 100, 'open_ended_default', 4], 
+           ['codellama/CodeLlama-70b-Instruct-hf', 1.0, 1.0, 100, 'open_ended_two_shot', 4], 
+           ['codellama/CodeLlama-70b-Instruct-hf', 1.0, 1.0, 100, 'open_ended_two_shot_cot', 4]
+           
+           
+           
+           
+        #     ['meta-llama/Meta-Llama-3-70B-Instruct', 1.0, 1.0, 100, 'directed_default', 25],
+        #    ['meta-llama/Meta-Llama-3-70B-Instruct', 1.0, 1.0, 100, 'directed_two_shot', 25],
+        #    ['meta-llama/Meta-Llama-3-70B-Instruct', 1.0, 1.0, 100, 'directed_two_shot_cot', 25],
+           
+        #    ['meta-llama/Meta-Llama-3-8B-Instruct', 1.0, 1.0, 100, 'directed_default', 25],
+        #    ['meta-llama/Meta-Llama-3-8B-Instruct', 1.0, 1.0, 100, 'directed_two_shot', 25], 
+        #    ['meta-llama/Meta-Llama-3-8B-Instruct', 1.0, 1.0, 100, 'directed_two_shot_cot', 25], 
+           
+        #    ['codellama/CodeLlama-34b-Instruct-hf', 1.0, 1.0, 100, 'directed_default', 25],
+        #       ['codellama/CodeLlama-34b-Instruct-hf', 1.0, 1.0, 100, 'directed_two_shot', 25],
+        #         ['codellama/CodeLlama-34b-Instruct-hf', 1.0, 1.0, 100, 'directed_two_shot_cot', 25],
                     
-              ['codellama/CodeLlama-7b-Instruct-hf', 1.0, 1.0, 100, 'directed_default', 25],
-                ['codellama/CodeLlama-7b-Instruct-hf', 1.0, 1.0, 100, 'directed_two_shot', 25],
-                    ['codellama/CodeLlama-7b-Instruct-hf', 1.0, 1.0, 100, 'directed_two_shot_cot', 25],
+        #       ['codellama/CodeLlama-7b-Instruct-hf', 1.0, 1.0, 100, 'directed_default', 25],
+        #         ['codellama/CodeLlama-7b-Instruct-hf', 1.0, 1.0, 100, 'directed_two_shot', 25],
+        #             ['codellama/CodeLlama-7b-Instruct-hf', 1.0, 1.0, 100, 'directed_two_shot_cot', 25],
                     
-         ['meta-llama/Meta-Llama-3-70B', 1.0, 1.0, 100, 'directed_default', 25],
-           ['meta-llama/Meta-Llama-3-70B', 1.0, 1.0, 100, 'directed_two_shot', 25],
-           ['meta-llama/Meta-Llama-3-70B', 1.0, 1.0, 100, 'directed_two_shot_cot', 25],
+        #  ['meta-llama/Meta-Llama-3-70B', 1.0, 1.0, 100, 'directed_default', 25],
+        #    ['meta-llama/Meta-Llama-3-70B', 1.0, 1.0, 100, 'directed_two_shot', 25],
+        #    ['meta-llama/Meta-Llama-3-70B', 1.0, 1.0, 100, 'directed_two_shot_cot', 25],
             
            
            
@@ -81,9 +101,9 @@ CONFIGS = [
         #    ['tatsu-lab/alpaca-7b-wdiff', 1.0, 1.0, 100, 'directed_two_shot_cot', 25],
            
            
-           ['meta-llama/Meta-Llama-3-8B', 1.0, 1.0, 100, 'directed_default', 25], 
-           ['meta-llama/Meta-Llama-3-8B', 1.0, 1.0, 100, 'directed_two_shot', 25],
-           ['meta-llama/Meta-Llama-3-8B', 1.0, 1.0, 100, 'directed_two_shot_cot', 25],
+        #    ['meta-llama/Meta-Llama-3-8B', 1.0, 1.0, 100, 'directed_default', 25], 
+        #    ['meta-llama/Meta-Llama-3-8B', 1.0, 1.0, 100, 'directed_two_shot', 25],
+        #    ['meta-llama/Meta-Llama-3-8B', 1.0, 1.0, 100, 'directed_two_shot_cot', 25],
            
         #    ['meta-llama/Meta-Llama-3-8B-Instruct', 1.0, 1.0, 100, 'directed_default', 25],
         #    ['meta-llama/Meta-Llama-3-8B-Instruct', 1.0, 1.0, 100, 'directed_two_shot', 25],
@@ -96,17 +116,17 @@ CONFIGS = [
         #     # ['meta-llama/Meta-Llama-3-70B-Instruct', 1.0, 1.0, 100, 'directed_default', 25],
             
             
-            ['codellama/CodeLlama-7b-hf', 1.0, 1.0, 100, 'directed_default', 25],
-            ['codellama/CodeLlama-7b-hf', 1.0, 1.0, 100, 'directed_two_shot', 25],
-            ['codellama/CodeLlama-7b-hf', 1.0, 1.0, 100, 'directed_two_shot_cot', 25],
+            # ['codellama/CodeLlama-7b-hf', 1.0, 1.0, 100, 'directed_default', 25],
+            # ['codellama/CodeLlama-7b-hf', 1.0, 1.0, 100, 'directed_two_shot', 25],
+            # ['codellama/CodeLlama-7b-hf', 1.0, 1.0, 100, 'directed_two_shot_cot', 25],
             
             # ['codellama/CodeLlama-7b-Instruct-hf', 1.0, 1.0, 100, 'directed_default', 25],
             # ['codellama/CodeLlama-7b-Instruct-hf', 1.0, 1.0, 100, 'directed_two_shot', 25],
             # ['codellama/CodeLlama-7b-Instruct-hf', 1.0, 1.0, 100, 'directed_two_shot_cot', 25],
             
-            ['codellama/CodeLlama-34b-hf', 1.0, 1.0, 100, 'directed_default', 25],
-            ['codellama/CodeLlama-34b-hf', 1.0, 1.0, 100, 'directed_two_shot', 25],
-            ['codellama/CodeLlama-34b-hf', 1.0, 1.0, 100, 'directed_two_shot_cot', 25],
+            # ['codellama/CodeLlama-34b-hf', 1.0, 1.0, 100, 'directed_default', 25],
+            # ['codellama/CodeLlama-34b-hf', 1.0, 1.0, 100, 'directed_two_shot', 25],
+            # ['codellama/CodeLlama-34b-hf', 1.0, 1.0, 100, 'directed_two_shot_cot', 25],
             
             # ['codellama/CodeLlama-34b-Instruct-hf', 1.0, 1.0, 100, 'directed_default', 25],
             # ['codellama/CodeLlama-34b-Instruct-hf', 1.0, 1.0, 100, 'directed_two_shot', 25],
@@ -210,6 +230,7 @@ class Arguments:
     docker_communication_timeout: int = 2000
     reformat_results: bool = True
     is_directed: bool = False
+    use_previous_executions: bool = False
     
     
 
@@ -269,7 +290,8 @@ def create_config(model, temperature, top_p, num_return_sequences, template, bat
         'eval_timeout': EVAl_TIMEOUT,
         'docker_communication_timeout': DOCKER_COMMUNICATION_TIMEOUT, 
         'max_programs': MAX_PROGRAMS, 
-        'is_directed': IS_DIRECTED
+        'is_directed': IS_DIRECTED, 
+        'use_previous_executions': USE_PREVIOUS_EXECUTIONS
         
     }
     return config 

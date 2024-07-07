@@ -30,6 +30,7 @@ import traceback
 from async_driver import Arguments, load_arguments_from_yaml
 from eval_driver import results_stats_keys
 import logging 
+import glob 
 
 # @dataclass
 # class Arguments:
@@ -58,6 +59,7 @@ import logging
 #     docker_communication_timeout: int = 2000
 #     reformat_results: bool = True
 #     is_directed: bool = False
+#     use_previous_executions: bool = False
     
     
 template_dir = os.path.join(os.path.dirname(__file__), "../prompt_templates")
@@ -106,6 +108,7 @@ if __name__ == '__main__':
     # experiment_string = f"{model_name_clean}_temp_{args.temperature}_top_p_{args.top_p}_max_length_{args.max_length}_num_return_sequences_{args.num_return_sequences}_repetition_penalty_{args.repetition_penalty}_{args.template}_{datetime.datetime.now().strftime('%Y-%m-%d_%H-%M-%S')}"
     experiment_id= args.experiment_id
     experiment_output_dir = args.experiment_output_dir
+    use_previous_executions = args.use_previous_executions
     results_file = os.path.join(experiment_output_dir, 'results.jsonl')
     assert os.path.exists(results_file)
     log_file = os.path.join(experiment_output_dir, 'eval_log.txt')
@@ -151,26 +154,69 @@ if __name__ == '__main__':
         orig_outputs = result['output_testcases'] if is_directed else None
         for generation_id, formatted_program in enumerate(result['formatted_programs']):
             submit_tuples.append((problem_id, generation_id, formatted_program, input_testcases, orig_outputs))
+        
+    
+    ## This portion here and the following check is a shortcut to avoid re-executing the same code if re-evaluating
+    if use_previous_executions: 
+        previous_results_exist = True    
+        
+        # check for existing output records 
+        # we must have the generation_{i}_suffix dir for each generation as well 
+        # and output_record must exist for each generation
+        problem_id_2_num_generations = {result['problem_id']: len(result['formatted_programs']) for result in results}
+        for problem_id, num_generations in problem_id_2_num_generations.items():
+            problem_id_dir = os.path.join(experiment_output_dir, f'problem_{problem_id}')
+            if not os.path.exists(problem_id_dir):
+                previous_results_exist = False
+                break
+            generation_dirs = glob.glob(os.path.join(problem_id_dir, 'generation_*'))
+            if len(generation_dirs) != num_generations:
+                previous_results_exist = False
+                break
+            if not all([os.path.exists(os.path.join(generation_dir, 'output_record.json')) for generation_dir in generation_dirs]):
+                previous_results_exist = False
+                break
+            
+    else: 
+        previous_results_exist = False
+        
+    use_previous_executions = use_previous_executions and previous_results_exist
 
-    
-    logging.info(f"Starting evaluation for {experiment_id}, {len(submit_tuples)} programs")
-    # TODO:  in a perfect world we should count how many times the docker thing fails, it is rare, but we should just be aware... 
-    with tqdm_joblib(tqdm(desc="Processing Programs", total=len(submit_tuples))) as progress_bar:
-        output_records = Parallel(n_jobs=args.eval_workers, backend='threading')(delayed(clustering.instrument_code_docker)(
-            generated_code=formatted_program, 
-            testcase_inputs=testcase_inputs, 
-            orig_testcase_outputs=orig_outputs,
-            image=image, 
-            client=client,
-            n_test_cases=-1, 
-            indiv_tc_timeout=60, 
-            verbose_instrument=False, 
-            verbose_docker=True, 
-            problem_id=problem_id,
-            generation_id=generation_id,
-            open_ended=(not is_directed)
-        ) for problem_id, generation_id, formatted_program, testcase_inputs, orig_outputs in submit_tuples)
-    
+    if not use_previous_executions:
+        logging.info(f"Starting evaluation for {experiment_id}, {len(submit_tuples)} programs")
+        # TODO:  in a perfect world we should count how many times the docker thing fails, it is rare, but we should just be aware... 
+        with tqdm_joblib(tqdm(desc="Executing Programs", total=len(submit_tuples))) as progress_bar:
+            output_records = Parallel(n_jobs=args.eval_workers, backend='threading')(delayed(clustering.instrument_code_docker)(
+                generated_code=formatted_program, 
+                testcase_inputs=testcase_inputs, 
+                orig_testcase_outputs=orig_outputs,
+                image=image, 
+                client=client,
+                n_test_cases=-1, 
+                indiv_tc_timeout=60, 
+                verbose_instrument=False, 
+                verbose_docker=True, 
+                problem_id=problem_id,
+                generation_id=generation_id,
+                open_ended=(not is_directed)
+            ) for problem_id, generation_id, formatted_program, testcase_inputs, orig_outputs in submit_tuples)
+            
+    else: 
+        logging.info(f"Skipping evaluation for {experiment_id}, previous results exist")
+        output_records = []
+        
+        for result in results:
+            problem_id = result['problem_id'] if not is_directed else result["codenet_problem_id"]
+            n_generations = len(result['formatted_programs'])
+            problem_id_dir = os.path.join(experiment_output_dir, f'problem_{problem_id}')
+            generation_dirs = glob.glob(os.path.join(problem_id_dir, 'generation_*'))
+            assert len(generation_dirs) == n_generations, f"Generation dirs mismatch for {problem_id}, {len(generation_dirs)} != {n_generations}"
+            for generation_dir in generation_dirs:
+                with open(os.path.join(generation_dir, 'output_record.json'), 'r') as f:
+                    output_record = json.load(f)
+                output_records.append(output_record)
+        
+
     final_results = []
     
     # results is a list of dictionaries that corresponds to each PROBLEM_ID
@@ -237,6 +283,7 @@ if __name__ == '__main__':
             programs = [record["extracted_code"] for record in records] 
             raw_programs = [record["raw_generation"] for record in records]
             
+            # if we have more than 2 'non-empty' programs, we can calculate the diversity metrics
             if len([p for p in programs if len(p) > 0]) > 2:
                 import tokenize
                 for i in range(1, 7):
@@ -247,8 +294,11 @@ if __name__ == '__main__':
                     distinct_n_raw = lexical_diversity.distinct_n(raw_programs, i, lexical_diversity.codebert_tokenizer, remove_comments=False)
                     result[f'{recordtype}_distinct_{i}_raw'] = distinct_n_raw
                     ## todo: also add in the diversity with the raw programs - the extracted code
-                    
-                corpus_self_bleu = lexical_diversity.parallel_corpus_self_bleu(programs, lexical_diversity.get_relevant_tokens_parso, n_jobs=args.eval_workers, normalize=True)
+                # just skip it for now 
+                if use_previous_executions:
+                    corpus_self_bleu = np.nan
+                else: 
+                    corpus_self_bleu = lexical_diversity.parallel_corpus_self_bleu(programs, lexical_diversity.get_relevant_tokens_parso, n_jobs=args.eval_workers, normalize=True)
                 result[f'{recordtype}_corpus_self_bleu'] = corpus_self_bleu
                 parallel_subtree_results = parallel_subtree_analysis(programs, n_jobs=args.eval_workers, heights=[3,4,5,6], verbose=False)
                 for key, height_results in parallel_subtree_results.items():

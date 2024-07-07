@@ -34,6 +34,8 @@ def main(experiment_driver_root):
         experiment_output_dir = arguments.experiment_output_dir
         logging.info(f"Running experiment with configuration {config_path} at {experiment_output_dir}")
         logging.info(f"Running 'python experiment_generate.py {config_path}'")
+        
+        # max tries - retry over here ! 
         p = subprocess.run(["python", "experiment_generate.py", config_path], cwd=RUN_DIR)
         if p.returncode != 0:
             logging.error(f"Error in {config_path}, return code {p.returncode}")

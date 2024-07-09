@@ -145,7 +145,7 @@ def extract_python_code(text):
                     if not (isinstance(parsed_node[0], ast.Expr) and isinstance(parsed_node[0].value, ast.Name)):
                         python_code += line + "\n"
                         continue
-            except SyntaxError:
+            except (SyntaxError, IndexError, MemoryError):
                 pass
             
             # edgecase of if True:print("yes"); these are sort of bizzare edge cases but exist in real-world code Aizu/AtCoder code
@@ -167,7 +167,7 @@ def extract_python_code(text):
                                 python_code += line + "\n"
                                 continue
                         
-            except (SyntaxError, IndexError): 
+            except (SyntaxError, IndexError, MemoryError):
                 pass
                         
             

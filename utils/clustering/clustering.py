@@ -203,6 +203,18 @@ def report_accuracy(output_records: List[Dict]):
         program_2_accuracy[output_record["code"]] = n_correct / len(output_record["testcase_outputs"])
     return program_2_accuracy
 
+def record_is_accurate(output_record: Dict):
+    for tc_key, output in output_record["testcase_outputs"].items():
+        if output.strip() != output_record["orig_testcase_outputs"][tc_key].strip():
+            return False
+    return True
+
+def get_accurate_records(output_records: List[Dict]):
+    return list(filter(record_is_accurate, output_records))
+
+def get_inaccurate_records(output_records: List[Dict]):
+    return list(filter(lambda x: not record_is_accurate(x), output_records))
+
 
 
 def make_semantic_strings(output_records: List[Dict]):

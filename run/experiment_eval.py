@@ -240,14 +240,23 @@ if __name__ == '__main__':
 
         coherent_records = clustering.get_coherent_records(sorted_records)
         incoherent_records = clustering.get_incoherent_records(sorted_records) 
+        accurate_records = clustering.get_accurate_records(sorted_records) if is_directed else []
+        inaccurate_records = clustering.get_inaccurate_records(sorted_records) if is_directed else []
+        
+        
+        ## TODO: just in eval_driver, add acc, and inacc as extra keys, and I think we should be good to go! 
         result['coherent_records'] = coherent_records
         result['incoherent_records'] = incoherent_records
+        result['accurate_records'] = accurate_records
     
         recordtype_2_records = {
                 "all": sorted_records,
                 "coh": coherent_records, 
-                "err": incoherent_records
+                "err": incoherent_records, 
+                "acc": accurate_records,
+                "inacc": inaccurate_records
         }
+        
         problem_id_dir = os.path.join(experiment_output_dir, f'problem_{problem_id}')   
         os.makedirs(problem_id_dir, exist_ok=True) # we can set to false, for debugging                  
             

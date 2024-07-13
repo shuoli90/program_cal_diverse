@@ -18,7 +18,7 @@ base_keys = ['model', 'template', 'temperature', 'top_p', 'num_return_sequences'
 # result[f'{recordtype}_distinct_{i}_raw'] = distinct_n_raw
 results_stats_keys = ['coherence', 'semantic_count', 'semantic_proportion', 'accuracy', 'distinct_1', 'distinct_2', 'distinct_3', 'distinct_4', 'distinct_5', 'distinct_6', 'distinct_1_no_comments', 'distinct_2_no_comments', 'distinct_3_no_comments', 'distinct_4_no_comments', 'distinct_5_no_comments', 'distinct_6_no_comments', 'distinct_1_raw', 'distinct_2_raw', 'distinct_3_raw', 'distinct_4_raw', 'distinct_5_raw', 'distinct_6_raw']
 results_stats_keys = results_stats_keys + [f"{key}_{height}" for key in ['plain_subtrees', 'stripped_subtrees'] for height in [3,4,5,6]]
-results_stats_keys = [f"{recordtype}_{key}" for recordtype in ['all', 'coh', 'err'] for key in results_stats_keys]
+results_stats_keys = [f"{recordtype}_{key}" for recordtype in ['all', 'coh', 'err', 'acc', 'inacc'] for key in results_stats_keys]
 results_stats_keys.insert(4, 'coh_semantic_proportion_of_all')
 
 all_keys = base_keys + results_stats_keys

@@ -19,7 +19,7 @@ from dataclasses import dataclass
 import yaml
 from tqdm import tqdm
 from functools import partial
-import datetime
+from datetime import datetime
 import traceback
 import copy 
 import shutil   
@@ -36,9 +36,10 @@ import subprocess
 logging.basicConfig(level=logging.INFO)
 
 
-RUN_NAME="Model_Prompt_Temp_Sweep"
+RUN_NAME="human_directed_eval"
 
-PATH_TO_HUMAN_RESULTS = "../data/high_solve_rate_problems/reprocessed_problem_descriptions_v8_solve_rate_0.5_n_testcases_20_sampled_100.jsonl"
+
+PATH_TO_HUMAN_RESULTS = "../data/high_solve_rate_problems/reprocessed_problem_descriptions_v9_solve_rate_0.4_n_testcases_15_sampled_100.jsonl"
 # RUN_NAME="directed_debug"
 
 ALL_EXPERIMENT_OUTPUT_ROOT = "/data1/shypula/prog_diversity/all_experiments/"
@@ -65,6 +66,8 @@ def main(config):
 
 
     full_config = create_config(*config, driver_root=this_driver_root)
+    full_config["is_directed"] = True
+    full_config["eval_workers"] = 30
     experiment_name = full_config['experiment_name']
     config_path = os.path.join(this_driver_root, f'{experiment_name}.yaml')
     with open(config_path, 'w') as f:
@@ -74,7 +77,8 @@ def main(config):
         f.write(config_path)
         
     ### End of copy from async_driver.py
-    experiment_output_dir = config["experiment_output_dir"]
+    experiment_output_dir = full_config["experiment_output_dir"]
+    os.makedirs(experiment_output_dir, exist_ok=True)
     # copy the human df to results.jsonl 
     shutil.copy(PATH_TO_HUMAN_RESULTS, os.path.join(experiment_output_dir, 'results.jsonl'))
     

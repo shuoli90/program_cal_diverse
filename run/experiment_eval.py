@@ -15,6 +15,7 @@ import joblib
 from joblib import Parallel, delayed
 from utils.clustering import lexical_diversity
 from utils.clustering.ast_processing import AllSubtreeAnalysis, AstSubTree, parallel_subtree_analysis
+from utils.clustering.embedding import EmbeddingClient
 from dataclasses import dataclass
 import yaml
 from tqdm import tqdm
@@ -110,6 +111,16 @@ if __name__ == '__main__':
     experiment_output_dir = args.experiment_output_dir
     use_previous_executions = args.use_previous_executions
     results_file = os.path.join(experiment_output_dir, 'results.jsonl')
+    
+    embedding_client = EmbeddingClient(
+        endpoint_url=args.model_sim_endpoint_url,
+        endpoint_port=args.model_sim_endpoint_port,
+        model_name=args.model_sim_endpoint_name,
+        max_tokens=args.model_sim_max_tokens,
+        test_connection=True, 
+        batch_size=16,
+    )    
+    
     assert os.path.exists(results_file)
     log_file = os.path.join(experiment_output_dir, 'eval_log.txt')
     logging.basicConfig(level=logging.INFO,
@@ -239,6 +250,7 @@ if __name__ == '__main__':
             record["extracted_code"] = result['programs'][record['generation_id']]
 
         coherent_records = clustering.get_coherent_records(sorted_records)
+        syn_correct_records = clustering.get_syn_correct_records(sorted_records)
         incoherent_records = clustering.get_incoherent_records(sorted_records) 
         accurate_records = clustering.get_accurate_records(sorted_records) if is_directed else []
         inaccurate_records = clustering.get_inaccurate_records(sorted_records) if is_directed else []
@@ -252,6 +264,7 @@ if __name__ == '__main__':
         recordtype_2_records = {
                 "all": sorted_records,
                 "coh": coherent_records, 
+                "syn": syn_correct_records,
                 "err": incoherent_records, 
                 "acc": accurate_records,
                 "inacc": inaccurate_records
@@ -269,8 +282,11 @@ if __name__ == '__main__':
             avg_coherence = np.mean([coherence == 1.0 for coherence in coherences])
             result[f'{recordtype}_coherence'] = avg_coherence
             if is_directed: 
-                accuracies = clustering.report_accuracy(records)
-                avg_acc = np.mean([v==1.0 for k, v in accuracies.items()])
+                
+                # accuracies = clustering.report_accuracy(records)
+                accuracies = clustering.get_acc_list(records)
+                avg_acc = np.mean([acc == 1.0 for acc in accuracies])
+                # avg_acc = np.mean([v==1.0 for k, v in accuracies.items()])
                 result[f'{recordtype}_accuracy'] = avg_acc
                 program_2_diff = clustering.get_differing_outputs(records)
             else: 
@@ -302,7 +318,38 @@ if __name__ == '__main__':
                     result[f'{recordtype}_distinct_{i}_no_comments'] = distinct_n_no_comments
                     distinct_n_raw = lexical_diversity.distinct_n(raw_programs, i, lexical_diversity.codebert_tokenizer, remove_comments=False)
                     result[f'{recordtype}_distinct_{i}_raw'] = distinct_n_raw
+                    distinct_n_bootstrap = lexical_diversity.bootstrap_distinct_n(
+                        programs, i, lexical_diversity.get_relevant_tokens_parso, 
+                        remove_comments=False, iterations=300, subsample_size=2
+                    )
+                    result[f'{recordtype}_distinct_{i}_bootstrap'] = distinct_n_bootstrap
+                    distinct_n_no_comments_bootstrap = lexical_diversity.bootstrap_distinct_n(
+                        programs, i, lexical_diversity.get_relevant_tokens_parso, 
+                        remove_comments=True, iterations=300, subsample_size=2
+                    )
+                    result[f'{recordtype}_distinct_{i}_no_comments_bootstrap'] = distinct_n_no_comments_bootstrap
+                    distinct_n_raw_bootstrap = lexical_diversity.bootstrap_distinct_n(
+                        raw_programs, i, lexical_diversity.codebert_tokenizer, 
+                        remove_comments=False, iterations=300, subsample_size=2
+                    )
+                    result[f'{recordtype}_distinct_{i}_raw_bootstrap'] = distinct_n_raw_bootstrap
+                try: 
+                    average_cosine_distance_programs = embedding_client.average_cosine_distance(programs)
+                    result[f'{recordtype}_average_cosine_distance_programs'] = average_cosine_distance_programs
+                except Exception as e:
+                    traceback_str = traceback.format_exc()
+                    logging.error(f"Request failed with error {e}. Traceback: {traceback_str}")
+                    result[f'{recordtype}_average_cosine_distance_programs'] = np.nan
+                try: 
+                    average_cosine_distance_raw = embedding_client.average_cosine_distance(raw_programs)
+                    result[f'{recordtype}_average_cosine_distance_raw'] = average_cosine_distance_raw
+                except Exception as e:
+                    traceback_str = traceback.format_exc()
+                    logging.error(f"Request failed with error {e}. Traceback: {traceback_str}")
+                    result[f'{recordtype}_average_cosine_distance_raw'] = np.nan
+                    
                     ## todo: also add in the diversity with the raw programs - the extracted code
+                
                 # just skip it for now 
                 if use_previous_executions:
                     corpus_self_bleu = np.nan
@@ -313,11 +360,29 @@ if __name__ == '__main__':
                 for key, height_results in parallel_subtree_results.items():
                     for height, v in height_results.items():
                         result[f"{recordtype}_{key}_{height}"] = v
+                # TODO: add in the bootstrap results
+                parallel_subtree_results_bootstrap = parallel_subtree_analysis(
+                    programs, n_jobs=args.eval_workers, heights=[3,4,5,6], 
+                    verbose=False, do_bootstrap=True, iterations=300, subsample_size=2
+                )
+                for key, height_results in parallel_subtree_results_bootstrap.items():
+                    for height, v in height_results.items():
+                        result[f"{recordtype}_{key}_{height}_bootstrap"] = v
+                
+                        
+                        
             else:
+                
+                result[f'{recordtype}_average_cosine_distance_programs'] = np.nan
+                result[f'{recordtype}_average_cosine_distance_raw'] = np.nan
+                
                 for i in range(1, 7):
                     result[f'{recordtype}_distinct_{i}'] = np.nan
                     result[f'{recordtype}_distinct_{i}_no_comments'] = np.nan
                     result[f'{recordtype}_distinct_{i}_raw'] = np.nan
+                    result[f'{recordtype}_distinct_{i}_bootstrap'] = np.nan
+                    result[f'{recordtype}_distinct_{i}_no_comments_bootstrap'] = np.nan
+                    result[f'{recordtype}_distinct_{i}_raw_bootstrap'] = np.nan
                 # result[f'{recordtype}_distinct_1'] = np.nan
                 # result[f'{recordtype}_distinct_2'] = np.nan
                 # result[f'{recordtype}_distinct_3'] = np.nan
@@ -328,6 +393,7 @@ if __name__ == '__main__':
                 for key in ['plain_subtrees', 'stripped_subtrees', 'obfuscated_subtrees']:
                     for height in [3,4,5,6]:
                         result[f"{recordtype}_{key}_{height}"] = np.nan
+                        result[f"{recordtype}_{key}_{height}_bootstrap"] = np.nan
                                                                                                                  
             # save the results
             if recordtype == 'all':
@@ -336,7 +402,9 @@ if __name__ == '__main__':
                 _programs = [record['extracted_code'] for record in records]
                 formatted_programs = [record['formatted_code'] for record in records]
                 raw_generations = [record['raw_generation'] for record in records]
-                tups = zip(raw_generations, _programs, formatted_programs, records, coherences, [v for v in accuracies.values()]) if is_directed else zip(raw_generations, _programs, formatted_programs, records, coherences, repeat(None))
+                # tups = zip(raw_generations, _programs, formatted_programs, records, coherences, [v for v in accuracies.values()]) if is_directed else zip(raw_generations, _programs, formatted_programs, records, coherences, repeat(None))
+                # tups = zip(raw_generations, _programs, formatted_programs, records, coherences, accuracies) if is_directed else zip(raw_generations, _programs, formatted_programs, records, coherences)
+                tups = zip(raw_generations, _programs, formatted_programs, records, coherences, accuracies) if is_directed else zip(raw_generations, _programs, formatted_programs, records, coherences, repeat(None))
                 
                 
                 

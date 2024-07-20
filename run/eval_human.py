@@ -36,7 +36,9 @@ import subprocess
 logging.basicConfig(level=logging.INFO)
 
 
-RUN_NAME="human_directed_eval"
+RUN_NAME="human_directed_eval_debug_new"
+
+MAX_PROGRAMS=-1
 
 
 PATH_TO_HUMAN_RESULTS = "../data/high_solve_rate_problems/reprocessed_problem_descriptions_v9_solve_rate_0.4_n_testcases_15_sampled_100.jsonl"
@@ -68,6 +70,8 @@ def main(config):
     full_config = create_config(*config, driver_root=this_driver_root)
     full_config["is_directed"] = True
     full_config["eval_workers"] = 30
+    full_config["max_programs"] = MAX_PROGRAMS
+    
     experiment_name = full_config['experiment_name']
     config_path = os.path.join(this_driver_root, f'{experiment_name}.yaml')
     with open(config_path, 'w') as f:

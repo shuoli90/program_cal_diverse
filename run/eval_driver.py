@@ -16,9 +16,15 @@ from typing import List
 # make the keys for the results
 base_keys = ['model', 'template', 'temperature', 'top_p', 'num_return_sequences']  
 # result[f'{recordtype}_distinct_{i}_raw'] = distinct_n_raw
-results_stats_keys = ['coherence', 'semantic_count', 'semantic_proportion', 'accuracy', 'distinct_1', 'distinct_2', 'distinct_3', 'distinct_4', 'distinct_5', 'distinct_6', 'distinct_1_no_comments', 'distinct_2_no_comments', 'distinct_3_no_comments', 'distinct_4_no_comments', 'distinct_5_no_comments', 'distinct_6_no_comments', 'distinct_1_raw', 'distinct_2_raw', 'distinct_3_raw', 'distinct_4_raw', 'distinct_5_raw', 'distinct_6_raw']
+results_stats_keys = ['coherence', 'semantic_count', 'semantic_proportion', 'accuracy']
+results_stats_keys = results_stats_keys + ['average_cosine_distance_programs', 'average_cosine_distance_raw']
+results_stats_keys = results_stats_keys + [f"distinct_{i}" for i in range(1, 7)] + [f"distinct_{i}_no_comments" for i in range(1, 7)] + [f"distinct_{i}_raw" for i in range(1, 7)] 
+results_stats_keys = results_stats_keys + [f"distinct_{i}_bootstrap" for i in range(1, 7)] + [f"distinct_{i}_no_comments_bootstrap" for i in range(1, 7)] + [f"distinct_{i}_raw_bootstrap" for i in range(1, 7)]
 results_stats_keys = results_stats_keys + [f"{key}_{height}" for key in ['plain_subtrees', 'stripped_subtrees'] for height in [3,4,5,6]]
-results_stats_keys = [f"{recordtype}_{key}" for recordtype in ['all', 'coh', 'err', 'acc', 'inacc'] for key in results_stats_keys]
+# boostrap keys
+results_stats_keys = results_stats_keys + [f"{key}_{height}_bootstrap" for key in ['plain_subtrees', 'stripped_subtrees'] for height in [3,4,5,6]]
+# results_stats_keys = [f"{recordtype}_{key}" for recordtype in ['all', 'coh', 'err', 'acc', 'inacc'] for key in results_stats_keys]
+results_stats_keys = [f"{recordtype}_{key}" for recordtype in ['all', 'coh', 'syn', 'err', 'acc', 'inacc'] for key in results_stats_keys]
 results_stats_keys.insert(4, 'coh_semantic_proportion_of_all')
 
 all_keys = base_keys + results_stats_keys
@@ -35,7 +41,7 @@ def parse_results(results_dir: str):
         results = {}
         for line in lines:
             k, v = line.strip().split('\t')
-            if "semantic_count" in k:
+            if "semantic_count" in k or "cosine" in k:
                 results[k] = str(round(float(v), 2))
             elif k in results_stats_keys:
                 results[k] = str(round(float(v) * 100, 2))
@@ -101,8 +107,9 @@ def monitor_directories_and_run(configs_paths: List[str], experiment_directory):
             directory = config.experiment_output_dir
             
             if os.path.exists(os.path.join(directory, 'results.jsonl')):
-                logging.info(f"Running `python experiment_eval.py {config_path}`")
+                # logging.info(f"Running `python experiment_eval.py {config_path}`")
                 os.system(f"python experiment_eval.py {config_path}")
+                
                 
                 result = parse_results(directory)
                 write_out_results(result, config, stats_file, stats_pretty_file, is_error=False)
@@ -151,4 +158,4 @@ if __name__ == "__main__":
     # load all the configs
     ## TODO: summarize results to the summary file as per previous driver
     monitor_directories_and_run(all_configs_paths, experiment_directory)
-    
+    # 

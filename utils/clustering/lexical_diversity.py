@@ -181,8 +181,31 @@ def distinct_n(corpus: List[str], n: int, ftokenizer: Callable[[str], List[str]]
     return len(ngrams_set) / sum(map(len, ngrams_list)) if sum(map(len, ngrams_list)) > 1 else np.nan
 
 
+def could_yield_nan(sequence: str, ftokenizer: Callable[[str, bool], List[str]], n: int, remove_comments: bool) -> bool:
+    # Implement a check to predict if tokenizing this sequence might result in an empty list of n-grams
+    tokens = ftokenizer(sequence, remove_comments)
+    return len(tokens) < n
 
 
+def bootstrap_distinct_n(corpus: List[str], n: int, ftokenizer: Callable[[str, bool], List[str]], remove_comments: bool, iterations: int = 100, subsample_size: int = 100) -> float:
+    import random
+    from random import choices
+    random.seed(42)
 
+    # Filter out empty or None elements from the corpus
+    filtered_corpus = [seq for seq in corpus if seq and seq.strip()]
 
+    # Further remove elements that could yield nan after tokenization and processing
+    filtered_corpus = [seq for seq in filtered_corpus if not could_yield_nan(seq, ftokenizer, n, remove_comments)]
     
+    if len(filtered_corpus) < subsample_size:
+        return np.nan
+
+    stats = []
+    for _ in range(iterations):
+        sub_sample = choices(filtered_corpus, k=subsample_size)
+        distinct_score = distinct_n(sub_sample, n, ftokenizer, remove_comments)
+        stats.append(distinct_score)
+    if any(np.isnan(stats)):
+        print(f"Warning: some of the bootstrapped samples resulted in NaN values; the number of such samples is {np.sum(np.isnan(stats))}, ignoring them.")
+    return np.nanmean(stats)  # Use nanmean to handle np.nan safely

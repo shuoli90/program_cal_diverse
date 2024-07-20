@@ -20,14 +20,16 @@ logging.basicConfig(level=logging.INFO)
 
 ALL_EXPERIMENT_OUTPUT_ROOT = "/data1/shypula/prog_diversity/all_experiments/"
 
-RUN_NAME = "Open_Ended_Reevaluation"
+RUN_NAME = "Open_Ended_Reevaluation_Cosine_Bootstrap"
 
 DIRECTORY_PATHS=[
-    "/data1/shypula/prog_diversity/all_experiments/Model_Prompt_Temp_Sweep_2024-06-21_22-18-19", 
-    "/data1/shypula/prog_diversity/all_experiments/Model_Prompt_Temp_Sweep_2024-06-22_09-57-15", 
-    "/data1/shypula/prog_diversity/all_experiments/Model_Prompt_Temp_Sweep_2024-06-25_11-46-30", 
-    "/data1/shypula/prog_diversity/all_experiments/Model_Prompt_Temp_Sweep_2024-06-27_01-07-28", 
-    "/data1/shypula/prog_diversity/all_experiments/Model_Prompt_Temp_Sweep_2024-06-27_01-21-33"
+    # "/data1/shypula/prog_diversity/all_experiments/Model_Prompt_Temp_Sweep_2024-06-21_22-18-19", 
+    # "/data1/shypula/prog_diversity/all_experiments/Model_Prompt_Temp_Sweep_2024-06-22_09-57-15", 
+    # "/data1/shypula/prog_diversity/all_experiments/Model_Prompt_Temp_Sweep_2024-06-25_11-46-30", 
+    # "/data1/shypula/prog_diversity/all_experiments/Model_Prompt_Temp_Sweep_2024-06-27_01-07-28", 
+    # "/data1/shypula/prog_diversity/all_experiments/Model_Prompt_Temp_Sweep_2024-06-27_01-21-33"
+    "/data1/shypula/prog_diversity/all_experiments/Model_Prompt_Temp_Sweep_2024-07-08_18-50-16", 
+    "/data1/shypula/prog_diversity/all_experiments/Open_Ended_Reevaluation_2024-07-05_00-53-22"
     
 ]
 
@@ -38,9 +40,9 @@ REFORMAT_RESULTS = True
 
 EXTRA_VERBOSE = False
 
-FIX_OLD_FORMAT = True
+FIX_OLD_FORMAT = False
 
-EVAL_WORKERS = 12
+EVAL_WORKERS = 20
 
 def capture_i_and_coh_j(text):
     # Pattern to capture 'i' and the 'coh_j...' part as separate groups

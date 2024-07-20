@@ -336,7 +336,7 @@ def tqdm_joblib(tqdm_object):
 
 
 
-def parallel_subtree_analysis(source_codes, n_jobs = -1, heights=[3,4,5,6], verbose=False):
+def parallel_subtree_analysis(source_codes, n_jobs = -1, heights=[3,4,5,6], verbose=False, do_bootstrap=False, iterations=100, subsample_size=2):
     assert len(heights) > 0, "Must provide at least one height to analyze"
     assert min(heights) >= 1, "Height must be at least 1"
     assert max(heights) <= 10, "Height must be at most 10"
@@ -363,19 +363,54 @@ def parallel_subtree_analysis(source_codes, n_jobs = -1, heights=[3,4,5,6], verb
         "stripped_subtrees": {},
         "obfuscated_subtrees": {}
     }
-    def prop_distinct(subtrees, height, typ: str):
+    def prop_distinct(subtree_analysis_list, height, typ: str):
         # get subtrees and flatten
         # if None, there likely was an error processing the source code
-        subtrees = [subtree for t in subtrees if t is not None for subtree in t.get_subtrees(typ, height)]
+        subtrees = [subtree for subtree_analysis in subtree_analysis_list if subtree_analysis is not None for subtree in subtree_analysis.get_subtrees(typ, height)]
         # get proportion of distinct subtrees
         
         prop_distinct_plain = len(set(subtrees)) / len(subtrees) if len(subtrees) > 1 else np.nan
         return prop_distinct_plain
+    
+    # def prop_distinct(subtree_analysis_list, height, typ: str):
+    #     # Flatten the list of subtrees while filtering out None values
+    #     subtrees = [subtree for subtree_analysis in subtree_analysis_list if subtree_analysis is not None
+    #                 for subtree in subtree_analysis.get_subtrees(typ, height)]
+    #     # Calculate proportion of distinct subtrees
+    #     return len(set(subtrees)) / len(subtrees) if len(subtrees) > 1 else np.nan
+    
+    def prop_distinct_bootstrapped(subtree_analysis_list, height, typ: str, iterations=100, subsample_size=2):
+        import random 
+        from random import choices
+        random.seed(42)
         
-    for height in tqdm(heights, desc="Processing Heights"):
-        result_dict["plain_subtrees"][height] = prop_distinct(results, height, "plain")
-        result_dict["stripped_subtrees"][height] = prop_distinct(results, height, "stripped")
-        result_dict["obfuscated_subtrees"][height] = prop_distinct(results, height, "obfuscated")
+        subtree_analysis_list = [subtree_analysis for subtree_analysis in subtree_analysis_list if subtree_analysis is not None]
+        if len(subtree_analysis_list) < subsample_size:
+            logging.warning(f"Subsample size is greater than the number of valid subtree analyses; returning NaN; out of {len(subtree_analysis_list)} there were {len(subtree_analysis_list)} non-empty analyses")
+            return np.nan
+        
+        distinct_props = []
+        for _ in range(iterations):
+            # Sample with replacement from the subtree analysis list
+            sampled_subtree_analysis = choices(subtree_analysis_list, k=subsample_size)
+            # Calculate the proportion of distinct subtrees for the sample
+            prop_distinct_value = prop_distinct(sampled_subtree_analysis, height, typ)
+            distinct_props.append(prop_distinct_value)
+    
+        # Return the average of the calculated proportions, ignoring NaN values
+        return np.nanmean(distinct_props)
+    
+    if do_bootstrap:
+        for height in tqdm(heights, desc="Processing Heights"):
+            result_dict["plain_subtrees"][height] = prop_distinct_bootstrapped(results, height, "plain", iterations, subsample_size)
+            result_dict["stripped_subtrees"][height] = prop_distinct_bootstrapped(results, height, "stripped", iterations, subsample_size)
+            result_dict["obfuscated_subtrees"][height] = prop_distinct_bootstrapped(results, height, "obfuscated", iterations, subsample_size)
+            
+    else: 
+        for height in tqdm(heights, desc="Processing Heights"):
+            result_dict["plain_subtrees"][height] = prop_distinct(results, height, "plain") 
+            result_dict["stripped_subtrees"][height] = prop_distinct(results, height, "stripped")
+            result_dict["obfuscated_subtrees"][height] = prop_distinct(results, height, "obfuscated")
         
     return result_dict
 

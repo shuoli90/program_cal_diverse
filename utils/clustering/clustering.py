@@ -184,6 +184,14 @@ def record_is_coherent(output_record: Dict):
     n_coherent = len([output for output in output_record["testcase_outputs"].values() if output not in ["Syntax Error", "Runtime Error", "Timeout", "Error", "Unknown Error"]])
     return n_coherent == n_outputs
 
+def record_is_syntactically_correct(output_record: Dict):
+    for output in output_record["testcase_outputs"].values():
+        if output == "Syntax Error":
+            return False
+    return True
+
+def get_syn_correct_records(output_records: List[Dict]):
+    return list(filter(record_is_syntactically_correct, output_records))
 
 def get_coherent_records(output_records: List[Dict]):
     return list(filter(record_is_coherent, output_records))
@@ -216,7 +224,6 @@ def get_inaccurate_records(output_records: List[Dict]):
     return list(filter(lambda x: not record_is_accurate(x), output_records))
 
 
-
 def make_semantic_strings(output_records: List[Dict]):
     program_2_semantic_string = {}
     semantic_strings_2_programs = defaultdict(list)
@@ -228,6 +235,17 @@ def make_semantic_strings(output_records: List[Dict]):
         program_2_semantic_string[output_record["code"]] = semantic_string
         semantic_strings_2_programs[semantic_string].append(output_record["code"])
     return program_2_semantic_string, semantic_strings_2_programs
+
+
+def get_acc_list(output_records: List[Dict]):
+    acc_list = []
+    for output_record in output_records:
+        n_correct = 0 
+        for tc_key, output in output_record["testcase_outputs"].items():
+            if output.strip() == output_record["orig_testcase_outputs"][tc_key].strip():
+                n_correct += 1
+        acc_list.append(n_correct / len(output_record["testcase_outputs"]))
+    return acc_list
 
 def get_differing_outputs(output_records: List[Dict]):
     program_2_diffs = {}

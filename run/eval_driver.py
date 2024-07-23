@@ -41,7 +41,7 @@ def parse_results(results_dir: str):
         results = {}
         for line in lines:
             k, v = line.strip().split('\t')
-            if "semantic_count" in k or "cosine" in k:
+            if "semantic_count" in k:
                 results[k] = str(round(float(v), 2))
             elif k in results_stats_keys:
                 results[k] = str(round(float(v) * 100, 2))

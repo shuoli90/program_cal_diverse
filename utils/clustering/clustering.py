@@ -61,9 +61,10 @@ def build_docker_image(path_to_dockerfile, max_pool_size=20, timeout=600, versio
 def instrument_code_docker(generated_code: str, testcase_inputs: Dict[str, str], orig_testcase_outputs: Union[Dict[str, str], None],
                            image, client, docker_working_dir = None, n_test_cases=-1, indiv_tc_timeout=5, verbose_instrument=False, verbose_docker=True, 
                            open_ended=False, problem_id=None, generation_id=None): 
-    
+    is_temp_dir = False
     if docker_working_dir is None: 
         docker_working_dir = tempfile.mkdtemp()
+        is_temp_dir = True
     
     if not os.path.exists(docker_working_dir):
         raise ValueError(f"{docker_working_dir} does not exist.")
@@ -155,6 +156,10 @@ def instrument_code_docker(generated_code: str, testcase_inputs: Dict[str, str],
         "generation_id": generation_id, 
         "error_string": docker_logs if error_occured else "No Error" 
     }
+    
+    if is_temp_dir:
+        shutil.rmtree(docker_working_dir)
+    
     return output_record
 
 def report_coherence(output_records: List[Dict]):

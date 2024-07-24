@@ -64,7 +64,7 @@ class EmbeddingClient:
             return []
         embeddings = []
         max_retries = 10
-        backoff_factor = 0.5
+        backoff_factor = 0.2
         for i in range(0, len(processed_docs), self.batch_size):
             batch_docs = processed_docs[i:i+self.batch_size]
             assert all(len(self.tokenizer.tokenize(doc)) <= self.max_tokens for doc in batch_docs)

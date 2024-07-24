@@ -147,7 +147,7 @@ if __name__ == '__main__':
             extract_arguments_fun = result['extract_args_fun'] if not is_directed else None
             programs = [textprocessing.extract_python_code(g) for g in raw_generations]
             if is_directed: 
-                formatted_programs = programs
+                formatted_programs = [clustering.format_directed_code(program) for program in programs]
             else: 
                 formatted_programs = [clustering.format_open_ended_code(program, extract_arguments_fun) for program in programs]
             new_result['programs'] = programs

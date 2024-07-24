@@ -150,6 +150,8 @@ if __name__ == '__main__':
         # Setup generation pipeline
         if 'gpt' in args.model or 'davinci' in args.model:
             pipe = gpt.GPTModel(model_name=args.model)
+        # elif "anthropic" in args.model:
+        #     pipe = opensource.AnthropicModel(model_name=args.model)
         else:
             # pipe = opensource.OpensourceModel(model_name=args.model)
             with open(args.path_to_hf_token, "r") as f:
@@ -235,7 +237,7 @@ if __name__ == '__main__':
             
             programs = [textprocessing.extract_python_code(g) for g in raw_generations]
             if is_directed: 
-                formatted_programs = programs
+                formatted_programs = [clustering.format_directed_code(program) for program in programs]
             else: 
                 formatted_programs = [clustering.format_open_ended_code(program, extract_arguments_fun) for program in programs]
     

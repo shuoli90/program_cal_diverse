@@ -249,6 +249,11 @@ def make_semantic_strings(output_records: List[Dict]):
         semantic_strings_2_programs[semantic_string].append(output_record["code"])
     return program_2_semantic_string, semantic_strings_2_programs
 
+def string_is_coherent(semantic_string: str): 
+    return not any([output in semantic_string for output in ["Syntax Error", "Runtime Error", "Timeout", "Error", "Unknown Error"]])
+
+def filter_coherent_strings(semantic_strings: List[str]):
+    return list(filter(string_is_coherent, semantic_strings))
 
 def get_acc_list(output_records: List[Dict]):
     acc_list = []

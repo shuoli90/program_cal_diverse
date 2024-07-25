@@ -12,6 +12,20 @@ import re
 logging.basicConfig(level=logging.INFO)
 
 
+from langchain_huggingface.embeddings import HuggingFaceEndpointEmbeddings 
+from transformers import AutoTokenizer
+import numpy as np 
+import logging 
+from typing import List
+import torch 
+import requests
+import traceback
+import time
+import re 
+
+logging.basicConfig(level=logging.INFO)
+
+
 class EmbeddingClient:
     def __init__(self, endpoint_url: str, endpoint_port: int, model_name: str, max_tokens: int = 512, batch_size=32, test_connection=True):
         self.embed_client = HuggingFaceEndpointEmbeddings(model=f"{endpoint_url}:{endpoint_port}")
@@ -63,8 +77,8 @@ class EmbeddingClient:
         if len(processed_docs) == 0:
             return []
         embeddings = []
-        max_retries = 10
-        backoff_factor = 0.2
+        max_retries = 4
+        backoff_factor = 0.3
         for i in range(0, len(processed_docs), self.batch_size):
             batch_docs = processed_docs[i:i+self.batch_size]
             assert all(len(self.tokenizer.tokenize(doc)) <= self.max_tokens for doc in batch_docs)
@@ -88,7 +102,7 @@ class EmbeddingClient:
                         raise  # Re-raise the last exception if all retries fail
         return embeddings
     
-    def _average_cosine_distance_of_embeddings(self, embeddings: List[List[float]]) -> float:
+    def _average_cosine_distance_of_embeddings(self, embeddings: List[List[float]], normalize_null=False, n_nulls=0, null_value=0.0) -> float:
         # Normalize vectors
         embeddings = torch.tensor(embeddings)
         norms = torch.norm(embeddings, p=2, dim=1, keepdim=True)
@@ -98,15 +112,19 @@ class EmbeddingClient:
         # exclude diagonal and duplicate entries using triu with diagonal=1
         mask = torch.triu(torch.ones_like(cosine_distance_matrix), diagonal=1)
         masked_distances = cosine_distance_matrix * mask
-        average_distance = masked_distances.sum() / mask.sum()
+        if normalize_null:
+            average_distance = (masked_distances.sum() + (n_nulls * null_value)) / (mask.sum() + n_nulls)
+        else: 
+            average_distance = masked_distances.sum() / mask.sum()
         return average_distance.item()
     
-    def average_cosine_distance(self, documents: List[str]) -> float:
+    def average_cosine_distance(self, documents: List[str], normalize_null=False, null_value=0.0) -> float:
         embeddings = self.get_embeddings(documents)
+        n_nulls = len(documents) - len(embeddings)
         if len(embeddings) == 0:
             return np.nan
         else: 
-            return self._average_cosine_distance_of_embeddings(embeddings)
+            return self._average_cosine_distance_of_embeddings(embeddings, normalize_null, n_nulls, null_value)
     
     def test_connection(self):
         docs_same = ["Hello World", "Hello World", "Hello World"]
@@ -117,6 +135,7 @@ class EmbeddingClient:
         assert np.isclose(same_distance, 0.0, atol=1e-3), f"the three documents {docs_same} should have a positive distance"
         assert diff_distance > 0, f"the three documents {docs_diff} should have a positive distance"
         logging.info("Connection test passed")
+    
     
     
     

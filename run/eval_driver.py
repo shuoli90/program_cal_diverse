@@ -16,8 +16,12 @@ from typing import List
 # make the keys for the results
 base_keys = ['model', 'template', 'temperature', 'top_p', 'num_return_sequences']  
 # result[f'{recordtype}_distinct_{i}_raw'] = distinct_n_raw
+
 results_stats_keys = ['coherence', 'semantic_count', 'semantic_proportion', 'accuracy']
-results_stats_keys = results_stats_keys + ['average_cosine_distance_programs', 'average_cosine_distance_raw']
+results_stats_keys = results_stats_keys + ['semantic_count_wcoh', 'semantic_proportion_wcoh', 'semantic_count_wcoh_nonempty', 'semantic_proportion_wcoh_nonempty', 'semantic_count_wcoh_nonempty_woutput', 'semantic_proportion_wcoh_nonempty_woutput']
+# result[f'{recordtype}_average_cosine_distance_programs_zero_null'] = average_cosine_distance_zero_null
+results_stats_keys = results_stats_keys + ['average_cosine_distance_programs', 'average_cosine_distance_raw'] 
+results_stats_keys = results_stats_keys + ['average_cosine_distance_programs_zero_null', 'average_cosine_distance_raw_zero_null', 'average_cosine_distance_programs_one_null', 'average_cosine_distance_raw_one_null']
 results_stats_keys = results_stats_keys + [f"distinct_{i}" for i in range(1, 7)] + [f"distinct_{i}_no_comments" for i in range(1, 7)] + [f"distinct_{i}_raw" for i in range(1, 7)] 
 results_stats_keys = results_stats_keys + [f"distinct_{i}_bootstrap" for i in range(1, 7)] + [f"distinct_{i}_no_comments_bootstrap" for i in range(1, 7)] + [f"distinct_{i}_raw_bootstrap" for i in range(1, 7)]
 results_stats_keys = results_stats_keys + [f"{key}_{height}" for key in ['plain_subtrees', 'stripped_subtrees'] for height in [3,4,5,6]]

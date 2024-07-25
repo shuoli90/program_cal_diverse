@@ -32,6 +32,7 @@ from async_driver import Arguments, load_arguments_from_yaml
 from eval_driver import results_stats_keys
 import logging 
 import glob 
+import re 
 
 # @dataclass
 # class Arguments:
@@ -118,7 +119,7 @@ if __name__ == '__main__':
         model_name=args.model_sim_endpoint_name,
         max_tokens=args.model_sim_max_tokens,
         test_connection=True, 
-        batch_size=16,
+        batch_size=8,
     )    
     
     assert os.path.exists(results_file)
@@ -181,11 +182,25 @@ if __name__ == '__main__':
                 previous_results_exist = False
                 break
             generation_dirs = glob.glob(os.path.join(problem_id_dir, 'generation_*'))
-            if len(generation_dirs) != num_generations:
+            # matching ids 
+            gen_idxs = set()
+            for generation_dir in generation_dirs:
+                match = re.search(r'generation_(\d+)', generation_dir)
+                if match:
+                    gen_idxs.add(int(match.group(1)))
+                else: 
+                    logging.critical(f"Generation dir {generation_dir} does not match the expected pattern")
+
+            if len(gen_idxs) != num_generations:
                 previous_results_exist = False
+                logging.critical(f"Generation dirs mismatch for {problem_id}, {len(gen_idxs)} != {num_generations}")
+                logging.info("Will be re-executing")
                 break
+            
             if not all([os.path.exists(os.path.join(generation_dir, 'output_record.json')) for generation_dir in generation_dirs]):
                 previous_results_exist = False
+                logging.critical(f"Output record missing for {problem_id}")
+                logging.info("Will be re-executing")
                 break
             
     else: 
@@ -221,6 +236,19 @@ if __name__ == '__main__':
             n_generations = len(result['formatted_programs'])
             problem_id_dir = os.path.join(experiment_output_dir, f'problem_{problem_id}')
             generation_dirs = glob.glob(os.path.join(problem_id_dir, 'generation_*'))
+            
+            generation_dict = {}
+            for generation_dir in generation_dirs:
+                match = re.search(r'generation_(\d+)', generation_dir)
+                if match:
+                    gen_idx = int(match.group(1))
+                    if gen_idx not in generation_dict or generation_dir > generation_dict[gen_idx]:
+                        generation_dict[gen_idx] = generation_dir
+                else:
+                    logging.critical(f"Generation dir {generation_dir} does not match the expected pattern")
+                    # Update generation_dirs with the deduplicated list
+            generation_dirs = list(generation_dict.values())
+            
             assert len(generation_dirs) == n_generations, f"Generation dirs mismatch for {problem_id}, {len(generation_dirs)} != {n_generations}"
             for generation_dir in generation_dirs:
                 with open(os.path.join(generation_dir, 'output_record.json'), 'r') as f:
@@ -298,6 +326,23 @@ if __name__ == '__main__':
             result[f'{recordtype}_semantic_count'] = semantic_count
             result[f'{recordtype}_semantic_proportion'] = semantic_count / len(records) if len(records) > 1 else np.nan
             
+            coherent_semantic_count = len(clustering.filter_coherent_strings(semantic_strings_2_programs.keys()))
+            result[f'{recordtype}_semantic_count_wcoh'] = coherent_semantic_count
+            result[f'{recordtype}_semantic_proportion_wcoh'] = coherent_semantic_count / len(records) if len(records) > 1 else np.nan
+            
+            
+            non_empty_records = [record for record in records if len(record["extracted_code"]) > 0]
+            nonempty_program2_semantic_string, nonempty_semantic_strings_2_programs = clustering.make_semantic_strings(non_empty_records)
+            coherent_nonempty_semantic_count = len(clustering.filter_coherent_strings(nonempty_semantic_strings_2_programs.keys()))
+            result[f'{recordtype}_semantic_count_wcoh_nonempty'] = coherent_nonempty_semantic_count
+            result[f'{recordtype}_semantic_proportion_wcoh_nonempty'] = coherent_nonempty_semantic_count / len(non_empty_records) if len(non_empty_records) > 1 else np.nan
+            
+            non_empty_w_output_records = [record for record in non_empty_records if all([output not in [None, ""] for output in record["testcase_outputs"].values()])]
+            nonemptyw_output_program2_semantic_string, nonemptyw_output_semantic_strings_2_programs = clustering.make_semantic_strings(non_empty_w_output_records)
+            coherent_nonemptyw_output_semantic_count = len(clustering.filter_coherent_strings(nonemptyw_output_semantic_strings_2_programs.keys()))
+            result[f'{recordtype}_semantic_count_wcoh_nonempty_woutput'] = coherent_nonemptyw_output_semantic_count
+            result[f'{recordtype}_semantic_proportion_wcoh_nonempty_woutput'] = coherent_nonemptyw_output_semantic_count / len(non_empty_w_output_records) if len(non_empty_w_output_records) > 1 else np.nan
+            
             if recordtype =="coh": 
                 result["coh_semantic_proportion_of_all"] = semantic_count / len(recordtype_2_records["all"]) if len(recordtype_2_records["all"]) > 1 else np.nan
 
@@ -348,7 +393,37 @@ if __name__ == '__main__':
                     logging.error(f"Request failed with error {e}. Traceback: {traceback_str}")
                     result[f'{recordtype}_average_cosine_distance_raw'] = np.nan
                     
-                    ## todo: also add in the diversity with the raw programs - the extracted code
+                ## modify to include empty programs     
+                
+                try: 
+                    average_cosine_distance_zero_null = embedding_client.average_cosine_distance(programs, normalize_null=True, null_value=0.0)
+                    result[f'{recordtype}_average_cosine_distance_programs_zero_null'] = average_cosine_distance_zero_null
+                except Exception as e:
+                    traceback_str = traceback.format_exc()
+                    logging.error(f"Request failed with error {e}. Traceback: {traceback_str}")
+                    result[f'{recordtype}_average_cosine_distance_programs_zero_null'] = np.nan
+                try: 
+                    average_cosine_distance_raw_zero_null = embedding_client.average_cosine_distance(raw_programs, normalize_null=True, null_value=0.0)
+                    result[f'{recordtype}_average_cosine_distance_raw_zero_null'] = average_cosine_distance_raw_zero_null
+                except Exception as e:
+                    traceback_str = traceback.format_exc()
+                    logging.error(f"Request failed with error {e}. Traceback: {traceback_str}")
+                    result[f'{recordtype}_average_cosine_distance_raw_zero_null'] = np.nan
+                    
+                try:
+                    average_cosine_distance_one_null = embedding_client.average_cosine_distance(programs, normalize_null=True, null_value=1.0)
+                    result[f'{recordtype}_average_cosine_distance_programs_one_null'] = average_cosine_distance_one_null
+                except Exception as e:
+                    traceback_str = traceback.format_exc()
+                    logging.error(f"Request failed with error {e}. Traceback: {traceback_str}")
+                    result[f'{recordtype}_average_cosine_distance_programs_one_null'] = np.nan
+                try:
+                    average_cosine_distance_raw_one_null = embedding_client.average_cosine_distance(raw_programs, normalize_null=True, null_value=1.0)
+                    result[f'{recordtype}_average_cosine_distance_raw_one_null'] = average_cosine_distance_raw_one_null
+                except Exception as e:
+                    traceback_str = traceback.format_exc()
+                    logging.error(f"Request failed with error {e}. Traceback: {traceback_str}")
+                    result[f'{recordtype}_average_cosine_distance_raw_one_null'] = np.nan
                 
                 # just skip it for now 
                 if use_previous_executions:
@@ -375,6 +450,11 @@ if __name__ == '__main__':
                 
                 result[f'{recordtype}_average_cosine_distance_programs'] = np.nan
                 result[f'{recordtype}_average_cosine_distance_raw'] = np.nan
+                result[f'{recordtype}_average_cosine_distance_programs_zero_null'] = np.nan
+                result[f'{recordtype}_average_cosine_distance_raw_zero_null'] = np.nan
+                result[f'{recordtype}_average_cosine_distance_programs_one_null'] = np.nan
+                result[f'{recordtype}_average_cosine_distance_raw_one_null'] = np.nan
+                
                 
                 for i in range(1, 7):
                     result[f'{recordtype}_distinct_{i}'] = np.nan

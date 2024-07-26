@@ -27,6 +27,7 @@ clustering_abs_dir = os.path.dirname(os.path.abspath(__file__))
 docker_driver_abs_path = os.path.join(clustering_abs_dir, "docker_driver.py")
 docker_file_abs_path = os.path.join(clustering_abs_dir, "Dockerfile")
 open_ended_wrapper_abs_path = os.path.join(clustering_abs_dir, "open_ended_wrapper.py")
+directed_abs_path = os.path.join(clustering_abs_dir, "directed_wrapper.py")
 
 import uuid 
 
@@ -43,6 +44,11 @@ def format_open_ended_code(f_code: str, extract_arguments_code: str) -> str:
     assert "## REPLACE EXTRACT_ARGUMENTS" not in formatted_wrapper, "extract_arguments not replaced in formatted wrapper"
     return formatted_wrapper
 
+def format_directed_code(f_code: str): 
+    with open(directed_abs_path, "r") as f:
+        wrapper_code = f.read()
+    formatted_wrapper = wrapper_code + "\n\n" + f_code
+    return formatted_wrapper
 
 def build_docker_image(path_to_dockerfile, max_pool_size=20, timeout=600, version_tag=None):
     tag = 'python-test-case-runner-conda:latest'

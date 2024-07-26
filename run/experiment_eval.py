@@ -147,7 +147,7 @@ if __name__ == '__main__':
             extract_arguments_fun = result['extract_args_fun'] if not is_directed else None
             programs = [textprocessing.extract_python_code(g) for g in raw_generations]
             if is_directed: 
-                formatted_programs = programs
+                formatted_programs = [clustering.format_directed_code(program) for program in programs]
             else: 
                 formatted_programs = [clustering.format_open_ended_code(program, extract_arguments_fun) for program in programs]
             new_result['programs'] = programs
@@ -272,7 +272,7 @@ if __name__ == '__main__':
         
         problem_id_dir = os.path.join(experiment_output_dir, f'problem_{problem_id}')   
         os.makedirs(problem_id_dir, exist_ok=True) # we can set to false, for debugging                  
-            
+
         for recordtype, records in recordtype_2_records.items():
             # report coherence
             if type(records) is not list:
@@ -424,7 +424,7 @@ if __name__ == '__main__':
                     with open(os.path.join(generation_dir, f'output_record.json'), 'w') as f:
                         f.write(json.dumps(output_record))  
                     if is_directed: 
-                        diff = program_2_diff[program]
+                        diff = program_2_diff[formatted_program]
                         with open(os.path.join(generation_dir, f'diff.txt'), 'w') as f:
                             f.write(f"Accuracy: {accuracy}\n")
                             f.write("\n".join(diff))

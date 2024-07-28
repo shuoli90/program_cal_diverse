@@ -18,6 +18,7 @@ import re
 import requests
 import warnings
 import json 
+import numpy as np 
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -249,6 +250,23 @@ def make_semantic_strings(output_records: List[Dict]):
         semantic_strings_2_programs[semantic_string].append(output_record["code"])
     return program_2_semantic_string, semantic_strings_2_programs
 
+def calculate_pairwise_semantic_div(output_records: List[Dict], program_2_semantic_string: Dict): 
+    all_programs = list([output_record["code"] for output_record in output_records])
+    pairwise_different_list = []
+    for i in range(len(all_programs)):
+        for j in range(i+1, len(all_programs)):
+            try: 
+                program_1 = all_programs[i]
+                program_2 = all_programs[j]
+                semantic_string_1 = program_2_semantic_string[program_1]
+                semantic_string_2 = program_2_semantic_string[program_2]
+                pairwise_different_list.append(semantic_string_1 != semantic_string_2)
+            except KeyError as e:
+                traceback_str = traceback.format_exc()
+                logging.error(f"KeyError: {e} in calculating pairwise semantic diversity!")
+                logging.error(traceback_str)
+    return np.mean(pairwise_different_list)
+
 def string_is_coherent(semantic_string: str): 
     return not any([output in semantic_string for output in ["Syntax Error", "Runtime Error", "Timeout", "Error", "Unknown Error"]])
 
@@ -273,7 +291,7 @@ def get_differing_outputs(output_records: List[Dict]):
             if output.strip() != output_record["orig_testcase_outputs"][tc_key].strip():
                 # diffs.append((tc_key, output, output_record["orig_testcase_outputs"][tc_key]))
                 diffs.append(f"testcase_id: {tc_key}, output: {output}, expected_output: {output_record['orig_testcase_outputs'][tc_key]}")
-        program_2_diffs[output_record["code"]] = diffs 
+        program_2_diffs[output_record["extracted_code"]] = diffs 
     return program_2_diffs
     
 

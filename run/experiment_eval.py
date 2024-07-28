@@ -175,7 +175,8 @@ if __name__ == '__main__':
         # check for existing output records 
         # we must have the generation_{i}_suffix dir for each generation as well 
         # and output_record must exist for each generation
-        problem_id_2_num_generations = {result['problem_id']: len(result['formatted_programs']) for result in results}
+        problem_id_key = 'problem_id' if not is_directed else 'codenet_problem_id'
+        problem_id_2_num_generations = {result[problem_id_key]: len(result['formatted_programs']) for result in results}
         for problem_id, num_generations in problem_id_2_num_generations.items():
             problem_id_dir = os.path.join(experiment_output_dir, f'problem_{problem_id}')
             if not os.path.exists(problem_id_dir):
@@ -504,10 +505,15 @@ if __name__ == '__main__':
                     with open(os.path.join(generation_dir, f'output_record.json'), 'w') as f:
                         f.write(json.dumps(output_record))  
                     if is_directed: 
-                        diff = program_2_diff[program]
-                        with open(os.path.join(generation_dir, f'diff.txt'), 'w') as f:
-                            f.write(f"Accuracy: {accuracy}\n")
-                            f.write("\n".join(diff))
+                        try: 
+                            diff = program_2_diff[program]
+                            with open(os.path.join(generation_dir, f'diff.txt'), 'w') as f:
+                                f.write(f"Accuracy: {accuracy}\n")
+                                f.write("\n".join(diff))
+                        except Exception as e:
+                            logging.error(f"Error writing diff file: {e}")
+                            traceback_str = traceback.format_exc()
+                            logging.error(f"Traceback: {traceback_str}")
                 
         with open(os.path.join(problem_id_dir, f'result.tsv'), 'w') as f:
             for k in results_stats_keys:

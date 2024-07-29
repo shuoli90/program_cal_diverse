@@ -52,7 +52,6 @@ def format_directed_code(f_code: str):
     return formatted_wrapper
 
 
-
 def build_docker_image(path_to_dockerfile, max_pool_size=20, timeout=600, version_tag=None):
     tag = 'python-test-case-runner-conda'
     client = docker.from_env(max_pool_size=max_pool_size, timeout=timeout)

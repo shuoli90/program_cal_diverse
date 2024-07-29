@@ -305,7 +305,7 @@ if __name__ == '__main__':
         
         problem_id_dir = os.path.join(experiment_output_dir, f'problem_{problem_id}')   
         os.makedirs(problem_id_dir, exist_ok=True) # we can set to false, for debugging                  
-            
+
         for recordtype, records in recordtype_2_records.items():
             # report coherence
             if type(records) is not list:
@@ -549,6 +549,7 @@ if __name__ == '__main__':
                         f.write(formatted_program)
                     with open(os.path.join(generation_dir, f'output_record.json'), 'w') as f:
                         f.write(json.dumps(output_record))  
+
                     if is_directed:
                         try: 
                             diff = program_2_diff[program]

@@ -7,8 +7,8 @@ from dotenv import load_dotenv
 bedrock_runtime = boto3.client(
     service_name="bedrock-runtime",
     region_name="us-west-2",
-    aws_access_key_id=YOUR_KEY_ID,      # optional - set this value if you haven't run `aws configure` 
-    aws_secret_access_key=YOUR_ACCESS_KEY,  # optional - set this value if you haven't run `aws configure`
+    aws_access_key_id="",      # optional - set this value if you haven't run `aws configure` 
+    aws_secret_access_key="",  # optional - set this value if you haven't run `aws configure`
     # aws_session_token=SESSION_TOKEN,   # optional - set this value if you haven't run `aws configure`
 )
 
@@ -23,11 +23,13 @@ class ClaudeModel:
     def __init__(self, model_name='SONNET', **kwargs):
         self.model_name = MODELS[model_name]
     
-    def generate(self, prompt, num_return_sequences=1, max_length=50, return_full_text=False, temperature=1.0, **kwargs):
+    def generate(self, prompt, num_samples=1, max_length=50, top_k=250, top_p=1, return_full_text=False, temperature=1.0, **kwargs):
         
         model_kwargs =  { 
-            "max_tokens": max_length, "temperature": temperature,
-            "top_k": 250, "top_p": 1, "stop_sequences": ["\n\nHuman"],
+            "max_tokens": max_length, 
+            "temperature": temperature, 
+            "top_p": top_p, 
+            "stop_sequences": ["\n\nHuman"],
         }
 
         # Input configuration
@@ -40,7 +42,7 @@ class ClaudeModel:
         }
         body.update(model_kwargs)
         responses = []
-        for _ in range(num_return_sequences):
+        for _ in range(num_samples):
             response = bedrock_runtime.invoke_model(
                 modelId=self.model_name,
                 body=json.dumps(body),

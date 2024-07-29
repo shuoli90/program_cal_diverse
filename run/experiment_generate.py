@@ -7,7 +7,7 @@ import argparse
 import pandas as pd
 import json
 import numpy as np
-from models import gpt, opensource, hf_inference
+from models import gpt, claude, opensource, hf_inference
 from utils import textprocessing
 from utils.clustering import clustering
 from utils.clustering.clustering import tqdm_joblib
@@ -137,8 +137,8 @@ if __name__ == '__main__':
     # save config
     with open(os.path.join(experiment_output_dir, 'config.yaml'), 'w') as f:
         yaml.dump(args.__dict__, f)
-        
-    if "tatsu" or "codellama" in args.model.lower():
+
+    if 'tatsu' in args.model.lower() or 'codellama' in args.model.lower():
         with open(args.path_to_hf_token, "r") as f:
             hf_key = f.read().strip()
         tokenizer = AutoTokenizer.from_pretrained(args.model, token=hf_key)
@@ -148,10 +148,12 @@ if __name__ == '__main__':
     pipe = None # for error handling
     try:                                                
         # Setup generation pipeline
-        if 'gpt' in args.model or 'davinci' in args.model:
+        if 'gpt' in args.model or 'babbage' in args.model or 'davinci' in args.model:
             pipe = gpt.GPTModel(model_name=args.model)
-        # elif "anthropic" in args.model:
-        #     pipe = opensource.AnthropicModel(model_name=args.model)
+            
+        elif args.model in ['SONNET', 'HAIKU', 'OPUS']:
+            pipe = claude.ClaudeModel(model_name=args.model)
+            
         else:
             # pipe = opensource.OpensourceModel(model_name=args.model)
             with open(args.path_to_hf_token, "r") as f:
@@ -283,7 +285,7 @@ if __name__ == '__main__':
         pd.DataFrame(results).to_json(os.path.join(experiment_output_dir, 'results.jsonl'), orient='records', lines=True)
         logging.info("Done saving results to jsonl")
             
-        if "gpt" not in args.model:
+        if not any(model in args.model for model in ['gpt', 'babbage', 'davinci']) and args.model not in ['SONNET', 'HAIKU', 'OPUS']:
             pipe.stop_service()
             pipe.remove_service()
         
@@ -296,7 +298,7 @@ if __name__ == '__main__':
             f.write("Error during generation\n")
             f.write(traceback_str)
         logging.error(f"Error during generation: {traceback_str}")
-        if "gpt" not in args.model and pipe is not None:
+        if not any(model in args.model for model in ['gpt', 'babbage', 'davinci']) and args.model not in ['SONNET', 'HAIKU', 'OPUS'] and pipe is not None:
             logging.info("Stopping and removing the service...")
             pipe.stop_and_remove_if_running()
             logging.info("Cleanup complete, exiting...")

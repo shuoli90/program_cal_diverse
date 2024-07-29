@@ -11,6 +11,9 @@ sys.path.append(os.path.dirname(__file__))
 # import the arguments class
 from async_driver import Arguments, load_arguments_from_yaml
 from typing import List
+from concurrent.futures import ThreadPoolExecutor, as_completed
+import threading
+
 
 # make the keys for the results
 base_keys = ['model', 'template', 'temperature', 'top_p', 'num_return_sequences']  
@@ -36,6 +39,8 @@ results_stats_keys.insert(4, 'coh_semantic_proportion_of_all')
 all_keys = base_keys + results_stats_keys
 
 pretty_column_widths = [46, 15] + [(len(k) + 2) for k in all_keys[2:]]
+
+MAX_WORKERS=15
 
 
 def parse_results(results_dir: str): 
@@ -75,7 +80,7 @@ def init_results_file(results_dir: str):
     # Writing column headers with fixed width formatting
         f.write(''.join([f"{k.ljust(pretty_column_widths[i])}" for i, k in enumerate(all_keys)]) + '\n')
     return stats_file, stats_pretty_file
-        
+
         
 def write_out_results(results: dict, config: Arguments, stats_file: str, stats_pretty_file: str, is_error=False):
     results["model"] = config.model
@@ -100,44 +105,79 @@ def write_out_results(results: dict, config: Arguments, stats_file: str, stats_p
         f.write(''.join([f"{str(results[k]).ljust(pretty_column_widths[i])}" for i, k in enumerate(all_keys)]) + '\n')
 
 
-def monitor_directories_and_run(configs_paths: List[str], experiment_directory): 
-    """Monitor a list of directories for the existence of results.jsonl."""
-    # TODO: error handling (what if the experiment failed)
+def run_experiment_and_log_results(config_path, config, stats_file, stats_pretty_file, lock):
+    directory = config.experiment_output_dir
+    error_path = os.path.join(directory, 'error.txt')
+    result_path = os.path.join(directory, 'results.jsonl')
+
+    if os.path.exists(result_path):
+        os.system(f"python experiment_eval.py {config_path}")
+        result = parse_results(directory)
+        with lock:
+            write_out_results(result, config, stats_file, stats_pretty_file, is_error=False)
+    elif os.path.exists(error_path):
+        with open(error_path, 'r') as f:
+            error = f.read()
+        logging.error(f"Error in {directory}: {error}")
+        with lock:
+            write_out_results({}, config, stats_file, stats_pretty_file, is_error=True)
+
+
+def monitor_directories_and_run(configs_paths, experiment_directory):
     config_path_to_config = {config_path: load_arguments_from_yaml(config_path) for config_path in configs_paths}
     stats_file, stats_pretty_file = init_results_file(experiment_directory)
-    consecutive_sleeps = 0
-    while configs_paths: # terminates when configs_paths  == []
-        for config_path in configs_paths: 
-            config = config_path_to_config[config_path]
-            
-            directory = config.experiment_output_dir
-            
-            if os.path.exists(os.path.join(directory, 'results.jsonl')):
-                # logging.info(f"Running `python experiment_eval.py {config_path}`")
-                os.system(f"python experiment_eval.py {config_path}")
-                
-                
-                result = parse_results(directory)
-                write_out_results(result, config, stats_file, stats_pretty_file, is_error=False)
-                configs_paths.remove(config_path)
-                logging.info(f"Finished {directory}, {len(configs_paths)} remaining.")
-                
-            elif os.path.exists(os.path.join(directory, 'error.txt')):
-                logging.info(f"Error in {directory}")
-                with open(os.path.join(directory, 'error.txt'), 'r') as f:
-                    error = f.read()
-                logging.error(f"Error in {directory}: {error}")
-                write_out_results({}, config, stats_file, stats_pretty_file, is_error=True)
-                configs_paths.remove(config_path)
-                
-        if configs_paths:  # Only sleep if there are still directories to check
-            time.sleep(15)
-            if (consecutive_sleeps % 20) == 0:
-                logging.info(f"Waiting for {len(configs_paths)} directories to finish...")
-            consecutive_sleeps += 1
-            
+    lock = threading.Lock()
+    
+    with ThreadPoolExecutor(max_workers=MAX_WORKERS) as executor:
+        while configs_paths:
+            for config_path in list(configs_paths):  # Use list to avoid modification during iteration
+                config = config_path_to_config[config_path]
+                directory = config.experiment_output_dir
+                result_path = os.path.join(directory, 'results.jsonl')
+                error_path = os.path.join(directory, 'error.txt')
 
-
+                if os.path.exists(result_path) or os.path.exists(error_path):
+                    executor.submit(run_experiment_and_log_results, config_path, config, stats_file, stats_pretty_file, lock)
+                    configs_paths.remove(config_path)
+            
+            time.sleep(10)  # Adjust sleep time based on expected update frequency
+    
+# def monitor_directories_and_run(configs_paths: List[str], experiment_directory): 
+#     """Monitor a list of directories for the existence of results.jsonl."""
+#     # TODO: error handling (what if the experiment failed)
+#     config_path_to_config = {config_path: load_arguments_from_yaml(config_path) for config_path in configs_paths}
+#     stats_file, stats_pretty_file = init_results_file(experiment_directory)
+#     consecutive_sleeps = 0
+#     while configs_paths: # terminates when configs_paths  == []
+#         for config_path in configs_paths: 
+#             config = config_path_to_config[config_path]
+            
+#             directory = config.experiment_output_dir
+            
+#             if os.path.exists(os.path.join(directory, 'results.jsonl')):
+#                 # logging.info(f"Running `python experiment_eval.py {config_path}`")
+#                 os.system(f"python experiment_eval.py {config_path}")
+                
+                
+#                 result = parse_results(directory)
+#                 write_out_results(result, config, stats_file, stats_pretty_file, is_error=False)
+#                 configs_paths.remove(config_path)
+#                 logging.info(f"Finished {directory}, {len(configs_paths)} remaining.")
+                
+#             elif os.path.exists(os.path.join(directory, 'error.txt')):
+#                 logging.info(f"Error in {directory}")
+#                 with open(os.path.join(directory, 'error.txt'), 'r') as f:
+#                     error = f.read()
+#                 logging.error(f"Error in {directory}: {error}")
+#                 write_out_results({}, config, stats_file, stats_pretty_file, is_error=True)
+#                 configs_paths.remove(config_path)
+                
+#         if configs_paths:  # Only sleep if there are still directories to check
+#             time.sleep(15)
+#             if (consecutive_sleeps % 20) == 0:
+#                 logging.info(f"Waiting for {len(configs_paths)} directories to finish...")
+#             consecutive_sleeps += 1
+            
 # Example usage
 if __name__ == "__main__":
     experiment_directory = sys.argv[1]

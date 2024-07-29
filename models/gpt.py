@@ -17,8 +17,7 @@ with open("/home/shypula/trustml_organization.txt", "r") as f:
     organization = f.read().strip()
     
 client = OpenAI(
-    api_key=api_key, 
-    organization=organization
+    api_key="",
 )
 
 
@@ -51,7 +50,7 @@ class GPTModel:
         self.model_name = model_name
         self.tokenizer = AutoTokenizer.from_pretrained("openai-gpt")
 
-    def generate(self, prompts, num_return_sequences=1, max_length=50, do_sample=True, return_full_text=False, temperature=1.0, **kwargs):
+    def generate(self, prompts, num_samples=1, max_length=50, top_k=250, top_p=1, do_sample=True, return_full_text=False, temperature=1.0, **kwargs):
 
         if not isinstance(prompts, list):
             prompts = [prompts]
@@ -63,8 +62,9 @@ class GPTModel:
             response = chatcompletions_with_backoff(
                 model=self.model_name,
                 messages=[message],
-                n=num_return_sequences,
+                n=num_samples,
                 max_tokens=max_length,
+                top_p=top_p,
                 temperature=temperature if do_sample else 0,
                 # **kwargs # to be refined
             )

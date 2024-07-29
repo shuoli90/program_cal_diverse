@@ -18,6 +18,7 @@ import re
 import requests
 import warnings
 import json 
+import numpy as np 
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -27,6 +28,7 @@ clustering_abs_dir = os.path.dirname(os.path.abspath(__file__))
 docker_driver_abs_path = os.path.join(clustering_abs_dir, "docker_driver.py")
 docker_file_abs_path = os.path.join(clustering_abs_dir, "Dockerfile")
 open_ended_wrapper_abs_path = os.path.join(clustering_abs_dir, "open_ended_wrapper.py")
+directed_abs_path = os.path.join(clustering_abs_dir, "directed_wrapper.py")
 
 import uuid 
 
@@ -43,9 +45,15 @@ def format_open_ended_code(f_code: str, extract_arguments_code: str) -> str:
     assert "## REPLACE EXTRACT_ARGUMENTS" not in formatted_wrapper, "extract_arguments not replaced in formatted wrapper"
     return formatted_wrapper
 
+def format_directed_code(f_code: str): 
+    with open(directed_abs_path, "r") as f:
+        wrapper_code = f.read()
+    formatted_wrapper = wrapper_code + "\n\n" + f_code
+    return formatted_wrapper
+
 
 def build_docker_image(path_to_dockerfile, max_pool_size=20, timeout=600, version_tag=None):
-    tag = 'python-test-case-runner-conda:latest'
+    tag = 'python-test-case-runner-conda'
     client = docker.from_env(max_pool_size=max_pool_size, timeout=timeout)
     images = client.images.list()
     version_tag = version_tag or "latest"
@@ -54,16 +62,22 @@ def build_docker_image(path_to_dockerfile, max_pool_size=20, timeout=600, versio
             print(f"Image with tag '{tag}' already exists. Using existing image.")
             return client, image
     # Build the Docker image
+    logging.info(f"Building Docker image with tag '{tag}' from Dockerfile at '{path_to_dockerfile}'")
     image, build_log = client.images.build(path=path_to_dockerfile, tag=f"{tag}:{version_tag}")
+    for line in build_log:
+        if 'stream' in line:
+            logging.info(line['stream'].strip())
+    logging.info(f"Built Docker image with tag '{tag}'")
     return client, image
 
 
 def instrument_code_docker(generated_code: str, testcase_inputs: Dict[str, str], orig_testcase_outputs: Union[Dict[str, str], None],
                            image, client, docker_working_dir = None, n_test_cases=-1, indiv_tc_timeout=5, verbose_instrument=False, verbose_docker=True, 
                            open_ended=False, problem_id=None, generation_id=None): 
-    
+    is_temp_dir = False
     if docker_working_dir is None: 
         docker_working_dir = tempfile.mkdtemp()
+        is_temp_dir = True
     
     if not os.path.exists(docker_working_dir):
         raise ValueError(f"{docker_working_dir} does not exist.")
@@ -155,6 +169,10 @@ def instrument_code_docker(generated_code: str, testcase_inputs: Dict[str, str],
         "generation_id": generation_id, 
         "error_string": docker_logs if error_occured else "No Error" 
     }
+    
+    if is_temp_dir:
+        shutil.rmtree(docker_working_dir)
+    
     return output_record
 
 def report_coherence(output_records: List[Dict]):
@@ -236,6 +254,28 @@ def make_semantic_strings(output_records: List[Dict]):
         semantic_strings_2_programs[semantic_string].append(output_record["code"])
     return program_2_semantic_string, semantic_strings_2_programs
 
+def calculate_pairwise_semantic_div(output_records: List[Dict], program_2_semantic_string: Dict): 
+    all_programs = list([output_record["code"] for output_record in output_records])
+    pairwise_different_list = []
+    for i in range(len(all_programs)):
+        for j in range(i+1, len(all_programs)):
+            try: 
+                program_1 = all_programs[i]
+                program_2 = all_programs[j]
+                semantic_string_1 = program_2_semantic_string[program_1]
+                semantic_string_2 = program_2_semantic_string[program_2]
+                pairwise_different_list.append(semantic_string_1 != semantic_string_2)
+            except KeyError as e:
+                traceback_str = traceback.format_exc()
+                logging.error(f"KeyError: {e} in calculating pairwise semantic diversity!")
+                logging.error(traceback_str)
+    return np.mean(pairwise_different_list)
+
+def string_is_coherent(semantic_string: str): 
+    return not any([output in semantic_string for output in ["Syntax Error", "Runtime Error", "Timeout", "Error", "Unknown Error"]])
+
+def filter_coherent_strings(semantic_strings: List[str]):
+    return list(filter(string_is_coherent, semantic_strings))
 
 def get_acc_list(output_records: List[Dict]):
     acc_list = []
@@ -255,7 +295,7 @@ def get_differing_outputs(output_records: List[Dict]):
             if output.strip() != output_record["orig_testcase_outputs"][tc_key].strip():
                 # diffs.append((tc_key, output, output_record["orig_testcase_outputs"][tc_key]))
                 diffs.append(f"testcase_id: {tc_key}, output: {output}, expected_output: {output_record['orig_testcase_outputs'][tc_key]}")
-        program_2_diffs[output_record["code"]] = diffs 
+        program_2_diffs[output_record["extracted_code"]] = diffs 
     return program_2_diffs
     
 

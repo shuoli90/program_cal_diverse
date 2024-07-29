@@ -209,3 +209,44 @@ def bootstrap_distinct_n(corpus: List[str], n: int, ftokenizer: Callable[[str, b
     if any(np.isnan(stats)):
         print(f"Warning: some of the bootstrapped samples resulted in NaN values; the number of such samples is {np.sum(np.isnan(stats))}, ignoring them.")
     return np.nanmean(stats)  # Use nanmean to handle np.nan safely
+
+
+def jaccard_n_grams(corpus: List[str], n: int, ftokenizer: Callable[[str], List[str]], remove_comments: bool = False, iterations: int = -1) -> float:
+    import random
+    from random import choices
+    random.seed(42)
+
+    # Filter out empty or None elements from the corpus
+    filtered_corpus = [seq for seq in corpus if seq and seq.strip()]
+
+    # Further remove elements that could yield nan after tokenization and processing
+    filtered_corpus = [seq for seq in filtered_corpus if not could_yield_nan(seq, ftokenizer, n, remove_comments)]
+    
+    if len(filtered_corpus) < 2:
+        return np.nan
+    
+    tokenized_corpus = [ftokenizer(seq, remove_comments) for seq in filtered_corpus]
+    
+    n_grams_corpus = [list(ngrams(seq, n)) for seq in tokenized_corpus]
+    
+    jaccard_distances = []
+    
+    if iterations == -1:
+        for i in range(len(n_grams_corpus)):
+            for j in range(i+1, len(n_grams_corpus)):
+                ngrams_i = set(n_grams_corpus[i])
+                ngrams_j = set(n_grams_corpus[j])
+                jaccard_sim = len(ngrams_i.intersection(ngrams_j)) / len(ngrams_i.union(ngrams_j))
+                jacard_dist = 1 - jaccard_sim
+                jaccard_distances.append(jacard_dist)
+    else:
+        for _ in range(iterations):
+            sub_sample = choices(n_grams_corpus, k=2)
+            ngrams_i = set(ngrams(sub_sample[0], n))
+            ngrams_j = set(ngrams(sub_sample[1], n))
+            jaccard_sim = len(ngrams_i.intersection(ngrams_j)) / len(ngrams_i.union(ngrams_j))
+            jacard_dist = 1 - jaccard_sim
+            jaccard_distances.append(jacard_dist)
+            
+    return np.nanmean(jaccard_distances)  # Use nanmean to handle np.nan safely
+    

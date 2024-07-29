@@ -32,6 +32,7 @@ from async_driver import Arguments, load_arguments_from_yaml
 from eval_driver import results_stats_keys
 import logging 
 import glob 
+import re 
 
 # @dataclass
 # class Arguments:
@@ -118,7 +119,7 @@ if __name__ == '__main__':
         model_name=args.model_sim_endpoint_name,
         max_tokens=args.model_sim_max_tokens,
         test_connection=True, 
-        batch_size=16,
+        batch_size=8,
     )    
     
     assert os.path.exists(results_file)
@@ -163,6 +164,7 @@ if __name__ == '__main__':
         problem_id = result['problem_id'] if not is_directed else result["codenet_problem_id"]
         input_testcases = result['input_testcases']
         orig_outputs = result['output_testcases'] if is_directed else None
+        assert len(result['formatted_programs']) == args.num_return_sequences, f"Number of programs does not match the expected number of return sequences"
         for generation_id, formatted_program in enumerate(result['formatted_programs']):
             submit_tuples.append((problem_id, generation_id, formatted_program, input_testcases, orig_outputs))
         
@@ -174,18 +176,35 @@ if __name__ == '__main__':
         # check for existing output records 
         # we must have the generation_{i}_suffix dir for each generation as well 
         # and output_record must exist for each generation
-        problem_id_2_num_generations = {result['problem_id']: len(result['formatted_programs']) for result in results}
+        problem_id_key = 'problem_id' if not is_directed else 'codenet_problem_id'
+        problem_id_2_num_generations = {result[problem_id_key]: len(result['formatted_programs']) for result in results}
         for problem_id, num_generations in problem_id_2_num_generations.items():
             problem_id_dir = os.path.join(experiment_output_dir, f'problem_{problem_id}')
             if not os.path.exists(problem_id_dir):
                 previous_results_exist = False
                 break
             generation_dirs = glob.glob(os.path.join(problem_id_dir, 'generation_*'))
-            if len(generation_dirs) != num_generations:
+            # matching ids 
+            premitted_gen_idxs = set(range(num_generations))
+            gen_idxs = set()
+            for generation_dir in generation_dirs:
+                match = re.search(r'generation_(\d+)', generation_dir)
+                int_match = int(match.group(1)) if match else None
+                if int_match is not None and int_match in premitted_gen_idxs:
+                    gen_idxs.add(int_match)
+                else: 
+                    logging.warning(f"Generation dir {generation_dir} does not match the expected pattern for {problem_id}, int match: {int_match}")
+
+            if len(gen_idxs) != num_generations:
                 previous_results_exist = False
+                logging.critical(f"Generation dirs mismatch for {problem_id}, {len(gen_idxs)} != {num_generations}")
+                logging.info("Will be re-executing")
                 break
+            
             if not all([os.path.exists(os.path.join(generation_dir, 'output_record.json')) for generation_dir in generation_dirs]):
                 previous_results_exist = False
+                logging.critical(f"Output record missing for {problem_id}")
+                logging.info("Will be re-executing")
                 break
             
     else: 
@@ -221,6 +240,20 @@ if __name__ == '__main__':
             n_generations = len(result['formatted_programs'])
             problem_id_dir = os.path.join(experiment_output_dir, f'problem_{problem_id}')
             generation_dirs = glob.glob(os.path.join(problem_id_dir, 'generation_*'))
+            permited_gen_idxs = set(range(n_generations))
+            
+            generation_dict = {}
+            for generation_dir in generation_dirs:
+                match = re.search(r'generation_(\d+)', generation_dir)
+                gen_idx = int(match.group(1)) if match else None
+                if gen_idx is not None and gen_idx in permited_gen_idxs:
+                    # import pdb; pdb.set_trace()
+                    if gen_idx not in generation_dict or generation_dir > generation_dict[gen_idx]:
+                        generation_dict[gen_idx] = generation_dir
+                else:
+                    logging.warning(f"Generation dir {generation_dir} does not match the expected pattern")
+                    # Update generation_dirs with the deduplicated list
+            generation_dirs = list(generation_dict.values())
             assert len(generation_dirs) == n_generations, f"Generation dirs mismatch for {problem_id}, {len(generation_dirs)} != {n_generations}"
             for generation_dir in generation_dirs:
                 with open(os.path.join(generation_dir, 'output_record.json'), 'r') as f:
@@ -295,8 +328,45 @@ if __name__ == '__main__':
             # semantic_clustering
             program_2_semantic_string, semantic_strings_2_programs = clustering.make_semantic_strings(records)
             semantic_count = len(semantic_strings_2_programs.keys())
+            pairwise_semantic_div = clustering.calculate_pairwise_semantic_div(records, program_2_semantic_string)
             result[f'{recordtype}_semantic_count'] = semantic_count
             result[f'{recordtype}_semantic_proportion'] = semantic_count / len(records) if len(records) > 1 else np.nan
+            result[f'{recordtype}_pairwise_semantic_prop'] = pairwise_semantic_div
+            
+            # coherent 
+            coherent_records = clustering.get_coherent_records(records)
+            coh_program2_semantic_string, coh_semantic_strings_2_programs = clustering.make_semantic_strings(coherent_records)
+            
+            coh_semantic_count = len(coh_semantic_strings_2_programs.keys())
+            coh_pairwise_semantic_div = clustering.calculate_pairwise_semantic_div(coherent_records, coh_program2_semantic_string)
+            
+            result[f'{recordtype}_semantic_count_wcoh'] = coh_semantic_count
+            result[f'{recordtype}_semantic_proportion_wcoh'] = coh_semantic_count / len(coherent_records) if len(coherent_records) > 1 else np.nan
+            result[f'{recordtype}_pairwise_semantic_prop_wcoh'] = coh_pairwise_semantic_div
+            
+            # coherent + nonempty
+            non_empty_records = [record for record in records if len(record["extracted_code"]) > 0]
+            coherent_non_empty_records = clustering.get_coherent_records(non_empty_records)
+            coh_nonempty_program2_semantic_string, coh_nonempty_semantic_strings_2_programs = clustering.make_semantic_strings(coherent_non_empty_records)
+            
+            coherent_nonempty_semantic_count = len(coh_nonempty_semantic_strings_2_programs.keys())
+            coherent_nonempty_pairwise_semantic_div = clustering.calculate_pairwise_semantic_div(coherent_non_empty_records, coh_nonempty_program2_semantic_string)
+
+            result[f'{recordtype}_semantic_count_wcoh_nonempty'] = coherent_nonempty_semantic_count
+            result[f'{recordtype}_semantic_proportion_wcoh_nonempty'] = coherent_nonempty_semantic_count / len(coherent_non_empty_records) if len(coherent_non_empty_records) > 1 else np.nan
+            result[f'{recordtype}_pairwise_semantic_prop_wcoh_nonempty'] = coherent_nonempty_pairwise_semantic_div
+            
+            # coherent + nonempty + has output
+            non_empty_w_output_records = [record for record in non_empty_records if all([output not in [None, ""] for output in record["testcase_outputs"].values()])]
+            coherent_nonempty_w_output_records = clustering.get_coherent_records(non_empty_w_output_records)
+            nonemptyw_output_program2_semantic_string, nonemptyw_output_semantic_strings_2_programs = clustering.make_semantic_strings(coherent_nonempty_w_output_records)
+            
+            coherent_nonemptyw_output_semantic_count = len(nonemptyw_output_semantic_strings_2_programs.keys())
+            coherent_nonemptyw_output_pairwise_semantic_div = clustering.calculate_pairwise_semantic_div(coherent_nonempty_w_output_records, nonemptyw_output_program2_semantic_string)
+            
+            result[f'{recordtype}_semantic_count_wcoh_nonempty_woutput'] = coherent_nonemptyw_output_semantic_count
+            result[f'{recordtype}_semantic_proportion_wcoh_nonempty_woutput'] = coherent_nonemptyw_output_semantic_count / len(non_empty_w_output_records) if len(non_empty_w_output_records) > 1 else np.nan
+            result[f'{recordtype}_pairwise_semantic_prop_wcoh_nonempty_woutput'] = coherent_nonemptyw_output_pairwise_semantic_div
             
             if recordtype =="coh": 
                 result["coh_semantic_proportion_of_all"] = semantic_count / len(recordtype_2_records["all"]) if len(recordtype_2_records["all"]) > 1 else np.nan
@@ -311,6 +381,8 @@ if __name__ == '__main__':
             # if we have more than 2 'non-empty' programs, we can calculate the diversity metrics
             if len([p for p in programs if len(p) > 0]) > 2:
                 import tokenize
+                logging.info(f"Calculating lexical diversity for {recordtype} programs")
+                lexical_diversity_start = datetime.datetime.now()
                 for i in range(1, 7):
                     distinct_n = lexical_diversity.distinct_n(programs, i, lexical_diversity.get_relevant_tokens_parso, remove_comments=False)
                     result[f'{recordtype}_distinct_{i}'] = distinct_n
@@ -333,6 +405,13 @@ if __name__ == '__main__':
                         remove_comments=False, iterations=300, subsample_size=2
                     )
                     result[f'{recordtype}_distinct_{i}_raw_bootstrap'] = distinct_n_raw_bootstrap
+                    
+                    distinct_n_jaccard = lexical_diversity.jaccard_n_grams(programs, i, lexical_diversity.get_relevant_tokens_parso, remove_comments=False, iterations=-1)
+                    result[f'{recordtype}_distinct_{i}_jaccard'] = distinct_n_jaccard
+                logging.info(f"Lexical diversity took {datetime.datetime.now() - lexical_diversity_start}")
+                    
+                logging.info(f"Calculating average cosine distance for {recordtype} programs")
+                cosine_start = datetime.datetime.now()
                 try: 
                     average_cosine_distance_programs = embedding_client.average_cosine_distance(programs)
                     result[f'{recordtype}_average_cosine_distance_programs'] = average_cosine_distance_programs
@@ -348,7 +427,39 @@ if __name__ == '__main__':
                     logging.error(f"Request failed with error {e}. Traceback: {traceback_str}")
                     result[f'{recordtype}_average_cosine_distance_raw'] = np.nan
                     
-                    ## todo: also add in the diversity with the raw programs - the extracted code
+                ## modify to include empty programs     
+                
+                try: 
+                    average_cosine_distance_zero_null = embedding_client.average_cosine_distance(programs, normalize_null=True, null_value=0.0)
+                    result[f'{recordtype}_average_cosine_distance_programs_zero_null'] = average_cosine_distance_zero_null
+                except Exception as e:
+                    traceback_str = traceback.format_exc()
+                    logging.error(f"Request failed with error {e}. Traceback: {traceback_str}")
+                    result[f'{recordtype}_average_cosine_distance_programs_zero_null'] = np.nan
+                try: 
+                    average_cosine_distance_raw_zero_null = embedding_client.average_cosine_distance(raw_programs, normalize_null=True, null_value=0.0)
+                    result[f'{recordtype}_average_cosine_distance_raw_zero_null'] = average_cosine_distance_raw_zero_null
+                except Exception as e:
+                    traceback_str = traceback.format_exc()
+                    logging.error(f"Request failed with error {e}. Traceback: {traceback_str}")
+                    result[f'{recordtype}_average_cosine_distance_raw_zero_null'] = np.nan
+                    
+                try:
+                    average_cosine_distance_one_null = embedding_client.average_cosine_distance(programs, normalize_null=True, null_value=1.0)
+                    result[f'{recordtype}_average_cosine_distance_programs_one_null'] = average_cosine_distance_one_null
+                except Exception as e:
+                    traceback_str = traceback.format_exc()
+                    logging.error(f"Request failed with error {e}. Traceback: {traceback_str}")
+                    result[f'{recordtype}_average_cosine_distance_programs_one_null'] = np.nan
+                try:
+                    average_cosine_distance_raw_one_null = embedding_client.average_cosine_distance(raw_programs, normalize_null=True, null_value=1.0)
+                    result[f'{recordtype}_average_cosine_distance_raw_one_null'] = average_cosine_distance_raw_one_null
+                except Exception as e:
+                    traceback_str = traceback.format_exc()
+                    logging.error(f"Request failed with error {e}. Traceback: {traceback_str}")
+                    result[f'{recordtype}_average_cosine_distance_raw_one_null'] = np.nan
+                    
+                logging.info(f"Cosing distance took {datetime.datetime.now() - cosine_start}")
                 
                 # just skip it for now 
                 if use_previous_executions:
@@ -368,6 +479,14 @@ if __name__ == '__main__':
                 for key, height_results in parallel_subtree_results_bootstrap.items():
                     for height, v in height_results.items():
                         result[f"{recordtype}_{key}_{height}_bootstrap"] = v
+                        
+                parallel_subtree_results_jaccard = parallel_subtree_analysis(
+                    programs, n_jobs=args.eval_workers, heights=[3,4,5,6], 
+                    verbose=False, do_jaccard=True, jaccard_iterations=-1
+                )
+                for key, height_results in parallel_subtree_results_jaccard.items():
+                    for height, v in height_results.items():
+                        result[f"{recordtype}_{key}_{height}_jaccard"] = v
                 
                         
                         
@@ -375,6 +494,11 @@ if __name__ == '__main__':
                 
                 result[f'{recordtype}_average_cosine_distance_programs'] = np.nan
                 result[f'{recordtype}_average_cosine_distance_raw'] = np.nan
+                result[f'{recordtype}_average_cosine_distance_programs_zero_null'] = np.nan
+                result[f'{recordtype}_average_cosine_distance_raw_zero_null'] = np.nan
+                result[f'{recordtype}_average_cosine_distance_programs_one_null'] = np.nan
+                result[f'{recordtype}_average_cosine_distance_raw_one_null'] = np.nan
+                
                 
                 for i in range(1, 7):
                     result[f'{recordtype}_distinct_{i}'] = np.nan
@@ -383,6 +507,7 @@ if __name__ == '__main__':
                     result[f'{recordtype}_distinct_{i}_bootstrap'] = np.nan
                     result[f'{recordtype}_distinct_{i}_no_comments_bootstrap'] = np.nan
                     result[f'{recordtype}_distinct_{i}_raw_bootstrap'] = np.nan
+                    result[f'{recordtype}_distinct_{i}_jaccard'] = np.nan
                 # result[f'{recordtype}_distinct_1'] = np.nan
                 # result[f'{recordtype}_distinct_2'] = np.nan
                 # result[f'{recordtype}_distinct_3'] = np.nan
@@ -394,6 +519,7 @@ if __name__ == '__main__':
                     for height in [3,4,5,6]:
                         result[f"{recordtype}_{key}_{height}"] = np.nan
                         result[f"{recordtype}_{key}_{height}_bootstrap"] = np.nan
+                        result[f"{recordtype}_{key}_{height}_jaccard"] = np.nan
                                                                                                                  
             # save the results
             if recordtype == 'all':
@@ -423,11 +549,17 @@ if __name__ == '__main__':
                         f.write(formatted_program)
                     with open(os.path.join(generation_dir, f'output_record.json'), 'w') as f:
                         f.write(json.dumps(output_record))  
-                    if is_directed: 
-                        diff = program_2_diff[formatted_program]
-                        with open(os.path.join(generation_dir, f'diff.txt'), 'w') as f:
-                            f.write(f"Accuracy: {accuracy}\n")
-                            f.write("\n".join(diff))
+
+                    if is_directed:
+                        try: 
+                            diff = program_2_diff[program]
+                            with open(os.path.join(generation_dir, f'diff.txt'), 'w') as f:
+                                f.write(f"Accuracy: {accuracy}\n")
+                                f.write("\n".join(diff))
+                        except Exception as e:
+                            logging.error(f"Error writing diff file: {e}")
+                            traceback_str = traceback.format_exc()
+                            logging.error(f"Traceback: {traceback_str}")
                 
         with open(os.path.join(problem_id_dir, f'result.tsv'), 'w') as f:
             for k in results_stats_keys:

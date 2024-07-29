@@ -150,8 +150,10 @@ if __name__ == '__main__':
         # Setup generation pipeline
         if 'gpt' in args.model or 'babbage' in args.model or 'davinci' in args.model:
             pipe = gpt.GPTModel(model_name=args.model)
+            
         elif args.model in ['SONNET', 'HAIKU', 'OPUS']:
             pipe = claude.ClaudeModel(model_name=args.model)
+            
         else:
             # pipe = opensource.OpensourceModel(model_name=args.model)
             with open(args.path_to_hf_token, "r") as f:

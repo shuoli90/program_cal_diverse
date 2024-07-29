@@ -54,7 +54,7 @@ def format_directed_code(f_code: str):
 
 
 def build_docker_image(path_to_dockerfile, max_pool_size=20, timeout=600, version_tag=None):
-    tag = 'python-test-case-runner-conda:latest'
+    tag = 'python-test-case-runner-conda'
     client = docker.from_env(max_pool_size=max_pool_size, timeout=timeout)
     images = client.images.list()
     version_tag = version_tag or "latest"
@@ -63,7 +63,12 @@ def build_docker_image(path_to_dockerfile, max_pool_size=20, timeout=600, versio
             print(f"Image with tag '{tag}' already exists. Using existing image.")
             return client, image
     # Build the Docker image
+    logging.info(f"Building Docker image with tag '{tag}' from Dockerfile at '{path_to_dockerfile}'")
     image, build_log = client.images.build(path=path_to_dockerfile, tag=f"{tag}:{version_tag}")
+    for line in build_log:
+        if 'stream' in line:
+            logging.info(line['stream'].strip())
+    logging.info(f"Built Docker image with tag '{tag}'")
     return client, image
 
 

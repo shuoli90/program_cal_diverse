@@ -365,7 +365,7 @@ if __name__ == '__main__':
             coherent_nonemptyw_output_pairwise_semantic_div = clustering.calculate_pairwise_semantic_div(coherent_nonempty_w_output_records, nonemptyw_output_program2_semantic_string)
             
             result[f'{recordtype}_semantic_count_wcoh_nonempty_woutput'] = coherent_nonemptyw_output_semantic_count
-            result[f'{recordtype}_semantic_proportion_wcoh_nonempty_woutput'] = coherent_nonemptyw_output_semantic_count / len(non_empty_w_output_records) if len(non_empty_w_output_records) > 1 else np.nan
+            result[f'{recordtype}_semantic_proportion_wcoh_nonempty_woutput'] = coherent_nonemptyw_output_semantic_count / len(coherent_nonempty_w_output_records) if len(coherent_nonempty_w_output_records) > 1 else np.nan
             result[f'{recordtype}_pairwise_semantic_prop_wcoh_nonempty_woutput'] = coherent_nonemptyw_output_pairwise_semantic_div
             
             if recordtype =="coh": 

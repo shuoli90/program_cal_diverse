@@ -12,6 +12,7 @@ sys.path.append(os.path.dirname(__file__))
 from async_driver import Arguments, load_arguments_from_yaml
 from typing import List
 from concurrent.futures import ThreadPoolExecutor, as_completed
+import subprocess
 import threading
 
 
@@ -27,7 +28,7 @@ results_stats_keys = results_stats_keys + ['average_cosine_distance_programs', '
 results_stats_keys = results_stats_keys + ['average_cosine_distance_programs_zero_null', 'average_cosine_distance_raw_zero_null', 'average_cosine_distance_programs_one_null', 'average_cosine_distance_raw_one_null']
 results_stats_keys = results_stats_keys + [f"distinct_{i}" for i in range(1, 7)] + [f"distinct_{i}_no_comments" for i in range(1, 7)] + [f"distinct_{i}_raw" for i in range(1, 7)] 
 results_stats_keys = results_stats_keys + [f"distinct_{i}_bootstrap" for i in range(1, 7)] + [f"distinct_{i}_no_comments_bootstrap" for i in range(1, 7)] + [f"distinct_{i}_raw_bootstrap" for i in range(1, 7)]
-result_stats_keys = results_stats_keys + [f"distinct_{i}_jaccard" for i in range(1, 7)]
+results_stats_keys = results_stats_keys + [f"distinct_{i}_jaccard" for i in range(1, 7)]
 results_stats_keys = results_stats_keys + [f"{key}_{height}" for key in ['plain_subtrees', 'stripped_subtrees'] for height in [3,4,5,6]]
 # boostrap keys
 results_stats_keys = results_stats_keys + [f"{key}_{height}_bootstrap" for key in ['plain_subtrees', 'stripped_subtrees'] for height in [3,4,5,6]]
@@ -40,7 +41,7 @@ all_keys = base_keys + results_stats_keys
 
 pretty_column_widths = [46, 15] + [(len(k) + 2) for k in all_keys[2:]]
 
-MAX_WORKERS=15
+MAX_WORKERS=5
 
 
 def parse_results(results_dir: str): 
@@ -111,7 +112,9 @@ def run_experiment_and_log_results(config_path, config, stats_file, stats_pretty
     result_path = os.path.join(directory, 'results.jsonl')
 
     if os.path.exists(result_path):
-        os.system(f"python experiment_eval.py {config_path}")
+        # os.system(f"python experiment_eval.py {config_path}")
+        # subprocess.Popen(["python", "experiment_eval.py", config_path])
+        subprocess.call(["python", "experiment_eval.py", config_path])
         result = parse_results(directory)
         with lock:
             write_out_results(result, config, stats_file, stats_pretty_file, is_error=False)

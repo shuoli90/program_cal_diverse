@@ -20,7 +20,12 @@ logging.basicConfig(level=logging.INFO)
 
 ALL_EXPERIMENT_OUTPUT_ROOT = "/data1/shypula/prog_diversity/all_experiments/"
 
-RUN_NAME = "Open_Ended_Reevaluation_Cosine_Bootstrap"
+# RUN_NAME = "Open_Ended_Reevaluation_Cosine_Bootstrap_NoExecute_FineGrainedSemantic"
+# RUN_NAME = "Directed_Reevaluation_Cosine_Bootstrap_NoExecute_FineGrainedSemantic"
+# RUN_NAME = "Human_Directed_Reevaluation_Cosine_Bootstrap_FineGrainedSemantic"
+
+RUN_NAME = "Open_Ended_Reevaluation_JaccPairwise_wllama31"
+# RUN_NAME = "Directed_Reevaluation_JaccPairwise_wCommercial"
 
 DIRECTORY_PATHS=[
     # "/data1/shypula/prog_diversity/all_experiments/Model_Prompt_Temp_Sweep_2024-06-21_22-18-19", 
@@ -28,21 +33,39 @@ DIRECTORY_PATHS=[
     # "/data1/shypula/prog_diversity/all_experiments/Model_Prompt_Temp_Sweep_2024-06-25_11-46-30", 
     # "/data1/shypula/prog_diversity/all_experiments/Model_Prompt_Temp_Sweep_2024-06-27_01-07-28", 
     # "/data1/shypula/prog_diversity/all_experiments/Model_Prompt_Temp_Sweep_2024-06-27_01-21-33"
-    "/data1/shypula/prog_diversity/all_experiments/Model_Prompt_Temp_Sweep_2024-07-08_18-50-16", 
-    "/data1/shypula/prog_diversity/all_experiments/Open_Ended_Reevaluation_2024-07-05_00-53-22"
-    
+    # "/data1/shypula/prog_diversity/all_experiments/Model_Prompt_Temp_Sweep_2024-07-08_18-50-16", 
+    # "/data1/shypula/prog_diversity/all_experiments/Directed_v2_Sweep_2024-07-13_03-22-37"
+    # "/data1/shypula/prog_diversity/all_experiments/human_directed_eval_cosine_bootstrap_finegrained_2024-07-25_16-36-08"
+    # "/data1/shypula/prog_diversity/all_experiments/Open_Ended_Reevaluation_Cosine_Bootstrap_2024-07-18_00-57-36",
+    # "/data1/shypula/prog_diversity/all_experiments/OpenEndedDopt4AndBigEval_2024-07-23_02-53-17" 
+    "/data1/shypula/prog_diversity/all_experiments/Open_Ended_Reevaluation_Cosine_Bootstrap_NoExecute_FineGrainedSemantic_2024-07-26_00-34-22", 
+    "/data1/shypula/prog_diversity/all_experiments/OpenEndedLlama3.1_2024-07-25_23-53-56"
+    # "/data1/shypula/prog_diversity/all_experiments/Directed_Reevaluation_Cosine_Bootstrap_NoExecute_FineGrainedSemantic_2024-07-25_02-06-22", 
+    # "/home/bzhang16/program_cal_diverse/all_experiments/directed_debug_2024-07-24_01-56-45", 
+    # "/home/bzhang16/program_cal_diverse/all_experiments/directed_debug_2024-07-25_01-58-33", 
+    # "/home/bzhang16/program_cal_diverse/all_experiments/directed_debug_2024-07-25_01-59-23", 
+    # "/home/bzhang16/program_cal_diverse/all_experiments/directed_debug_2024-07-25_02-00-02", 
+    # "/home/bzhang16/program_cal_diverse/all_experiments/directed_debug_2024-07-25_02-02-06",   
+    # "/home/bzhang16/program_cal_diverse/all_experiments/directed_debug_2024-07-25_04-16-01", 
+    # "/home/bzhang16/program_cal_diverse/all_experiments/directed_debug_2024-07-25_04-17-40"
 ]
 
 # REEXECUTE = False
 # use_previous_executions
-USE_PREVIOUS_EXECUTIONS = False
+USE_PREVIOUS_EXECUTIONS = True
 REFORMAT_RESULTS = True
 
 EXTRA_VERBOSE = False
 
 FIX_OLD_FORMAT = False
 
-EVAL_WORKERS = 20
+EVAL_WORKERS = 10
+
+# MODEL_SIM_ENDPOINT_URL='http://73.13.33.233'
+# MODEL_SIM_ENDPOINT_PORT=80
+MODEL_SIM_ENDPOINT_URL='http://presto.seas.upenn.edu'
+MODEL_SIM_ENDPOINT_PORT=8877
+# MODEL_SIM_ENDPOINT_PORT=8888
 
 def capture_i_and_coh_j(text):
     # Pattern to capture 'i' and the 'coh_j...' part as separate groups
@@ -71,6 +94,7 @@ def main(DIRECTORY_PATHS):
     # initialize a list of the .yaml paths 
     
     all_dir_yaml_paths = [line.strip() for directory_path in DIRECTORY_PATHS for line in open(os.path.join(directory_path, 'all_configs_list.txt'), 'r').readlines()]
+    all_dir_yaml_paths = [d for d in  all_dir_yaml_paths if "tatsu" not in d]
     pbar = tqdm(total=len(all_dir_yaml_paths))
     
     yaml_paths = []
@@ -93,11 +117,13 @@ def main(DIRECTORY_PATHS):
             
         for yaml_path in this_dir_yaml_paths: 
             ## open the yaml file
+            yaml_path = yaml_path.replace("../all_experiments/directed_debug", "/home/bzhang16/program_cal_diverse/all_experiments/directed_debug")
             with open(yaml_path, 'r') as f: 
                 yaml_dict = yaml.load(f, Loader=yaml.FullLoader)
                 
-            this_experiment_output_dir = yaml_dict["experiment_output_dir"]
-            this_experiment_output_root = yaml_dict["experiment_output_root"]
+            this_experiment_output_dir = yaml_dict["experiment_output_dir"].replace("../all_experiments/directed_debug", "/home/bzhang16/program_cal_diverse/all_experiments/directed_debug")
+            this_experiment_output_root = yaml_dict["experiment_output_root"].replace("../all_experiments/directed_debug", "/home/bzhang16/program_cal_diverse/all_experiments/directed_debug")
+            
             this_experiment_id = os.path.basename(this_experiment_output_dir)
             assert this_experiment_output_root == directory_path, f"experiment_output_root is not the same as the directory path, something weird is going on: {this_experiment_output_root} != {directory_path}"
             if not this_experiment_output_dir == os.path.join(directory_path, this_experiment_id): 
@@ -132,6 +158,9 @@ def main(DIRECTORY_PATHS):
             yaml_dict["use_previous_executions"] = USE_PREVIOUS_EXECUTIONS
             yaml_dict["reformat_results"] = REFORMAT_RESULTS
             yaml_dict["eval_workers"] = EVAL_WORKERS
+            yaml_dict["model_sim_endpoint_url"] = MODEL_SIM_ENDPOINT_URL
+            yaml_dict["model_sim_endpoint_port"] = MODEL_SIM_ENDPOINT_PORT
+            
             
             # remove the old results + config 
             
@@ -230,9 +259,9 @@ def main(DIRECTORY_PATHS):
                                    
     
     ## Step 2: re-run the eval_driver
-    logging.info(f"Running eval_driver for {experiment_output_root}")
-    logging.info(f"Running 'python eval_driver.py {experiment_output_root}'")
-    p = subprocess.run(["python", "eval_driver.py", experiment_output_root])
+    logging.info(f"Running concurrent_eval_driver for {experiment_output_root}")
+    logging.info(f"Running 'python concurrent_eval_driver.py {experiment_output_root}'")
+    p = subprocess.run(["python", "concurrent_eval_driver.py", experiment_output_root])
     if p.returncode != 0:
         logging.error(f"Error in {experiment_output_root}, return code {p.returncode}")    
     else:

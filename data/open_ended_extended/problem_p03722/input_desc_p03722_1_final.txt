@@ -4,7 +4,8 @@ An integer M (1 ≤ M ≤ min(N(N-1), 2000)), representing another quantity or s
 M tuples of three integers each (a_i, b_i, c_i) where:
 - 1 ≤ a_i, b_i ≤ N
 - a_i ≠ b_i
-- -10^9 ≤ c_i ≤ 10^9
+- a_i≠a_j or b_i≠b_j (1≤i<j≤M) 
+- 10^9 ≤ c_i ≤ 10^9 (1≤i≤M)
 
 ### Example Input:
 

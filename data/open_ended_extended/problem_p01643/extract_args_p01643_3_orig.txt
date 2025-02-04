@@ -1,0 +1,4 @@
+def extract_arguments(fh):
+    n, k = map(int, fh.readline().strip().split())
+    a = list(map(int, fh.readline().strip().split()))
+    return n, k, a

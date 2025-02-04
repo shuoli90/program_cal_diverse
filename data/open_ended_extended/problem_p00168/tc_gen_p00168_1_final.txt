@@ -1,0 +1,45 @@
+To create a test case generator for the "Kannon-Do" problem, we need to consider the constraints and the format of the input/output. The input consists of multiple datasets, where each dataset is a single integer \( n \) (1 ≤ \( n \) ≤ 30), and the end of the input is indicated by a single zero line. We need to generate random datasets within the given constraints and ensure the format is as expected.
+
+Here's a Python function to generate random test cases for the "Kannon-Do" problem:
+
+```python
+import random
+
+def tcgen():
+    # Number of datasets (1 to 30)
+    num_datasets = random.randint(1, 30)
+    
+    # Generate each dataset
+    datasets = [random.randint(1, 30) for _ in range(num_datasets)]
+    
+    # Append the terminating zero
+    datasets.append(0)
+    
+    return datasets
+
+# Example usage
+if __name__ == "__main__":
+    test_case = tcgen()
+    for number in test_case:
+        print(number)
+```
+
+### Explanation:
+1. **num_datasets**: This variable decides how many datasets to generate, constrained by the problem to be between 1 and 30.
+2. **datasets**: This list comprehension generates random integers between 1 and 30 for each dataset.
+3. **Append 0**: The terminating zero is added to the list of datasets.
+4. **Returning datasets**: The function returns the list of datasets.
+
+### Example Output:
+Running this function might produce output like:
+```
+7
+15
+3
+28
+0
+```
+
+This represents three datasets with values 7, 15, and 3, and the terminating zero.
+
+This test case generator ensures that the generated test cases adhere to the constraints and format specified in the problem statement. You can run the `tcgen()` function to generate various test cases for the "Kannon-Do" problem.

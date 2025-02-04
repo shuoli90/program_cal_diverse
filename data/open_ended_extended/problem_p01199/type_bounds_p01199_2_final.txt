@@ -1,0 +1,5 @@
+Types: N: int, M: int, L: int, Ai: int, Bi: int, Di: int, P: List[int], K: List[int]
+
+Ranges: 1 ≤ N ≤ 100, M ≥ 0, 1 ≤ L ≤ 10000, 1 ≤ Ai < Bi ≤ N, 1 ≤ Di ≤ 10000, 0 ≤ P[i] ≤ 10^6, 0 ≤ K[i] ≤ 10^6
+
+Addtl Info: Input is terminated by EOF. All integers in each line are separated by a whitespace. There is at most one pipeline between any pair of domes.

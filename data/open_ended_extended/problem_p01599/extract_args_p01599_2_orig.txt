@@ -1,0 +1,17 @@
+def extract_arguments(fh):
+    NAB, NBA = map(int, fh.readline().strip().split())
+    trains_A_to_B = []
+    for _ in range(NAB):
+        Ci, Di, Ai = map(int, fh.readline().strip().split())
+        trains_A_to_B.append((Ci, Di, Ai))
+    trains_B_to_A = []
+    for _ in range(NBA):
+        Ci, Di, Ai = map(int, fh.readline().strip().split())
+        trains_B_to_A.append((Ci, Di, Ai))
+    return (NAB, NBA, trains_A_to_B, trains_B_to_A)
+
+# if __name__ == "__main__":
+#     input_path = sys.argv[1]
+#     with open(input_path, 'r') as fh:
+#         NAB, NBA, trains_A_to_B, trains_B_to_A = extract_arguments(fh)
+#         f(NAB, NBA, trains_A_to_B, trains_B_to_A)

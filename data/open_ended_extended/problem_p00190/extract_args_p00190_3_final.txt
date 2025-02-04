@@ -1,0 +1,11 @@
+def extract_arguments(fh):
+    datasets = []
+    while True:
+        dataset = []
+        for _ in range(5):
+            line = fh.readline().strip()
+            if line == "-1":
+                return datasets
+            row = list(map(int, line.split()))
+            dataset.append(row)
+        datasets.append(dataset)

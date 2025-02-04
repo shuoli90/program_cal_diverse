@@ -1,0 +1,3 @@
+Types: L: float, Polygon1: List[Tuple[int, int]], Polygon2: List[Tuple[int, int]]
+Ranges: 0.1 < L < 50.0, 3 ≤ len(Polygon1) < 15, 3 ≤ len(Polygon2) < 15, 0 ≤ x, y < 500
+Addtl Info: Input ends with a zero line not part of any dataset

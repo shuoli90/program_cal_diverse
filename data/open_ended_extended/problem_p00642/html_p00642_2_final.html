@@ -1,0 +1,163 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p00642 - Generation 2</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p00642 - Generation 2</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>
+Problem F: Ben Toh
+As usual, those who called wolves get together on 8 p.m. at the supermarket. The thing they want is only one, a box lunch that is labeled half price. Scrambling for a few discounted box lunch, they fiercely fight every day. And those who are blessed by hunger and appetite the best can acquire the box lunch, while others have to have cup ramen or something with tear in their eyes.
+A senior high school student, Sato, is one of wolves. A dormitry he lives doesn't serve a dinner, and his parents don't send so much money. Therefore he absolutely acquire the half-priced box lunch and save his money. Otherwise he have to give up comic books and video games, or begin part-time job.
+Since Sato is an excellent wolf, he can acquire the discounted box lunch in 100% probability on the first day. But on the next day, many other wolves cooperate to block him and the probability to get a box lunch will be 50%. Even though he can get, the probability to get will be 25% on the next day of the day. Likewise, if he gets a box lunch on a certain day, the probability to get on the next day will be half. Once he failed to get a box lunch, probability to get would be back to 100%.
+He continue to go to supermaket and try to get the discounted box lunch for n days. Please write a program to computes the expected value of the number of the discounted box lunches he can acquire.
+Input
+Input consists of several datasets.
+Input for a single dataset is given as a single integer n.
+Input terminates with a dataset where n = 0.
+Output
+For each dataset, write a line that contains an expected value. You may print any number of digits after the decimal point. Answers that have an error less than 1.0e-2 will be accepted.
+Constraints
+1 ≤ n ≤ 100,000
+Sample Input
+1
+2
+3
+0
+Output for the Sample Input
+1.00000000
+1.50000000
+2.12500000
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An integer n (1 ≤ n ≤ 100,000). The input consists of several datasets and terminates with a dataset where n = 0.
+
+### Example Input:
+
+```
+1
+2
+3
+0
+```
+
+### Function Signature:
+Write a function f(inputs) that takes in the input.
+def f(inputs: List[int]):
+    ''' 
+    inputs: a list of integers 
+    '''</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Sure, let's create a test case generator for the given problem "Ben Toh." The task is to simply generate several datasets where each dataset is a single integer \( n \) and terminates with a dataset where \( n = 0 \).
+
+Here's a Python function to generate a test case:
+
+```python
+import random
+
+def tcgen():
+    test_cases = []
+    
+    # Number of datasets to generate
+    num_datasets = random.randint(1, 100)
+    
+    for _ in range(num_datasets):
+        # Generate a random n value within the given constraints
+        n = random.randint(1, 100000)
+        test_cases.append(n)
+    
+    # Add the terminating condition
+    test_cases.append(0)
+    
+    return test_cases
+
+# Example usage
+if __name__ == "__main__":
+    test_cases = tcgen()
+    for case in test_cases:
+        print(case)
+```
+
+### Explanation:
+
+- **`num_datasets`**: We randomly decide the number of datasets to generate, ensuring it is a reasonable number for testing purposes.
+- **`for` loop**: For each dataset, we generate a random integer \( n \) within the range [1, 100000] as specified by the problem constraints.
+- **Termination condition**: We append a `0` at the end of the datasets to indicate the termination condition as required by the problem statement.
+
+### Example Output from Running the Generator:
+
+```
+84372
+194
+38291
+...
+0
+```
+
+This generator will provide a variety of test cases to thoroughly test the competitive programming problem.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    inputs = []
+    while True:
+        n = int(fh.readline().strip())
+        if n == 0:
+            break
+        inputs.append((n,))
+    return inputs</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

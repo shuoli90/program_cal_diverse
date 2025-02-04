@@ -1,0 +1,35 @@
+Problem B: Cubes Without Holes
+There is a cube which consists of n × n × n small cubes. Small cubes have marks on their surfaces. An example where n = 4 is shown in the following figure.
+Then, holes are made in the cube by piercing from the marked surface to the opposite surface horizontally or vertically, as shown in the figure (right) above.
+Your task is to create a program that reads n and the position of the marks, and counts the number of small cubes without holes.
+Input
+The input consists of multiple datasets. Each dataset is given in the following format:
+n h
+c1 a1 b1
+c2 a2 b2
+   .
+   .
+   .
+ch ah bh
+h is an integer that indicates the number of marks. Following h lines specify the positions of the marks. To specify the position of the marks, we use the coordinate system shown in the figure below. (x, y, z) = (1, 1, 1) indicates the small cube at the lower left rear, and (x, y, z) = (n, n, n) indicates the small cube at the upper right front.
+ci is a string that indicates the plane on which the i-th mark is placed. ci is either "xy", "xz", or "yz", which respectively indicate that the i-th mark is on the xy-plane, xz-plane, or yz-plane.
+ai and bi indicate the coordinates on the plane indicated by ci. When the plane is xy-plane, xz-plane, or yz-plane, ai and bi respectively indicate the coordinates of the plane (x, y), (x, z), or (y, z). For example, in the figure above, the values of ci, ai, and bi for marks A, B, and C are "xy 4 4", "xz 1 2", and "yz 2 3", respectively.
+When both n and h are 0, it indicates the end of the input.
+It can be assumed that n ≤ 500 and h ≤ 200.
+Output
+For each dataset, output the number of small cubes without holes in one line.
+Sample Input
+4 3
+xy 4 4
+xz 1 2
+yz 2 3
+4 5
+xy 1 1
+xy 3 3
+xz 3 3
+yz 2 1
+yz 3 3
+0 0
+Output for the Sample Input
+52
+46

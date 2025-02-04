@@ -1,0 +1,9 @@
+def extract_arguments(fh):
+    num_datasets = int(fh.readline().strip())
+    datasets = []
+    for _ in range(num_datasets):
+        r = float(fh.readline().strip())
+        s = int(fh.readline().strip())
+        weights = [int(fh.readline().strip()) for _ in range(s)]
+        datasets.append((r, s, weights))
+    return datasets

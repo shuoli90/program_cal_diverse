@@ -1,0 +1,40 @@
+To generate test cases for this problem, we need to take into account the constraints provided. Here's a Python function to generate random test cases based on the given constraints:
+
+```python
+import random
+
+def tcgen():
+    # Define the constraints
+    min_N = 1
+    max_N = 150
+    min_K = 1
+    min_M = 10**8
+    max_M = 10**9
+    
+    # Generate random values within the constraints
+    N = random.randint(min_N, max_N)  # N between 1 and 150
+    K = random.randint(min_K, N)      # K between 1 and N (inclusive)
+    M = random.randint(min_M, max_M)  # M between 10^8 and 10^9
+    
+    return f"{N} {K} {M}"
+
+# Example of generating a test case
+print(tcgen())
+```
+
+This function randomly generates values for \(N\), \(K\), and \(M\) within the specified constraints and returns them in the required format. You can run this function multiple times to generate different test cases. Here’s a breakdown of the approach:
+
+1. **N** is generated between 1 and 150.
+2. **K** is generated between 1 and \(N\) (inclusive).
+3. **M** is generated between \(10^8\) and \(10^9\).
+
+Each time you call `tcgen()`, you'll get a new set of values for \(N\), \(K\), and \(M\) adhering to the constraints. For instance:
+
+```python
+# Example output
+print(tcgen())  # "74 39 423451789"
+print(tcgen())  # "120 120 934567890"
+print(tcgen())  # "5 3 100000000"
+```
+
+These outputs can be used as input for your competitive programming problem.

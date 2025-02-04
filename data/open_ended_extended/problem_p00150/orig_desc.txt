@@ -1,0 +1,24 @@
+
+Twin Prime
+Prime numbers are widely applied for cryptographic and communication technology.
+A twin prime is a prime number that differs from another prime number by 2.
+For example, (5, 7) and (11, 13) are twin prime pairs.
+In this problem, we call the greater number of a twin prime "size of the twin prime."
+Your task is to create a program which reads an integer n and prints a twin prime which has the maximum size among twin primes less than or equals to n
+You may assume that 5 ≤ n ≤ 10000.
+Input
+The input is a sequence of datasets. The end of the input is indicated by a line containing one zero. Each dataset is formatted as follows:
+n (integer)
+Output
+For each dataset, print the twin prime p and q (p < q). p and q should be separated by a single space.
+Sample Input
+12
+100
+200
+300
+0
+Output for the Sample Input
+5 7
+71 73
+197 199
+281 283

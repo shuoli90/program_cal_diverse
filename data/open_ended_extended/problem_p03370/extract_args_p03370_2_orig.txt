@@ -1,0 +1,6 @@
+def extract_arguments(fh):
+    # Read the first line and split to get N and X
+    N, X = map(int, fh.readline().strip().split())
+    # Read the next N lines to get the list of m_i values
+    m = [int(fh.readline().strip()) for _ in range(N)]
+    return N, X, m

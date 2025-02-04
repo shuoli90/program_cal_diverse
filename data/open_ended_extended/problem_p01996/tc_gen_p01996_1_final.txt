@@ -1,0 +1,38 @@
+Sure! Here is the test case generator for the problem statement you provided:
+
+```python
+import random
+
+def tcgen():
+    N = random.randint(1, 1000)
+    M = random.randint(1, N)
+    
+    # Generate a list of M unique integers within the range 1 to N
+    A = sorted(random.sample(range(1, N + 1), M))
+    
+    return N, M, A
+
+# Example usage:
+N, M, A = tcgen()
+print(N, M)
+print(" ".join(map(str, A)))
+```
+
+This generator function follows the constraints provided:
+1. `N` is a random integer between 1 and 1000.
+2. `M` is a random integer between 1 and `N`.
+3. `A` is a sorted list of `M` unique integers between 1 and `N`, ensuring that the seats are in ascending order.
+
+Here's an example of the output from running the generator:
+
+```
+Example Output:
+7 3
+1 5 7
+```
+
+This output indicates:
+- There are 7 seats in total.
+- There are 3 students sitting at positions 1, 5, and 7.
+
+This test case generator should be helpful for creating multiple random test cases for the problem.

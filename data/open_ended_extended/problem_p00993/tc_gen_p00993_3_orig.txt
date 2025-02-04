@@ -1,0 +1,65 @@
+Sure, I can help you write a test case generator for the given problem statement "Problem D: Numbers". Below is the Python code for the test case generator:
+
+```python
+import random
+
+def tcgen():
+    # Generate a random value for n within the given constraints
+    n = random.randint(1, 1500)
+    return n
+
+# Example usage
+n = tcgen()
+print(n)
+```
+
+This function will generate a random value for \( n \) within the given constraints \( 1 \leq n \leq 1500 \). To generate and format the test cases for this problem, we will need to generate the smallest of \( n \) consecutive positive integers and their divisors.
+
+Here's an example of how you can generate valid test cases for this problem:
+
+```python
+def generate_divisors(x):
+    """ Return a list of divisors of x excluding 1 and x. """
+    divisors = []
+    for i in range(2, int(x**0.5) + 1):
+        if x % i == 0:
+            divisors.append(i)
+            if i != x // i:
+                divisors.append(x // i)
+    return divisors
+
+def generate_test_case(n):
+    smallest_x = random.randint(2, 10**6)  # Generate a random starting point (reasonably large to avoid trivial cases)
+    consecutive_numbers = [smallest_x + i for i in range(n)]
+    
+    # Collect divisors for each number
+    divisors_list = [generate_divisors(num) for num in consecutive_numbers]
+
+    # Ensure each number has at least one non-trivial divisor
+    for i in range(len(divisors_list)):
+        if not divisors_list[i]:
+            divisors_list[i] = [smallest_x + i]
+    
+    return smallest_x, consecutive_numbers, divisors_list
+
+def tcgen():
+    n = random.randint(1, 1500)
+    smallest_x, consecutive_numbers, divisors_list = generate_test_case(n)
+    
+    return n, smallest_x, consecutive_numbers, divisors_list
+
+# Example usage
+n, smallest_x, consecutive_numbers, divisors_list = tcgen()
+print(n)
+print(smallest_x)
+for i in range(n):
+    print(consecutive_numbers[i])
+    print(divisors_list[i])
+```
+
+### Explanation:
+1. **`generate_divisors`**: A helper function to get divisors of a number excluding 1 and itself.
+2. **`generate_test_case`**: This generates a list of \( n \) consecutive numbers starting from a random number `smallest_x` and ensures each number has at least one non-trivial divisor. If a number has no divisors other than 1 and itself, the number itself is added as its divisor.
+3. **`tcgen`**: Generates the value for \( n \) and then calls `generate_test_case` to produce the smallest number, the consecutive numbers, and their divisors.
+
+Using this generator, you can produce valid test cases for the given problem statement. The example usage shows how to generate and print a test case. Adjusting the `smallest_x` random range can help to control the size of the numbers generated.

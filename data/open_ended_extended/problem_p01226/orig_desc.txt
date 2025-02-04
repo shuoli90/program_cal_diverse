@@ -1,0 +1,44 @@
+Problem D:Battle Town
+You decided to develop a game with your friends.
+   The title of the game is "Battle Town".
+   The game is themed around urban tank warfare.
+   As the first step in game development, you decided to develop the following prototype.
+In this prototype, only the player's tank appears, and the enemy tanks do not appear.
+   The player's tank performs various actions on the map according to the player's input.
+   Below are specifications for tank behavior.
+The map elements are as shown in Table 1.
+   Tanks can only move on flat terrain in the map.
+Table 1: Map elements
+CharacterElement
+.Flat terrain
+*Brick wall
+#Iron wall
+-Water
+^Tank (Facing up)
+vTank (Facing down)
+<Tank (Facing left)
+>Tank (Facing right)
+The player's input is given as a sequence of characters.
+   The corresponding actions for each character are as shown in Table 2.
+Table 2: Actions for player input
+CharacterAction
+U
+Up: Rotate the tank upward, and if the space above the tank is flat terrain, move to that space
+D
+Down: Rotate the tank downward, and if the space below the tank is flat terrain, move to that space
+L
+Left: Rotate the tank to the left, and if the space to the left of the tank is flat terrain, move to that space
+R
+Right: Rotate the tank to the right, and if the space to the right of the tank is flat terrain, move to that space
+S
+Shoot: Fire a bullet in the direction the tank is currently facing
+Bullets continue to move straight until they hit a brick wall or iron wall or go outside of the map.
+   If a bullet hits a brick wall, the bullet disappears, and the brick wall changes to flat terrain.
+   If a bullet hits an iron wall, the bullet disappears, but the iron wall does not change.
+   When the bullet goes outside of the map, the bullet disappears as it is.
+Your task is to create a program that outputs the final map state when the initial map and player input sequence are given.
+Input
+The first line of the input contains an integer T, which represents the number of datasets.
+   (0 < T ≤ 100).
+   This is followed by T datasets.
+The first line of each dataset contains two integers, H and W</

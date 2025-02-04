@@ -1,0 +1,3 @@
+Types: N: int, T: int, cells: str
+Ranges: 1 ≤ N ≤ 2000, 1 ≤ T ≤ 2000, cells consists of characters 'R' and 'B'
+Addtl Info: Input is terminated by a line with two zeros "0 0" which should not be processed.

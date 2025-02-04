@@ -1,0 +1,46 @@
+Sure, I can help you write a test case generator for the "Non-redundant Drive" problem. Here's a Python function that will generate random test cases based on the input constraints you've provided:
+
+```python
+import random
+
+def generate_test_case():
+    # Number of cities
+    N = random.randint(1, 100000)
+    
+    # Gasoline amounts for each city
+    g = [random.randint(1, 10000) for _ in range(N)]
+    
+    # List to store roads
+    roads = []
+    
+    # To ensure the graph is connected and has exactly N-1 edges, we use a tree generation approach.
+    # We will use a simple sequential connection to ensure it's a valid tree (non-redundant road network).
+    for i in range(2, N + 1):
+        # Connect each city i to a previous city randomly to ensure it's connected
+        a = random.randint(1, i - 1)
+        b = i
+        d = random.randint(1, 10000)
+        roads.append((a, b, d))
+    
+    return N, g, roads
+
+def print_test_case(N, g, roads):
+    print(N)
+    print(' '.join(map(str, g)))
+    for road in roads:
+        print(f"{road[0]} {road[1]} {road[2]}")
+
+# Generate a test case
+N, g, roads = generate_test_case()
+
+# Print the generated test case
+print_test_case(N, g, roads)
+```
+
+This script does the following:
+1. Generates a random number of cities \(N\) within the allowed range.
+2. Generates a list of gasoline amounts for each city, ensuring each amount is within the specified range.
+3. Creates a non-redundant road network (a tree) by sequentially connecting each new city to one of the previously created cities. This ensures that the network is connected and has exactly \(N - 1\) roads.
+4. Prints the generated test case in the correct format.
+
+You can run this script to generate random test cases for the "Non-redundant Drive" problem. Make sure to handle the large outputs appropriately, especially since \(N\) can be as large as 100,000.

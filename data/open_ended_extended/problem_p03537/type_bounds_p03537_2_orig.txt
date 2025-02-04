@@ -1,0 +1,5 @@
+Types: S: str, N: int, (L_i, R_i): List[Tuple[int, int]]
+
+Ranges: 1 ≤ |S| ≤ 10^5, S consists of lowercase English letters, 1 ≤ N ≤ 10^5, 1 ≤ L_i ≤ R_i ≤ |S|
+
+Addtl Info: None

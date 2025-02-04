@@ -1,0 +1,20 @@
+An integer n (1 ≤ n ≤ 10^3), representing some quantity or size.
+A list of integers S of size n, where each integer is between 1 and 10^5.
+
+### Example Input:
+
+```
+5
+10 20 30 40 50
+```
+
+### Function Signature:
+
+Write a function f(n, S) that takes in the input.
+```python
+def f(n: int, S: List[int]):
+    ''' 
+    n: an integer 
+    S: a list of integers 
+    '''
+```

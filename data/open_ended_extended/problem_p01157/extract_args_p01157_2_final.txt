@@ -1,0 +1,25 @@
+def extract_arguments(fh):
+    results = []
+    while True:
+        M, N = map(int, fh.readline().strip().split())
+        if M == 0 and N == 0:
+            break
+        delays = list(map(int, fh.readline().strip().split()))
+        problems = []
+        for _ in range(N):
+            L = int(fh.readline().strip())
+            submissions = []
+            for _ in range(L):
+                P, T, A = fh.readline().strip().split()
+                P, T = int(P), int(T)
+                submissions.append((P, T, A))
+            problems.append(submissions)
+        results.append((M, N, delays, problems))
+    return results
+
+# if __name__ == "__main__":
+#     input_path = sys.argv[1]
+#     with open(input_path, 'r') as fh:
+#         test_cases = extract_arguments(fh)
+#         for case in test_cases:
+#             f(case)

@@ -1,0 +1,28 @@
+Canonicalized Input Description:
+
+An integer n (1 ≤ n ≤ 1,000,000), representing some quantity or size.  
+A list of n integers where each integer ai (0 ≤ ai ≤ 120).
+
+### Example Input:
+
+```
+8
+71
+34
+65
+11
+41
+39
+6
+5
+0
+```
+
+### Function Signature:
+Write a function f(inputs) that takes in the input.
+```
+def f(inputs: List[Tuple[int, List[int]]]):
+    '''
+    inputs: a list of tuples where each tuple contains an integer and a list of integers
+    '''
+```

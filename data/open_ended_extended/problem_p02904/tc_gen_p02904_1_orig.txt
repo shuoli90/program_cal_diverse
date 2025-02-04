@@ -1,0 +1,57 @@
+Sure! To generate test cases for this problem, we need to consider creating permutations of length \(N\) and selecting a random \(K\) such that \(2 \leq K \leq N\).
+
+Here's the test case generator for the given problem:
+
+```python
+import random
+
+def tcgen():
+    # Constraints
+    min_N = 2
+    max_N = 200000
+
+    # Randomly generate N within the specified range
+    N = random.randint(min_N, max_N)
+    
+    # Generate the permutation of (0, 1, ..., N-1)
+    P = list(range(N))
+    random.shuffle(P)
+    
+    # Randomly choose K such that 2 <= K <= N
+    K = random.randint(2, N)
+    
+    return N, K, P
+
+# Example usage
+if __name__ == "__main__":
+    N, K, P = tcgen()
+    print(N)
+    print(K)
+    print(' '.join(map(str, P)))
+```
+
+### Explanation:
+1. **N**: Generate a random integer \(N\) within the range [2, 200000].
+2. **P**: Generate a permutation of integers from 0 to \(N-1\).
+3. **K**: Generate a random integer \(K\) within the range [2, \(N\)].
+4. **Output**: Print the values in the format specified by the problem statement.
+
+This generator will create diverse test cases covering various scenarios for the given problem. Here is an example of how it could be used:
+
+```python
+if __name__ == "__main__":
+    N, K, P = tcgen()
+    print(N)
+    print(K)
+    print(' '.join(map(str, P)))
+```
+
+When you run the script, it will print a randomly generated test case, for example:
+
+```
+5
+3
+4 1 0 2 3
+```
+
+This output represents a permutation of size 5, with a subarray of size 3 to be sorted.

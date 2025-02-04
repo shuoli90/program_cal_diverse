@@ -1,0 +1,3 @@
+Types: N: int, M: int, A: List[int], B: List[int]  
+Ranges: 1 ≤ N ≤ 10^5, 1 ≤ M ≤ 10^5, 1 ≤ A[i] ≤ 10^5, 1 ≤ B[i] ≤ 10^4  
+Addtl Info: None

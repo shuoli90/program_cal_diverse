@@ -1,0 +1,31 @@
+Sure, I can write a test case generator for the problem statement you provided. Here is a Python function that generates random test cases for the given problem:
+
+```python
+import random
+
+def tcgen():
+    # Generate random values for N and K within the range [1, 10000]
+    N = random.randint(1, 10000)
+    K = random.randint(1, 10000)
+    
+    # Generate random values for X and Y such that 1 <= Y < X <= 10000
+    Y = random.randint(1, 9999)
+    X = random.randint(Y + 1, 10000)
+    
+    return N, K, X, Y
+
+# Example of generating a test case and printing it
+N, K, X, Y = tcgen()
+print(f"Generated Test Case:\nN: {N}\nK: {K}\nX: {X}\nY: {Y}")
+```
+
+This function generates random values for `N`, `K`, `X`, and `Y` adhering to the constraints specified in the problem statement. Each time you call `tcgen()`, it will produce a new set of values.
+
+### Explanation:
+
+- **N**: The number of consecutive nights Tak is staying at the hotel, randomly chosen from 1 to 10000.
+- **K**: The number of nights for which the accommodation fee is `X` yen per night, randomly chosen from 1 to 10000.
+- **X**: The fee per night for the first `K` nights, chosen randomly such that it is greater than `Y` and less than or equal to 10000.
+- **Y**: The fee per night for the `(K+1)`-th and subsequent nights, chosen randomly such that it is less than `X` and at least 1.
+
+This generator respects the constraints and will help you create varied and comprehensive test cases for your problem.

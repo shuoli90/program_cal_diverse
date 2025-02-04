@@ -1,0 +1,3 @@
+Types: P: int
+Ranges: 1 ≤ P ≤ 10^5
+Addtl Info: None

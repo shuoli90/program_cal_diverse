@@ -1,0 +1,25 @@
+Certainly! Here is a test case generator for the given problem statement:
+
+```python
+import random
+
+def tcgen():
+    # Generate values for X and Y within the given constraints
+    X = random.randint(1, 10**18)
+    Y = random.randint(X, 10**18)  # Ensuring Y >= X
+
+    return X, Y
+
+# Example of how to use the generator
+if __name__ == "__main__":
+    for _ in range(5):  # Generate 5 test cases as an example
+        X, Y = tcgen()
+        print(f"Input: {X} {Y}")
+```
+
+### Explanation:
+
+- **X**: This is the starting point of the sequence. It is chosen randomly between 1 and 10^18.
+- **Y**: This is the upper limit for the sequence. It is chosen randomly between X and 10^18 to ensure that Y is always greater than or equal to X.
+
+This generator will produce random valid inputs for the problem according to the given constraints.

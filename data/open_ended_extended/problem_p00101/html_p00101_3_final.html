@@ -1,0 +1,158 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p00101 - Generation 3</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p00101 - Generation 3</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>
+Aizu PR
+An English booklet has been created for publicizing Aizu to the world.
+When you read it carefully, you found a misnomer (an error in writing) on the last name of Masayuki Hoshina, the lord of the Aizu domain. The booklet says "Hoshino" not "Hoshina".
+Your task is to write a program which replace all the words "Hoshino" with "Hoshina". You can assume that the number of characters in a text is less than or equal to 1000.
+Input
+The input consists of several datasets. There will be the number of datasets n in the first line. There will be n lines. A line consisting of english texts will be given for each dataset.
+Output
+For each dataset, print the converted texts in a line.
+Sample Input
+3
+Hoshino
+Hashino
+Masayuki Hoshino was the grandson of Ieyasu Tokugawa.
+Output for the Sample Input
+Hoshina
+Hashino
+Masayuki Hoshina was the grandson of Ieyasu Tokugawa.
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An integer n (1 ≤ n ≤ 1000), representing the number of datasets.
+n lines of text, each line containing a string of up to 1000 characters.
+
+### Example Input:
+
+```
+3
+Hoshino
+Hashino
+Masayuki Hoshino was the grandson of Ieyasu Tokugawa.
+```
+
+### Function Signature:
+Write a function f(n, texts) that takes in the input.
+def f(n: int, texts: List[str]):
+    '''
+    n: an integer
+    texts: a list of strings
+    '''</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Certainly! Let's create a test case generator for the given problem statement. The task involves generating multiple datasets where each dataset contains an English text that may or may not include the word "Hoshino." The generator should ensure the texts are within the 1000 character limit.
+
+Here is the test case generator for the problem:
+
+```python
+import random
+import string
+
+def generate_random_text(length):
+    """Generate a random string of the specified length."""
+    return ''.join(random.choices(string.ascii_letters + ' ', k=length))
+
+def insert_hoshino(text):
+    """Randomly insert the word 'Hoshino' into the text."""
+    words = text.split()
+    insert_positions = random.sample(range(len(words) + 1), k=random.randint(1, min(5, len(words) + 1)))
+    for pos in insert_positions:
+        words.insert(pos, 'Hoshino')
+    return ' '.join(words)
+
+def tcgen():
+    n = random.randint(1, 10)  # Number of datasets
+    datasets = []
+    
+    for _ in range(n):
+        length = random.randint(1, 1000)  # Length of the text
+        text = generate_random_text(length)
+        if random.random() < 0.5:  # 50% chance to insert 'Hoshino'
+            text = insert_hoshino(text)
+        # Ensure the text does not exceed 1000 characters
+        text = text[:1000]  
+        datasets.append(text)
+    
+    return n, datasets
+
+# Generate a test case
+n, datasets = tcgen()
+print(n)
+for dataset in datasets:
+    print(dataset)
+```
+
+### Explanation
+
+1. `generate_random_text(length)`: This function generates a random string of the specified length using uppercase and lowercase letters and spaces.
+2. `insert_hoshino(text)`: This function takes a text string, splits it into words, and randomly inserts the word "Hoshino" into the text at random positions.
+3. `tcgen()`: This function generates the number of datasets (`n`), then generates a random text for each dataset. There is a 50% chance for each text to have the word "Hoshino" inserted into it. Each text is then ensured to be within the 1000 character limit.
+
+Running the `tcgen()` function will create a random test case according to the problem's specifications.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    n = int(fh.readline().strip())
+    datasets = [fh.readline().strip() for _ in range(n)]
+    return n, datasets</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

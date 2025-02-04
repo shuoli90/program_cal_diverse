@@ -1,0 +1,5 @@
+def extract_arguments(fh):
+    str_input = fh.readline().strip()
+    q = int(fh.readline().strip())
+    commands = [fh.readline().strip().split() for _ in range(q)]
+    return str_input, q, commands

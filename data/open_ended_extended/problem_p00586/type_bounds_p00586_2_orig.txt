@@ -1,0 +1,3 @@
+Types: A: int, B: int
+Ranges: -1000 ≤ A, B ≤ 1000
+Addtl Info: Input terminated by EOF

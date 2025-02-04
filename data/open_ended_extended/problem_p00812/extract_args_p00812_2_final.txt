@@ -1,0 +1,14 @@
+def extract_arguments(fh):
+    blocks = []
+    current_block = []
+    for line in fh:
+        line = line.strip()
+        if line == ".":
+            if current_block:
+                blocks.append(current_block)
+                current_block = []
+            else:
+                break
+        else:
+            current_block.append(line)
+    return blocks

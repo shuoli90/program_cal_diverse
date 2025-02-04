@@ -1,0 +1,39 @@
+Sure, I can create a test case generator for the described problem. The generator will produce random inputs that adhere to the given constraints. Here's how you can implement it in Python:
+
+```python
+import random
+
+def tcgen():
+    # Randomly choose N between 1 and 8
+    N = random.randint(1, 8)
+    
+    # Randomly choose F between -10^5 and 10^5
+    F = random.randint(-10**5, 10**5)
+    
+    # Create the N x N board with each X[i][j] between -10^5 and 10^5
+    X = [[random.randint(-10**5, 10**5) for _ in range(N)] for _ in range(N)]
+    
+    return N, F, X
+
+def format_test_case(N, F, X):
+    # Format the test case as a string to match the input format
+    result = f"{N} {F}\n"
+    for row in X:
+        result += " ".join(map(str, row)) + "\n"
+    return result.strip()
+
+# Example usage:
+for _ in range(5):
+    N, F, X = tcgen()
+    print(format_test_case(N, F, X))
+    print()
+```
+
+This code snippet generates random test cases for the problem. Each test case includes:
+- An integer `N` in the range [1, 8].
+- An integer `F` in the range [-100000, 100000].
+- An `N x N` matrix with each element `X[i][j]` in the range [-100000, 100000].
+
+The `format_test_case` function converts the generated test case into the required input format.
+
+You can run this code multiple times to generate different test cases. Each test case is printed in a format that mimics the actual input format for the problem.

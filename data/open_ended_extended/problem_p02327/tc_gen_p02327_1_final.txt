@@ -1,0 +1,48 @@
+Sure! Here is a test case generator for the problem statement "Largest Rectangle":
+
+```python
+import random
+
+def tcgen():
+    H = random.randint(1, 1400)
+    W = random.randint(1, 1400)
+    
+    matrix = []
+    for _ in range(H):
+        row = [random.randint(0, 1) for _ in range(W)]
+        matrix.append(row)
+    
+    return H, W, matrix
+
+def format_input(H, W, matrix):
+    input_str = f"{H} {W}\n"
+    for row in matrix:
+        input_str += " ".join(map(str, row)) + "\n"
+    return input_str.strip()
+
+# Example usage:
+H, W, matrix = tcgen()
+print(format_input(H, W, matrix))
+```
+
+### Explanation:
+
+1. **Function `tcgen`:**
+   - It generates random values for `H` and `W` within the range `[1, 1400]`.
+   - It creates a matrix of size `H x W` where each element is either `0` or `1`.
+   
+2. **Function `format_input`:**
+   - It formats the generated test case to match the input format provided in the problem statement.
+
+### Example Output:
+
+Running the example usage code will produce an output similar to this:
+
+```
+3 4
+0 1 0 1
+1 0 0 0
+0 1 1 1
+```
+
+This output represents a valid input case for the "Largest Rectangle" problem, with a matrix of size `3 x 4` filled with random `0`s and `1`s.

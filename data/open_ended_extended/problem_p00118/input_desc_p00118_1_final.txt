@@ -1,0 +1,34 @@
+An integer H (0 ≤ H ≤ 100), representing some quantity.
+An integer W (0 ≤ W ≤ 100), representing some quantity.
+A list of H strings, each of length W, containing only the characters '@', '#', '*', or ' ' (whitespace).
+
+### Example Input:
+
+```
+10 10
+####
+#####@@
+@#
+@@@@@#*#*
+@##***@@@*
+#****#*@**
+##@*#@@*##
+*@@@@*@@@#
+***#@*@##*
+*@@@*@@##@
+*@*#*@##**
+@****#@@#@ 
+0 0
+```
+
+### Function Signature:
+Write a function f(inputs) that takes in the input.
+```python
+def f(inputs: List[Tuple[int, int, List[str]]]):
+    '''
+    inputs: a list of tuples, where each tuple contains:
+        - an integer H
+        - an integer W
+        - a list of H strings
+    '''
+```

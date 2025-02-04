@@ -1,0 +1,3 @@
+Types: N: int, T: int, colors: str
+Ranges: 1 ≤ N ≤ 2000, 1 ≤ T ≤ 2000, colors[i] in {'R', 'B'}
+Addtl Info: Input is terminated by a line with two zeros which should not be processed.

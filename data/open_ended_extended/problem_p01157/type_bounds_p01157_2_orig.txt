@@ -1,0 +1,3 @@
+Types: M: int, N: int, D: List[int], L: int, P: int, T: int, A: str
+Ranges: 1 ≤ M ≤ 100, 1 ≤ N ≤ 100, 0 ≤ D[i] ≤ 100, 1 ≤ L ≤ M, 0 ≤ T ≤ 19999, 1 ≤ len(A) ≤ 9
+Addtl Info: Each test case ends with a line containing "0 0". The input is terminated by a line containing "0 0".

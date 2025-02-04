@@ -1,0 +1,43 @@
+Sure! Here is a test case generator for the given problem statement that calculates the area and circumference of a circle for a given radius \( r \).
+
+```python
+import random
+import math
+
+def tcgen():
+    # Generate a random real number r in the range (0, 10000)
+    r = random.uniform(1e-5, 9999.99999)
+    
+    # Calculate the area and circumference
+    area = math.pi * r * r
+    circumference = 2 * math.pi * r
+    
+    # Return the generated test case and the expected output
+    return r, f"{area:.6f} {circumference:.6f}"
+
+# Example of generating a test case
+r, output = tcgen()
+print(f"Generated Test Case: r = {r}")
+print(f"Expected Output: {output}")
+```
+
+### Explanation:
+
+1. **Generating \( r \)**: 
+    - We use `random.uniform(1e-5, 9999.99999)` to generate a random floating-point number \( r \) in the range (0, 10000). This ensures that \( r \) is always greater than 0 and less than 10000.
+    - The lower bound `1e-5` is used to avoid generating an \( r \) that is too close to 0, which might make the area and circumference calculations trivial.
+
+2. **Calculating the Area and Circumference**:
+    - The area of the circle is calculated using the formula \( \text{area} = \pi r^2 \).
+    - The circumference of the circle is calculated using the formula \( \text{circumference} = 2 \pi r \).
+
+3. **Formatting the Output**:
+    - We format the area and circumference to six decimal places using the format string `"{:.6f}"`, ensuring the output meets the precision requirement.
+
+4. **Returning the Test Case and Expected Output**:
+    - The function returns the generated radius \( r \) and the formatted expected output as a string.
+
+5. **Example Usage**:
+    - The example usage shows how to generate a test case and print the generated radius and expected output.
+
+You can use this function to generate multiple test cases for your problem.

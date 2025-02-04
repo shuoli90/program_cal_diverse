@@ -1,0 +1,49 @@
+Certainly! Let's create a test case generator for the given problem statement. The task involves generating multiple datasets where each dataset contains an English text that may or may not include the word "Hoshino." The generator should ensure the texts are within the 1000 character limit.
+
+Here is the test case generator for the problem:
+
+```python
+import random
+import string
+
+def generate_random_text(length):
+    """Generate a random string of the specified length."""
+    return ''.join(random.choices(string.ascii_letters + ' ', k=length))
+
+def insert_hoshino(text):
+    """Randomly insert the word 'Hoshino' into the text."""
+    words = text.split()
+    insert_positions = random.sample(range(len(words) + 1), k=random.randint(1, min(5, len(words) + 1)))
+    for pos in insert_positions:
+        words.insert(pos, 'Hoshino')
+    return ' '.join(words)
+
+def tcgen():
+    n = random.randint(1, 10)  # Number of datasets
+    datasets = []
+    
+    for _ in range(n):
+        length = random.randint(1, 1000)  # Length of the text
+        text = generate_random_text(length)
+        if random.random() < 0.5:  # 50% chance to insert 'Hoshino'
+            text = insert_hoshino(text)
+        # Ensure the text does not exceed 1000 characters
+        text = text[:1000]  
+        datasets.append(text)
+    
+    return n, datasets
+
+# Generate a test case
+n, datasets = tcgen()
+print(n)
+for dataset in datasets:
+    print(dataset)
+```
+
+### Explanation
+
+1. `generate_random_text(length)`: This function generates a random string of the specified length using uppercase and lowercase letters and spaces.
+2. `insert_hoshino(text)`: This function takes a text string, splits it into words, and randomly inserts the word "Hoshino" into the text at random positions.
+3. `tcgen()`: This function generates the number of datasets (`n`), then generates a random text for each dataset. There is a 50% chance for each text to have the word "Hoshino" inserted into it. Each text is then ensured to be within the 1000 character limit.
+
+Running the `tcgen()` function will create a random test case according to the problem's specifications.

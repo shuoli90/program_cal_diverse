@@ -1,0 +1,34 @@
+Sure! Here is a test case generator for the Bubble Sort problem:
+
+```python
+import random
+
+def generate_single_test_case():
+    n = random.randint(1, 100)
+    a = [random.randint(1, 1000000) for _ in range(n)]
+    return n, a
+
+def tcgen():
+    test_cases = []
+    num_datasets = random.randint(1, 20)  # The number of datasets does not exceed 20
+    
+    for _ in range(num_datasets):
+        n, a = generate_single_test_case()
+        test_cases.append((n, a))
+    
+    # Adding the termination line
+    test_cases.append((0, []))
+    
+    return test_cases
+
+# Example of how to use the generator
+if __name__ == "__main__":
+    test_cases = tcgen()
+    with open("test_cases.txt", "w") as f:
+        for n, a in test_cases:
+            f.write(f"{n}\n")
+            for num in a:
+                f.write(f"{num}\n")
+```
+
+This code will generate test cases for the Bubble Sort problem adhering to the constraints provided. Each test case will be written in the format specified in the problem statement. The file `test_cases.txt` will end with a `0` to indicate the end of the input. This can be adjusted as needed based on how you want to handle the test cases.

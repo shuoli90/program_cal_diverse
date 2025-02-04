@@ -1,0 +1,46 @@
+Sure! Below is a Python function to generate test cases for the given problem statement.
+
+```python
+import random
+
+def tcgen():
+    # Generate the value of N
+    N = random.randint(1, 18)
+    
+    # The number of stones is 2^N
+    num_stones = 2 ** N
+    
+    # Generate the hardness values for the stones
+    A = [random.randint(1, 10**9) for _ in range(num_stones)]
+    
+    return N, A
+
+# Example usage
+N, A = tcgen()
+print(N)
+for hardness in A:
+    print(hardness)
+```
+
+### Explanation:
+1. **N** is randomly selected between 1 and 18, inclusive.
+2. **num_stones** is calculated as \(2^N\), which gives the number of stones participating in the contest.
+3. **A** is a list of integers where each integer represents the hardness of a stone. The hardness is randomly selected between 1 and \(10^9\), inclusive.
+4. The function returns \(N\) and the list \(A\).
+
+### Example Output:
+Here's an example of what the generated output might look like:
+
+```
+3
+154315
+999999999
+472472
+354354
+832498
+9999999
+483483
+675767
+```
+
+You can use this function to generate various test cases for your problem. Each time you run `tcgen()`, it will produce a new set of inputs.

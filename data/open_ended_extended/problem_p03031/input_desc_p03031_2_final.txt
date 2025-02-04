@@ -1,0 +1,27 @@
+An integer N (1 ≤ N ≤ 10), representing some quantity or size.
+An integer M (1 ≤ M ≤ 10), representing some quantity or size.
+M lines follow. Each line starts with an integer k_i (1 ≤ k_i ≤ N), followed by k_i integers (1 ≤ s_{ij} ≤ N, all values are unique within the line).
+A list of M integers, each either 0 or 1.
+
+### Example Input:
+```
+2 2
+2 1 2
+1 2
+0 1
+```
+
+### Function Signature:
+Write a function f(inputs) that takes in the input.
+```python
+def f(inputs: List[Tuple[int, int, List[Tuple[int, List[int]]], List[int]]]):
+    '''
+    inputs: a list of tuples where each tuple contains:
+        - an integer N
+        - an integer M
+        - a list of M tuples, where each tuple contains:
+            - an integer k_i
+            - a list of k_i integers
+        - a list of M integers
+    '''
+```

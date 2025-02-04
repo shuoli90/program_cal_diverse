@@ -1,0 +1,54 @@
+To generate test cases for the given problem statement involving a tree with vertices and stones, we will need to create a function that generates a random tree structure, assigns a random number of stones to each vertex, and ensures the constraints are met.
+
+Here is a Python function that does this:
+
+```python
+import random
+
+def generate_tree_edges(N):
+    """ Helper function to generate a list of edges forming a tree with N nodes """
+    edges = []
+    for i in range(2, N+1):
+        edges.append((i, random.randint(1, i-1)))
+    random.shuffle(edges)
+    return edges
+
+def tcgen():
+    N = random.randint(2, 10**5)
+    
+    # Generate random stone counts for each vertex
+    A = [random.randint(0, 10**9) for _ in range(N)]
+    
+    # Generate a random tree with N vertices
+    edges = generate_tree_edges(N)
+    
+    return N, A, edges
+
+# Example usage of the test case generator
+if __name__ == "__main__":
+    N, A, edges = tcgen()
+    print(N)
+    print(' '.join(map(str, A)))
+    for edge in edges:
+        print(f"{edge[0]} {edge[1]}")
+```
+
+### Explanation:
+
+1. **`generate_tree_edges(N)`:**
+   - This helper function generates a list of edges that form a tree with `N` nodes.
+   - It ensures that the tree is connected by always linking node `i` to a random node from `1` to `i-1`. This guarantees that the graph is a valid tree.
+
+2. **`tcgen()`:**
+   - Generates a random integer `N` within the specified range.
+   - Creates a list `A` of size `N`, where each element is a random integer between `0` and `10^9` representing the number of stones at each vertex.
+   - Uses the `generate_tree_edges(N)` function to generate the list of edges, ensuring the resulting structure is a tree.
+   - Returns `N`, `A`, and `edges` which represent the vertices, stone counts, and edges of the tree respectively.
+
+3. **Example Usage:**
+   - When `tcgen()` is called, it prints the formatted output similar to how the input would be provided for the problem:
+     - The number of vertices `N`.
+     - The list of stone counts `A`.
+     - The edges of the tree.
+
+This test case generator ensures that the generated inputs are within the constraints and form a valid tree structure, suitable for testing the problem solution.

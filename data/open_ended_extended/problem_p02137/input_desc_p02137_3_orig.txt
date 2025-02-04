@@ -1,0 +1,14 @@
+An integer P (1 ≤ P ≤ 10^5), representing some quantity or size.
+
+### Example Input:
+
+```
+5700
+```
+
+### Function Signature:
+Write a function f(P) that takes in the input.
+def f(P: int):
+    '''
+    P: an integer
+    '''

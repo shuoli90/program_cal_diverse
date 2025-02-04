@@ -1,0 +1,14 @@
+Types: 
+- N: int 
+- g: List[int] 
+- roads: List[Tuple[int, int, int]]
+
+Ranges: 
+- 1 ≤ N ≤ 100,000
+- 1 ≤ g[i] ≤ 10,000
+- 1 ≤ a[j], b[j] ≤ N
+- a[j] ≠ b[j]
+- 1 ≤ d[j] ≤ 10,000
+
+Addtl Info: 
+- The cities are connected in a tree structure with exactly N-1 roads.

@@ -1,0 +1,3 @@
+Types: N: int, M: int, Points: List[Tuple[int, int]], Line: Tuple[int, int, int], Polygons: List[List[Tuple[int, int]]]
+Ranges: 1 ≤ N ≤ 100, 0 ≤ M ≤ 100, -10^3 ≤ Points[i][j] ≤ 10^3, -10^3 ≤ Line[k] ≤ 10^3, -10^3 ≤ Polygons[i][j][k] ≤ 10^3
+Addtl Info: None

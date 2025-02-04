@@ -1,0 +1,161 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p00054 - Generation 2</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p00054 - Generation 2</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>Sum of Decimal Digits
+Let a, b, and n be positive integers. Let f(i) be the i-th digit (0 ≤ f(i) ≤ 9) of the decimal expansion of the fraction a / b. Define the sum s as the sum of the first n digits:
+s = f(1) + f(2) + ... + f(n)
+Write a program that reads a, b, and n, and outputs s.
+Input
+The input consists of multiple datasets. Each dataset consists of three integers a (1 ≤ a ≤ 1000), b (1 ≤ b ≤ 10000), and n (1 ≤ n ≤ 100), separated by a single space, on a line.
+There are no more than 100 datasets.
+Output
+For each dataset, output s on a line.
+Sample Input
+1 2 3
+2 3 4
+5 4 3
+4 3 2
+Output for the Sample Input
+5
+24
+7
+6
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>Canonicalized Input Description:
+
+Multiple datasets. Each dataset consists of three integers, where:
+- The first integer is between 1 and 1000.
+- The second integer is between 1 and 10000.
+- The third integer is between 1 and 100.
+
+There are no more than 100 datasets.
+
+### Example Input:
+
+```
+1 2 3
+2 3 4
+5 4 3
+4 3 2
+```
+
+### Function Signature:
+Write a function `f(inputs)` that takes in the input.
+```python
+def f(inputs: List[Tuple[int, int, int]]):
+    ''' 
+    inputs: a list of tuples, each consisting of three integers
+    '''
+```</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Sure! Here's a test case generator for the "Sum of Decimal Digits" problem statement:
+
+```python
+import random
+
+def tcgen():
+    # Number of datasets
+    num_datasets = random.randint(1, 100)
+    datasets = []
+    
+    for _ in range(num_datasets):
+        # Generate a, b, and n within the specified constraints
+        a = random.randint(1, 1000)
+        b = random.randint(1, 10000)
+        n = random.randint(1, 100)
+        datasets.append((a, b, n))
+    
+    return datasets
+
+# Example usage:
+datasets = tcgen()
+for dataset in datasets:
+    print(dataset)
+```
+
+This will generate up to 100 datasets, each consisting of three integers \(a\), \(b\), and \(n\) within the specified constraints.
+
+### Example Output:
+```text
+(123, 4567, 89)
+(999, 10000, 10)
+(1, 2, 50)
+...
+```
+
+### Explanation:
+- The function `tcgen` starts by determining a random number of datasets (between 1 and 100).
+- For each dataset, it generates random values for \(a\), \(b\), and \(n\) within their respective constraints.
+- The generated datasets are stored in a list and returned at the end of the function.
+- The example usage shows how you can call `tcgen` to generate the datasets and print them out. Each tuple represents a single dataset.
+
+You can modify or extend the generator as needed to include more specific cases or constraints.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    inputs = []
+    for line in fh:
+        a, b, n = map(int, line.strip().split())
+        inputs.append((a, b, n))
+    return inputs</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

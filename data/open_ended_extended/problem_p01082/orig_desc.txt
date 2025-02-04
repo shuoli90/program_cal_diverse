@@ -1,0 +1,43 @@
+Problem K: Escape of Lappin the Phantom Thief
+Problem
+Lappin the Phantom Thief came to steal jewels. He easily obtained the jewels, but they were fitted with sensors and he was surrounded by security robots.
+The security robots are programmed to move towards the jewels. Since the sensors were difficult to remove, he decided to leave the jewels and escape. He decided to place the jewels as far away from the security robots as possible and buy himself some time to escape.
+The site is a rectangular shape consisting of n x m squares, and there are no obstacles.
+There are k security robots placed at squares (xi, yi) (0 ≤ xi ≤ n−1, 0 ≤ yi ≤ m−1), and they can move one square up, down, left, or right in one unit of time.
+The security robots will move to the jewels by the shortest path.
+When you can freely place jewels in the site, find the maximum time taken by at least one security robot to reach a square with jewels.
+Input
+n m k
+x1 y1
+x2 y2
+...
+xk yk
+All input is given as integers.
+The first line contains three integers n, m, and k, separated by a single space.
+The k lines following the first line contain the coordinates of the squares where the security robots are, (xi, yi), separated by a single space.
+Constraints
+1 ≤ n, m ≤ 5 × 104
+1 ≤ k ≤ min(105, n × m)
+0 ≤ xi ≤ n−1
+0 ≤ yi ≤ m−1
+The given coordinates are all different
+Output
+Output the maximum time taken by any security robot to reach a square with jewels on one line.
+Sample Input 1
+20 10 1
+0 0
+Sample Output 1
+28
+Sample Input 2
+20 10 2
+0 0
+17 5
+Sample Output 2
+15
+Sample Input 3
+20 10 3
+0 0
+17 5
+6 9
+Sample Output 3
+11

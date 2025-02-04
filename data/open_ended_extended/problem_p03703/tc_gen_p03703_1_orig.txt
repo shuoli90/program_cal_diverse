@@ -1,0 +1,28 @@
+Sure, I can write a test case generator for this new problem statement. Here is the generator:
+
+```python
+import random
+
+def tcgen():
+    # Given constraints
+    N = random.randint(1, 2 * 10**5)
+    K = random.randint(1, 10**9)
+    
+    # Generate the sequence a of length N, with values between 1 and 10^9
+    a = [random.randint(1, 10**9) for _ in range(N)]
+    
+    return N, K, a
+
+# Example usage of the test case generator
+N, K, a = tcgen()
+print(N, K)
+for ai in a:
+    print(ai)
+```
+
+### Explanation:
+1. **N**: The length of the sequence is randomly chosen between 1 and 200,000 inclusive.
+2. **K**: The integer K is randomly chosen between 1 and 1,000,000,000 inclusive.
+3. **a**: The sequence \(a\) consists of \(N\) integers, each randomly chosen between 1 and 1,000,000,000 inclusive.
+
+This generator ensures that the constraints are respected and generates a valid input for the problem. To run the generator and print a test case, you can call `tcgen()` and print the values as shown in the example usage.

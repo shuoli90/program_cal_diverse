@@ -1,0 +1,13 @@
+Types: 
+- N: int
+- D: int
+- X: int
+
+Ranges: 
+- 1 ≤ N ≤ 2000
+- 1 ≤ D ≤ 10^12
+- 1 ≤ X ≤ 2000
+
+Addtl Info: 
+- The number of datasets is no more than 100.
+- The end of input is denoted by a line that contains three zeros.

@@ -1,0 +1,42 @@
+Sure, let's create a test case generator for the given problem statement. The generator will produce random values for \( H \), \( W \), \( N \), and the obstacle coordinates \( X_i \), \( Y_i \). We'll ensure that the constraints are respected: no obstacles at (1,1) and no duplicate obstacle coordinates.
+
+Here is the Python code for the test case generator:
+
+```python
+import random
+
+def tcgen():
+    # Generate random H and W within given constraints
+    H = random.randint(1, 2 * 10**5)
+    W = random.randint(1, 2 * 10**5)
+    
+    # Generate random N within given constraints
+    N = random.randint(0, 2 * 10**5)
+    
+    # Create a set to ensure no duplicate obstacles
+    obstacles = set()
+    
+    # Generate N obstacles, ensuring no duplicates and not at (1,1)
+    for _ in range(N):
+        while True:
+            X = random.randint(1, H)
+            Y = random.randint(1, W)
+            if (X, Y) != (1, 1) and (X, Y) not in obstacles:
+                obstacles.add((X, Y))
+                break
+    
+    # Convert the set to a list for easier handling
+    obstacles = list(obstacles)
+
+    # Format the output
+    output = f"{H} {W} {N}\n"
+    for X, Y in obstacles:
+        output += f"{X} {Y}\n"
+    
+    return output.strip()
+
+# Example usage
+print(tcgen())
+```
+
+This code snippet defines the `tcgen` function, which generates and returns a random test case in the specified format. It ensures that the coordinates for the obstacles are unique and not at (1,1). The function randomly selects values for \(H\), \(W\), and \(N\) within the given constraints and then generates the required number of obstacles accordingly.

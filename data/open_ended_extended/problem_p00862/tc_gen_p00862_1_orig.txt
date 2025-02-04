@@ -1,0 +1,73 @@
+To generate test cases for the given problem statement, we need to produce multiple datasets, each representing a convex polygon with vertices within the specified constraints. Here is the test case generator for the problem "Most Distant Point from the Sea":
+
+```python
+import random
+import math
+
+def generate_convex_polygon(n):
+    """
+    Generate a random convex polygon with n vertices.
+    Uses the Andrew's monotone chain algorithm to ensure the convexity.
+    """
+    points = [(random.randint(0, 10000), random.randint(0, 10000)) for _ in range(n)]
+    points = sorted(points)
+    
+    def cross(o, a, b):
+        return (a[0] - o[0]) * (b[1] - o[1]) - (a[1] - o[1]) * (b[0] - o[0])
+
+    lower = []
+    for p in points:
+        while len(lower) >= 2 and cross(lower[-2], lower[-1], p) <= 0:
+            lower.pop()
+        lower.append(p)
+
+    upper = []
+    for p in reversed(points):
+        while len(upper) >= 2 and cross(upper[-2], upper[-1], p) <= 0:
+            upper.pop()
+        upper.append(p)
+
+    return lower[:-1] + upper[:-1]
+
+def tcgen():
+    datasets = []
+    num_datasets = random.randint(1, 10)  # Limit the number of datasets for manageability during testing
+
+    for _ in range(num_datasets):
+        n = random.randint(3, 100)
+        polygon = generate_convex_polygon(n)
+        datasets.append((n, polygon))
+
+    return datasets
+
+def print_test_cases(datasets):
+    for n, polygon in datasets:
+        print(n)
+        for x, y in polygon:
+            print(f"{x} {y}")
+    print(0)
+
+# Generate test cases
+test_cases = tcgen()
+
+# Print test cases
+print_test_cases(test_cases)
+```
+
+### Explanation:
+1. **Generate Convex Polygon**:
+   - The `generate_convex_polygon` function generates a convex polygon with `n` vertices using random points.
+   - It uses the Andrew's monotone chain algorithm to ensure convexity by constructing the lower and upper hulls of the convex polygon.
+
+2. **Test Case Generator (`tcgen`)**:
+   - This function generates multiple datasets, each containing a convex polygon.
+   - The number of datasets is randomized between 1 and 10.
+   - For each dataset, it generates a convex polygon with a random number of vertices between 3 and 100.
+
+3. **Print Test Cases**:
+   - The `print_test_cases` function prints out the generated datasets in the required format.
+   - It finally prints `0` to indicate the end of the input.
+
+### Note:
+- This code ensures that the generated polygons are convex and that the vertices are within the specified coordinate range.
+- The number of datasets and the size of each polygon are kept within manageable limits for testing purposes. Adjust as needed for larger or more comprehensive testing.

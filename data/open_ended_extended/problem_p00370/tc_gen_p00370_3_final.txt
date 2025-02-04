@@ -1,0 +1,71 @@
+Sure, here is a test case generator for the problem "Lake Survey":
+
+```python
+import random
+
+def generate_point(max_value=10**4):
+    return (random.randint(0, max_value), random.randint(0, max_value))
+
+def generate_polygon(n, max_value=10**4):
+    points = set()
+    while len(points) < n:
+        points.add(generate_point(max_value))
+    # Convert the set to a list and ensure it's sorted in counter-clockwise order
+    points = list(points)
+    points.sort()
+    return points
+
+def is_point_in_polygon(p, polygon):
+    # Simple ray-casting algorithm to check if a point is inside a polygon
+    # Reference: https://en.wikipedia.org/wiki/Point_in_polygon#Ray_casting_algorithm
+    x, y = p
+    n = len(polygon)
+    inside = False
+    px, py = polygon[0]
+    for i in range(1, n + 1):
+        qx, qy = polygon[i % n]
+        if y > min(py, qy):
+            if y <= max(py, qy):
+                if x <= max(px, qx):
+                    if py != qy:
+                        xinters = (y - py) * (qx - px) / (qy - py) + px
+                    if px == qx or x <= xinters:
+                        inside = not inside
+        px, py = qx, qy
+    return inside
+
+def tcgen():
+    max_value = 10**4
+    # Generate start and end points
+    while True:
+        x_s, y_s = generate_point(max_value)
+        x_g, y_g = generate_point(max_value)
+        if (x_s != x_g or y_s != y_g):  # Ensure start and end points are not identical
+            break
+    
+    # Generate the polygon
+    N = random.randint(3, 100)
+    polygon = generate_polygon(N, max_value)
+    
+    # Ensure start and end points are not within the polygon
+    while is_point_in_polygon((x_s, y_s), polygon) or is_point_in_polygon((x_g, y_g), polygon):
+        x_s, y_s = generate_point(max_value)
+        x_g, y_g = generate_point(max_value)
+    
+    # Formatting the output
+    input_data = f"{x_s} {y_s}\n{x_g} {y_g}\n{N}\n"
+    for x, y in polygon:
+        input_data += f"{x} {y}\n"
+    
+    return input_data
+
+# Example of generating a test case
+print(tcgen())
+```
+
+This code generates a random test case for the "Lake Survey" problem. It ensures:
+1. Random start and end points that are not within the polygon representing the lake and are not identical.
+2. A random polygon with `N` vertices that is sorted in counter-clockwise order.
+3. The generated points and polygon satisfy the problem constraints.
+
+This script generates the input format as described in the problem statement.

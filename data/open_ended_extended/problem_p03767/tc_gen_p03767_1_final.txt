@@ -1,0 +1,27 @@
+Certainly! Here is a test case generator for the given competitive programming problem about forming teams:
+
+```python
+import random
+
+def tcgen():
+    N = random.randint(1, 10**5)
+    a = [random.randint(1, 10**9) for _ in range(3 * N)]
+    return N, a
+
+# Function to print the test cases in the required format
+def print_test_case(N, a):
+    print(N)
+    print(' '.join(map(str, a)))
+
+# Generate and print a sample test case
+if __name__ == "__main__":
+    N, a = tcgen()
+    print_test_case(N, a)
+```
+
+Explanation:
+1. `N` is randomly chosen between 1 and \(10^5\).
+2. An array `a` of length `3 * N` is created with each element randomly chosen between 1 and \(10^9\).
+3. The `print_test_case` function formats the generated test case to match the input format provided in the problem statement.
+
+You can run this script to generate test cases for the problem. Adjust the random seed if you need reproducible results, or remove it for more randomness.

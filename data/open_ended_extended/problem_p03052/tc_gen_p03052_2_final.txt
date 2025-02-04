@@ -1,0 +1,81 @@
+Sure! Here is a test case generator for the competitive programming problem you provided. This generator creates a simple connected undirected graph with the constraints given.
+
+```python
+import random
+
+def generate_spanning_tree(N):
+    # Generate a random spanning tree using a union-find structure
+    parent = list(range(N))
+    edges = []
+
+    def find(a):
+        if parent[a] != a:
+            parent[a] = find(parent[a])
+        return parent[a]
+
+    def union(a, b):
+        rootA = find(a)
+        rootB = find(b)
+        if rootA != rootB:
+            parent[rootB] = rootA
+            return True
+        return False
+
+    # Ensure that the spanning tree has exactly N-1 edges
+    for _ in range(N - 1):
+        while True:
+            a, b = random.sample(range(N), 2)
+            if union(a, b):
+                edges.append((a + 1, b + 1))  # convert to 1-based index
+                break
+    return edges
+
+def tcgen():
+    N = random.randint(2, 20)
+    # M must be at least N-1 (spanning tree) and at most N(N-1)/2 (complete graph)
+    M = random.randint(N - 1, N * (N - 1) // 2)
+    
+    # Generate a spanning tree
+    spanning_tree_edges = generate_spanning_tree(N)
+
+    # Generate additional edges to reach M edges
+    all_possible_edges = set((min(a, b), max(a, b)) for a in range(1, N+1) for b in range(a+1, N+1))
+    existing_edges = set(spanning_tree_edges)
+    additional_edges = list(all_possible_edges - existing_edges)
+    random.shuffle(additional_edges)
+    additional_edges = additional_edges[:M - (N - 1)]
+    
+    # The final list of edges
+    edges = spanning_tree_edges + additional_edges
+
+    # Shuffle edges to ensure randomness
+    random.shuffle(edges)
+
+    return N, M, edges
+
+def format_tc(N, M, edges):
+    formatted_edges = "\n".join(f"{a} {b}" for a, b in edges)
+    return f"{N} {M}\n{formatted_edges}"
+
+# Example usage
+if __name__ == "__main__":
+    N, M, edges = tcgen()
+    test_case = format_tc(N, M, edges)
+    print(test_case)
+```
+
+### Explanation:
+
+1. **generate_spanning_tree(N)**:
+    - This function generates a random spanning tree for a graph with \(N\) vertices using the union-find structure to avoid cycles.
+    - It ensures that the tree has exactly \(N-1\) edges.
+
+2. **tcgen()**:
+    - Randomly determines \(N\) (number of vertices) and \(M\) (number of edges) within the provided constraints.
+    - Uses `generate_spanning_tree(N)` to ensure the graph contains a spanning tree subgraph.
+    - Adds additional edges to reach \(M\) edges while avoiding self-loops and multiple edges.
+
+3. **format_tc(N, M, edges)**:
+    - Formats the generated graph into the required input format.
+
+This generator will help create randomized test cases that meet the problem's constraints and ensure the proper structure of the graph.

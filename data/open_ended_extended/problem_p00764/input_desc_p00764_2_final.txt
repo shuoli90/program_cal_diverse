@@ -1,0 +1,29 @@
+An integer n (3 ≤ n ≤ 100), representing some quantity or size.
+n lines follow, each containing three integers separated by a single space.
+The first two integers (0 ≤ xi ≤ 1000, 0 ≤ yi ≤ 1000) represent coordinates.
+The third integer (1 ≤ ri ≤ 25) represents a size or radius.
+The end of the input is indicated by a line containing a zero.
+
+### Example Input:
+
+```
+10
+802 0 10
+814 0 4
+820 1 4
+826 1 4
+832 3 5
+838 5 5
+845 7 3
+849 10 3
+853 14 4
+857 18 3
+0
+```
+
+### Function Signature:
+Write a function f(inputs) that takes in the input. 
+def f(inputs: List[Tuple[int, List[Tuple[int, int, int]]]]): 
+    ''' 
+    inputs: a list of tuples, where each tuple contains an integer and a list of tuples
+    '''

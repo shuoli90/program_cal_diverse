@@ -1,0 +1,3 @@
+Types: N: int, RX: List[int], RY: List[int], RC: List[int], BX: List[int], BY: List[int], BC: List[int]
+Ranges: 1 ≤ N ≤ 1000, 0 ≤ RX[i], RY[i], BX[i], BY[i] ≤ 10^9, 1 ≤ RC[i], BC[i] ≤ 10
+Addtl Info: \(\sum_{i=1}^{N} RC_i = \sum_{i=1}^{N} BC_i\)

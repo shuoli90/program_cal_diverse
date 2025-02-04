@@ -1,0 +1,19 @@
+An integer n (1 ≤ n ≤ 1000), representing the number of datasets.
+A list of n strings, each string's length is between 1 and 1000 characters.
+
+### Example Input:
+
+```
+3
+Hoshino
+Hashino
+Masayuki Hoshino was the grandson of Ieyasu Tokugawa.
+```
+
+### Function Signature:
+Write a function f(n, datasets) that takes in the input.
+def f(n: int, datasets: List[str]):
+    ''' 
+    n: an integer 
+    datasets: a list of strings 
+    '''

@@ -1,0 +1,202 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p02108 - Generation 3</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p02108 - Generation 3</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>Problem K: Donuts Purchase
+Problem
+Rafui has nothing to do during her vacation and she somehow wants to eat donuts, so she decided to go around the stores and buy donuts.
+There is one donut store in each town, and all donut stores are closed on odd days.
+Because Rafui has preferences for donuts, the satisfaction gained from each store is different.
+So Rafui decided to act optimally to get as much satisfaction as possible.
+In the world where Rafui lives, there are n towns numbered from 0 to n-1, and they are connected by m roads.
+Each road is one-way, and Rafui can move from town ai to town bi.
+At first, Rafui is in town 0 on an even day.
+Rafui moves to another town by crossing one road once a day without staying in the town.
+When Rafui arrives at town i on a certain day, she purchases one donut at the store if it is open and gains satisfaction ci.
+She can visit the same town any number of times, but can only purchase once at each store.
+Find the maximum sum of satisfaction obtained by Rafui when she acts optimally until she cannot get any more satisfaction.
+Input
+n m
+c0 ... cn−1
+a0 b0
+...
+am−1 bm−1
+All input is given as an integer.
+The first line contains the number of towns n and the number of roads m separated by a space.
+The second line contains the satisfaction Rafui can get if she buys a donut at the store in town i.
+The next m lines give the information of the roads, represented by ai and bi separated by a space.
+Constraints
+The input satisfies the following conditions.
+1 ≤ n ≤ 105
+0 ≤ m ≤ min(n×(n−1),105)
+0 ≤ ci ≤ 1000
+0 ≤ ai,bi ≤ n − 1
+There are no self-loops or multiple edges.
+Output
+Print the maximum sum of satisfaction on one line.
+Sample Input 1
+2 1
+1 2
+0 1
+Sample Output 1
+1
+Sample Input 2
+5 5
+1 1 1 1 1
+0 1
+1 2
+2 3
+3 0
+3 4
+Sample Output 2
+3
+Sample Input 3
+4 4
+1 1 1 1
+0 1
+1 2
+2 0
+2 3
+Sample Output 3
+4
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An integer n (1 ≤ n ≤ 10^5), representing the number of entities.
+An integer m (0 ≤ m ≤ min(n×(n−1), 10^5)), representing the number of connections.
+A list of integers c of size n, where each integer is between 0 and 1000.
+m pairs of integers ai and bi (0 ≤ ai, bi ≤ n − 1), representing one-way connections.
+
+### Example Input:
+```
+2 1
+1 2
+0 1
+```
+
+### Function Signature:
+Write a function f(n, m, c, connections) that takes in the input.
+```
+def f(n: int, m: int, c: List[int], connections: List[Tuple[int, int]]):
+    '''
+    n: an integer
+    m: an integer
+    c: a list of integers
+    connections: a list of tuples, each containing two integers
+    '''
+```</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Sure! I can help you write a test case generator for the "Donuts Purchase" problem. The generator will create random test cases within the provided constraints.
+
+Here's the code for the test case generator:
+
+```python
+import random
+
+def generate_test_case():
+    # Number of towns and roads
+    n = random.randint(1, 10**5)
+    m = random.randint(0, min(n * (n - 1), 10**5))
+    
+    # Satisfaction values for each town
+    c = [random.randint(0, 1000) for _ in range(n)]
+    
+    # Roads between towns
+    roads = set()
+    while len(roads) < m:
+        a = random.randint(0, n - 1)
+        b = random.randint(0, n - 1)
+        if a != b:
+            roads.add((a, b))
+    
+    roads = list(roads)
+    
+    # Convert roads to strings for output
+    road_strings = [f"{a} {b}" for a, b in roads]
+    
+    # Generate the test case string
+    test_case = f"{n} {m}\n" + " ".join(map(str, c)) + "\n" + "\n".join(road_strings)
+    
+    return test_case
+
+# Example usage
+if __name__ == "__main__":
+    test_case = generate_test_case()
+    print(test_case)
+```
+
+This generator creates:
+1. A random number of towns `n` (1 ≤ n ≤ 10^5).
+2. A random number of roads `m` (0 ≤ m ≤ min(n×(n−1), 10^5)).
+3. A list of satisfaction values `c` for each town (0 ≤ ci ≤ 1000).
+4. A set of unique one-way roads (ai, bi) where ai ≠ bi and there are no self-loops or multiple edges.
+
+To generate a single test case, simply run the script. You can call the `generate_test_case()` function multiple times to generate multiple test cases. Note that the generator ensures that the constraints are respected, and it handles the generation of roads using a set to avoid duplicates and self-loops.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    n, m = map(int, fh.readline().strip().split())
+    c = list(map(int, fh.readline().strip().split()))
+    roads = []
+    for _ in range(m):
+        ai, bi = map(int, fh.readline().strip().split())
+        roads.append((ai, bi))
+    return n, m, c, roads</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

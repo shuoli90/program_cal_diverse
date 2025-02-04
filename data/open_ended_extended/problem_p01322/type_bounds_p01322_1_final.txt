@@ -1,0 +1,3 @@
+Types: n: int, m: int, N: List[str], M: List[int], B: List[str]
+Ranges: 1 ≤ n ≤ 100, 1 ≤ m ≤ 1000, 1 ≤ Mi ≤ 1000000, Length of Ni = 8, Length of Bi = 8
+Addtl Info: Ni consists of digits and '*', Bi consists of digits

@@ -1,0 +1,18 @@
+def extract_arguments(fh):
+    N = int(fh.readline().strip())
+    H, W = map(int, fh.readline().strip().split())
+    paths = []
+    for _ in range(N):
+        Li = int(fh.readline().strip())
+        path = []
+        for _ in range(Li):
+            pxij, pyij = map(int, fh.readline().strip().split())
+            path.append((pxij, pyij))
+        paths.append(path)
+    return N, H, W, paths
+
+# if __name__ == "__main__":
+#     input_path = sys.argv[1]
+#     with open(input_path, 'r') as fh: 
+#         N, H, W, paths = extract_arguments(fh)
+#     f(N, H, W, paths)

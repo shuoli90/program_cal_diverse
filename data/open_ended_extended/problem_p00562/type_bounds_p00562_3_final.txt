@@ -1,0 +1,3 @@
+Types: H: int, W: int, A: int, B: int, C: int, N: int, S: List[int], T: List[int]
+Ranges: 1 ≤ H ≤ 500, 1 ≤ W ≤ 500, 0 ≤ A ≤ 1,000,000,000, 0 ≤ B ≤ 1,000,000,000, 0 ≤ C ≤ 1,000,000,000, 2 ≤ N ≤ 100,000, 0 ≤ S[i] ≤ H (1 ≤ i ≤ N), 0 ≤ T[i] ≤ W (1 ≤ i ≤ N), (S[0], T[0]) ≠ (S[N-1], T[N-1])
+Addtl Info: None

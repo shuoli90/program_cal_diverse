@@ -1,0 +1,46 @@
+Sure! I can help you write a test case generator for the "Donuts Purchase" problem. The generator will create random test cases within the provided constraints.
+
+Here's the code for the test case generator:
+
+```python
+import random
+
+def generate_test_case():
+    # Number of towns and roads
+    n = random.randint(1, 10**5)
+    m = random.randint(0, min(n * (n - 1), 10**5))
+    
+    # Satisfaction values for each town
+    c = [random.randint(0, 1000) for _ in range(n)]
+    
+    # Roads between towns
+    roads = set()
+    while len(roads) < m:
+        a = random.randint(0, n - 1)
+        b = random.randint(0, n - 1)
+        if a != b:
+            roads.add((a, b))
+    
+    roads = list(roads)
+    
+    # Convert roads to strings for output
+    road_strings = [f"{a} {b}" for a, b in roads]
+    
+    # Generate the test case string
+    test_case = f"{n} {m}\n" + " ".join(map(str, c)) + "\n" + "\n".join(road_strings)
+    
+    return test_case
+
+# Example usage
+if __name__ == "__main__":
+    test_case = generate_test_case()
+    print(test_case)
+```
+
+This generator creates:
+1. A random number of towns `n` (1 ≤ n ≤ 10^5).
+2. A random number of roads `m` (0 ≤ m ≤ min(n×(n−1), 10^5)).
+3. A list of satisfaction values `c` for each town (0 ≤ ci ≤ 1000).
+4. A set of unique one-way roads (ai, bi) where ai ≠ bi and there are no self-loops or multiple edges.
+
+To generate a single test case, simply run the script. You can call the `generate_test_case()` function multiple times to generate multiple test cases. Note that the generator ensures that the constraints are respected, and it handles the generation of roads using a set to avoid duplicates and self-loops.

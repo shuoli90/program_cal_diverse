@@ -1,0 +1,50 @@
+Certainly! Let's create a test case generator for the Shipura language problem. This will generate valid expressions according to the given syntax rules. We'll ensure the expressions are varied and comply with the specified constraints.
+
+Here's a Python script for the test case generator:
+
+```python
+import random
+
+def generate_number():
+    return str(random.randint(0, 1_000_000_000))
+
+def generate_spaces():
+    return ' ' * random.randint(0, 3)
+
+def generate_term():
+    if random.choice([True, False]):
+        return generate_number()
+    else:
+        return f"S{generate_spaces()}<{generate_spaces()}{generate_expr()}{generate_spaces()}>"
+
+def generate_expr():
+    expr = generate_term()
+    while random.choice([True, False]):
+        expr += f"{generate_spaces()}>>{generate_spaces()}{generate_term()}"
+    return expr
+
+def generate_test_case():
+    num_cases = random.randint(1, 100)
+    cases = [generate_expr() for _ in range(num_cases)]
+    cases.append("#")
+    return cases
+
+def print_test_cases(cases):
+    for case in cases:
+        print(case)
+
+# Generate and print test cases
+test_cases = generate_test_case()
+print_test_cases(test_cases)
+```
+
+### Explanation:
+
+1. **generate_number()**: Generates a random number between 0 and 1,000,000,000.
+2. **generate_spaces()**: Randomly generates 0 to 3 spaces to introduce variability in spacing.
+3. **generate_term()**: Generates either a number or a `S<expr>` term.
+4. **generate_expr()**: Generates a valid expression, which is a combination of terms and optional `>>` operators.
+5. **generate_test_case()**: Generates a list of Shipura expressions, ensuring the number of cases is between 1 and 100.
+6. **print_test_cases()**: Prints the generated test cases, ensuring the format is correct and the last line is `"#"`.
+
+This script ensures that the generated test cases are varied and follow the rules specified in the problem statement. You can run this script to generate multiple test cases for the Shipura language problem.

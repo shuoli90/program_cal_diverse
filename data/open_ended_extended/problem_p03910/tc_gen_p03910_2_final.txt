@@ -1,0 +1,55 @@
+Sure! Here is a test case generator for the given problem of selecting problems to solve with the minimum highest score:
+
+```python
+import random
+
+def tcgen():
+    # Generate a random integer N within the given constraint
+    N = random.randint(1, 10**7)
+    
+    return N
+
+# Example of using the test case generator
+if __name__ == "__main__":
+    test_case = tcgen()
+    print(test_case)
+```
+
+This function generates a single random integer \( N \) within the constraint \( 1 \leq N \leq 10^7 \). You can run this script multiple times to generate different test cases.
+
+Here are a few examples of how the function might generate test cases:
+```
+Example output:
+1234567
+```
+
+```
+Example output:
+9876543
+```
+
+```
+Example output:
+10000000
+```
+
+For creating a comprehensive set of test cases and ensuring they cover a variety of scenarios, you may consider generating multiple test cases and possibly saving them in a file or another data structure for further testing.
+
+```python
+def generate_multiple_test_cases(num_cases):
+    test_cases = []
+    for _ in range(num_cases):
+        test_cases.append(tcgen())
+    return test_cases
+
+# Example of generating multiple test cases
+if __name__ == "__main__":
+    num_cases = 5
+    test_cases = generate_multiple_test_cases(num_cases)
+    for test_case in test_cases:
+        print(test_case)
+```
+
+This will generate and print 5 test cases, each being a random integer \( N \).
+
+Remember, for competitive programming, the actual implementation of the problem-solving logic will need to ensure that the output meets the constraints and requirements specified in the problem statement. The test case generator helps in verifying the correctness and efficiency of your solution by providing diverse and edge test cases.

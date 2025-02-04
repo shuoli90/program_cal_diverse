@@ -1,0 +1,68 @@
+Sure! Here's a test case generator for the given problem statement:
+
+### Problem Statement: Compute \( a + a^2 + a^3 \)
+
+**Description**
+
+Given an integer \(a\), compute the value \(a + a^2 + a^3\).
+
+**Input**
+
+An integer \(a\) (1 ≤ \(a\) ≤ 10).
+
+**Output**
+
+Print the value of \(a + a^2 + a^3\) as an integer.
+
+**Examples**
+
+_Input_
+
+```
+2
+```
+
+_Output_
+
+```
+14
+```
+
+_Input_
+
+```
+10
+```
+
+_Output_
+
+```
+1110
+```
+
+**Explanation**
+
+For the first example, when \(a = 2\):
+\[ 2 + 2^2 + 2^3 = 2 + 4 + 8 = 14 \]
+
+For the second example, when \(a = 10\):
+\[ 10 + 10^2 + 10^3 = 10 + 100 + 1000 = 1110 \]
+
+### Test Case Generator
+
+Here is the Python function to generate test cases:
+
+```python
+import random
+
+def tcgen():
+    a = random.randint(1, 10)
+    return a
+
+# Example usage
+if __name__ == "__main__":
+    test_case = tcgen()
+    print(test_case)
+```
+
+This function `tcgen` generates a random integer \(a\) within the given constraints (1 ≤ \(a\) ≤ 10). You can use this function to create multiple test cases for the problem.

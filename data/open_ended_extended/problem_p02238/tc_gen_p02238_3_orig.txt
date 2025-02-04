@@ -1,0 +1,44 @@
+Here's a Python function to generate test cases for the DFS problem described:
+
+```python
+import random
+
+def generate_adjacency_list(n):
+    adjacency_list = []
+    for u in range(1, n + 1):
+        k = random.randint(0, n - 1)  # Degree of vertex u
+        if k == 0:
+            adjacency_list.append((u, 0, []))
+        else:
+            neighbors = sorted(random.sample(range(1, n + 1), k))
+            adjacency_list.append((u, k, neighbors))
+    return adjacency_list
+
+def dfs_tcgen():
+    n = random.randint(1, 100)  # Number of vertices
+    adjacency_list = generate_adjacency_list(n)
+    
+    input_str = f"{n}\n"
+    for u, k, neighbors in adjacency_list:
+        input_str += f"{u} {k} {' '.join(map(str, neighbors))}\n"
+    
+    return input_str
+
+# Example of generating a test case
+print(dfs_tcgen())
+```
+
+### Explanation:
+1. **`generate_adjacency_list(n)`**:
+    - This helper function generates an adjacency list for a graph with `n` vertices.
+    - Each vertex `u` has a degree `k` which is a random integer between `0` and `n-1`.
+    - If `k == 0`, it means vertex `u` has no neighbors.
+    - Otherwise, `k` neighbors are randomly selected from the range `[1, n]` and are sorted to ensure they are in ascending order.
+
+2. **`dfs_tcgen()`**:
+    - Generates a random number `n` representing the number of vertices.
+    - Calls `generate_adjacency_list(n)` to generate the adjacency list for these vertices.
+    - Constructs the input string for the DFS problem based on the adjacency list.
+    - The input string is then returned, which can be used for testing.
+
+This function should provide a wide variety of test cases to check the correctness and efficiency of a DFS implementation.

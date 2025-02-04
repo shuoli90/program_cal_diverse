@@ -1,0 +1,3 @@
+Types: N: int, bit_line: str  
+Ranges: 1 ≤ N ≤ 10, len(bit_line) = 2^N, bit_line[i] in {'0', '1'}  
+Addtl Info: None

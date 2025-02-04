@@ -1,0 +1,5 @@
+Types: n: int, pm: List[int], pe: List[int], pj: List[int]
+
+Ranges: 1 ≤ n ≤ 10000, 0 ≤ pm[i] ≤ 100, 0 ≤ pe[i] ≤ 100, 0 ≤ pj[i] ≤ 100
+
+Addtl Info: Input consists of multiple datasets, with no more than 1000 datasets. The end of the input is indicated by a single line with a zero.

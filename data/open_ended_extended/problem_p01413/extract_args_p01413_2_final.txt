@@ -1,0 +1,25 @@
+def extract_arguments(fh):
+    N, M, W, T = map(int, fh.readline().strip().split())
+    products = []
+    for _ in range(M):
+        S, V, P = fh.readline().strip().split()
+        V = int(V)
+        P = int(P)
+        products.append((S, V, P))
+    towns = []
+    for _ in range(N):
+        L, X, Y = map(int, fh.readline().strip().split())
+        items = []
+        for _ in range(L):
+            R, Q = fh.readline().strip().split()
+            Q = int(Q)
+            items.append((R, Q))
+        towns.append((X, Y, items))
+    return N, M, W, T, products, towns
+
+# Example usage:
+# if __name__ == "__main__":
+#     input_path = sys.argv[1]
+#     with open(input_path, 'r') as fh:
+#         N, M, W, T, products, towns = extract_arguments(fh)
+#         print(N, M, W, T, products, towns)

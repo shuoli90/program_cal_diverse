@@ -1,0 +1,30 @@
+Sure! Below is a test case generator for the given problem statement about finding Shichi-Go-San numbers.
+
+```python
+import random
+
+def tcgen():
+    # Generate a random integer N in the range [1, 10^9)
+    N = random.randint(1, 10**9 - 1)
+    
+    return N
+
+# Example of generating a test case
+if __name__ == "__main__":
+    print(tcgen())
+```
+
+### Explanation:
+- The function `tcgen()` generates a single random integer `N` within the specified range `[1, 10^9)`.
+- The code makes use of Python's `random.randint` function to ensure that `N` is within the constraints provided (1 ≤ `N` < 10^9).
+- The generated test case will be a valid input for the problem statement.
+
+Here's how `tcgen()` can be used to generate multiple test cases:
+
+```python
+if __name__ == "__main__":
+    for _ in range(10):  # Generate 10 test cases
+        print(tcgen())
+```
+
+This will print 10 different integers, each suitable for testing the solution to the Shichi-Go-San number counting problem.

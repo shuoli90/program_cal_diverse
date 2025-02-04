@@ -1,0 +1,13 @@
+def extract_arguments(fh):
+    N = int(fh.readline().strip())
+    bridges = []
+    for _ in range(N - 1):
+        p_i, w_i = map(int, fh.readline().strip().split())
+        bridges.append((p_i, w_i))
+    return N, bridges
+
+# Example usage:
+# if __name__ == "__main__":
+#     with open("input.txt", "r") as fh:
+#         N, bridges = extract_arguments(fh)
+#         print(N, bridges)

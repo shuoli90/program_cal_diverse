@@ -1,0 +1,145 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p02981 - Generation 2</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p02981 - Generation 2</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>
+Score : 100 points
+Problem StatementN of us are going on a trip, by train or taxi.
+The train will cost each of us A yen (the currency of Japan).
+The taxi will cost us a total of B yen.
+How much is our minimum total travel expense?
+Constraints
+All values in input are integers.
+1 \leq N \leq 20
+1 \leq A \leq 50
+1 \leq B \leq 50
+InputInput is given from Standard Input in the following format:
+N A B
+OutputPrint an integer representing the minimum total travel expense.
+Sample Input 14 2 9
+Sample Output 18
+The train will cost us 4 \times 2 = 8 yen, and the taxi will cost us 9 yen, so the minimum total travel expense is 8 yen.
+Sample Input 24 2 7
+Sample Output 27
+Sample Input 34 2 8
+Sample Output 38
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An integer N (1 ≤ N ≤ 20), representing some quantity or size.
+An integer A (1 ≤ A ≤ 50), representing some value.
+An integer B (1 ≤ B ≤ 50), representing some value.
+
+### Example Input:
+
+```
+3
+4
+8
+```
+
+### Function Signature:
+Write a function f(N, A, B) that takes in the input.
+def f(N: int, A: int, B: int):
+    '''
+    N: an integer
+    A: an integer
+    B: an integer
+    '''</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Sure, here is a Python function that generates test cases for the given problem statement:
+
+```python
+import random
+
+def tcgen():
+    N = random.randint(1, 20)
+    A = random.randint(1, 50)
+    B = random.randint(1, 50)
+    
+    return N, A, B
+
+# Example usage:
+for _ in range(5):
+    N, A, B = tcgen()
+    print(f"{N} {A} {B}")
+```
+
+This function generates random values for \(N\), \(A\), and \(B\) within the specified constraints. Each test case is printed in the required format. You can run the function multiple times to generate different test cases. Here are a few example outputs:
+
+```
+10 20 30
+3 15 25
+5 45 10
+1 50 50
+20 1 5
+```
+
+Each line represents a test case with the values \(N\), \(A\), and \(B\) respectively. The values are within the constraints given in the problem statement:
+
+- \(1 \leq N \leq 20\)
+- \(1 \leq A \leq 50\)
+- \(1 \leq B \leq 50\)</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    N, A, B = map(int, fh.readline().strip().split())
+    return N, A, B</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

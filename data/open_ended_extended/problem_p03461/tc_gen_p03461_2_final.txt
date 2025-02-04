@@ -1,0 +1,48 @@
+To generate test cases for this problem, we need to generate the following:
+
+1. Two integers \( A \) and \( B \) representing the dimensions of the distance matrix.
+2. A matrix \( d \) of dimensions \( A \times B \) where each element \( d_{x,y} \) is an integer between 1 and 100.
+
+Additionally, we need to ensure the generated graph satisfies the conditions mentioned in the problem statement, or we should report "Impossible" if it's not possible to construct such a graph.
+
+Here's a Python function that generates these test cases:
+
+```python
+import random
+
+def generate_test_case():
+    # Generate A and B
+    A = random.randint(1, 10)
+    B = random.randint(1, 10)
+
+    # Generate the distance matrix d
+    d = [[random.randint(1, 100) for _ in range(B)] for _ in range(A)]
+
+    return A, B, d
+
+# Function to print the test case
+def print_test_case():
+    A, B, d = generate_test_case()
+    
+    print(A, B)
+    for row in d:
+        print(' '.join(map(str, row)))
+
+print_test_case()
+```
+
+This function generates the test case by:
+1. Randomly selecting values for \( A \) and \( B \).
+2. Creating a distance matrix \( d \) with dimensions \( A \times B \) containing integers between 1 and 100.
+3. Printing the test case in the required format.
+
+Here's how the output might look when you run the function:
+
+```
+3 4
+23 45 67 23
+12 34 56 78
+90 12 34 56
+```
+
+In a real competitive programming scenario, you would use this function to generate various test cases and validate them against your solution to ensure it handles all edge cases and constraints effectively.

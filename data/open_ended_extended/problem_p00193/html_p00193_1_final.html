@@ -1,0 +1,212 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p00193 - Generation 1</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p00193 - Generation 1</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>Convenience Store
+To expand its business, the convenience store Seven-Eleven is considering opening its first store in Wakamatsu City. Since there are already many other convenience stores in Wakamatsu City, the location of the new store is likely to be the key to success. Under the premise of "customers will use the convenience store closest to their home area," Seven-Eleven plans to open a store at a location where "many customers are likely to use it."
+Seven-Eleven divided the map of Wakamatsu City into congruent regular hexagons ("blocks") to understand the range covered by each existing convenience store. At this time, the city was divided into blocks so that at most one existing convenience store could be included in each block. Based on the number of blocks that need to be traversed to reach a convenience store from each block, the distance between the convenience store and each block is determined. Each block is considered to be covered by the convenience store that covers it with the shortest distance. The problem is to find the "blocks for which there are no existing convenience stores that cover as many blocks as possible" based on this map.
+You are a programmer at Seven-Eleven, and you have been tasked with developing a program to calculate the maximum number of blocks that can be covered from all candidate locations based on the map divided into blocks and information about the candidate location of the new store.
+The map divided into blocks of m × n is represented as shown in Figure 1. Blocks of hexagons are arranged horizontally in m rows and vertically in n columns, each represented by a coordinate (x, y). The left edge of odd-numbered rows is located just below the left edge of the row above it, and the left edge of even-numbered rows is located just below the left edge of the row above it. For example, coordinate (1, 1) represents the top-left block in Figure 1. Coordinate (1, 2) is located just below coordinate (1, 1), and coordinate (1, 3) is located just below coordinate (1, 2).
+Figure 2 shows an example where there are six existing convenience stores, divided into a 6 × 6 map. Each convenience store is numbered in order from 1. When the blocks covered by each convenience store are colored by number, they are divided as shown in Figure 3. Blocks that are not colored, such as block (1, 4) and (2, 5), have two or more convenience stores that are closest, and cannot be determined which convenience store covers the block. For example, in the case of block (1, 4), the distance to convenience stores 4 and 5 is equal, and it is assumed that there is no convenience store that covers this block. The number of blocks covered by convenience store 4 is 5.
+Suppose Seven-Eleven is considering locations (1, 3) and (5, 3) as candidate locations for the new store. If a store is located at (1, 3), it can cover three blocks (Figure 4). On the other hand, if a store is located at (5, 3), it can cover four blocks (Figure 5). Therefore, the maximum number of blocks that can be covered is 4.
+The input consists of multiple datasets. The end of the input is indicated by</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>Canonicalized Input Description:
+
+An integer m (1 ≤ m ≤ 50), representing some quantity or size.
+An integer n (1 ≤ n ≤ 50), representing some quantity or size.
+An integer k (0 ≤ k ≤ 50), representing some quantity.
+A list of k tuples, where each tuple contains two integers (x, y) representing some coordinates (1 ≤ x ≤ m, 1 ≤ y ≤ n).
+An integer t (1 ≤ t ≤ 10), representing the number of candidate locations.
+A list of t tuples, where each tuple contains two integers (a, b) representing some coordinates (1 ≤ a ≤ m, 1 ≤ b ≤ n).
+
+### Example Input:
+
+```
+6
+6
+6
+1 1
+2 2
+3 3
+4 4
+5 5
+6 6
+2
+1 3
+5 3
+```
+
+### Function Signature:
+Write a function f(m, n, k, stores, t, candidates) that takes in the input.
+```python
+def f(m: int, n: int, k: int, stores: List[Tuple[int, int]], t: int, candidates: List[Tuple[int, int]]):
+    '''
+    m: an integer
+    n: an integer
+    k: an integer
+    stores: a list of tuples, each containing two integers
+    t: an integer
+    candidates: a list of tuples, each containing two integers
+    '''
+```</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Sure, I can help you create a test case generator for the "Convenience Store" problem. Here's a structured approach to generate test cases for the given problem:
+
+### Problem Statement Recap
+You need to determine the maximum number of blocks that can be covered by a new convenience store given the existing stores and the city map divided into hexagonal blocks.
+
+### Input Format
+1. The map dimensions, \( m \) (number of rows) and \( n \) (number of columns).
+2. The number of existing stores \( k \).
+3. The coordinates \( (x_i, y_i) \) of each existing store.
+4. The number of candidate locations \( c \).
+5. The coordinates \( (cx_j, cy_j) \) of each candidate location.
+
+### Output Format
+The maximum number of blocks that can be covered by a new convenience store from the candidate locations.
+
+### Test Case Generator
+To generate test cases, we need to follow these steps:
+1. Randomly generate the dimensions of the map \( m \) and \( n \).
+2. Randomly generate the number of existing stores \( k \) and their coordinates.
+3. Randomly generate the number of candidate locations \( c \) and their coordinates.
+
+Here’s a Python implementation for the test case generator:
+
+```python
+import random
+
+def generate_test_case():
+    # Map dimensions
+    m = random.randint(1, 20)  # Assuming a smaller range for practical test case generation
+    n = random.randint(1, 20)  # Assuming a smaller range for practical test case generation
+
+    # Number of existing stores
+    k = random.randint(0, m * n // 2)  # At most half the blocks can have stores
+
+    # Generate coordinates for existing stores
+    existing_stores = set()
+    while len(existing_stores) < k:
+        x = random.randint(1, m)
+        y = random.randint(1, n)
+        existing_stores.add((x, y))
+    existing_stores = list(existing_stores)
+
+    # Number of candidate locations
+    c = random.randint(1, m * n - k)  # Ensuring at least one candidate location
+
+    # Generate coordinates for candidate locations
+    candidate_locations = set()
+    while len(candidate_locations) < c:
+        x = random.randint(1, m)
+        y = random.randint(1, n)
+        if (x, y) not in existing_stores:
+            candidate_locations.add((x, y))
+    candidate_locations = list(candidate_locations)
+
+    # Format the test case
+    test_case = f"{m} {n}\n{k}\n"
+    for store in existing_stores:
+        test_case += f"{store[0]} {store[1]}\n"
+    test_case += f"{c}\n"
+    for candidate in candidate_locations:
+        test_case += f"{candidate[0]} {candidate[1]}\n"
+    
+    return test_case.strip()
+
+# Example usage
+print(generate_test_case())
+```
+
+### Explanation
+1. **Map Dimensions \( m \) and \( n \)**: These are randomly chosen within a reasonable range (1 to 20) to ensure the test cases are manageable.
+2. **Number of Existing Stores \( k \)**: The number of stores is randomly chosen to be at most half the number of blocks to ensure diversity in test cases.
+3. **Coordinates for Existing Stores**: The coordinates are generated randomly but are unique to avoid placing multiple stores in the same block.
+4. **Number of Candidate Locations \( c \)**: We ensure there is at least one candidate location and that they are not placed where there is already an existing store.
+5. **Coordinates for Candidate Locations**: These are generated in a similar fashion to existing stores but ensuring they do not overlap with existing store coordinates.
+
+This generator should create diverse and valid test cases for the convenience store problem. You can adjust the ranges and constraints based on the specific requirements and limits of the problem.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    datasets = []
+    while True:
+        line = fh.readline().strip()
+        if line == "0 0":
+            break
+        m, n = map(int, line.split())
+        existing_stores = [tuple(map(int, fh.readline().strip().split())) for _ in range(m)]
+        candidate_locations = []
+        while True:
+            line = fh.readline().strip()
+            if line == "":
+                break
+            candidate_locations.append(tuple(map(int, line.split())))
+        datasets.append((m, n, existing_stores, candidate_locations))
+    return datasets
+
+# if __name__ == "__main__":
+#     input_path = sys.argv[1]
+#     with open(input_path, 'r') as fh:
+#         datasets = extract_arguments(fh)
+#         process_datasets(datasets)  # Assuming process_datasets is the function to process the data</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

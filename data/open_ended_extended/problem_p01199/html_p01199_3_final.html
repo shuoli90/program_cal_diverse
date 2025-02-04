@@ -1,0 +1,228 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p01199 - Generation 3</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p01199 - Generation 3</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>
+Flame of Nucleus
+Year 20XX — a nuclear explosion has burned the world. Half the people on the planet have died. Fearful.
+One city, fortunately, was not directly damaged by the explosion. This city consists of N domes (numbered 1
+through N inclusive) and M bidirectional transportation pipelines connecting the domes. In dome i, Pi citizens
+reside currently and there is a nuclear shelter capable of protecting Ki citizens. Also, it takes Di days to travel
+from one end to the other end of pipeline i.
+It has been turned out that this city will be polluted by nuclear radiation in L days after today. So each citizen
+should take refuge in some shelter, possibly traveling through the pipelines. Citizens will be dead if they reach
+their shelters in exactly or more than L days.
+How many citizens can survive at most in this situation?
+Input
+The input consists of multiple test cases. Each test case begins with a line consisting of three integers N, M
+and L (1 ≤ N ≤ 100, M ≥ 0, 1 ≤ L ≤ 10000). This is followed by M lines describing the configuration of
+transportation pipelines connecting the domes. The i-th line contains three integers Ai, Bi and Di (1 ≤ Ai < Bi ≤
+N, 1 ≤ Di ≤ 10000), denoting that the i-th pipeline connects dome Ai and Bi. There is at most one pipeline
+between any pair of domes. Finally, there come two lines, each consisting of N integers. The first gives P1 , . . .,
+PN (0 ≤ Pi ≤ 106) and the second gives K1 , . . ., KN (0 ≤ Ki ≤ 106).
+The input is terminated by EOF. All integers in each line are separated by a whitespace.
+Output
+For each test case, print in a line the maximum number of people who can survive.
+Sample Input
+1 0 1
+51
+50
+2 1 1
+1 2 1
+1000 0
+0 1000
+4 3 5
+1 2 4
+1 3 1
+3 4 2
+0 1000 1000 1000
+3000 0 0 0
+Output for the Sample Input
+50
+0
+3000
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An integer N (1 ≤ N ≤ 100), representing some quantity or size.
+An integer M (M ≥ 0), representing some quantity or size.
+An integer L (1 ≤ L ≤ 10000), representing some quantity or size.
+M lines each containing three integers Ai, Bi, and Di (1 ≤ Ai < Bi ≤ N, 1 ≤ Di ≤ 10000), representing some connections or relationships.
+A list of N integers P (0 ≤ P[i] ≤ 1e6), representing some measurements or quantities.
+A list of N integers K (0 ≤ K[i] ≤ 1e6), representing some measurements or quantities.
+
+### Example Input:
+
+```
+1 0 1
+51
+50
+2 1 1
+1 2 1
+1000 0
+0 1000
+4 3 5
+1 2 4
+1 3 1
+3 4 2
+0 1000 1000 1000
+3000 0 0 0
+```
+
+### Function Signature:
+Write a function f(inputs) that takes in the input.
+def f(inputs: List[Tuple[int, int, int, List[Tuple[int, int, int]], List[int], List[int]]]):
+    ''' 
+    inputs: a list of tuples, each containing:
+        - an integer
+        - an integer
+        - an integer
+        - a list of tuples, each containing three integers
+        - a list of integers
+        - a list of integers
+    '''</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Sure! The problem "Flame of Nucleus" is a bit more complex and involves generating graphs with specific properties. Below is a Python function to generate test cases for this problem:
+
+```python
+import random
+
+def generate_test_case():
+    # Generate N, M, L
+    N = random.randint(1, 100)
+    M = random.randint(0, N * (N - 1) // 2)  # Maximum number of edges in a complete graph
+    L = random.randint(1, 10000)
+    
+    # Generate M edges
+    edges = set()
+    while len(edges) < M:
+        A = random.randint(1, N)
+        B = random.randint(1, N)
+        if A != B:
+            D = random.randint(1, 10000)
+            edge = (min(A, B), max(A, B), D)
+            edges.add(edge)
+    
+    # Generate P and K arrays
+    P = [random.randint(0, 10**6) for _ in range(N)]
+    K = [random.randint(0, 10**6) for _ in range(N)]
+    
+    # Format the test case as a string
+    test_case = f"{N} {M} {L}\n"
+    for edge in edges:
+        test_case += f"{edge[0]} {edge[1]} {edge[2]}\n"
+    test_case += ' '.join(map(str, P)) + '\n'
+    test_case += ' '.join(map(str, K)) + '\n'
+    
+    return test_case
+
+# Generate multiple test cases
+def generate_multiple_test_cases(num_cases):
+    test_cases = []
+    for _ in range(num_cases):
+        test_cases.append(generate_test_case())
+    return test_cases
+
+# Example usage
+if __name__ == "__main__":
+    test_cases = generate_multiple_test_cases(3)
+    for case in test_cases:
+        print(case)
+        print("-" * 40)
+```
+
+### Explanation:
+1. **N, M, L Generation**:
+    - `N`: Random number of domes between 1 and 100.
+    - `M`: Random number of pipelines. This is capped by the maximum number of edges in a complete graph.
+    - `L`: Random days before radiation hits between 1 and 10000.
+
+2. **Edges Generation**:
+    - Generate unique edges by randomly selecting pairs of nodes and a travel time `D` between 1 and 10000. The set ensures no duplicate edges.
+
+3. **Population and Shelter Capacities**:
+    - `P`: Array representing the number of citizens in each dome. Each value is randomly generated between 0 and 1,000,000.
+    - `K`: Array representing the capacity of shelters in each dome. Each value is randomly generated between 0 and 1,000,000.
+
+4. **Formatting**:
+    - The test case is formatted as a string to match the input format described in the problem statement.
+
+5. **Multiple Test Cases**:
+    - The `generate_multiple_test_cases` function generates a specified number (e.g., 3) of test cases.
+
+This generator should help you create diverse and comprehensive test cases for the "Flame of Nucleus" problem.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    test_cases = []
+    while True:
+        line = fh.readline().strip()
+        if not line:
+            break
+        N, M, L = map(int, line.split())
+        pipelines = []
+        for _ in range(M):
+            Ai, Bi, Di = map(int, fh.readline().strip().split())
+            pipelines.append((Ai, Bi, Di))
+        P = list(map(int, fh.readline().strip().split()))
+        K = list(map(int, fh.readline().strip().split()))
+        test_cases.append((N, M, L, pipelines, P, K))
+    return test_cases</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

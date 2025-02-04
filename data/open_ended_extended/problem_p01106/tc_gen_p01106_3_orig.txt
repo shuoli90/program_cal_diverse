@@ -1,0 +1,38 @@
+Sure, here is the test case generator for the "Folding a Ribbon" problem:
+
+```python
+import random
+
+def tcgen():
+    test_cases = []
+    
+    # Generate up to 100 datasets
+    for _ in range(random.randint(1, 100)):
+        n = random.randint(1, 60)
+        max_layers = 2 ** n
+        i = random.randint(1, max_layers)
+        j = random.randint(1, max_layers)
+        test_cases.append((n, i, j))
+    
+    # Add the end of input indicator
+    test_cases.append((0, 0, 0))
+    
+    return test_cases
+
+# Example of generating test cases
+if __name__ == "__main__":
+    test_cases = tcgen()
+    for case in test_cases:
+        print(case)
+```
+
+### Explanation
+1. **Generating Datasets**: The generator will create between 1 to 100 datasets. For each dataset:
+   - `n` is an integer between 1 and 60 (inclusive).
+   - `i` and `j` are both integers between 1 and `2^n` (inclusive).
+
+2. **End of Input**: After generating the datasets, `0 0 0` is appended to indicate the end of the input.
+
+3. **Output**: The generator prints each dataset as a tuple `(n, i, j)`.
+
+You can use this generator to create test inputs for the "Folding a Ribbon" problem. Each generated dataset is a valid input for the problem statement.

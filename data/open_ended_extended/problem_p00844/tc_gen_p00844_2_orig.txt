@@ -1,0 +1,53 @@
+Sure! Here is a Python test case generator for the "Shy Polygons" problem:
+
+```python
+import random
+
+def generate_polygon():
+    n = random.randint(3, 14)
+    vertices = []
+    for _ in range(n):
+        x = random.randint(0, 499)
+        y = random.randint(0, 499)
+        vertices.append((x, y))
+    return n, vertices
+
+def format_polygon(n, vertices):
+    result = f"{n}\n"
+    for x, y in vertices:
+        result += f"{x} {y}\n"
+    return result
+
+def tcgen():
+    test_cases = []
+    while True:
+        L = round(random.uniform(0.1, 50.0), 4)
+        n1, vertices1 = generate_polygon()
+        n2, vertices2 = generate_polygon()
+        
+        polygon1 = format_polygon(n1, vertices1)
+        polygon2 = format_polygon(n2, vertices2)
+        
+        test_case = f"{L}\n{polygon1}{polygon2}"
+        test_cases.append(test_case)
+        
+        # Decide randomly when to stop adding test cases
+        if random.random() < 0.2:
+            break
+    
+    test_cases.append("0")  # End of input indicator
+    return "\n".join(test_cases)
+
+# Example usage
+print(tcgen())
+```
+
+This generator creates a series of test cases for the "Shy Polygons" problem. The generator includes:
+- Randomly generating the minimum distance \( L \) between polygons from \( 0.1 \) to \( 50.0 \).
+- Generating two polygons with a random number of vertices (between 3 and 14).
+- Ensuring that each vertex has x and y coordinates within the range \( 0 \) to \( 499 \).
+- Randomly decides when to stop adding more test cases, ensuring the end of input is indicated by a single "0".
+
+The `format_polygon` function formats the polygon data to match the required input format. 
+
+You can adjust the probabilities or ranges as needed for more specific test cases.

@@ -1,0 +1,18 @@
+
+Score : 300 points
+Problem StatementFind \displaystyle{\sum_{a=1}^{K}\sum_{b=1}^{K}\sum_{c=1}^{K} \gcd(a,b,c)}.
+Here \gcd(a,b,c) denotes the greatest common divisor of a, b, and c.
+Constraints
+1 \leq K \leq 200
+K is an integer.
+InputInput is given from Standard Input in the following format:
+K
+OutputPrint the value of \displaystyle{\sum_{a=1}^{K}\sum_{b=1}^{K}\sum_{c=1}^{K} \gcd(a,b,c)}.
+Sample Input 12
+Sample Output 19
+\gcd(1,1,1)+\gcd(1,1,2)+\gcd(1,2,1)+\gcd(1,2,2)
++\gcd(2,1,1)+\gcd(2,1,2)+\gcd(2,2,1)+\gcd(2,2,2)
+=1+1+1+1+1+1+1+2=9
+Thus, the answer is 9.
+Sample Input 2200
+Sample Output 210813692

@@ -1,0 +1,224 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p01226 - Generation 2</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p01226 - Generation 2</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>Problem D:Battle Town
+You decided to develop a game with your friends.
+   The title of the game is "Battle Town".
+   The game is themed around urban tank warfare.
+   As the first step in game development, you decided to develop the following prototype.
+In this prototype, only the player's tank appears, and the enemy tanks do not appear.
+   The player's tank performs various actions on the map according to the player's input.
+   Below are specifications for tank behavior.
+The map elements are as shown in Table 1.
+   Tanks can only move on flat terrain in the map.
+Table 1: Map elements
+CharacterElement
+.Flat terrain
+*Brick wall
+#Iron wall
+-Water
+^Tank (Facing up)
+vTank (Facing down)
+<Tank (Facing left)
+>Tank (Facing right)
+The player's input is given as a sequence of characters.
+   The corresponding actions for each character are as shown in Table 2.
+Table 2: Actions for player input
+CharacterAction
+U
+Up: Rotate the tank upward, and if the space above the tank is flat terrain, move to that space
+D
+Down: Rotate the tank downward, and if the space below the tank is flat terrain, move to that space
+L
+Left: Rotate the tank to the left, and if the space to the left of the tank is flat terrain, move to that space
+R
+Right: Rotate the tank to the right, and if the space to the right of the tank is flat terrain, move to that space
+S
+Shoot: Fire a bullet in the direction the tank is currently facing
+Bullets continue to move straight until they hit a brick wall or iron wall or go outside of the map.
+   If a bullet hits a brick wall, the bullet disappears, and the brick wall changes to flat terrain.
+   If a bullet hits an iron wall, the bullet disappears, but the iron wall does not change.
+   When the bullet goes outside of the map, the bullet disappears as it is.
+Your task is to create a program that outputs the final map state when the initial map and player input sequence are given.
+Input
+The first line of the input contains an integer T, which represents the number of datasets.
+   (0 < T ≤ 100).
+   This is followed by T datasets.
+The first line of each dataset contains two integers, H and W</</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An integer T (1 ≤ T ≤ 100), representing the number of datasets.
+For each dataset:
+1. An integer H (1 ≤ H ≤ 100), representing some quantity.
+2. An integer W (1 ≤ W ≤ 100), representing some quantity.
+3. H lines, each containing a string of length W, where each character is one of {'.', '*', '#', '-', '^', 'v', '<', '>'}.
+4. A string S of length M (1 ≤ M ≤ 10^4), consisting of characters from the set {'U', 'D', 'L', 'R', 'S'}.
+
+### Example Input:
+
+```
+2
+4 4
+....
+.**.
+.#-.
+.^..
+UDLS
+3 3
+...
+.*#
+.-^
+RRL
+```
+
+### Function Signature:
+Write a function f(inputs) that takes in the input.
+def f(inputs: List[Tuple[int, int, int, List[str], str]]):
+    '''
+    inputs: a list of tuples, each tuple contains:
+        an integer T
+        an integer H
+        an integer W
+        a list of H strings, each of length W
+        a string S of length M
+    '''</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Sure, I can help with that. Below is a test case generator for the "Battle Town" problem statement.
+
+```python
+import random
+
+def tcgen():
+    T = random.randint(1, 100) # Number of datasets
+    datasets = []
+
+    for _ in range(T):
+        H = random.randint(1, 20)  # Height of the map (1 ≤ H ≤ 20)
+        W = random.randint(1, 20)  # Width of the map (1 ≤ W ≤ 20)
+
+        # Generate a random map
+        elements = ['.', '*', '#', '-', '^', 'v', '<', '>']
+        map_ = []
+
+        for i in range(H):
+            row = "".join(random.choices(elements, k=W))
+            map_.append(row)
+
+        # Ensure there is exactly one tank on the map
+        tank_positions = '^v<>'
+        tank_placed = False
+        while not tank_placed:
+            r = random.randint(0, H - 1)
+            c = random.randint(0, W - 1)
+            if map_[r][c] == '.':
+                map_[r] = map_[r][:c] + random.choice(tank_positions) + map_[r][c + 1:]
+                tank_placed = True
+
+        # Generate a random sequence of actions
+        actions = 'UDLR' + 'S' * 5  # Add more 'S' to increase shooting probability
+        action_sequence = "".join(random.choices(actions, k=random.randint(1, 100)))
+
+        # Append the dataset
+        datasets.append((H, W, map_, action_sequence))
+
+    return T, datasets
+
+# Example usage
+if __name__ == "__main__":
+    T, datasets = tcgen()
+    print(T)
+    for H, W, map_, action_sequence in datasets:
+        print(H, W)
+        for row in map_:
+            print(row)
+        print(action_sequence)
+        print()  # Newline for separating datasets
+```
+
+This test case generator follows these steps:
+
+1. Randomly determine the number of datasets \( T \) (1 ≤ \( T \) ≤ 100).
+2. For each dataset:
+   - Randomly determine the dimensions \( H \) (1 ≤ \( H \) ≤ 20) and \( W \) (1 ≤ \( W \) ≤ 20) of the map.
+   - Generate a random map with `.` (flat terrain), `*` (brick wall), `#` (iron wall), `-` (water).
+   - Ensure there is exactly one tank on the map (`^`, `v`, `<`, `>`).
+   - Generate a random sequence of actions `U`, `D`, `L`, `R`, and `S`.
+3. Return the number of datasets and the list of datasets.
+
+This generator will help you create various test scenarios for the "Battle Town" problem.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    T = int(fh.readline().strip())
+    datasets = []
+    for _ in range(T):
+        H, W = map(int, fh.readline().strip().split())
+        map_data = [fh.readline().strip() for _ in range(H)]
+        actions = fh.readline().strip()
+        datasets.append((H, W, map_data, actions))
+    return datasets
+
+# if __name__ == "__main__":
+#     input_path = sys.argv[1]
+#     with open(input_path, 'r') as fh: 
+#         datasets = extract_arguments(fh)
+#         f(datasets)</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

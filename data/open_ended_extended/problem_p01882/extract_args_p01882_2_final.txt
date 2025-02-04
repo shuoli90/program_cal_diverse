@@ -1,0 +1,27 @@
+def extract_arguments(fh):
+    N = int(fh.readline().strip())
+    members = []
+    for _ in range(N):
+        s, a = fh.readline().strip().split()
+        a = int(a)
+        members.append((s, a))
+    
+    M = int(fh.readline().strip())
+    changes = []
+    for _ in range(M):
+        line = fh.readline().strip()
+        if line[0] == '+':
+            _, t, b = line.split()
+            b = int(b)
+            changes.append((1, t, b))
+        else:
+            _, t = line.split()
+            changes.append((0, t))
+
+    return N, members, M, changes
+
+# Example usage:
+# if __name__ == "__main__":
+#     input_path = sys.argv[1]
+#     with open(input_path, 'r') as fh: 
+#         N, members, M, changes = extract_arguments(fh)

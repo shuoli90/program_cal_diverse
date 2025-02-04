@@ -1,0 +1,24 @@
+def extract_arguments(fh):
+    datasets = []
+    while True:
+        line = fh.readline().strip()
+        if line == '0 0':
+            break
+        N, M = map(int, line.split())
+        troops = []
+        bases = []
+        for _ in range(N):
+            x, y, v = map(int, fh.readline().strip().split())
+            troops.append((x, y, v))
+        for _ in range(M):
+            x_prime, y_prime = map(int, fh.readline().strip().split())
+            bases.append((x_prime, y_prime))
+        datasets.append((N, M, troops, bases))
+    return datasets
+
+# if __name__ == "__main__":
+#     input_path = sys.argv[1]
+#     with open(input_path, 'r') as fh:
+#         inputs = extract_arguments(fh)
+#         for input_data in inputs:
+#             f(input_data)

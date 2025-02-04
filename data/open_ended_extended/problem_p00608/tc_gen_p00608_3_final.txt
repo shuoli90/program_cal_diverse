@@ -1,0 +1,61 @@
+Sure, I can help you write a test case generator for this problem. Here is a Python function that generates random test cases for the problem "Indian Puzzle":
+
+```python
+import random
+
+def generate_grid(H, W):
+    grid = []
+    for _ in range(H):
+        row = []
+        for _ in range(W):
+            cell = random.choice(['.', '#', str(random.randint(0, 9)), random.choice(['+', '-', '*', '/', '='])])
+            row.append(cell)
+        grid.append(''.join(row))
+    return grid
+
+def generate_characters(n):
+    chars = []
+    for _ in range(n):
+        char = random.choice([str(random.randint(0, 9)), random.choice(['+', '-', '*', '/'])])
+        chars.append(char)
+    return chars
+
+def tcgen():
+    datasets = []
+    
+    while True:
+        H = random.randint(1, 10)
+        W = random.randint(1, 10)
+        grid = generate_grid(H, W)
+        n = random.randint(1, 10)
+        characters = generate_characters(n)
+        
+        dataset = f"{H} {W}\n" + '\n'.join(grid) + f"\n{n}\n" + ' '.join(characters)
+        datasets.append(dataset)
+        
+        if random.random() < 0.1:  # 10% chance to stop adding more datasets
+            break
+    
+    datasets.append("0 0")
+    
+    return '\n'.join(datasets)
+
+# Example usage:
+print(tcgen())
+```
+
+### Explanation:
+
+1. **Function `generate_grid(H, W)`**: This function generates a random grid of dimensions `H` x `W`. Each cell can be a blank (`.`), a black cell (`#`), a number (`0-9`), or an operator (`+`, `-`, `*`, `/`, `=`).
+
+2. **Function `generate_characters(n)`**: This function generates a list of `n` random characters which can be numbers (`0-9`) or operators (`+`, `-`, `*`, `/`).
+
+3. **Function `tcgen()`**: This function generates multiple datasets:
+    - It first decides the dimensions `H` and `W`.
+    - It then generates a grid of these dimensions using the `generate_grid` function.
+    - It also decides a number `n` of characters and generates these characters using the `generate_characters` function.
+    - It combines the grid and characters into a single dataset string.
+    - It keeps adding datasets into a list until a random stopping condition is met (10% chance to stop each iteration).
+    - Finally, it appends the end-of-input marker (`"0 0"`) and returns the complete set of datasets as a single string.
+
+When you run `tcgen()`, it will print a randomly generated input set adhering to the problem's constraints.

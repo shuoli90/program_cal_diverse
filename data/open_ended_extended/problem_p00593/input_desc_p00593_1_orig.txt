@@ -1,0 +1,17 @@
+An integer \( N \) (0 < \( N \) < 10) representing some quantity or size, for several test cases. The input ends with a line containing a single zero.
+
+### Example Input:
+```
+3
+4
+0
+```
+
+### Function Signature:
+Write a function `f(inputs)` that takes in a list of tuples containing one integer each. 
+```python
+def f(inputs: List[Tuple[int]]):
+    '''
+    inputs: a list of tuples, where each tuple contains a single integer
+    '''
+```

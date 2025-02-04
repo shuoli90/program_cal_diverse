@@ -1,0 +1,3 @@
+Types: N: int, F: int, M: int, item: str
+Ranges: 1 ≤ N ≤ 100, 1 ≤ F ≤ 100, 1 ≤ M ≤ 10, 1 ≤ len(item) ≤ 30
+Addtl Info: item consists of lowercase English letters only

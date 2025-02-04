@@ -1,0 +1,50 @@
+Certainly! Below is the test case generator for the `MinimumCostPath` problem. This generator will create diverse test cases in compliance with the problem's constraints.
+
+```python
+import random
+
+def tcgen():
+    N = random.randint(2, 10**6)
+    M = random.randint(0, 50)
+    
+    obstacles = set()
+    while len(obstacles) < M:
+        x = random.randint(1, N)
+        y = random.randint(1, N)
+        if (x, y) not in obstacles and (x, y) != (1, 1) and (x, y) != (N, N):
+            obstacles.add((x, y))
+    
+    obstacles = list(obstacles)
+    
+    print(N, M)
+    for x, y in obstacles:
+        print(x, y)
+
+# Example usage
+tcgen()
+```
+
+### Explanation:
+1. **Grid Size (N):** The grid size `N` is randomly selected between 2 and \(10^6\).
+2. **Number of Obstacles (M):** The number of obstacles `M` is randomly selected between 0 and 50.
+3. **Obstacles (Xi, Yi):** Obstacles are generated with random positions `(Xi, Yi)`, ensuring no duplicates and avoiding start and end positions `(1,1)` and `(N,N)`.
+
+### Example Run:
+Running the `tcgen()` function will print a valid test case. For example:
+
+```sh
+$ python tcgen_example.py
+```
+
+Output:
+```
+6 4
+2 3
+5 5
+3 2
+1 4
+```
+
+This output indicates a grid of size `6x6` with 4 obstacles placed at coordinates `(2, 3)`, `(5, 5)`, `(3, 2)`, and `(1, 4)`.
+
+This generator ensures that all constraints are respected and provides diverse test cases suitable for evaluating solutions to the given problem.

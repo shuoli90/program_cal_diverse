@@ -1,0 +1,208 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p02132 - Generation 2</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p02132 - Generation 2</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>Problem I: Explosion
+Problem
+Great Demon King Megumin plans to defeat $N$ heroes living on the ground.
+Megumin can cast up to $M$ explosion spells.
+The explosion magic is a spell that destroys heroes within a radius of $r$ centered on any coordinate.
+The size of the hero can be ignored because they are very thin.
+The radius of all $M$ explosion spells is assumed to be the same size.
+It was decided to use magic with the minimum necessary radius to annihilate the heroes.
+Minimize the size of the radius of the explosion magic.
+Input
+$N$ $M$
+$x_1$ $y_1$
+...
+$x_N$ $y_N$
+The input is given in the following format.
+The number of heroes $N$ and the number of explosion spells $M$ are given as integers on the first line.
+The coordinates $x_i$ $,$ $y_i$ of each hero $i$ are given as integers from the second line.
+Constraints
+The input satisfies the following conditions.
+$1 \leq M \leq N \leq 14$
+$0 \leq x_i $,$ y_i \leq 10^5$
+Output
+Output the minimum value of the radius of the explosion magic as a real number.
+It must not include an absolute error exceeding $10^{-3}$.
+Sample Input 1
+5 2
+0 0
+5 5
+10 10
+100 100
+200 200
+Sample Output 1
+70.710678118755
+Sample Input 2
+10 5
+321 675
+4312 6534
+312 532
+412 6543
+21 43
+654 321
+543 0
+32 5
+41 76
+5 1
+Sample Output 2
+169.824909833728
+Sample Input 3
+14 3
+312 342
+4893 432
+321 4
+389 4
+23 543
+0 0
+1 1
+2 2
+432 12
+435 32
+1 5
+2 10
+100 100
+20 50
+Sample Output 3
+218.087711712613
+Sample Input 4
+5 2
+0 0
+0 0
+0 0
+0 0
+0 0
+Sample Output 4
+0.000000000001
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An integer N (1 ≤ N ≤ 14), representing some quantity.
+An integer M (1 ≤ M ≤ N), representing some quantity.
+N pairs of integers (xi, yi) where each integer is between 0 and 10^5.
+
+### Example Input:
+
+```
+5 2
+0 0
+5 5
+10 10
+100 100
+200 200
+```
+
+### Function Signature:
+Write a function f(N, M, coordinates) that takes in the input.
+```python
+def f(N: int, M: int, coordinates: List[Tuple[int, int]]):
+    '''
+    N: an integer
+    M: an integer
+    coordinates: a list of tuples, each containing two integers
+    '''
+```</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Sure! Here is a test case generator for the problem "Explosion":
+
+```python
+import random
+
+def tcgen():
+    # Generate N and M such that 1 ≤ M ≤ N ≤ 14
+    N = random.randint(1, 14)
+    M = random.randint(1, N)
+
+    # Generate N pairs of coordinates (x_i, y_i) where 0 ≤ x_i, y_i ≤ 10^5
+    coordinates = [(random.randint(0, 10**5), random.randint(0, 10**5)) for _ in range(N)]
+
+    return N, M, coordinates
+
+# Function to format the test case as required by the problem statement
+def format_test_case(N, M, coordinates):
+    test_case = f"{N} {M}\n"
+    for x, y in coordinates:
+        test_case += f"{x} {y}\n"
+    return test_case
+
+# Example usage:
+if __name__ == "__main__":
+    N, M, coordinates = tcgen()
+    print(format_test_case(N, M, coordinates))
+```
+
+This code snippet defines a test case generator for the "Explosion" problem. The `tcgen` function generates:
+
+1. `N` and `M` such that \(1 \leq M \leq N \leq 14\).
+2. `N` pairs of coordinates \((x_i, y_i)\) where \(0 \leq x_i, y_i \leq 10^5\).
+
+The `format_test_case` function formats the generated test case into the required string format for input.
+
+You can run this script, and it will print a randomly generated test case in the format specified in the problem statement.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    lines = fh.readlines()
+    N, M = map(int, lines[0].strip().split())
+    coordinates = [tuple(map(int, line.strip().split())) for line in lines[1:]]
+    return N, M, coordinates</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

@@ -1,0 +1,190 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p01472 - Generation 3</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p01472 - Generation 3</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>Problem
+Two players are playing a game. The rules of the game are explained below.
+There is an $N × N$ square board, and each square has a number $X_{i,j}$ ($1 \leq i,j \leq N$) written on it. The first player and the second player take turns stacking points. At the beginning, the first player has $F$ points, and the second player has $0$ points.
+The $t$-th turn ($1 \leq t \leq 2N$) indicates the player's action.
+If, from now on, the player loses no matter what hand he or she chooses, he or she declares defeat immediately and the game ends.
+The player chooses a number $Y_t$ from $1,2,...,N$ that he or she has not chosen before.
+    
+When it is the first player's turn (i.e., $t$ is odd and $t>1$), the first player gets $X_{Y_{t}, Y_{t-1}}$ points. If $t=1$, the first player's score does not change.
+When it is the second player's turn (i.e., $t$ is even), the second player gets $X_{Y_{t-1}, Y_{t}}$ points.
+When $t=2N$, determine the winner and end the game. The winner is the player with the most points, and if the points are the same, it is a draw.
+End the turn and pass the turn to the opponent.
+The first and second players choose a move based on the following criteria.
+When there is a move that results in a win, choose that move. If there are multiple moves that result in a win, choose the move that will end the game in the shortest number of turns.
+When there is no move that results in a win, choose a move that results in a draw.
+When there are no moves that result in a win or a draw, choose a move that will end the game in the longest number of turns.
+When the first and second players choose a move based on these criteria, determine the result of the game and the number of turns it will take to end the game.
+Input
+The input is in the following format. All given numbers are integers.
+N F
+X_{1,1} X_{1,2} ... X_{1,N}
+X_{2,1} X_{2,2} ... X_{2,N}
+...
+X_{N,1} X_{N,2} ... X_{N,N}
+Constraints
+$1 \leq N \leq 8$
+$-10^5 \leq F \leq 10^5$
+$-10^5 \leq X_{i,j} \leq 10^5$
+Output
+If the first player wins, output "First". If the second player wins, output "Second". If it is a draw, output "Draw" on the first line. Output the number of turns it takes to end the game on the second line.
+Sample Input 1
+2 0
+1 3
+1 1
+Output for the Sample Input 1
+Second
+3
+Sample Input 2
+2 100
+0 0
+0 0
+Output for the Sample Input 2
+First
+2
+Sample Input 3
+2 5
+3 4
+7 6
+Output for the Sample Input 3
+Draw
+4
+If both players play optimally, $(Y_1,Y_2,Y_3,Y_4) = (1,2,2,1)$, and both players will score 11 points, resulting in a draw.</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An integer \( N \) (1 ≤ \( N \) ≤ 8), representing some quantity or size.
+An integer \( F \) (-10^5 ≤ \( F \) ≤ 10^5), representing some value.
+An \( N \times N \) matrix \( X \), where each \( X[i][j] \) is an integer (-10^5 ≤ \( X[i][j] \) ≤ 10^5).
+
+### Example Input:
+```
+2 0
+1 3
+1 1
+```
+
+### Function Signature:
+Write a function f(N, F, X) that takes in the input.
+def f(N: int, F: int, X: List[List[int]]):
+    ''' 
+    N: an integer 
+    F: an integer 
+    X: a list of lists of integers 
+    '''</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Sure, I can create a test case generator for the described problem. The generator will produce random inputs that adhere to the given constraints. Here's how you can implement it in Python:
+
+```python
+import random
+
+def tcgen():
+    # Randomly choose N between 1 and 8
+    N = random.randint(1, 8)
+    
+    # Randomly choose F between -10^5 and 10^5
+    F = random.randint(-10**5, 10**5)
+    
+    # Create the N x N board with each X[i][j] between -10^5 and 10^5
+    X = [[random.randint(-10**5, 10**5) for _ in range(N)] for _ in range(N)]
+    
+    return N, F, X
+
+def format_test_case(N, F, X):
+    # Format the test case as a string to match the input format
+    result = f"{N} {F}\n"
+    for row in X:
+        result += " ".join(map(str, row)) + "\n"
+    return result.strip()
+
+# Example usage:
+for _ in range(5):
+    N, F, X = tcgen()
+    print(format_test_case(N, F, X))
+    print()
+```
+
+This code snippet generates random test cases for the problem. Each test case includes:
+- An integer `N` in the range [1, 8].
+- An integer `F` in the range [-100000, 100000].
+- An `N x N` matrix with each element `X[i][j]` in the range [-100000, 100000].
+
+The `format_test_case` function converts the generated test case into the required input format.
+
+You can run this code multiple times to generate different test cases. Each test case is printed in a format that mimics the actual input format for the problem.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    # Read the first line to get N and F
+    N, F = map(int, fh.readline().strip().split())
+    # Read the next N lines to get the NxN matrix X
+    X = []
+    for _ in range(N):
+        X.append(list(map(int, fh.readline().strip().split())))
+    return N, F, X
+
+# if __name__ == "__main__":
+#     input_path = sys.argv[1]
+#     with open(input_path, 'r') as fh:
+#         N, F, X = extract_arguments(fh)
+#         f(N, F, X)</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

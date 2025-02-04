@@ -1,0 +1,4 @@
+def extract_arguments(fh):
+    lines = fh.readlines()
+    inputs = [line.strip() for line in lines]
+    return inputs

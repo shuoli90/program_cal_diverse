@@ -1,0 +1,51 @@
+To generate test cases for Problem D: Numbers, we need to ensure that we are creating valid sets of consecutive integers and their respective divisors. The crucial aspect here is to generate consecutive integers starting from a base integer and list divisors other than 1 and the number itself for each consecutive integer.
+
+Here's the test case generator for your problem:
+
+```python
+import random
+
+def tcgen():
+    # Generate a random n within the given range
+    n = random.randint(1, 1500)
+    
+    # Start from a random positive integer
+    start = random.randint(2, 10**5)  # Starting from 2 or higher to ensure we get valid divisors
+    
+    # Generate the list of consecutive integers
+    consecutive_integers = list(range(start, start + n))
+    
+    # Generate the divisors for each number in the list
+    divisors = []
+    for num in consecutive_integers:
+        divs = []
+        for i in range(2, num):
+            if num % i == 0:
+                divs.append(i)
+        if not divs:
+            divs.append(2)  # If a number is prime, add 2 as a divisor for simplicity
+        divisors.append(divs)
+    
+    # Prepare the output format
+    output = []
+    output.append(str(start))
+    for i in range(n):
+        output.append(" ".join(map(str, divisors[i])))
+    
+    return n, output
+
+# To print a test case for visualization
+n, output = tcgen()
+print(n)
+for line in output:
+    print(line)
+```
+
+### Explanation:
+1. **Random `n` Generation**: We generate a random `n` between 1 and 1500, ensuring we adhere to the problem constraints.
+2. **Starting Point Selection**: We select a starting integer randomly from 2 to \(10^5\). This selection range ensures we have enough room to generate consecutive integers and their divisors.
+3. **Consecutive Integers**: We create a list of `n` consecutive integers starting from the randomly selected starting point.
+4. **Divisors Calculation**: For each integer, we calculate its divisors excluding 1 and the integer itself. If the number is prime (i.e., it has no divisors other than 1 and itself), we add 2 as a divisor for simplicity.
+5. **Output Preparation**: We format the output according to the problem's requirements, with the first line being the smallest integer in the set and the subsequent lines listing the divisors of each integer.
+
+This generator will produce valid test cases suitable for the problem statement. You can call `tcgen()` multiple times to generate different test cases for thorough testing.

@@ -1,0 +1,26 @@
+Sure! Here's the test case generator for the problem statement you provided:
+
+```python
+import random
+
+def tcgen():
+    # Generate N within the range [1, 100]
+    N = random.randint(1, 100)
+    
+    # Generate i within the range [1, N]
+    i = random.randint(1, N)
+    
+    return N, i
+
+# Example usage
+for _ in range(5):  # Generating 5 test cases
+    N, i = tcgen()
+    print(f"Generated test case: N = {N}, i = {i}")
+```
+
+Explanation of the test case generator:
+1. **Generate `N`**: We randomly generate an integer `N` within the range [1, 100] as per the given constraints.
+2. **Generate `i`**: We then randomly generate an integer `i` within the range [1, N], ensuring it is a valid car position in the train.
+3. **Return `N` and `i`**: The function returns these values as a tuple, which represents a single test case for the problem.
+
+You can use the `tcgen` function to generate multiple test cases and print them out or use them in your testing framework.

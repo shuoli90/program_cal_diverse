@@ -1,0 +1,12 @@
+def extract_arguments(fh):
+    N = int(fh.readline().strip())
+    S = fh.readline().strip()
+    Q = int(fh.readline().strip())
+    queries = []
+    for _ in range(Q):
+        query = fh.readline().strip().split()
+        if query[0] == '1':
+            queries.append((1, int(query[1]), query[2]))
+        else:
+            queries.append((2, int(query[1]), int(query[2])))
+    return N, S, Q, queries

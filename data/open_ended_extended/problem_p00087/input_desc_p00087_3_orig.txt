@@ -1,0 +1,19 @@
+An integer T (1 ≤ T ≤ 50), representing the number of datasets.
+A list of T strings, each containing up to 80 characters. Each string consists of integers and operation symbols {'+', '-', '*', '/'}, separated by single spaces.
+
+### Example Input:
+
+```
+3
+10 2 12 - /
+3 4 - 7 2 3 * + *
+-1 -2 3 + +
+```
+
+### Function Signature:
+Write a function f(T, datasets) that takes in the input. 
+def f(T: int, datasets: List[str]): 
+    ''' 
+    T: an integer 
+    datasets: a list of strings
+    '''

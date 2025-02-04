@@ -1,0 +1,26 @@
+Sure, here's a Python function to generate test cases for the given problem. This function will create random values of \(N\) and \(K\) within the constraints specified, and return them as a tuple.
+
+```python
+import random
+
+def tcgen():
+    N = random.randint(1, 2000)
+    K = random.randint(1, N)
+    
+    return N, K
+
+# Example usage
+for _ in range(5):
+    print(tcgen())
+```
+
+This function generates random values for \(N\) and \(K\) within the given constraints (1 ≤ \(K\) ≤ \(N\) ≤ 2000). The `random.randint` function ensures that the values are uniformly distributed over their respective ranges. You can run the `tcgen` function multiple times to generate different test cases.
+
+Here is a brief explanation of the function:
+
+- `N = random.randint(1, 2000)`: This line generates a random integer \(N\) such that 1 ≤ \(N\) ≤ 2000.
+- `K = random.randint(1, N)`: This line generates a random integer \(K\) such that 1 ≤ \(K\) ≤ \(N\).
+
+Each call to `tcgen()` will produce a tuple \((N, K)\) which represents a test case for the problem.
+
+You can use this test case generator to create multiple test cases for the problem and test your solution against them.

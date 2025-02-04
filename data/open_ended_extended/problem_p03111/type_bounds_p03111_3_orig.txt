@@ -1,0 +1,5 @@
+Types: N: int, A: int, B: int, C: int, l: List[int]
+
+Ranges: 3 ≤ N ≤ 8, 1 ≤ C < B < A ≤ 1000, 1 ≤ l[i] ≤ 1000
+
+Addtl Info: All values in input are integers.

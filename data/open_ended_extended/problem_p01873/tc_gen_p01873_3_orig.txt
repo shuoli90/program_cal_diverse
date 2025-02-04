@@ -1,0 +1,37 @@
+Certainly! Here is a test case generator for the given problem statement "Periodic Sequence":
+
+```python
+import random
+
+def generate_periodic_sequence(N, t):
+    k = N // t
+    base_sequence = [random.randint(1, 100000) for _ in range(t)]
+    return base_sequence * k
+
+def tcgen():
+    N = random.randint(1, 200000)  # Length of the sequence
+    t = random.randint(1, N)  # Period length
+
+    # Generate a periodic sequence with period t
+    S = generate_periodic_sequence(N, t)
+    
+    return N, S
+
+# Example of generating a test case
+N, S = tcgen()
+print(N)
+print(" ".join(map(str, S)))
+```
+
+**Explanation:**
+
+1. **`generate_periodic_sequence(N, t)`**: This function generates a sequence of length `N` with a period `t`. It first creates a base sequence of length `t` with random values between 1 and 100000. Then, it repeats this base sequence `k` times to form the full sequence of length `N`, where `k` is the integer division of `N` by `t`.
+
+2. **`tcgen`**: This function generates a random test case:
+   - It picks a random `N` between 1 and 200000.
+   - It picks a random `t` between 1 and `N`.
+   - It uses the `generate_periodic_sequence` function to generate the sequence `S` with the chosen `N` and `t`.
+
+3. **Printing the Test Case**: The generated sequence `S` is printed in a format suitable for the problem's input specification.
+
+This generator will create test cases that help in assessing the program's ability to identify the largest k-part in a sequence, ensuring diverse and rigorous testing of the implementation.

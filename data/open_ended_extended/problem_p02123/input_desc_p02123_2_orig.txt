@@ -1,0 +1,21 @@
+An integer N (3 ≤ N ≤ 2047), where N is odd.
+A 2D list of characters A of size N x N, where each character is either 'o' or 'x'.
+
+### Example Input:
+
+```
+5
+oxooo
+oxooo
+oxooo
+xxxxx
+oxooo
+```
+
+### Function Signature:
+Write a function f(N, A) that takes in the input.
+def f(N: int, A: List[List[str]]):
+    '''
+    N: an integer
+    A: a 2D list of characters
+    '''

@@ -1,0 +1,176 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p01602 - Generation 1</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p01602 - Generation 1</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>()
+Problem Statement
+Given a string S. Initially, S is an empty string.
+You perform the following operation n times in order:
+Add x_i occurrences of p_i (which is either "(" or ")") to the end of S.
+Determine whether or not S becomes a balanced string after the operations.
+A string is balanced if:
+The empty string is balanced.
+If a and b are balanced strings, then a + b is also balanced.
+If a is a balanced string, then "(" + a + ")" is also balanced.
+Input
+The input is in the following format. All numbers given are integers.
+n
+p_1 x_1
+. . .
+p_n x_n
+Constraints
+1≦n≦1,000
+1≦x_i≦10^6
+p_i is either "(" or ")".
+Output
+If S becomes a balanced string, print "YES" on a line. Otherwise, print "NO" on a line.
+Sample Input 1
+3
+( 5
+) 4
+) 1
+Output for the Sample Input 1
+YES
+The string S="((((()))))" is balanced.
+Sample Input 2
+5
+( 2
+) 2
+( 3
+) 1
+) 2
+Output for the Sample Input 2
+YES
+Sample Input 3
+2
+) 1
+( 1
+Output for the Sample Input 3
+NO</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An integer n (1 ≤ n ≤ 1,000), representing some quantity or size.
+A list of tuples, each containing a character p_i from the set {'(', ')'} and an integer x_i (1 ≤ x_i ≤ 10^6).
+
+### Example Input:
+
+```
+3
+( 5
+) 4
+) 1
+```
+
+### Function Signature:
+Write a function f(inputs) that takes in the input.
+def f(inputs: List[Tuple[str, int]]):
+    '''
+    inputs: a list of tuples, each containing a character and an integer
+    '''</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Sure, I can help you write a test case generator for the given problem statement. The generator will create random inputs that adhere to the constraints and format specified in the problem. Here's the Python code for the test case generator:
+
+```python
+import random
+
+def tcgen():
+    # Number of operations
+    n = random.randint(1, 1000)
+    
+    operations = []
+    for _ in range(n):
+        p_i = random.choice(['(', ')'])
+        x_i = random.randint(1, 10**6)
+        operations.append((p_i, x_i))
+    
+    return n, operations
+
+def format_test_case(n, operations):
+    test_case = f"{n}\n"
+    for p_i, x_i in operations:
+        test_case += f"{p_i} {x_i}\n"
+    return test_case
+
+# Generating a test case
+n, operations = tcgen()
+test_case = format_test_case(n, operations)
+print(test_case)
+```
+
+This code defines two functions:
+
+1. `tcgen()`: Generates the number of operations `n` and a list of tuples representing the operations. Each tuple consists of a character `p_i` (either '(' or ')') and an integer `x_i` (number of occurrences).
+
+2. `format_test_case(n, operations)`: Formats the generated test case into the required input format as a multi-line string.
+
+You can run this code to generate and print a random test case for the problem. The output will adhere to the input constraints and format specified in the problem statement.
+
+Let me know if you need any further assistance!</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    n = int(fh.readline().strip())
+    operations = []
+    for _ in range(n):
+        p, x = fh.readline().strip().split()
+        x = int(x)
+        operations.append((p, x))
+    return n, operations</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

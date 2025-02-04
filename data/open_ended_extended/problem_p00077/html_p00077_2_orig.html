@@ -1,0 +1,157 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p00077 - Generation 2</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p00077 - Generation 2</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>Run Length Encoding
+When a string has consecutive characters, you can compress the string by replacing the characters with a rule. For example, if the string is "AAAA", you can represent it as "@4A" and compress it by one character. Create a program that takes a compressed string as input and restores it to the original string. However, the restored string should not contain the "@" character.
+In addition, the original string consists of uppercase and lowercase letters, digits, and symbols, and is within 100 characters. Consecutive characters are up to 9 characters.
+Input
+Multiple strings are given. Each line contains one string. The number of strings is no more than 50.
+Output
+For each string, output the restored string for each character on one line.
+Sample Input
+ab@5C1@8050
+@99+1=1@90
+Output for the Sample Input
+abCCCCC10000000050
+999999999+1=1000000000
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An integer M (1 ≤ M ≤ 50), representing some quantity or size.
+A list of strings S of size M, where each string consists of uppercase letters, lowercase letters, digits, and symbols, and is within 100 characters.
+
+### Example Input:
+
+```
+2
+ab@5C1@8050
+@99+1=1@90
+```
+
+### Function Signature:
+Write a function f(inputs) that takes in the input.
+def f(inputs: List[str]):
+    '''
+    inputs: a list of strings
+    '''</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Certainly! Here's a Python test case generator for the "Run Length Encoding" problem:
+
+### Test Case Generator
+
+```python
+import random
+import string
+
+def generate_compressed_string():
+    length = random.randint(1, 100)
+    result = []
+    i = 0
+    
+    while i < length:
+        char_type = random.choice(['char', 'repeat'])
+        if char_type == 'char':
+            # Randomly choose a character to add
+            result.append(random.choice(string.ascii_letters + string.digits + string.punctuation))
+            i += 1
+        else:
+            if i + 2 <= length:
+                # Randomly choose a character to repeat
+                repeat_char = random.choice(string.ascii_letters + string.digits + string.punctuation)
+                repeat_count = random.randint(1, 9)
+                result.append('@' + str(repeat_count) + repeat_char)
+                i += 2
+            else:
+                # To ensure we don't exceed the length limit
+                result.append(random.choice(string.ascii_letters + string.digits + string.punctuation))
+                i += 1
+                
+    return ''.join(result)
+
+def tcgen():
+    num_strings = random.randint(1, 50)
+    test_cases = [generate_compressed_string() for _ in range(num_strings)]
+    return test_cases
+
+# Example usage
+if __name__ == "__main__":
+    test_cases = tcgen()
+    for case in test_cases:
+        print(case)
+```
+
+### Explanation
+1. **generate_compressed_string()**: This function generates a single compressed string of random length (up to 100 characters).
+   - The string is constructed by randomly choosing between adding a single character or a compressed segment.
+   - If adding a compressed segment, it ensures the segment does not exceed the total length limit.
+   - Characters include uppercase and lowercase letters, digits, and symbols.
+
+2. **tcgen()**: This function generates a list of up to 50 compressed strings by calling `generate_compressed_string()` multiple times.
+
+3. **Example Usage**: To generate and print test cases, you can run the script, which will output the generated test cases as per the problem's input format.
+
+This generator ensures a variety of test cases, including edge cases with minimal and maximal lengths, random characters, and random repeat patterns, making it suitable for testing the "Run Length Encoding" problem.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    inputs = [line.strip() for line in fh.readlines()]
+    return inputs</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

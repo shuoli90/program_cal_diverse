@@ -1,0 +1,153 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p03250 - Generation 2</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p03250 - Generation 2</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>
+Score : 100 points
+Problem StatementYou have decided to give an allowance to your child depending on the outcome of the game that he will play now.
+The game is played as follows:
+There are three "integer panels", each with a digit between 1 and 9 (inclusive) printed on it, and one "operator panel" with a + printed on it.
+The player should construct a formula of the form X + Y, by arranging the four panels from left to right. (The operator panel should not be placed at either end of the formula.)
+Then, the amount of the allowance will be equal to the resulting value of the formula.
+Given the values A, B and C printed on the integer panels used in the game, find the maximum possible amount of the allowance.
+Constraints
+All values in input are integers.
+1 \leq A, B, C \leq 9
+InputInput is given from Standard Input in the following format:
+A B C
+OutputPrint the maximum possible amount of the allowance.
+Sample Input 11 5 2
+Sample Output 153
+The amount of the allowance will be 53 when the panels are arranged as 52+1, and this is the maximum possible amount.
+Sample Input 29 9 9
+Sample Output 2108
+Sample Input 36 6 7
+Sample Output 382
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An integer A (1 ≤ A ≤ 9).
+An integer B (1 ≤ B ≤ 9).
+An integer C (1 ≤ C ≤ 9).
+
+### Example Input:
+
+```
+1 5 2
+```
+
+### Function Signature:
+Write a function f(A, B, C) that takes in the input.
+def f(A: int, B: int, C: int):
+    '''
+    A: an integer
+    B: an integer
+    C: an integer
+    '''
+</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Certainly! Here is a test case generator for the problem statement you've provided:
+
+```python
+import random
+
+def tcgen():
+    """
+    This function generates test cases for the allowance problem.
+    """
+    # Generating three random integers A, B, and C between 1 and 9 (inclusive).
+    A = random.randint(1, 9)
+    B = random.randint(1, 9)
+    C = random.randint(1, 9)
+    
+    return A, B, C
+
+# Example usage:
+if __name__ == "__main__":
+    for _ in range(10):  # Generate 10 test cases
+        A, B, C = tcgen()
+        print(f"{A} {B} {C}")
+```
+
+### Explanation:
+- **A, B, C**: These variables represent the digits printed on the integer panels. Each is randomly chosen between 1 and 9 inclusive.
+  
+### Example Output:
+Running the above code might produce outputs like:
+```
+5 3 1
+8 2 4
+6 7 7
+1 9 3
+3 3 2
+2 8 5
+7 4 6
+9 1 1
+5 6 8
+4 2 9
+```
+
+Each line is a test case, representing the values of A, B, and C which you can use to test the game logic for determining the maximum possible allowance.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    A, B, C = map(int, fh.readline().strip().split())
+    return A, B, C</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

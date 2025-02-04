@@ -1,0 +1,183 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p01643 - Generation 3</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p01643 - Generation 3</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>Problem J: Avant-garde Art
+ICPC World Finals Day 6
+Russian Constructivism is an art movement that started in the mid-1910s in the Soviet Union.
+Mr. T, who had been staying in country R for a long time, was inspired by such things and decided to create a cool design even during the rehearsal of the ICPC World Finals.
+Mr. T says, "Only circles and line segments are enough for symbols. It is important how beautifully line segments intersect."
+Problem
+Allocate \(n\) coordinates \(1, 2, \ldots, n\) equally spaced on the circumference.
+Exactly one line segment emanates from each coordinate, and the line segment from coordinate \(i\) is connected to a different coordinate \(a_i\).
+(Conversely, the line segment from coordinate \(a_i\) is connected to coordinate \(a_{a_i} = i\).) Up to \(k\) line segments can be freely reconnected on the circumference, regardless of the coordinates or lengths. Determine the maximum size of the set of intersecting line segments.
+Input
+n k
+a1 a2 … an
+On the first line, the number of coordinates \(n\) and the number of line segments that can be reconnected \(k\) are given separated by a space.
+On the second line, the coordinate \(a_i\) that connects to the line segment at coordinate \(i\) is given separated by a space.
+Output
+After reconnecting at most \(k\) line segments,
+output the maximum size of a set of intersecting line segments on a single line.
+Constraints
+\(2 \leq n \leq 8000\)
+\(n\) is an even number.
+\(0 \leq k \leq \min(n/2, 20)\)
+\(1 \leq a_i \leq n\)
+\(a_i \neq i\)
+It is impossible to connect a line segment to itself.
+\(a_i \neq a_j (i \neq j)\)
+More than two line segments cannot be connected to the same coordinate.
+\(a_{a_i} = i\)
+If a line segment is connected from \(i\) to \(j\), then a line segment is connected from \(j\) to \(i\).
+Sample Input/Output
+Input 1
+8 0
+7 4 6 2 8 3 1 5
+Output 1
+2
+The intersecting line segments are represented by the red line segments in the figure below.
+Input 2
+8 1
+7 4 6 2 8 3 1 5
+Output 2
+3
+By reconnecting the line segment connecting 1 and 7 as shown in the figure below, three intersecting line segments can be obtained.
+Input 3
+8 0
+5 6 7 8 1 2 3 4
+Output 3
+4
+Since all line segments intersect with each other, the maximum number of intersecting line segments is 4.
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An integer \( n \) (2 ≤ \( n \) ≤ 8000), where \( n \) is even.
+An integer \( k \) (0 ≤ \( k \) ≤ min(\( n/2 \), 20)).
+A list of integers \( a \) of size \( n \), where each integer \( a[i] \) (1 ≤ \( a[i] \) ≤ \( n \)) and \( a[i] \neq i \).
+
+### Example Input:
+
+```
+8 0
+7 4 6 2 8 3 1 5
+```
+
+### Function Signature:
+Write a function f(n, k, a) that takes in the input.
+```python
+def f(n: int, k: int, a: List[int]):
+    '''
+    n: an integer
+    k: an integer
+    a: a list of integers
+    '''
+```</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Certainly! Here's a test case generator for the given problem statement "Avant-garde Art":
+
+```python
+import random
+
+def tcgen():
+    n = random.choice([i for i in range(2, 8001, 2)])  # Even number between 2 and 8000
+    
+    k = random.randint(0, min(n // 2, 20))
+    
+    # Generate an array a such that a[a[i]] = i and a[i] != i
+    available = list(range(1, n + 1))
+    
+    a = [0] * n
+    
+    def pair_and_assign():
+        if len(available) < 2:
+            return
+        
+        i = available.pop(random.randint(0, len(available) - 1))
+        j = available.pop(random.randint(0, len(available) - 1))
+        
+        a[i - 1] = j
+        a[j - 1] = i
+
+    while available:
+        pair_and_assign()
+    
+    return n, k, a
+
+# Example usage:
+n, k, a = tcgen()
+print(n, k)
+print(" ".join(map(str, a)))
+```
+
+This script will generate test cases for the "Avant-garde Art" problem. Here’s a breakdown of what it does:
+
+1. **Select `n`**: Randomly choose an even number `n` between 2 and 8000.
+2. **Select `k`**: Randomly choose `k` within the range from 0 to the minimum of `n/2` and 20.
+3. **Generate `a`**: Create the list `a` such that each `a[i]` is connected to a different coordinate, ensuring `a[a[i]] = i` and `a[i] != i`. This list is generated by randomly pairing available coordinates until all are paired.
+   
+The last part of the script outputs a generated test case. You can call `tcgen()` multiple times to generate multiple test cases.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    n, k = map(int, fh.readline().strip().split())
+    a = list(map(int, fh.readline().strip().split()))
+    return n, k, a</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

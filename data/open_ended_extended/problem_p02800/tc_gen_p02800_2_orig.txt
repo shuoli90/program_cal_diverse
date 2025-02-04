@@ -1,0 +1,49 @@
+Sure, I can help you write a test case generator for the given problem statement. Here's a Python script that generates test cases according to the constraints specified:
+
+```python
+import random
+
+def generate_grid(H, W):
+    grid = []
+    for _ in range(H):
+        row = ''.join(random.choice(['.', '#']) for _ in range(W))
+        grid.append(row)
+    return grid
+
+def tcgen():
+    H = random.randint(1, 10)
+    W = random.randint(1, 10)
+    grid = generate_grid(H, W)
+    
+    return H, W, grid
+
+def print_test_case(H, W, grid):
+    print(H, W)
+    for row in grid:
+        print(row)
+
+# Example of generating a test case and printing it
+H, W, grid = tcgen()
+print_test_case(H, W, grid)
+```
+
+### Explanation:
+1. **`generate_grid(H, W)`**: This function generates an H x W grid where each cell is either '.' (white) or '#' (black). Each character in a row is chosen randomly from the set {'.', '#'}.
+2. **`tcgen()`**: This function generates random values for H and W within the constraints (1 ≤ H, W ≤ 10). It then uses `generate_grid(H, W)` to create the grid.
+3. **`print_test_case(H, W, grid)`**: This function prints the test case in the format required by the problem statement.
+
+### Example Output:
+Running the script will produce output similar to the following:
+
+```
+7 5
+.#...
+##..#
+.#.#.
+..###
+.#..#
+#.###
+.####
+```
+
+The script allows you to generate random valid test cases which can be useful for testing the solution to the problem statement. You can modify or extend the script to generate larger sets of test cases or add additional functionality as needed.

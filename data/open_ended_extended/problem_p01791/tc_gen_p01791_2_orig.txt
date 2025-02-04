@@ -1,0 +1,36 @@
+Sure! Here's a test case generator for the "Card Game Strategy" problem:
+
+```python
+import random
+
+def tcgen():
+    n = random.randint(1, 600)
+    k = random.randint(1, n)
+    a = random.randint(0, 180000)
+    b = random.randint(a, 180000)
+    x = [random.randint(0, 300) for _ in range(n)]
+    
+    return n, k, a, b, x
+
+# Example of generating a test case
+n, k, a, b, x = tcgen()
+print(f"{n} {k} {a} {b}")
+print(" ".join(map(str, x)))
+```
+
+### Explanation:
+1. **n**: The number of cards is randomly chosen between 1 and 600.
+2. **k**: The number of cards Bob chooses is randomly chosen between 1 and n.
+3. **a**: The lower bound of the integer Alice can choose is randomly chosen between 0 and 180000.
+4. **b**: The upper bound is randomly chosen between a and 180000 to ensure \(a \leq b\).
+5. **x**: The integers on the cards are randomly chosen between 0 and 300.
+
+The generator prints the values of \(n, k, a, b\) on the first line and the list of integers on the second line, as expected in the problem statement.
+
+### Example Output:
+```
+n k a b
+x1 x2 x3 ... xn
+```
+
+This output format can be directly used as input for the problem to verify the correctness of any implemented solution.

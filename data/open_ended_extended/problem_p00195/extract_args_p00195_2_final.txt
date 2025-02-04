@@ -1,0 +1,11 @@
+def extract_arguments(fh):
+    inputs = []
+    while True:
+        dataset = []
+        for _ in range(5):
+            line = fh.readline().strip()
+            if line == "0 0":
+                return inputs
+            s1, s2 = map(int, line.split())
+            dataset.append((s1, s2))
+        inputs.append(dataset)

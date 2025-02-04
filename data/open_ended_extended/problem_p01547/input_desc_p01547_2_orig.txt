@@ -1,0 +1,36 @@
+An integer P (1 ≤ P ≤ 5), representing the number of polygons.
+For each polygon:
+  An integer V (3 ≤ V ≤ 5), representing the number of vertices.
+  V pairs of integers, each representing the x and y coordinates of the vertices (−1000 ≤ x, y ≤ 1000).
+An integer D (1 ≤ D ≤ 100), representing the number of data points.
+For each data point:
+  Four integers, representing the x and y coordinates of the occurrence position and the x and y coordinates of the important facility (−1000 ≤ x, y ≤ 1000).
+
+### Example Input:
+
+```
+2
+4
+0 4
+1 1
+3 1
+4 4
+3
+6 0
+10 0
+8 7
+1
+2 3 9 1
+```
+
+### Function Signature:
+
+```python
+def f(P: int, polygons: List[Tuple[int, List[Tuple[int, int]]]], D: int, data: List[Tuple[int, int, int, int]]):
+    '''
+    P: an integer
+    polygons: a list of tuples, each containing an integer V and a list of V pairs of integers representing coordinates
+    D: an integer
+    data: a list of tuples, each containing four integers representing coordinates
+    '''
+```

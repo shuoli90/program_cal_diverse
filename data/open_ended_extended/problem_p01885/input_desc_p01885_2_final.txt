@@ -1,0 +1,27 @@
+An integer N (1 ≤ N ≤ 10^5) and an integer L (1 ≤ L ≤ 10^9), representing some quantities.
+A list of tuples of two integers, each of size N, where each integer is between 1 and 1e9.
+A list of integers of size N, where each integer is between 1 and 1e9.
+
+### Example Input:
+
+```
+3 9
+6 3
+5 2
+3 1
+2
+2
+2
+```
+
+### Function Signature:
+Write a function f(N, L, data, C) that takes in the input.
+```python
+def f(N: int, L: int, data: List[Tuple[int, int]], C: List[int]):
+    '''
+    N: an integer
+    L: an integer
+    data: a list of tuples of two integers
+    C: a list of integers
+    '''
+```

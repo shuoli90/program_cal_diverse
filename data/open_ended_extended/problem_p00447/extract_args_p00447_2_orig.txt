@@ -1,0 +1,24 @@
+def extract_arguments(fh):
+    datasets = []
+    while True:
+        m = int(fh.readline().strip())
+        if m == 0:
+            break
+        constellation = []
+        for _ in range(m):
+            x, y = map(int, fh.readline().strip().split())
+            constellation.append((x, y))
+        n = int(fh.readline().strip())
+        photo = []
+        for _ in range(n):
+            x, y = map(int, fh.readline().strip().split())
+            photo.append((x, y))
+        datasets.append((m, constellation, n, photo))
+    return datasets
+
+# Example usage:
+# with open('input.txt', 'r') as fh:
+#     datasets = extract_arguments(fh)
+#     for data in datasets:
+#         m, constellation, n, photo = data
+#         # process each dataset

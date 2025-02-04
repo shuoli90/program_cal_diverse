@@ -1,0 +1,199 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p00950 - Generation 3</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p00950 - Generation 3</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>
+Problem E
+Infallibly Crack Perplexing Cryptarithm
+  You are asked to crack an encrypted equation over binary numbers.
+  The original equation consists only of binary digits ("0" and "1"), operator symbols ("+", "-", and "*"), parentheses ("(" and ")"), and an equal sign ("="). The encryption replaces some occurrences of characters in an original arithmetic equation by letters. Occurrences of one character are replaced, if ever, by the same letter. Occurrences of two different characters are never replaced by the same letter. Note that the encryption does not always replace all the occurrences of the same character; some of its occurrences may be replaced while others may be left as they are. Some characters may be left unreplaced. Any character in the Roman alphabet, in either lowercase or uppercase, may be used as a replacement letter. Note that cases are significant, that is, "a" and "A" are different letters. Note that not only digits but also operator symbols, parentheses and even the equal sign are possibly replaced.
+  The arithmetic equation is derived from the start symbol of $Q$ of the following context-free grammar.
+  $Q ::= E=E$
+  $E ::= T | E+T | E-T$
+  $T ::= F | T*F $
+  $F ::= N | -F | (E) $
+  $N ::= 0 | 1B $
+  $B ::= \epsilon | 0B | 1B$
+Here, $\epsilon$ means empty.
+  As shown in this grammar, the arithmetic equation should have one equal sign. Each side of the equation is an expression consisting of numbers, additions, subtractions, multiplications, and negations. Multiplication has precedence over both addition and subtraction, while negation precedes multiplication. Multiplication, addition and subtraction are left associative. For example, x-y+z means (x-y)+z, not x-(y+z). Numbers are in binary notation, represented by a sequence of binary digits, 0 and 1. Multi-digit numbers always start with 1. Parentheses and negations may appear redundantly in the equation, as in ((--x+y))+z.
+Write a program that, for a given encrypted equation, counts the number of different possible original correct equations. Here, an equation should conform to the grammar and it is correct when the computed values of the both sides are equal.
+  For Sample Input 1, C must be = because any equation has one = between two expressions. Then, because A and M should be different, although there are equations conforming to the grammar, none of them can be correct.
+  For Sample Input 2, the only possible correct equation is -0=0.
+For Sample Input 3 (B-A-Y-L-zero-R), there are three different correct equations, 0=-(0), 0=(-0), and -0=(0). Note that one of the two occurrences of zero is not replaced with a letter in the encrypted equation.
+Input
+The input consists of a single test case which is a string of Roman alphabet characters, binary digits, operator symbols, parentheses and equal signs. The input string has at most 31 characters.
+Output
+Print in a line the number of correct equations that can be encrypted into the input string.
+Sample Input 1
+ACM
+Sample Output 1
+0
+Sample Input 2
+icpc
+Sample Output 2
+1
+Sample Input 3
+BAYL0R
+Sample Output 3
+3
+Sample Input 4
+-AB+AC-A
+Sample Output 4
+1
+Sample Input 5
+abcdefghi
+Sample Output 5
+0
+Sample Input 6
+111-10=1+10*10
+Sample Output 6
+1
+Sample Input 7
+0=10-1
+Sample Output 7
+0
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An input string consisting of Roman alphabet characters, binary digits ("0" and "1"), operator symbols ("+", "-", and "*"), parentheses ("(" and ")"), and equal signs ("="). The input string has at most 31 characters.
+
+### Example Input:
+
+```
+ACM
+```
+
+### Function Signature:
+Write a function f(input_string) that takes in the input.
+def f(input_string: str):
+    '''
+    input_string: a string
+    '''</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>To create a test case generator for the problem "Infallibly Crack Perplexing Cryptarithm," we need to consider the constraints and the structure of the input. The input is a string consisting of Roman alphabet characters, binary digits, operator symbols, parentheses, and equal signs, with a maximum length of 31 characters.
+
+Here is a Python test case generator for this problem:
+
+```python
+import random
+import string
+
+def generate_random_binary_number(max_length):
+    length = random.randint(1, max_length)
+    return '1' + ''.join(random.choice('01') for _ in range(length - 1))
+
+def generate_expression(max_length):
+    symbols = ['+', '-', '*', '(', ')', '=', '0', '1']
+    # Adding alphabet characters to symbols list
+    symbols += list(string.ascii_letters)
+    expression = []
+    
+    # Ensure at least one equal sign is present
+    equal_sign_position = random.randint(1, max_length - 2)
+    
+    for i in range(max_length):
+        if i == equal_sign_position:
+            expression.append('=')
+        else:
+            expression.append(random.choice(symbols))
+    
+    return ''.join(expression)
+
+def ensure_valid_expression(expression):
+    # Ensure there's exactly one '=' in the expression
+    if expression.count('=') != 1:
+        parts = expression.split('=')
+        if len(parts) > 2:
+            expression = parts[0] + '=' + ''.join(parts[1:])
+        if len(parts) < 2:
+            equal_sign_position = random.randint(1, len(expression) - 2)
+            expression = expression[:equal_sign_position] + '=' + expression[equal_sign_position:]
+    return expression
+
+def tcgen():
+    max_length = 31
+    expression_length = random.randint(1, max_length)
+    expression = generate_expression(expression_length)
+    valid_expression = ensure_valid_expression(expression)
+    
+    return valid_expression
+
+# Example usage
+for _ in range(10):
+    print(tcgen())
+```
+
+### Explanation:
+
+1. **generate_random_binary_number**: Generates a random binary number of a given maximum length (starts with '1' to ensure it's a valid binary number).
+
+2. **generate_expression**: Generates a random expression of a specified maximum length, ensuring it includes symbols, binary digits, and alphabetic characters.
+
+3. **ensure_valid_expression**: Ensures the generated expression contains exactly one '=' character.
+
+4. **tcgen**: Combines the above functions to generate the final test case.
+
+This generator creates random expressions that include a mix of binary digits, operators, parentheses, and Roman alphabet characters, ensuring there's exactly one equal sign in the expression, which is a requirement of the problem statement.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    equation = fh.readline().strip()
+    return equation</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

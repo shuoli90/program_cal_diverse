@@ -1,0 +1,196 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p03391 - Generation 3</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p03391 - Generation 3</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>
+Score : 700 points
+Problem StatementYou are given sequences A and B consisting of non-negative integers.
+The lengths of both A and B are N, and the sums of the elements in A and B are equal.
+The i-th element in A is A_i, and the i-th element in B is B_i.
+Tozan and Gezan repeats the following sequence of operations:
+If A and B are equal sequences, terminate the process.
+Otherwise, first Tozan chooses a positive element in A and decrease it by 1.
+Then, Gezan chooses a positive element in B and decrease it by 1.
+Then, give one candy to Takahashi, their pet.
+Tozan wants the number of candies given to Takahashi until the process is terminated to be as large as possible, while Gezan wants it to be as small as possible.
+Find the number of candies given to Takahashi when both of them perform the operations optimally.
+Constraints
+1 \leq N \leq 2 × 10^5
+0 \leq A_i,B_i \leq 10^9(1\leq i\leq N)
+The sums of the elements in A and B are equal.
+All values in input are integers.
+InputInput is given from Standard Input in the following format:
+N
+A_1 B_1
+:
+A_N B_N
+OutputPrint the number of candies given to Takahashi when both Tozan and Gezan perform the operations optimally.
+Sample Input 12
+1 2
+3 2
+Sample Output 12
+When both Tozan and Gezan perform the operations optimally, the process will proceed as follows:
+Tozan decreases A_1 by 1.
+Gezan decreases B_1 by 1.
+One candy is given to Takahashi.
+Tozan decreases A_2 by 1.
+Gezan decreases B_1 by 1.
+One candy is given to Takahashi.
+As A and B are equal, the process is terminated.
+Sample Input 23
+8 3
+0 1
+4 8
+Sample Output 29
+Sample Input 31
+1 1
+Sample Output 30
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An integer N (1 ≤ N ≤ 2 × 10^5), representing some quantity or size.
+A list of tuples of integers of size N, where each tuple (A_i, B_i) contains two integers (0 ≤ A_i, B_i ≤ 10^9).
+
+### Example Input:
+
+```
+2
+1 2
+3 2
+```
+
+### Function Signature:
+Write a function f(inputs) that takes in the input.
+```python
+def f(inputs: List[Tuple[int, int]]): 
+    ''' 
+    inputs: a list of tuples of integers
+    '''
+```</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>To generate test cases for the problem "Score : 700 points", we need to ensure the following:
+
+1. The lengths of sequences \(A\) and \(B\) are equal to \(N\).
+2. The sums of the elements in \(A\) and \(B\) are equal.
+3. Each element in \(A\) and \(B\) ranges between 0 and \(10^9\).
+4. \(N\) can range between 1 and \(2 \times 10^5\).
+
+Here's a test case generator to fulfill these requirements:
+
+```python
+import random
+
+def tcgen():
+    # Generate a random N within the given constraints
+    N = random.randint(1, 2 * 10**5)
+    
+    # Generate two sequences A and B with the same sum
+    sum_elements = random.randint(N, 10**9)  # Sum of elements in A and B
+    A = [random.randint(0, sum_elements // N) for _ in range(N)]
+    B = [random.randint(0, sum_elements // N) for _ in range(N)]
+    
+    # Adjust A and B to ensure their sums are equal
+    sum_A = sum(A)
+    sum_B = sum(B)
+    
+    # Balance the sums of A and B
+    difference = sum_A - sum_B
+    
+    if difference > 0:
+        # B needs to increase
+        for i in range(difference):
+            B[i % N] += 1
+    elif difference < 0:
+        # A needs to increase
+        for i in range(-difference):
+            A[i % N] += 1
+    
+    # Check the final sums to ensure they are equal
+    assert sum(A) == sum(B)
+    
+    # Format the input as specified in the problem statement
+    test_input = f"{N}\n" + "\n".join(f"{a} {b}" for a, b in zip(A, B))
+    
+    return test_input
+
+# Example of generating a test case:
+print(tcgen())
+```
+
+### How It Works:
+1. **Generate N:** Randomly select an integer \( N \) within the range [1, 200000].
+2. **Generate Sums:** Randomly choose a sum for the sequences \( A \) and \( B \). Ensure this sum is at least \( N \) to distribute non-negative integers.
+3. **Generate Sequences:** Populate \( A \) and \( B \) with random integers such that their individual sums are less than or equal to the target sum.
+4. **Balance the Sums:** Adjust the sequences \( A \) and \( B \) to ensure their sums are equal.
+5. **Format the Input:** Format the sequences as required by the problem statement.
+
+This generator ensures that the input constraints are always met, and it provides valid test cases for the given problem.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    N = int(fh.readline().strip())
+    A = []
+    B = []
+    for _ in range(N):
+        a, b = map(int, fh.readline().strip().split())
+        A.append(a)
+        B.append(b)
+    return N, A, B</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

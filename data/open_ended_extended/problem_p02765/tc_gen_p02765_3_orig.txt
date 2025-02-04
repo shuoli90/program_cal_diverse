@@ -1,0 +1,30 @@
+Sure! Here's a test case generator for the given problem statement:
+
+```python
+import random
+
+def tcgen():
+    # Generate a random number of contests between 1 and 100
+    N = random.randint(1, 100)
+    
+    # Generate a random displayed rating between 0 and 4111
+    R = random.randint(0, 4111)
+    
+    return N, R
+
+# Example of generating a test case
+if __name__ == "__main__":
+    N, R = tcgen()
+    print(f"{N} {R}")
+```
+
+This generator will produce test cases within the specified constraints:
+- \( N \) will be a random integer between 1 and 100.
+- \( R \) will be a random integer between 0 and 4111.
+
+You can run this function to generate random test cases for the problem. Here's how it works in practice:
+
+1. **Generate a Random Number of Contests**: The number of contests \( N \) is randomly chosen between 1 and 100.
+2. **Generate a Random Displayed Rating**: The displayed rating \( R \) is randomly chosen between 0 and 4111.
+
+Output the generated test case in the required format. You can generate as many test cases as needed by calling the `tcgen()` function multiple times.

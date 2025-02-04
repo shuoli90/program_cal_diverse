@@ -1,0 +1,3 @@
+Types: N: int, X: int, D: int
+Ranges: -10^8 ≤ X, D ≤ 10^8, 1 ≤ N ≤ 2 × 10^5
+Addtl Info: None

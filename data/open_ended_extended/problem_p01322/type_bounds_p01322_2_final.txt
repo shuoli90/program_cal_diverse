@@ -1,0 +1,3 @@
+Types: n: int, m: int, Ni: str, Mi: int, Bi: str
+Ranges: 1 ≤ n ≤ 100, 1 ≤ m ≤ 1000, Ni is an 8-character string containing digits and '*', 1 ≤ Mi ≤ 1000000, Bi is an 8-digit string
+Addtl Info: The end of input is indicated by n = 0.

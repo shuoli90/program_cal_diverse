@@ -1,0 +1,220 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p01252 - Generation 1</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p01252 - Generation 1</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>
+Problem C: Alice and Bob
+Alice and Bob are in love with each other, but they have difficulty going out on a date - Alice is a very
+busy graduate student at the ACM university.
+For this reason, Bob came to the ACM university to meet her on a day. He tried to reach the meeting
+spot but got lost because the campus of the university was very large. Alice talked with him via mobile
+phones and identified his current location exactly. So she told him to stay there and decided to go to the
+place where she would be visible to him without interruption by buildings.
+The campus can be considered as a two-dimensional plane and all buildings as rectangles whose edges
+are parallel to x-axis or y-axis. Alice and Bob can be considered as points. Alice is visible to Bob if the
+line segment connecting them does not intersect the interior of any building. Note that she is still visible
+even if the line segment touches the borders of buildings.
+Since Alice does not like to walk, she wants to minimize her walking distance. Can you write a program
+that finds the best route for her?
+Figure 1: Example Situation
+Input
+The input contains multiple datasets. The end of the input is indicated by a line containing a single zero.
+Each dataset is formatted as follows.
+      N
+      x11 y11 x12 y12
+      x21 y21 x22 y22
+      ...
+      xN1 yN1 xN2 yN2
+      Ax Ay Bx By
+N (0 < N ≤ 30) is the number of buildings. The i-th building is given by its bottom left corner (xi1 , yi1)
+and up right corner (xi2, yi2 ). (Ax, Ay) is the location of Alice and (Bx, By) is that of Bob. All integers xi1, yi1, xi2, yi2, Ax, Ay, Bx and By are between -10000 and 10000, inclusive. You may assume that no building
+touches or overlaps other buildings.
+Output
+For each dataset, output a separate line containing the minimum distance Alice has to walk.
+The value may contain an error less than or equal to 0.001. You may print any number of digits after the
+decimal point.
+Sample Input
+1
+3 3 7 7
+2 2 8 2
+2
+2 5 5 9
+6 1 9 5
+1 5 10 5
+2
+2 1 3 2
+2 3 3 4
+1 1 4 4
+1
+3 3 7 7
+1 5 9 5
+1
+3 3 7 7
+1 5 8 5
+1
+3 3 7 7
+1 5 10 5
+0
+Output for the Sample Input
+0.000
+0.000
+0.000
+5.657
+6.406
+4.992
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An integer N (0 < N ≤ 30), representing some quantity or size.
+N tuples, each containing 4 integers (x1, y1, x2, y2), where each integer is between -10000 and 10000.
+A tuple (Ax, Ay, Bx, By), where each integer is between -10000 and 10000.
+
+### Example Input:
+
+```
+2
+2 5 5 9
+6 1 9 5
+1 5 10 5
+```
+
+### Function Signature:
+Write a function f(inputs) that takes in the input.
+def f(inputs: List[Tuple[int, List[Tuple[int, int, int, int]], Tuple[int, int, int, int]]]):
+    '''
+    inputs: a list of tuples, where each tuple contains:
+        - an integer
+        - a list of tuples, each containing four integers
+        - a tuple containing four integers
+    '''</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Sure! Here is a test case generator for the problem statement "Alice and Bob":
+
+```python
+import random
+
+def generate_rectangle():
+    x1 = random.randint(-10000, 10000)
+    y1 = random.randint(-10000, 10000)
+    x2 = random.randint(x1 + 1, 10000)  # Ensure x2 > x1
+    y2 = random.randint(y1 + 1, 10000)  # Ensure y2 > y1
+    return x1, y1, x2, y2
+
+def generate_coordinates():
+    return random.randint(-10000, 10000), random.randint(-10000, 10000)
+
+def tcgen():
+    datasets = []
+    
+    # Random number of datasets
+    num_datasets = random.randint(1, 10)
+    for _ in range(num_datasets):
+        # Random number of buildings
+        N = random.randint(1, 30)
+        buildings = [generate_rectangle() for _ in range(N)]
+        
+        # Alice's and Bob's coordinates
+        Ax, Ay = generate_coordinates()
+        Bx, By = generate_coordinates()
+        
+        dataset = {
+            'N': N,
+            'buildings': buildings,
+            'Alice': (Ax, Ay),
+            'Bob': (Bx, By)
+        }
+        
+        datasets.append(dataset)
+    
+    return datasets
+
+def format_datasets(datasets):
+    formatted_data = ""
+    for dataset in datasets:
+        formatted_data += f"{dataset['N']}\n"
+        for building in dataset['buildings']:
+            formatted_data += f"{building[0]} {building[1]} {building[2]} {building[3]}\n"
+        formatted_data += f"{dataset['Alice'][0]} {dataset['Alice'][1]} {dataset['Bob'][0]} {dataset['Bob'][1]}\n"
+    formatted_data += "0\n"
+    return formatted_data
+
+if __name__ == "__main__":
+    datasets = tcgen()
+    formatted_data = format_datasets(datasets)
+    print(formatted_data)
+```
+
+This code generates random test cases for the problem "Alice and Bob". It creates a random number of datasets, each containing a random number of buildings as well as the coordinates for Alice and Bob. The generated datasets are formatted into the required input format for the problem. You can run this script to generate and print new test cases.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    inputs = []
+    while True:
+        N = int(fh.readline().strip())
+        if N == 0:
+            break
+        buildings = []
+        for _ in range(N):
+            x11, y11, x12, y12 = map(int, fh.readline().strip().split())
+            buildings.append((x11, y11, x12, y12))
+        Ax, Ay, Bx, By = map(int, fh.readline().strip().split())
+        inputs.append((N, buildings, Ax, Ay, Bx, By))
+    return inputs</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

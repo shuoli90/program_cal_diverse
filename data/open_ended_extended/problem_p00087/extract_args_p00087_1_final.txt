@@ -1,0 +1,5 @@
+def extract_arguments(fh):
+    formulas = []
+    for line in fh:
+        formulas.append(line.strip())
+    return formulas

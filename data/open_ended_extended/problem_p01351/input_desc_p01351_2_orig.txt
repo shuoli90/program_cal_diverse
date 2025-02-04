@@ -1,0 +1,21 @@
+An integer m (1 ≤ m ≤ 100,000), representing some quantity or size.
+An integer n (1 ≤ n ≤ 100,000), representing some quantity or size.
+An integer a (1 ≤ a ≤ 100,000), representing some quantity or size.
+An integer b (1 ≤ b ≤ 100,000), representing some quantity or size.
+An integer c (1 ≤ c ≤ 100,000), representing some quantity or size.
+An integer d (1 ≤ d ≤ 100,000), representing some quantity or size.
+
+### Example Input:
+
+```
+6 6 2 2 2 4
+```
+
+### Function Signature:
+Write a function f(inputs) that takes in the input.
+```python
+def f(inputs: Tuple[int, int, int, int, int, int]):
+    ''' 
+    inputs: a tuple of six integers
+    '''
+```

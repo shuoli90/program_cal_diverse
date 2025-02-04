@@ -1,0 +1,181 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p01258 - Generation 3</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p01258 - Generation 3</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>
+Problem I: Memory Match
+Memory match is a single-player game which employs a set of 2M cards. Each card is labeled with a
+number between 1 and M on its face. For each number i (1 ≤ i ≤ M), there are exactly two cards which
+have the number i. At the start of the game, all cards are shuffled and laid face down on a table. In each
+turn you choose two cards and turn them face up. If two numbers on the cards are the same, they are
+removed from the table. Otherwise, they are turned face down again (this is called a mismatch). When
+you choose cards, you do not have to turn two cards simultaneously; you can choose the second card
+after you see the number of the first card. The objective of the game is to remove all the cards with as
+few mismatches as possible.
+Royce A. Mitchell has extraordinary memory, so he can remember all the positions and the numbers of
+the cards that he has already turned face up. Your task is to write a program that calculates the expected
+number of mismatches, on average, when he plays the game optimally.
+Input
+The input consists of multiple datasets.
+Each dataset consists of one even number N (2 ≤ N ≤ 1000) which denotes the number of cards in the
+set.
+The end of input is indicated by a line that contains a single zero. This is not part of the input and you
+may not treat this line as a dataset.
+Output
+For each dataset, print the expected number of mismatches. Each output value may have an arbitrary
+number of fractional digits, provided that the error is within 10-6.
+Sample Input
+2
+4
+6
+8
+10
+52
+0
+Output for the Sample Input
+0.0000000000
+0.6666666667
+1.3333333333
+1.9238095238
+2.5523809524
+15.4435236099
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An even integer \(N\) (2 ≤ \(N\) ≤ 1000), representing some quantity or size.
+
+Multiple datasets ending with a single zero which is not part of the input.
+
+### Example Input:
+
+```
+2
+4
+6
+8
+10
+52
+0
+```
+
+### Function Signature:
+Write a function f(inputs) that takes in the input.
+def f(inputs: List[int]): 
+    ''' 
+    inputs: a list of integers
+    '''</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Sure, let's create a test case generator for the problem "Memory Match."
+
+The generator will need to produce multiple datasets, each consisting of an even number \( N \) between 2 and 1000. The input ends with a zero, which is not part of the actual datasets.
+
+Here's the test case generator code:
+
+```python
+import random
+
+def tcgen():
+    # A function to generate a single dataset
+    def generate_dataset():
+        N = random.choice([2 * i for i in range(1, 501)])  # Ensure N is even
+        return N
+    
+    # Generate a list of datasets
+    datasets = []
+    num_datasets = random.randint(1, 10)  # Number of datasets to generate, can be adjusted
+    
+    for _ in range(num_datasets):
+        datasets.append(generate_dataset())
+    
+    # Append the terminating zero
+    datasets.append(0)
+    
+    return datasets
+
+# Example usage:
+test_case = tcgen()
+for n in test_case:
+    print(n)
+```
+
+### Explanation:
+
+1. **`generate_dataset` function**:
+    - This function generates a single dataset value \( N \), ensuring it is an even number between 2 and 1000. It does this by choosing a random integer \( i \) between 1 and 500 and then multiplying by 2.
+
+2. **`tcgen` function**:
+    - Generates a list of random datasets by calling `generate_dataset` a random number of times (between 1 and 10 in this example, but you can adjust this range as needed).
+    - Adds a terminating zero at the end of the list to indicate the end of the input.
+
+3. **Example usage**:
+    - Calls `tcgen` to generate the test case and prints each value in the resulting list, including the terminating zero.
+
+This generator will produce random valid inputs as specified by the problem statement, ensuring that all conditions are met.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    inputs = []
+    while True:
+        N = int(fh.readline().strip())
+        if N == 0:
+            break
+        inputs.append((N,))
+    return inputs</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

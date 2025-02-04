@@ -1,0 +1,41 @@
+Sure, let's write a test case generator for the given problem statement. The key points to consider are generating random but sorted lists of x-coordinates and y-coordinates while ensuring the constraints are respected.
+
+Below is the test case generator:
+
+```python
+import random
+
+def tcgen():
+    # Constants
+    MOD = 10**9 + 7
+    
+    # Generate random values for n and m
+    n = random.randint(2, 10**5)
+    m = random.randint(2, 10**5)
+    
+    # Generate sorted list of x-coordinates
+    x = sorted(random.randint(-10**9, 10**9) for _ in range(n))
+    
+    # Generate sorted list of y-coordinates
+    y = sorted(random.randint(-10**9, 10**9) for _ in range(m))
+    
+    return n, m, x, y
+
+# Example usage:
+n, m, x, y = tcgen()
+print(n, m)
+print(" ".join(map(str, x)))
+print(" ".join(map(str, y)))
+```
+
+### Explanation:
+
+1. **Import the random module**: This is used to generate random integers.
+2. **Define the `tcgen` function**: This function generates the test cases as per the given problem constraints.
+3. **Generate `n` and `m`**: We generate random integers for `n` and `m` within the specified range [2, 10^5].
+4. **Generate `x` and `y` lists**: We create lists of integers for `x` and `y` coordinates. The lists are generated using a comprehension, ensuring each coordinate is within the range [-10^9, 10^9]. The lists are then sorted to maintain the required order.
+5. **Return the generated values**: The function returns the values of `n`, `m`, `x`, and `y`.
+
+The `print` statements at the end show an example of how the generated test case can be printed. This is useful for quickly verifying the output format. Note that the generator ensures all constraints are respected, including the sorting of coordinates and the specified bounds.
+
+You can call `tcgen()` to generate as many test cases as you need for testing your competitive programming problem.

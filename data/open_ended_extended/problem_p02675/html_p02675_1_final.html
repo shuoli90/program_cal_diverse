@@ -1,0 +1,133 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p02675 - Generation 1</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p02675 - Generation 1</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>
+Score: 100 points
+Problem
+Snuke, a cat, wants to play the popular Japanese game "ÅtCoder". Therefore, Iroha-chan decided to teach Snuke Japanese.
+In Japanese, when counting pencils, you attach the counter word "hon" after the number. The reading of this counter word "hon" differs depending on the number. Specifically, when using the expression "N hon" to mean "N pencils", it is read as follows:
+When the last digit of N is 2, 4, 5, 7, or 9, it is read as "hon".
+When the last digit of N is 0, 1, 6, or 8, it is read as "pon".
+When the last digit of N is 3, it is read as "bon".
+Given N, write a program to output how to read "N hon" using the counter word "hon".
+Constraints
+N is an integer between 1 and 999 (inclusive).
+Input
+The input is given in the following format from standard input:
+N
+Output
+Output how to read "N hon" using the counter word "hon".
+Sample Input 116
+Sample Output 1pon
+Since the last digit of 16 is 6, "16 hon" is read as "pon".
+Sample Input 22
+Sample Output 2hon
+Since the last digit of 2 is 2, "2 hon" is read as "hon".
+Sample Input 3183
+Sample Output 3bon
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An integer N (1 ≤ N ≤ 999).
+
+### Example Input:
+
+```
+116
+```
+
+### Function Signature:
+Write a function f(N) that takes in the input.
+def f(N: int):
+    '''
+    N: an integer
+    '''</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Certainly! Based on the problem statement for Snuke and the Japanese counter words, here is a test case generator in Python:
+
+```python
+import random
+
+def tcgen():
+    """
+    Test case generator for the problem of determining how to read the count of pencils in Japanese.
+    """
+    N = random.randint(1, 999)
+    return N
+
+# Example usage:
+if __name__ == "__main__":
+    for _ in range(10):  # Generate 10 test cases
+        print(tcgen())
+```
+
+Explanation:
+- The generator function `tcgen()` randomly selects an integer \( N \) between 1 and 999 (inclusive), as per the problem constraints.
+- The function returns this randomly selected integer \( N \).
+- In the example usage, we generate and print 10 test cases to demonstrate its functionality.
+
+This generator will help create diverse test cases for evaluating the solution to the problem.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    N = int(fh.readline().strip())
+    return N</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

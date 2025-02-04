@@ -1,0 +1,193 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p02422 - Generation 3</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p02422 - Generation 3</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>
+Transformation
+  Write a program which performs a sequence of commands to a given string $str$. The command is one of:
+print a b: print from the a-th character to the b-th character of $str$
+reverse a b: reverse from the a-th character to the b-th character of $str$
+replace a b p: replace from the a-th character to the b-th character of $str$ with p
+  Note that the indices of $str$ start with 0.
+Input
+  In the first line, a string $str$ is given. $str$ consists of lowercase letters. In the second line, the number of commands q is given. In the next q lines, each command is given in the above mentioned format.
+Output
+For each print command, print a string in a line.
+Constraints
+$1 \leq $ length of $str \leq 1000$
+$1 \leq q \leq 100$
+$0 \leq a \leq b < $ length of $str$
+for replace command, $b - a + 1 = $ length of $p$
+Sample Input 1
+abcde
+3
+replace 1 3 xyz
+reverse 0 2
+print 1 4
+Sample Output 1
+xaze
+Sample Input 2
+xyz
+3
+print 0 2
+replace 0 2 abc
+print 0 2
+Sample Output 2
+xyz
+abc
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An integer q (1 ≤ q ≤ 100), representing some quantity or size.
+A string s (1 ≤ length(s) ≤ 1000) consisting of lowercase letters.
+A list of q commands, each command can be one of the following:
+1. "print a b" where 0 ≤ a ≤ b < length(s)
+2. "reverse a b" where 0 ≤ a ≤ b < length(s)
+3. "replace a b p" where 0 ≤ a ≤ b < length(s) and b - a + 1 = length(p)
+
+### Example Input:
+
+```
+abcde
+3
+replace 1 3 xyz
+reverse 0 2
+print 1 4
+```
+
+### Function Signature:
+Write a function f(s, q, commands) that takes in the input.
+def f(s: str, q: int, commands: List[str]):
+    '''
+    s: a string
+    q: an integer
+    commands: a list of strings
+    '''</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Sure, here is the test case generator for the given problem statement:
+
+```python
+import random
+import string
+
+def tcgen():
+    # Generate a random string of lowercase letters with length between 1 and 1000
+    length_of_str = random.randint(1, 1000)
+    str_ = ''.join(random.choices(string.ascii_lowercase, k=length_of_str))
+    
+    # Generate a random number of commands between 1 and 100
+    q = random.randint(1, 100)
+    
+    commands = []
+    for _ in range(q):
+        command_type = random.choice(['print', 'reverse', 'replace'])
+        
+        a = random.randint(0, length_of_str - 1)
+        b = random.randint(a, length_of_str - 1)
+        
+        if command_type == 'print':
+            command = f"print {a} {b}"
+        
+        elif command_type == 'reverse':
+            command = f"reverse {a} {b}"
+        
+        elif command_type == 'replace':
+            # Length of p should be b - a + 1
+            length_of_p = b - a + 1
+            p = ''.join(random.choices(string.ascii_lowercase, k=length_of_p))
+            command = f"replace {a} {b} {p}"
+        
+        commands.append(command)
+    
+    return str_, q, commands
+
+# Example usage:
+str_, q, commands = tcgen()
+print(str_)
+print(q)
+for command in commands:
+    print(command)
+```
+
+### Explanation:
+
+1. **String Generation**:
+   - A random string `str_` of lowercase letters is generated with a length between 1 and 1000.
+
+2. **Commands Generation**:
+   - A random number `q` between 1 and 100 is chosen to determine the number of commands.
+   - For each command, a type is randomly selected from the set `{'print', 'reverse', 'replace'}`.
+   - The start index `a` is randomly chosen between `0` and `length_of_str - 1`.
+   - The end index `b` is randomly chosen between `a` and `length_of_str - 1`.
+   - For the `replace` command, a string `p` is generated such that its length matches `b - a + 1`.
+
+### Note:
+- The function `tcgen()` returns the generated string `str_`, the number of commands `q`, and a list of commands `commands`.
+- An example usage is shown at the end to print out the generated test case.
+
+This generator should provide a wide variety of test cases covering different scenarios for the problem statement.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    str_input = fh.readline().strip()
+    q = int(fh.readline().strip())
+    commands = [fh.readline().strip().split() for _ in range(q)]
+    return str_input, q, commands</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

@@ -1,0 +1,50 @@
+Zaeru Ninja E869120
+E869120-kun is good at creating multiple copies of himself.
+Here, there are $N$ members in the programming research club. However, some of them may be E869120-kun.
+Therefore, you asked all $N$ members for their names. As a result, each member introduced themselves with names $S_1, S_2, S_3, \dots, S_N$.
+How many copies of E869120-kun are there? Assuming that all the members answered honestly with their own names.
+Input
+The input is given in the following format from Standard Input:
+$N$
+$S_1$
+$S_2$
+$S_3$
+$\ldots$
+$S_N$
+Output
+Output the number of copies of E869120-kun. If there are no copies of E869120-kun, output "0".
+Insert a newline character at the end of the output.
+Constraints
+$1 \leq N \leq 1000$
+$1 \leq (\text{length of }S_i) \leq 100$
+$N$ is an integer.
+$S_i$ is a string consisting of numbers and uppercase letters.
+Sample Input 1
+5
+E869120
+TMJN
+E869120
+TAISA
+YNYMXIAOLONGBAO
+Sample Output 1
+2
+E869120-kun created two copies of himself.
+Sample Input 2
+3
+SQUARE1001
+MENCOTTON
+B2563125
+Sample Output 2
+0
+If there are no copies of E869120-kun, output 0.
+Sample Input 3
+6
+E8691200
+E869121
+E869122
+E869123
+E869124
+E869125
+Sample Output 3
+0
+Be careful of the imposters.

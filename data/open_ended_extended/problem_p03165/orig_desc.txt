@@ -1,0 +1,27 @@
+
+Score : 100 points
+Problem StatementYou are given strings s and t.
+Find one longest string that is a subsequence of both s and t.
+NotesA subsequence of a string x is the string obtained by removing zero or more characters from x and concatenating the remaining characters without changing the order.
+Constraints
+s and t are strings consisting of lowercase English letters.
+1 \leq |s|, |t| \leq 3000
+InputInput is given from Standard Input in the following format:
+s
+t
+OutputPrint one longest string that is a subsequence of both s and t.
+If there are multiple such strings, any of them will be accepted.
+Sample Input 1axyb
+abyxb
+Sample Output 1axb
+The answer is axb or ayb; either will be accepted.
+Sample Input 2aa
+xayaz
+Sample Output 2aa
+Sample Input 3a
+z
+Sample Output 3
+The answer is  (an empty string).
+Sample Input 4abracadabra
+avadakedavra
+Sample Output 4aaadara

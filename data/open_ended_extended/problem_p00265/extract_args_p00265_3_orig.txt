@@ -1,0 +1,11 @@
+def extract_arguments(fh):
+    N, Q = map(int, fh.readline().strip().split())
+    cards = list(map(int, fh.readline().strip().split()))
+    queries = [int(fh.readline().strip()) for _ in range(Q)]
+    return N, Q, cards, queries
+
+# if __name__ == "__main__":
+#     input_path = sys.argv[1]
+#     with open(input_path, 'r') as fh: 
+#     N, Q, cards, queries = extract_arguments(fh)
+#     f(N, Q, cards, queries)

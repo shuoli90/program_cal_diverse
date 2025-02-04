@@ -1,0 +1,44 @@
+To create a test case generator for the "Lupin III" problem, we need to consider the constraints and generate random input values that adhere to these constraints. Here is a Python function that generates random test cases for this problem:
+
+```python
+import random
+
+def tcgen():
+    # Number of warehouses (1 ≤ n ≤ 15)
+    n = random.randint(1, 15)
+
+    warehouses = []
+    for _ in range(n):
+        # Warehouse number (1 ≤ si ≤ 100)
+        s = random.randint(1, 100)
+        # Distance from the castle (1 ≤ di ≤ 10,000)
+        d = random.randint(1, 10000)
+        # Number of wooden boxes (1 ≤ vi ≤ 10,000)
+        v = random.randint(1, 10000)
+        warehouses.append((s, d, v))
+    
+    # Create the input format as a string
+    input_data = f"{n}\n"
+    for s, d, v in warehouses:
+        input_data += f"{s} {d} {v}\n"
+    
+    return input_data.strip()
+
+# Example usage
+for _ in range(3):
+    print(tcgen())
+    print("---")
+```
+
+This function generates random test cases as strings that match the input format specified in the problem statement. Here’s a breakdown of what the function does:
+
+1. Randomly determines the number of warehouses \( n \) (between 1 and 15).
+2. Iterates \( n \) times to generate random values for each warehouse:
+   - Warehouse number \( s \) (between 1 and 100).
+   - Distance from the castle \( d \) (between 1 and 10,000 meters).
+   - Number of wooden boxes \( v \) (between 1 and 10,000).
+3. Constructs the input data string in the required format.
+
+Each generated test case will be a string that can be directly used as input for the problem. The example usage at the end prints three generated test cases for demonstration.
+
+You can adjust the random ranges and add specific edge cases to ensure comprehensive test coverage.

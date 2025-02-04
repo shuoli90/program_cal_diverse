@@ -1,0 +1,35 @@
+Sure, here is a test case generator for the given problem statement:
+
+```python
+import random
+
+def tcgen():
+    # Define the constraints
+    N = random.randint(1, 10**5)
+    M = random.randint(1, 10**5)
+    
+    # Generate the list of (L_i, R_i) pairs
+    LR = []
+    for _ in range(M):
+        L = random.randint(1, N)
+        R = random.randint(L, N)  # Ensure L_i <= R_i
+        LR.append((L, R))
+    
+    return N, M, LR
+
+# This function will print the test case in the required format
+def print_test_case():
+    N, M, LR = tcgen()
+    print(N, M)
+    for L, R in LR:
+        print(L, R)
+
+# Example usage
+print_test_case()
+```
+
+This code generates a random test case according to the constraints specified in the problem statement. The function `tcgen` produces random valid values for \(N\) and \(M\), and then generates \(M\) pairs of \((L_i, R_i)\) such that \(1 \leq L_i \leq R_i \leq N\).
+
+The `print_test_case` function prints the generated test case in the required format. You can call `print_test_case()` to generate and print a random test case.
+
+This should help you test your solution with various inputs!

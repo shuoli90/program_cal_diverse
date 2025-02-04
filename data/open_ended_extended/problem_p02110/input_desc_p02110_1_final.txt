@@ -1,0 +1,26 @@
+### Canonicalized Input Description:
+
+An integer N (2 ≤ N ≤ 6,000), representing some quantity or size.
+An integer K (2 ≤ K ≤ N), representing some quantity or size.
+A list of N tuples, where each tuple consists of two integers (x, y) such that 1 ≤ x, y ≤ 1,000,000 and x mod 2 = floor(y ÷ 2) mod 2.
+
+### Example Input:
+
+```
+3 2
+2 1
+1 2
+1 3
+```
+
+### Function Signature:
+
+Write a function f(N, K, coordinates) that takes in the input.
+```python
+def f(N: int, K: int, coordinates: List[Tuple[int, int]]):
+    ''' 
+    N: an integer 
+    K: an integer
+    coordinates: a list of tuples where each tuple contains two integers
+    '''
+```

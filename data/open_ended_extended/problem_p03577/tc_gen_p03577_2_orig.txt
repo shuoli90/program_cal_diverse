@@ -1,0 +1,32 @@
+Sure! Below is the test case generator for the given problem statement "Rng is going to a festival":
+
+```python
+import random
+import string
+
+def tcgen():
+    # Define the minimum and maximum length of the string S
+    min_length = 9
+    max_length = 50
+    
+    # Generate a random length for the string S that satisfies the constraints
+    length_of_s = random.randint(min_length, max_length)
+    
+    # Generate a random prefix (the part of S before "FESTIVAL")
+    prefix_length = length_of_s - len("FESTIVAL")
+    prefix = ''.join(random.choices(string.ascii_uppercase, k=prefix_length))
+    
+    # Construct the final string S by appending "FESTIVAL" to the prefix
+    S = prefix + "FESTIVAL"
+    
+    return S
+
+# Example usage
+if __name__ == "__main__":
+    test_case = tcgen()
+    print(test_case)
+```
+
+This code will generate a random test case for the problem where the string `S` ends with "FESTIVAL" and its length is between 9 and 50 characters. The prefix of `S` will be composed of uppercase English letters. This ensures that the generated test case adheres to the constraints provided in the problem statement.
+
+You can run this script multiple times to get different test cases for your competitive programming problem.

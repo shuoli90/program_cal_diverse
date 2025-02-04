@@ -1,0 +1,20 @@
+An integer n (1 ≤ n ≤ 30), representing some quantity.
+The input is a sequence of multiple datasets, ending with a single zero line.
+There are no more than 30 datasets.
+
+### Example Input:
+
+```
+1
+10
+20
+25
+0
+```
+
+### Function Signature:
+Write a function f(inputs) that takes in the input.
+def f(inputs: List[int]):
+    '''
+    inputs: a list of integers
+    '''

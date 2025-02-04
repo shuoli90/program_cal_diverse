@@ -1,0 +1,60 @@
+Sure! Let's create a test case generator for the problem "Frisbee Dogs". The generator will create random scenarios within the provided constraints. Here is the Python code for the test case generator:
+
+```python
+import random
+
+def tcgen():
+    # Generate random number of dogs and frisbees
+    N = random.randint(1, 10)
+    M = random.randint(1, 1000)
+    
+    dogs = []
+    for _ in range(N):
+        Dix = random.uniform(-1000, 1000)
+        Diy = random.uniform(-1000, 1000)
+        Vi = random.uniform(1, 100)
+        dogs.append((Dix, Diy, Vi))
+    
+    frisbees = []
+    for _ in range(M):
+        FPix = random.uniform(-1000, 1000)
+        FPin = random.uniform(-1000, 1000)
+        FVix = random.uniform(-25, 25)
+        FViy = random.uniform(-25, 25)
+        frisbees.append((FPix, FPin, FVix, FViy))
+    
+    return N, M, dogs, frisbees
+
+def generate_test_case():
+    N, M, dogs, frisbees = tcgen()
+    
+    print(f"{N} {M}")
+    for Dix, Diy, Vi in dogs:
+        print(f"{Dix:.6f} {Diy:.6f} {Vi:.6f}")
+    for FPix, FPin, FVix, FViy in frisbees:
+        print(f"{FPix:.6f} {FPin:.6f} {FVix:.6f} {FViy:.6f}")
+    print("0 0")
+
+# Example usage
+generate_test_case()
+```
+
+### Explanation:
+1. **Random Number of Dogs and Frisbees**: 
+    - We generate a random number of dogs (N) between 1 and 10.
+    - We generate a random number of frisbees (M) between 1 and 1000.
+
+2. **Generating Dogs**:
+    - For each dog, we generate random initial positions (Dix, Diy) between -1000 and 1000.
+    - We generate a random speed (Vi) between 1 and 100.
+
+3. **Generating Frisbees**:
+    - For each frisbee, we generate random launch positions (FPix, FPin) between -1000 and 1000.
+    - We generate random velocity components (FVix, FViy) between -25 and 25.
+
+4. **Output**:
+    - We print the number of dogs and frisbees first.
+    - Then we print the details of each dog and each frisbee in the required format.
+    - At the end, we print "0 0" to indicate the end of the input.
+
+You can run the `generate_test_case` function to produce a random test case for the problem.

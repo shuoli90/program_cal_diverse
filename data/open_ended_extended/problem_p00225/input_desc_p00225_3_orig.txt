@@ -1,0 +1,21 @@
+An integer X (2 ≤ X ≤ 10000), representing some quantity or size.
+A list of X strings, where each string consists of up to 32 lowercase English letters.
+
+### Example Input:
+
+```
+5
+apple
+yellow
+georgia
+king
+email
+```
+
+### Function Signature:
+Write a function f(X, words) that takes in the input. 
+def f(X: int, words: List[str]): 
+    ''' 
+    X: an integer 
+    words: a list of strings
+    '''

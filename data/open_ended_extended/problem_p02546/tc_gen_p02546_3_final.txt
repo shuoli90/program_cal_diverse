@@ -1,0 +1,29 @@
+Certainly! Below is the test case generator for the given problem statement:
+
+```python
+import random
+import string
+
+def generate_random_string(n):
+    return ''.join(random.choices(string.ascii_lowercase, k=n))
+
+def tcgen():
+    # Length of the string S, which is between 1 and 1000 inclusive
+    length = random.randint(1, 1000)
+
+    # Generate a random lowercase string of the determined length
+    S = generate_random_string(length)
+    
+    return S
+
+# Example usage of the test case generator
+for _ in range(5):  # Generate 5 test cases
+    print(tcgen())
+```
+
+**Explanation:**
+1. `generate_random_string(n)`: This helper function generates a random string of length `n` composed of lowercase English letters.
+2. `tcgen()`: This function generates a random length for the string `S` between 1 and 1000 inclusive, then generates a random string of that length using the helper function.
+3. The example usage shows how to generate and print 5 test cases.
+
+This script will provide you with a variety of test cases that adhere to the constraints specified in your problem statement.

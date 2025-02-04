@@ -1,0 +1,3 @@
+Types: S: str, T_prime: str
+Ranges: 1 ≤ |S| ≤ 300,000, 1 ≤ |T_prime| ≤ |S|
+Addtl Info: S and T_prime consist only of upper- and lowercase letters.

@@ -1,0 +1,5 @@
+Types: H: int, W: int, chocolate_bar: List[List[int]]
+
+Ranges: 1 ≤ H ≤ 12, 1 ≤ W ≤ 12, chocolate_bar[i][j] in {0, 1}
+
+Addtl Info: The number of blocks with heart marks ('1's) is six or less. The end of the input is indicated by a dataset where H = W = 0. Do not output anything for this case.

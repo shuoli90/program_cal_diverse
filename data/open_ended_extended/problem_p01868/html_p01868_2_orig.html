@@ -1,0 +1,185 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p01868 - Generation 2</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p01868 - Generation 2</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>D: Scanner
+Problem Statement
+You have $N$ pieces of paper to scan. You want to scan them all by using $3$ scanners in parallel. 
+Each piece of paper takes a certain amount of time to scan, and the time it takes to scan the $i$-th piece of paper is $T_i$. 
+The order in which you scan the papers is arbitrary, but you cannot scan multiple papers at the same time with one scanner.
+Determine the minimum amount of time it takes for all the papers to be scanned and for all the scanners to stop scanning.
+Input
+$N$
+$T_1$
+$T_2$
+$T_3$
+$\vdots$
+$T_N$
+Constraints
+$1 \leq N \leq 50$
+$1 \leq T_i \leq 50$
+All input values are integers.
+Output
+Print the minimum amount of time it takes for all the papers to be scanned and for all the scanners to stop scanning.
+Sample Input #1
+4
+1
+1
+1
+1
+Sample Output #1
+2
+Sample Input #2
+9
+15
+20
+27
+4
+10
+7
+34
+30
+36
+Sample Output #2
+61
+Sample Input #3
+6
+20
+18
+46
+16
+9
+48
+Sample Output #3
+55
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An integer N (1 ≤ N ≤ 50), representing some quantity or size.
+A list of integers T of size N, where each integer is between 1 and 50.
+
+### Example Input:
+
+```
+4
+1
+1
+1
+1
+```
+
+### Function Signature:
+Write a function f(N, T) that takes in the input.
+def f(N: int, T: List[int]):
+    '''
+    N: an integer
+    T: a list of integers
+    '''</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Sure! Below is a test case generator function for the given problem statement "D: Scanner".
+
+```python
+import random
+
+def tcgen():
+    # Generate a random number of pieces of paper N
+    N = random.randint(1, 50)
+    
+    # Generate a list of N random times for scanning each piece of paper
+    T = [random.randint(1, 50) for _ in range(N)]
+    
+    # Print the generated test case
+    return N, T
+
+# Example usage
+N, T = tcgen()
+print(N)
+for t in T:
+    print(t)
+```
+
+This function generates a random test case within the constraints provided in the problem statement. Here is a breakdown of how it works:
+
+1. It generates a random integer \(N\) between 1 and 50, inclusive.
+2. It generates a list of \(N\) random integers, each between 1 and 50, which represent the time taken to scan each piece of paper.
+
+You can call the `tcgen()` function to get a random test case and print it in the required format for input. 
+
+Here is an example output of the function:
+
+```
+7
+3
+45
+23
+12
+29
+7
+15
+```
+
+This output represents a test case with 7 pieces of paper, and the times taken to scan each piece of paper are 3, 45, 23, 12, 29, 7, and 15 seconds respectively.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    N = int(fh.readline().strip())
+    T = [int(fh.readline().strip()) for _ in range(N)]
+    return N, T</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

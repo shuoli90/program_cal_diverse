@@ -1,0 +1,3 @@
+Types: n: int, s: str
+Ranges: 1 ≤ n ≤ 10^9, 1 ≤ len(s) ≤ 2×10^6
+Addtl Info: The sum of the lengths of s in all datasets does not exceed 5×10^6, nesting depth of parentheses ≤ 1000, end of input is indicated by a line containing a single zero

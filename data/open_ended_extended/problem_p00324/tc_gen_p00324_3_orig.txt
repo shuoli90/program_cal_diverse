@@ -1,0 +1,25 @@
+Sure, I can write a test case generator for the "Complete Equality Bilateral Trade" problem. Here is the test case generator:
+
+```python
+import random
+
+def tcgen():
+    N = random.randint(1, 200000)  # Number of values in the table
+    d = [random.randint(-10**9, 10**9) for _ in range(N)]  # Generating random integers within the specified range
+    
+    return N, d
+
+# Example of using the test case generator
+if __name__ == "__main__":
+    N, d = tcgen()
+    print(N)
+    for value in d:
+        print(value)
+```
+
+To use this generator, you simply run the script, and it will print a randomly generated test case according to the constraints provided in the problem statement. Here's an explanation of each part:
+
+- `N = random.randint(1, 200000)`: This line generates a random integer `N` which is the number of entries in the table.
+- `d = [random.randint(-10**9, 10**9) for _ in range(N)]`: This line generates a list `d` containing `N` random integers, each in the range from `-10^9` to `10^9`.
+
+When you run this script, you'll get an output that you can use as an input for your problem-solving function. The output format will be as specified in the problem statement. Each test case will be different due to the random generation.

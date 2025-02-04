@@ -1,0 +1,181 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p00225 - Generation 3</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p00225 - Generation 3</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>Kobuta Nuki Kitsuneko
+B-boy, a relative of Mrs. A, came to her house. He loves singing and is only 3 years old. He enthusiastically sings a song called "Kobuta Nuki Kitsuneko" (written and composed by Naotoshi Yamamoto) that he learned in kindergarten. In this song, four words, "kobuta," "nuki," "kitsune", and "neko," are played in order, and the last sound and the first sound are the same. B-boy asked A if she could make a similar word chain using words he said.
+To help A, let's create a program that determines whether it is possible to make a word chain using all the given words in order and whether the first letter of the first word and the last letter of the last word are the same.
+Create a program that takes n words as input and determines whether a word chain can be created from the combination of those words. If it is possible, output OK, and if it is impossible, output NG.
+Input
+Multiple datasets are given as input. The end of the input is indicated by a single zero line.
+Each dataset is given in the following format.
+n
+word1
+word2
+:
+wordn
+The number of words n (2 ≤ n ≤ 10000) is given on the first line. The following n lines contain n words wordi (a string consisting of up to 32 lowercase English letters).
+There are no more than 50 datasets.
+Output
+For each input dataset, output the determination result on one line.
+Sample Input
+5
+apple
+yellow
+georgia
+king
+email
+7
+apple
+yellow
+georgia
+king
+email
+wink
+lucky
+0
+Output for the Sample Input
+NG
+OK
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An integer X (2 ≤ X ≤ 10000), representing some quantity or size.
+A list of X strings, where each string consists of up to 32 lowercase English letters.
+
+### Example Input:
+
+```
+5
+apple
+yellow
+georgia
+king
+email
+```
+
+### Function Signature:
+Write a function f(X, words) that takes in the input. 
+def f(X: int, words: List[str]): 
+    ''' 
+    X: an integer 
+    words: a list of strings
+    '''</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Sure! Here is a test case generator for the "Kobuta Nuki Kitsuneko" problem statement:
+
+```python
+import random
+import string
+
+def generate_word():
+    length = random.randint(1, 32)
+    return ''.join(random.choice(string.ascii_lowercase) for _ in range(length))
+
+def tcgen():
+    datasets = []
+
+    num_datasets = random.randint(1, 50)
+    for _ in range(num_datasets):
+        n = random.randint(2, 10000)
+        words = [generate_word() for _ in range(n)]
+        datasets.append((n, words))
+    
+    # Add a zero line to indicate the end of the input
+    datasets.append(0)
+    
+    return datasets
+
+# Function to format the test case output as specified
+def format_test_case(datasets):
+    formatted = []
+    for dataset in datasets:
+        if dataset == 0:
+            formatted.append('0')
+        else:
+            n, words = dataset
+            formatted.append(str(n))
+            formatted.extend(words)
+    return '\n'.join(formatted)
+
+# Example usage
+datasets = tcgen()
+formatted_test_case = format_test_case(datasets)
+print(formatted_test_case)
+```
+
+### Explanation:
+- The `generate_word` function creates a random word with a length between 1 and 32 characters, consisting of lowercase English letters.
+- The `tcgen` function generates multiple datasets, each containing a random number of words (between 2 and 10,000). It then appends a zero line to indicate the end of the input.
+- The `format_test_case` function formats the generated datasets into the required input format for the problem statement, with each dataset followed by a single zero line.
+
+This generator will provide varied and comprehensive test cases to thoroughly test your solution for the "Kobuta Nuki Kitsuneko" problem.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    datasets = []
+    while True:
+        n = int(fh.readline().strip())
+        if n == 0:
+            break
+        words = [fh.readline().strip() for _ in range(n)]
+        datasets.append((n, words))
+    return datasets</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

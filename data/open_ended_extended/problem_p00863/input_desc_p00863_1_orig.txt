@@ -1,0 +1,20 @@
+An integer \(a\) (a distinct prime number ≤ 31), representing some quantity.
+An integer \(m\) (2 ≤ \(m\) ≤ 4), representing some other quantity.
+An integer \(b\) (a distinct prime number ≤ 31 and not equal to \(a\)), representing some quantity.
+An integer \(n\) (2 ≤ \(n\) ≤ 7), representing another quantity.
+
+### Example Input:
+```
+3 2 2 2
+```
+
+### Function Signature:
+Write a function f(inputs) that takes in the input.
+```python
+from typing import List, Tuple
+
+def f(inputs: List[Tuple[int, int, int, int]]):
+    '''
+    inputs: a list of tuples, each containing four integers
+    '''
+```

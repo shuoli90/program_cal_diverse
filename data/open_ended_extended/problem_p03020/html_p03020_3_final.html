@@ -1,0 +1,244 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p03020 - Generation 3</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p03020 - Generation 3</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>
+Score : 1200 points
+Problem StatementSnuke is playing with red and blue balls, placing them on a two-dimensional plane.
+First, he performed N operations to place red balls. In the i-th of these operations, he placed RC_i red balls at coordinates (RX_i,RY_i).
+Then, he performed another N operations to place blue balls. In the i-th of these operations, he placed BC_i blue balls at coordinates (BX_i,BY_i).
+The total number of red balls placed and the total number of blue balls placed are equal, that is, \sum_{i=1}^{N} RC_i = \sum_{i=1}^{N} BC_i. Let this value be S.
+Snuke will now form S pairs of red and blue balls so that every ball belongs to exactly one pair.
+Let us define the score of a pair of a red ball at coordinates (rx, ry) and a blue ball at coordinates (bx, by) as |rx-bx| + |ry-by|.
+Snuke wants to maximize the sum of the scores of the pairs.
+Help him by finding the maximum possible sum of the scores of the pairs.
+Constraints
+1 \leq N \leq 1000
+0 \leq RX_i,RY_i,BX_i,BY_i \leq 10^9
+1 \leq RC_i,BC_i \leq 10
+\sum_{i=1}^{N} RC_i = \sum_{i=1}^{N} BC_i
+All values in input are integers.
+InputInput is given from Standard Input in the following format:
+N
+RX_1 RY_1 RC_1
+RX_2 RY_2 RC_2
+\vdots
+RX_N RY_N RC_N
+BX_1 BY_1 BC_1
+BX_2 BY_2 BC_2
+\vdots
+BX_N BY_N BC_N
+OutputPrint the maximum possible sum of the scores of the pairs.
+Sample Input 12
+0 0 1
+3 2 1
+2 2 1
+5 0 1
+Sample Output 18
+If we pair the red ball at coordinates (0,0) and the blue ball at coordinates (2,2), the score of this pair is |0-2| + |0-2|=4.
+Then, if we pair the red ball at coordinates (3,2) and the blue ball at coordinates (5,0), the score of this pair is |3-5| + |2-0|=4.
+Making these two pairs results in the total score of 8, which is the maximum result.
+Sample Input 23
+0 0 1
+2 2 1
+0 0 2
+1 1 1
+1 1 1
+3 3 2
+Sample Output 216
+Snuke may have performed multiple operations at the same coordinates.
+Sample Input 310
+582463373 690528069 8
+621230322 318051944 4
+356524296 974059503 6
+372751381 111542460 9
+392867214 581476334 6
+606955458 513028121 5
+882201596 791660614 9
+250465517 91918758 3
+618624774 406956634 6
+426294747 736401096 5
+974896051 888765942 5
+726682138 336960821 3
+715144179 82444709 6
+599055841 501257806 6
+390484433 962747856 4
+912334580 219343832 8
+570458984 648862300 6
+638017635 572157978 10
+435958984 585073520 7
+445612658 234265014 6
+Sample Output 345152033546
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>### Canonicalized Input Description:
+
+An integer N (1 ≤ N ≤ 1000), representing some quantity or size.  
+A list of N tuples, each containing two integers (0 ≤ integer ≤ 1e9) and another integer (1 ≤ integer ≤ 10).  
+Another list of N tuples, each containing two integers (0 ≤ integer ≤ 1e9) and another integer (1 ≤ integer ≤ 10).  
+
+### Example Input:
+
+```
+2
+0 0 1
+3 2 1
+2 2 1
+5 0 1
+```
+
+### Function Signature:
+Write a function f(N, red_ops, blue_ops) that takes in the input. 
+```python
+def f(N: int, red_ops: List[Tuple[int, int, int]], blue_ops: List[Tuple[int, int, int]]):
+    ''' 
+    N: an integer 
+    red_ops: a list of tuples, where each tuple contains three integers
+    blue_ops: a list of tuples, where each tuple contains three integers
+    '''
+```</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Sure, I can help you write a test case generator for the given problem statement. Here's how you can do it in Python:
+
+```python
+import random
+
+def tcgen():
+    # Generate a random N within the given constraint
+    N = random.randint(1, 1000)
+    
+    # Initialize variables to keep track of the total number of red and blue balls
+    total_red_balls = 0
+    total_blue_balls = 0
+    
+    # Create lists to store the operations for red and blue balls
+    red_operations = []
+    blue_operations = []
+    
+    # Generate red ball operations
+    for _ in range(N):
+        RX = random.randint(0, 10**9)
+        RY = random.randint(0, 10**9)
+        RC = random.randint(1, 10)
+        red_operations.append((RX, RY, RC))
+        total_red_balls += RC
+    
+    # Generate blue ball operations, making sure the total number of blue balls equals total number of red balls
+    for _ in range(N):
+        BX = random.randint(0, 10**9)
+        BY = random.randint(0, 10**9)
+        
+        # Ensure the sum of blue balls matches the sum of red balls
+        if _ == N - 1:
+            BC = total_red_balls - total_blue_balls
+        else:
+            BC = random.randint(1, min(10, total_red_balls - total_blue_balls - (N - _ - 1)))
+        
+        blue_operations.append((BX, BY, BC))
+        total_blue_balls += BC
+    
+    # Format the input
+    input_data = f"{N}\n"
+    for op in red_operations:
+        input_data += f"{op[0]} {op[1]} {op[2]}\n"
+    for op in blue_operations:
+        input_data += f"{op[0]} {op[1]} {op[2]}\n"
+    
+    return input_data
+
+# Example usage:
+print(tcgen())
+```
+
+### Explanation:
+1. **N Generation**: We generate a random integer \( N \) between 1 and 1000.
+2. **Red Ball Operations**:
+    - For each operation, generate random coordinates \((RX, RY)\) within the range [0, 10^9].
+    - Generate a random count \( RC \) within the range [1, 10].
+    - Keep track of the total count of red balls.
+3. **Blue Ball Operations**:
+    - Similarly, generate random coordinates \((BX, BY)\) within the range [0, 10^9].
+    - For the count \( BC \), ensure that the sum of all \( BC \) equals the sum of all \( RC \). To achieve this:
+      - For each operation except the last, generate a random count \( BC \) such that the remaining counts can still fulfill the constraint.
+      - For the last operation, set \( BC \) to ensure the sum of \( BC \) matches the sum of \( RC \).
+4. **Formatting**: Combine the generated data into the required input format.
+
+This generator will give you a variety of test cases within the constraints, ensuring the sums of red and blue balls are equal.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    N = int(fh.readline().strip())
+    red_balls = []
+    blue_balls = []
+    for _ in range(N):
+        RX, RY, RC = map(int, fh.readline().strip().split())
+        red_balls.append((RX, RY, RC))
+    for _ in range(N):
+        BX, BY, BC = map(int, fh.readline().strip().split())
+        blue_balls.append((BX, BY, BC))
+    return N, red_balls, blue_balls
+
+# if __name__ == "__main__":
+#     input_path = sys.argv[1]
+#     with open(input_path, 'r') as fh: 
+#     N, red_balls, blue_balls = extract_arguments(fh)
+#     f(N, red_balls, blue_balls)</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

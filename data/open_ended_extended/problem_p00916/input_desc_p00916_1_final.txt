@@ -1,0 +1,22 @@
+Canonicalized Input Description:
+
+An integer n (1 ≤ n ≤ 50), representing some quantity or size.
+A list of n tuples, where each tuple contains 4 integers (li, ti, ri, bi). The integers li and ri satisfy (0 ≤ li < ri ≤ 10^6), and the integers bi and ti satisfy (0 ≤ bi < ti ≤ 10^6).
+
+### Example Input:
+
+```
+3
+4 28 27 11
+15 20 42 5
+11 24 33 14
+```
+
+### Function Signature:
+Write a function f(inputs) that takes in the input.
+```python
+def f(inputs: List[Tuple[int, int, int, int]]):
+    '''
+    inputs: a list of tuples, where each tuple contains four integers
+    '''
+```

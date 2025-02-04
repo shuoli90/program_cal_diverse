@@ -1,0 +1,39 @@
+Here's a test case generator for the given problem statement:
+
+```python
+import random
+
+def tcgen():
+    def find_valid_k(n, m):
+        possible_ks = [k for k in range(2, 2001) if (n + m - 1) % (k - 1) == 0]
+        return random.choice(possible_ks)
+    
+    N = random.randint(1, 2000)
+    M = random.randint(1, 2000)
+    K = find_valid_k(N, M)
+    
+    return N, M, K
+
+# Example usage
+if __name__ == "__main__":
+    for _ in range(5):  # Generate 5 test cases
+        N, M, K = tcgen()
+        print(f"{N} {M} {K}")
+```
+
+Explanation:
+1. **Find a Valid \( K \)**:
+   - A helper function `find_valid_k` is defined to find a valid \( K \) such that \( N + M - 1 \) is divisible by \( K - 1 \).
+   - It iterates over the range of possible \( K \) values (from 2 to 2000) and collects those that meet the divisibility condition.
+   - It then randomly selects one from the valid \( K \) values.
+
+2. **Generate \( N \) and \( M \)**:
+   - Random integers for \( N \) and \( M \) within the given constraints (1 to 2000) are generated.
+
+3. **Generate a Valid \( K \)**:
+   - Using the helper function, a valid \( K \) is found based on the generated \( N \) and \( M \).
+
+4. **Return the Generated Test Case**:
+   - The function returns the test case as a tuple \( (N, M, K) \).
+
+This generator ensures that \( N + M - 1 \) is divisible by \( K - 1 \), thereby adhering to the problem constraints.

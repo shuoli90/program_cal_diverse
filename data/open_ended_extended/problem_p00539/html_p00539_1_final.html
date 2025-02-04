@@ -1,0 +1,174 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p00539 - Generation 1</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p00539 - Generation 1</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>JOI Park
+In preparation for the Olympics to be held in the IOI country in 20XX, it was decided to develop the JOI Park in the IOI country. JOI Park has N squares, and the squares are numbered from 1 to N. There are M roads that connect the squares, and the roads are numbered from 1 to M. Road i (1 ≤ i ≤ M) connects square Ai and square Bi bidirectionally, and its length is Di. It is possible to reach any square from any other square by following some roads.
+In the development plan, first, an integer X greater than or equal to 0 is chosen, and all squares (including square 1) whose distance from square 1 is less than or equal to X are connected by an underground passage. Here, the distance between square i and square j is the minimum sum of the lengths of the roads that are traveled to go from square i to square j. The integer C related to the cost of building underground passages is determined in the development plan. The cost of building an underground passage is C × X.
+Next, all roads that connect squares by an underground passage are removed. There is no cost for removing the roads. Finally, all the remaining roads are repaired. The cost of repairing a road of length d is d. There are no underground passages in the JOI Park before the development plan is implemented. Find the minimum sum of the costs required for development of the JOI Park.
+Task
+Given the information about the squares in the JOI Park and an integer related to the cost of building underground passages, write a program to find the minimum sum of the costs required for development of the JOI Park.
+Input
+The data is read from standard input in the following format:
+ The first line contains three integers N, M, and C, separated by a single space, indicating that there are N squares, M roads, and the integer related to the cost of building underground passages is C.
+ Among the following M lines, the i-th line (1 ≤ i ≤ M) contains three integers Ai, Bi, and Di, separated by a single space, indicating that road i connects square Ai and square Bi with a length of Di.
+Output
+Print a single integer to standard output, indicating the minimum sum of the costs required for development of the JOI Park.
+Constraints
+For all input data, the following conditions hold.
+ 2 ≤ N ≤ 100,000.
+ 1 ≤ M ≤ 200,000.
+ 1 &le</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An integer N (2 ≤ N ≤ 100,000), representing some quantity or size.
+An integer M (1 ≤ M ≤ 200,000), representing some other quantity or size.
+An integer C (any integer), representing a cost or constant.
+A list of M tuples, each containing three integers: Ai, Bi (1 ≤ Ai, Bi ≤ N), and Di (positive integer), representing connections and weights.
+
+### Example Input:
+
+```
+5 6 10
+1 2 4
+1 3 3
+2 4 2
+3 4 4
+3 5 1
+4 5 3
+```
+
+### Function Signature:
+Write a function f(N, M, C, connections) that takes in the input.
+```python
+def f(N: int, M: int, C: int, connections: List[Tuple[int, int, int]]):
+    '''
+    N: an integer
+    M: an integer
+    C: an integer
+    connections: a list of tuples, each containing three integers
+    '''
+```</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Sure! To write a test case generator for the "JOI Park" problem, we need to consider the constraints and generate realistic random values for the number of squares (N), the number of roads (M), and the cost factor (C). We also need to generate a valid set of roads, ensuring that the graph remains connected.
+
+Here's the Python code for the test case generator for the "JOI Park" problem:
+
+```python
+import random
+
+def generate_test_case():
+    # Define the range for N and M based on the constraints
+    N = random.randint(2, 100000)
+    M = random.randint(N-1, 200000)  # Ensure at least N-1 roads to keep the graph connected
+    C = random.randint(1, 100000)
+
+    roads = []
+    
+    # Generate a connected graph using a tree structure
+    indices = list(range(1, N + 1))
+    random.shuffle(indices)
+    connected = {indices[0]}
+    remaining = set(indices[1:])
+    
+    while remaining:
+        u = random.choice(list(connected))
+        v = random.choice(list(remaining))
+        if u != v:
+            d = random.randint(1, 10000)
+            roads.append((u, v, d))
+            connected.add(v)
+            remaining.remove(v)
+
+    # Generate additional random roads to reach the desired M count
+    while len(roads) < M:
+        u = random.randint(1, N)
+        v = random.randint(1, N)
+        if u != v:
+            d = random.randint(1, 10000)
+            roads.append((u, v, d))
+
+    # Print the generated test case data
+    print(f"{N} {M} {C}")
+    for u, v, d in roads:
+        print(f"{u} {v} {d}")
+
+# Example usage
+generate_test_case()
+```
+
+### Explanation:
+1. **Number of Squares and Roads**: We pick a random number of squares `N` between 2 and 100,000 and a random number of roads `M` between `N-1` and 200,000.
+2. **Cost Factor**: We randomly select a cost factor `C` between 1 and 100,000.
+3. **Generating a Connected Graph**: To ensure the graph is connected, we first create a tree structure by connecting each new square to an already connected square. This guarantees that all squares are reachable.
+4. **Adding Additional Roads**: If more roads are needed to reach `M`, we randomly add additional roads, ensuring no self-loops (u != v).
+5. **Output Format**: The generated test case is printed in the required format.
+
+This generator ensures that the generated test cases are valid and meet the problem’s constraints.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    N, M, C = map(int, fh.readline().strip().split())
+    roads = []
+    for _ in range(M):
+        Ai, Bi, Di = map(int, fh.readline().strip().split())
+        roads.append((Ai, Bi, Di))
+    return N, M, C, roads</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

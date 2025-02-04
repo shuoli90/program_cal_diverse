@@ -1,0 +1,28 @@
+An integer n (0 ≤ n ≤ 15), representing some battery points. When n is 0, the input ends and should not be processed.
+Three characters s, t, b, representing distinct rooms.
+
+### Example Input:
+```
+1
+E A C
+1
+E B C
+2
+E A B
+0
+```
+
+### Function Signature:
+Write a function f(inputs) that takes in the input.
+```python
+from typing import List, Tuple
+
+def f(inputs: List[Tuple[int, str, str, str]]):
+    '''
+    inputs: a list of tuples, where each tuple contains:
+    - an integer, representing some battery points
+    - a character, representing a room
+    - another character, representing a different room
+    - another character, representing a different room
+    '''
+```

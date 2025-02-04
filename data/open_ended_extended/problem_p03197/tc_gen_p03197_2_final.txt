@@ -1,0 +1,44 @@
+Sure! Let's create a test case generator for the given problem statement. The generator will create random valid inputs based on the given constraints.
+
+Here's the generator:
+
+```python
+import random
+
+def tcgen():
+    # Generate a random integer N between 1 and 10^5 (inclusive)
+    N = random.randint(1, 10**5)
+    
+    # Generate N integers each between 1 and 10^9 (inclusive)
+    A = [random.randint(1, 10**9) for _ in range(N)]
+    
+    return N, A
+
+# Example usage:
+if __name__ == "__main__":
+    N, A = tcgen()
+    print(N)
+    for a in A:
+        print(a)
+```
+
+### Explanation:
+1. **N**: It generates a random integer between 1 and \(10^5\) (inclusive). This represents the number of different colors of apples.
+2. **A**: It generates a list of \(N\) integers, each between 1 and \(10^9\) (inclusive). Each integer \(A[i]\) represents the number of apples of color \(i+1\).
+
+When you run the `tcgen()` function, it will print \(N\) and the list of integers \(A\) representing the number of apples of each color.
+
+### Example Output:
+Here’s an example of what the output might look like:
+```
+5
+345
+678
+12345
+67890
+234567
+```
+
+This output means there are 5 different colors of apples, and the counts of apples for each color are 345, 678, 12345, 67890, and 234567, respectively.
+
+You can use this generator to create various test cases for the problem, ensuring that the solution can handle a wide range of inputs.

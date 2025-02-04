@@ -1,0 +1,21 @@
+An integer \( n \) (3 ≤ \( n \) ≤ 100), representing some quantity.
+A list of \( n \) tuples of two integers each, where each integer is between 0 and 10000.
+
+### Example Input:
+
+```
+4
+0 0
+10000 0
+10000 10000
+0 10000
+```
+
+### Function Signature:
+Write a function f(inputs) that takes in the input.
+```python
+def f(inputs: List[Tuple[int, int]]):
+    '''
+    inputs: a list of tuples of integers
+    '''
+```

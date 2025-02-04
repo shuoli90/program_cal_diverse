@@ -1,0 +1,23 @@
+An integer N (3 ≤ N ≤ 2 × 10^5).
+N-1 pairs of integers (a_i, b_i) where 1 ≤ a_i, b_i ≤ N.
+
+### Example Input:
+
+```
+6
+1 6
+2 1
+5 2
+3 4
+2 3
+```
+
+### Function Signature:
+Write a function f(N, edges) that takes in the input.
+```python
+def f(N: int, edges: List[Tuple[int, int]]):
+    ''' 
+    N: an integer 
+    edges: a list of N-1 tuples, each containing two integers
+    '''
+```

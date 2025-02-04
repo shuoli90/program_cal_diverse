@@ -1,0 +1,58 @@
+Sure, I can help you generate a test case generator for the given problem "A Long Ride on a Railway". Here's a Python function that can generate random test cases for this problem:
+
+```python
+import random
+
+def tcgen():
+    # Number of stations (1 <= ns <= 10)
+    ns = random.randint(1, 10)
+    
+    # Number of routes (1 <= nl <= 20)
+    nl = random.randint(1, 20)
+    
+    routes = []
+    existing_routes = set()
+    
+    for _ in range(nl):
+        while True:
+            s1 = random.randint(1, ns)
+            s2 = random.randint(1, ns)
+            if s1 != s2 and (s1, s2) not in existing_routes and (s2, s1) not in existing_routes:
+                existing_routes.add((s1, s2))
+                d = random.randint(1, 100)
+                routes.append((s1, s2, d))
+                break
+    
+    test_case = []
+    test_case.append(f"{ns} {nl}")
+    for s1, s2, d in routes:
+        test_case.append(f"{s1} {s2} {d}")
+    
+    return '\n'.join(test_case)
+
+# Generate a sample test case
+print(tcgen())
+```
+
+This function generates values for `ns` and `nl` within the given constraints. It ensures that the routes are between different stations and without duplicates by keeping track of existing routes using a set. The distance `d` for each route is also randomly generated within a typical range (1 to 100). Finally, it formats the test case as specified and returns it as a string.
+
+This is an example output from running the `tcgen` function:
+
+```
+7 13
+1 3 12
+1 4 57
+2 5 43
+1 2 8
+3 5 67
+6 1 23
+2 4 78
+4 3 24
+7 5 34
+6 4 90
+7 3 53
+5 6 18
+4 7 27
+```
+
+You can run and adapt this function as needed to generate different test cases for your problem.

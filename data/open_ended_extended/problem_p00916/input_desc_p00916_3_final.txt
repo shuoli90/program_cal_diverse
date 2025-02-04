@@ -1,0 +1,38 @@
+Canonicalized Input Description:
+
+A series of datasets, each consisting of:
+
+1. An integer n (1 ≤ n ≤ 50), representing some quantity or size.
+2. n lines, each containing four integers l, t, r, and b (0 ≤ l < r ≤ 10^6, 0 ≤ b < t ≤ 10^6), representing some coordinates.
+
+The input is terminated by a single zero.
+
+### Example Input:
+
+```
+3
+4 28 27 11
+15 20 42 5
+11 24 33 14
+5
+4 28 27 11
+12 11 34 2
+7 26 14 16
+14 16 19 12
+17 28 27 21
+2
+300000 1000000 600000 0
+0 600000 1000000 300000
+0
+```
+
+### Function Signature:
+
+Write a function f(datasets) that takes in the input.
+```python
+def f(datasets: List[Tuple[int, List[Tuple[int, int, int, int]]]]):
+    '''
+    datasets: a list of datasets, where each dataset is a tuple
+              containing an integer and a list of tuples of four integers.
+    '''
+```

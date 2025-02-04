@@ -1,0 +1,18 @@
+Canonicalized Input Description:
+
+Seven integers a, b, c, d, e, f, g, each between 0 and 10^9, with the condition that their sum is at least 1.
+
+### Example Input:
+
+```
+12 1 1 0 0 0 0
+```
+
+### Function Signature:
+Write a function f(inputs) that takes in the input.
+```python
+def f(inputs: List[int]):
+    '''
+    inputs: a list of seven integers
+    '''
+```

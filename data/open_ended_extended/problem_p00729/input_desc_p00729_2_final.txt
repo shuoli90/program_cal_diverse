@@ -1,0 +1,44 @@
+An integer N (1 ≤ N ≤ 1000), representing some quantity or size.
+An integer M (1 ≤ M ≤ 10000), representing some quantity or size.
+An integer r (2 ≤ r ≤ 1000), representing a number of records.
+An integer q (1 ≤ q ≤ 50), representing a number of queries.
+A list of r tuples, where each tuple contains:
+    - An integer t (540 ≤ t ≤ 1260)
+    - An integer n (1 ≤ n ≤ N)
+    - An integer m (1 ≤ m ≤ M)
+    - An integer s (0 or 1)
+A list of q tuples, where each tuple contains:
+    - An integer ts (540 ≤ ts < te ≤ 1260)
+    - An integer te (ts < te ≤ 1260)
+    - An integer m (1 ≤ m ≤ M)
+
+### Example Input:
+
+```
+4 2
+10
+775 1 1 1
+780 4 2 1
+790 2 1 1
+800 2 1 0
+810 3 1 1
+820 1 1 0
+825 3 1 0
+860 1 1 1
+870 4 2 0
+880 1 1 0
+1
+780 870 1
+```
+
+### Function Signature:
+Write a function f(N, M, r, q, records, queries) that takes in the input.
+def f(N: int, M: int, r: int, q: int, records: List[Tuple[int, int, int, int]], queries: List[Tuple[int, int, int]]): 
+    ''' 
+    N: an integer 
+    M: an integer
+    r: an integer
+    q: an integer
+    records: a list of tuples
+    queries: a list of tuples
+    '''

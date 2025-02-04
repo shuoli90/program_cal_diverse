@@ -1,0 +1,92 @@
+Sure! Let's write a test case generator for the given problem statement:
+
+### Problem Statement: Tag on a Number Line
+
+**Description**
+
+Two children are playing tag on a number line. The child who is "it" is now at coordinate \(A\) and can travel the distance \(V\) per second. The other child is now at coordinate \(B\) and can travel the distance \(W\) per second. Determine whether the child who is "it" can catch the other child within \(T\) seconds (including exactly \(T\) seconds later). We assume that both children move optimally.
+
+**Constraints**
+
+- \( -10^9 \leq A, B \leq 10^9 \)
+- \( 1 \leq V, W \leq 10^9 \)
+- \( 1 \leq T \leq 10^9 \)
+- \( A \neq B \)
+- All values in input are integers.
+
+**Input**
+
+- Integer \( A \), initial position of "it"
+- Integer \( V \), speed of "it"
+- Integer \( B \), initial position of the other child
+- Integer \( W \), speed of the other child
+- Integer \( T \), time in seconds
+
+**Output**
+
+- Print "YES" if "it" can catch the other child within \( T \) seconds; otherwise, print "NO".
+
+**Examples**
+
+_Input 1:_
+```
+1 2
+3 1
+3
+```
+
+_Output 1:_
+```
+YES
+```
+
+_Input 2:_
+```
+1 2
+3 2
+3
+```
+
+_Output 2:_
+```
+NO
+```
+
+### Test Case Generator
+
+Here's the test case generator for the problem:
+
+```python
+import random
+
+def generate_test_case():
+    # Generate random coordinates A and B ensuring A != B
+    A = random.randint(-10**9, 10**9)
+    B = A
+    while B == A:
+        B = random.randint(-10**9, 10**9)
+    
+    # Generate random speeds V and W
+    V = random.randint(1, 10**9)
+    W = random.randint(1, 10**9)
+    
+    # Generate a random time T
+    T = random.randint(1, 10**9)
+    
+    return A, V, B, W, T
+
+# Example usage:
+for _ in range(5):  # Generating 5 test cases
+    A, V, B, W, T = generate_test_case()
+    print(f"{A} {V}")
+    print(f"{B} {W}")
+    print(T)
+```
+
+### Explanation
+
+1. **A and B Generation**: Random integers are generated for coordinates \( A \) and \( B \) within the given range ensuring \( A \neq B \).
+2. **V and W Generation**: Random integers are generated for speeds \( V \) and \( W \) within the given range.
+3. **T Generation**: A random integer is generated for time \( T \) within the given range.
+
+This test case generator will produce a variety of valid test cases for the problem. You can adjust the range or number of test cases as needed for more extensive testing.

@@ -1,0 +1,53 @@
+Sure! Below is the Python code for generating test cases for the given problem statement "Avant-garde Art."
+
+```python
+import random
+
+def generate_permutation(n):
+    """Generate a valid permutation for the given problem constraints."""
+    # Generate a list of pairs where each pair (i, ai) is bidirectional
+    pairs = list(range(1, n + 1))
+    random.shuffle(pairs)
+    permutation = [0] * n
+    for i in range(n):
+        permutation[i] = pairs[i]
+    return permutation
+
+def tcgen():
+    # Generate n, which is even and within the range [2, 8000]
+    n = random.choice(range(2, 8001, 2))  # Ensure n is even
+
+    # Generate k, which is within the range [0, min(n/2, 20)]
+    k = random.randint(0, min(n // 2, 20))
+
+    # Generate a valid permutation of a_i for i in [1, n]
+    permutation = generate_permutation(n)
+
+    return n, k, permutation
+
+def print_test_case(n, k, permutation):
+    print(n, k)
+    print(" ".join(map(str, permutation)))
+
+# Example usage
+if __name__ == "__main__":
+    n, k, permutation = tcgen()
+    print_test_case(n, k, permutation)
+```
+
+### Explanation
+1. **`generate_permutation(n)` Function**:
+   - This function generates a valid permutation `a` of size `n` that meets the constraints of the problem.
+   - It ensures that `a_i != i` and `a_{a_i} = i`.
+   - The approach here is to shuffle a list of numbers from 1 to `n` and then validate that none of the numbers map to themselves.
+
+2. **`tcgen()` Function**:
+   - This function generates the required `n`, `k`, and `permutation` values.
+   - `n` is chosen as an even number in the range `[2, 8000]`.
+   - `k` is chosen in the range `[0, min(n/2, 20)]`.
+   - `permutation` is generated using the `generate_permutation(n)` function.
+
+3. **`print_test_case()` Function**:
+   - This function prints the generated test case in the required format.
+
+You can run the script and it will generate a test case for the problem, which you can use to test your solution.

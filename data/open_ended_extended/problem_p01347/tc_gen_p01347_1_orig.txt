@@ -1,0 +1,46 @@
+Certainly! Below is the test case generator for the problem statement "How to Create a Good Game".
+
+```python
+import random
+
+def tcgen():
+    # Generate number of checkpoints N
+    N = random.randint(2, 100)
+    
+    # Generate number of paths M
+    M = random.randint(1, 1000)
+    
+    # Ensure there are no duplicate paths and no paths connecting the same checkpoints
+    paths = set()
+    
+    while len(paths) < M:
+        x = random.randint(0, N - 2)
+        y = random.randint(x + 1, N - 1)
+        s = random.randint(1, 1000)
+        paths.add((x, y, s))
+    
+    paths = list(paths)
+    
+    # Prepare the input format
+    input_data = f"{N} {M}\n"
+    for path in paths:
+        input_data += f"{path[0]} {path[1]} {path[2]}\n"
+    
+    return input_data.strip()
+
+# Example usage:
+print(tcgen())
+```
+
+### Explanation:
+
+1. **N Generation**: The number of checkpoints \(N\) is randomly chosen between 2 and 100 inclusive.
+2. **M Generation**: The number of paths \(M\) is randomly chosen between 1 and 1000 inclusive.
+3. **Path Generation**:
+   - Each path is represented by a tuple \((x, y, s)\).
+   - \(x\) and \(y\) are chosen such that \(0 \leq x < y \leq N - 1\) ensuring that paths are directed and no two checkpoints are the same.
+   - \(s\) is the number of stages in the path, randomly chosen from 1 to 1000.
+   - Paths are stored in a set to avoid duplicate paths.
+4. **Formatting**: The generated paths are converted to the required input format.
+
+The provided code ensures diversity in the test cases by randomly selecting the number of checkpoints, paths, and stages, while adhering to the problem constraints.

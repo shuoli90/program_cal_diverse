@@ -1,0 +1,38 @@
+Sure, here's a test case generator for the given problem statement:
+
+```python
+import random
+
+def tcgen():
+    # Generate values for N and D within the given constraints
+    N = random.randint(1, 5 * 10**5)
+    D = random.randint(1, 10**9)
+    
+    # Generate the list of distances d_i
+    d = [random.randint(1, 10**9) for _ in range(N)]
+    
+    # Generate the number of plans Q
+    Q = random.randint(1, 5 * 10**5)
+    
+    # Generate the list of positions q_i to be rewritten
+    q = [random.randint(1, N) for _ in range(Q)]
+    
+    return N, D, d, Q, q
+
+# Example usage:
+N, D, d, Q, q = tcgen()
+print(N, D)
+print(" ".join(map(str, d)))
+print(Q)
+print(" ".join(map(str, q)))
+```
+
+The `tcgen` function generates random test cases within the provided constraints:
+
+1. `N` - the number of distances input to the vehicle.
+2. `D` - the initial distance between Alice and her destination.
+3. `d` - a list of distances Alice will input to the vehicle.
+4. `Q` - the number of plans the witch has.
+5. `q` - a list of positions in the list `d` that the witch may rewrite.
+
+You can use this function to generate test cases for your problem.

@@ -1,0 +1,6 @@
+def extract_arguments(fh):
+    H, W, K = map(int, fh.readline().strip().split())
+    grid = []
+    for _ in range(H):
+        grid.append(fh.readline().strip())
+    return H, W, K, grid

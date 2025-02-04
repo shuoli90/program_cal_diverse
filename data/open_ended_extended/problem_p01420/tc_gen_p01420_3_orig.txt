@@ -1,0 +1,44 @@
+Certainly! Here is a test case generator for the provided "Marathon Match" problem statement:
+
+```python
+import random
+
+def tcgen():
+    # Generate random values for N, M, and L within the given constraints
+    N = random.randint(1, 100)
+    M = random.randint(0, 50)
+    L = random.randint(1, 100000)
+    
+    # Generate the runners' data
+    runners = []
+    for _ in range(N):
+        P_i = random.randint(0, 100)
+        T_i = random.randint(0, 100)
+        V_i = random.randint(1, 100)  # Assumption: V_i should be at least 1 to avoid division by zero
+        runners.append((P_i, T_i, V_i))
+    
+    # Format the generated test case
+    input_str = f"{N} {M} {L}\n"
+    for runner in runners:
+        input_str += f"{runner[0]} {runner[1]} {runner[2]}\n"
+    
+    return input_str
+
+# Example usage:
+if __name__ == "__main__":
+    test_case = tcgen()
+    print(test_case)
+```
+
+Explanation:
+1. **N** is the number of runners, randomly chosen between 1 and 100.
+2. **M** is the number of resting places, randomly chosen between 0 and 50.
+3. **L** is the distance of the marathon, randomly chosen between 1 and 100,000.
+4. Each runner's data, which includes:
+   - **P_i**: Probability to take a break, randomly chosen between 0 and 100.
+   - **T_i**: Time of resting, randomly chosen between 0 and 100.
+   - **V_i**: Speed, randomly chosen between 1 and 100. (Assumption: Speed should be at least 1 for validity of the problem constraints)
+
+The `tcgen` function generates the input data as a formatted string suitable for feeding into a solution function.
+
+Note: This generator assumes the problem solution function can handle the probabilities and computations appropriately. The actual solution function would need to compute the winning probabilities based on these inputs.

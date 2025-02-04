@@ -1,0 +1,32 @@
+An integer n (1 ≤ n ≤ 1,000), representing some quantity.
+An integer q (1 ≤ q ≤ 200,000), representing some quantity.
+A list of q queries, each query is one of the following:
+- Two integers 0 t x, where 0 ≤ t < n and -1,000,000,000 ≤ x ≤ 1,000,000,000.
+- One integer 1 t, where 0 ≤ t < n.
+- One integer 2 t, where 0 ≤ t < n.
+
+### Example Input:
+
+```
+3 9
+0 0 1
+0 0 2
+0 0 3
+0 2 4
+0 2 5
+1 0
+1 2
+2 0
+1 0
+```
+
+### Function Signature:
+Write a function f(n, q, queries) that takes in the input.
+```python
+def f(n: int, q: int, queries: List[Tuple[int, int, int]]):
+    '''
+    n: an integer
+    q: an integer
+    queries: a list of tuples, each tuple contains either two or three integers
+    '''
+```

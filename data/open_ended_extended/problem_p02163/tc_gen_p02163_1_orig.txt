@@ -1,0 +1,33 @@
+Sure, I can help you create a test case generator for the problem statement "How old are you". Below is a Python function that generates random test cases based on the provided constraints:
+
+```python
+import random
+
+def generate_test_case():
+    # Number of queries N (1 ≤ N ≤ 15)
+    N = random.randint(1, 15)
+    
+    queries = []
+    
+    for _ in range(N):
+        # Type of query q (1 ≤ q ≤ 3)
+        q = random.randint(1, 3)
+        # Value of x (1 ≤ x ≤ 10)
+        x = random.randint(1, 10)
+        queries.append((q, x))
+    
+    # Format the test case as expected
+    test_case = f"{N}\n"
+    for query in queries:
+        test_case += f"{query[0]} {query[1]}\n"
+    
+    return test_case.strip()
+
+# Example usage
+if __name__ == "__main__":
+    print(generate_test_case())
+```
+
+This function generates a random number of queries (`N`) between 1 and 15. Each query consists of a type (`q`), which is randomly chosen between 1 and 3, and a value (`x`), which is randomly chosen between 1 and 10. The function then formats these queries into the appropriate input format suitable for the problem.
+
+You can call the `generate_test_case()` function to generate a random test case and print it out, similar to what is shown in the example usage section.

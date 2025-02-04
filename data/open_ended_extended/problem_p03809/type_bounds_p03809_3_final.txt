@@ -1,0 +1,13 @@
+Types: 
+- N: int
+- A: List[int]
+- a: List[int]
+- b: List[int]
+
+Ranges: 
+- 2 ≤ N ≤ 10^5
+- 0 ≤ A[i] ≤ 10^9
+- 1 ≤ a_i, b_i ≤ N
+
+Addtl Info: 
+- The given graph is a tree.

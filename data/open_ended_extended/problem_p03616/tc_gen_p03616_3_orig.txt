@@ -1,0 +1,45 @@
+Certainly! Here is a test case generator for the given sandglass problem statement:
+
+```python
+import random
+
+def tcgen():
+    X = random.randint(1, 10**9)
+    K = random.randint(1, 10**5)
+    
+    # Generate unique random times for r_1, r_2, ..., r_K in increasing order
+    r = sorted(random.sample(range(1, 10**9 + 1), K))
+    
+    Q = random.randint(1, 10**5)
+    
+    queries = []
+    for _ in range(Q):
+        t_i = random.randint(0, 10**9)
+        a_i = random.randint(0, X)
+        queries.append((t_i, a_i))
+    
+    return X, K, r, Q, queries
+
+def main():
+    X, K, r, Q, queries = tcgen()
+    
+    # Print the generated test case
+    print(X)
+    print(K)
+    print(" ".join(map(str, r)))
+    print(Q)
+    for t_i, a_i in queries:
+        print(f"{t_i} {a_i}")
+
+if __name__ == "__main__":
+    main()
+```
+
+Explanation:
+1. **X**: Total grams of sand, randomly chosen between 1 and \(10^9\).
+2. **K**: Number of times the sandglass will be turned over, randomly chosen between 1 and \(10^5\).
+3. **r**: A list of K distinct integers representing the times when the sandglass is turned. These are sorted to ensure they are in increasing order.
+4. **Q**: Number of queries, randomly chosen between 1 and \(10^5\).
+5. **Queries**: Each query consists of \(t_i\) (time) and \(a_i\) (initial sand in bulb A). The time \(t_i\) is chosen randomly between 0 and \(10^9\), and the sand amount \(a_i\) is chosen randomly between 0 and X.
+
+This test case generator ensures that all constraints are respected and generates valid input for the problem.

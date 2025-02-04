@@ -1,0 +1,11 @@
+
+Factorial
+Write a program which reads an integer n and prints the factorial of n. You can assume that n ≤ 20.
+Input
+An integer n (1 ≤ n ≤ 20) in a line.
+Output
+Print the factorial of n in a line.
+Sample Input
+5
+Output for the Sample Input
+120

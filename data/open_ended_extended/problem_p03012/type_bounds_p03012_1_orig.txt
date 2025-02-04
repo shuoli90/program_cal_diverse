@@ -1,0 +1,3 @@
+Types: N: int, W: List[int]
+Ranges: 2 ≤ N ≤ 100, 1 ≤ W[i] ≤ 100
+Addtl Info: None

@@ -1,0 +1,35 @@
+Sure, I can help you create a test case generator for the given problem statement. Below is the Python code for the test case generator:
+
+```python
+import random
+
+def tcgen():
+    # Define constraints
+    N = random.randint(2, 10**5)
+    L = random.randint(1, 10**9)
+    
+    # Generate the lengths of the ropes
+    a = [random.randint(1, 10**9) for _ in range(N)]
+    
+    return N, L, a
+
+# Example usage
+for _ in range(5):  # Generate 5 test cases
+    N, L, a = tcgen()
+    print(f"Input:")
+    print(f"{N} {L}")
+    print(" ".join(map(str, a)))
+    print()
+```
+
+This code snippet generates random test cases for the problem. Here is a breakdown of the code:
+
+1. **Define Constraints**: The number of ropes \( N \) is randomly chosen between 2 and \( 10^5 \). The minimum length \( L \) is randomly chosen between 1 and \( 10^9 \).
+
+2. **Generate Lengths of the Ropes**: The lengths of the ropes are generated as a list \( a \) with \( N \) elements, each randomly chosen between 1 and \( 10^9 \).
+
+3. **Return the Generated Test Case**: The function returns the values of \( N \), \( L \), and \( a \).
+
+4. **Example Usage**: The example at the end demonstrates how to use the `tcgen` function to generate and print 5 test cases.
+
+You can run this script to generate as many test cases as you need for the problem.

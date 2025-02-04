@@ -1,0 +1,22 @@
+An integer T (1 ≤ T ≤ 100), the number of datasets.
+Each dataset is a string representing an expression.
+A line containing a single '#' indicates the end of the input. The total size of all datasets does not exceed 2,000,000 bytes.
+
+### Example Input:
+
+```
+S< S< 12 >> 2 > >
+123 >> 1 >> 1
+1000000000   >>129
+S<S<S<S<S<2>>>>>
+S  <S< S<2013    >>> 11 >>> 10 >
+#
+```
+
+### Function Signature:
+Write a function f(T, datasets) that takes in the input.
+def f(T: int, datasets: List[str]):
+    '''
+    T: an integer
+    datasets: a list of strings
+    '''

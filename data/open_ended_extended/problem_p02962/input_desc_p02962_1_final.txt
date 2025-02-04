@@ -1,0 +1,20 @@
+Canonicalized Input Description:
+
+Two strings, s and t, consisting of lowercase English letters.
+The length of each string is between 1 and 500,000.
+
+### Example Input:
+
+```
+abcabab
+ab
+```
+
+### Function Signature:
+Write a function f(inputs) that takes in the input.
+```python
+def f(inputs: Tuple[str, str]):
+    '''
+    inputs: a tuple containing two strings
+    '''
+```

@@ -1,0 +1,16 @@
+An integer string S of length between 4 and 12 (inclusive), consisting only of digits.
+
+### Example Input:
+
+```
+123456789
+```
+
+### Function Signature:
+Write a function f(S) that takes in the input.
+```python
+def f(S: str):
+    ''' 
+    S: a string of digits
+    '''
+```

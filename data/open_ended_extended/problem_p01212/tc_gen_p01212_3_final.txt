@@ -1,0 +1,78 @@
+To create a test case generator for the "Mysterious Dungeons" problem, we need to generate random dungeon grids within the specified constraints. Here's a function that generates such test cases:
+
+```python
+import random
+import string
+
+def generate_dungeon(W, H):
+    # Initialize grid with walls
+    dungeon = [['#'] * W for _ in range(H)]
+    
+    # Place the player's starting position and the exit
+    free_cells = [(i, j) for i in range(1, H-1) for j in range(1, W-1)]
+    start_pos = random.choice(free_cells)
+    free_cells.remove(start_pos)
+    exit_pos = random.choice(free_cells)
+    free_cells.remove(exit_pos)
+    
+    dungeon[start_pos[0]][start_pos[1]] = '@'
+    dungeon[exit_pos[0]][exit_pos[1]] = '<'
+    
+    # Place rocks and carpets
+    num_labels = random.randint(1, 8)
+    labels = random.sample(string.ascii_uppercase[:8], num_labels)
+    
+    for label in labels:
+        num_rocks = random.randint(1, 3)
+        rock_positions = random.sample(free_cells, num_rocks)
+        for pos in rock_positions:
+            dungeon[pos[0]][pos[1]] = label
+            free_cells.remove(pos)
+        
+        carpet_pos = random.choice(free_cells)
+        dungeon[carpet_pos[0]][carpet_pos[1]] = label.lower()
+        free_cells.remove(carpet_pos)
+    
+    # Fill remaining free cells with empty spaces
+    for pos in free_cells:
+        dungeon[pos[0]][pos[1]] = '.'
+    
+    return dungeon
+
+def dungeon_to_string(dungeon):
+    return "\n".join("".join(row) for row in dungeon)
+
+def tcgen():
+    test_cases = []
+    
+    # Generate a random number of test cases
+    num_test_cases = random.randint(1, 10)
+    
+    for _ in range(num_test_cases):
+        W = random.randint(3, 30)
+        H = random.randint(3, 30)
+        
+        dungeon = generate_dungeon(W, H)
+        test_case = f"{W} {H}\n{dungeon_to_string(dungeon)}"
+        
+        test_cases.append(test_case)
+    
+    # Add the termination line "0 0"
+    test_cases.append("0 0")
+    
+    return "\n".join(test_cases)
+
+# Example usage
+print(tcgen())
+```
+
+This code defines a function `tcgen` that generates a set of random test cases for the "Mysterious Dungeons" problem. Here's a breakdown of the steps involved:
+
+1. **Grid Initialization**: The dungeon is initialized as a grid filled with walls (`#`).
+2. **Start and Exit Positions**: Random positions for the start (`@`) and exit (`<`) are chosen from the list of available cells.
+3. **Rocks and Carpets**: A random number of rock and carpet labels (up to 8) are chosen. Each label has a random number (1-3) of rocks placed in the grid, and one carpet associated with it.
+4. **Remaining Cells**: All remaining free cells are filled with empty spaces (`.`).
+5. **Test Case Generation**: A random number of test cases (up to 10) are generated, each formatted as specified in the problem statement.
+6. **Termination Line**: The line "0 0" is appended to indicate the end of the input.
+
+This generator ensures that the generated dungeons adhere to the constraints and format specified in the problem statement.

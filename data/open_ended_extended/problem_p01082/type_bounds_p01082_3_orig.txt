@@ -1,0 +1,5 @@
+Types: n: int, m: int, k: int, xi: List[int], yi: List[int]
+
+Ranges: 1 ≤ n, m ≤ 5 × 10^4, 1 ≤ k ≤ min(10^5, n × m), 0 ≤ xi ≤ n−1, 0 ≤ yi ≤ m−1
+
+Addtl Info: The given coordinates (xi, yi) are all different.

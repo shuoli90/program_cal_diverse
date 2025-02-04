@@ -1,0 +1,170 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p02621 - Generation 2</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p02621 - Generation 2</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>
+Score : 100 points
+Problem StatementGiven an integer a as input, print the value a + a^2 + a^3.
+Constraints
+1 \leq a \leq 10
+a is an integer.
+InputInput is given from Standard Input in the following format:
+a
+OutputPrint the value a + a^2 + a^3 as an integer.
+Sample Input 12
+Sample Output 114
+When a = 2, we have a + a^2 + a^3 = 2 + 2^2 + 2^3 = 2 + 4 + 8 = 14.
+Print the answer as an input. Outputs such as 14.0 will be judged as incorrect.
+Sample Input 210
+Sample Output 21110
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>Canonicalized Input Description:
+
+An integer X (1 ≤ X ≤ 10), representing some quantity or size.
+
+### Example Input:
+
+```
+2
+```
+
+### Function Signature:
+Write a function f(X) that takes in the input.
+def f(X: int):
+    '''
+    X: an integer
+    '''</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Sure! Here's a test case generator for the given problem statement:
+
+### Problem Statement: Compute \( a + a^2 + a^3 \)
+
+**Description**
+
+Given an integer \(a\), compute the value \(a + a^2 + a^3\).
+
+**Input**
+
+An integer \(a\) (1 ≤ \(a\) ≤ 10).
+
+**Output**
+
+Print the value of \(a + a^2 + a^3\) as an integer.
+
+**Examples**
+
+_Input_
+
+```
+2
+```
+
+_Output_
+
+```
+14
+```
+
+_Input_
+
+```
+10
+```
+
+_Output_
+
+```
+1110
+```
+
+**Explanation**
+
+For the first example, when \(a = 2\):
+\[ 2 + 2^2 + 2^3 = 2 + 4 + 8 = 14 \]
+
+For the second example, when \(a = 10\):
+\[ 10 + 10^2 + 10^3 = 10 + 100 + 1000 = 1110 \]
+
+### Test Case Generator
+
+Here is the Python function to generate test cases:
+
+```python
+import random
+
+def tcgen():
+    a = random.randint(1, 10)
+    return a
+
+# Example usage
+if __name__ == "__main__":
+    test_case = tcgen()
+    print(test_case)
+```
+
+This function `tcgen` generates a random integer \(a\) within the given constraints (1 ≤ \(a\) ≤ 10). You can use this function to create multiple test cases for the problem.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    a = int(fh.readline().strip())
+    return a</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

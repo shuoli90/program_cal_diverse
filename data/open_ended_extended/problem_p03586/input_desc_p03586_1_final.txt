@@ -1,0 +1,25 @@
+Canonicalized Input Description:
+
+An integer Q (1 ≤ Q ≤ 100), representing some quantity or size.
+A list of Q tuples, each containing two integers (A, M):
+- 0 ≤ A ≤ 10^9
+- 1 ≤ M ≤ 10^9
+
+### Example Input:
+
+```
+4
+2 4
+3 8
+9 6
+10 7
+```
+
+### Function Signature:
+Write a function f(inputs) that takes in the input.
+```python
+def f(inputs: List[Tuple[int, int]]):
+    ''' 
+    inputs: a list of tuples, where each tuple contains two integers
+    '''
+```

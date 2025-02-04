@@ -1,0 +1,42 @@
+Sure! To create a test case generator for the "Number of Days" problem, we need to generate pairs of dates that fit within the problem constraints. Here's a Python function that generates such test cases:
+
+```python
+import random
+from datetime import datetime, timedelta
+
+def random_date(start_year=1, end_year=9999):
+    year = random.randint(start_year, end_year)
+    month = random.randint(1, 12)
+    day = random.randint(1, 28)  # To avoid complexities with month lengths, we'll just use 28 days
+    return year, month, day
+
+def tcgen():
+    test_cases = []
+    for _ in range(random.randint(1, 50)):
+        y1, m1, d1 = random_date(1, 9999)
+        
+        start_date = datetime(y1, m1, d1)
+        delta_days = random.randint(1, 365 * 2000)  # Generate a random number of days up to 2000 years
+        end_date = start_date + timedelta(days=delta_days)
+        
+        y2, m2, d2 = end_date.year, end_date.month, end_date.day
+        
+        test_cases.append((y1, m1, d1, y2, m2, d2))
+        
+    # Adding the end marker
+    test_cases.append((-1, -1, -1, -1, -1, -1))
+    
+    return test_cases
+
+# Example usage:
+if __name__ == "__main__":
+    cases = tcgen()
+    for case in cases:
+        print(" ".join(map(str, case)))
+```
+
+This function `tcgen` generates up to 50 test cases where each test case is a pair of dates. The start date is randomly selected within a reasonable range of years, and the end date is calculated by adding a random number of days to the start date. This ensures that the end date is always after the start date and respects the constraints regarding date boundaries and leap years.
+
+The output of the generator function is a list of tuples, where each tuple represents a pair of dates. The generator also appends a tuple of `(-1, -1, -1, -1, -1, -1)` to indicate the end of input as specified in the problem statement.
+
+You can run the example usage to see the generated test cases. Adjustments can be made to parameters like the maximum range of years or the number of days between dates if needed.

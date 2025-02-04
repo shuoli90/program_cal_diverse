@@ -1,0 +1,26 @@
+Sure! Below is the test case generator for the given problem statement "Factorial":
+
+```python
+import random
+import math
+
+def factorial_tcgen():
+    # Generate a random integer n within the given constraints
+    n = random.randint(1, 20)
+    
+    # Compute the expected output for the given n
+    factorial_result = math.factorial(n)
+    
+    # Return the input and the expected output
+    return n, factorial_result
+
+# Example usage of the test case generator
+n, expected_output = factorial_tcgen()
+print("Generated Test Case:")
+print("Input:")
+print(n)
+print("Expected Output:")
+print(expected_output)
+```
+
+The `factorial_tcgen` function generates a random integer \( n \) within the range \([1, 20]\) and calculates the factorial for that integer. The function returns both the input and the expected output, which can be used for testing the implementation of the factorial function. The script also has an example usage that demonstrates how to generate and print a test case.

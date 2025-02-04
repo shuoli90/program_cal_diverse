@@ -1,0 +1,33 @@
+Sure, here's a Python test case generator for the given problem statement "The Castle":
+
+```python
+import random
+
+def tcgen():
+    # Generate m and n
+    m = random.randint(1, 16)
+    n = random.randint(1, 16)
+    
+    # Generate the probabilities
+    probabilities = [[round(random.uniform(0, 1), 3) for _ in range(n)] for _ in range(m)]
+    
+    return m, n, probabilities
+
+# Function to print the generated test case in the appropriate format
+def print_test_case(m, n, probabilities):
+    print(m, n)
+    for row in probabilities:
+        print(" ".join(f"{p:.3f}" for p in row))
+
+# Generate a test case
+m, n, probabilities = tcgen()
+print_test_case(m, n, probabilities)
+```
+
+This script generates random test cases for the problem "The Castle". Here's a breakdown of what it does:
+
+1. It first generates random values for `m` and `n` within the given constraints (1 ≤ m, n ≤ 16).
+2. It then creates a list of lists to store the probabilities that each cat (up to `m` cats) has of defeating each enemy in the rooms (up to `n` rooms). Probabilities are randomly chosen real numbers between 0 and 1, rounded to 3 decimal places.
+3. The `print_test_case` function formats the generated test case appropriately for input to the problem.
+
+To use this test case generator, you can simply call the `tcgen` function, and it will return `m`, `n`, and the `probabilities` list. You can then use the `print_test_case` function to print these values in the desired format.

@@ -1,0 +1,25 @@
+An integer N (1 ≤ N ≤ 5*10^5), representing some quantity or size.
+An integer D (1 ≤ D ≤ 10^9), representing some quantity or size.
+A list of integers d of size N, where each integer is between 1 and 10^9.
+An integer Q (1 ≤ Q ≤ 5*10^5), representing some quantity or size.
+A list of integers q of size Q, where each integer is between 1 and N.
+
+### Example Input:
+
+```
+4 10
+3 4 3 3
+2
+4 3
+```
+
+### Function Signature:
+Write a function f(N, D, d, Q, q) that takes in the input.
+def f(N: int, D: int, d: List[int], Q: int, q: List[int]):
+    '''
+    N: an integer
+    D: an integer
+    d: a list of integers
+    Q: an integer
+    q: a list of integers
+    '''

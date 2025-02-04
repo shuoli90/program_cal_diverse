@@ -1,0 +1,20 @@
+Canonicalized Input Description:
+
+Three integers \(a\), \(b\), and \(c\) (1 ≤ \(a, b, c\) ≤ 5000) where \(a \neq b\), \(b \neq c\), \(c \neq a\).
+
+### Example Input:
+
+```
+1000 900 850
+```
+
+### Function Signature:
+Write a function `f(a, b, c)` that takes in the input.
+```python
+def f(a: int, b: int, c: int):
+    ''' 
+    a: an integer
+    b: an integer
+    c: an integer
+    '''
+```

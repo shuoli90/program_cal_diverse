@@ -1,0 +1,3 @@
+Types: N: int, A: List[int], U: List[int], V: List[int]
+Ranges: 1 ≤ N ≤ 5,000, 1 ≤ |A[i]| ≤ 10^9, 1 ≤ U[i], V[i] ≤ N, U[i] ≠ V[i]
+Addtl Info: None

@@ -1,0 +1,3 @@
+Types: n: int, w: int, vi: List[int]  
+Ranges: 1 ≤ n ≤ 100, 10 ≤ w ≤ 50, 0 ≤ vi ≤ 100  
+Addtl Info: Input ends with a line containing "0 0"  

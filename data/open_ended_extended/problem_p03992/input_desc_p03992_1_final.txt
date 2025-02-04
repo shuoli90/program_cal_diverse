@@ -1,0 +1,16 @@
+Canonicalized Input Description:
+
+A string s with exactly 12 uppercase English letters.
+
+### Example Input:
+
+```
+CODEFESTIVAL
+```
+
+### Function Signature:
+Write a function f(s) that takes in the input.
+def f(s: str):
+    '''
+    s: a string
+    '''

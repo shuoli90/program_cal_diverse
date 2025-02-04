@@ -1,0 +1,227 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p01881 - Generation 2</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p01881 - Generation 2</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>
+Help the Princess!
+The people of a certain kingdom make a revolution against the bad government of the princess. The revolutionary army invaded the royal palace in which the princess lives. The soldiers of the army are exploring the palace to catch the princess. Your job is writing a program to decide that the princess can escape from the royal palace or not.
+ For simplicity, the ground of the palace is a rectangle divided into a grid. There are two kinds of cells in the grid: one is a cell that soldiers and the princess can enter, the other is a cell that soldiers or the princess cannot enter. We call the former an empty cell, the latter a wall. The princess and soldiers are in different empty cells at the beginning. There is only one escape hatch in the grid. If the princess arrives the hatch, then the princess can escape from the palace. There are more than or equal to zero soldiers in the palace.
+The princess and all soldiers take an action at the same time in each unit time. In other words, the princess and soldiers must decide their action without knowing a next action of the other people. In each unit time, the princess and soldiers can move to a horizontally or vertically adjacent cell, or stay at the current cell. Furthermore the princess and soldiers cannot move out of the ground of the palace. If the princess and one or more soldiers exist in the same cell after their move, then the princess will be caught. It is guaranteed that the princess can reach the escape hatch via only empty cells if all soldiers are removed from the palace.
+If there is a route for the princess such that soldiers cannot catch the princess even if soldiers make any moves, then the princess can escape the soldiers. Note that if the princess and a soldier arrive the escape hatch at the same time, the princess will be caught. Can the princess escape from the palace?
+Input
+Each dataset is formatted as follows.
+$H$ $W$
+$map_1$
+$map_2$
+...
+$map_H$
+The first line of a dataset contains two positive integers $H$ and $W$ delimited by a space, where $H$ is the height of the grid and $W$ is the width of the grid ($2 \leq H, W \leq 200$).
+The $i$-th line of the subsequent $H$ lines gives a string $map_i$, which represents situation in the ground of palace.
+$map_i$ is a string of length $W$, and the $j$-th character of $map_i$ represents the state of the cell of the $i$-th row and the $j$-th column.
+'@', '\$', '%', '.', and '#' represent the princess, a soldier, the escape hatch, an empty cell, and a wall, respectively. It is guaranteed that there exists only one '@', only one '%', and more than or equal to zero '\$' in the grid.
+Output
+Output a line containing a word "Yes", if the princess can escape from the palace. Otherwise, output "No".
+Sample Input 1
+2 4
+%.@\$
+..\$\$
+Output for the Sample Input 1
+Yes
+Sample Input 2
+3 4
+.%..
+.##.
+.@\$.
+Output for the Sample Input 2
+Yes
+Sample Input 3
+2 3
+%\$@
+###
+Output for the Sample Input 3
+No
+Sample Input 4
+2 3
+@#\$
+.%.
+Output for the Sample Input 4
+No
+Sample Input 5
+2 2
+@%
+..
+Output for the Sample Input 5
+Yes
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An integer H (2 ≤ H ≤ 200), representing some quantity or size.
+An integer W (2 ≤ W ≤ 200), representing some quantity or size.
+H lines of strings of length W, where each character in the string is one of {'@', '$', '%', '.', '#'}. 
+
+### Example Input:
+
+```
+2 4
+%.@$
+..$$
+```
+
+### Function Signature:
+Write a function f(H, W, grid) that takes in the input.
+def f(H: int, W: int, grid: List[str]):
+    '''
+    H: an integer
+    W: an integer
+    grid: a list of strings
+    '''</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Sure, I can help you with creating a test case generator for the problem "Help the Princess!". Here's a Python function that generates random test cases for this problem:
+
+```python
+import random
+
+def generate_grid(H, W):
+    grid = [['#' for _ in range(W)] for _ in range(H)]
+
+    # Place the princess (@)
+    while True:
+        pr, pc = random.randint(0, H-1), random.randint(0, W-1)
+        if grid[pr][pc] == '#':
+            grid[pr][pc] = '@'
+            break
+
+    # Place the escape hatch (%)
+    while True:
+        er, ec = random.randint(0, H-1), random.randint(0, W-1)
+        if grid[er][ec] == '#':
+            grid[er][ec] = '%'
+            break
+
+    # Place soldiers ($)
+    num_soldiers = random.randint(0, H * W // 4)
+    for _ in range(num_soldiers):
+        while True:
+            sr, sc = random.randint(0, H-1), random.randint(0, W-1)
+            if grid[sr][sc] == '#':
+                grid[sr][sc] = '$'
+                break
+
+    # Make some cells empty (.)
+    num_empty_cells = random.randint(H * W // 4, H * W // 2)
+    for _ in range(num_empty_cells):
+        while True:
+            er, ec = random.randint(0, H-1), random.randint(0, W-1)
+            if grid[er][ec] == '#':
+                grid[er][ec] = '.'
+                break
+
+    # Ensure there's a path from the princess to the escape hatch
+    grid[pr][pc] = '.'
+    grid[er][ec] = '.'
+    if pr < er:
+        for r in range(pr, er + 1):
+            grid[r][pc] = '.'
+    else:
+        for r in range(er, pr + 1):
+            grid[r][pc] = '.'
+    if pc < ec:
+        for c in range(pc, ec + 1):
+            grid[er][c] = '.'
+    else:
+        for c in range(ec, pc + 1):
+            grid[er][c] = '.'
+    grid[pr][pc] = '@'
+    grid[er][ec] = '%'
+
+    return grid
+
+def tcgen():
+    H = random.randint(2, 200)
+    W = random.randint(2, 200)
+
+    grid = generate_grid(H, W)
+
+    # Convert grid to list of strings
+    grid_str = [''.join(row) for row in grid]
+
+    return H, W, grid_str
+
+# Test the generator
+if __name__ == "__main__":
+    H, W, grid = tcgen()
+    print(H, W)
+    for row in grid:
+        print(row)
+```
+
+This function generates a random test case for the problem "Help the Princess!". It ensures that:
+1. The grid dimensions \(H\) and \(W\) are between 2 and 200.
+2. The grid contains the princess (`@`), the escape hatch (`%`), and zero or more soldiers (`$`).
+3. There is a guaranteed path from the princess to the escape hatch without soldiers.
+
+You can run this script to generate random test cases for your problem.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    H, W = map(int, fh.readline().strip().split())
+    grid = [fh.readline().strip() for _ in range(H)]
+    return H, W, grid</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

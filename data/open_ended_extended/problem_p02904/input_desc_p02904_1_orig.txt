@@ -1,0 +1,20 @@
+An integer N (2 ≤ N ≤ 200000), representing some quantity or size.
+An integer K (2 ≤ K ≤ N), representing another quantity or size.
+A list of integers P of size N, where each integer is between 0 and N-1, and all integers are unique.
+
+### Example Input:
+
+```
+5
+3
+0 2 1 4 3
+```
+
+### Function Signature:
+Write a function f(N, K, P) that takes in the input.
+def f(N: int, K: int, P: List[int]):
+    ''' 
+    N: an integer 
+    K: an integer 
+    P: a list of integers 
+    '''

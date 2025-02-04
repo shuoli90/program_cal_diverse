@@ -1,0 +1,21 @@
+def extract_arguments(fh):
+    data_sets = []
+    while True:
+        n = int(fh.readline().strip())
+        if n == 0:
+            break
+        teams = []
+        for _ in range(n):
+            line = fh.readline().strip().split()
+            name = line[0]
+            w, l, d = map(int, line[1:])
+            teams.append((name, w, l, d))
+        data_sets.append((n, teams))
+    return data_sets
+
+# if __name__ == "__main__":
+#     input_path = sys.argv[1]
+#     with open(input_path, 'r') as fh: 
+#     data_sets = extract_arguments(fh)
+#     for data_set in data_sets:
+#         f(data_set)

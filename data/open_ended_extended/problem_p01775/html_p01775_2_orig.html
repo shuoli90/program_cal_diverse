@@ -1,0 +1,239 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p01775 - Generation 2</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p01775 - Generation 2</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>D: Rescue a Postal Worker
+Story
+You have achieved your long-time dream of getting a job at a post office this spring. You have been assigned a delivery area, and it is your first job with high spirits. However, because you were too excited, you did not notice that there was a hole in the bag containing the mail and dropped all the mail that was in it. However, because you had GPS on all the mail, which was well prepared, you can know where the mail has fallen.
+You want to finish the delivery as quickly as possible because you may exceed the scheduled delivery time by picking up the mail again. Find the shortest time to collect all the dropped mail and deliver it to its respective destination.
+Problem
+Consider an undirected graph for the delivery area you are in charge of. When considering an undirected graph consisting of n vertices, each vertex is assigned a number from 1 to n. When the number of mail dropped, the vertex that it fell on, and the destination vertex of each mail are given, find the shortest time to collect all the mail and deliver it to its respective destination. At this time, it is acceptable that other dropped mail exists that has not been picked up when delivering a certain mail to its destination. It is also acceptable to be at any vertex when the delivery is completed.
+Here, there is at most one piece of mail or delivery destination on each vertex, and there is no mail or delivery destination at the starting vertex. The undirected graph given is a simple graph, that is, a graph without self-loops or multiple edges.
+Input Format
+The format of the input data is as follows:
+n m k p
+x_1 y_1 w_1
+...
+x_m y_m w_m
+s_1 t_1
+...
+s_k t_k
+On the first line, the number of vertices in the undirected graph n (3 ≤ n ≤ 1,000), the number of edges m (1 ≤ m ≤ 2,000), the number of dropped mail k (1 ≤ k ≤ 6), and the starting vertex p (1 ≤ p ≤ n) are given. The input items in the line are given separated by one space.
+In the next m lines, the information of the edges in the graph is given. The i-th line gives the two endpoints x_i (1 ≤ x_i ≤ n) and y_i (1 ≤ y_i ≤ n) of the i-th edge and its weight w_i (1 ≤ w_i ≤ 1,000).
+On the next k lines, the vertex where the dropped mail is located, s_j (1 ≤ s_j ≤ n), and the destination vertex of the mail t_j (1 ≤ t_j ≤ n) are given.
+Here, the given graph has no self-loops or multiple edges, and there are no mail or delivery destinations at the starting vertex or any vertex where mail has fallen.
+Output Format
+Output the shortest time to deliver all the mail to its respective destination in one line, starting from vertex p. If it is not possible to deliver, output "Cannot deliver".
+Sample Input 1
+5 6 1 1
+1 3 5
+1 2 2
+2 3 1
+3 5 4
+3 4 2
+4 5 3
+3 5
+Sample Output 1
+7
+Sample Input 2
+5 6 1 1
+1 3 5
+1 2 2
+2 3 1
+3 5 4
+3 4 2
+4 5 3
+5 3
+Sample Output 2
+11
+Sample Input 3
+3 1 1 1
+1 2 1
+2 3
+Sample Output 3
+Cannot deliver
+Sample Input 4
+5 8 2 3
+1 2 1
+2 3 4
+3 4 5
+4 5 3
+5 1 4
+1 3 3
+2 5 1
+5 3 4
+1 2
+5 4
+Sample Output 3
+8</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An integer n (3 ≤ n ≤ 1,000), an integer m (1 ≤ m ≤ 2,000), an integer k (1 ≤ k ≤ 6), and an integer p (1 ≤ p ≤ n).
+A list of m tuples, where each tuple contains two integers x_i and y_i (1 ≤ x_i, y_i ≤ n) and an integer w_i (1 ≤ w_i ≤ 1,000).
+A list of k tuples, where each tuple contains two integers s_j and t_j (1 ≤ s_j, t_j ≤ n).
+
+### Example Input:
+
+```
+5 6 1 1
+1 3 5
+1 2 2
+2 3 1
+3 5 4
+3 4 2
+4 5 3
+3 5
+```
+
+### Function Signature:
+def f(n: int, m: int, k: int, p: int, edges: List[Tuple[int, int, int]], mails: List[Tuple[int, int]]):
+    '''
+    n: an integer
+    m: an integer
+    k: an integer
+    p: an integer
+    edges: a list of tuples of integers
+    mails: a list of tuples of integers
+    '''</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Sure, I can help you create a test case generator for the problem "D: Rescue a Postal Worker". The test case generator will create random inputs that conform to the problem's constraints. Here's the Python code for it:
+
+```python
+import random
+
+def generate_test_case():
+    # Number of vertices
+    n = random.randint(3, 1000)
+    # Number of edges
+    m = random.randint(1, min(2000, n*(n-1)//2))
+    # Number of dropped mails
+    k = random.randint(1, 6)
+    # Starting vertex
+    p = random.randint(1, n)
+    
+    edges = set()
+    for _ in range(m):
+        while True:
+            x = random.randint(1, n)
+            y = random.randint(1, n)
+            if x != y and (x, y) not in edges and (y, x) not in edges:
+                w = random.randint(1, 1000)
+                edges.add((x, y, w))
+                break
+    
+    mail_positions = set()
+    while len(mail_positions) < k:
+        s = random.randint(1, n)
+        t = random.randint(1, n)
+        if s != t and s != p and (s, t) not in mail_positions:
+            mail_positions.add((s, t))
+    
+    test_case = f"{n} {m} {k} {p}\n"
+    for x, y, w in edges:
+        test_case += f"{x} {y} {w}\n"
+    for s, t in mail_positions:
+        test_case += f"{s} {t}\n"
+    
+    return test_case
+
+# Example usage
+print(generate_test_case())
+```
+
+### Explanation
+
+1. **Vertices and Edges**:
+    - `n`: The number of vertices, chosen randomly between 3 and 1000.
+    - `m`: The number of edges, chosen randomly between 1 and the minimum of 2000 or the maximum number of possible edges for `n`.
+
+2. **Starting Vertex and Mail**:
+    - `p`: The starting vertex, chosen randomly between 1 and `n`.
+    - `k`: The number of dropped mails, chosen randomly between 1 and 6.
+
+3. **Edges Generation**:
+    - Each edge is chosen randomly, ensuring no self-loops and no multiple edges between the same vertices. The weight of each edge is between 1 and 1000.
+
+4. **Mail Drops**:
+    - The positions of the dropped mails and their destinations are chosen randomly, ensuring that no mail drops at the starting vertex and each mail has a unique source-destination pair.
+
+5. **Test Case Construction**:
+    - The test case is formatted as the problem specifies, combining the vertices, edges, and mail drops into a single string.
+
+This function will generate a random test case whenever it is called. You can adjust the random seed or modify the constraints to generate specific types of test cases if needed.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    # Read the first line to get values of n, m, k, p
+    n, m, k, p = map(int, fh.readline().strip().split())
+    
+    # Read the next m lines to get edges information
+    edges = []
+    for _ in range(m):
+        x, y, w = map(int, fh.readline().strip().split())
+        edges.append((x, y, w))
+    
+    # Read the next k lines to get the mail drop and destination information
+    mail_info = []
+    for _ in range(k):
+        s, t = map(int, fh.readline().strip().split())
+        mail_info.append((s, t))
+    
+    return n, m, k, p, edges, mail_info</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

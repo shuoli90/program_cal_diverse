@@ -1,0 +1,55 @@
+Sure, I can help you write a test case generator for the given problem statement. Below is the Python code for the test case generator:
+
+```python
+import random
+
+def tcgen():
+    H = random.randint(1, 10)
+    W = random.randint(1, 10)
+    
+    grid = []
+    for _ in range(H):
+        row = ''.join(random.choice(['.', '#']) for _ in range(W))
+        grid.append(row)
+    
+    return H, W, grid
+
+# Example of generating a test case
+H, W, grid = tcgen()
+print(H)
+print(W)
+for row in grid:
+    print(row)
+```
+
+This function generates random test cases based on the constraints provided in the problem statement. Here's how it works:
+
+1. It randomly selects the number of rows \( H \) and columns \( W \) within the range [1, 10].
+2. For each row, it creates a string of length \( W \), with each character being either '.' or '#'.
+3. It collects these rows into a grid and returns the grid along with values for \( H \) and \( W \).
+
+You can run this function multiple times to generate different test cases for your problem. Here's a quick run example:
+
+```python
+# Example of generating a test case
+H, W, grid = tcgen()
+
+print(H)
+print(W)
+for row in grid:
+    print(row)
+```
+
+This will output something like:
+
+```
+5
+4
+.#..
+#.#.
+.#.#
+...#
+##.#
+```
+
+You can use this generator to create various test cases to thoroughly test your solution.

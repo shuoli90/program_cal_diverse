@@ -1,0 +1,60 @@
+Problem B: How old are you
+Problem
+A suspicious magician seems to be performing magic.
+"Now, please think of your favorite integer."
+You decided to think of your age in your head.
+The magician throws a query $N$ times.
+Each query is one of the following.
+"Please multiply the number you are thinking of now by $x$."
+"Please add $x$ to the number you are thinking of now."
+"Please subtract $x$ from the number you are thinking of now."
+For each query, process the query for the number you are thinking of, and think of the resulting value in your head.
+"Now, let me guess the number you first thought of." 
+The magician is trying to say something.
+However, he seems to have forgotten what to say.
+The suspicious magician is staring at you with sweat.
+There's no way around it, so let's tell him what to say.
+The magician was planning to say the following at the end.
+"If you add $A$ to the integer you are thinking of now, and divide it by $B$, it will be the integer you first thought of."
+By constraint, there is only one set of integers $(A,B)$ that satisfies the above condition, regardless of the number of integers thought of.
+Find the set of integers $(A,B)$.
+However, $B$ must not be $0$.
+Input
+The input is given in the following format.
+$N$
+$q_1$ $x_1$
+$\vdots$
+$q_n$ $x_n$
+The number of queries $N$ to be performed is given on the first line.
+From the second line, information about the query is given for each $N$ lines.
+$q$ represents the type of query and corresponds to the numbers in the list in the problem statement.
+Constraints
+The input satisfies the following conditions.
+$1 \leq N \leq 15 $
+$1 \leq q \leq 3 $
+$1 \leq x \leq 10 $
+All input values are integers.
+Output
+Output the integers $A$ and $B$ that satisfy the condition on a single line separated by a space.
+Sample Input 1
+3
+1 2
+2 10
+3 8
+Sample Output 1
+-2 2
+Sample Input 2
+10
+1 10
+1 10
+1 10
+1 10
+1 10
+1 10
+1 10
+1 10
+1 10
+1 10
+Sample Output 2
+0 10000000000
+Note that the answer may not fit in a 32-bit integer type.

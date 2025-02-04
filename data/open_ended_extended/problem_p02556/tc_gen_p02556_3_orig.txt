@@ -1,0 +1,26 @@
+Here's the test case generator for the provided problem statement:
+
+```python
+import random
+
+def tcgen():
+    N = random.randint(2, 2 * 10**5)
+    
+    points = [(random.randint(1, 10**9), random.randint(1, 10**9)) for _ in range(N)]
+    
+    return N, points
+
+# Example of generating and printing a test case
+def print_test_case():
+    N, points = tcgen()
+    print(N)
+    for x, y in points:
+        print(x, y)
+
+# Generate and print a test case
+print_test_case()
+```
+
+This function `tcgen` generates a random test case for the problem. It selects a random number \( N \) of points within the given constraints, then generates \( N \) points with coordinates within the range [1, \( 10^9 \)]. The `print_test_case` function prints the generated test case in the required format.
+
+To use this generator, simply call `print_test_case`, and it will print a randomly generated test case to the standard output. You can modify this function to store test cases in a file or use them in any other way as per your needs.

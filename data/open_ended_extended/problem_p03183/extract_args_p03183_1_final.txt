@@ -1,0 +1,7 @@
+def extract_arguments(fh):
+    N = int(fh.readline().strip())
+    blocks = []
+    for _ in range(N):
+        w, s, v = map(int, fh.readline().strip().split())
+        blocks.append((w, s, v))
+    return N, blocks

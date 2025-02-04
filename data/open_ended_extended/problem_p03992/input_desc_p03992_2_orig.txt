@@ -1,0 +1,15 @@
+An uppercase string \(s\) of length 12.
+
+### Example Input:
+```
+CODEFESTIVAL
+```
+
+### Function Signature:
+Write a function f(s) that takes in the input.
+```python
+def f(s: str):
+    '''
+    s: an uppercase string of length 12
+    '''
+```

@@ -1,0 +1,3 @@
+Types: N: int, s_i: str, a_i: int, M: int, t_j: str, b_j: int  
+Ranges: 1 ≤ N ≤ 50,000, 1 ≤ |s_i| ≤ 20, 0 ≤ a_i ≤ 10^5, 1 ≤ M ≤ 20,000, 1 ≤ |t_j| ≤ 20, 0 ≤ b_j ≤ 10^5  
+Addtl Info: Each character of \(s_i\) and \(t_j\) is an English letter and they are case-sensitive. No two members have the same name at the same time, but a member who has left may rejoin.

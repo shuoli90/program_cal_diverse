@@ -1,0 +1,57 @@
+Certainly! Here is a test case generator for the given problem statement:
+
+```python
+import random
+
+def generate_number(L):
+    digits = list("0123456789")
+    random.shuffle(digits)
+    return "".join(digits[:L])
+
+def calculate_hits_and_blows(number, guess):
+    hits = sum(1 for n, g in zip(number, guess) if n == g)
+    blows = sum(1 for g in guess if g in number) - hits
+    return hits, blows
+
+def generate_hint_set(L, max_hints=10):
+    number = generate_number(L)
+    hint_set = []
+    num_hints = random.randint(1, max_hints)
+    for _ in range(num_hints):
+        guess = generate_number(L)
+        hits, blows = calculate_hits_and_blows(number, guess)
+        hint_set.append((guess, hits, blows))
+    return number, hint_set
+
+def tcgen(num_hint_sets=5):
+    test_cases = []
+    for _ in range(num_hint_sets):
+        L = random.randint(4, 10)
+        number, hint_set = generate_hint_set(L)
+        test_cases.append((L, hint_set))
+    
+    return test_cases
+
+def format_test_cases(test_cases):
+    formatted = ""
+    for L, hint_set in test_cases:
+        formatted += f"{L} {len(hint_set)}\n"
+        for guess, hits, blows in hint_set:
+            formatted += f"{guess} {hits} {blows}\n"
+    formatted += "0 0\n"
+    return formatted
+
+# Generate test cases
+test_cases = tcgen()
+formatted_test_cases = format_test_cases(test_cases)
+print(formatted_test_cases)
+```
+
+### Explanation:
+1. **generate_number**: This function generates a random number of length `L` with unique digits.
+2. **calculate_hits_and_blows**: This function calculates the number of hits and blows between the actual number and a guessed number.
+3. **generate_hint_set**: This function generates a hint set for a number of length `L`. It randomly generates guesses and calculates the corresponding hits and blows.
+4. **tcgen**: This function generates multiple hint sets for the test cases.
+5. **format_test_cases**: This function formats the test cases as per the required input format, including the termination line "0 0".
+
+You can use this script to generate sample test cases for the problem statement and get them printed in the required format.

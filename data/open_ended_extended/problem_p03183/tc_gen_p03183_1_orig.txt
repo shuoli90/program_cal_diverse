@@ -1,0 +1,42 @@
+Sure! Here's a test case generator for the given problem statement:
+
+```python
+import random
+
+def tcgen():
+    # Number of blocks
+    N = random.randint(1, 10**3)
+    
+    # Generate each block's weight, solidness, and value
+    blocks = []
+    for _ in range(N):
+        w = random.randint(1, 10**4)
+        s = random.randint(1, 10**4)
+        v = random.randint(1, 10**9)
+        blocks.append((w, s, v))
+    
+    return N, blocks
+
+def format_test_case(N, blocks):
+    # Format the test case for the output
+    output = f"{N}\n"
+    for w, s, v in blocks:
+        output += f"{w} {s} {v}\n"
+    return output
+
+# Example of generating and printing a test case
+if __name__ == "__main__":
+    N, blocks = tcgen()
+    test_case = format_test_case(N, blocks)
+    print(test_case)
+```
+
+### Explanation:
+1. **Number of Blocks (N)**: We randomly generate `N` in the range [1, 1000].
+2. **Block Properties**: For each block, generate random values for weight (`w`), solidness (`s`), and value (`v`):
+  - `w` is in the range [1, 10000].
+  - `s` is in the same range [1, 10000].
+  - `v` is in the range [1, 10^9].
+3. **Formatting**: The `format_test_case` function converts the generated test case into the required input format.
+
+You can run this script to generate random test cases in the format specified by the problem statement.

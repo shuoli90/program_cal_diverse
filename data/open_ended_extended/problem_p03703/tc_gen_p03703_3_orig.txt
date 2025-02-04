@@ -1,0 +1,42 @@
+Sure! Below is a test case generator for the given problem statement:
+
+```python
+import random
+
+def generate_test_case():
+    # Constraints
+    N = random.randint(1, 2 * 10**5)
+    K = random.randint(1, 10**9)
+    a = [random.randint(1, 10**9) for _ in range(N)]
+    
+    return N, K, a
+
+def format_test_case(N, K, a):
+    # Formatting the generated test case to match the input format
+    test_case = f"{N} {K}\n" + "\n".join(map(str, a))
+    return test_case
+
+# Example of generating and formatting a test case
+N, K, a = generate_test_case()
+formatted_test_case = format_test_case(N, K, a)
+print(formatted_test_case)
+```
+
+### Explanation:
+
+1. **Constraints Handling**:
+   - `N` is randomly selected between 1 and 200,000.
+   - `K` is randomly selected between 1 and 1,000,000,000.
+   - Array `a` of size `N` is generated with each element being a random integer between 1 and 1,000,000,000.
+
+2. **Formatting**:
+   - The function `format_test_case` formats the generated test case in the required format, which is:
+     ```
+     N K
+     a_1
+     a_2
+     ...
+     a_N
+     ```
+
+You can run the provided code to generate random test cases for the given problem statement. The `print(formatted_test_case)` statement will output a formatted test case which can be used directly as input.

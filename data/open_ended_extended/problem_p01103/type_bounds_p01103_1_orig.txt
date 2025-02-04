@@ -1,0 +1,3 @@
+Types: d: int, w: int, e: int
+Ranges: 3 ≤ d ≤ 10, 3 ≤ w ≤ 10, 0 ≤ e ≤ 9
+Addtl Info: At most 100 datasets, end of input indicated by a line containing two zeros separated by a space

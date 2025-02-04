@@ -1,0 +1,39 @@
+Sure, I can help with that. Let's write a test case generator for the "Folding a Ribbon" problem.
+
+Here's a Python function to generate test cases for this problem:
+
+```python
+import random
+
+def tcgen():
+    test_cases = []
+    # Define the number of test cases, based on the problem limit (1 ≤ n ≤ 60, 1 ≤ i ≤ 2^n, 1 ≤ j ≤ 2^n)
+    num_cases = random.randint(1, 100)  # Maximum is 100 datasets
+
+    for _ in range(num_cases):
+        n = random.randint(1, 60)
+        max_value = 2 ** n
+        i = random.randint(1, max_value)
+        j = random.randint(1, max_value)
+        test_cases.append(f"{n} {i} {j}")
+
+    # Add the end of input indicator
+    test_cases.append("0 0 0")
+    
+    return test_cases
+
+# Generate the test cases and print them
+test_cases = tcgen()
+for case in test_cases:
+    print(case)
+```
+
+### Explanation:
+1. **Number of Test Cases**: The function generates a random number of test cases, up to 100.
+2. **Random Values for `n`, `i`, `j`**:
+   - `n` is chosen randomly between 1 and 60.
+   - `i` and `j` are chosen randomly between 1 and `2^n`.
+3. **Appending End of Input**: After generating the required number of test cases, it appends "0 0 0" to indicate the end of the input.
+4. **Output**: The test cases are printed in the required format.
+
+You can run this script to generate test cases for the problem. The generated test cases will have the format specified in the problem statement and can be used to test your solution.

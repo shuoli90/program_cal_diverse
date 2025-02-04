@@ -1,0 +1,40 @@
+Certainly! Given the problem statement, here's a test case generator for the "Spaceship UAZ Advance" problem:
+
+```python
+import random
+
+def tcgen():
+    def random_coord():
+        return random.randint(-100, 100), random.randint(-100, 100), random.randint(-100, 100)
+    
+    # Generate coordinates for the UAZ Advance spacecraft and the enemy
+    uaz = random_coord()
+    enemy = random_coord()
+    
+    # Ensure UAZ Advance spacecraft and enemy are not in the same position
+    while uaz == enemy:
+        enemy = random_coord()
+    
+    # Generate coordinates for the three vertices of the barrier
+    barrier_v1 = random_coord()
+    barrier_v2 = random_coord()
+    barrier_v3 = random_coord()
+    
+    return uaz, enemy, barrier_v1, barrier_v2, barrier_v3
+
+# Example usage
+uaz, enemy, barrier_v1, barrier_v2, barrier_v3 = tcgen()
+
+print("UAZ Advance spacecraft coordinates:", uaz)
+print("Enemy spacecraft coordinates:", enemy)
+print("Barrier vertex 1 coordinates:", barrier_v1)
+print("Barrier vertex 2 coordinates:", barrier_v2)
+print("Barrier vertex 3 coordinates:", barrier_v3)
+```
+
+This script generates random test cases for the "Spaceship UAZ Advance" problem by:
+- Creating random coordinates for the UAZ Advance spacecraft and the enemy.
+- Ensuring that the UAZ Advance spacecraft and the enemy are not in the same position.
+- Generating random coordinates for the three vertices of the barrier.
+
+You can run this script to generate multiple test cases for your problem. If you need the output in a specific format, you can modify the print statements accordingly.

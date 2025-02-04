@@ -1,0 +1,59 @@
+Sure, here's a test case generator for the problem "A Light Road":
+
+```python
+import random
+
+def generate_grid(N, M):
+    grid = [['.' for _ in range(M)] for _ in range(N)]
+    
+    # Place the laser generator 'S'
+    while True:
+        sx, sy = random.randint(0, N-1), random.randint(0, M-1)
+        if grid[sx][sy] == '.':
+            grid[sx][sy] = 'S'
+            break
+    
+    # Place the evil creature 'G'
+    while True:
+        gx, gy = random.randint(0, N-1), random.randint(0, M-1)
+        if grid[gx][gy] == '.' and (gx != sx or gy != sy):
+            grid[gx][gy] = 'G'
+            break
+    
+    # Place some obstacles '#'
+    num_obstacles = random.randint(0, N * M // 4)
+    for _ in range(num_obstacles):
+        while True:
+            ox, oy = random.randint(0, N-1), random.randint(0, M-1)
+            if grid[ox][oy] == '.':
+                grid[ox][oy] = '#'
+                break
+    
+    return grid
+
+def tcgen():
+    N = random.randint(2, 100)
+    M = random.randint(2, 100)
+    A = random.randint(0, 10)
+    
+    grid = generate_grid(N, M)
+    
+    return N, M, A, grid
+
+def print_test_case(N, M, A, grid):
+    print(N, M, A)
+    for row in grid:
+        print(''.join(row))
+
+# Example usage
+N, M, A, grid = tcgen()
+print_test_case(N, M, A, grid)
+```
+
+Explanation:
+
+1. **Grid Generation (`generate_grid` function)**: This function creates an `N x M` grid filled with empty squares ('.'). It then places the laser generator ('S') and the evil creature ('G') in random locations, ensuring they do not overlap. It also places a random number of obstacles ('#') in the grid.
+2. **Test Case Generation (`tcgen` function)**: This function generates random values for `N`, `M`, and `A` within the specified ranges and calls `generate_grid` to create the grid setup.
+3. **Print Test Case (`print_test_case` function)**: This function formats and prints the generated test case in the specified format.
+
+Run the example usage at the bottom to get a random test case in the required format.

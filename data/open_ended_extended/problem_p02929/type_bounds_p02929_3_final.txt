@@ -1,0 +1,3 @@
+Types: N: int, S: str
+Ranges: 1 ≤ N ≤ 10^5, |S| = 2N, S[i] in {'B', 'W'}
+Addtl Info: None

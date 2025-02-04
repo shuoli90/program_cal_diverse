@@ -1,0 +1,32 @@
+Certainly! Let's write a test case generator for the problem where Santa needs to deliver presents to all houses in a city. The city's dimensions can be extremely large, but for generating reasonable and useful test cases, we'll keep them within a practical range for demonstration purposes.
+
+Here's the test case generator:
+
+```python
+import random
+
+def tcgen():
+    # Constraints
+    H = random.randint(2, 10**9)
+    W = random.randint(2, 10**9)
+    S = random.randint(1, H)
+    T = random.randint(1, W)
+    
+    return H, W, S, T
+
+# Example usage:
+H, W, S, T = tcgen()
+print(H, W, S, T)
+```
+
+This generator function will create random test cases within the specified constraints for the given problem. The values of `H`, `W`, `S`, and `T` will be chosen randomly within their respective ranges. The function will output a single line containing the four integers separated by spaces as required by the problem statement.
+
+Here's a sample of how you might use this generator to create and print a test case:
+
+```python
+if __name__ == "__main__":
+    H, W, S, T = tcgen()
+    print(f"{H} {W} {S} {T}")
+```
+
+You can run this script multiple times to generate different test cases. Keep in mind that the upper limits are extremely high (up to \(10^9\)), so in practice, you might want to use smaller ranges if you're running this on a typical computer for testing purposes.

@@ -1,0 +1,32 @@
+An integer n (1 ≤ n ≤ 100), representing some quantity.
+An integer m (1 ≤ m ≤ 1000), representing some quantity.
+
+A list of n tuples, each containing:
+- A string of length 8, which may include digits and the character '*'.
+- An integer (1 ≤ Mi ≤ 1000000), representing some quantity.
+
+A list of m strings, each of length 8, containing only digits.
+
+### Example Input:
+
+```
+3 3
+*******1 100
+******22 1000
+11111112 1000000
+01203291
+02382022
+11111111
+```
+
+### Function Signature:
+Write a function f(n, m, winning_numbers, tickets) that takes in the input.
+```python
+def f(n: int, m: int, winning_numbers: List[Tuple[str, int]], tickets: List[str]):
+    '''
+    n: an integer
+    m: an integer
+    winning_numbers: a list of tuples containing a string and an integer
+    tickets: a list of strings
+    '''
+```

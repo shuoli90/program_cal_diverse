@@ -1,0 +1,228 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p01223 - Generation 1</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p01223 - Generation 1</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>Problem A:Saizou
+    In a certain country, a TV program called "Saizou" is popular.
+    This program is about participants challenging a field athletics,
+    and if they successfully clear it, they can receive a prize money.
+  
+    The field athletics is made by arranging blocks of different heights in a row,
+    and it is important to figure out how to climb and descend the steps
+    (Figure 1) in order to clear it.
+    Your friend who is going to participate in this program
+    has asked you, a skilled programmer, to write a program to calculate
+    the maximum step to climb and the maximum step to descend
+    when the structure of the field athletics is given.
+  
+Figure 1: An example of the structure of the athletics (the first dataset of the input example).
+Input
+    The first line of the input contains the number of datasets, t
+    (0 < t ≤ 100).
+    This is followed by t datasets.
+  
+    The first line of each dataset is the number of blocks that make up the field athletics, n
+    (2 ≤ n ≤ 100).
+    The second line shows a sequence of integers that represent the height of the blocks
+    from the start to the goal.
+    The first number corresponds to the starting block and the n-th number corresponds to the goal block.
+    These integers are separated by a single space.
+    The height h of each block satisfies 0 < h ≤ 1000.
+  
+Output
+    For each dataset, output the maximum height difference to climb and the maximum height difference to descend,
+    separated by a single space on a single line.
+    If there is no step to climb or to descend, the maximum height difference for that should be 0.
+  
+Sample Input
+5
+5
+10 70 30 50 90
+2
+20 100
+2
+100 30
+3
+50 50 50
+7
+123 45 678 901 234 567 890
+Output for the Sample Input
+60 40
+80 0
+0 70
+0 0
+633 667
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An integer t (0 < t ≤ 100), representing the number of datasets.
+Each dataset consists of:
+1. An integer n (2 ≤ n ≤ 100), representing some quantity or size.
+2. A list of integers of size n, where each integer is between 1 and 1000.
+
+### Example Input:
+
+```
+5
+5
+10 70 30 50 90
+2
+20 100
+2
+100 30
+3
+50 50 50
+7
+123 45 678 901 234 567 890
+```
+
+### Function Signature:
+Write a function f(inputs) that takes in the input.
+def f(inputs: List[Tuple[int, List[int]]]):
+    '''
+    inputs: a list of tuples, where each tuple contains an integer and a list of integers
+    '''</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Certainly! Let's create a test case generator for the "Problem A: Saizou".
+
+### Test Case Generator
+
+We'll need to generate multiple datasets. Each dataset will have:
+1. The number of blocks.
+2. A sequence of heights for these blocks.
+
+Here is the Python code to generate such test cases:
+
+```python
+import random
+
+def tcgen():
+    t = random.randint(1, 100)  # Number of datasets (0 < t ≤ 100)
+    
+    datasets = []
+    for _ in range(t):
+        n = random.randint(2, 100)  # Number of blocks (2 ≤ n ≤ 100)
+        heights = [random.randint(1, 1000) for _ in range(n)]  # Heights of blocks (0 < h ≤ 1000)
+        datasets.append((n, heights))
+    
+    return t, datasets
+
+# Function to print the generated test case in the required format
+def print_test_case(t, datasets):
+    print(t)
+    for n, heights in datasets:
+        print(n)
+        print(' '.join(map(str, heights)))
+
+# Generating a test case
+t, datasets = tcgen()
+print_test_case(t, datasets)
+```
+
+### Explanation
+
+1. **Number of Datasets (`t`)**:
+    - Randomly selects an integer `t` between 1 and 100.
+
+2. **For Each Dataset**:
+    - Randomly selects an integer `n` between 2 and 100.
+    - Generates a list of `n` integers, each between 1 and 1000, representing the heights of the blocks.
+
+3. **Output**:
+    - The function `print_test_case` prints the test case in the required format. Each dataset starts with the number of blocks followed by the heights of the blocks.
+
+### Example Output
+
+Running the test case generator might output something like this:
+
+```
+3
+4
+200 500 300 700
+5
+123 234 345 456 567
+2
+999 1000
+```
+
+In this output, there are 3 datasets:
+1. The first dataset has 4 blocks with heights [200, 500, 300, 700].
+2. The second dataset has 5 blocks with heights [123, 234, 345, 456, 567].
+3. The third dataset has 2 blocks with heights [999, 1000].
+
+This generator will help you create diverse and valid test cases for the problem statement.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    t = int(fh.readline().strip())
+    datasets = []
+    for _ in range(t):
+        n = int(fh.readline().strip())
+        heights = list(map(int, fh.readline().strip().split()))
+        datasets.append((n, heights))
+    return datasets
+
+# if __name__ == "__main__":
+#     input_path = sys.argv[1]
+#     with open(input_path, 'r') as fh: 
+#         datasets = extract_arguments(fh)
+#         for (n, heights) in datasets:
+#             print(f(n, heights))</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

@@ -1,0 +1,158 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p03165 - Generation 3</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p03165 - Generation 3</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>
+Score : 100 points
+Problem StatementYou are given strings s and t.
+Find one longest string that is a subsequence of both s and t.
+NotesA subsequence of a string x is the string obtained by removing zero or more characters from x and concatenating the remaining characters without changing the order.
+Constraints
+s and t are strings consisting of lowercase English letters.
+1 \leq |s|, |t| \leq 3000
+InputInput is given from Standard Input in the following format:
+s
+t
+OutputPrint one longest string that is a subsequence of both s and t.
+If there are multiple such strings, any of them will be accepted.
+Sample Input 1axyb
+abyxb
+Sample Output 1axb
+The answer is axb or ayb; either will be accepted.
+Sample Input 2aa
+xayaz
+Sample Output 2aa
+Sample Input 3a
+z
+Sample Output 3
+The answer is  (an empty string).
+Sample Input 4abracadabra
+avadakedavra
+Sample Output 4aaadara
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An integer N (1 ≤ N ≤ 3000), representing the length of a string s.
+A string s of length N, consisting of lowercase English letters.
+An integer M (1 ≤ M ≤ 3000), representing the length of a string t.
+A string t of length M, consisting of lowercase English letters.
+
+### Example Input:
+
+```
+5
+axyb
+5
+abyxb
+```
+
+### Function Signature:
+Write a function f(N, s, M, t) that takes in the input.
+def f(N: int, s: str, M: int, t: str):
+    '''
+    N: an integer
+    s: a string
+    M: an integer
+    t: a string
+    '''</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>To write a test case generator for the given problem statement, we need to generate random strings `s` and `t` that fit within the given constraints. Here, each string can be up to 3000 characters long, and they consist of lowercase English letters.
+
+Here's a Python function that can generate such test cases, using the `random` module:
+
+```python
+import random
+import string
+
+def tcgen():
+    # Define the constraints
+    max_len = 3000
+    min_len = 1
+    
+    # Generate random lengths for s and t within the constraints
+    len_s = random.randint(min_len, max_len)
+    len_t = random.randint(min_len, max_len)
+    
+    # Generate random strings s and t consisting of lowercase English letters
+    s = ''.join(random.choices(string.ascii_lowercase, k=len_s))
+    t = ''.join(random.choices(string.ascii_lowercase, k=len_t))
+    
+    return s, t
+
+# Example usage:
+s, t = tcgen()
+print("s:", s)
+print("t:", t)
+```
+
+This function does the following:
+1. Defines the constraints for the string lengths.
+2. Generates random lengths for `s` and `t` between 1 and 3000.
+3. Creates random strings `s` and `t` using lowercase English letters.
+4. Returns the strings `s` and `t`.
+
+You can use the generated strings to test the program that finds the longest common subsequence. For competitive programming problems, it's useful to ensure your function works on edge cases, such as very short and very long strings, which this generator can help you test.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    s = fh.readline().strip()
+    t = fh.readline().strip()
+    return s, t</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

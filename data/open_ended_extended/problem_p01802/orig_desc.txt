@@ -1,0 +1,31 @@
+Problem
+Koto City is a famous city with a grid-like road system, as shown in the figure below. Roads extending north-south and east-west are arranged at intervals of 1 km. Assume that Koto Station located at the southwesternmost intersection of Koto City is (0,0), and the position reached by going x km east and y km north from there is expressed as (x,y) (0 ≤ x,y).
+In anticipation of an increase in tourists due to the Olympics to be held in five years, the city has decided to build a new subway line starting from Koto Station. Currently, a plan is being made to lay rails from Koto Station to Shin-Koto Station, which will be newly built as the next station from Koto Station. The rails will be laid straight from Koto Station to Shin-Koto Station. Therefore, the length of the rails is √(x2+y2) when the location of Shin-Koto Station is expressed as (x,y). The cost of laying rails is required as much as the length of the rails laid, even if the length of the rails is a decimal such as 1.5 km.
+The location (x,y) of Shin-Koto Station has not yet been determined, and it is planned to be located in a place that satisfies the following conditions:
+It is an intersection. That is, x and y are integers, respectively.
+The shortest distance walked along the road from Koto Station is exactly D, that is, x + y = D.
+Among those that satisfy the above two conditions, choose the location of Shin-Koto Station so that the difference between the budget for rails that the city specifies and the cost of the rails |√(x2+y2) - E| is minimized. Here, |A| represents the absolute value of A. Your task is to create a program that outputs the cost difference between the cost of laying the rails and the budget when Shin-Koto Station is built as described above. 
+Input
+The input is composed of multiple data sets, and the number of data sets included in one input is up to 100. The format of each data set is as follows:
+D E
+D (1 ≤ D ≤ 100) is an integer representing the shortest distance walked along the road from Koto Station to Shin-Koto Station. E (1 ≤ E ≤ 100) is an integer representing the budget for rail construction.
+The end of the input is indicated by a line consisting of two zeros separated by a space.
+Output
+For each data set, output the difference between the cost of laying the rails when the rails are laid as described above and the budget in one line. There should be no absolute error greater than 10-3. If you do not output a newline at the end of each line or output unnecessary characters, it will be judged as incorrect answer, so be careful.
+Sample Input
+2 1
+7 5
+7 6
+7 7
+76 5
+8 41
+0 0
+Output for Sample Input
+0.4142135624
+0
+0.0827625303
+0
+48.7401153702
+33
+Hint
+For the first data set, the intersections that are 2 km along the road from Koto Station are expected to be candidates for the location of Shin-Koto Station

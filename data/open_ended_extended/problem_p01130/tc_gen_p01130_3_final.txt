@@ -1,0 +1,62 @@
+Certainly! To create a test case generator for the provided "Water Pipe Construction" problem, we'll build a function that generates random datasets adhering to the given constraints. 
+
+Here's the implementation of the test case generator:
+
+```python
+import random
+
+def tcgen():
+    datasets = []
+    
+    while True:
+        n = random.randint(3, 100)  # number of bases
+        m = random.randint(2, 1000)  # number of roads
+        s = random.randint(1, n)  # water source base number
+        
+        g1, g2 = random.sample(range(1, n + 1), 2)  # two distinct main bases
+        while g1 == s or g2 == s:
+            g1, g2 = random.sample(range(1, n + 1), 2)
+        
+        dataset = [f"{n} {m} {s} {g1} {g2}"]
+        
+        roads = set()  # to avoid duplicate roads
+        for _ in range(m):
+            b1, b2 = random.sample(range(1, n + 1), 2)
+            while (b1, b2) in roads:
+                b1, b2 = random.sample(range(1, n + 1), 2)
+            c = random.randint(1, 1000)  # cost of laying one road
+            dataset.append(f"{b1} {b2} {c}")
+            roads.add((b1, b2))
+        
+        datasets.append("\n".join(dataset))
+        
+        # Stop condition for generating multiple datasets
+        if random.random() < 0.1:  # 10% chance to stop adding more datasets
+            break
+    
+    datasets.append("0 0 0 0 0")  # end marker
+    return "\n\n".join(datasets)
+
+# Example execution
+print(tcgen())
+```
+
+### Explanation
+
+- **Parameter Generation**: 
+  - `n` is generated between 3 and 100.
+  - `m` is generated between 2 and 1000.
+  - `s` is selected randomly between 1 and n.
+  - `g1` and `g2` are selected to be distinct from `s` and from each other.
+  
+- **Roads Generation**:
+  - Random pairs `(b1, b2)` are chosen, ensuring they are distinct and there are no duplicate roads.
+  - Random costs `c` between 1 and 1000 are assigned to each road.
+
+- **Multiple Datasets**: 
+  - The generator keeps adding datasets until a random stop condition is met (10% chance to stop).
+  
+- **End of Input**:
+  - The end is marked with `0 0 0 0 0` as specified.
+
+This generator ensures all constraints are respected and provides a variety of test cases for robust testing.

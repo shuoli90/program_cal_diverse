@@ -1,0 +1,21 @@
+An integer N (1 ≤ N ≤ 300), representing some quantity or size.
+A list of lists (2D matrix) A of size N x N, where each element A[i][j] is an integer:
+- If i ≠ j: 1 ≤ A[i][j] = A[j][i] ≤ 10^9
+- If i == j: A[i][j] = 0
+
+### Example Input:
+
+```
+3
+0 1 3
+1 0 2
+3 2 0
+```
+
+### Function Signature:
+Write a function f(N, A) that takes in the input.
+def f(N: int, A: List[List[int]]):
+    ''' 
+    N: an integer 
+    A: a list of lists of integers 
+    '''

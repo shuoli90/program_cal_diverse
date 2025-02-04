@@ -1,0 +1,198 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p01147 - Generation 1</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p01147 - Generation 1</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>Decrypting the Princess's Code
+A brave and boyish poor princess from a country secretly obtained an ancient document written in Japanese while she was out. The princess who could read Japanese immediately began reading the document. Surprisingly, the document revealed the location of an ancient treasure. However, the location of the treasure was written in code, and it was not easy to understand. So, the princess ordered you, her handmaiden, to help decipher the message.
+You investigated day and night and discovered that a shortest secret substring (SSS) plays an important role in decoding. SSS is a string that contains all N given words as substrings and has the smallest possible length. You were given the task of finding SSS from the given N words.
+Input
+The input consists of multiple datasets. The first line of each dataset contains an integer N (1≤N≤10), which is the number of words in the dataset. The next N lines contain the words. Input containing only a line of 0 indicates the end of the input.
+The input words contain only lowercase letters of the alphabet and have a maximum length of 10.
+Output
+For each dataset, output SSS on one line. If there are multiple SSS, output the one that comes first in dictionary order.
+Sample Input
+4
+apple
+length
+things
+thin
+2
+icp
+cpc
+3
+zeta
+eta
+alphabet
+2
+until
+till
+0
+Sample Output
+applengthings
+icpc
+zetalphabet
+untill
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An integer N (1 ≤ N ≤ 10), representing some quantity or size.
+N lines follow, each containing a string of lowercase letters with a maximum length of 10.
+Input is terminated by a single line containing the integer 0.
+
+### Example Input:
+
+```
+4
+apple
+length
+things
+thin
+2
+icp
+cpc
+3
+zeta
+eta
+alphabet
+2
+until
+till
+0
+```
+
+### Function Signature:
+Write a function f(inputs) that takes in the input.
+def f(inputs: List[Tuple[int, List[str]]]):
+    '''
+    inputs: a list of tuples, where each tuple contains:
+        - an integer
+        - a list of strings
+    '''
+</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Sure! Here's a test case generator for the problem "Decrypting the Princess's Code".
+
+```python
+import random
+import string
+
+def generate_word(max_length=10):
+    length = random.randint(1, max_length)
+    return ''.join(random.choices(string.ascii_lowercase, k=length))
+
+def tcgen():
+    datasets = []
+    while True:
+        N = random.randint(1, 10)
+        words = [generate_word() for _ in range(N)]
+        datasets.append((N, words))
+        
+        # Decide randomly whether to stop adding datasets
+        if random.choice([True, False]):
+            break
+    
+    return datasets
+
+def format_output(datasets):
+    output = []
+    for N, words in datasets:
+        output.append(str(N))
+        output.extend(words)
+    output.append("0")
+    return '\n'.join(output)
+
+# Example usage
+datasets = tcgen()
+print(format_output(datasets))
+```
+
+This test case generator will create multiple datasets each containing a random number of words (between 1 and 10) consisting of random lowercase letters, and it will format the datasets as required by the problem statement. Each word has a maximum length of 10 characters. The generation of datasets stops randomly to simulate multiple datasets ending with a '0'. 
+
+You can use this generator to create inputs for testing your solution to the given problem. The `format_output` function is used to format the datasets into a string that mimics the input format.
+
+Here's an example of what the output might look like:
+
+```
+4
+xykwj
+a
+yze
+lmno
+3
+opqrs
+uvwxy
+bcd
+2
+xyz
+abc
+0
+```</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    datasets = []
+    while True:
+        N = int(fh.readline().strip())
+        if N == 0:
+            break
+        words = [fh.readline().strip() for _ in range(N)]
+        datasets.append((N, words))
+    return datasets</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

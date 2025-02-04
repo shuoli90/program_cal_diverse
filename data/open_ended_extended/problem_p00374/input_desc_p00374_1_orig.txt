@@ -1,0 +1,54 @@
+Canonicalized Input Description:
+
+An integer N (6 ≤ N ≤ 6000), representing some quantity.
+An integer M (0 ≤ M ≤ N), representing some quantity.
+An integer X (0 ≤ X ≤ 6), representing some quantity.
+An integer Y (0 ≤ Y ≤ 12), representing some quantity. The relation 2X + Y = 12 always holds.
+N integers a_i (1 ≤ a_i ≤ 6000), representing some values.
+M integers b_i (1 ≤ b_i ≤ 3000), representing some values, with the relation 1 ≤ a_i - b_i ≤ 3000 holding for corresponding values of a_i.
+
+### Example Input:
+```
+18 8 3 6
+4
+3
+3
+3
+3
+2
+2
+2
+1
+1
+1
+1
+1
+2
+2
+3
+3
+3
+1
+1
+1
+1
+1
+1
+1
+1
+```
+
+### Function Signature:
+Write a function f(inputs) that takes in the input.
+```python
+def f(inputs: List[Tuple[int, int, int, int, List[int], List[int]]]):
+    '''
+    inputs: a list of tuples where each tuple contains:
+        - an integer N
+        - an integer M
+        - an integer X
+        - an integer Y
+        - a list of N integers
+        - a list of M integers
+    '''
+```

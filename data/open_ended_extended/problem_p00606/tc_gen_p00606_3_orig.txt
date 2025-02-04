@@ -1,0 +1,57 @@
+Sure, I can write a test case generator for the "Cleaning Robot" problem. Here's a Python function that generates random test cases:
+
+```python
+import random
+
+def generate_room():
+    return random.choice(['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I'])
+
+def generate_test_case():
+    n = random.randint(1, 15)
+    
+    rooms = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I']
+    
+    s = generate_room()
+    t = generate_room()
+    b = generate_room()
+    
+    # Ensure s, t, and b are distinct
+    while t == s or t == b:
+        t = generate_room()
+    while b == s or b == t:
+        b = generate_room()
+    
+    return n, s, t, b
+
+def generate_multiple_test_cases(num_cases):
+    test_cases = []
+    
+    for _ in range(num_cases):
+        test_cases.append(generate_test_case())
+    
+    # Add terminating case
+    test_cases.append((0,))
+    
+    return test_cases
+
+def format_test_cases(test_cases):
+    formatted_cases = []
+    
+    for case in test_cases:
+        if case[0] == 0:
+            formatted_cases.append("0")
+        else:
+            formatted_cases.append(f"{case[0]}\n{case[1]} {case[2]} {case[3]}")
+    
+    return "\n".join(formatted_cases)
+
+# Example usage
+random.seed(42)  # Set a seed for reproducibility
+test_cases = generate_multiple_test_cases(10)
+formatted_test_cases = format_test_cases(test_cases)
+print(formatted_test_cases)
+```
+
+This script generates a number of random test cases for the "Cleaning Robot" problem, ensuring that the start room (`s`), the battery room (`t`), and the junk room (`b`) are distinct. It then formats these test cases into a string that can be used as input for a program solving the problem.
+
+You can adjust the `num_cases` parameter in the `generate_multiple_test_cases` function call to generate as many test cases as you need. The example usage at the end demonstrates generating and printing 10 test cases.

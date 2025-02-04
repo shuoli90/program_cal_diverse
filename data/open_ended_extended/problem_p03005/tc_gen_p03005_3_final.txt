@@ -1,0 +1,31 @@
+Sure, here is a test case generator for the given problem:
+
+```python
+import random
+
+def tcgen():
+    # Generate N and K such that 1 ≤ K ≤ N ≤ 100
+    N = random.randint(1, 100)
+    K = random.randint(1, N)
+    
+    return N, K
+
+# Example usage
+if __name__ == "__main__":
+    test_case = tcgen()
+    print(test_case)
+```
+
+This function will generate random values for \(N\) and \(K\) within the specified constraints. \(N\) is the total number of balls, and \(K\) is the number of persons, ensuring 1 ≤ \(K\) ≤ \(N\) ≤ 100.
+
+Here is a sample output of the test case generator:
+
+```
+(75, 25)
+```
+
+Explanation:
+- \(N = 75\): There are 75 balls to distribute.
+- \(K = 25\): There are 25 persons to distribute the balls to.
+
+You can run this function multiple times to generate different test cases for the problem.

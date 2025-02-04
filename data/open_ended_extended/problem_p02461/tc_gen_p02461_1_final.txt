@@ -1,0 +1,63 @@
+Certainly! Here's a Python test case generator for the "Map: Range Search" problem statement you provided. This generator will produce random test cases that adhere to the problem constraints.
+
+```python
+import random
+import string
+
+def random_key(length):
+    return ''.join(random.choice(string.ascii_lowercase) for _ in range(length))
+
+def tcgen():
+    # Number of queries
+    q = random.randint(1, 200000)
+
+    queries = []
+    for _ in range(q):
+        op = random.randint(0, 3)
+        if op == 0:  # insert operation
+            key_length = random.randint(1, 20)
+            key = random_key(key_length)
+            x = random.randint(1, 1000000000)
+            queries.append(f"0 {key} {x}")
+        elif op == 1:  # get operation
+            key_length = random.randint(1, 20)
+            key = random_key(key_length)
+            queries.append(f"1 {key}")
+        elif op == 2:  # delete operation
+            key_length = random.randint(1, 20)
+            key = random_key(key_length)
+            queries.append(f"2 {key}")
+        elif op == 3:  # dump operation
+            L_length = random.randint(1, 20)
+            R_length = random.randint(1, 20)
+            L = random_key(L_length)
+            R = random_key(R_length)
+            if L > R:  # Ensure L <= R in lexicographic order
+                L, R = R, L
+            queries.append(f"3 {L} {R}")
+
+    return q, queries
+
+# Generate test case
+q, queries = tcgen()
+
+# Print the generated test case
+print(q)
+for query in queries:
+    print(query)
+```
+
+### Explanation:
+
+1. **random_key(length)**: Generates a random string key of specified length using lowercase letters.
+2. **tcgen()**: 
+    - Generates a random number `q` representing the number of queries.
+    - For each query, it randomly selects an operation type (0, 1, 2, or 3).
+    - Based on the selected operation, it generates appropriate parameters:
+        - **Insert (0 key x)**: Generates a random key and a random integer `x`.
+        - **Get (1 key)**: Generates a random key.
+        - **Delete (2 key)**: Generates a random key.
+        - **Dump (3 L R)**: Generates two random keys `L` and `R` such that `L` is lexicographically less than or equal to `R`.
+3. **Generate and print test case**: Finally, the generated queries are printed.
+
+This generator ensures that the test cases adhere to the constraints provided in the problem statement. You can use this to create various test scenarios for your problem.

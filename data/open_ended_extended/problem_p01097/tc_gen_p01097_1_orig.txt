@@ -1,0 +1,62 @@
+Certainly! Below is a test case generator for the given problem statement "3D Printing":
+
+```python
+import random
+
+def tcgen(num_datasets=1):
+    test_cases = []
+    max_n = 2000
+    max_k = 2000
+    max_s = 100
+    coord_limit = 4 * 10**7
+
+    for _ in range(num_datasets):
+        n = random.randint(1, max_n)
+        k = random.randint(1, n)
+        s = random.randint(3, max_s)
+        
+        positions = []
+        for _ in range(n):
+            x = random.randint(-coord_limit, coord_limit)
+            y = random.randint(-coord_limit, coord_limit)
+            z = random.randint(-coord_limit, coord_limit)
+            positions.append((x, y, z))
+        
+        test_case = (n, k, s, positions)
+        test_cases.append(test_case)
+    
+    return test_cases
+
+def format_test_cases(test_cases):
+    formatted_test_cases = []
+    for (n, k, s, positions) in test_cases:
+        formatted_test_case = f"{n} {k} {s}\n"
+        formatted_test_case += "\n".join(f"{x} {y} {z}" for (x, y, z) in positions)
+        formatted_test_cases.append(formatted_test_case)
+    return "\n".join(formatted_test_cases) + "\n0 0 0\n"
+
+# Example usage:
+random.seed(42)  # for reproducibility of results
+test_cases = tcgen(num_datasets=5)
+print(format_test_cases(test_cases))
+```
+
+### Explanation:
+
+1. **Function `tcgen(num_datasets=1)`**:
+   - Generates multiple datasets (`num_datasets`) as specified in the problem.
+   - For each dataset:
+     - Randomly generate `n` (number of positions), `k` (number of cubes), and `s` (edge length of cubes) within their respective limits.
+     - Generate `n` positions in 3D space with coordinates within the defined range (`-4 * 10^7` to `4 * 10^7`).
+
+2. **Function `format_test_cases(test_cases)`**:
+   - Formats the generated test cases into the required input format.
+   - Each test case is converted to a string with the first line containing `n`, `k`, and `s`, followed by `n` lines of coordinates.
+   - Appends "0 0 0" at the end to indicate the end of the input.
+
+### Example Usage:
+- The `random.seed(42)` line ensures reproducibility, meaning the same random numbers will be generated every time this code is run.
+- `tcgen(num_datasets=5)` generates 5 datasets for testing.
+- `format_test_cases(test_cases)` converts the generated datasets into the required input format and prints them.
+
+You can modify the `num_datasets` parameter to generate more or fewer datasets as needed.

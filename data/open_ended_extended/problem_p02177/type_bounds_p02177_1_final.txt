@@ -1,0 +1,3 @@
+Types: N: int, M: int, a: List[int], b: List[int]
+Ranges: 2 ≤ N ≤ 300, 1 ≤ M ≤ N(N-1), 1 ≤ a[i], b[i] ≤ N
+Addtl Info: a_i ≠ b_i

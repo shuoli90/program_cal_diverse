@@ -1,0 +1,18 @@
+def extract_arguments(fh):
+    n = int(fh.readline().strip())
+    adjacency_list = []
+    
+    for _ in range(n):
+        line = list(map(int, fh.readline().strip().split()))
+        u = line[0]
+        k = line[1]
+        vertices = line[2:]
+        adjacency_list.append((u, k, vertices))
+    
+    return n, adjacency_list
+
+# if __name__ == "__main__":
+#     input_path = sys.argv[1]
+#     with open(input_path, 'r') as fh: 
+#         n, adjacency_list = extract_arguments(fh)
+#         f(n, adjacency_list)

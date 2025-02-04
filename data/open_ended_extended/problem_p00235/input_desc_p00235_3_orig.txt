@@ -1,0 +1,24 @@
+An integer N (2 ≤ N ≤ 20), representing some quantity or size.
+A list of tuples of size N-1, where each tuple contains three integers (a, b, t):
+- a and b (1 ≤ a, b ≤ N), representing some connections or relations.
+- t (1 ≤ t ≤ 500), representing some value associated with each connection.
+
+### Example Input:
+
+```
+7
+1 2 5
+2 3 2
+3 4 3
+2 5 3
+5 6 3
+5 7 8
+0
+```
+
+### Function Signature:
+Write a function f(inputs) that takes in the input. 
+def f(inputs: List[Tuple[int, List[Tuple[int, int, int]]]]): 
+    ''' 
+    inputs: a list of tuples 
+    '''

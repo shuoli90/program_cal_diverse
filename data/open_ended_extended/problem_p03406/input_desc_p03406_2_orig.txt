@@ -1,0 +1,21 @@
+An integer \( N \) (1 ≤ \( N \) ≤ 16), representing some quantity or size.
+An integer \( M \) (0 ≤ \( M \) ≤ 16), another quantity or size.
+A list of \( M \) integers \( A \), where each integer \( A[i] \) (2 ≤ \( A[i] \) ≤ \( 2^N \)) is a distinct value in ascending order.
+
+### Example Input:
+
+```
+2 1
+3
+```
+
+### Function Signature:
+Write a function f(N, M, A) that takes in the input.
+```python
+def f(N: int, M: int, A: List[int]):
+    '''
+    N: an integer
+    M: an integer
+    A: a list of integers
+    '''
+```

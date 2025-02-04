@@ -1,0 +1,30 @@
+Sure! Here is a test case generator for the given problem statement:
+
+```python
+import random
+
+def tcgen():
+    # Generate a random value for N in the range [1, 200000]
+    N = random.randint(1, 2 * 10**5)
+    # Generate a random value for K in the range [1, N+1]
+    K = random.randint(1, N + 1)
+    
+    return N, K
+
+# Function to print the generated test case in the required format
+def print_test_case():
+    N, K = tcgen()
+    print(N, K)
+
+# Example usage
+print_test_case()
+```
+
+This `tcgen` function generates random values for \( N \) and \( K \) based on the given constraints:
+
+1. \( N \) is randomly chosen between 1 and 200,000.
+2. \( K \) is randomly chosen between 1 and \( N + 1 \).
+
+The `print_test_case` function calls `tcgen` to generate a test case and prints it in the required format.
+
+You can run `print_test_case()` multiple times to generate different test cases.

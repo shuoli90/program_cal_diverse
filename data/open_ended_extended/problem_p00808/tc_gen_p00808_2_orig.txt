@@ -1,0 +1,57 @@
+Sure, here is a test case generator for the problem "Young, Poor and Busy":
+
+```python
+import random
+import string
+
+def random_city():
+    # Generates a random city name with the first letter uppercase and the rest lowercase
+    return ''.join(random.choices(string.ascii_uppercase, k=1) + random.choices(string.ascii_lowercase, k=random.randint(1, 15)))
+
+def random_time():
+    # Generates a random time in the format HH:MM
+    return f"{random.randint(0, 23):02d}:{random.randint(0, 59):02d}"
+
+def time_greater_than(t1, t2):
+    # Converts time strings HH:MM to minutes since 00:00 and compares them
+    h1, m1 = map(int, t1.split(':'))
+    h2, m2 = map(int, t2.split(':'))
+    return (h1 * 60 + m1) > (h2 * 60 + m2)
+
+def random_price():
+    # Generates a random price between 1 and 10000
+    return random.randint(1, 10000)
+
+def generate_connection():
+    while True:
+        start_city = random_city()
+        end_city = random_city()
+        dep_time = random_time()
+        arr_time = random_time()
+        if time_greater_than(arr_time, dep_time):
+            price = random_price()
+            return f"{start_city} {dep_time} {end_city} {arr_time} {price}"
+
+def tcgen():
+    num_datasets = random.randint(1, 10)  # Number of datasets
+    datasets = []
+    
+    for _ in range(num_datasets):
+        num_connections = random.randint(1, 2000)
+        connections = "\n".join(generate_connection() for _ in range(num_connections))
+        datasets.append(f"{num_connections}\n{connections}")
+    
+    return "\n".join(datasets) + "\n0"
+
+print(tcgen())
+```
+
+This generator creates a random number of datasets, each containing a random number of connections between cities, with times and prices generated according to the specified constraints. The end of input marker ("0") is appended at the end.
+
+Explanation of the functions:
+- `random_city()`: Generates a city name with the first letter uppercase and up to 15 lowercase letters.
+- `random_time()`: Generates a time string in the format "HH:MM".
+- `time_greater_than(t1, t2)`: Compares two times to ensure the arrival time is strictly after the departure time.
+- `random_price()`: Generates a random price between 1 and 10000.
+- `generate_connection()`: Creates a valid connection string by ensuring the arrival time is after the departure time.
+- `tcgen()`: Generates random datasets with connections and combines them into a single test case output.

@@ -1,0 +1,42 @@
+Sure! Here is a test case generator for the given competitive programming problem:
+
+```python
+import random
+
+def tcgen():
+    # Generate a random N within the given constraints
+    N = random.randint(2, 2 * 10**5)
+    
+    # Generate the array of (A_i, B_i) pairs
+    AB = []
+    for _ in range(N):
+        A = random.randint(1, 10**9)
+        B = random.randint(A, 10**9)
+        AB.append((A, B))
+    
+    return N, AB
+
+# Example usage:
+N, AB = tcgen()
+print(N)
+for a, b in AB:
+    print(a, b)
+```
+
+Explanation of the generator:
+
+1. **N generation**: It generates an integer \(N\) such that \(2 \leq N \leq 2 \times 10^5\).
+2. **(A_i, B_i) pairs generation**: It generates \(N\) pairs of integers (A_i, B_i) such that \(1 \leq A_i \leq B_i \leq 10^9\). Each A_i is a random integer, and B_i is a random integer that is at least A_i to ensure \(A_i \leq B_i\).
+
+Here is the test case generator in action:
+
+```python
+# Example usage
+if __name__ == "__main__":
+    N, AB = tcgen()
+    print(N)
+    for a, b in AB:
+        print(a, b)
+```
+
+This will print a valid test case for the problem. Each run will generate a different test case due to the randomness.

@@ -1,0 +1,30 @@
+Sure! Here is a test case generator for the given problem statement:
+
+```python
+import random
+
+def tcgen():
+    # Generate a random integer N such that 2 ≤ N ≤ 100
+    N = random.randint(2, 100)
+    
+    # Generate a list of N integers W such that each integer is between 1 and 100
+    W = [random.randint(1, 100) for _ in range(N)]
+    
+    return N, W
+
+# Function to print the generated test case in the required format
+def print_test_case():
+    N, W = tcgen()
+    print(N)
+    print(' '.join(map(str, W)))
+
+# Generate and print a test case
+print_test_case()
+```
+
+This code will generate a random test case for the problem where:
+
+- \(N\) is an integer between 2 and 100.
+- \(W\) is a list of \(N\) integers, each between 1 and 100.
+
+The `print_test_case` function prints the generated test case in the format required by the problem statement. This can be run multiple times to generate different test cases for testing.

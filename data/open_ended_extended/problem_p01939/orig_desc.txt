@@ -1,0 +1,26 @@
+B: Ebi-chan and Integer Sequences -
+Problem
+Ebi-chan likes integer sequences, especially arithmetic sequences.
+This time, she decided to create a sequence that satisfies the following conditions:
+It is an arithmetic sequence of length n.
+When the i-th element of the sequence is denoted by s_i, all s_i (1 \leq i \leq n) are integers satisfying 0 \leq s_i \leq m.
+How many arithmetic sequences can be created that satisfy the above conditions?
+Since the answer can be very large, output it modulo 10^9 + 7.
+Input Format
+The input is given in a single line.
+n m
+n represents the length of the sequence.
+Constraints
+1 \leq n \leq 10^{15}
+0 \leq m \leq 10^{15}
+Output Format
+Output the number of arithmetic sequences that satisfy the above conditions, modulo 10^9 + 7.
+Sample Input 1
+3 9
+Sample Output 1
+50
+Sample Input 2
+10000000000 10000000000
+Sample Output 2
+999999942
+Note that the input may not fit in a 32-bit integer.

@@ -1,0 +1,19 @@
+def extract_arguments(fh):
+    datasets = []
+    while True:
+        first_line = list(map(int, fh.readline().strip().split()))
+        if first_line == [0, 0, 0, 0, 0]:
+            break
+        n, m, s, g1, g2 = first_line
+        roads = []
+        for _ in range(m):
+            b1, b2, c = map(int, fh.readline().strip().split())
+            roads.append((b1, b2, c))
+        datasets.append((n, m, s, g1, g2, roads))
+    return datasets
+
+# if __name__ == "__main__":
+#     input_path = sys.argv[1]
+#     with open(input_path, 'r') as fh: 
+#         inputs = extract_arguments(fh)
+#         f(inputs)

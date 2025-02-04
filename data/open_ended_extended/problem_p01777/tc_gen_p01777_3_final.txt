@@ -1,0 +1,40 @@
+Here's a test case generator for the "Disordered Data Detection" problem:
+
+```python
+import random
+
+def tcgen():
+    # Generate a random D within the given constraints
+    D = random.randint(1, 100000)
+    
+    # Generate a list of D integers within the given constraints
+    X = [random.randint(-10**8, 10**8) for _ in range(D)]
+    
+    # Generate a random Q within the given constraints
+    Q = random.randint(1, 100000)
+    
+    queries = []
+    for _ in range(Q):
+        l = random.randint(1, D)
+        r = random.randint(l, D)  # ensure 1 ≤ l ≤ r ≤ D
+        e = random.randint(0, 10**8)
+        queries.append((l, r, e))
+    
+    # Format the test case as specified
+    test_case = f"{D}\n" + " ".join(map(str, X)) + f"\n{Q}\n"
+    test_case += "\n".join(f"{l} {r} {e}" for l, r, e in queries)
+    
+    return test_case
+
+# Example usage
+print(tcgen())
+```
+
+This generator creates a random test case adhering to the constraints specified in the problem statement:
+
+- The integer \( D \) is randomly chosen between 1 and 100,000.
+- The sequence \( X \) consists of \( D \) integers, each between -10^8 and 10^8.
+- The number of queries \( Q \) is randomly chosen between 1 and 100,000.
+- Each query consists of three integers \( l \), \( r \), and \( e \) such that 1 ≤ \( l \) ≤ \( r \) ≤ \( D \) and 0 ≤ \( e \) ≤ 10^8.
+
+The output format is a string that matches the input format required by the problem.

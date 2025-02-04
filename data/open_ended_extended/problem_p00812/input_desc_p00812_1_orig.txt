@@ -1,0 +1,26 @@
+An arbitrary number of blocks of lines. Each block consists of an arbitrary number of lines, containing strings with a maximum length of 80 characters each, followed by a terminating line solely consisting of a period symbol. After the last block, there is another terminating line solely consisting of a period symbol.
+
+### Example Input:
+
+```
+a+b+c
+(a+b)+c
+a- (b-c)+2
+.
+4ab
+(a - b) (0-b+a) - 1a ^ 2 - b ^ 2
+2 b 2 a
+.
+108 a
+2 2 3 3 3 a
+4 a^1 27
+.
+.
+```
+
+### Function Signature:
+Write a function f(inputs) that takes in the input.
+def f(inputs: List[List[str]]):
+    '''
+    inputs: a list of blocks, where each block is itself a list of strings
+    '''

@@ -1,0 +1,76 @@
+F: Disordered Data Detection
+Story
+Akane Miyamori is an engineer working for Musashino Software. Today, she's worried about a bug report received from a client. "It's a weird thing, but the behavior of the software you made for me the other day is all wobbly, so could you check it out? It's your job to maintain it, isn't it?" This client, who always gives her impossible tasks, is actually right this time. It's because Jiro, who always does sloppy work, admitted that he had left the code that had not passed the tests as it was and incorporated it into the product. If she were an ordinary person, she would want to punch Jiro, but she's already past the point of anger and is on the verge of enlightenment. In any case, she has to remove the bug. First, she will analyze the data log and try to find the cause of the bug by detecting abnormalities.
+Now, there are logs for D days, and each data is an integer. It is considered that data that deviates greatly from the data on the lth day and the rth day is likely to be abnormal. Therefore, she decided to write a code that detects outliers like this by specifying a period of time. 
+The deadline for debugging presented by the client is in 3 hours. She's in a hopeless situation, but Akane has overcome this kind of situation many times before. She chews on her favorite donut, pumps herself up, and debugs more and more vigorously. Let's go!
+Problem
+There is an integer sequence x_1, . . . , x_D of length D. Q queries are given for this sequence. The i-th query consists of three integers l_i, r_i, and e_i. For the i-th query, let a_i = min\{x_{l_i},x_{r_i}\} and b_i = max\{x_{l_i},x_{r_i}\}. Then, answer the number of j satisfying x_j < a_i - e_i or b_i + e_i < x_j for l_i ≤ j ≤ r_i.
+Input Format
+The input is in the following format:
+D
+x_1 x_2  . . .  x_D
+Q
+l_1 r_1 e_1
+ . . . 
+l_Q r_Q e_Q
+The first line of the input is a single integer D (1 ≤ D ≤ 100,000) representing the length of the sequence. The second line gives D integers separated by a single space, representing the sequence X. The i-th integer x_i satisfies −10^8 ≤ x_i ≤ 10^8.
+The third line is a single integer Q (1 ≤ Q ≤ 100,000) representing the number of queries. The following Q lines give three integers l_j, r_j, and e_j separated by a single space, representing the j-th query. For the j-th query, 1 ≤ l_j ≤ r_j ≤ D and 0 ≤ e_j ≤ 10^8 hold.
+Output Format
+For each of the Q queries, output the answer on a single line in the order in which the queries were given.
+Sample Input 1
+7
+4 1 10 5 7 7 3
+5
+2 5 0
+3 6 1
+3 6 2
+1 7 2
+1 7 5
+Sample Output 1
+1
+1
+0
+3
+1
+Sample Input 2
+9
+8 3 0 2 5 2 5 2 1
+3
+1 3 5
+2 5 0
+3 9 0
+Sample Output 2
+0
+2
+5
+Sample Input 3
+9
+10 10 10 7 2 10 10 1 5
+13
+3 3 6
+3 4 5
+3 5 4
+3 6 3
+3 7 2
+3 8 1
+3 9 0
+4 9 1
+5 9 2
+6 9 3
+7 9 4
+8 9 5
+9 9 6
+Sample Output 3
+0
+0
+0
+1
+2
+0
+2
+4
+2
+1
+0
+0
+0

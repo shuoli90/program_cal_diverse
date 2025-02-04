@@ -1,0 +1,11 @@
+def extract_arguments(fh):
+    n, m = map(int, fh.readline().strip().split())
+    x = list(map(int, fh.readline().strip().split()))
+    y = list(map(int, fh.readline().strip().split()))
+    return n, m, x, y
+
+# if __name__ == "__main__":
+#     input_path = sys.argv[1]
+#     with open(input_path, 'r') as fh:
+#         n, m, x, y = extract_arguments(fh)
+#     f(n, m, x, y)

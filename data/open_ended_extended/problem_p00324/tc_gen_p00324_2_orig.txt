@@ -1,0 +1,45 @@
+Sure, I can help you with writing a test case generator for the "Complete Equality Bilateral Trade" problem. Here's the generator code:
+
+```python
+import random
+
+def generate_test_case():
+    # Define the number of values in the table
+    N = random.randint(1, 200000)
+    
+    # Define the values in the table
+    d = [random.randint(-10**9, 10**9) for _ in range(N)]
+    
+    return N, d
+
+# Example usage:
+if __name__ == "__main__":
+    N, d = generate_test_case()
+    print(N)
+    for value in d:
+        print(value)
+```
+
+### Explanation:
+
+1. **N Generation**: `N` is generated randomly between 1 and 200,000 inclusive, which is the constraint given in the problem.
+2. **Table Values Generation**: The list `d` is generated with `N` values, each randomly selected between `-10^9` and `10^9` inclusive.
+
+### Example Output:
+
+When you run the above code, it will print a test case for the problem. An example output might look like the following:
+
+```
+5
+-314159265
+271828182
+-161803399
+1000000000
+-1000000000
+```
+
+This output represents a test case where:
+- `N = 5` (number of values in the table).
+- The values in the table are `[-314159265, 271828182, -161803399, 1000000000, -1000000000]`.
+
+You can integrate this test case generator into your testing framework for the competitive programming problem.

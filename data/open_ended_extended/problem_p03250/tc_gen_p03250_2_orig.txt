@@ -1,0 +1,42 @@
+Certainly! Here is a test case generator for the problem statement you've provided:
+
+```python
+import random
+
+def tcgen():
+    """
+    This function generates test cases for the allowance problem.
+    """
+    # Generating three random integers A, B, and C between 1 and 9 (inclusive).
+    A = random.randint(1, 9)
+    B = random.randint(1, 9)
+    C = random.randint(1, 9)
+    
+    return A, B, C
+
+# Example usage:
+if __name__ == "__main__":
+    for _ in range(10):  # Generate 10 test cases
+        A, B, C = tcgen()
+        print(f"{A} {B} {C}")
+```
+
+### Explanation:
+- **A, B, C**: These variables represent the digits printed on the integer panels. Each is randomly chosen between 1 and 9 inclusive.
+  
+### Example Output:
+Running the above code might produce outputs like:
+```
+5 3 1
+8 2 4
+6 7 7
+1 9 3
+3 3 2
+2 8 5
+7 4 6
+9 1 1
+5 6 8
+4 2 9
+```
+
+Each line is a test case, representing the values of A, B, and C which you can use to test the game logic for determining the maximum possible allowance.

@@ -1,0 +1,270 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p00844 - Generation 2</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p00844 - Generation 2</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>
+Problem I: Shy Polygons
+You are given two solid polygons and their positions on the xy-plane. You can move one
+of the two along the x-axis (they can overlap during the move). You cannot move it in other
+directions. The goal is to place them as compactly as possible, subject to the following condition:
+the distance between any point in one polygon and any point in the other must not be smaller
+than a given minimum distance L.
+We define the width of a placement as the difference between the maximum and the minimum
+x-coordinates of all points in the two polygons.
+Your job is to write a program to calculate the minimum width of placements satisfying the
+above condition.
+Let's see an example. If the polygons in Figure 13 are placed with L = 10.0, the result will be 100. Figure 14 shows one of the optimal placements.
+Input
+The input consists of multiple datasets. Each dataset is given in the following format.
+      L
+      Polygon1
+      Polygon2
+L is a decimal fraction, which means the required distance of two polygons. L is greater than
+0.1 and less than 50.0.
+The format of each polygon is as follows.
+n
+x1 y1
+x2 y2
+.
+.
+.
+xn yn
+n is a positive integer, which represents the number of vertices of the polygon. n is greater than
+2 and less than 15.
+Remaining lines represent the vertices of the polygon. A vertex data line has a pair of nonneg-
+ative integers which represent the x- and y-coordinates of a vertex. x- and y-coordinates are
+separated by a single space, and y-coordinate is immediately followed by a newline. x and y are
+less than 500.
+Edges of the polygon connect vertices given in two adjacent vertex data lines, and vertices given
+in the last and the first vertex data lines. You may assume that the vertices are given in the
+counterclockwise order, and the contours of polygons are simple, i.e. they do not cross nor touch
+themselves.
+Also, you may assume that the result is not sensitive to errors. In concrete terms, for a given
+pair of polygons, the minimum width is a function of the given minimum distance l. Let us
+denote the function w(l). Then you can assume that |w(L ± 10-7) - w(L)| < 10-4.
+The end of the input is indicated by a line that only contains a zero. It is not a part of a dataset.
+Output
+The output should consist of a series of lines each containing a single decimal fraction. Each
+number should indicate the minimum width for the corresponding dataset. The answer should
+not have an error greater than 0.0001. You may output any number of digits after the decimal
+point, provided that the above accuracy condition is satisfied.
+Sample Input
+10.5235
+3
+0 0
+100 100
+0 100
+4
+0 50
+20 50
+20 80
+0 80
+10.0
+4
+120 45
+140 35
+140 65
+120 55
+8
+0 0
+100 0
+100 100
+0 100
+0 55
+80 90
+80 10
+0 45
+10.0
+3
+0 0
+1 0
+0 1
+3
+0 100
+1 101
+0 101
+10.0
+3
+0 0
+1 0
+0 100
+3
+0 50
+100 50
+0 51
+0
+Output for the Sample Input
+114.882476
+100
+1
+110.5005
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An integer L (0.1 < L < 50.0), representing some quantity.
+Two polygons where each polygon is defined as:
+    - An integer n (2 < n < 15), representing the number of vertices.
+    - A sequence of n pairs of nonnegative integers, each less than 500, representing the x- and y-coordinates of the vertices.
+
+### Example Input:
+
+```
+10.5235
+3
+0 0
+100 100
+0 100
+4
+0 50
+20 50
+20 80
+0 80
+```
+
+### Function Signature:
+Write a function f(inputs) that takes in the input. 
+def f(inputs: List[Tuple[float, List[Tuple[int, List[Tuple[int, int]]]], List[Tuple[int, List[Tuple[int, int]]]]]]): 
+    ''' 
+    inputs: a list of tuples where each tuple contains:
+        - L: a float
+        - Polygon1: a tuple containing:
+            - n1: an integer
+            - vertices1: a list of tuples containing pairs of integers
+        - Polygon2: a tuple containing:
+            - n2: an integer
+            - vertices2: a list of tuples containing pairs of integers
+    '''
+</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Sure! Here is a Python test case generator for the "Shy Polygons" problem:
+
+```python
+import random
+
+def generate_polygon():
+    n = random.randint(3, 14)
+    vertices = []
+    for _ in range(n):
+        x = random.randint(0, 499)
+        y = random.randint(0, 499)
+        vertices.append((x, y))
+    return n, vertices
+
+def format_polygon(n, vertices):
+    result = f"{n}\n"
+    for x, y in vertices:
+        result += f"{x} {y}\n"
+    return result
+
+def tcgen():
+    test_cases = []
+    while True:
+        L = round(random.uniform(0.1, 50.0), 4)
+        n1, vertices1 = generate_polygon()
+        n2, vertices2 = generate_polygon()
+        
+        polygon1 = format_polygon(n1, vertices1)
+        polygon2 = format_polygon(n2, vertices2)
+        
+        test_case = f"{L}\n{polygon1}{polygon2}"
+        test_cases.append(test_case)
+        
+        # Decide randomly when to stop adding test cases
+        if random.random() < 0.2:
+            break
+    
+    test_cases.append("0")  # End of input indicator
+    return "\n".join(test_cases)
+
+# Example usage
+print(tcgen())
+```
+
+This generator creates a series of test cases for the "Shy Polygons" problem. The generator includes:
+- Randomly generating the minimum distance \( L \) between polygons from \( 0.1 \) to \( 50.0 \).
+- Generating two polygons with a random number of vertices (between 3 and 14).
+- Ensuring that each vertex has x and y coordinates within the range \( 0 \) to \( 499 \).
+- Randomly decides when to stop adding more test cases, ensuring the end of input is indicated by a single "0".
+
+The `format_polygon` function formats the polygon data to match the required input format. 
+
+You can adjust the probabilities or ranges as needed for more specific test cases.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    datasets = []
+    while True:
+        L = fh.readline().strip()
+        if L == "0":
+            break
+        L = float(L)
+        n1 = int(fh.readline().strip())
+        polygon1 = []
+        for _ in range(n1):
+            x, y = map(int, fh.readline().strip().split())
+            polygon1.append((x, y))
+        n2 = int(fh.readline().strip())
+        polygon2 = []
+        for _ in range(n2):
+            x, y = map(int, fh.readline().strip().split())
+            polygon2.append((x, y))
+        datasets.append((L, polygon1, polygon2))
+    return datasets</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

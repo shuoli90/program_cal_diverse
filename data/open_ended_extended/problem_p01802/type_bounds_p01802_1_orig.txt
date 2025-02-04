@@ -1,0 +1,5 @@
+Types: D: int, E: int
+
+Ranges: 1 ≤ D ≤ 100, 1 ≤ E ≤ 100
+
+Addtl Info: Up to 100 data sets, end of input indicated by "0 0"

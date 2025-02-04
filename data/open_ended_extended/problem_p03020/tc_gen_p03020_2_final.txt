@@ -1,0 +1,84 @@
+To create a test case generator for the given problem statement, we need to follow these steps:
+
+1. Randomly select \(N\) (the number of operations for red and blue balls).
+2. Generate \(N\) sets of coordinates and counts for red balls.
+3. Generate \(N\) sets of coordinates and counts for blue balls, ensuring that the total number of red and blue balls are equal.
+
+We need to ensure that the total number of red balls placed equals the total number of blue balls placed, as indicated by the constraint \(\sum_{i=1}^{N} RC_i = \sum_{i=1}^{N} BC_i\).
+
+Here is the test case generator implemented in Python:
+
+```python
+import random
+
+def tcgen():
+    N = random.randint(1, 1000)
+    
+    RX = []
+    RY = []
+    RC = []
+    BX = []
+    BY = []
+    BC = []
+    
+    total_red = 0
+    total_blue = 0
+    
+    for _ in range(N):
+        rx = random.randint(0, 10**9)
+        ry = random.randint(0, 10**9)
+        rc = random.randint(1, 10)
+        
+        RX.append(rx)
+        RY.append(ry)
+        RC.append(rc)
+        
+        total_red += rc
+    
+    for _ in range(N):
+        bx = random.randint(0, 10**9)
+        by = random.randint(0, 10**9)
+        bc = random.randint(1, 10)
+        
+        BX.append(bx)
+        BY.append(by)
+        BC.append(bc)
+        
+        total_blue += bc
+    
+    # Adjust BC values to ensure total_red == total_blue
+    diff = total_red - total_blue
+    if diff > 0:
+        for i in range(N):
+            if diff <= 0:
+                break
+            if BC[i] + diff <= 10:
+                BC[i] += diff
+                diff = 0
+            else:
+                diff -= (10 - BC[i])
+                BC[i] = 10
+    elif diff < 0:
+        diff = abs(diff)
+        for i in range(N):
+            if diff <= 0:
+                break
+            if BC[i] - diff >= 1:
+                BC[i] -= diff
+                diff = 0
+            else:
+                diff -= (BC[i] - 1)
+                BC[i] = 1
+    
+    return N, RX, RY, RC, BX, BY, BC
+
+# Example usage
+N, RX, RY, RC, BX, BY, BC = tcgen()
+print(N)
+for i in range(N):
+    print(RX[i], RY[i], RC[i])
+for i in range(N):
+    print(BX[i], BY[i], BC[i])
+```
+
+This generator first creates two lists of operations for red and blue balls, ensuring that their total counts match by adjusting the blue ball counts if necessary. It then prints the generated values in the required format.

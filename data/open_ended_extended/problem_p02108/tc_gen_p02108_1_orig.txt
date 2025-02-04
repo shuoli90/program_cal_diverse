@@ -1,0 +1,52 @@
+Sure, I can help you write a test case generator for the Donuts Purchase problem. Below is the implementation in Python.
+
+```python
+import random
+
+def tcgen():
+    # Generate number of towns and roads
+    n = random.randint(1, 10**5)
+    m = random.randint(0, min(n * (n - 1), 10**5))
+    
+    # Generate satisfaction for each town
+    c = [random.randint(0, 1000) for _ in range(n)]
+    
+    # Generate roads
+    roads = set()
+    while len(roads) < m:
+        a = random.randint(0, n - 1)
+        b = random.randint(0, n - 1)
+        if a != b:
+            roads.add((a, b))
+    
+    return n, m, c, list(roads)
+
+# Helper function to format the output
+def format_test_case(n, m, c, roads):
+    output = f"{n} {m}\n"
+    output += " ".join(map(str, c)) + "\n"
+    for a, b in roads:
+        output += f"{a} {b}\n"
+    return output
+
+# Generate a test case
+n, m, c, roads = tcgen()
+formatted_test_case = format_test_case(n, m, c, roads)
+print(formatted_test_case)
+```
+
+### Explanation:
+1. **Generating Towns and Roads**:
+   - We generate `n` (number of towns) randomly between 1 and \(10^5\).
+   - We generate `m` (number of roads) randomly between 0 and the minimum of `n * (n - 1)` and \(10^5\).
+
+2. **Generating Satisfaction List**:
+   - We create a list `c` of size `n` where each element is a random integer between 0 and 1000, representing the satisfaction from each town.
+
+3. **Generating Roads**:
+   - We generate `m` unique roads as a set of tuples `(a, b)`, ensuring that there are no self-loops by checking `a != b`.
+
+4. **Formatting the Test Case**:
+   - We create a function `format_test_case` to format the generated test case into the required input format.
+
+The printed output will be a valid test case for the problem. You can run the code multiple times to generate different test cases.

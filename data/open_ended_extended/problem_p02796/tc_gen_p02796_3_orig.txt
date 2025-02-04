@@ -1,0 +1,44 @@
+Sure, I can help you generate test cases for the given problem statement. Below is a Python function to generate random test cases:
+
+```python
+import random
+
+def tcgen():
+    N = random.randint(1, 100000)
+    
+    X = set()
+    while len(X) < N:
+        X.add(random.randint(0, 10**9))
+    X = list(X)
+    
+    robots = [(x, random.randint(1, 10**9)) for x in X]
+    
+    return N, robots
+
+def format_test_case(N, robots):
+    test_case = f"{N}\n"
+    for x, l in robots:
+        test_case += f"{x} {l}\n"
+    return test_case.strip()
+
+# Example usage:
+N, robots = tcgen()
+print(format_test_case(N, robots))
+```
+
+This function generates random test cases within the given constraints:
+
+1. `N` is chosen randomly between 1 and 100,000.
+2. Each `X_i` is a unique integer between 0 and 10^9.
+3. Each `L_i` is an integer between 1 and 10^9.
+
+The `format_test_case` function formats the generated test case for easy reading and use.
+
+You can call `tcgen` to generate a random test case and then use `format_test_case` to print it in the required format. Here's an example of how to call and print a generated test case:
+
+```python
+N, robots = tcgen()
+print(format_test_case(N, robots))
+```
+
+This will output a randomly generated test case in the proper format used for competitive programming problems.

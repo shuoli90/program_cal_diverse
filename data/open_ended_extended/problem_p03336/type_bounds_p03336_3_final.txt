@@ -1,0 +1,3 @@
+Types: N: int, M: int, K: int, S: str, T: str
+Ranges: 1 ≤ K ≤ 10^6, 1 ≤ N, M ≤ 10^6
+Addtl Info: The initial characters of S and T are guaranteed to be '1'.

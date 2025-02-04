@@ -1,0 +1,33 @@
+Sure! Here is a test case generator for the given problem "A: Four Tea":
+
+```python
+import random
+
+def tcgen():
+    # Generate a random integer N (1 ≤ N ≤ 100)
+    N = random.randint(1, 100)
+    
+    # Generate random prices for the tea packages (1 ≤ p_X ≤ 100)
+    p_A = random.randint(1, 100)
+    p_B = random.randint(1, 100)
+    p_C = random.randint(1, 100)
+    p_D = random.randint(1, 100)
+    
+    # Generate random tea cups for the tea packages (1 ≤ t_X ≤ 100)
+    t_A = random.randint(1, 100)
+    t_B = random.randint(1, 100)
+    t_C = random.randint(1, 100)
+    t_D = random.randint(1, 100)
+    
+    # Return the generated test case
+    return N, (p_A, p_B, p_C, p_D), (t_A, t_B, t_C, t_D)
+
+# Example of generating a test case
+if __name__ == "__main__":
+    N, prices, cups = tcgen()
+    print(N)
+    print(' '.join(map(str, prices)))
+    print(' '.join(map(str, cups)))
+```
+
+This function `tcgen` will generate a random test case for the problem "A: Four Tea". It generates values for \(N\), the prices of the tea packages \(p_A, p_B, p_C, p_D\), and the number of tea cups \(t_A, t_B, t_C, t_D\) within the specified constraints. The generated test case is printed in the format required by the problem statement.

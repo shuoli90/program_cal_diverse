@@ -1,0 +1,28 @@
+Problem A: Lunch
+Problem
+One day, Kawabayashi-kun is trying to have his lunch at the school cafeteria.
+There are three types of daily lunch menus: A, B, and C, at the cafeteria.
+Kawabayashi-kun is a big eater, and he wants to eat all three types of daily lunch menus, one each.
+However, he wants to minimize the sum of calories he consumes, so he decides to give up one of the lunch menus and have two different ones.
+Given the calories of A, B, and C lunch menus for a certain day, please find out which lunch menu he will give up.
+Input
+The input is given in the following format.
+$a$ $b$ $c$
+Three integers $a$, $b$, and $c$ are given separated by a space. They represent the calories of A, B, and C lunch menus for a certain day, respectively.
+Constraints
+The input satisfies the following conditions.
+$1 \leq a, b, c \leq 5000 $
+$a \neq b, b \neq c, c \neq a$
+Output
+Print the name of the lunch menu that Kawabayashi-kun gives up on a single line.
+If he gives up A, print "A".
+If he gives up B, print "B".
+If he gives up C, print "C".
+Sample Input 1
+1000 900 850
+Sample Output 1
+A
+Sample Input 2
+1000 800 1200
+Sample Output 2
+C

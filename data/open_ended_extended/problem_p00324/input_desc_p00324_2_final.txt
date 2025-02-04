@@ -1,0 +1,23 @@
+Canonicalized Input Description: 
+
+An integer N (1 ≤ N ≤ 200000), representing some quantity or size.
+A list of N integers, where each integer is between -10^9 and 10^9.
+
+### Example Input:
+
+```
+5
+18
+102
+-155
+53
+32
+```
+
+### Function Signature:
+Write a function f(N, A) that takes in the input.
+def f(N: int, A: List[int]):
+    '''
+    N: an integer
+    A: a list of integers
+    '''

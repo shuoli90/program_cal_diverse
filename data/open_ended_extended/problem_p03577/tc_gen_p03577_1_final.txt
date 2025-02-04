@@ -1,0 +1,29 @@
+Sure! Here is the test case generator for your problem statement:
+
+```python
+import random
+import string
+
+def tcgen():
+    # Length of S should be between 9 and 50
+    length_of_festival_part = len("FESTIVAL")
+    min_length_s = 9
+    max_length_s = 50
+
+    # Generate a random length for the part that comes before "FESTIVAL"
+    length_of_s_part = random.randint(min_length_s - length_of_festival_part, max_length_s - length_of_festival_part)
+    
+    # Generate the part of the string S that comes before "FESTIVAL"
+    s_part = ''.join(random.choices(string.ascii_uppercase, k=length_of_s_part))
+    
+    # Combine the parts to form the final string S
+    S = s_part + "FESTIVAL"
+    
+    return S
+
+# Example usage:
+for _ in range(5):
+    print(tcgen())
+```
+
+The `tcgen` function generates random strings `S` that meet the constraints of the problem. Each generated string ends with "FESTIVAL" and has a total length between 9 and 50 characters. The part that comes before "FESTIVAL" is generated randomly from uppercase English letters.

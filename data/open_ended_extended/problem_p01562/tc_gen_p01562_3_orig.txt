@@ -1,0 +1,46 @@
+Sure, I can write a test case generator for the "Area Folding" problem. Given the constraints and requirements, the generator will create valid input polygons with random vertices. Here's the code for the test case generator:
+
+```python
+import random
+
+def generate_random_points(n):
+    points = []
+    for _ in range(n):
+        x = random.randint(-105, 105)
+        y = random.randint(-105, 105)
+        points.append((x, y))
+    return points
+
+def tcgen():
+    # Number of segments (vertices)
+    N = random.randint(2, 100)
+    
+    # Generate N random points ensuring no two consecutive points are the same
+    while True:
+        points = generate_random_points(N)
+        valid = True
+        for i in range(1, N):
+            if points[i] == points[i - 1]:
+                valid = False
+                break
+        if valid:
+            break
+    
+    # Convert points to the required format
+    result = f"{N}\n"
+    for x, y in points:
+        result += f"{x} {y}\n"
+    
+    return result.strip()
+
+# Example of generating a test case
+print(tcgen())
+```
+
+This generator ensures that:
+
+1. The number of vertices \( N \) is within the specified range \([2, 100]\).
+2. Each point \((X_i, Y_i)\) is within the range \([-105, 105]\).
+3. No two consecutive points are the same.
+
+The generator outputs the test case in the format required by the problem statement. You can run this function multiple times to generate different test cases for your problem.

@@ -1,0 +1,60 @@
+Sure, let's write a test case generator for the problem statement "The Oldest Site". The generator will create multiple datasets with random coordinates for pillars within the given constraints.
+
+Here's the Python code for the test case generator:
+
+```python
+import random
+
+def generate_dataset():
+    # Number of pillars, randomly chosen between 1 and 3000
+    n = random.randint(1, 3000)
+    dataset = [str(n)]
+    
+    # Generate n unique random pillars.
+    pillars = set()
+    while len(pillars) < n:
+        x = random.randint(0, 5000)
+        y = random.randint(0, 5000)
+        pillars.add((x, y))
+    
+    for pillar in pillars:
+        dataset.append(f"{pillar[0]} {pillar[1]}")
+    
+    return "\n".join(dataset)
+
+def generate_test_cases(num_datasets):
+    test_cases = []
+    for _ in range(num_datasets):
+        test_cases.append(generate_dataset())
+    
+    # Append the terminating line with a single zero
+    test_cases.append("0")
+    
+    return "\n".join(test_cases)
+
+# Generate the test cases
+num_datasets = random.randint(1, 10)  # No more than 10 datasets
+test_input = generate_test_cases(num_datasets)
+
+print(test_input)
+```
+
+### Explanation:
+1. **generate_dataset**: This function generates a single dataset.
+   - It randomly selects the number of pillars \( n \) between 1 and 3000.
+   - It generates \( n \) unique pillars by ensuring no duplicate coordinates.
+   - Each pillar's coordinates \( (x, y) \) are chosen randomly between 0 and 5000 inclusive.
+   - The dataset is formatted as specified in the problem statement, with each coordinate pair on a new line.
+
+2. **generate_test_cases**: This function generates multiple datasets.
+   - It randomly selects the number of datasets (up to the maximum of 10).
+   - It calls the `generate_dataset` function to create each dataset.
+   - It appends a terminating line with a single zero to indicate the end of the input as required by the problem statement.
+
+3. **num_datasets**: The number of datasets is randomly chosen to be between 1 and 10.
+
+### Usage:
+- You can run this script to generate test inputs for your problem.
+- The generated test cases will be printed out, and you can use them to test your solution.
+
+This approach ensures that all constraints are respected and provides a variety of datasets to thoroughly test the solution.

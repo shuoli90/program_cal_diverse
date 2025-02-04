@@ -1,0 +1,12 @@
+Types: 
+- N: int 
+- x_i: int 
+- y_i: int 
+
+Ranges: 
+- 1 ≤ N ≤ 10^4 
+- -10^{17} ≤ x_i, y_i ≤ 10^{17} 
+
+Addtl Info: 
+- (x_i, y_i) are pairwise distinct. 
+- The input is consistent with the statement, and you can uniquely determine X and Y.

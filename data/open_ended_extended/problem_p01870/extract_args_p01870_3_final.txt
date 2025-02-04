@@ -1,0 +1,7 @@
+def extract_arguments(fh):
+    N = int(fh.readline().strip())
+    bridges = []
+    for _ in range(N - 1):
+        p, w = map(int, fh.readline().strip().split())
+        bridges.append((p, w))
+    return N, bridges

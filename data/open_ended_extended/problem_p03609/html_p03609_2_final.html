@@ -1,0 +1,139 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p03609 - Generation 2</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p03609 - Generation 2</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>
+Score : 100 points
+Problem StatementWe have a sandglass that runs for X seconds. The sand drops from the upper bulb at a rate of 1 gram per second. That is, the upper bulb initially contains X grams of sand.
+How many grams of sand will the upper bulb contains after t seconds?
+Constraints
+1≤X≤10^9
+1≤t≤10^9
+X and t are integers.
+InputThe input is given from Standard Input in the following format:
+X t
+OutputPrint the number of sand in the upper bulb after t second.
+Sample Input 1100 17
+Sample Output 183
+17 out of the initial 100 grams of sand will be consumed, resulting in 83 grams.
+Sample Input 248 58
+Sample Output 20
+All 48 grams of sand will be gone, resulting in 0 grams.
+Sample Input 31000000000 1000000000
+Sample Output 30
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An integer X (1 ≤ X ≤ 10^9), representing a quantity.
+An integer t (1 ≤ t ≤ 10^9), representing a time.
+
+### Example Input:
+
+```
+100 17
+```
+
+### Function Signature:
+Write a function f(X, t) that takes in the input.
+def f(X: int, t: int):
+    ''' 
+    X: an integer 
+    t: an integer 
+    '''</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Sure, here is a Python function to generate test cases for the given sandglass problem:
+
+```python
+import random
+
+def tcgen():
+    X = random.randint(1, 10**9)
+    t = random.randint(1, 10**9)
+    return X, t
+
+# Generate a test case
+X, t = tcgen()
+print(f"{X} {t}")
+
+# Example usage: output a test case
+if __name__ == "__main__":
+    for _ in range(5):  # Generate 5 example test cases
+        X, t = tcgen()
+        print(f"{X} {t}")
+```
+
+This function randomly generates values for \(X\) and \(t\) within the specified constraints (1 ≤ \(X\) ≤ 10^9 and 1 ≤ \(t\) ≤ 10^9). The generated values are returned and printed in the required format. You can run this function to generate multiple test cases as needed.
+
+Here's how you can use the function to generate and print multiple test cases:
+
+```python
+if __name__ == "__main__":
+    for _ in range(5):  # Generate 5 example test cases
+        X, t = tcgen()
+        print(f"{X} {t}")
+```
+
+This will generate 5 test cases and print them in the required format, suitable for use in testing the sandglass problem solution.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    X, t = map(int, fh.readline().strip().split())
+    return X, t</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

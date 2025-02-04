@@ -1,0 +1,53 @@
+Sure, I can help you write a test case generator for the "Elevator Hall Number" problem. Below is the Python code for the test case generator:
+
+```python
+import random
+
+def tcgen():
+    # Generate a random number of elevators N (2 ≤ N ≤ 6)
+    N = random.randint(2, 6)
+    
+    # Generate random low and high floor ranges for each elevator
+    ranges = []
+    for _ in range(N):
+        low = random.randint(1, 99)
+        high = random.randint(low, 99)
+        ranges.append((low, high))
+    
+    return N, ranges
+
+def generate_multiple_test_cases(num_cases):
+    test_cases = []
+    for _ in range(num_cases):
+        N, ranges = tcgen()
+        test_case = f"{N}\n"
+        for low, high in ranges:
+            test_case += f"{low} {high}\n"
+        test_cases.append(test_case.strip())
+    return test_cases
+
+def main():
+    num_cases = 5  # You can specify the number of test cases you want to generate
+    test_cases = generate_multiple_test_cases(num_cases)
+    for test_case in test_cases:
+        print(test_case)
+        print()  # Print a blank line between test cases
+
+if __name__ == "__main__":
+    main()
+```
+
+Explanation:
+1. **`tcgen` Function**: This function generates a single test case.
+    - It randomly selects the number of elevators \(N\) within the range [2, 6].
+    - For each elevator, it generates a random floor range with `low` and `high` values such that \(1 \leq \text{low} \leq \text{high} \leq 99\).
+
+2. **`generate_multiple_test_cases` Function**: This function generates multiple test cases.
+    - It calls `tcgen` multiple times to create the specified number of test cases.
+    - It formats each test case as a string and stores them in a list.
+
+3. **`main` Function**: This function controls the overall execution.
+    - It sets the number of test cases to generate.
+    - It prints each test case, followed by a blank line for separation.
+
+To use the generator, simply run the `main` function. You can adjust the `num_cases` variable to generate the desired number of test cases.

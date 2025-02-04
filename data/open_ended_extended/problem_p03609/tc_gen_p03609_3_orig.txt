@@ -1,0 +1,28 @@
+Certainly! Here is a test case generator for the provided problem statement:
+
+```python
+import random
+
+def tcgen():
+    X = random.randint(1, 10**9)
+    t = random.randint(1, 10**9)
+    
+    return X, t
+
+# Example usage:
+if __name__ == "__main__":
+    test_case = tcgen()
+    print(test_case)
+```
+
+This code snippet generates random test cases for the given problem statement. The function `tcgen()` generates two random integers \(X\) and \(t\) within the given constraints (1 ≤ \(X\) ≤ 10^9 and 1 ≤ \(t\) ≤ 10^9).
+
+You can use this generator to produce multiple test cases for thorough testing of your solution. Here is how the output might look:
+
+```
+(1000000000, 1000000000)
+(48, 58)
+(100, 17)
+```
+
+You can run this generator multiple times to produce different test cases each time.

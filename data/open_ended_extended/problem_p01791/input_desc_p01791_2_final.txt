@@ -1,0 +1,26 @@
+An integer \( n \) (1 ≤ \( k \) ≤ \( n \) ≤ 600), representing some quantity.
+An integer \( k \) (1 ≤ \( k \) ≤ \( n \)), another quantity.
+An integer \( a \) (0 ≤ \( a \) ≤ 180,000), a lower bound.
+An integer \( b \) (0 ≤ \( a \) ≤ \( b \) ≤ 180,000), an upper bound.
+A list of \( n \) integers \( x \) (0 ≤ \( x_i \) ≤ 300).
+
+### Example Input:
+
+```
+4 2 58 100
+10 10 50 80
+```
+
+### Function Signature:
+Write a function f(inputs) that takes in the input as a list of tuples. 
+```python
+def f(inputs: List[Tuple[int, int, int, int, List[int]]]):
+    '''
+    inputs: a list of tuples, each containing:
+        n: an integer
+        k: an integer
+        a: an integer
+        b: an integer
+        x: a list of integers
+    '''
+```

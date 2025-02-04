@@ -1,0 +1,28 @@
+Sure, I can help you write a test case generator for the given problem statement. Here is the Python code for generating test cases:
+
+```python
+import random
+
+def tcgen():
+    # Generate N within the given constraints
+    N = random.randint(1, 10**5)
+    
+    # Generate K within the given constraints
+    K = random.randint(1, 10**5)
+    
+    # Generate string S of length N with characters 'L' and 'R'
+    S = ''.join(random.choice(['L', 'R']) for _ in range(N))
+    
+    return N, K, S
+
+# Example usage:
+test_case = tcgen()
+print(test_case)
+```
+
+This function generates random test cases for the described problem. Each test case consists of:
+1. An integer \(N\) (1 ≤ \(N\) ≤ 10^5), representing the number of people in the queue.
+2. An integer \(K\) (1 ≤ \(K\) ≤ 10^5), representing the maximum number of operations allowed.
+3. A string \(S\) of length \(N\), where each character is either 'L' or 'R', representing the direction each person is facing.
+
+You can call the function `tcgen()` to generate different test cases. For example, calling `tcgen()` will give you a tuple `(N, K, S)` representing a randomly generated test case.

@@ -1,0 +1,3 @@
+Types: T: int, Start_city: str, Departure_time: str, Arrival_city: str, Arrival_time: str, price: int  
+Ranges: 1 ≤ T ≤ 2000, Start_city: str (1-16 alphabetical characters, first in upper case), Departure_time: str (HH:MM, 00:00 to 23:59), Arrival_city: str (1-16 alphabetical characters, first in upper case), Arrival_time: str (HH:MM, 00:00 to 23:59), 1 ≤ price ≤ 10000  
+Addtl Info: Number of cities ≤ 100, Arrival time is strictly after departure time

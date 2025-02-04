@@ -1,0 +1,60 @@
+Certainly! Below is a test case generator for the given problem statement.
+
+```python
+import random
+
+def generate_test_case():
+    # Constraints
+    N = random.randint(1, 200)
+    points = set()
+    
+    while len(points) < N:
+        x = random.randint(0, 9999)
+        y = random.randint(0, 9999)
+        # Ensure all points are unique
+        if (x, y) not in points:
+            points.add((x, y))
+    
+    points_list = list(points)
+    
+    return N, points_list
+
+def format_test_case(N, points_list):
+    formatted_input = f"{N}\n"
+    for x, y in points_list:
+        formatted_input += f"{x} {y}\n"
+        
+    return formatted_input
+
+# Example Usage
+N, points_list = generate_test_case()
+test_case_input = format_test_case(N, points_list)
+print(test_case_input)
+```
+
+This generator creates a test case for the given problem by generating a random number \(N\) of unique points within the specified range [0, 9999] for both \(x\) and \(y\) coordinates.
+
+### Steps to Generate a Test Case:
+
+1. **Generate a Random Number of Points**: `N` is chosen randomly between 1 and 200.
+2. **Generate Unique Points**: Use a set to ensure the generated points are unique.
+3. **Format the Input**: Convert the list of points into the required input format for the problem.
+
+### Example Usage
+
+Running the generator will produce a test case in the format expected by the problem. The `format_test_case` function converts the generated points into a string format that mimics standard input.
+
+### Example Output
+
+Here's an example of what the output might look like:
+
+```
+5
+1234 5678
+2345 6789
+3456 7890
+4567 8901
+5678 9012
+```
+
+This output can be directly used as input for your problem, ensuring it adheres to the constraints and requirements given in the problem statement.

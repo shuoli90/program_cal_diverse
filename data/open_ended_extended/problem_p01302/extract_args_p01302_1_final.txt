@@ -1,0 +1,19 @@
+def extract_arguments(fh):
+    datasets = []
+    while True:
+        n = int(fh.readline().strip())
+        if n == 0:
+            break
+        vx, vy = map(int, fh.readline().strip().split())
+        vertices = []
+        for _ in range(n):
+            x, y = map(int, fh.readline().strip().split())
+            vertices.append((x, y))
+        datasets.append((n, (vx, vy), vertices))
+    return datasets
+
+# Example usage:
+# with open('input.txt', 'r') as fh:
+#     inputs = extract_arguments(fh)
+#     for dataset in inputs:
+#         f(*dataset)

@@ -1,0 +1,62 @@
+To create a test case generator for the given competitive programming problem "E: Mischief Graph," we need to generate test cases that adhere to the constraints and input format specified in the problem statement. Here's how the test case generator can be implemented in Python:
+
+```python
+import random
+
+def tcgen():
+    # Constraints
+    N = random.randint(2, 10**5)
+    M = random.randint(1, 10**5)
+    s = random.randint(1, N)
+    t = random.randint(1, N)
+    
+    # Ensure s != t
+    while s == t:
+        t = random.randint(1, N)
+
+    edges = []
+    for _ in range(M):
+        a_i = random.randint(1, N)
+        b_i = random.randint(1, N)
+        c_i = random.randint(1, N)
+        
+        # Ensure all three values are different
+        while len(set([a_i, b_i, c_i])) != 3:
+            a_i = random.randint(1, N)
+            b_i = random.randint(1, N)
+            c_i = random.randint(1, N)
+        
+        d_i = random.randint(1, 10**9)
+        edges.append((a_i, b_i, c_i, d_i))
+    
+    return N, M, s, t, edges
+
+def format_test_case(N, M, s, t, edges):
+    test_case = f"{N} {M} {s} {t}\n"
+    for a_i, b_i, c_i, d_i in edges:
+        test_case += f"{a_i} {b_i} {c_i} {d_i}\n"
+    return test_case
+
+if __name__ == "__main__":
+    N, M, s, t, edges = tcgen()
+    test_case = format_test_case(N, M, s, t, edges)
+    print(test_case)
+```
+
+### Explanation:
+
+1. **Constraints Handling**:
+   - `N`, `M`: Randomly generate the number of vertices and edges within the given constraints.
+   - `s`, `t`: Randomly generate the source and target vertices ensuring `s` is different from `t`.
+
+2. **Edges Generation**:
+   - Each edge is represented by three vertices and a cost. We ensure that the three vertices (`a_i`, `b_i`, `c_i`) are distinct by checking the length of the set created from these vertices.
+   - The cost `d_i` is randomly generated within the given range.
+
+3. **Formatting the Test Case**:
+   - We create a string representation of the test case in the required format.
+
+4. **Execution**:
+   - Running the script will print out a randomly generated test case.
+
+This test case generator ensures that the generated test cases are valid and adhere to the constraints provided in the problem statement.

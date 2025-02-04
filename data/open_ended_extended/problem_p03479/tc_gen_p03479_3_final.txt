@@ -1,0 +1,22 @@
+Certainly! To create a test case generator for the given problem statement, we need to generate random values for \(X\) and \(Y\) such that \(1 \leq X \leq Y \leq 10^{18}\). Here is a Python function to generate such test cases:
+
+```python
+import random
+
+def tcgen():
+    X = random.randint(1, 10**18)
+    Y = random.randint(X, 10**18)
+    
+    return X, Y
+
+# Example usage
+for _ in range(5):
+    print(tcgen())
+```
+
+This function will generate random pairs of integers \(X\) and \(Y\) that satisfy the constraints given in the problem statement. Here is a brief explanation:
+
+1. **X** is chosen randomly between 1 and \(10^{18}\) (inclusive).
+2. **Y** is chosen randomly between \(X\) and \(10^{18}\) (inclusive), ensuring that \(X \leq Y\).
+
+This test case generator ensures that the constraints \(1 \leq X \leq Y \leq 10^{18}\) are always met, providing valid inputs for the problem.

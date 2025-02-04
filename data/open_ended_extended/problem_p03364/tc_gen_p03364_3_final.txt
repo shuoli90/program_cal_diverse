@@ -1,0 +1,60 @@
+Sure! Let's create a test case generator for the given problem statement. The goal is to generate random test cases that fit the problem constraints.
+
+Here's the test case generator:
+
+```python
+import random
+import string
+
+def generate_random_letter():
+    return random.choice(string.ascii_lowercase)
+
+def tcgen():
+    # Generate a random N within the constraint
+    N = random.randint(1, 300)
+    
+    # Generate the first board S with random lowercase letters
+    S = []
+    for _ in range(N):
+        row = ''.join(generate_random_letter() for _ in range(N))
+        S.append(row)
+    
+    # Return the generated test case
+    return N, S
+
+def format_test_case(N, S):
+    # Format the test case for output
+    testcase = f"{N}\n"
+    for row in S:
+        testcase += row + "\n"
+    return testcase.strip()
+
+def main():
+    # Generate a test case
+    N, S = tcgen()
+    
+    # Format the test case for easy display
+    formatted_test_case = format_test_case(N, S)
+    
+    # Print the formatted test case
+    print(formatted_test_case)
+
+if __name__ == "__main__":
+    main()
+```
+
+### Explanation
+
+1. **Generate Random `N`**:
+    - `N` is randomly chosen between 1 and 300.
+
+2. **Generate the Board `S`**:
+    - For each row in the board, a string of `N` random lowercase letters is generated.
+
+3. **Format the Test Case**:
+    - The test case is formatted as required by the input format described in the problem statement.
+
+4. **Output**:
+    - The generated test case is printed in the required format.
+
+You can run this script to generate random test cases for the problem statement. This will ensure that you have a variety of test cases to work with when solving the problem or testing your solution.

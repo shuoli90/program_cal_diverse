@@ -1,0 +1,68 @@
+A: Information Search
+Problem
+A posting list is a list that associates search words with the corresponding document IDs where the words appear. For example,
+Hokkaido: 1, 2, 4, 9
+Tourism: 1, 3, 4, 7
+and so on.
+From the above posting list, when conducting an "and search", documents with IDs 1 and 4 are hit, and when conducting an "or search", documents with IDs 1, 2, 3, 4, 7, and 9 are hit.
+Here, an "and search" refers to the process of listing the elements that are included in both lists, and an "or search" refers to the process of listing the elements that are included in at least one of the lists.
+Given the posting list, output the results of both "and search" and "or search".
+Input Format
+n m
+a_1 a_2 $\ldots$ a_n
+b_1 b_2 $\ldots$ b_m
+All input is an integer.
+The first line contains the lengths of the two posting lists to be searched, n and m, separated by a space.
+The second and third lines contain the IDs included in each posting list, separated by spaces.
+Constraints
+ 1 \leq n, m \leq 2\times10^5
+ a_i < a_j (i < j)
+ b_i < b_j (i < j)
+ 1 \leq a_i, b_i \leq 10^9
+Output Format
+Let A be the number of hits in the "and search" and B be the number of hits in the "or search".
+Output a single line containing A B.
+Output the IDs that were hit in ascending order for the "and search" on the next A lines.
+Output the IDs that were hit in ascending order for the "or search" on the next B lines.
+Sample Input 1
+4 4
+1 2 4 9
+1 3 4 7
+Sample Output 1
+2 6
+1
+4
+1
+2
+3
+4
+7
+9
+Sample Input 2
+4 4
+1 3 5 7
+2 4 6 8
+Sample Output 2
+0 8
+1
+2
+3
+4
+5
+6
+7
+8
+Sample Input 3
+3 5
+1 2 3
+1 2 3 4 5
+Sample Output 3
+3 5
+1
+2
+3
+1
+2
+3
+4
+5

@@ -1,0 +1,18 @@
+Types: 
+- N: int 
+- M: int 
+- a_i: List[int] 
+- b_i: List[int] 
+- c_i: List[int]
+
+Ranges: 
+- 2 ≤ N ≤ 1000 
+- 1 ≤ M ≤ min(N(N-1), 2000) 
+- 1 ≤ a_i, b_i ≤ N (1 ≤ i ≤ M) 
+- a_i ≠ b_i (1 ≤ i ≤ M) 
+- a_i ≠ a_j or b_i ≠ b_j (1 ≤ i < j ≤ M) 
+- -10^9 ≤ c_i ≤ 10^9 (1 ≤ i ≤ M)
+
+Addtl Info: 
+- c_i is an integer.
+- In the given graph, there exists a path from vertex 1 to vertex N.

@@ -1,0 +1,6 @@
+def extract_arguments(fh):
+    N = int(fh.readline().strip())
+    K = int(fh.readline().strip())
+    X = int(fh.readline().strip())
+    Y = int(fh.readline().strip())
+    return N, K, X, Y

@@ -1,0 +1,3 @@
+Types: N: int, M: int, L: List[int], R: List[int]
+Ranges: 1 ≤ N ≤ 10^5, 1 ≤ M ≤ 10^5, 1 ≤ L[i] ≤ R[i] ≤ N
+Addtl Info: None

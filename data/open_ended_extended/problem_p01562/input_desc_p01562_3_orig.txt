@@ -1,0 +1,21 @@
+An integer N (2 ≤ N ≤ 100), representing some quantity or size.
+A list of tuples of size N, where each tuple consists of two integers (X, Y) with -105 ≤ X, Y ≤ 105.
+
+### Example Input:
+
+```
+5
+0 0
+1 1
+1 0
+0 1
+0 0
+```
+
+### Function Signature:
+Write a function f(N, points) that takes in the input.
+def f(N: int, points: List[Tuple[int, int]]):
+    '''
+    N: an integer
+    points: a list of tuples, each containing two integers
+    '''

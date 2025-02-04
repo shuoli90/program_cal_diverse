@@ -1,0 +1,10 @@
+Types: 
+A: int, V: int, B: int, W: int, T: int
+
+Ranges: 
+-10^9 ≤ A, B ≤ 10^9
+1 ≤ V, W ≤ 10^9
+1 ≤ T ≤ 10^9
+
+Addtl Info: 
+A ≠ B

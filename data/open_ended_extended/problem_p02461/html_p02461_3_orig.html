@@ -1,0 +1,222 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p02461 - Generation 3</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p02461 - Generation 3</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>Map: Range Search
+  For a dictionary $M$ that stores elements formed by a pair of a string key and an integer value, perform a sequence of the following operations. Note that each key in $M$ must be unique.
+insert($key$, $x$): Insert an element formed by a pair of $key$ and $x$ to $M$.
+get($key$): Print the value with the specified $key$. Print 0 if there is no such element. 
+delete($key$): Delete the element with the specified $key$.
+dump($L$, $R$): Print all elements formed by a pair of the key and the value such that the key is greater than or equal to $L$ and less than or equal to $R$ in lexicographic order.
+Input
+  The input is given in the following format.
+$q$
+$query_1$
+$query_2$
+:
+$query_q$
+Each query $query_i$ is given by
+0 $key$ $x$
+or
+1 $key$
+or
+2 $key$
+or
+3 $L$ $R$
+ where the first digits 0, 1, 2 and 3 represent insert, get, delete and dump operations.
+Output
+For each get operation, print the corresponding value.
+For each dump operation, print the corresponding elements formed by a pair of the key and the value. For the dump operation, print the elements (a pair of key and value separated by a space character) in ascending order of the keys.
+Constraints
+$1 \leq q \leq 200,000$
+$1 \leq x \leq 1,000,000,000$
+$1 \leq $ length of $key$ $ \leq 20$ 
+$key$ consists of lower-case letters
+$L \leq R$ in lexicographic order
+The total number of elements printed by dump operations does not exceed $1,000,000$
+Sample Input 1
+9
+0 blue 4
+0 red 1
+0 white 5
+1 red
+1 blue
+2 red
+1 black
+1 red
+3 w z
+Sample Output 1
+1
+4
+0
+0
+white 5
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An integer q (1 ≤ q ≤ 200,000), representing the number of queries.
+Each query is a string that can take one of the following forms:
+- "0 key x" where key is a string of lowercase letters (1 ≤ length of key ≤ 20) and x is an integer (1 ≤ x ≤ 1,000,000,000).
+- "1 key" where key is a string of lowercase letters.
+- "2 key" where key is a string of lowercase letters.
+- "3 L R" where L and R are strings of lowercase letters such that L ≤ R in lexicographic order.
+
+### Example Input:
+
+```
+9
+0 blue 4
+0 red 1
+0 white 5
+1 red
+1 blue
+2 red
+1 black
+1 red
+3 w z
+```
+
+### Function Signature:
+Write a function f(queries) that takes in the input.
+```python
+def f(queries: List[str]):
+    ''' 
+    queries: a list of query strings
+    '''
+```</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Sure, I can help you generate test cases for the given problem statement. Below is the Python code to generate test cases:
+
+```python
+import random
+import string
+
+def random_string(length):
+    letters = string.ascii_lowercase
+    return ''.join(random.choice(letters) for i in range(length))
+
+def tcgen():
+    q = random.randint(1, 200000)  # Number of queries
+
+    queries = []
+    keys = set()
+    
+    for _ in range(q):
+        operation = random.randint(0, 3)
+        if operation == 0:  # insert operation
+            key = random_string(random.randint(1, 20))
+            while key in keys:  # Ensure unique keys
+                key = random_string(random.randint(1, 20))
+            keys.add(key)
+            x = random.randint(1, 1000000000)
+            queries.append(f"0 {key} {x}")
+        elif operation == 1:  # get operation
+            if keys:
+                key = random.choice(list(keys))
+            else:
+                key = random_string(random.randint(1, 20))
+            queries.append(f"1 {key}")
+        elif operation == 2:  # delete operation
+            if keys:
+                key = random.choice(list(keys))
+                keys.remove(key)
+            else:
+                key = random_string(random.randint(1, 20))
+            queries.append(f"2 {key}")
+        elif operation == 3:  # dump operation
+            L = random_string(random.randint(1, 20))
+            R = random_string(random.randint(1, 20))
+            if L > R:
+                L, R = R, L  # Ensure L is lexicographically less than or equal to R
+            queries.append(f"3 {L} {R}")
+
+    return q, queries
+
+# Example usage:
+q, queries = tcgen()
+print(q)
+for query in queries:
+    print(query)
+```
+
+### Explanation:
+
+1. **Random String Generation**: The `random_string` function generates random strings of a given length from lowercase English letters.
+
+2. **Number of Queries**: The number of queries `q` is randomly chosen between 1 and 200,000.
+
+3. **Query Generation**:
+    - **Insert Operation (0)**: If the operation is 0, it generates a unique random key and a random integer value between 1 and 1,000,000,000.
+    - **Get Operation (1)**: For the get operation, it either picks a key from the existing set of keys or generates a random key.
+    - **Delete Operation (2)**: For the delete operation, it picks an existing key (if any) to delete or generates a random key.
+    - **Dump Operation (3)**: It generates two random strings L and R, and ensures L is lexicographically less than or equal to R.
+
+4. **Output**: The function returns the number of queries and the list of queries in the specified format.
+
+You can use the example usage provided at the end to generate and print a set of test cases. Adjust the ranges and constraints as necessary to fit your testing needs.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    q = int(fh.readline().strip())
+    queries = []
+    for _ in range(q):
+        queries.append(fh.readline().strip().split())
+    return q, queries</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

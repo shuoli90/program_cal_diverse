@@ -1,0 +1,187 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p03008 - Generation 1</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p03008 - Generation 1</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>
+Score : 600 points
+Problem StatementThe squirrel Chokudai has N acorns.
+One day, he decides to do some trades in multiple precious metal exchanges to make more acorns.
+His plan is as follows:
+Get out of the nest with N acorns in his hands.
+Go to Exchange A and do some trades.
+Go to Exchange B and do some trades.
+Go to Exchange A and do some trades.
+Go back to the nest.
+In Exchange X (X = A, B), he can perform the following operations any integer number of times (possibly zero) in any order:
+Lose g_{X} acorns and gain 1 gram of gold.
+Gain g_{X} acorns and lose 1 gram of gold.
+Lose s_{X} acorns and gain 1 gram of silver.
+Gain s_{X} acorns and lose 1 gram of silver.
+Lose b_{X} acorns and gain 1 gram of bronze.
+Gain b_{X} acorns and lose 1 gram of bronze.
+Naturally, he cannot perform an operation that would leave him with a negative amount of acorns, gold, silver, or bronze.
+What is the maximum number of acorns that he can bring to the nest?
+Note that gold, silver, or bronze brought to the nest would be worthless because he is just a squirrel.
+Constraints
+1 \leq N \leq 5000
+1 \leq g_{X} \leq 5000
+1 \leq s_{X} \leq 5000
+1 \leq b_{X} \leq 5000
+All values in input are integers.
+InputInput is given from Standard Input in the following format:
+N
+g_A s_A b_A
+g_B s_B b_B
+OutputPrint the maximum number of acorns that Chokudai can bring to the nest.
+Sample Input 123
+1 1 1
+2 1 1
+Sample Output 146
+He can bring 46 acorns to the nest, as follows:
+In Exchange A, trade 23 acorns for 23 grams of gold. {acorns, gold, silver, bronze}={ 0,23,0,0 }
+In Exchange B, trade 23 grams of gold for 46 acorns. {acorns, gold, silver, bronze}={ 46,0,0,0 }
+In Exchange A, trade nothing. {acorns, gold, silver, bronze}={ 46,0,0,0 }
+He cannot have 47 or more acorns, so the answer is 46.
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An integer N (1 ≤ N ≤ 5000), representing some quantity.
+Six integers g_A, s_A, b_A, g_B, s_B, b_B, each in the range [1, 5000].
+
+### Example Input:
+
+```
+123
+1 1 1
+2 1 1
+```
+
+### Function Signature:
+Write a function f(N, g_A, s_A, b_A, g_B, s_B, b_B) that takes in the input.
+def f(N: int, g_A: int, s_A: int, b_A: int, g_B: int, s_B: int, b_B: int):
+    '''
+    N: an integer
+    g_A: an integer
+    s_A: an integer
+    b_A: an integer
+    g_B: an integer
+    s_B: an integer
+    b_B: an integer
+    '''
+</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Sure! I can write a test case generator for the given problem statement about Chokudai the squirrel and his acorns. The generator will create random values for the constraints provided, ensuring valid inputs according to the problem's requirements.
+
+Here is a Python function to generate test cases:
+
+```python
+import random
+
+def generate_test_case():
+    # Generate a random integer N (1 ≤ N ≤ 5000)
+    N = random.randint(1, 5000)
+    
+    # Generate random integers for g_A, s_A, b_A, g_B, s_B, b_B (1 ≤ value ≤ 5000)
+    g_A = random.randint(1, 5000)
+    s_A = random.randint(1, 5000)
+    b_A = random.randint(1, 5000)
+    g_B = random.randint(1, 5000)
+    s_B = random.randint(1, 5000)
+    b_B = random.randint(1, 5000)
+    
+    return N, g_A, s_A, b_A, g_B, s_B, b_B
+
+def print_test_case():
+    N, g_A, s_A, b_A, g_B, s_B, b_B = generate_test_case()
+    
+    print(N)
+    print(f"{g_A} {s_A} {b_A}")
+    print(f"{g_B} {s_B} {b_B}")
+
+# Example of generating and printing a single test case
+if __name__ == "__main__":
+    print_test_case()
+```
+
+This code will generate random, valid test cases for the given problem. Here's a breakdown of what each part does:
+
+1. **`generate_test_case` function**:
+    - Generates a random integer \(N\) between 1 and 5000.
+    - Generates random integers for \(g_A\), \(s_A\), \(b_A\), \(g_B\), \(s_B\), and \(b_B\) between 1 and 5000.
+
+2. **`print_test_case` function**:
+    - Calls `generate_test_case` to get a set of random values.
+    - Prints the values in the required format.
+
+You can call `print_test_case()` to generate and display a new test case. This can be integrated into a larger testing framework or used as a standalone script for generating inputs for manual or automated testing.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    N = int(fh.readline().strip())
+    g_A, s_A, b_A = map(int, fh.readline().strip().split())
+    g_B, s_B, b_B = map(int, fh.readline().strip().split())
+    return N, (g_A, s_A, b_A), (g_B, s_B, b_B)
+
+# if __name__ == "__main__":
+#     input_path = sys.argv[1]
+#     with open(input_path, 'r') as fh: 
+#     N, (g_A, s_A, b_A), (g_B, s_B, b_B) = extract_arguments(fh)
+#     f(N, (g_A, s_A, b_A), (g_B, s_B, b_B))</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

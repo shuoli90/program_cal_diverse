@@ -1,0 +1,41 @@
+Sure! Below is a test case generator for the given problem "Four Tea":
+
+```python
+import random
+
+def tcgen():
+    # Generating the number of players participating in the contest (N)
+    N = random.randint(1, 100)
+    
+    # Generating the prices of the tea packages (p_A, p_B, p_C, p_D)
+    prices = [random.randint(1, 100) for _ in range(4)]
+    
+    # Generating the number of cups of tea that can be made from each package (t_A, t_B, t_C, t_D)
+    tea_counts = [random.randint(1, 100) for _ in range(4)]
+    
+    return N, prices, tea_counts
+
+# Example of generating and printing a test case
+if __name__ == "__main__":
+    test_case = tcgen()
+    print("Generated Test Case:")
+    print(test_case[0])  # N
+    print(" ".join(map(str, test_case[1])))  # p_A p_B p_C p_D
+    print(" ".join(map(str, test_case[2])))  # t_A t_B t_C t_D
+```
+
+### Explanation:
+1. **N**: The number of players participating in the contest. It is randomly generated between 1 and 100.
+2. **Prices**: The prices of the tea packages A, B, C, and D. Each price is randomly generated between 1 and 100.
+3. **Tea Counts**: The number of cups of tea that each package can make (t_A, t_B, t_C, t_D). Each count is randomly generated between 1 and 100.
+
+This generator will produce random valid test cases based on the constraints provided in the problem statement. You can use this in your test suite for generating multiple test cases and validating your solution.
+
+### How to use:
+1. Call the `tcgen()` function to generate a new test case.
+2. The function returns a tuple containing:
+   - The number of players \(N\).
+   - A list of prices for the tea packages.
+   - A list of the number of cups each package can make.
+
+You can print or directly use these values to feed into your solution to test its correctness.

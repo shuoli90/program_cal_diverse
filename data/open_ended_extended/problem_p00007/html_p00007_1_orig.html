@@ -1,0 +1,132 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p00007 - Generation 1</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p00007 - Generation 1</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>
+Debt Hell
+Your friend who lives in undisclosed country is involved in debt. He is borrowing 100,000-yen from a loan shark. The loan shark adds 5% interest of the debt and rounds it to the nearest 1,000 above week by week.
+Write a program which computes the amount of the debt in n weeks. 
+Input
+An integer n (0 ≤ n ≤ 100) is given in a line.
+Output
+Print the amout of the debt in a line.
+Sample Input
+5
+Output for the Sample Input
+130000
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An integer \( n \) (0 ≤ \( n \) ≤ 100) representing some quantity or size.
+
+### Example Input:
+
+```
+5
+```
+
+### Function Signature:
+Write a function f(n) that takes in the input.
+def f(n: int):
+    '''
+    n: an integer
+    '''</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Sure! Here is a test case generator for the "Debt Hell" problem:
+
+```python
+import random
+
+def tcgen():
+    # Generate a random integer n in the range 0 to 100 inclusive
+    n = random.randint(0, 100)
+    
+    return n
+
+def compute_debt(n):
+    debt = 100000
+    for _ in range(n):
+        debt = debt * 1.05
+        debt = ((debt + 999) // 1000) * 1000  # Round up to the nearest 1000 yen
+    return int(debt)
+
+# Generate a test case
+n = tcgen()
+output = compute_debt(n)
+
+# Display the test case and the expected output
+print(f"Input:\n{n}")
+print(f"Expected Output:\n{output}")
+```
+
+### Explanation:
+1. `tcgen()` function generates a random integer `n` between 0 and 100 inclusive.
+2. `compute_debt(n)` function computes the debt after `n` weeks by:
+   - Starting with an initial debt of 100,000 yen.
+   - Applying a 5% interest and rounding up to the nearest 1,000 yen each week for `n` weeks.
+3. The generated test case and the expected output are printed to the console.
+
+This will help test various scenarios for the problem, ensuring the solution handles different values of `n` correctly.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    n = int(fh.readline().strip())
+    return n</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

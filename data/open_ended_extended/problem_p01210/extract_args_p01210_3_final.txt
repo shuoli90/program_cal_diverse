@@ -1,0 +1,17 @@
+def extract_arguments(fh):
+    data_sets = []
+    while True:
+        NA = int(fh.readline().strip())
+        if NA == 0:
+            break
+        deck_A = fh.readline().strip().split()
+        NB = int(fh.readline().strip())
+        deck_B = fh.readline().strip().split()
+        data_sets.append((NA, deck_A, NB, deck_B))
+    return data_sets
+
+# if __name__ == "__main__":
+#     input_path = sys.argv[1]
+#     with open(input_path, 'r') as fh: 
+#         inputs = extract_arguments(fh)
+#         f(inputs)

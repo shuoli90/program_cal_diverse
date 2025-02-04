@@ -1,0 +1,39 @@
+Sure! Below is a Python function to generate test cases for the "Fishing Competition" problem. The function `tcgen` will generate random test cases based on the constraints provided in the problem statement.
+
+```python
+import random
+
+def tcgen():
+    # Generate random values for the number of iwana and yamame caught by Hiroshi
+    h1 = random.randint(0, 100)
+    h2 = random.randint(0, 100)
+    
+    # Generate random values for the number of iwana and yamame caught by Kenjiro
+    k1 = random.randint(0, 100)
+    k2 = random.randint(0, 100)
+    
+    # Generate random values for the points and additional points
+    a = random.randint(1, 100)
+    b = random.randint(1, 100)
+    c = random.randint(0, 100)
+    d = random.randint(0, 100)
+
+    # Generate the input as a tuple
+    input_data = (h1, h2, k1, k2, a, b, c, d)
+    
+    return input_data
+
+# Example usage
+if __name__ == "__main__":
+    test_case = tcgen()
+    h1, h2, k1, k2, a, b, c, d = test_case
+    print(f"{h1} {h2}")
+    print(f"{k1} {k2}")
+    print(f"{a} {b} {c} {d}")
+```
+
+To use the `tcgen` function, simply call it and it will return a tuple containing randomly generated values for one test case. The example usage at the bottom demonstrates how you can print the generated test case in the required format.
+
+This function ensures that all constraints provided in the problem statement are met:
+- The number of fish caught by each person is between 0 and 100.
+- The points for each fish and additional points are within their specified ranges.

@@ -1,0 +1,25 @@
+def extract_arguments(fh):
+    N, M, W, T = map(int, fh.readline().strip().split())
+    
+    products = []
+    for _ in range(M):
+        data = fh.readline().strip().split()
+        name = data[0]
+        weight = int(data[1])
+        price = int(data[2])
+        products.append((name, weight, price))
+    
+    towns = []
+    for _ in range(N):
+        data = fh.readline().strip().split()
+        town_name = data[0]
+        town_x = int(data[1])
+        town_y = int(data[2])
+        selling_prices = []
+        for _ in range(int(data[3])):
+            product_name, product_price = fh.readline().strip().split()
+            product_price = int(product_price)
+            selling_prices.append((product_name, product_price))
+        towns.append((town_name, town_x, town_y, selling_prices))
+    
+    return N, M, W, T, products, towns

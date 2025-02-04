@@ -1,0 +1,62 @@
+Certainly! Below is a test case generator for the described problem "Kobuta Nuki Kitsuneko":
+
+```python
+import random
+import string
+
+def generate_word(length):
+    return ''.join(random.choices(string.ascii_lowercase, k=length))
+
+def generate_test_case():
+    n = random.randint(2, 10000)
+    words = [generate_word(random.randint(1, 32)) for _ in range(n)]
+    
+    return n, words
+
+def tcgen():
+    datasets = []
+    for _ in range(random.randint(1, 50)):  # Generating between 1 and 50 datasets
+        n, words = generate_test_case()
+        datasets.append((n, words))
+    
+    return datasets
+
+def format_test_case(test_case):
+    formatted = []
+    for n, words in test_case:
+        formatted.append(f"{n}")
+        formatted.extend(words)
+    formatted.append("0")
+    return "\n".join(formatted)
+
+# Example usage
+test_case = tcgen()
+formatted_test_case = format_test_case(test_case)
+print(formatted_test_case)
+```
+
+This generator creates a random number of datasets (between 1 and 50). Each dataset contains a random number of words (between 2 and 10000), and each word is a string of random lowercase letters with a length between 1 and 32.
+
+The `format_test_case` function formats the generated test cases into the required input format for the problem.
+
+You can run the `tcgen` function to generate the test cases, and use the `format_test_case` function to print them in the desired format. Here is an example of how it would look:
+
+```plaintext
+5
+apple
+yellow
+georgia
+king
+email
+7
+apple
+yellow
+georgia
+king
+email
+wink
+lucky
+0
+```
+
+You can run the code to generate different test cases and use them to test your solution.

@@ -1,0 +1,57 @@
+Certainly! Let's break down the requirements and create a test case generator for your problem statement.
+
+### Problem Statement: Find Integers within K Smallest or K Largest
+
+**Input**
+1. Two integers \(A\) and \(B\) (\(1 \leq A \leq B \leq 10^9\)), representing the range.
+2. An integer \(K\) (\(1 \leq K \leq 100\)), representing how many smallest and largest integers to include.
+
+**Output**
+Print all the integers that are either within the K smallest integers or within the K largest integers in the range \([A, B]\), in ascending order.
+
+### Example
+Given the constraints and problem statement, here is how you can generate test cases:
+
+```python
+import random
+
+def tcgen():
+    # Generate A and B such that 1 <= A <= B <= 10^9
+    A = random.randint(1, 10**9)
+    B = random.randint(A, 10**9)
+
+    # Generate K such that 1 <= K <= 100
+    K = random.randint(1, 100)
+
+    return A, B, K
+
+def sample_case():
+    # Example for demonstration purposes
+    A, B, K = 3, 8, 2
+    return A, B, K
+
+# Generate a test case
+A, B, K = tcgen()
+print(A, B, K)
+```
+
+This generator ensures that \(A\) is always less than or equal to \(B\), and \(K\) is within the specified range. Below is an example of how you can use the test case generator in practice:
+
+```python
+# Example usage of the test case generator
+if __name__ == "__main__":
+    # Generate a random test case
+    A, B, K = tcgen()
+    print(f"Generated Test Case: A={A}, B={B}, K={K}")
+    
+    # Use a sample case for verification
+    A, B, K = sample_case()
+    print(f"Sample Test Case: A={A}, B={B}, K={K}")
+```
+
+### Explanation
+
+- **A and B Generation**: We generate \(A\) first, within the range \([1, 10^9]\). Then, we generate \(B\) such that \(B \geq A\) to ensure the range is valid.
+- **K Generation**: We simply generate \(K\) within the range \([1, 100]\) as per the constraints.
+
+This method ensures that each test case adheres to the constraints provided in the problem statement. You can run the generator multiple times to create various test cases for comprehensive testing.

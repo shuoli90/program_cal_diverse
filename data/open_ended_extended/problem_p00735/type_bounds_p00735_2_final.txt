@@ -1,0 +1,3 @@
+Types: Monday-Saturday numbers: List[int]
+Ranges: 2 ≤ Monday-Saturday number < 300000
+Addtl Info: Input ends with a line containing the single digit 1

@@ -1,0 +1,4 @@
+Mirror Labyrinth
+You are a proud and brave hero, and you have finally reached the lair of the Demon King. However, to reach the Demon King's throne room, you must first clear the final map he has prepared.
+In this map, everything is transformed into a two-dimensional plane view seen from above. Humans are transformed into mere points on this map. The map is divided into two areas by a straight line. When a person is in one of the areas, their mirror image is projected onto the other area in a position that is symmetric to the line.
+There are multiple buildings in each area. These buildings are made up of polygons that are formed by connecting multiple points. The area inside the polygon and the area on

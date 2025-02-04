@@ -1,0 +1,22 @@
+An integer N (1 ≤ N ≤ 100), representing some quantity or size.
+A list of N integers, where each integer is between 1 and 100.
+A second list of N integers, where each integer is between 1 and 100.
+
+### Example Input:
+
+```
+5
+3 2 2 4 1
+1 2 2 2 1
+```
+
+### Function Signature:
+Write a function f(N, A1, A2) that takes in the input.
+```python
+def f(N: int, A1: List[int], A2: List[int]):
+    ''' 
+    N: an integer 
+    A1: a list of integers
+    A2: a list of integers
+    '''
+```

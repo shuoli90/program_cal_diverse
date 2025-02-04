@@ -1,0 +1,42 @@
+Sure! Here's a test case generator for the given problem statement:
+
+### Test Case Generator
+
+```python
+import random
+
+def generate_test_case():
+    # Define the constraints
+    MAX_LENGTH = 100000
+    S = ''.join(random.choice('123456789') for _ in range(random.randint(1, MAX_LENGTH)))
+    K = random.randint(0, len(S) - 1)
+    
+    return K, S
+
+# Example usage:
+if __name__ == "__main__":
+    K, S = generate_test_case()
+    print(K)
+    print(S)
+```
+
+### Explanation:
+1. **Import the required module**: `random` for generating random numbers.
+2. **Define the constraints**:
+    - `MAX_LENGTH` is set to 100,000, as per the problem constraints.
+3. **Generate the string `S`**:
+    - The length of `S` is randomized between 1 and `MAX_LENGTH`.
+    - Each character in `S` is randomly chosen from '1' to '9'.
+4. **Generate the integer `K`**:
+    - `K` is a random integer between 0 and `len(S) - 1`.
+5. **Return `K` and `S`**:
+    - The function returns the generated values of `K` and `S`.
+
+### Example Execution:
+Running the example usage part will generate a random test case and print it. For instance, it might output something like:
+```
+5
+8273649182736
+```
+
+This randomization ensures that the test cases cover a wide range of possible inputs within the given constraints.

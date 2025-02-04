@@ -1,0 +1,3 @@
+Types: H: int, W: int, c: List[List[int]]
+Ranges: 1 ≤ H, W ≤ 1,400, c[i][j] in {0, 1}
+Addtl Info: None

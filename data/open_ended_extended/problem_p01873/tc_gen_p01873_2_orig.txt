@@ -1,0 +1,35 @@
+Sure, I can help you write a test case generator for the given problem statement "B: Periodic Sequence". Below is the Python function to generate random test cases that adhere to the given constraints.
+
+```python
+import random
+
+def tcgen():
+    # Generate a random integer N within the constraint 1 ≤ N ≤ 200,000
+    N = random.randint(1, 200000)
+    
+    # Generate a list S of N integers, each within the constraint 1 ≤ S_i ≤ 100,000
+    S = [random.randint(1, 100000) for _ in range(N)]
+    
+    return N, S
+
+# Example usage:
+if __name__ == "__main__":
+    N, S = tcgen()
+    print(N)
+    print(" ".join(map(str, S)))
+```
+
+### Explanation:
+1. **N Generation**: We randomly generate \( N \) between 1 and 200,000.
+2. **S Generation**: We generate a list \( S \) of size \( N \), where each element is a random integer between 1 and 100,000.
+
+You can run this script to generate random test cases for the problem. The `tcgen` function will return a tuple with \( N \) and the sequence \( S \), which you can then format as needed for input.
+
+### Example Output:
+Running the script might give you an output like:
+```
+547
+34567 12345 67890 23456 98765 12345 ... (up to 547 numbers)
+```
+
+This setup ensures that your test cases are diverse and cover the range of possible inputs as specified in the problem constraints.

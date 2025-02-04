@@ -1,0 +1,28 @@
+An integer y1 (0 ≤ y1 ≤ 10000), representing some quantity or size.
+An integer m1 (1 ≤ m1 ≤ 12), representing some quantity or size.
+An integer d1 (1 ≤ d1 ≤ 31), representing some quantity or size.
+An integer y2 (0 ≤ y2 ≤ 10000), representing some quantity or size.
+An integer m2 (1 ≤ m2 ≤ 12), representing some quantity or size.
+An integer d2 (1 ≤ d2 ≤ 31), representing some quantity or size.
+
+Multiple datasets will be given. If any of y1, m1, d1, y2, m2, or d2 is a negative number, the input will end. The number of datasets will not exceed 50.
+
+### Example Input:
+
+```
+2006 9 2 2006 9 3
+2006 9 2 2006 11 11
+2004 1 1 2005 1 1
+2000 1 1 2006 1 1
+2000 1 1 2101 1 1
+-1 -1 -1 -1 -1 -1
+```
+
+### Function Signature:
+Write a function f(inputs) that takes in the input.
+```python
+def f(inputs: List[Tuple[int, int, int, int, int, int]]):
+    '''
+    inputs: a list of tuples, where each tuple contains six integers
+    '''
+```

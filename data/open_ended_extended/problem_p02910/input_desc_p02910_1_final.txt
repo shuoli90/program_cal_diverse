@@ -1,0 +1,19 @@
+An integer N (1 ≤ N ≤ 100), representing the length of a string.
+A string S of length N, where each character is from the set {'L', 'R', 'U', 'D'}.
+
+### Example Input:
+
+```
+7
+RUDLUDR
+```
+
+### Function Signature:
+Write a function f(N, S) that takes in the input. 
+```python
+def f(N: int, S: str):
+    ''' 
+    N: an integer 
+    S: a string
+    '''
+```

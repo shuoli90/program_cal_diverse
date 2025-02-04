@@ -1,0 +1,3 @@
+Types: S_prime: str, T: str  
+Ranges: 1 ≤ |S_prime|, |T| ≤ 50  
+Addtl Info: S_prime consists of lowercase English letters and '?'. T consists of lowercase English letters.

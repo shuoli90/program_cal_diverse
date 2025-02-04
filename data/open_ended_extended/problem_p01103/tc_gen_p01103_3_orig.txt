@@ -1,0 +1,57 @@
+Sure! Here is a test case generator for the "A Garden with Ponds" problem statement:
+
+```python
+import random
+
+def generate_test_case():
+    d = random.randint(3, 10)
+    w = random.randint(3, 10)
+    
+    grid = [[random.randint(0, 9) for _ in range(w)] for _ in range(d)]
+    
+    return d, w, grid
+
+def tcgen():
+    test_cases = []
+    
+    num_cases = random.randint(1, 100)
+    for _ in range(num_cases):
+        d, w, grid = generate_test_case()
+        test_cases.append((d, w, grid))
+    
+    # Add the terminating line
+    test_cases.append((0, 0, []))
+    
+    return test_cases
+
+def format_test_case(d, w, grid):
+    case_str = f"{d} {w}\n"
+    for row in grid:
+        case_str += ' '.join(map(str, row)) + '\n'
+    return case_str.strip()
+
+def format_test_cases(test_cases):
+    return '\n'.join(format_test_case(d, w, grid) for d, w, grid in test_cases)
+
+if __name__ == "__main__":
+    test_cases = tcgen()
+    formatted_test_cases = format_test_cases(test_cases)
+    print(formatted_test_cases)
+```
+
+### Explanation:
+
+1. **generate_test_case**:
+   - Generates a single test case by creating a grid of random elevations with dimensions \(d \times w\), where both dimensions are chosen randomly between 3 and 10 (inclusive).
+
+2. **tcgen**:
+   - Generates a random number of test cases (between 1 and 100) and appends them to the list.
+   - Adds a terminating line `(0, 0, [])` to indicate the end of input.
+
+3. **format_test_case**:
+   - Converts a single test case into the required string format.
+
+4. **format_test_cases**:
+   - Formats all test cases into a single string that can be printed or saved to a file.
+
+Run the script to generate a set of test cases in the required format. Each test case is printed in the specified format, and the end of the input is indicated by the line containing "0 0".

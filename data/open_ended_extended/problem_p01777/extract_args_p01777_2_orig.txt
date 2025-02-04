@@ -1,0 +1,15 @@
+def extract_arguments(fh):
+    D = int(fh.readline().strip())
+    X = list(map(int, fh.readline().strip().split()))
+    Q = int(fh.readline().strip())
+    queries = []
+    for _ in range(Q):
+        l, r, e = map(int, fh.readline().strip().split())
+        queries.append((l, r, e))
+    return D, X, Q, queries
+
+# if __name__ == "__main__":
+#     input_path = sys.argv[1]
+#     with open(input_path, 'r') as fh: 
+#     D, X, Q, queries = extract_arguments(fh)
+#     f(D, X, Q, queries)

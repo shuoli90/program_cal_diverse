@@ -1,0 +1,21 @@
+An integer N (1 ≤ N ≤ 10^5), representing some quantity or size.
+Two lists of integers A and B, each of size N, where each integer is between 1 and N.
+The elements of list A are unique.
+
+### Example Input:
+
+```
+5
+1 2 3 4 5
+3 4 2 5 1
+```
+
+### Function Signature:
+Write a function f(N, A, B) that takes in the input.
+```python
+def f(N: int, A: List[int], B: List[int]):
+    '''
+    N: an integer
+    A: a list of integers
+    B: a list of integers
+    '''

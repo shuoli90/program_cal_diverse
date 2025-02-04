@@ -1,0 +1,42 @@
+Sure, I can create a test case generator for this problem. The generator will create random strings \(S\) and \(T'\) while ensuring that \(T'\) has exactly one character different from a substring of \(S\). Here's how you can do it:
+
+```python
+import random
+import string
+
+def generate_test_case():
+    # Generate random length for S between 1 and 300,000
+    length_S = random.randint(1, 300000)
+    # Generate random length for T' between 1 and length_S
+    length_T_prime = random.randint(1, length_S)
+    
+    # Generate a random string S of length length_S
+    S = ''.join(random.choices(string.ascii_letters, k=length_S))
+    
+    # Pick a start index for substring of S that will be used to create T'
+    start_index = random.randint(0, length_S - length_T_prime)
+    substring_of_S = S[start_index:start_index + length_T_prime]
+    
+    # Create T' by changing exactly one character in the selected substring
+    T_prime_list = list(substring_of_S)
+    change_index = random.randint(0, length_T_prime - 1)
+    original_char = T_prime_list[change_index]
+    new_char = random.choice(string.ascii_letters.replace(original_char, ''))
+    T_prime_list[change_index] = new_char
+    T_prime = ''.join(T_prime_list)
+
+    return S, T_prime
+
+# Example usage
+S, T_prime = generate_test_case()
+print("S:", S)
+print("T':", T_prime)
+```
+
+### Explanation:
+1. **Generate Lengths**: Random lengths are assigned to \(S\) (between 1 and 300,000) and \(T'\) (between 1 and the length of \(S\)).
+2. **Generate String \(S\)**: A random string of length \(S\) is created using `string.ascii_letters` which includes both uppercase and lowercase letters.
+3. **Create Substring of \(S\)**: A random starting index within \(S\) is chosen such that the substring can be of length \(T'\).
+4. **Modify One Character**: The generator then changes one character in the substring to ensure \(T'\) differs by exactly one character from a substring of \(S\).
+
+This ensures that the generated \(S\) and \(T'\) adhere to the problem constraints and are suitable for testing.

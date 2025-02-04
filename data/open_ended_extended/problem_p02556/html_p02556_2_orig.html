@@ -1,0 +1,162 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p02556 - Generation 2</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p02556 - Generation 2</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>
+Score : 500 points
+Problem StatementThere are N points on the 2D plane, i-th of which is located on (x_i, y_i).
+There can be multiple points that share the same coordinate.
+What is the maximum possible Manhattan distance between two distinct points?
+Here, the Manhattan distance between two points (x_i, y_i) and (x_j, y_j) is defined by |x_i-x_j| + |y_i-y_j|.
+Constraints
+2 \leq N \leq 2 \times 10^5
+1 \leq x_i,y_i \leq 10^9
+All values in input are integers.
+InputInput is given from Standard Input in the following format:
+N
+x_1 y_1
+x_2 y_2
+:
+x_N y_N
+OutputPrint the answer.
+Sample Input 13
+1 1
+2 4
+3 2
+Sample Output 14
+The Manhattan distance between the first point and the second point is |1-2|+|1-4|=4, which is maximum possible.
+Sample Input 22
+1 1
+1 1
+Sample Output 20
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An integer \(N\) (2 ≤ \(N\) ≤ 2×10^5), representing some quantity or size.
+A list of \(N\) tuples, each containing two integers (1 ≤ \(x_i\), \(y_i\) ≤ 10^9).
+
+### Example Input:
+
+```
+3
+1 1
+2 4
+3 2
+```
+
+### Function Signature:
+Write a function f(N, points) that takes in the input.
+```python
+def f(N: int, points: List[Tuple[int, int]]):
+    '''
+    N: an integer
+    points: a list of tuples, each containing two integers
+    '''
+```</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Certainly! Here’s a test case generator for the problem statement you provided:
+
+```python
+import random
+
+def tcgen():
+    # Generate a random number of points between 2 and 200,000
+    N = random.randint(2, 200000)
+    
+    # Generate N points with random coordinates between 1 and 10^9
+    points = [(random.randint(1, 10**9), random.randint(1, 10**9)) for _ in range(N)]
+    
+    return N, points
+
+def format_test_case(N, points):
+    # Convert points into the required input format
+    test_case = f"{N}\n" + "\n".join(f"{x} {y}" for x, y in points)
+    return test_case
+
+# Example usage
+N, points = tcgen()
+test_case = format_test_case(N, points)
+print(test_case)
+```
+
+This script will generate a test case for the provided problem statement, including:
+
+1. A random integer \( N \) within the given constraints.
+2. A list of \( N \) points with coordinates randomly selected between 1 and \( 10^9 \).
+
+The `tcgen` function generates the data, while `format_test_case` converts it into the required input format.
+
+The example usage at the end demonstrates how you can generate and print a test case. You can integrate this into your testing environment to generate multiple test cases as needed.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    N = int(fh.readline().strip())
+    points = []
+    for _ in range(N):
+        x, y = map(int, fh.readline().strip().split())
+        points.append((x, y))
+    return N, points
+
+# if __name__ == "__main__":
+#     input_path = sys.argv[1]
+#     with open(input_path, 'r') as fh: 
+#     N, points = extract_arguments(fh)
+#     f(N, points)</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

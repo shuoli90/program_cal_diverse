@@ -1,0 +1,27 @@
+
+Score : 100 points
+Problem StatementWe conducted a survey on newspaper subscriptions.
+More specifically, we asked each of the N respondents the following two questions:
+Question 1: Are you subscribing to Newspaper X?
+Question 2: Are you subscribing to Newspaper Y?
+As the result, A respondents answered "yes" to Question 1, and B respondents answered "yes" to Question 2.
+What are the maximum possible number and the minimum possible number of respondents subscribing to both newspapers X and Y?
+Write a program to answer this question.
+Constraints
+1 \leq N \leq 100
+0 \leq A \leq N
+0 \leq B \leq N
+All values in input are integers.
+InputInput is given from Standard Input in the following format:
+N A B
+OutputPrint the maximum possible number and the minimum possible number of respondents subscribing to both newspapers, in this order, with a space in between.
+Sample Input 110 3 5
+Sample Output 13 0
+In this sample, out of the 10 respondents, 3 answered they are subscribing to Newspaper X, and 5 answered they are subscribing to Newspaper Y.
+Here, the number of respondents subscribing to both newspapers is at most 3 and at least 0.
+Sample Input 210 7 5
+Sample Output 25 2
+In this sample, out of the 10 respondents, 7 answered they are subscribing to Newspaper X, and 5 answered they are subscribing to Newspaper Y.
+Here, the number of respondents subscribing to both newspapers is at most 5 and at least 2.
+Sample Input 3100 100 100
+Sample Output 3100 100

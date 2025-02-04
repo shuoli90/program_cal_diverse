@@ -1,0 +1,5 @@
+Types: N: int, F: int, info: List[Tuple[int, List[str]]]
+
+Ranges: 1 ≤ N ≤ 100, 1 ≤ F ≤ 100, 1 ≤ M ≤ 10, item: str of length 1 to 30 lowercase English letters
+
+Addtl Info: No two items in infoi are the same

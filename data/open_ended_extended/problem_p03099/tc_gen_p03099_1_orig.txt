@@ -1,0 +1,54 @@
+Sure! Here's a test case generator for the given problem statement:
+
+```python
+import random
+
+def tcgen():
+    # Generate the number of jewels (N)
+    N = random.randint(1, 80)
+    
+    # Generate the coordinates and value of each jewel
+    jewels = []
+    for _ in range(N):
+        x = random.randint(1, 100)
+        y = random.randint(1, 100)
+        v = random.randint(1, 10**15)
+        jewels.append((x, y, v))
+    
+    # Generate the number of conditions (M)
+    M = random.randint(1, 320)
+    
+    # Generate conditions
+    conditions = []
+    types = ['L', 'R', 'D', 'U']
+    a_b_pairs = set()
+    for _ in range(M):
+        t = random.choice(types)
+        a = random.randint(1, 100)
+        b = random.randint(0, N - 1)
+        
+        # Ensure (t, a, b) are pairwise distinct
+        while (t, a, b) in a_b_pairs:
+            t = random.choice(types)
+            a = random.randint(1, 100)
+            b = random.randint(0, N - 1)
+        
+        a_b_pairs.add((t, a, b))
+        conditions.append((t, a, b))
+    
+    # Format output
+    output = f"{N}\n"
+    for x, y, v in jewels:
+        output += f"{x} {y} {v}\n"
+    
+    output += f"{M}\n"
+    for t, a, b in conditions:
+        output += f"{t} {a} {b}\n"
+    
+    return output
+
+# Example of generating a test case
+print(tcgen())
+```
+
+This code generates test cases based on the problem constraints. It ensures that the coordinates and values of jewels are generated within the specified ranges and that the conditions are pairwise distinct as required by the problem. The `print(tcgen())` line at the end can be used to see an example of the generated test case.

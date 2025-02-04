@@ -1,0 +1,12 @@
+def extract_arguments(fh):
+    M = int(fh.readline().strip())
+    brush_strokes = []
+    for _ in range(M):
+        brush_strokes.append(tuple(map(int, fh.readline().strip().split())))
+    return M, brush_strokes
+
+# if __name__ == "__main__":
+#     input_path = sys.argv[1]
+#     with open(input_path, 'r') as fh: 
+#     M, brush_strokes = extract_arguments(fh)
+#     f(M, brush_strokes)

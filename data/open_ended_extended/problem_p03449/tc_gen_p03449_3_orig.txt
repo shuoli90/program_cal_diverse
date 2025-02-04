@@ -1,0 +1,36 @@
+Certainly! Below is a Python function to generate test cases for the given problem statement. This function will randomly generate values for \(N\), and the candy counts \(A\) for the 2xN grid, ensuring that all values follow the constraints specified:
+
+```python
+import random
+
+def tcgen():
+    N = random.randint(1, 100)
+    
+    # Generate the 2xN grid with candies, ensuring values are between 1 and 100
+    A_1 = [random.randint(1, 100) for _ in range(N)]
+    A_2 = [random.randint(1, 100) for _ in range(N)]
+    
+    return N, A_1, A_2
+
+# Example usage:
+N, A_1, A_2 = tcgen()
+print(N)
+print(' '.join(map(str, A_1)))
+print(' '.join(map(str, A_2)))
+```
+
+This function follows these steps:
+1. Randomly selects \(N\) within the range [1, 100].
+2. Generates two lists, \(A_1\) and \(A_2\), each of size \(N\) with random values between 1 and 100.
+3. Returns \(N\), \(A_1\), and \(A_2\).
+
+Here's an example of how the function might be used and what the output might look like:
+
+```python
+N, A_1, A_2 = tcgen()
+print(N)                  # For example, might print: 5
+print(' '.join(map(str, A_1)))  # For example, might print: 3 2 2 4 1
+print(' '.join(map(str, A_2)))  # For example, might print: 1 2 2 2 1
+```
+
+This will generate a new test case each time it is called, providing a varied set of inputs to test the problem's solution thoroughly.

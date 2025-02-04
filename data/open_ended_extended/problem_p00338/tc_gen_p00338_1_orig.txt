@@ -1,0 +1,57 @@
+Sure, here's a test case generator for the provided competitive programming problem "Programming Contest II":
+
+```python
+import random
+
+def generate_update_command(N):
+    t = random.randint(1, N)
+    p = random.randint(1, 10**9)
+    return f"0 {t} {p}"
+
+def generate_report_command(N):
+    m = random.randint(1, N)
+    return f"1 {m}"
+
+def tcgen():
+    N = random.randint(2, 100000)
+    C = random.randint(1, 100000)
+    
+    commands = []
+    for _ in range(C):
+        if random.choice([True, False]):
+            commands.append(generate_update_command(N))
+        else:
+            commands.append(generate_report_command(N))
+    
+    # Ensure at least one report command (per problem guarantee)
+    if not any(cmd.startswith('1') for cmd in commands):
+        commands[random.randint(0, C-1)] = generate_report_command(N)
+    
+    return N, C, commands
+
+def print_test_case():
+    N, C, commands = tcgen()
+    print(N, C)
+    for command in commands:
+        print(command)
+
+# Generate and print a test case
+print_test_case()
+```
+
+Explanation:
+1. **Random Values**:
+   - `N`: Number of teams, randomly chosen between 2 and 100000.
+   - `C`: Number of commands, randomly chosen between 1 and 100000.
+   
+2. **Command Generation**:
+   - `generate_update_command(N)`: Generates an update command `0 t p` where `t` is a random team number and `p` is a random score to add.
+   - `generate_report_command(N)`: Generates a report command `1 m` where `m` is a random rank to report.
+   
+3. **Ensure At Least One Report Command**:
+   - The generator ensures that there is at least one report command in the list of commands, as guaranteed by the problem statement.
+
+4. **Output**:
+   - The `print_test_case` function is used to print the generated test case in the required format. 
+
+You can run `print_test_case()` to generate and display a test case. Each run will provide a different set of inputs based on random values.

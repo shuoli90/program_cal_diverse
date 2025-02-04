@@ -1,0 +1,3 @@
+Types: a: int, m: int, b: int, n: int  
+Ranges: 2 ≤ a ≤ 31, 2 ≤ m ≤ 20, 2 ≤ b ≤ 31, 2 ≤ n ≤ 20  
+Addtl Info: a and b are distinct prime numbers, m√a + n√b ≤ 4

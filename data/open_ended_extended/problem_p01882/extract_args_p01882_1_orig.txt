@@ -1,0 +1,21 @@
+def extract_arguments(fh):
+    N = int(fh.readline().strip())
+    members = []
+    for _ in range(N):
+        name, motivation = fh.readline().strip().split()
+        motivation = int(motivation)
+        members.append((name, motivation))
+    
+    M = int(fh.readline().strip())
+    changes = []
+    for _ in range(M):
+        change = fh.readline().strip()
+        changes.append(change)
+    
+    return N, members, M, changes
+
+# if __name__ == "__main__":
+#     input_path = sys.argv[1]
+#     with open(input_path, 'r') as fh: 
+#         N, members, M, changes = extract_arguments(fh)
+#         f(N, members, M, changes)

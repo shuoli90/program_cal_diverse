@@ -1,0 +1,144 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p02581 - Generation 2</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p02581 - Generation 2</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>
+Score : 600 points
+Problem StatementWe have 3N cards arranged in a row from left to right, where each card has an integer between 1 and N (inclusive) written on it. The integer written on the i-th card from the left is A_i.
+You will do the following operation N-1 times:
+Rearrange the five leftmost cards in any order you like, then remove the three leftmost cards. If the integers written on those three cards are all equal, you gain 1 point.
+After these N-1 operations, if the integers written on the remaining three cards are all equal, you will gain 1 additional point.
+Find the maximum number of points you can gain.
+Constraints
+1 \leq N \leq 2000
+1 \leq A_i \leq N
+InputInput is given from Standard Input in the following format:
+N
+A_1 A_2 \cdots A_{3N}
+OutputPrint the maximum number of points you can gain.
+Sample Input 12
+1 2 1 2 2 1
+Sample Output 12
+Let us rearrange the five leftmost cards so that the integers written on the six cards will be 2\ 2\ 2\ 1\ 1\ 1 from left to right.
+Then, remove the three leftmost cards, all of which have the same integer 2, gaining 1 point.
+Now, the integers written on the remaining cards are 1\ 1\ 1.
+Since these three cards have the same integer 1, we gain 1 more point.
+In this way, we can gain 2 points - which is the maximum possible.
+Sample Input 23
+1 1 2 2 3 3 3 2 1
+Sample Output 21
+Sample Input 33
+1 1 2 2 2 3 3 3 1
+Sample Output 33
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An integer \(N\) (1 ≤ \(N\) ≤ 2000), representing some quantity or size.
+A list of integers \(A\) of size \(3N\), where each integer is between 1 and \(N\).
+
+### Example Input:
+```
+2
+1 2 1 2 2 1
+```
+
+### Function Signature:
+Write a function `f(N, A)` that takes in the input.
+```python
+def f(N: int, A: List[int]):
+    '''
+    N: an integer
+    A: a list of integers
+    '''
+```</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Sure! Below is a test case generator for the given problem statement.
+
+```python
+import random
+
+def tcgen():
+    # Generate a random integer N within the constraint 1 ≤ N ≤ 2000
+    N = random.randint(1, 2000)
+    
+    # Generate the list A of size 3N where each element is an integer between 1 and N (inclusive)
+    A = [random.randint(1, N) for _ in range(3 * N)]
+    
+    return N, A
+
+# Example of generating a test case
+if __name__ == "__main__":
+    N, A = tcgen()
+    print(N)
+    print(" ".join(map(str, A)))
+```
+
+Explanation:
+1. **N**: This is a random integer between 1 and 2000 inclusive, representing the number of unique integers that can appear on the cards.
+2. **A**: This is a list of integers where each integer is between 1 and N. The length of the list is 3 * N, which satisfies the problem's constraints.
+
+This code will output a random test case adhering to the constraints provided in the problem statement. To use it, you can call the `tcgen` function and it will generate a new test case each time. The output format is designed to match typical competitive programming input formats.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    N = int(fh.readline().strip())
+    A = list(map(int, fh.readline().strip().split()))
+    return N, A</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

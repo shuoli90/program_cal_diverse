@@ -1,0 +1,57 @@
+Sure, I can help you write a test case generator for the "Tsuruga Castle" problem. Here is a Python function that generates random test cases based on the problem constraints:
+
+```python
+import random
+
+def tcgen():
+    datasets = []
+    
+    # Generate a random number of datasets
+    num_datasets = random.randint(1, 10)
+    
+    for _ in range(num_datasets):
+        # Generate a random number of visitors (1 ≤ n ≤ 1,000,000)
+        n = random.randint(1, 1000000)
+        
+        # Generate the ages of the visitors (0 ≤ ai ≤ 120)
+        ages = [random.randint(0, 120) for _ in range(n)]
+        
+        datasets.append((n, ages))
+    
+    # Return a list of datasets followed by a zero to indicate the end of input
+    return datasets
+
+# Example usage
+for dataset in tcgen():
+    n, ages = dataset
+    print(n)
+    for age in ages:
+        print(age)
+print(0)
+```
+
+This function generates a random number of datasets (up to 10 for manageability in this example, but you can adjust as needed). Each dataset consists of a random number \( n \) of visitors (between 1 and 1,000,000) and a list of \( n \) random ages (between 0 and 120). The function then appends a zero at the end to indicate the end of input, as required by the problem statement.
+
+Let's break down the function step-by-step:
+
+1. **Generate a random number of datasets:**  
+   `num_datasets = random.randint(1, 10)`
+
+2. **For each dataset:**
+   - Generate a random number of visitors \( n \):
+     `n = random.randint(1, 1000000)`
+   - Generate a list of \( n \) random ages:
+     `ages = [random.randint(0, 120) for _ in range(n)]`
+   - Append the tuple `(n, ages)` to the datasets list.
+
+3. **Print the datasets followed by a zero to indicate the end of input:**
+   ```python
+   for dataset in tcgen():
+       n, ages = dataset
+       print(n)
+       for age in ages:
+           print(age)
+   print(0)
+   ```
+
+This code will generate various random test cases that you can use to test your implementation of the "Tsuruga Castle" problem.

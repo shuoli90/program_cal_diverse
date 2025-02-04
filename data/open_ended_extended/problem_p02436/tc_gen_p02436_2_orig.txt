@@ -1,0 +1,51 @@
+Sure, I'll write a test case generator for your problem statement. The generator will create random test cases that conform to the specified constraints.
+
+Here is the Python code for the test case generator:
+
+```python
+import random
+
+def generate_test_case():
+    # Number of queues
+    n = random.randint(1, 1000)
+    # Number of queries
+    q = random.randint(1, 200000)
+    
+    # List to store queries
+    queries = []
+    
+    for _ in range(q):
+        # Randomly choose a query type: 0, 1, or 2
+        query_type = random.randint(0, 2)
+        
+        # Choose a queue index between 0 and n-1
+        t = random.randint(0, n - 1)
+        
+        if query_type == 0:  # enqueue operation
+            # Random integer x in the specified range
+            x = random.randint(-1000000000, 1000000000)
+            queries.append(f"0 {t} {x}")
+        elif query_type == 1 or query_type == 2:  # front or dequeue operation
+            queries.append(f"{query_type} {t}")
+    
+    return n, q, queries
+
+# Function to print the test case in the required format
+def print_test_case():
+    n, q, queries = generate_test_case()
+    print(f"{n} {q}")
+    for query in queries:
+        print(query)
+
+# Example usage
+print_test_case()
+```
+
+The `generate_test_case` function creates a random number of queues `n` and a random number of queries `q`. It then generates each query based on the specified format:
+
+- For enqueue operations, it generates a query with `0 t x`, where `t` is the queue index and `x` is a random integer.
+- For front and dequeue operations, it generates queries with `1 t` and `2 t` respectively, where `t` is the queue index.
+
+The `print_test_case` function prints the generated test case in the required input format.
+
+You can call the `print_test_case` function to generate and print a random test case for the problem. This should help in testing and debugging your solution for various scenarios.

@@ -1,0 +1,42 @@
+Sure! Here's a test case generator for the "Sum of Decimal Digits" problem statement:
+
+```python
+import random
+
+def tcgen():
+    # Number of datasets
+    num_datasets = random.randint(1, 100)
+    datasets = []
+    
+    for _ in range(num_datasets):
+        # Generate a, b, and n within the specified constraints
+        a = random.randint(1, 1000)
+        b = random.randint(1, 10000)
+        n = random.randint(1, 100)
+        datasets.append((a, b, n))
+    
+    return datasets
+
+# Example usage:
+datasets = tcgen()
+for dataset in datasets:
+    print(dataset)
+```
+
+This will generate up to 100 datasets, each consisting of three integers \(a\), \(b\), and \(n\) within the specified constraints.
+
+### Example Output:
+```text
+(123, 4567, 89)
+(999, 10000, 10)
+(1, 2, 50)
+...
+```
+
+### Explanation:
+- The function `tcgen` starts by determining a random number of datasets (between 1 and 100).
+- For each dataset, it generates random values for \(a\), \(b\), and \(n\) within their respective constraints.
+- The generated datasets are stored in a list and returned at the end of the function.
+- The example usage shows how you can call `tcgen` to generate the datasets and print them out. Each tuple represents a single dataset.
+
+You can modify or extend the generator as needed to include more specific cases or constraints.

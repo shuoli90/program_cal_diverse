@@ -1,0 +1,34 @@
+Sure, I can help with that. Below is a Python function to generate test cases for the "Monday-Saturday Prime Factors" problem.
+
+```python
+import random
+
+def is_monday_saturday_number(n):
+    return n % 7 == 1 or n % 7 == 6
+
+def generate_monday_saturday_number(limit):
+    while True:
+        num = random.randint(2, limit)
+        if is_monday_saturday_number(num):
+            return num
+
+def tcgen(num_cases=5, limit=300000):
+    cases = [generate_monday_saturday_number(limit) for _ in range(num_cases)]
+    cases.append(1)  # End of input indicator
+    return cases
+
+# Example usage:
+test_cases = tcgen()
+for case in test_cases:
+    print(case)
+```
+
+### Explanation:
+1. **is_monday_saturday_number(n)**: This helper function checks if a number is a Monday-Saturday number (7N+{1,6}).
+2. **generate_monday_saturday_number(limit)**: This helper function generates a random Monday-Saturday number that is greater than 1 and less than the given limit.
+3. **tcgen(num_cases=5, limit=300000)**: This function generates the specified number of test cases (default is 5) and ensures all generated numbers are Monday-Saturday numbers within the given range. It also appends a `1` at the end to indicate the end of input, as specified in the problem statement.
+
+### Example usage:
+The generated test cases can be used as input to your program. The function prints each test case on a new line as required.
+
+Feel free to adjust the `num_cases` and `limit` parameters if you need more test cases or a different range for the Monday-Saturday numbers.

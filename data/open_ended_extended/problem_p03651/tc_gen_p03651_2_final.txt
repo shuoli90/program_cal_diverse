@@ -1,0 +1,56 @@
+To write a test case generator for the problem statement provided, we need to create random test cases that adhere to the given constraints. Here is a Python function that generates such test cases:
+
+```python
+import random
+
+def tcgen():
+    # Generate a random value for N within the constraints
+    N = random.randint(1, 10**5)
+    
+    # Generate a list A of size N with random integers between 1 and 10^9
+    A = [random.randint(1, 10**9) for _ in range(N)]
+    
+    # Generate a random value for K within the constraints
+    K = random.randint(1, 10**9)
+    
+    return N, K, A
+
+# Example usage:
+N, K, A = tcgen()
+print(N)
+print(K)
+print(" ".join(map(str, A)))
+```
+
+### Explanation:
+
+1. **N Generation**: 
+   - `N` is generated randomly between 1 and \(10^5\).
+
+2. **A Generation**:
+   - List `A` is created with `N` integers.
+   - Each integer in `A` is randomly chosen between 1 and \(10^9\).
+
+3. **K Generation**:
+   - `K` is a random integer between 1 and \(10^9\).
+
+### Example Output:
+
+If you run the `tcgen()` function, it will generate a random test case. For instance:
+
+```python
+N, K, A = tcgen()
+print(N)
+print(K)
+print(" ".join(map(str, A)))
+```
+
+This might produce the following output:
+
+```
+5
+375987632
+827364827 172837465 283746528 827364839 192837465
+```
+
+This test case can be directly used for input to the problem. The function ensures that all constraints are respected and provides diverse test cases for thorough testing of the solution algorithm.

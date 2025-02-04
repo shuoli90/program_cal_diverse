@@ -1,0 +1,12 @@
+def extract_arguments(fh):
+    datasets = []
+    while True:
+        n = int(fh.readline().strip())
+        if n == 0:
+            break
+        rectangles = []
+        for _ in range(n):
+            li, ti, ri, bi = map(int, fh.readline().strip().split())
+            rectangles.append((li, ti, ri, bi))
+        datasets.append((n, rectangles))
+    return datasets

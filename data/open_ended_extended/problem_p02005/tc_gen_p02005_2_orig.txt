@@ -1,0 +1,56 @@
+Sure, I can help you write a test case generator for the "Colorful Drink" problem. Here's a Python script that generates random test cases based on the given problem constraints:
+
+```python
+import random
+import string
+
+def random_color():
+    length = random.randint(1, 20)
+    return ''.join(random.choices(string.ascii_lowercase, k=length))
+
+def tcgen():
+    # Generate N (number of prepared colored liquids)
+    N = random.randint(1, 10**5)
+    
+    # Generate N lines of (C_i, D_i)
+    prepared_liquids = []
+    for _ in range(N):
+        C_i = random_color()
+        D_i = random.randint(1, 10**5)
+        prepared_liquids.append((C_i, D_i))
+    
+    # Generate M (number of color layers in the drink request)
+    M = random.randint(1, 10**5)
+    
+    # Generate M lines of O_i (color for each requested layer)
+    requested_layers = [random_color() for _ in range(M)]
+    
+    # Format the generated data into the required input format
+    input_data = f"{N}\n"
+    input_data += '\n'.join(f"{C} {D}" for C, D in prepared_liquids)
+    input_data += f"\n{M}\n"
+    input_data += '\n'.join(requested_layers)
+    
+    return input_data
+
+# Example usage
+test_case = tcgen()
+print(test_case)
+```
+
+### Explanation:
+
+1. **random_color() Function:** Generates a random string of lowercase letters with a length between 1 and 20.
+
+2. **tcgen() Function:**
+   - Randomly generates the number of prepared colored liquids \(N\).
+   - For each of the \(N\) colored liquids, it generates a color \(C_i\) using the `random_color` function and a density \(D_i\) using `random.randint`.
+   - Randomly generates the number of color layers \(M\) in the drink request.
+   - For each of the \(M\) requested layers, it generates a color \(O_i\) using the `random_color` function.
+   - Formats the generated data into the required input format.
+
+### Note:
+- This script ensures that the generated test cases adhere to the constraints provided in the problem statement.
+- Due to the possible large size of \(N\) and \(M\) (up to \(10^5\)), the generated test cases can be very large. Make sure to handle them appropriately when running the test cases.
+
+You can use the `tcgen` function to generate test cases for the "Colorful Drink" problem and test your solution with different inputs.

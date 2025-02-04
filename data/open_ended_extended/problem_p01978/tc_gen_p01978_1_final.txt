@@ -1,0 +1,49 @@
+Sure! Let's write a test case generator for the problem "E: Mischief Graph".
+
+Here's the generator code:
+
+```python
+import random
+
+def tcgen():
+    # Number of vertices
+    N = random.randint(2, 10**5)
+    
+    # Number of edges
+    M = random.randint(1, 10**5)
+    
+    # Start and end vertices (make sure they are different)
+    s = random.randint(1, N)
+    t = random.randint(1, N)
+    while t == s:
+        t = random.randint(1, N)
+    
+    # Generate edges
+    edges = []
+    for _ in range(M):
+        a_i = random.randint(1, N)
+        b_i = random.randint(1, N)
+        c_i = random.randint(1, N)
+        while len({a_i, b_i, c_i}) != 3:  # Ensure all three are different
+            a_i = random.randint(1, N)
+            b_i = random.randint(1, N)
+            c_i = random.randint(1, N)
+        d_i = random.randint(1, 10**9)
+        edges.append((a_i, b_i, c_i, d_i))
+    
+    # Output the generated test case
+    print(N, M, s, t)
+    for a_i, b_i, c_i, d_i in edges:
+        print(a_i, b_i, c_i, d_i)
+
+# Example usage
+tcgen()
+```
+
+Explanation of the code:
+1. **Number of Vertices and Edges**: We randomly select `N` (the number of vertices) between 2 and 100,000, and `M` (the number of edges) between 1 and 100,000.
+2. **Start and End Vertices**: Randomly choose `s` and `t` ensuring that `s` is not equal to `t`.
+3. **Edges Generation**: For each edge, we generate three different vertices `a_i`, `b_i`, and `c_i` ensuring none of them are the same. We also generate a random cost `d_i` for each edge.
+4. **Output Format**: Print the values in the required format.
+
+This generator will create random test cases that you can use to test your solution for the given problem.

@@ -1,0 +1,46 @@
+Sure, I'll create a test case generator for the provided problem statement. Here's a Python function `tcgen()` which generates random test cases for the "ancient scrolls" problem:
+
+```python
+import random
+import string
+
+def tcgen():
+    def generate_string(length):
+        return ''.join(random.choices(string.ascii_letters, k=length))
+    
+    # Randomly generate the length of the strings l
+    l = random.randint(1, 100000)
+    
+    # Randomly generate the maximum acceptable Hamming distance d
+    d = random.randint(0, 5000)
+    
+    # Generate three random strings of length l
+    str_1 = generate_string(l)
+    str_2 = generate_string(l)
+    str_3 = generate_string(l)
+    
+    return l, d, str_1, str_2, str_3
+
+# Example of generating and printing a test case
+if __name__ == "__main__":
+    l, d, str_1, str_2, str_3 = tcgen()
+    print(f"{l} {d}")
+    print(str_1)
+    print(str_2)
+    print(str_3)
+```
+
+### Explanation:
+1. **Function `generate_string(length)`**: This helper function generates a random string of given length using lowercase and uppercase alphabets.
+
+2. **Random Parameters**:
+    - `l` is randomly chosen between 1 and 100,000.
+    - `d` is randomly chosen between 0 and 5000.
+
+3. **Generating Three Strings**:
+    - Three strings (`str_1`, `str_2`, `str_3`) of length `l` are generated using the `generate_string` function.
+
+4. **Return Values**:
+    - The function returns the length `l`, the maximum Hamming distance `d`, and the three generated strings.
+
+You can run this script to generate a set of test cases. The printed output can then be used directly as input for your problem statement.

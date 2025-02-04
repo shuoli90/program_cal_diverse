@@ -1,0 +1,54 @@
+Certainly! Here is a test case generator for the "Tax Rate Changed" problem:
+
+```python
+import random
+
+def tcgen():
+    while True:
+        x = random.randint(1, 99)
+        y = random.randint(1, 99)
+        s = random.randint(11, 999)
+        
+        # Ensure x ≠ y
+        if x != y:
+            return x, y, s
+
+def generate_test_cases(num_cases):
+    test_cases = []
+    for _ in range(num_cases):
+        test_cases.append(tcgen())
+    return test_cases
+
+# Example of generating 10 test cases
+test_cases = generate_test_cases(10)
+for case in test_cases:
+    print(case)
+```
+
+### Explanation:
+1. **`tcgen()` Function**: This function generates a single test case.
+   - It randomly selects integers `x` and `y` between 1 and 99 (inclusive).
+   - It ensures that `x` is not equal to `y`.
+   - It randomly selects an integer `s` between 11 and 999 (inclusive).
+
+2. **`generate_test_cases(num_cases)` Function**: This function generates a specified number of test cases.
+   - It calls `tcgen()` repeatedly to generate the desired number of test cases.
+   - It stores each generated test case in a list and returns the list.
+
+3. **Example Usage**: The example at the end generates 10 test cases and prints them.
+
+### Sample Output:
+```
+(15, 31, 432)
+(10, 52, 221)
+(45, 23, 987)
+(1, 99, 123)
+(34, 67, 456)
+(12, 89, 789)
+(56, 45, 321)
+(78, 34, 678)
+(23, 11, 234)
+(2, 98, 876)
+```
+
+These functions ensure that the generated test cases adhere to the constraints specified in the problem statement, including the requirement that `x` and `y` are different. Adjust the `num_cases` parameter to generate the desired number of test cases.

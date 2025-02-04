@@ -1,0 +1,30 @@
+Sure, here is a test case generator for the given competitive programming problem "A: Cabbage":
+
+```python
+import random
+
+def tcgen():
+    N = random.randint(1, 1000)
+    M = random.randint(0, N)
+    A = random.randint(1, 1000)
+    B = random.randint(A, 1000)  # Ensure B is at least A
+    D = [random.randint(1, 1000) for _ in range(N)]
+    
+    return N, M, A, B, D
+
+# Example usage:
+for _ in range(5):  # Generate 5 test cases
+    N, M, A, B, D = tcgen()
+    print(f"{N} {M} {A} {B}")
+    print(" ".join(map(str, D)))
+```
+
+### Explanation:
+
+1. **N**: Number of leaves, randomly generated between 1 and 1000.
+2. **M**: Minimum number of leaves required for cooking, randomly generated between 0 and N.
+3. **A**: Minimum dirtiness threshold to consider a leaf for discarding, randomly generated between 1 and 1000.
+4. **B**: Maximum dirtiness threshold to reconsider a leaf for discarding, randomly generated between A and 1000 to ensure \(A \leq B\).
+5. **D**: List of dirtiness values for each leaf, randomly generated between 1 and 1000 for N leaves.
+
+This generator ensures that the generated values conform to the given constraints and provide a variety of test cases for thorough testing.

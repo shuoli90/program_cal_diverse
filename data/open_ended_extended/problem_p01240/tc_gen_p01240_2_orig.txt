@@ -1,0 +1,55 @@
+Sure! Below is the test case generator for the given problem "Problem G: Oil Company".
+
+```python
+import random
+
+def tcgen():
+    # Number of test cases
+    N = random.randint(1, 10)
+    test_cases = []
+    
+    for _ in range(N):
+        W = random.randint(1, 20)
+        H = random.randint(1, 20)
+        
+        # Generate the grid map with random oil reserves
+        grid = [[random.randint(0, 9999) for _ in range(W)] for _ in range(H)]
+        
+        test_cases.append((W, H, grid))
+    
+    return N, test_cases
+
+# Generate a sample test case
+N, test_cases = tcgen()
+
+# Print the generated test case
+print(N)
+for i, (W, H, grid) in enumerate(test_cases):
+    print(W, H)
+    for row in grid:
+        print(' '.join(map(str, row)))
+```
+
+Here is an explanation of the code:
+
+1. **Importing the `random` module**: This is used to generate random numbers.
+
+2. **Define the `tcgen()` function**: This function generates random test cases for the problem.
+
+    - **Generate `N`**: The number of test cases. It's a random integer between 1 and 10.
+    
+    - **Loop for each test case**:
+        - **Generate `W` and `H`**: Random integers between 1 and 20, representing the width and height of the grid.
+        - **Generate the grid map**: A list of lists where each integer is a random number between 0 and 9999.
+        
+    - **Store each generated test case** in a list called `test_cases`.
+    
+3. **Return `N` and `test_cases`**: The function returns the number of test cases and the list of test cases.
+
+4. **Generate a sample test case**: Call the `tcgen()` function to generate a sample test case.
+
+5. **Print the generated test case**: Print the number of test cases and the details of each test case in the required format.
+
+You can run the above script to generate random test cases for the problem "Problem G: Oil Company". Each time you run the script, it will produce different test cases due to the randomness.
+
+Feel free to adjust the ranges and limits according to your specific needs or constraints.

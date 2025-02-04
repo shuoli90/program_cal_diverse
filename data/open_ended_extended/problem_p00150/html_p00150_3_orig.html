@@ -1,0 +1,204 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p00150 - Generation 3</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p00150 - Generation 3</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>
+Twin Prime
+Prime numbers are widely applied for cryptographic and communication technology.
+A twin prime is a prime number that differs from another prime number by 2.
+For example, (5, 7) and (11, 13) are twin prime pairs.
+In this problem, we call the greater number of a twin prime "size of the twin prime."
+Your task is to create a program which reads an integer n and prints a twin prime which has the maximum size among twin primes less than or equals to n
+You may assume that 5 ≤ n ≤ 10000.
+Input
+The input is a sequence of datasets. The end of the input is indicated by a line containing one zero. Each dataset is formatted as follows:
+n (integer)
+Output
+For each dataset, print the twin prime p and q (p < q). p and q should be separated by a single space.
+Sample Input
+12
+100
+200
+300
+0
+Output for the Sample Input
+5 7
+71 73
+197 199
+281 283
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An integer n (5 ≤ n ≤ 10000). The input is a sequence of datasets. The end of the input is indicated by a line containing one zero.
+
+### Example Input:
+
+```
+12
+100
+200
+300
+0
+```
+
+### Function Signature:
+Write a function f(inputs) that takes in the input.
+```python
+from typing import List
+
+def f(inputs: List[int]):
+    ''' 
+    inputs: a list of integers
+    '''
+```</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Sure! To generate test cases for the "Twin Prime" problem, we need to ensure that the generated datasets fall within the specified constraints and that they are varied enough to test the different edge cases of the problem. Specifically, we need to handle multiple input values and the termination condition indicated by the input `0`.
+
+Here's a test case generator for the "Twin Prime" problem:
+
+```python
+import random
+
+def is_prime(num):
+    if num <= 1:
+        return False
+    if num <= 3:
+        return True
+    if num % 2 == 0 or num % 3 == 0:
+        return False
+    i = 5
+    while i * i <= num:
+        if num % i == 0 or num % (i + 2) == 0:
+            return False
+        i += 6
+    return True
+
+def generate_twin_primes_up_to(n):
+    primes = []
+    for num in range(2, n + 1):
+        if is_prime(num):
+            primes.append(num)
+    
+    twin_primes = []
+    for i in range(len(primes) - 1):
+        if primes[i + 1] == primes[i] + 2:
+            twin_primes.append((primes[i], primes[i + 1]))
+    
+    return twin_primes
+
+def get_largest_twin_prime(n):
+    twin_primes = generate_twin_primes_up_to(n)
+    if twin_primes:
+        return twin_primes[-1]
+    return None
+
+def tcgen():
+    # Generate a random number of datasets (between 1 and 10 for this example)
+    num_datasets = random.randint(1, 10)
+    
+    datasets = []
+    for _ in range(num_datasets):
+        n = random.randint(5, 10000)
+        datasets.append(n)
+    
+    # Append the termination condition (0)
+    datasets.append(0)
+    
+    return datasets
+
+# Example usage:
+datasets = tcgen()
+for n in datasets:
+    if n == 0:
+        print(n)
+        break
+    twin_prime = get_largest_twin_prime(n)
+    if twin_prime:
+        print(f"{twin_prime[0]} {twin_prime[1]}")
+    else:
+        print("No twin primes found")
+```
+
+### Explanation
+
+1. **`is_prime(num)`**: A helper function to check if a number is prime.
+2. **`generate_twin_primes_up_to(n)`**: This function generates all the twin primes up to `n`.
+3. **`get_largest_twin_prime(n)`**: This function returns the largest twin prime pair up to `n`.
+4. **`tcgen()`**: This function generates a random number of datasets. Each dataset is a random integer `n` between 5 and 10000. It then appends the termination condition `0`.
+
+The example usage showcases how to generate datasets and print the largest twin prime pair for each dataset until the termination condition is met.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    datasets = []
+    while True:
+        n = int(fh.readline().strip())
+        if n == 0:
+            break
+        datasets.append(n)
+    return datasets
+
+# if __name__ == "__main__":
+#     input_path = sys.argv[1]
+#     with open(input_path, 'r') as fh:
+#         datasets = extract_arguments(fh)
+#         for n in datasets:
+#             f(n)</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

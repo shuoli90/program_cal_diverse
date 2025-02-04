@@ -1,0 +1,37 @@
+Certainly! Here is a Python function to generate test cases for the problem "G: Treasure Hunter":
+
+```python
+import random
+
+def generate_test_case():
+    # Constraints
+    N = random.randint(1, 100)  # Number of piles
+    W = random.randint(1, 100000)  # Budget for road construction
+    
+    # Generating treasures in each pile
+    p = [random.randint(1, 1000000000) for _ in range(N)]
+    
+    # Generating road connections and their costs
+    roads = []
+    for _ in range(N - 1):
+        u = random.randint(1, N - 1)
+        v = random.randint(u + 1, N)
+        c = random.randint(1, 100000)
+        roads.append((u, v, c))
+    
+    # Preparing the input format
+    input_data = f"{N} {W}\n"
+    input_data += " ".join(map(str, p)) + "\n"
+    for u, v, c in roads:
+        input_data += f"{u} {v} {c}\n"
+    
+    return input_data
+
+# Example usage
+if __name__ == "__main__":
+    print(generate_test_case())
+```
+
+This function generates a random test case for the given problem, adhering to the constraints provided. The `N` piles and the budget `W` are chosen randomly within their respective ranges. The treasures in each pile and the roads between piles with their construction costs are also generated randomly. The function then formats this data as a string suitable for use as input for the problem.
+
+You can run this function to generate different test cases each time.

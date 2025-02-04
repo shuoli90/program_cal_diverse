@@ -1,0 +1,10 @@
+def extract_arguments(fh):
+    w = int(fh.readline().strip())
+    return (w,)
+
+# Example usage in the main function
+# if __name__ == "__main__":
+#     input_path = sys.argv[1]
+#     with open(input_path, 'r') as fh:
+#         args = extract_arguments(fh)
+#         f(*args)

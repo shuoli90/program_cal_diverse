@@ -1,0 +1,32 @@
+Sure, I can help you write a test case generator for the given problem statement. Here is the Python code for the test case generator:
+
+```python
+import random
+
+def tcgen():
+    A = random.randint(-10**9, 10**9)
+    
+    # Ensure B is different from A
+    B = A
+    while B == A:
+        B = random.randint(-10**9, 10**9)
+    
+    V = random.randint(1, 10**9)
+    W = random.randint(1, 10**9)
+    T = random.randint(1, 10**9)
+    
+    return A, V, B, W, T
+
+# Example of how to use the generator
+A, V, B, W, T = tcgen()
+print(f"{A} {V}")
+print(f"{B} {W}")
+print(f"{T}")
+```
+
+### Explanation:
+1. **A and B**: Random integers are generated between -10^9 and 10^9 for both A and B, ensuring that they are different.
+2. **V and W**: Random integers are generated between 1 and 10^9 for V and W.
+3. **T**: A random integer is generated between 1 and 10^9 for T.
+
+This generator ensures that the constraints are met and produces valid input for the problem. The `while` loop ensures that A and B are different. Here is how you can use the generator and get an example of the input format.

@@ -1,0 +1,42 @@
+Sure! Here's a test case generator for the "Saizou" problem:
+
+```python
+import random
+
+def generate_field_athletics_dataset():
+    # Number of blocks (n)
+    n = random.randint(2, 100)
+    
+    # Heights of the blocks (from 1 to 1000)
+    heights = [random.randint(1, 1000) for _ in range(n)]
+    
+    return n, heights
+
+def saizou_tcgen():
+    # Number of datasets (t)
+    t = random.randint(1, 100)
+    
+    datasets = []
+    for _ in range(t):
+        n, heights = generate_field_athletics_dataset()
+        datasets.append((n, heights))
+    
+    return t, datasets
+
+def print_test_case(t, datasets):
+    print(t)
+    for n, heights in datasets:
+        print(n)
+        print(" ".join(map(str, heights)))
+
+# Generate a test case
+t, datasets = saizou_tcgen()
+print_test_case(t, datasets)
+```
+
+### Explanation:
+- **generate_field_athletics_dataset**: This function generates a single dataset for the problem. It creates a random number of blocks `n` between 2 and 100, and then generates a list of random heights for these blocks where each height is between 1 and 1000.
+- **saizou_tcgen**: This function generates the number of datasets `t` between 1 and 100. For each dataset, it calls `generate_field_athletics_dataset` to create the individual datasets.
+- **print_test_case**: This function prints the test case in the specified format.
+
+To use this generator, simply run the script and it will print out a test case in the proper format. You can modify the random seed for reproducibility if needed.

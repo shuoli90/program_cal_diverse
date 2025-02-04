@@ -1,0 +1,38 @@
+Sure! Here is a test case generator for the given problem statement:
+
+```python
+import random
+
+def generate_binary_string(length):
+    # Ensure the first character is '1' and the rest can be '0' or '1'
+    return '1' + ''.join(random.choice('01') for _ in range(length - 1))
+
+def tcgen():
+    # Generate the values for N, M, and K within the constraints
+    N = random.randint(1, 10**6)
+    M = random.randint(1, 10**6)
+    K = random.randint(1, 10**6)
+    
+    # Generate binary strings of length N and M
+    S = generate_binary_string(N)
+    T = generate_binary_string(M)
+    
+    return N, M, K, S, T
+
+# Example usage:
+if __name__ == "__main__":
+    N, M, K, S, T = tcgen()
+    print(N, M, K)
+    print(S)
+    print(T)
+```
+
+### Explanation:
+This generator creates the following values:
+1. `N`: The length of the binary string \( S \).
+2. `M`: The length of the binary string \( T \).
+3. `K`: The number of operations to perform.
+4. `S`: A binary string of length \( N \), starting with '1'.
+5. `T`: A binary string of length \( M \), starting with '1'.
+
+The constraints (1 ≤ \( K \) ≤ 10^6 and 1 ≤ \( N, M \) ≤ 10^6) are respected by random selection within these ranges. The first character of both \( S \) and \( T \) is guaranteed to be '1', and the rest of the characters are randomly chosen from '0' and '1'.

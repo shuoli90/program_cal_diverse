@@ -1,0 +1,18 @@
+def extract_arguments(fh):
+    inputs = []
+    while True:
+        ns, nl = map(int, fh.readline().strip().split())
+        if ns == 0 and nl == 0:
+            break
+        routes = []
+        for _ in range(nl):
+            s1, s2, d = map(int, fh.readline().strip().split())
+            routes.append((s1, s2, d))
+        inputs.append((ns, nl, routes))
+    return inputs
+
+# if __name__ == "__main__":
+#     input_path = sys.argv[1]
+#     with open(input_path, 'r') as fh: 
+#         inputs = extract_arguments(fh)
+#         f(inputs)

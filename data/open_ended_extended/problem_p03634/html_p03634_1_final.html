@@ -1,0 +1,257 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p03634 - Generation 1</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p03634 - Generation 1</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>
+Score : 400 points
+Problem StatementYou are given a tree with N vertices.
+Here, a tree is a kind of graph, and more specifically, a connected undirected graph with N-1 edges, where N is the number of its vertices.
+The i-th edge (1≤i≤N-1) connects Vertices a_i and b_i, and has a length of c_i.
+You are also given Q queries and an integer K. In the j-th query (1≤j≤Q):
+find the length of the shortest path from Vertex x_j and Vertex y_j via Vertex K.
+Constraints
+3≤N≤10^5 
+1≤a_i,b_i≤N (1≤i≤N-1) 
+1≤c_i≤10^9 (1≤i≤N-1) 
+The given graph is a tree.
+1≤Q≤10^5 
+1≤K≤N 
+1≤x_j,y_j≤N (1≤j≤Q) 
+x_j≠y_j (1≤j≤Q) 
+x_j≠K,y_j≠K (1≤j≤Q) 
+InputInput is given from Standard Input in the following format:  
+N  
+a_1 b_1 c_1  
+:  
+a_{N-1} b_{N-1} c_{N-1}
+Q K
+x_1 y_1
+:  
+x_{Q} y_{Q}
+OutputPrint the responses to the queries in Q lines.
+In the j-th line j(1≤j≤Q), print the response to the j-th query.
+Sample Input 15
+1 2 1
+1 3 1
+2 4 1
+3 5 1
+3 1
+2 4
+2 3
+4 5
+Sample Output 13
+2
+4
+The shortest paths for the three queries are as follows:
+Query 1: Vertex 2 → Vertex 1 → Vertex 2 → Vertex 4 : Length 1+1+1=3 
+Query 2: Vertex 2 → Vertex 1 → Vertex 3 : Length 1+1=2 
+Query 3: Vertex 4 → Vertex 2 → Vertex 1 → Vertex 3 → Vertex 5 : Length 1+1+1+1=4 
+Sample Input 27
+1 2 1
+1 3 3
+1 4 5
+1 5 7
+1 6 9
+1 7 11
+3 2
+1 3
+4 5
+6 7
+Sample Output 25
+14
+22
+The path for each query must pass Vertex K=2.
+Sample Input 310
+1 2 1000000000
+2 3 1000000000
+3 4 1000000000
+4 5 1000000000
+5 6 1000000000
+6 7 1000000000
+7 8 1000000000
+8 9 1000000000
+9 10 1000000000
+1 1
+9 10
+Sample Output 317000000000
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An integer N (3 ≤ N ≤ 10^5), representing some quantity or size.
+A list of N-1 tuples, each containing three integers (a_i, b_i, c_i), where 1 ≤ a_i, b_i ≤ N and 1 ≤ c_i ≤ 10^9.
+An integer Q (1 ≤ Q ≤ 10^5).
+An integer K (1 ≤ K ≤ N).
+A list of Q tuples, each containing two integers (x_j, y_j), where 1 ≤ x_j, y_j ≤ N and x_j ≠ y_j, x_j ≠ K, y_j ≠ K.
+
+### Example Input:
+
+```
+5
+1 2 1
+1 3 1
+2 4 1
+3 5 1
+3 1
+2 4
+2 3
+4 5
+```
+
+### Function Signature:
+Write a function f(N, edges, Q, K, queries) that takes in the input.
+```python
+def f(N: int, edges: List[Tuple[int, int, int]], Q: int, K: int, queries: List[Tuple[int, int]]):
+    '''
+    N: an integer
+    edges: a list of tuples, each containing three integers
+    Q: an integer
+    K: an integer
+    queries: a list of tuples, each containing two integers
+    '''
+```</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>To create a test case generator for the given problem, we'll generate a tree structure with \(N\) vertices, random edges with lengths, and multiple queries. Here's a detailed step-by-step solution:
+
+1. **Generate Vertices and Edges:**
+    - We need to generate \(N-1\) edges to form a tree.
+    - Ensure the tree remains connected by using a union-find (disjoint-set) structure or simply connecting a new node to any of the existing nodes.
+
+2. **Generate Edge Lengths:**
+    - Each edge length \(c_i\) should be a random integer between 1 and \(10^9\).
+
+3. **Generate Queries:**
+    - Each query should consist of two vertices \(x_j\) and \(y_j\) (both different and neither equal to \(K\)).
+    - Generate \(Q\) such queries.
+
+4. **Constraints:**
+    - \(3 \leq N \leq 10^5\)
+    - \(1 \leq c_i \leq 10^9\)
+    - \(1 \leq Q \leq 10^5\)
+    - Vertices in queries should not be the same and should not be equal to \(K\).
+
+Here's the Python code for the test case generator:
+
+```python
+import random
+
+def generate_tree_edges(N):
+    edges = []
+    for i in range(2, N+1):
+        u = i
+        v = random.randint(1, i-1)  # Connect to any vertex that is already part of the tree
+        c = random.randint(1, 10**9)
+        edges.append((u, v, c))
+    return edges
+
+def generate_queries(N, Q, K):
+    queries = []
+    for _ in range(Q):
+        while True:
+            x = random.randint(1, N)
+            y = random.randint(1, N)
+            if x != y and x != K and y != K:
+                break
+        queries.append((x, y))
+    return queries
+
+def tcgen():
+    N = random.randint(3, 10**5)
+    edges = generate_tree_edges(N)
+    
+    Q = random.randint(1, 10**5)
+    K = random.randint(1, N)
+    
+    queries = generate_queries(N, Q, K)
+    
+    input_data = f"{N}\n"
+    input_data += "\n".join(f"{u} {v} {c}" for u, v, c in edges)
+    input_data += f"\n{Q} {K}\n"
+    input_data += "\n".join(f"{x} {y}" for x, y in queries)
+    
+    return input_data
+
+# Example usage
+print(tcgen())
+```
+
+**Explanation:**
+
+1. **generate_tree_edges(N):** This function generates \(N-1\) edges to form a connected tree. Each edge connects a new vertex \(i\) to any previous vertex \(v\) ensuring connectivity.
+
+2. **generate_queries(N, Q, K):** This function generates \(Q\) queries. It ensures that the vertices \(x\) and \(y\) in each query are different and neither is equal to \(K\).
+
+3. **tcgen():** This function calls the above helper functions to generate the tree and queries, formats them as a single input string, and returns it.
+
+You can place this generator script in your testing environment to generate and verify multiple test cases for the problem.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    N = int(fh.readline().strip())
+    edges = []
+    for _ in range(N - 1):
+        a, b, c = map(int, fh.readline().strip().split())
+        edges.append((a, b, c))
+    Q, K = map(int, fh.readline().strip().split())
+    queries = []
+    for _ in range(Q):
+        x, y = map(int, fh.readline().strip().split())
+        queries.append((x, y))
+    return N, edges, Q, K, queries</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

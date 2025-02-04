@@ -1,0 +1,160 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p00780 - Generation 1</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p00780 - Generation 1</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>
+Problem A:Goldbach's Conjecture
+Goldbach's Conjecture: For any even number n greater than or equal to 4, there exists at least one pair of prime numbers p1 and p2 such that n = p1 + p2.
+This conjecture has not been proved nor refused yet. No one is sure whether this conjecture actually holds. However, one can find such a pair of prime numbers, if any, for a given even number. The problem here is to write a program that reports the number of all the pairs of prime numbers satisfying the condition in the conjecture for a given even number.
+A sequence of even numbers is given as input. Corresponding to each number, the program should output the number of pairs mentioned above. Notice that we are intereseted in the number of essentially different pairs and therefore you should not count (p1, p2) and (p2, p1) separately as two different pairs.
+Input
+An integer is given in each input line. You may assume that each integer is even, and is greater than or equal to 4 and less than 215. The end of the input is indicated by a number 0.
+Output
+Each output line should contain an integer number. No other characters should appear in the output.
+Sample Input
+6
+10
+12
+0
+Output for the Sample Input
+1
+2
+1
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>Canonicalized Input Description:
+
+A sequence of integers is given. Each integer is even and lies within the range [4, 214]. The sequence ends with the number 0, which should not be processed as part of the sequence.
+
+### Example Input:
+
+```
+6
+10
+12
+0
+```
+
+### Function Signature:
+Write a function f(inputs) that takes in the input. 
+def f(inputs: List[int]): 
+    ''' 
+    inputs: a list of integers 
+    '''</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Sure, I can help you create a test case generator for the given problem statement on Goldbach's Conjecture. Here’s a Python function that generates test cases for this problem:
+
+```python
+import random
+
+def is_prime(n):
+    if n <= 1:
+        return False
+    if n <= 3:
+        return True
+    if n % 2 == 0 or n % 3 == 0:
+        return False
+    i = 5
+    while i * i <= n:
+        if n % i == 0 or n % (i + 2) == 0:
+            return False
+        i += 6
+    return True
+
+def generate_even_number():
+    return random.choice([i for i in range(4, 215, 2)])
+
+def generate_test_case():
+    num_cases = random.randint(1, 10)  # Generate between 1 and 10 cases
+    test_cases = [generate_even_number() for _ in range(num_cases)]
+    test_cases.append(0)  # Indicate the end of input with 0
+    return test_cases
+
+def main():
+    test_cases = generate_test_case()
+    for case in test_cases:
+        print(case)
+
+if __name__ == "__main__":
+    main()
+```
+
+### Explanation:
+
+1. **`is_prime(n)`**: A helper function to check if a number `n` is prime.
+2. **`generate_even_number()`**: This function generates a random even number between 4 and 214.
+3. **`generate_test_case()`**: This function generates a list of random even numbers (test cases) and appends `0` at the end to indicate the end of input.
+4. **`main()`**: This function prints out the generated test cases.
+
+This will generate random test cases for the problem where each line is an even number between 4 and 214, and the sequence is terminated by `0`.
+
+You can run this script to generate different sets of test cases for your problem.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    inputs = []
+    while True:
+        n = int(fh.readline().strip())
+        if n == 0:
+            break
+        inputs.append(n)
+    return inputs</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

@@ -1,0 +1,3 @@
+Types: q: int, query: List[Union[Tuple[int, int], Tuple[int, int, int]]]
+Ranges: 1 ≤ q ≤ 200,000, 0 ≤ x ≤ 1,000,000,000
+Addtl Info: The total number of elements printed by dump operations does not exceed 1,000,000

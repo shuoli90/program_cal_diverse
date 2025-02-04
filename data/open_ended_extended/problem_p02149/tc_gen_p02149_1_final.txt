@@ -1,0 +1,47 @@
+Certainly! Here is the test case generator for the problem "Lunch":
+
+```python
+import random
+
+def tcgen():
+    # Generate three unique calorie values between 1 and 5000
+    a = random.randint(1, 5000)
+    b = random.randint(1, 5000)
+    c = random.randint(1, 5000)
+    
+    # Ensure all three values are unique
+    while b == a:
+        b = random.randint(1, 5000)
+    while c == a or c == b:
+        c = random.randint(1, 5000)
+    
+    return a, b, c
+
+# Example of using the generator
+a, b, c = tcgen()
+print(f"{a} {b} {c}")
+```
+
+This code generates three unique integers \(a\), \(b\), and \(c\) between 1 and 5000, ensuring they are all different, which satisfies the problem constraints.
+
+You can use this function to generate random test cases. Here is an example of how to use the generator and derive the output based on the problem statement:
+
+```python
+def determine_menu_to_give_up(a, b, c):
+    # Find the maximum value
+    max_calories = max(a, b, c)
+    
+    # Determine which menu to give up
+    if max_calories == a:
+        return "A"
+    if max_calories == b:
+        return "B"
+    return "C"
+
+# Using the generated test case
+a, b, c = tcgen()
+print(f"Input: {a} {b} {c}")
+print(f"Output: {determine_menu_to_give_up(a, b, c)}")
+```
+
+The function `determine_menu_to_give_up` calculates which menu Kawabayashi-kun should give up by finding the maximum calorie count and returning the corresponding menu label.

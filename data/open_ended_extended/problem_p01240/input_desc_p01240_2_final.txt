@@ -1,0 +1,27 @@
+An integer N (1 ≤ N ≤ 100), representing the number of test cases.
+For each test case:
+- Two integers W and H (1 ≤ W, H ≤ 20), representing dimensions of a grid.
+- H lines, each containing W integers, where each integer is between 0 and 9999.
+
+### Example Input:
+
+```
+2
+2 2
+2 3
+3 5
+3 2
+4 1 1
+2 1 4
+```
+
+### Function Signature:
+Write a function f(inputs) that takes in the input.
+```python
+def f(inputs: List[Tuple[int, List[List[int]]]]):
+    '''
+    inputs: a list of tuples, where each tuple contains:
+        - an integer
+        - a list of lists of integers
+    '''
+```

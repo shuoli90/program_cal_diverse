@@ -1,0 +1,10 @@
+def extract_arguments(fh):
+    N, M = map(int, fh.readline().strip().split())
+    switches_to_bulbs = []
+    for _ in range(M):
+        line = list(map(int, fh.readline().strip().split()))
+        k_i = line[0]
+        s_i = line[1:]
+        switches_to_bulbs.append((k_i, s_i))
+    p = list(map(int, fh.readline().strip().split()))
+    return N, M, switches_to_bulbs, p

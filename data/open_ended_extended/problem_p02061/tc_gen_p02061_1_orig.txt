@@ -1,0 +1,52 @@
+To create a test case generator for the given problem "Twice of oneself", we need to generate multiple queries, each with a positive integer \(N\) within the specified constraints. 
+
+Here's a Python function to generate such test cases:
+
+```python
+import random
+
+def generate_test_case():
+    Q = random.randint(1, 10**5)  # Number of queries
+    
+    queries = [random.randint(2, 10**5) for _ in range(Q)]  # List of N values for each query
+    
+    return Q, queries
+
+# Function to print out the test case in the required format
+def print_test_case():
+    Q, queries = generate_test_case()
+    print(Q)
+    for query in queries:
+        print(query)
+
+print_test_case()
+```
+
+### Explanation of the Generator:
+
+1. **Number of Queries (`Q`)**: 
+   - Randomly select an integer between 1 and \(10^5\).
+
+2. **List of Queries (`queries`)**:
+   - For each query, randomly select an integer \(N\) between 2 and \(10^5\).
+
+This generator will create a test case that meets the input format and constraints specified in the problem statement. 
+
+### Example Output
+
+Running the `print_test_case()` function might produce an output like this:
+
+```
+3
+43
+9
+24
+```
+
+This output represents three test queries with \(N\) values of 43, 9, and 24, respectively. The number of queries \(Q\) is 3. 
+
+### Note:
+- The random values ensure a wide range of test cases, helping to thoroughly test the solution's efficiency and correctness.
+- To ensure reproducibility, you can set a seed for the random number generator using `random.seed(seed_value)`.
+
+Feel free to adjust the constraints or add additional logic if specific edge cases need to be tested.

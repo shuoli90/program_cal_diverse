@@ -1,0 +1,40 @@
+Class Assignment
+At Aizu Juku, students take a proficiency test when they enter the cram school and are divided into classes. The test covers three subjects: math, English, and Japanese, and the students are divided into classes A, B, and C. Class A has the highest level, followed by B and C in order.
+The classification is based on the following table.
+               Conditions             Class
+There is a 100 point subject.                     A 
+The average score for math and English is 90 points or higher.                A 
+The average score for all three subjects is 80 points or higher.                  A
+The average score for all three subjects is 70 points or higher.                B
+The average score for all three subjects is 50 points or higher and the score for math or English is 80 points or higher.   B
+Does not meet the above conditions.                       C
+If a student meets multiple conditions, they will be assigned to the higher level class.
+Write a program that takes as input the number of students n (1 ≤ n ≤ 10000), the math scores pmi (0 ≤ pmi ≤ 100), the English scores pei (0 ≤ pei ≤ 100), and the Japanese scores pji (0 ≤ pji ≤ 100) for each student, and outputs the class (in uppercase letters) of each student.
+Input
+The input consists of multiple datasets. The end of the input is indicated by a single line with a zero.
+Each dataset is given in the following format.
+n
+pm1 pe1 pj1
+pm2 pe2 pj2
+:
+pmn pen pjn
+All input is given as integers. There are no more than 1000 datasets.
+Output
+For each input dataset, output the class of each student in order.
+Sample Input
+4
+100 70 20
+98 86 55
+80 34 36
+65 79 65
+2
+99 81 20
+66 72 90
+0
+Output for the Sample Input
+A
+A
+B
+C
+A
+B

@@ -1,0 +1,39 @@
+### Problem Statement: Factorial
+
+**Description**
+
+Write a program which reads an integer \(n\) and prints the factorial of \(n\). You can assume that \(n \leq 20\).
+
+**Input**
+
+An integer \(n\) (1 ≤ \(n\) ≤ 20) in a line.
+
+**Output**
+
+Print the factorial of \(n\) in a line.
+
+**Sample Input**
+
+```
+5
+```
+
+**Output for the Sample Input**
+
+```
+120
+```
+
+**Explanation**
+
+In the sample, the input integer \(n\) is 5. The factorial of 5, denoted as 5!, is calculated as 5 × 4 × 3 × 2 × 1, which equals 120.
+
+**Note**
+
+This problem is designed to test basic understanding of loops and arithmetic operations, suitable for beginner level programmers.
+
+### Type Bounds
+
+Types: \(n\): int  
+Ranges: \(1 \leq n \leq 20\)  
+Addtl Info: None

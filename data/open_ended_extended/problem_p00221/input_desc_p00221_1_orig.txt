@@ -1,0 +1,27 @@
+An integer m (2 ≤ m ≤ 1000), representing some quantity or size.
+An integer n (1 ≤ n ≤ 10000), representing some quantity or size.
+A list of strings s of size n, where each string is an integer "1", "2", ..., or one of the strings "Fizz", "Buzz", "FizzBuzz".
+
+### Example Input:
+
+```
+5 7
+1
+2
+Fizz
+4
+Buzz
+6
+7
+```
+
+### Function Signature:
+Write a function f(m, n, s) that takes in the input.
+```python
+def f(m: int, n: int, s: List[str]):
+    '''
+    m: an integer
+    n: an integer
+    s: a list of strings
+    '''
+```

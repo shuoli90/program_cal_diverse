@@ -1,0 +1,29 @@
+Types: 
+- N: int
+- M: int
+- W: int
+- T: int
+- S[i]: str
+- V[i]: int
+- P[i]: int
+- L[i]: int
+- X[i]: int
+- Y[i]: int
+- R[i][j]: str
+- Q[i][j]: int
+
+Ranges: 
+- 1 ≤ N ≤ 10^2
+- 1 ≤ M ≤ 10^2
+- 1 ≤ W ≤ 10^4
+- 1 ≤ T ≤ 10^4
+- 1 ≤ V[i] ≤ 10^3
+- 1 ≤ P[i] ≤ 10^4
+- 1 ≤ L[i] ≤ 10^2
+- -10^3 ≤ X[i] ≤ 10^3
+- -10^3 ≤ Y[i] ≤ 10^3
+- 1 ≤ Q[i][j] ≤ 10^4
+
+Addtl Info: 
+- S[i] is a string with a maximum length of 20 characters. 
+- R[i][j] is a string with a maximum length of 20 characters.

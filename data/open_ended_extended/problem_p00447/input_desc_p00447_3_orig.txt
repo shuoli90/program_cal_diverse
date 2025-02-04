@@ -1,0 +1,41 @@
+An integer \(m\) (1 ≤ \(m\) ≤ 200), representing some quantity or size.  
+A list of \(m\) tuples, each containing two integers (0 ≤ integer ≤ 1e6), representing some coordinates.  
+An integer \(n\) (1 ≤ \(n\) ≤ 1000), representing some other quantity or size.  
+A list of \(n\) tuples, each containing two integers (0 ≤ integer ≤ 1e6), representing some other coordinates.  
+If \(m\) is 0, it indicates the end of the input. There will be no more than 5 datasets.
+
+### Example Input:
+
+```
+5
+8 5
+6 4
+4 3
+7 10
+0 10
+10
+10 5
+2 7
+9 7
+8 10
+10 2
+1 2
+8 1
+6 7
+6 0
+0 9
+0
+```
+
+### Function Signature:
+Write a function f(datasets) that takes in the input.
+```python
+def f(datasets: List[Tuple[int, List[Tuple[int, int]], int, List[Tuple[int, int]]]]):
+    ''' 
+    datasets: a list of tuples, each containing:
+        - an integer (1 ≤ m ≤ 200)
+        - a list of m tuples, each containing two integers (0 ≤ integer ≤ 1e6)
+        - an integer (1 ≤ n ≤ 1000)
+        - a list of n tuples, each containing two integers (0 ≤ integer ≤ 1e6)
+    '''
+```

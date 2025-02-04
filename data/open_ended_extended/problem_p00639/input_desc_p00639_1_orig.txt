@@ -1,0 +1,20 @@
+An integer D (0 < D ≤ 50), representing some distance.
+A list of 4 real numbers [px, py, vx, vy], where each number is between 0.0001 and 0.9999.
+Input terminates when D = 0.
+
+### Example Input:
+
+```
+10.0
+0.5 0.0 -0.2 0.0
+1.0
+0.1 0.0 0.2 0.2
+0
+```
+
+### Function Signature:
+Write a function f(inputs) that takes in the input.
+def f(inputs: List[Tuple[float, List[float]]]):
+    '''
+    inputs: a list of tuples, where each tuple contains a float and a list of 4 floats
+    '''

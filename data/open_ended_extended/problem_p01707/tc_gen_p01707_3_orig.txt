@@ -1,0 +1,53 @@
+Certainly! Here is a test case generator for the given problem statement:
+
+```python
+import random
+
+def tcgen():
+    datasets = []
+    
+    # Number of datasets (up to 100)
+    num_datasets = random.randint(1, 100)
+    
+    for _ in range(num_datasets):
+        N = random.randint(1, 2000)
+        D = random.randint(1, 10**12)
+        X = random.randint(1, 2000)
+        datasets.append((N, D, X))
+    
+    # Add the terminating dataset
+    datasets.append((0, 0, 0))
+    
+    return datasets
+
+# Example usage
+datasets = tcgen()
+for dataset in datasets:
+    print(dataset)
+```
+
+### Explanation:
+
+1. **Number of Datasets**: We randomly choose the number of datasets, up to a maximum of 100.
+2. **Values of N, D, and X**:
+   - \(N\) is chosen randomly between 1 and 2000.
+   - \(D\) is chosen randomly between 1 and \(10^{12}\).
+   - \(X\) is chosen randomly between 1 and 2000.
+3. **Termination Condition**: Finally, we append the terminating dataset `(0, 0, 0)`.
+
+This generator creates a random set of test cases based on the constraints given in the problem statement, ensuring that each test case is diverse and covers a wide range of scenarios.
+
+### Example Output:
+
+When running the generator, you might see output like this:
+
+```
+(1450, 512345678901, 1784)
+(3, 456789012345, 42)
+(2000, 999999999999, 1999)
+(5, 123456789012, 5)
+...
+(0, 0, 0)
+```
+
+Feel free to use and modify this generator as needed for your testing purposes.

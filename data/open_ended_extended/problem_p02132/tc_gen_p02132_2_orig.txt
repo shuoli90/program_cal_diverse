@@ -1,0 +1,36 @@
+Sure! Here is a test case generator for the problem "Explosion":
+
+```python
+import random
+
+def tcgen():
+    # Generate N and M such that 1 ≤ M ≤ N ≤ 14
+    N = random.randint(1, 14)
+    M = random.randint(1, N)
+
+    # Generate N pairs of coordinates (x_i, y_i) where 0 ≤ x_i, y_i ≤ 10^5
+    coordinates = [(random.randint(0, 10**5), random.randint(0, 10**5)) for _ in range(N)]
+
+    return N, M, coordinates
+
+# Function to format the test case as required by the problem statement
+def format_test_case(N, M, coordinates):
+    test_case = f"{N} {M}\n"
+    for x, y in coordinates:
+        test_case += f"{x} {y}\n"
+    return test_case
+
+# Example usage:
+if __name__ == "__main__":
+    N, M, coordinates = tcgen()
+    print(format_test_case(N, M, coordinates))
+```
+
+This code snippet defines a test case generator for the "Explosion" problem. The `tcgen` function generates:
+
+1. `N` and `M` such that \(1 \leq M \leq N \leq 14\).
+2. `N` pairs of coordinates \((x_i, y_i)\) where \(0 \leq x_i, y_i \leq 10^5\).
+
+The `format_test_case` function formats the generated test case into the required string format for input.
+
+You can run this script, and it will print a randomly generated test case in the format specified in the problem statement.

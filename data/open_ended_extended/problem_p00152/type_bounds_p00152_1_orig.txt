@@ -1,0 +1,3 @@
+Types: m: int, id: int, s: List[int]
+Ranges: 3 ≤ m ≤ 40, 0 ≤ id ≤ 9999, 0 ≤ s[j] ≤ 10
+Addtl Info: 12 ≤ len(s) ≤ 21

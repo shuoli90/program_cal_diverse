@@ -1,0 +1,24 @@
+An integer NAB (0 ≤ NAB ≤ 50), representing some quantity.
+An integer NBA (0 ≤ NBA ≤ 50), representing some quantity.
+A list of NAB tuples, where each tuple consists of three integers (Ci, Di, Ai) with ranges (1 ≤ Ci ≤ 10, 0 ≤ Di < 86400, 0 ≤ Ai < 86400).
+A list of NBA tuples, where each tuple consists of three integers (Ci, Di, Ai) with ranges (1 ≤ Ci ≤ 10, 0 ≤ Di < 86400, 0 ≤ Ai < 86400).
+
+### Example Input:
+
+```
+1 1
+10 100 0
+10 100 0
+```
+
+### Function Signature:
+Write a function f(NAB, NBA, trains_AB, trains_BA) that takes in the input.
+```python
+def f(NAB: int, NBA: int, trains_AB: List[Tuple[int, int, int]], trains_BA: List[Tuple[int, int, int]]):
+    '''
+    NAB: an integer
+    NBA: an integer
+    trains_AB: a list of tuples
+    trains_BA: a list of tuples
+    '''
+```

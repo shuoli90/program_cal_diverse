@@ -1,0 +1,138 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p02981 - Generation 3</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p02981 - Generation 3</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>
+Score : 100 points
+Problem StatementN of us are going on a trip, by train or taxi.
+The train will cost each of us A yen (the currency of Japan).
+The taxi will cost us a total of B yen.
+How much is our minimum total travel expense?
+Constraints
+All values in input are integers.
+1 \leq N \leq 20
+1 \leq A \leq 50
+1 \leq B \leq 50
+InputInput is given from Standard Input in the following format:
+N A B
+OutputPrint an integer representing the minimum total travel expense.
+Sample Input 14 2 9
+Sample Output 18
+The train will cost us 4 \times 2 = 8 yen, and the taxi will cost us 9 yen, so the minimum total travel expense is 8 yen.
+Sample Input 24 2 7
+Sample Output 27
+Sample Input 34 2 8
+Sample Output 38
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An integer N (1 ≤ N ≤ 20), representing some quantity or size.
+An integer A (1 ≤ A ≤ 50), representing some value or cost.
+An integer B (1 ≤ B ≤ 50), representing another value or cost.
+
+### Example Input:
+
+```
+4 2 9
+```
+
+### Function Signature:
+Write a function f(N, A, B) that takes in the input. 
+def f(N: int, A: int, B: int):
+    ''' 
+    N: an integer 
+    A: an integer 
+    B: an integer 
+    '''</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Sure! Below is the test case generator for the given problem statement:
+
+```python
+import random
+
+def tcgen():
+    # Generate N within the given constraints
+    N = random.randint(1, 20)
+    
+    # Generate A and B within the given constraints
+    A = random.randint(1, 50)
+    B = random.randint(1, 50)
+    
+    return N, A, B
+
+# Example of how to use the test case generator
+def print_test_case(tc):
+    N, A, B = tc
+    print(f"{N} {A} {B}")
+
+# Generate and print a test case
+test_case = tcgen()
+print_test_case(test_case)
+```
+
+This function `tcgen` generates random test cases according to the constraints provided in the problem statement. It ensures that the values of `N`, `A`, and `B` are within their respective allowable ranges. The `print_test_case` function is provided for convenience to print the generated test case in the required format. 
+
+You can call `tcgen` multiple times to generate as many test cases as needed for thorough testing.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    N, A, B = map(int, fh.readline().strip().split())
+    return N, A, B</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

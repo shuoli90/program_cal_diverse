@@ -1,0 +1,181 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p01975 - Generation 2</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p01975 - Generation 2</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>B: Mapping
+Problem
+AOR Ika-chan created a mapping $f:S\rightarrow S$ for a set $S=\{a_1, ..., a_N\}$, where $f(a_i)=b_i$. For any element $x$ in set $S$, determine whether all mappings $g,h:S\rightarrow S$ that satisfy $g(f(x))=h(f(x))$ also satisfy  $g(x)=h(x)$. If they do not satisfy this condition, provide a counterexample.
+Constraints:
+$1 \le N \le 10^5$
+$1 \le a_i,b_i \le N$
+$a_i \neq a_j \ (i \neq j)$
+All input is integers
+Input:
+$N$
+$a_1 \cdots a_N$
+$b_1 \cdots b_N$
+Output:
+If the condition is satisfied, output
+Yes
+If the condition is not satisfied, provide a counterexample $g(a_i) = c_i, h(a_i) = d_i$, and output
+No
+$c_1 \cdots c_N$
+$d_1 \cdots d_N$
+Output a newline character at the end.
+Sample
+Sample Input 1
+5
+1 2 3 4 5
+3 4 2 5 1
+Sample Output 1
+Yes
+Sample Input 2
+5
+1 2 3 4 5
+3 4 3 5 1
+Sample Output 2
+No
+3 1 5 2 4
+3 2 5 2 4
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An integer N (1 ≤ N ≤ 10^5), representing some quantity or size.
+A list of integers A of size N, where each integer is between 1 and N and all integers are unique.
+A list of integers B of size N, where each integer is between 1 and N.
+
+### Example Input:
+
+```
+5
+1 2 3 4 5
+3 4 2 5 1
+```
+
+### Function Signature:
+Write a function f(N, A, B) that takes in the input.
+def f(N: int, A: List[int], B: List[int]):
+    '''
+    N: an integer
+    A: a list of integers
+    B: a list of integers
+    '''</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Certainly! Let's break down the test case generator for the given problem statement "B: Mapping".
+
+**Problem Restatement:**
+1. We have two sets $S=\{a_1, ..., a_N\}$ and $T=\{b_1, ..., b_N\}$ where $a_i$ maps to $b_i$.
+2. We need to determine if for any element $x$ in $S$, all mappings $g, h: S \rightarrow S$ that satisfy $g(f(x))=h(f(x))$ also satisfy $g(x)=h(x)$. If not, we provide a counterexample.
+
+**Constraints:**
+- $1 \le N \le 10^5$
+- $1 \le a_i, b_i \le N$
+- $a_i \neq a_j \ (i \neq j)$
+
+Here is a test case generator for the problem:
+
+```python
+import random
+
+def tcgen():
+    N = random.randint(1, 10**5)  # Randomly choose N within the given constraints
+
+    # Generate a permutation of 1 to N for a
+    a = list(range(1, N + 1))
+    random.shuffle(a)
+
+    # Generate a permutation of 1 to N for b
+    b = list(range(1, N + 1))
+    random.shuffle(b)
+
+    return N, a, b
+
+# Example usage
+N, a, b = tcgen()
+print(N)
+print(" ".join(map(str, a)))
+print(" ".join(map(str, b)))
+```
+
+**Explanation:**
+1. We first generate a random number $N$ within the range [1, 100000].
+2. We create a permutation of the list [1, 2, ..., $N$] for $a$ to ensure $a_i \neq a_j$ for all $i \neq j$.
+3. Similarly, we create a permutation of the list [1, 2, ..., $N$] for $b$ to ensure valid mappings.
+
+**Note:**
+- This generator ensures that constraints are satisfied by construction.
+- The output provides two permutations of numbers from 1 to $N$, ensuring that the conditions $1 \le a_i, b_i \le N$ and $a_i \neq a_j$ are met.
+
+**Example Output:**
+```
+5
+3 1 4 2 5
+5 3 1 4 2
+```
+
+This generator will produce inputs that you can use to test the problem statement "B: Mapping". Each run of `tcgen()` will produce a different test case within the problem constraints.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    N = int(fh.readline().strip())
+    a = list(map(int, fh.readline().strip().split()))
+    b = list(map(int, fh.readline().strip().split()))
+    return N, a, b</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

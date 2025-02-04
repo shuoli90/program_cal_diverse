@@ -1,0 +1,13 @@
+def extract_arguments(fh):
+    inputs = []
+    while True:
+        N = int(fh.readline().strip())
+        if N == 0:
+            break
+        buildings = []
+        for _ in range(N):
+            x11, y11, x12, y12 = map(int, fh.readline().strip().split())
+            buildings.append((x11, y11, x12, y12))
+        Ax, Ay, Bx, By = map(int, fh.readline().strip().split())
+        inputs.append((N, buildings, Ax, Ay, Bx, By))
+    return inputs

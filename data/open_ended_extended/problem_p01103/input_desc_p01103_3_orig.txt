@@ -1,0 +1,24 @@
+An integer d (3 ≤ d ≤ 10), representing some quantity or size.
+An integer w (3 ≤ w ≤ 10), representing some quantity or size.
+A d x w grid of integers, where each integer is between 0 and 9.
+The end of the input is indicated by a line containing two zeros separated by a space.
+
+### Example Input:
+
+```
+3 3
+2 3 2
+2 1 2
+2 3 1
+0 0
+```
+
+### Function Signature:
+Write a function f(inputs) that takes in the input.
+def f(inputs: List[Tuple[int, int, List[List[int]]]]):
+    '''
+    inputs: a list of tuples, where each tuple contains:
+      - an integer d
+      - an integer w
+      - a d x w grid of integers
+    '''

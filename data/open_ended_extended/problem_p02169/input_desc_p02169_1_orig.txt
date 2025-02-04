@@ -1,0 +1,22 @@
+Canonicalized Input Description:
+
+An integer M (1 ≤ M ≤ 10^18), representing some quantity or size.
+An integer N (1 ≤ N ≤ 10^18), representing some quantity or size.
+An integer K (1 ≤ K ≤ 1000), representing some quantity or size.
+
+### Example Input:
+
+```
+2 10 1
+```
+
+### Function Signature:
+Write a function f(M, N, K) that takes in the input.
+```python
+def f(M: int, N: int, K: int):
+    '''
+    M: an integer
+    N: an integer
+    K: an integer
+    '''
+```

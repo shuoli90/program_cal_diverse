@@ -1,0 +1,44 @@
+Certainly! Below is the test case generator for the given problem statement:
+
+```python
+import random
+
+def tcgen():
+    # Generate values for N and L within the given constraints
+    N = random.randint(2, 10**5)
+    L = random.randint(1, 10**9)
+    
+    # Generate the list of rope lengths a such that each length is within the given constraints
+    a = [random.randint(1, 10**9) for _ in range(N)]
+    
+    return N, L, a
+
+# Example usage:
+N, L, a = tcgen()
+print(N)
+print(L)
+print(' '.join(map(str, a)))
+```
+
+To understand the structure of the test case generator:
+- `N` is the number of ropes, which is randomly chosen between 2 and \(10^5\).
+- `L` is the minimum length required to untie a knot, which is randomly chosen between 1 and \(10^9\).
+- `a` is a list of rope lengths, where each length is randomly chosen between 1 and \(10^9\).
+
+When using this generator, it will produce random valid inputs for the problem statement. Let's see an example of how the generated output might look:
+
+```python
+N, L, a = tcgen()
+print(N)
+print(L)
+print(' '.join(map(str, a)))
+```
+
+Example output:
+```
+5
+1000000000
+123456789 987654321 456789123 789123456 123789456
+```
+
+This test case generator ensures that the generated inputs are within the problem constraints and can be used to test the solution to the problem effectively.

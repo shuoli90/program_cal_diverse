@@ -1,0 +1,50 @@
+Certainly! Here is a Python function that generates test cases for the problem "Count the Regions". The function will generate random datasets based on the problem constraints.
+
+```python
+import random
+
+def generate_rectangle():
+    # Generate random coordinates for a rectangle
+    li = random.randint(0, 10**6 - 1)
+    ri = random.randint(li + 1, 10**6)
+    bi = random.randint(0, 10**6 - 1)
+    ti = random.randint(bi + 1, 10**6)
+    return li, ti, ri, bi
+
+def tcgen():
+    datasets = []
+    
+    # Deciding the number of datasets to generate
+    num_datasets = random.randint(1, 10)
+    
+    for _ in range(num_datasets):
+        # Randomly choose number of rectangles for this dataset
+        n = random.randint(1, 50)
+        
+        rectangles = [generate_rectangle() for _ in range(n)]
+        datasets.append((n, rectangles))
+        
+    return datasets
+
+def format_datasets(datasets):
+    formatted = []
+    for n, rectangles in datasets:
+        formatted.append(f"{n}")
+        for li, ti, ri, bi in rectangles:
+            formatted.append(f"{li} {ti} {ri} {bi}")
+    formatted.append("0")  # End of input
+    return "\n".join(formatted)
+
+# Generate and format test cases
+datasets = tcgen()
+formatted_input = format_datasets(datasets)
+print(formatted_input)
+```
+
+This function `tcgen`:
+1. Determines the number of datasets to generate.
+2. For each dataset, it randomly selects the number of rectangles (between 1 and 50).
+3. For each rectangle, it generates random coordinates `(li, ti, ri, bi)` satisfying the constraints `0 ≤ li < ri ≤ 10^6` and `0 ≤ bi < ti ≤ 10^6`.
+4. It collects all datasets and formats them into the required input format.
+
+When you run the function, it will generate and print a formatted input similar to the sample input provided in the problem statement. This input can then be used to test the program that solves the "Count the Regions" problem.

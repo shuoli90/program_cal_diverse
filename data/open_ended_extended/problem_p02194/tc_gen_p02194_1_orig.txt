@@ -1,0 +1,37 @@
+Sure, I can help you write a test case generator for the "Zero AND Subsets" problem. The generator will produce random inputs that adhere to the constraints provided in the problem statement. Here is a Python function for generating such test cases:
+
+```python
+import random
+
+def tcgen():
+    N = random.randint(1, 10**5)
+    A = [random.randint(0, 2**20 - 1) for _ in range(N)]
+    
+    return N, A
+
+# Example usage:
+N, A = tcgen()
+print(N)
+print(' '.join(map(str, A)))
+```
+
+### Explanation:
+
+1. **N Generation**: 
+   - `N` is chosen randomly between 1 and \(10^5\), inclusive, as specified in the problem constraints.
+   
+2. **A Generation**:
+   - The list `A` of size `N` is generated where each element is a random integer between 0 and \(2^{20} - 1\) (inclusive), also as per the problem constraints.
+   
+### Example Output:
+Running the `tcgen` function might produce an output like this:
+```
+5
+542 12345 678 9 1024
+```
+
+This represents:
+- **N = 5**
+- **A = [542, 12345, 678, 9, 1024]**
+
+You can run the function multiple times to generate different test cases for your problem. This function ensures that all generated test cases adhere to the provided constraints.

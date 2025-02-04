@@ -1,0 +1,13 @@
+Run Length Encoding
+When a string has consecutive characters, you can compress the string by replacing the characters with a rule. For example, if the string is "AAAA", you can represent it as "@4A" and compress it by one character. Create a program that takes a compressed string as input and restores it to the original string. However, the restored string should not contain the "@" character.
+In addition, the original string consists of uppercase and lowercase letters, digits, and symbols, and is within 100 characters. Consecutive characters are up to 9 characters.
+Input
+Multiple strings are given. Each line contains one string. The number of strings is no more than 50.
+Output
+For each string, output the restored string for each character on one line.
+Sample Input
+ab@5C1@8050
+@99+1=1@90
+Output for the Sample Input
+abCCCCC10000000050
+999999999+1=1000000000

@@ -1,0 +1,49 @@
+Sure! Below is a test case generator for the given problem statement:
+
+```python
+import random
+
+def generate_line_segment():
+    while True:
+        x1 = random.randint(0, 100)
+        y1 = random.randint(0, 100)
+        x2 = random.randint(0, 100)
+        y2 = random.randint(0, 100)
+        if (x1, y1) != (x2, y2):
+            return x1, y1, x2, y2
+
+def tcgen():
+    N = random.randint(2, 10**5)
+    segments = [generate_line_segment() for _ in range(N)]
+    
+    return N, segments
+
+# Example usage:
+N, segments = tcgen()
+print(N)
+for seg in segments:
+    print(*seg)
+```
+
+### Explanation:
+
+1. **Function `generate_line_segment()`**:
+    - This function generates a valid line segment by ensuring that the two endpoints are not the same. It keeps generating random coordinates for the endpoints until they are different.
+   
+2. **Function `tcgen()`**:
+    - This function generates a random value for \( N \) within the given constraints (2 ≤ \( N \) ≤ 10^5).
+    - It then generates \( N \) line segments using the `generate_line_segment()` function.
+    - Finally, it returns \( N \) and the list of segments.
+
+### Example Usage:
+When you run the `tcgen()` function, it will output a random test case in the format specified by the problem statement. Here is an example of how it might look:
+
+```plaintext
+4
+67 2 45 14
+32 81 99 0
+12 34 56 78
+10 20 30 40
+```
+
+This output corresponds to \( N = 4 \) and the four generated line segments. You can use this function to generate multiple test cases for testing your solution to the problem.

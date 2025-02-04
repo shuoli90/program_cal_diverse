@@ -1,0 +1,51 @@
+Certainly! I'll write a test case generator for the "Kannon-Do" problem. The generator will produce multiple datasets, each with a single integer \( n \) representing the number of steps, and will include a terminating zero line to mark the end of the input.
+
+Here's the test case generator:
+
+```python
+import random
+
+def tcgen():
+    datasets = []
+    num_datasets = random.randint(1, 30)  # Generate between 1 and 30 datasets
+    
+    for _ in range(num_datasets):
+        n = random.randint(1, 30)  # Each n is between 1 and 30
+        datasets.append(n)
+    
+    datasets.append(0)  # Append the terminating zero
+    
+    return datasets
+
+# Testing the generator
+if __name__ == "__main__":
+    test_case = tcgen()
+    for n in test_case:
+        print(n)
+```
+
+### Explanation:
+
+- **num_datasets**: This variable determines how many datasets will be generated, and it will be a random number between 1 and 30.
+- **n**: This variable represents the number of steps, and for each dataset, it will be a random integer between 1 and 30.
+- **datasets**: This list will store all the generated datasets, and at the end, a terminating zero will be added to mark the end of the input.
+
+### Sample Output:
+Running the generator might produce an output like this:
+```
+5
+27
+16
+9
+3
+22
+14
+30
+1
+0
+```
+
+This will generate a sequence of random step numbers followed by a zero to indicate the end of the input. Each time you run the generator, it will produce different sequences of step numbers.
+
+### Usage in a Competitive Programming Context:
+Use this generator to create diverse test cases to ensure your solution handles various edge cases and typical scenarios for the problem statement.

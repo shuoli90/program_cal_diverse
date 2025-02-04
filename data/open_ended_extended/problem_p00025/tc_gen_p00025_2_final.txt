@@ -1,0 +1,49 @@
+Certainly! Here's a test case generator for the "Hit and Blow" problem:
+
+```python
+import random
+
+def generate_unique_numbers():
+    """Generate a list of 4 unique numbers between 0 and 9."""
+    return random.sample(range(10), 4)
+
+def generate_test_case():
+    """Generate a single test case for the Hit and Blow problem."""
+    A = generate_unique_numbers()
+    B = generate_unique_numbers()
+    return A, B
+
+def tcgen(num_cases=50):
+    """
+    Generate multiple test cases for the Hit and Blow problem.
+    
+    Args:
+    - num_cases (int): The number of test cases to generate. Default is 50.
+    
+    Returns:
+    - List of tuples, where each tuple contains two lists (A and B).
+    """
+    test_cases = []
+    for _ in range(num_cases):
+        test_cases.append(generate_test_case())
+    return test_cases
+
+# Example usage:
+if __name__ == "__main__":
+    test_cases = tcgen()
+    for A, B in test_cases:
+        print(" ".join(map(str, A)))
+        print(" ".join(map(str, B)))
+```
+
+### Explanation:
+
+1. **`generate_unique_numbers`**: This function generates a list of 4 unique random numbers between 0 and 9 using `random.sample`.
+
+2. **`generate_test_case`**: This function generates a single test case by calling `generate_unique_numbers` twice to get the lists `A` and `B`.
+
+3. **`tcgen`**: This function generates multiple test cases. By default, it generates 50 test cases, but you can specify a different number. It returns a list of tuples where each tuple contains the two lists `A` and `B`.
+
+4. **Example Usage**: The example usage at the bottom demonstrates how to generate the test cases and print them in the required format.
+
+This generator ensures that the numbers in each list are unique and within the range [0, 9]. The `num_cases` parameter allows you to control how many test cases you want to generate.

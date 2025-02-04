@@ -1,0 +1,8 @@
+def extract_arguments(fh):
+    import sys
+    input = sys.stdin.read
+    data = input().split()
+    N = int(data[0])
+    M = int(data[1])
+    obstacles = [(int(data[i*2 + 2]), int(data[i*2 + 3])) for i in range(M)]
+    return N, M, obstacles

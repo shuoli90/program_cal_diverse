@@ -1,0 +1,77 @@
+Certainly! Below is a test case generator for the given problem statement:
+
+### Problem Statement: Serval and the Monster
+
+**Description**
+
+Serval is fighting with a monster. The health of the monster is \(H\). In one attack, Serval can decrease the monster's health by \(A\). There is no other way to decrease the monster's health. Serval wins when the monster's health becomes 0 or below. Find the number of attacks Serval needs to make before winning.
+
+**Constraints**
+
+1. \(1 \leq H \leq 10^4\)
+2. \(1 \leq A \leq 10^4\)
+
+All values in input are integers.
+
+**Input**
+
+Input is given from Standard Input in the following format:
+```
+H A
+```
+
+**Output**
+
+Print the number of attacks Serval needs to make before winning.
+
+**Examples**
+
+_Input_
+```
+10 4
+```
+
+_Output_
+```
+3
+```
+
+_Input_
+```
+10000 1
+```
+
+_Output_
+```
+10000
+```
+
+### Test Case Generator
+
+Here's the test case generator for the described problem:
+
+```python
+import random
+
+def tcgen():
+    H = random.randint(1, 10**4)
+    A = random.randint(1, 10**4)
+    
+    return H, A
+
+def main():
+    H, A = tcgen()
+    print(f"{H} {A}")
+
+if __name__ == "__main__":
+    main()
+```
+
+### Explanation
+
+- **H**: Randomly selected between 1 and 10,000.
+- **A**: Randomly selected between 1 and 10,000.
+  
+This generator will create random test cases for the problem ensuring that the values of \(H\) and \(A\) fall within the specified constraints.
+
+To use the generator, you can run the `main()` function, which will generate and print a test case in the format expected by the problem's input format.

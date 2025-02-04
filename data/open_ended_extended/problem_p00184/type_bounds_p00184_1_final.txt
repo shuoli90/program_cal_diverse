@@ -1,0 +1,3 @@
+Types: n: int, a: List[int]
+Ranges: 1 ≤ n ≤ 10^6, 0 ≤ a[i] ≤ 120
+Addtl Info: Input consists of multiple datasets, each ending with a line containing a single zero.

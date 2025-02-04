@@ -1,0 +1,25 @@
+Number of Days
+Write a program that takes two dates as input and outputs the number of days between those two dates. Date 1 (y1, m1, d1) is the same as or earlier than date 2 (y2, m2, d2), and date 1 is included in the count, but date 2 is not. Please calculate taking leap years into consideration. The conditions for leap years are as follows:
+The year is divisible by 4.
+However, years divisible by 100 are not leap years.
+Years divisible by 400 are leap years.
+Input
+Multiple datasets will be given. The format for each dataset is as follows:
+y1 m1 d1 y2 m2 d2
+If any of y1, m1, d1, y2, m2, or d2 is a negative number, the input will end.
+The number of datasets will not exceed 50.
+Output
+For each dataset, output the number of days on one line.
+Sample Input
+2006 9 2 2006 9 3
+2006 9 2 2006 11 11
+2004 1 1 2005 1 1
+2000 1 1 2006 1 1
+2000 1 1 2101 1 1
+-1 -1 -1 -1 -1 -1
+Output for the Sample Input
+1
+70
+366
+2192
+36890

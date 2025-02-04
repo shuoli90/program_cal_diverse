@@ -1,0 +1,41 @@
+Certainly! Below is a test case generator for the given competitive programming problem:
+
+```python
+import random
+
+def tcgen():
+    K = random.randint(1, 200)
+    return K,
+
+# Example usage:
+for _ in range(5):  # generate 5 test cases
+    print(tcgen())
+```
+
+This function generates a random integer \( K \) within the specified constraints (1 ≤ K ≤ 200). The output is a tuple containing \( K \), which is suitable for the format expected by competitive programming platforms.
+
+If you want to also generate the expected output for these test cases, you would need to implement the logic to compute the sum of the greatest common divisors as described in the problem statement. Here’s an implementation to compute the expected output:
+
+```python
+import math
+
+def compute_gcd_sum(K):
+    gcd_sum = 0
+    for a in range(1, K + 1):
+        for b in range(1, K + 1):
+            for c in range(1, K + 1):
+                gcd_sum += math.gcd(math.gcd(a, b), c)
+    return gcd_sum
+
+def tcgen_with_output():
+    K = random.randint(1, 200)
+    expected_output = compute_gcd_sum(K)
+    return (K,), expected_output
+
+# Example usage:
+for _ in range(5):  # generate 5 test cases with expected outputs
+    test_case, expected_output = tcgen_with_output()
+    print(f"Input: {test_case}, Output: {expected_output}")
+```
+
+This extended version of the test case generator not only creates the input \( K \) but also computes the correct output for the given \( K \) using the `compute_gcd_sum` function. This can be useful for validating your solution or for creating comprehensive test cases for practice.

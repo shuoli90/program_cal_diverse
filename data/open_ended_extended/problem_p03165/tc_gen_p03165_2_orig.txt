@@ -1,0 +1,31 @@
+Sure, I'd be happy to help you with that! Here's a Python function to generate test cases for the problem statement you provided:
+
+```python
+import random
+import string
+
+def generate_test_case():
+    # Constraints
+    min_len = 1
+    max_len = 3000
+    
+    # Generate random lengths for s and t within the constraints
+    len_s = random.randint(min_len, max_len)
+    len_t = random.randint(min_len, max_len)
+    
+    # Generate random strings s and t of the generated lengths
+    s = ''.join(random.choices(string.ascii_lowercase, k=len_s))
+    t = ''.join(random.choices(string.ascii_lowercase, k=len_t))
+    
+    return s, t
+
+# Example usage
+if __name__ == "__main__":
+    test_case = generate_test_case()
+    print("s:", test_case[0])
+    print("t:", test_case[1])
+```
+
+This function generates random test cases for the given problem by creating two random strings `s` and `t` with lengths between 1 and 3000, inclusive. The characters in the strings are randomly chosen from the lowercase English alphabet.
+
+Feel free to modify the code as per your needs or integrate it into your testing framework!

@@ -1,0 +1,176 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p00115 - Generation 3</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p00115 - Generation 3</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>Spaceship UAZ Advance
+Stellar calendar 2005.11.5. You are the captain of the UAZ Advance spacecraft and are about to engage in combat with an enemy spacecraft. Fortunately, the enemy spacecraft is still stationary and has not yet noticed us. Also, the coordinates of the enemy's spaceship are already known, and the "Feather Cannon," which emits a powerful straight-line beam, is ready to fire. All that remains is to give the order to fire.
+However, there is a problem. An energy barrier installed by the enemy exists in space. The barrier is in the shape of a triangle and reflects the "Feather Cannon" beam. Also, if the beam hits the barrier, the enemy will notice us and escape. If we cannot determine that the beam will hit its target in advance, we cannot issue the firing order.
+Therefore, please create a program that inputs the coordinates of the UAZ Advance spacecraft, the enemy, and the barrier in space coordinates (3D coordinates x, y, and z) and outputs "HIT" if the beam hits the enemy while avoiding the barrier, and "MISS" if the beam hits the barrier. If the enemy is inside the barrier, output "MISS."
+Note that only those barriers that appear as triangles from the UAZ Advance spacecraft are targeted, and those that appear as flattened lines are not included. Also, the barrier is effective even on the boundary that includes the vertices of the triangle and reflects the beam.
+Input
+The format of the input data is as follows:
+The first line contains the coordinates of the UAZ Advance spacecraft (x, y, z) (integers, separated by a single space).
+The second line contains the coordinates of the enemy (x, y, z) (integers, separated by a single space).
+The third line contains the coordinates of vertex 1 of the barrier (x, y, z) (integers, separated by a single space).
+The fourth line contains the coordinates of vertex 2 of the barrier (x, y, z) (integers, separated by a single space).
+The fifth line contains the coordinates of vertex 3 of the barrier (x, y, z) (integers, separated by a single space).
+Output
+Output either "HIT" or "MISS" on a single line.
+Constraints
+-100 ≤ x, y, z ≤ 100
+The UAZ Advance spacecraft and the enemy will never be in the same position.
+Sample Input 1
+-10 0 0
+10 0 0
+0 10 0
+0 10 10
+0 0 10
+Output for the Sample Input 1
+HIT
+Sample Input 2
+-10 6 6
+10 6 6
+0 10 0
+0 10 10
+0 0 10
+Output for the Sample Input 2
+MISS
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>Canonicalized Input Description:
+
+Three integers \(x, y, z\) representing a point in 3D space, where \(-100 \leq x, y, z \leq 100\).
+Three integers \(x, y, z\) representing another point in 3D space, where \(-100 \leq x, y, z \leq 100\).
+Three integers \(x, y, z\) representing the first vertex of a triangle in 3D space, where \(-100 \leq x, y, z \leq 100\).
+Three integers \(x, y, z\) representing the second vertex of a triangle in 3D space, where \(-100 \leq x, y, z \leq 100\).
+Three integers \(x, y, z\) representing the third vertex of a triangle in 3D space, where \(-100 \leq x, y, z \leq 100\).
+
+### Example Input:
+
+```
+-10 0 0
+10 0 0
+0 10 0
+0 10 10
+0 0 10
+```
+
+### Function Signature:
+Write a function f(p1, p2, v1, v2, v3) that takes in the input.
+def f(p1: Tuple[int, int, int], p2: Tuple[int, int, int], v1: Tuple[int, int, int], v2: Tuple[int, int, int], v3: Tuple[int, int, int]): 
+    ''' 
+    p1: a tuple of three integers
+    p2: a tuple of three integers
+    v1: a tuple of three integers
+    v2: a tuple of three integers
+    v3: a tuple of three integers
+    '''</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Certainly! Given the problem statement, here's a test case generator for the "Spaceship UAZ Advance" problem:
+
+```python
+import random
+
+def tcgen():
+    def random_coord():
+        return random.randint(-100, 100), random.randint(-100, 100), random.randint(-100, 100)
+    
+    # Generate coordinates for the UAZ Advance spacecraft and the enemy
+    uaz = random_coord()
+    enemy = random_coord()
+    
+    # Ensure UAZ Advance spacecraft and enemy are not in the same position
+    while uaz == enemy:
+        enemy = random_coord()
+    
+    # Generate coordinates for the three vertices of the barrier
+    barrier_v1 = random_coord()
+    barrier_v2 = random_coord()
+    barrier_v3 = random_coord()
+    
+    return uaz, enemy, barrier_v1, barrier_v2, barrier_v3
+
+# Example usage
+uaz, enemy, barrier_v1, barrier_v2, barrier_v3 = tcgen()
+
+print("UAZ Advance spacecraft coordinates:", uaz)
+print("Enemy spacecraft coordinates:", enemy)
+print("Barrier vertex 1 coordinates:", barrier_v1)
+print("Barrier vertex 2 coordinates:", barrier_v2)
+print("Barrier vertex 3 coordinates:", barrier_v3)
+```
+
+This script generates random test cases for the "Spaceship UAZ Advance" problem by:
+- Creating random coordinates for the UAZ Advance spacecraft and the enemy.
+- Ensuring that the UAZ Advance spacecraft and the enemy are not in the same position.
+- Generating random coordinates for the three vertices of the barrier.
+
+You can run this script to generate multiple test cases for your problem. If you need the output in a specific format, you can modify the print statements accordingly.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    uaz = tuple(map(int, fh.readline().strip().split()))
+    enemy = tuple(map(int, fh.readline().strip().split()))
+    barrier1 = tuple(map(int, fh.readline().strip().split()))
+    barrier2 = tuple(map(int, fh.readline().strip().split()))
+    barrier3 = tuple(map(int, fh.readline().strip().split()))
+    return uaz, enemy, barrier1, barrier2, barrier3</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

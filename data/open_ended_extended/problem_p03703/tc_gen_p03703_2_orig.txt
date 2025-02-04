@@ -1,0 +1,30 @@
+Certainly! Here is a test case generator for the given problem statement:
+
+```python
+import random
+
+def tcgen():
+    # Generate N within given constraints
+    N = random.randint(1, 2 * 10**5)
+    
+    # Generate K within given constraints
+    K = random.randint(1, 10**9)
+    
+    # Generate sequence a of length N with each element in the range [1, 10^9]
+    a = [random.randint(1, 10**9) for _ in range(N)]
+    
+    return N, K, a
+
+# Example usage:
+N, K, a = tcgen()
+print(N, K)
+print('\n'.join(map(str, a)))
+```
+
+This script generates random test cases according to the problem constraints:
+
+1. `N` is an integer between 1 and \(2 \times 10^5\).
+2. `K` is an integer between 1 and \(10^9\).
+3. The sequence `a` contains `N` integers, each between 1 and \(10^9\).
+
+The example usage at the end demonstrates how to generate and print a test case. Each test case is generated randomly, ensuring a wide range of possible scenarios to test the solution.

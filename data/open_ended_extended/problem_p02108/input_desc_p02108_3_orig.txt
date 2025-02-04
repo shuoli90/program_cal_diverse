@@ -1,0 +1,23 @@
+An integer n (1 ≤ n ≤ 10^5), representing the number of entities.
+An integer m (0 ≤ m ≤ min(n×(n−1), 10^5)), representing the number of connections.
+A list of integers c of size n, where each integer is between 0 and 1000.
+m pairs of integers ai and bi (0 ≤ ai, bi ≤ n − 1), representing one-way connections.
+
+### Example Input:
+```
+2 1
+1 2
+0 1
+```
+
+### Function Signature:
+Write a function f(n, m, c, connections) that takes in the input.
+```
+def f(n: int, m: int, c: List[int], connections: List[Tuple[int, int]]):
+    '''
+    n: an integer
+    m: an integer
+    c: a list of integers
+    connections: a list of tuples, each containing two integers
+    '''
+```

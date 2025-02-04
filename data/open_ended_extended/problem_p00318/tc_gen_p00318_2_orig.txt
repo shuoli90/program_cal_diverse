@@ -1,0 +1,37 @@
+Sure, I can help you generate a test case generator for the provided competitive programming problem. Below is a Python script that randomly generates test cases according to the problem's constraints.
+
+```python
+import random
+
+def tcgen():
+    # Number of observation data measured by the probing radar
+    N = random.randint(1, 100000)
+    
+    # List to store the observation data
+    observation_data = []
+    
+    for _ in range(N):
+        xi = random.randint(0, 1000000)
+        ri = random.randint(1, 1000000)
+        observation_data.append((xi, ri))
+    
+    return N, observation_data
+
+def format_test_case(N, observation_data):
+    # Format the test case to match the input description
+    formatted_data = "\n".join(f"{xi} {ri}" for xi, ri in observation_data)
+    return f"{N}\n{formatted_data}"
+
+# Example usage
+N, observation_data = tcgen()
+test_case = format_test_case(N, observation_data)
+print(test_case)
+```
+
+What this script does:
+
+1. `tcgen()` function generates the number of data points `N` and a list of tuples where each tuple contains the position `xi` and the radius `ri`.
+2. The `format_test_case()` function takes the generated `N` and observation data and formats it into the required input format as a string.
+3. The example usage at the bottom generates a test case and prints it.
+
+You can run this script to generate different test cases for the problem. Make sure to use proper constraints as specified in the problem statement when integrating with your competitive programming setup.

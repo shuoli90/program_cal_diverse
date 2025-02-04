@@ -1,0 +1,18 @@
+An integer \( N \) (1 ≤ \( N \) ≤ 200000), representing the length of a string.
+A string \( s \) of length \( N \), consisting of characters 'A', 'B', and 'C'.
+
+### Example Input:
+
+```
+6
+ABCABC
+```
+
+### Function Signature:
+Write a function f(N, s) that takes in the input.
+```python
+def f(N: int, s: str):
+    '''
+    N: an integer
+    s: a string
+    '''

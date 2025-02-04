@@ -1,0 +1,38 @@
+To generate test cases for the "Fishing Competition" problem, we can write a Python function that randomly produces valid inputs based on the constraints provided in the problem statement. The function will generate random numbers for the number of fish caught by each brother, the points assigned to each type of fish, and the additional points for every 10 iwana and 20 yamame caught.
+
+Here is the test case generator:
+
+```python
+import random
+
+def tcgen():
+    # Number of fish caught by Hiroshi
+    h1 = random.randint(0, 100)
+    h2 = random.randint(0, 100)
+    
+    # Number of fish caught by Kenjiro
+    k1 = random.randint(0, 100)
+    k2 = random.randint(0, 100)
+    
+    # Points assigned to each type of fish
+    a = random.randint(1, 100)
+    b = random.randint(1, 100)
+    
+    # Additional points for every 10 iwana and 20 yamame caught
+    c = random.randint(0, 100)
+    d = random.randint(0, 100)
+    
+    return (h1, h2), (k1, k2), (a, b, c, d)
+
+# Example Usage:
+for _ in range(3):
+    hiroshi, kenjiro, points = tcgen()
+    print(f"{hiroshi[0]} {hiroshi[1]}")
+    print(f"{kenjiro[0]} {kenjiro[1]}")
+    print(f"{points[0]} {points[1]} {points[2]} {points[3]}")
+    print()
+```
+
+This generator function `tcgen()` produces a tuple of tuples containing random values for the number of fish caught by each brother and the points assigned to each type of fish along with additional points for every 10 iwana and 20 yamame caught. The function also ensures that the generated values adhere to the constraints outlined in the problem statement.
+
+To use the test case generator, you can call `tcgen()` and it will print out the generated input values in a format that matches the problem's input specification. This will help you test your solution against a variety of randomly generated cases.

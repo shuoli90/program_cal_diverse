@@ -1,0 +1,30 @@
+An integer N (2 ≤ N ≤ 100,000), representing some quantity or size.
+An integer M (1 ≤ M ≤ 200,000), representing some quantity or size.
+An integer C, representing some quantity.
+A list of M tuples, where each tuple contains three integers (A, B, D):
+  - A (1 ≤ A ≤ N), representing some quantity or size.
+  - B (1 ≤ B ≤ N), representing some quantity or size.
+  - D, representing some quantity.
+
+### Example Input:
+
+```
+4 5 10
+1 2 3
+2 3 4
+3 4 5
+4 1 6
+1 3 2
+```
+
+### Function Signature:
+Write a function f(N, M, C, roads) that takes in the input.
+```python
+def f(N: int, M: int, C: int, roads: List[Tuple[int, int, int]]):
+    '''
+    N: an integer
+    M: an integer
+    C: an integer
+    roads: a list of tuples, where each tuple contains three integers
+    '''
+```

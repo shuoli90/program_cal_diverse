@@ -1,0 +1,63 @@
+Certainly! Below is a test case generator for the given "Battle Town" problem statement. The generator will produce multiple datasets according to the constraints and specifications provided.
+
+```python
+import random
+
+def generate_map(H, W):
+    elements = ['.', '*', '#', '-', '^', 'v', '<', '>']
+    game_map = []
+    
+    for _ in range(H):
+        row = ''.join(random.choice(elements) for _ in range(W))
+        game_map.append(row)
+    
+    return game_map
+
+def generate_action_sequence(length):
+    actions = ['U', 'D', 'L', 'R', 'S']
+    action_sequence = ''.join(random.choice(actions) for _ in range(length))
+    return action_sequence
+
+def tcgen():
+    T = random.randint(1, 100)
+    datasets = []
+
+    for _ in range(T):
+        H = random.randint(1, 20)
+        W = random.randint(1, 20)
+        game_map = generate_map(H, W)
+        action_sequence_length = random.randint(1, 50)
+        action_sequence = generate_action_sequence(action_sequence_length)
+
+        datasets.append((H, W, game_map, action_sequence))
+    
+    return T, datasets
+
+# Example usage
+T, datasets = tcgen()
+print('Number of datasets:', T)
+for i, (H, W, game_map, action_sequence) in enumerate(datasets):
+    print(f"Dataset {i+1}:")
+    print(H, W)
+    for row in game_map:
+        print(row)
+    print(action_sequence)
+```
+
+### Explanation:
+
+1. **`generate_map(H, W)` function:**
+   - This function generates a map of height `H` and width `W` filled with random map elements (flat terrain, brick wall, iron wall, water, tanks facing different directions).
+
+2. **`generate_action_sequence(length)` function:**
+   - This function generates a random sequence of actions (`U`, `D`, `L`, `R`, `S`) of the given length.
+
+3. **`tcgen()` function:**
+   - This function generates the complete test case. It first decides the number of datasets `T` (between 1 and 100).
+   - For each dataset, it generates random values for `H` and `W` (both between 1 and 20 for simplicity in the example). It then creates a map and an action sequence.
+   - All datasets are stored in a list and returned.
+
+### Example Usage:
+- The example usage part at the end demonstrates how to call the `tcgen()` function and print the generated datasets.
+
+Feel free to adjust the ranges and parameters to better fit the constraints or specific requirements of your problem.

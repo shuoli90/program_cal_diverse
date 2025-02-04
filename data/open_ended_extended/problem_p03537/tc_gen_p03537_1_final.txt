@@ -1,0 +1,32 @@
+Sure, here is a test case generator for the given problem statement:
+
+```python
+import random
+
+def tcgen():
+    # Generate the string S
+    S_length = random.randint(1, 10**5)
+    S = ''.join(random.choices('abcdefghijklmnopqrstuvwxyz', k=S_length))
+    
+    # Generate the number of operations N
+    N = random.randint(1, 10**5)
+    
+    # Generate the operations
+    operations = []
+    for _ in range(N):
+        L = random.randint(1, S_length)
+        R = random.randint(L, S_length)
+        operations.append((L, R))
+    
+    # Construct the input format as specified
+    input_data = f"{S}\n{N}\n"
+    for L, R in operations:
+        input_data += f"{L} {R}\n"
+    
+    return input_data.strip()
+
+# Example usage
+print(tcgen())
+```
+
+This script generates a random test case for the problem described. It builds a string \( S \) of random lowercase English letters, a random number of operations \( N \), and a list of \( N \) operations where each operation specifies a range \([L_i, R_i]\) within the string \( S \). The output is formatted as specified in the problem statement. You can run this function to generate random test cases for your competitive programming problem.

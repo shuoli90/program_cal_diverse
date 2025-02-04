@@ -1,0 +1,16 @@
+def extract_arguments(fh):
+    datasets = []
+    while True:
+        line = fh.readline().strip()
+        if line == "0 0":
+            break
+        N, M = map(int, line.split())
+        questions = []
+        for _ in range(M):
+            parts = list(map(int, fh.readline().strip().split()))
+            Si = parts[0]
+            ki = parts[1]
+            participants = parts[2:]
+            questions.append((Si, ki, participants))
+        datasets.append((N, M, questions))
+    return datasets

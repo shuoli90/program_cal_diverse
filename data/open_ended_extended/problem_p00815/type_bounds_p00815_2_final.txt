@@ -1,0 +1,3 @@
+Types: n: int, records: List[List[int]]
+Ranges: 1 ≤ n < 100, records[i][j]: 0 or -99 ≤ records[i][j] ≤ 40
+Addtl Info: Each record ends with a zero. Each record consists of one or more lines whose lengths are less than 1000 characters. The number of rooms for each Ninja House is less than 100. The number of doors in each room is less than 40.

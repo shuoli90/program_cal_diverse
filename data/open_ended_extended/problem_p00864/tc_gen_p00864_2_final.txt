@@ -1,0 +1,47 @@
+Sure! Here is a test case generator for the "Grey Area" problem:
+
+```python
+import random
+
+def generate_test_case():
+    n = random.randint(1, 100)
+    w = random.randint(10, 50)
+    v = [random.randint(0, 100) for _ in range(n)]
+    return n, w, v
+
+def tcgen():
+    test_cases = []
+
+    # Generate a random number of test cases
+    num_test_cases = random.randint(1, 10)
+    for _ in range(num_test_cases):
+        n, w, v = generate_test_case()
+        test_cases.append((n, w, v))
+    
+    # Append the end of input marker
+    test_cases.append((0, 0, []))
+
+    return test_cases
+
+# Example Usage
+if __name__ == "__main__":
+    test_cases = tcgen()
+    for case in test_cases:
+        n, w, v = case
+        if n == 0 and w == 0:
+            print("0 0")
+        else:
+            print(f"{n} {w}")
+            for value in v:
+                print(value)
+```
+
+Here's a breakdown of what the code does:
+
+1. **generate_test_case()**: This function generates a single test case by randomly choosing `n` (number of values) between 1 and 100, `w` (width of intervals) between 10 and 50, and then generates a list of `n` random values `v` where each value is between 0 and 100.
+
+2. **tcgen()**: This function generates multiple test cases. It first decides a random number of test cases to generate (between 1 and 10). For each test case, it calls `generate_test_case()` to create the test case and appends it to the list of test cases. Finally, it appends the `(0, 0, [])` marker to indicate the end of the input.
+
+3. **Main Execution Block**: This part is for demonstration purposes. It generates test cases using `tcgen()` and prints them in the required format. 
+
+You can run this script to generate random test cases for the "Grey Area" problem. The test cases will be printed in the correct format, ending with the `0 0` marker.

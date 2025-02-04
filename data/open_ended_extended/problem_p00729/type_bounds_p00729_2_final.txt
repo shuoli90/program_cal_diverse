@@ -1,0 +1,3 @@
+Types: N: int, M: int, r: int, q: int, record: List[Tuple[int, int, int, int]], query: List[Tuple[int, int, int]]
+Ranges: 1 ≤ N ≤ 1000, 1 ≤ M ≤ 10000, 2 ≤ r ≤ 1000, 1 ≤ q ≤ 50, 540 ≤ t ≤ 1260, 1 ≤ n ≤ N, 1 ≤ m ≤ M, 540 ≤ ts < te ≤ 1260
+Addtl Info: s in {0, 1}, records are sorted in ascending order of t, no two records for the same PC have the same t, login/logout pairs are for the same student, no PCs are logged in before the first record or after the last record

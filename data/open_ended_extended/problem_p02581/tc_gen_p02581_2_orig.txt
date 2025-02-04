@@ -1,0 +1,26 @@
+Sure! Below is a test case generator for the given problem statement.
+
+```python
+import random
+
+def tcgen():
+    # Generate a random integer N within the constraint 1 ≤ N ≤ 2000
+    N = random.randint(1, 2000)
+    
+    # Generate the list A of size 3N where each element is an integer between 1 and N (inclusive)
+    A = [random.randint(1, N) for _ in range(3 * N)]
+    
+    return N, A
+
+# Example of generating a test case
+if __name__ == "__main__":
+    N, A = tcgen()
+    print(N)
+    print(" ".join(map(str, A)))
+```
+
+Explanation:
+1. **N**: This is a random integer between 1 and 2000 inclusive, representing the number of unique integers that can appear on the cards.
+2. **A**: This is a list of integers where each integer is between 1 and N. The length of the list is 3 * N, which satisfies the problem's constraints.
+
+This code will output a random test case adhering to the constraints provided in the problem statement. To use it, you can call the `tcgen` function and it will generate a new test case each time. The output format is designed to match typical competitive programming input formats.

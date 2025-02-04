@@ -1,0 +1,33 @@
+Sure! Here's a test case generator for the given problem statement:
+
+```python
+import random
+
+def tcgen():
+    N = random.randint(1, 10)
+    bit_line_length = 2 ** N
+    bit_line = ''.join(random.choice('01') for _ in range(bit_line_length))
+    return N, bit_line
+
+def main():
+    N, bit_line = tcgen()
+    print(N)
+    print(bit_line)
+
+if __name__ == "__main__":
+    main()
+```
+
+Explanation:
+- `N` is randomly chosen between 1 and 10, inclusive, as per the problem constraints.
+- The length of `bit_line` is calculated as \(2^N\).
+- `bit_line` is generated as a string of random '0' and '1' characters of the specified length.
+- The generated test case is printed in the required format.
+
+You can run the `main` function to generate and print a random test case. Here is how it works:
+- It generates a random value for `N`.
+- Computes the length of `bit_line` as \(2^N\).
+- Constructs the `bit_line` by randomly choosing '0' or '1' for each character position.
+- Prints out the values of `N` and `bit_line`.
+
+This generator will help you create numerous test cases to effectively test your implementation of the logic for the provided problem statement.

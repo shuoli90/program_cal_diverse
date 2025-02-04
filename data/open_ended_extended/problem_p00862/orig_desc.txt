@@ -1,0 +1,54 @@
+
+Problem I: Most Distant Point from the Sea
+The main land of Japan called Honshu is an island surrounded by the sea. In such an island, it
+is natural to ask a question: "Where is the most distant point from the sea?" The answer to
+this question for Honshu was found in 1996. The most distant point is located in former Usuda
+Town, Nagano Prefecture, whose distance from the sea is 114.86 km.
+In this problem, you are asked to write a program which, given a map of an island, finds the
+most distant point from the sea in the island, and reports its distance from the sea. In order to
+simplify the problem, we only consider maps representable by convex polygons.
+Input
+The input consists of multiple datasets. Each dataset represents a map of an island, which is a convex polygon. The format of a dataset is as follows.
+n
+x1    y1
+   .
+   .
+   .
+xn    yn
+Every input item in a dataset is a non-negative integer. Two input items in a line are separated by a space.
+n in the first line is the number of vertices of the polygon, satisfying 3 ≤ n ≤ 100. Subsequent
+n lines are the x- and y-coordinates of the n vertices. Line segments (xi, yi) - (xi+1, yi+1) (1 ≤ i ≤ n - 1) and the line segment (xn, yn) - (x1, y1) form the border of the polygon in counterclockwise order. That is, these line segments see the inside of the polygon in the left of their directions. All coordinate values are between 0 and 10000, inclusive.
+You can assume that the polygon is simple, that is, its border never crosses or touches itself. As stated above, the given polygon is always a convex one.
+The last dataset is followed by a line containing a single zero.
+Output
+For each dataset in the input, one line containing the distance of the most distant point from
+the sea should be output. An output line should not contain extra characters such as spaces.
+The answer should not have an error greater than 0.00001 (10-5 ). You may output any number
+of digits after the decimal point, provided that the above accuracy condition is satisfied.
+Sample Input
+4
+0 0
+10000 0
+10000 10000
+0 10000
+3
+0 0
+10000 0
+7000 1000
+6
+0 40
+100 20
+250 40
+250 70
+100 90
+0 70
+3
+0 0
+10000 10000
+5000 5001
+0
+Output for the Sample Input
+5000.000000
+494.233641
+34.542948
+0.353553

@@ -1,0 +1,9 @@
+def extract_arguments(fh):
+    N = int(fh.readline().strip())
+    songs = []
+    for _ in range(N):
+        s, t = fh.readline().strip().split()
+        t = int(t)
+        songs.append((s, t))
+    X = fh.readline().strip()
+    return N, songs, X

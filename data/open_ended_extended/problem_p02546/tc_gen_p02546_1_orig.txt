@@ -1,0 +1,39 @@
+Certainly! Below is the test case generator for the given problem statement.
+
+```python
+import random
+import string
+
+def plural_form(word):
+    if word.endswith('s'):
+        return word + 'es'
+    else:
+        return word + 's'
+
+def tcgen():
+    # Length of the word (between 1 and 1000)
+    length = random.randint(1, 1000)
+    
+    # Generating a random word of the given length
+    word = ''.join(random.choices(string.ascii_lowercase, k=length))
+    
+    # Return the word and its plural form (expected output for validation)
+    return word, plural_form(word)
+
+# Example usage:
+word, plural = tcgen()
+print(f"Input: {word}")
+print(f"Expected Output: {plural}")
+```
+
+This generator will create test cases with random Taknese words of lengths between 1 and 1000 and will also provide the expected plural form based on the rules specified. You can use this to generate multiple test cases and validate your solution against the expected output.
+
+To run the test case generator and see an example:
+
+```python
+for _ in range(10):  # Generate 10 test cases
+    word, plural = tcgen()
+    print(f"Input: {word}")
+    print(f"Expected Output: {plural}")
+    print()  # Newline for readability
+```

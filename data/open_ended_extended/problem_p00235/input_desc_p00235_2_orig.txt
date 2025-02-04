@@ -1,0 +1,31 @@
+An integer N (2 ≤ N ≤ 20), representing some quantity or size.
+A list of tuples of the form (a, b, t) of size N-1, where each tuple consists of three integers: 
+- a (1 ≤ a ≤ N), an integer representing one part of a pair,
+- b (1 ≤ b ≤ N), an integer representing the other part of the pair,
+- t (1 ≤ t ≤ 500), an integer representing a time or weight.
+
+The input ends with a single line containing zero.
+
+### Example Input:
+
+```
+7
+1 2 5
+2 3 2
+3 4 3
+2 5 3
+5 6 3
+5 7 8
+0
+```
+
+### Function Signature:
+Write a function f(inputs) that takes in the input.
+```python
+def f(inputs: List[Tuple[int, List[Tuple[int, int, int]]]]):
+    '''
+    inputs: a list of tuples, where each tuple contains:
+        - an integer N
+        - a list of N-1 tuples (a, b, t)
+    '''
+```

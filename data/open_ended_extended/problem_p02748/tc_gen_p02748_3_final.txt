@@ -1,0 +1,55 @@
+Certainly! Below is a test case generator for the given problem statement:
+
+```python
+import random
+
+def tcgen():
+    # Generate random values for A, B, M within the given constraints
+    A = random.randint(1, 10**5)
+    B = random.randint(1, 10**5)
+    M = random.randint(1, 10**5)
+
+    # Generate A kinds of refrigerators with prices between 1 and 100,000
+    a = [random.randint(1, 10**5) for _ in range(A)]
+
+    # Generate B kinds of microwaves with prices between 1 and 100,000
+    b = [random.randint(1, 10**5) for _ in range(B)]
+
+    # Generate M discount tickets
+    x, y, c = [], [], []
+    for _ in range(M):
+        x_i = random.randint(1, A)
+        y_i = random.randint(1, B)
+        # Ensure that c_i <= a[x_i-1] + b[y_i-1]
+        c_i = random.randint(1, a[x_i-1] + b[y_i-1])
+        x.append(x_i)
+        y.append(y_i)
+        c.append(c_i)
+
+    return A, B, M, a, b, x, y, c
+
+# Example usage:
+A, B, M, a, b, x, y, c = tcgen()
+print(A, B, M)
+print(' '.join(map(str, a)))
+print(' '.join(map(str, b)))
+for i in range(M):
+    print(x[i], y[i], c[i])
+```
+
+### Explanation
+
+1. **A, B, M generation:**
+   - We generate random integers for `A`, `B`, and `M` within their respective ranges.
+
+2. **Refrigerator prices (`a`):**
+   - We generate a list of `A` integers where each integer is between 1 and 100,000.
+
+3. **Microwave prices (`b`):**
+   - We generate a list of `B` integers where each integer is between 1 and 100,000.
+
+4. **Discount tickets (`x`, `y`, `c`):**
+   - For each discount ticket, generate `x_i` and `y_i` such that they refer to valid indices in the `a` and `b` lists.
+   - Generate a discount value `c_i` ensuring that it does not exceed the sum of the corresponding prices of the selected refrigerator and microwave.
+
+This generator will create varying test cases within the constraints specified in the problem statement. Adjustments can be made to control the size and nature of the generated cases if specific types of test cases are required.

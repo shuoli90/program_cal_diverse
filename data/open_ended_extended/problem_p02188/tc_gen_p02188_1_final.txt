@@ -1,0 +1,54 @@
+Certainly! Here is a test case generator for the "Restricted DFS" problem:
+
+```python
+import random
+
+def tcgen():
+    # Generate number of vertices N
+    N = random.randint(1, 3 * 10**5)
+    
+    # Generate array A of size N with values in range [0, 10^9]
+    A = [random.randint(0, 10**9) for _ in range(N)]
+    
+    # Generate N-1 edges to form a tree
+    edges = []
+    available_vertices = list(range(2, N + 1))
+    random.shuffle(available_vertices)
+    
+    # Connecting node 1 to other nodes to ensure it's a tree
+    for i in range(2, N + 1):
+        parent = random.randint(1, i - 1)
+        edges.append((parent, i))
+    
+    # Shuffle edges to ensure randomness in their order
+    random.shuffle(edges)
+    
+    # Convert edges to the required input format
+    edges_str = "\n".join(f"{u} {v}" for u, v in edges)
+    
+    # Format the entire input as a single string
+    input_str = f"{N}\n{' '.join(map(str, A))}\n{edges_str}"
+    
+    return input_str
+
+# Example of using the generator
+print(tcgen())
+```
+
+### Explanation:
+1. **Number of Vertices (N):**
+   - Randomly choose \( N \) from the range [1, 300000] to meet the problem constraints.
+
+2. **Array A:**
+   - Generate an array \( A \) of length \( N \), where each value \( A[i] \) is a random integer between 0 and \( 10^9 \).
+
+3. **Tree Edges:**
+   - Since the graph is a tree, it should have exactly \( N-1 \) edges.
+   - Ensure the tree structure by connecting vertex 1 (the root) to other vertices.
+   - Shuffle the vertex list to create randomness.
+
+4. **Output Formatting:**
+   - Combine the number of vertices, the array \( A \), and the edges into a single string in the required format.
+
+### Usage:
+You can use the `tcgen` function to generate test cases for the "Restricted DFS" problem and validate your solution against those test cases.

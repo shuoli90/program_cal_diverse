@@ -1,0 +1,19 @@
+def extract_arguments(fh):
+    data_sets = []
+    while True:
+        W, H = map(int, fh.readline().strip().split())
+        if W == 0 and H == 0:
+            break
+        grid = []
+        for _ in range(H):
+            grid.append(fh.readline().strip())
+        data_sets.append((W, H, grid))
+    return data_sets
+
+# if __name__ == "__main__":
+#     input_path = sys.argv[1]
+#     with open(input_path, 'r') as fh:
+#         data_sets = extract_arguments(fh)
+#         for data in data_sets:
+#             W, H, grid = data
+#             f(W, H, grid)

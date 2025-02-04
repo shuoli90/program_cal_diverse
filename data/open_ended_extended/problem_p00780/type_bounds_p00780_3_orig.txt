@@ -1,0 +1,5 @@
+Types: n: List[int]
+
+Ranges: 4 ≤ n[i] < 2^15, n[i] is even, input terminates with 0
+
+Addtl Info: None

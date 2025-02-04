@@ -1,0 +1,39 @@
+Sure! To generate test cases for the "All Numbers Lead to 6174" problem, we need to generate valid four-digit numbers (including those with leading zeros). We also need to handle the special case where all digits are the same, which should result in an output of "NA".
+
+Here's a Python test case generator for this problem:
+
+```python
+import random
+
+def generate_four_digit_number():
+    return random.randint(0, 9999)
+
+def format_number(N):
+    return f"{N:04}"
+
+def tcgen(num_datasets=10):
+    datasets = []
+    for _ in range(num_datasets):
+        N = generate_four_digit_number()
+        datasets.append(format_number(N))
+    
+    # Adding the end of input line '0000'
+    datasets.append("0000")
+    
+    return datasets
+
+# Example usage
+if __name__ == "__main__":
+    test_cases = tcgen(10)
+    for case in test_cases:
+        print(case)
+```
+
+This generator creates a specified number of test cases (default is 10) where each test case is a four-digit number formatted as a string with leading zeros if necessary. It also appends the terminating line "0000".
+
+### Explanation:
+- `generate_four_digit_number`: Generates a random integer between 0 and 9999.
+- `format_number`: Formats the number to ensure it is a four-digit string by adding leading zeros if needed.
+- `tcgen`: Generates a list of test cases and appends the terminating "0000" line.
+
+Feel free to adjust the number of datasets by passing a different value to the `tcgen` function when you call it. This will give you a variety of four-digit numbers to test the solution for the given problem.

@@ -1,0 +1,26 @@
+An integer N (1 ≤ N ≤ 10^2), representing some quantity or size.
+An integer W (1 ≤ W ≤ 10^5), representing some budget or limit.
+A list of integers P of size N, where each integer is between 1 and 10^9.
+A list of tuples (u, v, c) of size N-1, where each tuple consists of:
+  - An integer u (1 ≤ u < N), representing some connection point.
+  - An integer v (u < v ≤ N), representing another connection point.
+  - An integer c (1 ≤ c ≤ 10^5), representing some cost.
+
+### Example Input:
+
+```
+3 10
+6 8 2
+1 2 3
+2 3 8
+```
+
+### Function Signature:
+Write a function f(N, W, P, roads) that takes in the input. 
+def f(N: int, W: int, P: List[int], roads: List[Tuple[int, int, int]]): 
+    ''' 
+    N: an integer 
+    W: an integer
+    P: a list of integers
+    roads: a list of tuples, where each tuple contains three integers
+    '''

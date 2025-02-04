@@ -1,0 +1,202 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p00146 - Generation 1</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p00146 - Generation 1</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>Lupin III
+Lupin III, a famous thief, hears from a beautiful woman named Fujimineko, who is a descendant of an Aizu clan samurai, that the Aizu clan left behind military funds in Aizu-Wakamatsu City. According to the report of Ishikawa Goemon, Lupin's long-time companion, the military funds are stored in several warehouses in wooden boxes. The warehouses are not guarded, but they are locked securely. However, if Goemon uses the secret technique "Steel Cutting" that he learned from his father, he can break open the warehouses in an instant.
+The remaining problem is the transportation of the wooden boxes. Lupin and Goemon, who lack physical strength, cannot carry even one wooden box. Therefore, they rely on a dependable man named Mugen Daisuke for transportation.
+To transport all the wooden boxes, Lupin devises the following plan:
+First, Lupin will drive to the first warehouse and drop off Goemon and Daisuke.
+Goemon breaks open the warehouse.
+Daisuke carries all the wooden boxes.
+Lupin heads to the next warehouse with the wooden boxes.
+This is repeated until all the warehouses are broken open and the wooden boxes are transported. During this time, Lupin prepares a helicopter and carries Goemon, Daisuke, and the wooden boxes to the last warehouse, then escapes. Daisuke can carry anything, no matter how heavy, but his speed decreases depending on the weight of the luggage. Lupin must determine the order in which to break open the warehouses, taking this into account.
+On behalf of Lupin, write a program that outputs the order in which to break open the warehouses so that the time from breaking open the first warehouse to reaching the last warehouse is minimized. However,
+The warehouses all face a street that runs straight north from Tsuruga Castle. There are at most 15 warehouses, and they are all within 10,000 meters of the castle.
+Each wooden box weighs 20 kilograms. There are at most 10,000 wooden boxes stored in each warehouse.
+Transportation from warehouse to warehouse is done through an underground passage that runs along the street.
+Daisuke moves at a rate of 2,000 / (70 + w) meters per minute when carrying a load of w kilograms.
+For each warehouse, the input consists of the warehouse number (an integer up to 100), the distance from the castle in meters (an integer between 1 and 10,000), and the number of wooden boxes stored in the warehouse (an integer between 1 and 10,000).
+Input
+The input is given in the following format.
+n
+s1 d1 v1
+s2 d2 v2
+:
+sn dn vn
+The first line contains the number of warehouses, n (n ≤ 15), and the following n lines describe the warehouses. Each line gives the warehouse number si (1 ≤ si ≤ 100), the distance from the castle di (1 ≤ di ≤ 10,000), and the number of wooden boxes stored in the warehouse vi (1 ≤ vi ≤ 10,000).
+Output
+Output the order in which to break open the warehouses on a single line, separated by spaces.
+Sample Input 1
+2
+1 100 1
+2 200 2
+Output for the Sample Input 1
+1 2
+Sample Input 2
+3
+11 100 1
+13 200 20
+12 300 3
+Output for the Sample Input 2
+11 12 13
+Sample Input 3
+5
+13 199 1
+51 1000 1
+37 350 10
+27 300 2
+99 200 1000
+Output for the Sample Input 3
+51 37 27 13 99
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An integer n (n ≤ 15), representing some quantity or size.
+A list of tuples of size n, where each tuple consists of:
+  - An integer si (1 ≤ si ≤ 100)
+  - An integer di (1 ≤ di ≤ 10,000)
+  - An integer vi (1 ≤ vi ≤ 10,000)
+
+### Example Input:
+
+```
+3
+11 100 1
+13 200 20
+12 300 3
+```
+
+### Function Signature:
+Write a function f(inputs) that takes in the input.
+def f(inputs: List[Tuple[int, int, int]]):
+    '''
+    inputs: a list of tuples, where each tuple consists of three integers
+    '''</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Sure, here is a test case generator for the "Lupin III" problem:
+
+```python
+import random
+
+def tcgen():
+    # Number of warehouses (1 to 15)
+    n = random.randint(1, 15)
+    
+    warehouses = []
+    for _ in range(n):
+        # Warehouse number (1 to 100)
+        s = random.randint(1, 100)
+        
+        # Distance from the castle (1 to 10,000 meters)
+        d = random.randint(1, 10000)
+        
+        # Number of wooden boxes (1 to 10,000)
+        v = random.randint(1, 10000)
+        
+        warehouses.append((s, d, v))
+    
+    return n, warehouses
+
+def print_test_case(n, warehouses):
+    print(n)
+    for s, d, v in warehouses:
+        print(f"{s} {d} {v}")
+
+# Example usage
+if __name__ == "__main__":
+    n, warehouses = tcgen()
+    print_test_case(n, warehouses)
+```
+
+### Explanation
+
+1. **Number of Warehouses (`n`)**:
+   - The number of warehouses is randomly chosen between 1 and 15, inclusive.
+
+2. **Warehouses**:
+   - For each warehouse, generate:
+     - `s`: a warehouse number between 1 and 100.
+     - `d`: a distance from the castle between 1 and 10,000 meters.
+     - `v`: the number of wooden boxes stored in the warehouse between 1 and 10,000.
+
+3. **Printing the Test Case**:
+   - The generated test case is printed in the specified format.
+
+Example output of the test case generator might look like:
+```
+4
+12 3456 789
+3 4567 123
+1 2345 678
+99 9876 543
+```
+
+You can run the script multiple times to generate different sets of test cases for the problem.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    n = int(fh.readline().strip())
+    warehouses = []
+    for _ in range(n):
+        s, d, v = map(int, fh.readline().strip().split())
+        warehouses.append((s, d, v))
+    return n, warehouses</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

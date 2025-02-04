@@ -1,0 +1,40 @@
+Sure, here's a test case generator for the given problem statement where you need to compare the magnitudes of two large positive integers \( A \) and \( B \):
+
+```python
+import random
+
+def generate_large_number():
+    length = random.randint(1, 100)
+    number = ''.join(random.choices('123456789', k=1))  # First digit (1-9)
+    if length > 1:
+        number += ''.join(random.choices('0123456789', k=length - 1))  # Remaining digits (0-9)
+    return number
+
+def tcgen():
+    A = generate_large_number()
+    B = generate_large_number()
+    
+    return A, B
+
+# Example usage:
+if __name__ == "__main__":
+    A, B = tcgen()
+    print(A)
+    print(B)
+```
+
+### Explanation:
+
+1. **`generate_large_number` function**: This function generates a large number as a string. The number's length is chosen randomly between 1 and 100 digits. The first digit is ensured to be between '1' and '9' to avoid leading zeros, while the rest of the digits can be any digit from '0' to '9'.
+
+2. **`tcgen` function**: This function uses `generate_large_number` to generate two large numbers \( A \) and \( B \) and returns them.
+
+### Example Output:
+Running this generator will produce a pair of large numbers \( A \) and \( B \) that you can use as test cases for your problem. Here is an example of what the output might look like:
+
+```
+123456789012345678901234567890
+234567890123456789012345678901
+```
+
+You can use these generated test cases to test your solution for comparing large numbers.

@@ -1,0 +1,164 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p02327 - Generation 2</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p02327 - Generation 2</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>
+Largest Rectangle
+  Given a matrix (H × W) which contains only 1 and 0, find the area of the largest rectangle which only contains 0s.
+Input
+H W
+c1,1 c1,2 ... c1,W
+c2,1 c2,2 ... c2,W
+:
+cH,1 cH,2 ... cH,W
+  In the first line, two integers H and W separated by a space character are given. In the following H lines, ci,j, elements of the H × W matrix, are given.
+Output
+  Print the area (the number of 0s) of the largest rectangle.
+Constraints
+ 1 ≤ H, W ≤ 1,400
+Sample Input
+4 5
+0 0 1 0 0
+1 0 0 0 0
+0 0 0 1 0
+0 0 0 1 0
+Sample Output
+6
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An integer H (1 ≤ H ≤ 1400), representing some quantity or size.
+An integer W (1 ≤ W ≤ 1400), representing some quantity or size.
+A matrix of H rows and W columns, where each element is either 0 or 1.
+
+### Example Input:
+
+```
+4 5
+0 0 1 0 0
+1 0 0 0 0
+0 0 0 1 0
+0 0 0 1 0
+```
+
+### Function Signature:
+Write a function f(H, W, matrix) that takes in the input.
+```python
+def f(H: int, W: int, matrix: List[List[int]]):
+    ''' 
+    H: an integer 
+    W: an integer 
+    matrix: a list of lists of integers 
+    '''
+```</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Certainly! Below is the Python function to generate test cases for the given problem statement "Largest Rectangle":
+
+```python
+import random
+
+def tcgen():
+    H = random.randint(1, 1400)
+    W = random.randint(1, 1400)
+    
+    matrix = []
+    
+    for _ in range(H):
+        row = [random.randint(0, 1) for _ in range(W)]
+        matrix.append(row)
+    
+    return H, W, matrix
+
+# Example usage
+if __name__ == "__main__":
+    H, W, matrix = tcgen()
+    print(H, W)
+    for row in matrix:
+        print(" ".join(map(str, row)))
+```
+
+### Explanation:
+1. **Height (H) and Width (W)**: 
+   - These are generated randomly within the constraints of 1 ≤ H, W ≤ 1400.
+
+2. **Matrix (H × W)**:
+   - Each element of the matrix is randomly chosen to be either 0 or 1 using `random.randint(0, 1)`.
+   - The matrix is built by appending each generated row to the `matrix` list.
+
+### Example Execution:
+- When you run the function, it will generate random dimensions for the matrix and fill it with random 0s and 1s, and print it in the required format.
+
+You can integrate this test case generator into your competitive programming environment to generate various test cases for the problem statement "Largest Rectangle".</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    H, W = map(int, fh.readline().strip().split())
+    matrix = []
+    for _ in range(H):
+        row = list(map(int, fh.readline().strip().split()))
+        matrix.append(row)
+    return H, W, matrix
+
+# if __name__ == "__main__":
+#     input_path = sys.argv[1]
+#     with open(input_path, 'r') as fh:
+#         H, W, matrix = extract_arguments(fh)
+#         f(H, W, matrix)</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

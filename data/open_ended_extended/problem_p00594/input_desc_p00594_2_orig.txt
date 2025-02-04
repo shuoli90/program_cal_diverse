@@ -1,0 +1,25 @@
+An integer T, representing the number of test cases.
+For each test case:
+1. An integer N (1 ≤ N < 1,000,000), representing some quantity or size.
+2. A list of N integers, each less than 2^31 (0 ≤ integer < 2^31).
+
+The input terminates with a single integer 0.
+
+### Example Input:
+
+```
+8
+3 1 2 3 3 1 5 3
+7
+5 2 5 3 4 5 5
+0
+```
+
+### Function Signature:
+Write a function f(inputs) that takes in the input.
+def f(inputs: List[Tuple[int, List[int]]]):
+    '''
+    inputs: a list of tuples where each tuple contains:
+        - an integer
+        - a list of integers
+    '''

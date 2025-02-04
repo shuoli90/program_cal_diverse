@@ -1,0 +1,28 @@
+An integer n (1 ≤ n ≤ 100000), representing some quantity or size.
+An integer q (1 ≤ q ≤ 100000), representing the number of queries.
+A list of q queries, where each query is either:
+  - "0 s t x", where 0 ≤ s ≤ t < n and 0 ≤ x < 2^31−1
+  - "1 i", where 0 ≤ i < n
+
+### Example Input:
+
+```
+3 5
+0 0 1 1
+0 1 2 3
+0 2 2 2
+1 0
+1 1
+```
+
+### Function Signature:
+Write a function f(inputs) that takes in the input.
+def f(inputs: List[Tuple[int, int, List[Union[Tuple[int, int, int, int], Tuple[int, int]]]]]):
+    ''' 
+    inputs: a list of tuples, with each tuple containing:
+        - an integer
+        - an integer
+        - a list of queries, where each query is either:
+            - a tuple of four integers
+            - a tuple of two integers
+    '''

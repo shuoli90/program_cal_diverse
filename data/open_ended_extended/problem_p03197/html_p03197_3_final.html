@@ -1,0 +1,154 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p03197 - Generation 3</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p03197 - Generation 3</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>
+Score : 500 points
+Problem StatementThere is an apple tree that bears apples of N colors. The N colors of these apples are numbered 1 to N, and there are a_i apples of Color i.
+You and Lunlun the dachshund alternately perform the following operation (starting from you):
+Choose one or more apples from the tree and eat them. Here, the apples chosen at the same time must all have different colors.
+The one who eats the last apple from the tree will be declared winner. If both you and Lunlun play optimally, which will win?
+Constraints
+1 \leq N \leq 10^5
+1 \leq a_i \leq 10^9
+All values in input are integers.
+InputInput is given from Standard Input in the following format:
+N
+a_1
+a_2
+:
+a_N
+OutputIf you will win, print first; if Lunlun will win, print second.
+Sample Input 12
+1
+2
+Sample Output 1first
+Let Color 1 be red, and Color 2 be blue. In this case, the tree bears one red apple and two blue apples.
+You should eat the red apple in your first turn. Lunlun is then forced to eat one of the blue apples, and you can win by eating the other in your next turn.
+Note that you are also allowed to eat two apples in your first turn, one red and one blue (not a winning move, though).
+Sample Input 23
+100000
+30000
+20000
+Sample Output 2second
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An integer N (1 ≤ N ≤ 10^5), representing some quantity or size.
+A list of integers A of size N, where each integer is between 1 and 1e9.
+
+### Example Input:
+
+```
+2
+1
+2
+```
+
+### Function Signature:
+Write a function f(N, A) that takes in the input.
+def f(N: int, A: List[int]): 
+    ''' 
+    N: an integer 
+    A: a list of integers
+    '''</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Certainly! Here is the test case generator function for the given problem statement:
+
+```python
+import random
+
+def generate_test_case():
+    N = random.randint(1, 10**5)
+    a = [random.randint(1, 10**9) for _ in range(N)]
+    
+    return N, a
+
+# Function to print the test case in the required format
+def print_test_case():
+    N, a = generate_test_case()
+    print(N)
+    for value in a:
+        print(value)
+
+# Example usage
+if __name__ == "__main__":
+    print_test_case()
+```
+
+Explanation of the code:
+1. `N` is randomly generated within the range \(1 \leq N \leq 10^5\).
+2. The list `a` is generated with `N` elements, where each element is a random integer between \(1 \leq a_i \leq 10^9\).
+3. The function `print_test_case` prints `N` followed by each element in the list `a` to match the input format required by the problem statement.
+
+This generator can be used to create random test cases for the described problem, allowing you to test the solution under various random conditions.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    N = int(fh.readline().strip())
+    A = [int(fh.readline().strip()) for _ in range(N)]
+    return N, A
+
+# if __name__ == "__main__":
+#     input_path = sys.argv[1]
+#     with open(input_path, 'r') as fh: 
+#     N, A = extract_arguments(fh)
+#     f(N, A)</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

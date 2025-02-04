@@ -1,0 +1,23 @@
+def extract_arguments(fh):
+    L = list(map(float, fh.readline().strip().split()))
+    M = int(fh.readline().strip())
+    
+    def read_polygon(num_points):
+        polygon = []
+        for _ in range(num_points):
+            x, y = map(float, fh.readline().strip().split())
+            polygon.append((x, y))
+        return polygon
+        
+    polygons_A = []
+    for _ in range(M):
+        num_points = int(fh.readline().strip())
+        polygons_A.append(read_polygon(num_points))
+        
+    N = int(fh.readline().strip())
+    polygons_B = []
+    for _ in range(N):
+        num_points = int(fh.readline().strip())
+        polygons_B.append(read_polygon(num_points))
+    
+    return L, polygons_A, polygons_B

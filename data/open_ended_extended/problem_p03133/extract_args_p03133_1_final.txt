@@ -1,0 +1,7 @@
+def extract_arguments(fh):
+    N, M = map(int, fh.readline().strip().split())
+    A = []
+    for _ in range(N):
+        row = list(map(int, fh.readline().strip().split()))
+        A.append(row)
+    return N, M, A

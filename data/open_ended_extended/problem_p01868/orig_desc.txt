@@ -1,0 +1,50 @@
+D: Scanner
+Problem Statement
+You have $N$ pieces of paper to scan. You want to scan them all by using $3$ scanners in parallel. 
+Each piece of paper takes a certain amount of time to scan, and the time it takes to scan the $i$-th piece of paper is $T_i$. 
+The order in which you scan the papers is arbitrary, but you cannot scan multiple papers at the same time with one scanner.
+Determine the minimum amount of time it takes for all the papers to be scanned and for all the scanners to stop scanning.
+Input
+$N$
+$T_1$
+$T_2$
+$T_3$
+$\vdots$
+$T_N$
+Constraints
+$1 \leq N \leq 50$
+$1 \leq T_i \leq 50$
+All input values are integers.
+Output
+Print the minimum amount of time it takes for all the papers to be scanned and for all the scanners to stop scanning.
+Sample Input #1
+4
+1
+1
+1
+1
+Sample Output #1
+2
+Sample Input #2
+9
+15
+20
+27
+4
+10
+7
+34
+30
+36
+Sample Output #2
+61
+Sample Input #3
+6
+20
+18
+46
+16
+9
+48
+Sample Output #3
+55

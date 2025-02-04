@@ -1,0 +1,53 @@
+Sure! Here's a test case generator for the given problem "Shy Polygons":
+
+```python
+import random
+
+def generate_polygon():
+    n = random.randint(3, 14)  # Number of vertices (3 <= n < 15)
+    vertices = []
+    for _ in range(n):
+        x = random.randint(0, 499)
+        y = random.randint(0, 499)
+        vertices.append((x, y))
+    return n, vertices
+
+def tcgen():
+    test_cases = []
+    
+    while random.random() < 0.8:  # Generate multiple test cases
+        L = round(random.uniform(0.1, 50.0), 4)  # Distance L (0.1 < L < 50.0)
+        
+        n1, polygon1 = generate_polygon()
+        n2, polygon2 = generate_polygon()
+        
+        test_case = {
+            "L": L,
+            "polygon1": polygon1,
+            "polygon2": polygon2
+        }
+        
+        test_cases.append(test_case)
+    
+    return test_cases
+
+# Example test case generation
+if __name__ == "__main__":
+    test_cases = tcgen()
+    for case in test_cases:
+        print(case["L"])
+        print(case["polygon1"])
+        print(case["polygon2"])
+```
+
+### Explanation:
+1. **generate_polygon()**: This function generates a polygon with a random number of vertices (between 3 and 14 inclusive). Each vertex has x and y coordinates, both of which are between 0 and 499.
+
+2. **tcgen()**: This function generates multiple test cases until a random stopping condition is met (controlled by `random.random() < 0.8`). For each test case:
+   - A random distance `L` is generated between 0.1 and 50.0.
+   - Two random polygons are generated using the `generate_polygon()` function.
+   - The test case is stored in a dictionary and added to the list of test cases.
+
+3. **Printing Test Cases**: The example at the end of the script shows how to print the generated test cases.
+
+This generator will create diverse and random test cases within the given constraints, suitable for testing the "Shy Polygons" problem.

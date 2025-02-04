@@ -1,0 +1,59 @@
+Sure, let's write a test case generator for the "Snake Escaping" problem. We'll need to generate random test cases based on the problem constraints:
+
+1. An integer \( L \) (1 ≤ \( L \) ≤ 20).
+2. An integer \( Q \) (1 ≤ \( Q \) ≤ 1,000,000).
+3. A string \( S \) of length \( 2^L \) consisting of digits 0 through 9.
+4. \( Q \) strings \( T_d \) of length \( L \) consisting of characters '0', '1', and '?'.
+
+Here is the Python code for the test case generator:
+
+```python
+import random
+
+def generate_test_case():
+    # Generate L and Q
+    L = random.randint(1, 20)
+    Q = random.randint(1, 1000000)
+    
+    # Generate S of length 2^L with digits 0-9
+    S_length = 2 ** L
+    S = ''.join(random.choice('0123456789') for _ in range(S_length))
+    
+    # Generate Q strings T_d of length L with characters '0', '1', and '?'
+    T_d_list = []
+    for _ in range(Q):
+        T_d = ''.join(random.choice('01?') for _ in range(L))
+        T_d_list.append(T_d)
+    
+    return L, Q, S, T_d_list
+
+# Function to print generated test cases in the required format
+def print_test_case(L, Q, S, T_d_list):
+    print(L, Q)
+    print(S)
+    for T_d in T_d_list:
+        print(T_d)
+
+# Example usage
+if __name__ == "__main__":
+    L, Q, S, T_d_list = generate_test_case()
+    print_test_case(L, Q, S, T_d_list)
+```
+
+### Explanation:
+
+1. **Generating \( L \) and \( Q \)**:
+   - \( L \) is selected randomly between 1 and 20.
+   - \( Q \) is selected randomly between 1 and 1,000,000.
+
+2. **Generating \( S \)**:
+   - The length of \( S \) is \( 2^L \).
+   - Each character in \( S \) is randomly chosen from the digits '0' to '9'.
+
+3. **Generating \( T_d \)**:
+   - For each day \( d \), a string \( T_d \) of length \( L \) is generated.
+   - Each character in \( T_d \) is randomly chosen from '0', '1', and '?'.
+
+The `generate_test_case` function creates these values and the `print_test_case` function prints them in the format expected by the problem statement.
+
+You can use this generator to create random test cases and validate your solution against different inputs.

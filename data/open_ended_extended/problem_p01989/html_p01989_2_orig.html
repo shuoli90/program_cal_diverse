@@ -1,0 +1,143 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p01989 - Generation 2</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p01989 - Generation 2</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>A: IP Address (Internet Protocol Address)
+Problem
+Given a string of digits, count the number of valid ways to split it into an IPv4 address.
+A split is valid if and only if:
+The string is split into four parts, each containing one to three digits.
+Each part is not empty and represents a number from 0 to 255, inclusive, when interpreted as a decimal number.
+If a part is 0, then it must be a single digit, '0'.
+If a part is not 0, then it must not start with the digit, '0'.
+Input Format
+S
+Constraints
+4 \leq |S| \leq 12
+The string, S, consists only of digits.
+Output Format
+Output the number of valid ways to split the given string into an IPv4 address.
+Sample Input 1
+123456789
+Sample Output 1
+1
+There is only one valid way to split the given string into an IPv4 address: '123.45.67.89'.
+Sample Input 2
+768426
+Sample Output 2
+6</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An integer string \(S\), where the length of \(S\) is between 4 and 12 inclusive.
+The string \(S\) consists only of digits.
+
+### Example Input:
+
+```
+123456789
+```
+
+### Function Signature:
+Write a function f(S) that takes in the input.
+def f(S: str):
+    '''
+    S: an integer string
+    '''</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Sure, I can help you write a test case generator for the given problem statement. Here's a Python function that generates random test cases for this problem:
+
+```python
+import random
+
+def generate_random_ip_string():
+    length = random.randint(4, 12)
+    return ''.join(random.choices('0123456789', k=length))
+
+def tcgen():
+    S = generate_random_ip_string()
+    return S
+
+# Example usage:
+for _ in range(5):
+    print(tcgen())
+```
+
+Explanation:
+- `generate_random_ip_string()`: This helper function generates a random string of digits with a length between 4 and 12.
+- `tcgen()`: This function generates the actual test case by calling the helper function to get a random string `S`.
+
+The generated string `S` will be a valid input for the problem constraints (4 ≤ |S| ≤ 12 and S consists only of digits). You can use this function to generate multiple test cases for your problem.
+
+Example output from the generator:
+```
+739104
+928374
+123456789
+192837465
+283746
+```
+
+Feel free to run the `tcgen()` function repeatedly to generate as many test cases as you need.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    S = fh.readline().strip()
+    return (S,)</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

@@ -1,0 +1,29 @@
+An integer N (2 ≤ N ≤ 500,000), representing some even quantity or size.
+A list of integers S of size N, where each integer is between -100,000,000 and 100,000,000.
+An integer Q (1 ≤ Q ≤ 100,000), representing the number of queries.
+Q queries, each query consisting of three integers l, r, and x, where 1 ≤ l ≤ r ≤ N, and -1,000 ≤ x ≤ 1,000.
+
+### Example Input:
+
+```
+10
+0 1 2 3 4 4 3 2 1 0
+7
+2 6 0
+2 4 5
+7 9 10
+2 4 5
+3 8 100
+4 6 1000
+7 7 1000
+```
+
+### Function Signature:
+Write a function f(N, S, Q, queries) that takes in the input.
+def f(N: int, S: List[int], Q: int, queries: List[Tuple[int, int, int]]): 
+    '''
+    N: an integer
+    S: a list of integers
+    Q: an integer
+    queries: a list of tuples, each containing three integers
+    '''

@@ -1,0 +1,24 @@
+An integer h (2 ≤ h ≤ 30), representing some quantity or size.
+An integer w (2 ≤ w ≤ 30), representing some quantity or size.
+An integer n (2 ≤ n ≤ 30), representing some quantity or size.
+A list of h strings, each of length w, consisting of uppercase letters ('A' - 'Z') and periods ('.').
+
+### Example Input:
+
+```
+4 6 3
+......
+...Y..
+...Y..
+RRYRYY
+```
+
+### Function Signature:
+Write a function f(h, w, n, grid) that takes in the input.
+def f(h: int, w: int, n: int, grid: List[str]):
+    '''
+    h: an integer
+    w: an integer
+    n: an integer
+    grid: a list of strings
+    '''

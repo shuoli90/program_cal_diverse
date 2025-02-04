@@ -1,0 +1,53 @@
+Below is the test case generator for the given problem statement "Chinol Choco":
+
+```python
+import random
+
+def generate_coordinates():
+    return random.randint(0, 1000), random.randint(0, 1000)
+
+def tcgen():
+    n = random.randint(2, 200)  # number of stores
+    m = random.randint(1, 15)  # number of factories
+    
+    store_candidates = []
+    for _ in range(n):
+        a, b = generate_coordinates()
+        c, d = generate_coordinates()
+        store_candidates.append((a, b, c, d))
+    
+    factory_locations = []
+    for _ in range(m):
+        x, y = generate_coordinates()
+        factory_locations.append((x, y))
+    
+    return n, m, store_candidates, factory_locations
+
+def format_test_case(n, m, store_candidates, factory_locations):
+    lines = []
+    lines.append(f"{n} {m}")
+    for a, b, c, d in store_candidates:
+        lines.append(f"{a} {b} {c} {d}")
+    for x, y in factory_locations:
+        lines.append(f"{x} {y}")
+    return "\n".join(lines)
+
+# Example usage:
+n, m, store_candidates, factory_locations = tcgen()
+test_case = format_test_case(n, m, store_candidates, factory_locations)
+print(test_case)
+```
+
+This generator creates random test cases for the given problem statement. Here is what each part of the generator does:
+
+- `generate_coordinates()`: Generates a random coordinate within the range [0, 1000].
+
+- `tcgen()`: Generates the entire test case:
+  - Randomly selects the number of stores `n` within the range [2, 200].
+  - Randomly selects the number of factories `m` within the range [1, 15].
+  - Generates `n` pairs of candidate coordinates for the stores.
+  - Generates `m` factory coordinates.
+
+- `format_test_case()`: Formats the generated test case into a string suitable for competitive programming input.
+
+You can use the generated test case for testing purposes or to understand the structure of the input. Simply run the provided example usage to generate and print a test case.

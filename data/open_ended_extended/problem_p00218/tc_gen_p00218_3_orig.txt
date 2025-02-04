@@ -1,0 +1,54 @@
+Sure, I can write a test case generator for the "Class Assignment" problem statement. Below is the Python code for generating test cases:
+
+```python
+import random
+
+def generate_single_dataset():
+    n = random.randint(1, 10000)
+    
+    students = []
+    for _ in range(n):
+        pm = random.randint(0, 100)
+        pe = random.randint(0, 100)
+        pj = random.randint(0, 100)
+        students.append((pm, pe, pj))
+    
+    return n, students
+
+def tcgen():
+    datasets = []
+    num_datasets = random.randint(1, 1000)
+    
+    for _ in range(num_datasets):
+        n, students = generate_single_dataset()
+        datasets.append((n, students))
+    
+    # Add the end of input marker
+    datasets.append((0, []))
+    
+    return datasets
+
+def format_test_case(datasets):
+    formatted_case = ""
+    for n, students in datasets:
+        formatted_case += f"{n}\n"
+        for pm, pe, pj in students:
+            formatted_case += f"{pm} {pe} {pj}\n"
+    return formatted_case
+
+# Example usage
+test_cases = tcgen()
+formatted_test_case = format_test_case(test_cases)
+print(formatted_test_case)
+```
+
+### Explanation:
+1. **generate_single_dataset**: This function generates a single dataset by randomly choosing the number of students (`n`) and then generating their scores for math (`pm`), English (`pe`), and Japanese (`pj`).
+
+2. **tcgen**: This function generates multiple datasets (up to 1000). Each dataset is generated using the `generate_single_dataset` function. Finally, it adds a `(0, [])` tuple to signal the end of input.
+
+3. **format_test_case**: This function takes the list of datasets and formats it as a string that matches the input format specified in the problem statement.
+
+4. The example usage shows how to generate and print a test case in the required input format.
+
+You can run this script to generate random test cases for the "Class Assignment" problem.

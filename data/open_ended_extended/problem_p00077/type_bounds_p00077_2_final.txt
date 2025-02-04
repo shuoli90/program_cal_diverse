@@ -1,0 +1,3 @@
+Types: inputs: List[str], outputs: List[str]
+Ranges: 1 ≤ len(inputs) ≤ 50, 1 ≤ len(inputs[i]) ≤ 100
+Addtl Info: The input strings contain uppercase and lowercase letters, digits, symbols, and "@". Consecutive characters up to 9 characters.

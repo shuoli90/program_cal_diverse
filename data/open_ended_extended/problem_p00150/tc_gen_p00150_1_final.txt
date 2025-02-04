@@ -1,0 +1,71 @@
+Certainly! To generate test cases for the "Twin Prime" problem, we need to create a sequence of datasets, where each dataset consists of an integer \( n \) (5 ≤ \( n \) ≤ 10000), and the last dataset is indicated by a line containing zero.
+
+Here's how we can write a test case generator for the given problem:
+
+```python
+import random
+
+def generate_primes_up_to(max_n):
+    """ Sieve of Eratosthenes to generate all primes up to max_n """
+    sieve = [True] * (max_n + 1)
+    sieve[0] = sieve[1] = False
+    for start in range(2, int(max_n**0.5) + 1):
+        if sieve[start]:
+            for multiple in range(start*start, max_n + 1, start):
+                sieve[multiple] = False
+    return [num for num, is_prime in enumerate(sieve) if is_prime]
+
+
+def find_twin_primes(primes):
+    """ Find all twin primes from a list of primes """
+    twin_primes = []
+    for i in range(len(primes) - 1):
+        if primes[i + 1] - primes[i] == 2:
+            twin_primes.append((primes[i], primes[i+1]))
+    return twin_primes
+
+
+def tcgen():
+    # Generate a random number of test cases between 1 and 20
+    num_tests = random.randint(1, 20)
+    test_cases = []
+    
+    for _ in range(num_tests):
+        n = random.randint(5, 10000)
+        test_cases.append(n)
+    
+    # Append the terminating zero to indicate the end of input
+    test_cases.append(0)
+    
+    return test_cases
+
+
+def main():
+    test_cases = tcgen()
+    primes = generate_primes_up_to(10000)
+    twin_primes = find_twin_primes(primes)
+    
+    for n in test_cases:
+        if n == 0:
+            break
+        result = None
+        for p, q in reversed(twin_primes):
+            if q <= n:
+                result = (p, q)
+                break
+        if result:
+            print(f"{result[0]} {result[1]}")
+        else:
+            print("No twin prime found")
+
+if __name__ == "__main__":
+    main()
+```
+
+### Explanation:
+1. **Prime Generation**: We use the Sieve of Eratosthenes to generate all prime numbers up to 10000. This is efficient and easy to implement.
+2. **Twin Prime Identification**: We then find all twin primes from the generated list of prime numbers.
+3. **Test Case Generation**: The `tcgen` function generates a random number of test cases (between 1 and 20) with each \( n \) in the range [5, 10000]. It appends a terminating zero at the end.
+4. **Main Function**: For each \( n \) in the test cases, we find the largest twin prime pair such that both primes are less than or equal to \( n \).
+
+This script will generate and handle test cases as specified in the problem statement. Use the `tcgen` function to get the test cases, and the `main` function simulates the problem's expected behavior.

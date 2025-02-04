@@ -1,0 +1,38 @@
+Sure! Here is a test case generator for the provided problem statement about distributing balls to people:
+
+```python
+import random
+
+def tcgen():
+    # Generate random values for N and K such that 1 <= K <= N <= 100
+    N = random.randint(1, 100)
+    K = random.randint(1, N)
+    return N, K
+
+# Example usage
+N, K = tcgen()
+print(N, K)
+```
+
+### Explanation:
+1. **N**: Total number of balls, randomly chosen between 1 and 100.
+2. **K**: Number of persons, which must be at least 1 and at most **N**.
+
+This generator ensures that the constraints of the problem are respected (1 ≤ K ≤ N ≤ 100). You can run this function multiple times to generate different test cases. Here are a few example outputs from this generator:
+
+1. **Example Output 1**:
+   ```
+   53 24
+   ```
+
+2. **Example Output 2**:
+   ```
+   98 98
+   ```
+
+3. **Example Output 3**:
+   ```
+   15 5
+   ```
+
+Each run of the `tcgen` function will produce a different pair of values for **N** and **K**, suitable for testing various scenarios in the problem.

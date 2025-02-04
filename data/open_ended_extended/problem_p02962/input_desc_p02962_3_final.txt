@@ -1,0 +1,21 @@
+Canonicalized Input Description: 
+
+A string s consisting of lowercase English letters with length between 1 and 500,000.
+A string t consisting of lowercase English letters with length between 1 and 500,000.
+
+### Example Input:
+
+```
+abcabab
+ab
+```
+
+### Function Signature:
+Write a function f(s, t) that takes in the input.
+```python
+def f(s: str, t: str):
+    '''
+    s: a string
+    t: a string
+    '''
+```

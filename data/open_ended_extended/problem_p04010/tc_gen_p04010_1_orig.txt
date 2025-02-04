@@ -1,0 +1,55 @@
+To generate a test case generator for the given problem statement, we need to create a generator that produces valid inputs for the problem. The graph must be connected, with the number of edges \( M \) between \( N-1 \) and \( N \), and there should be no self-loops or multiple edges.
+
+Here's the test case generator in Python:
+
+```python
+import random
+
+def generate_connected_graph(N, M):
+    from collections import defaultdict, deque
+
+    # Ensure we have a connected graph first using a tree
+    edges = []
+    for i in range(2, N+1):
+        edges.append((random.randint(1, i-1), i))
+    
+    # If we need more edges, add some randomly
+    additional_edges_needed = M - (N - 1)
+    possible_edges = [(i, j) for i in range(1, N+1) for j in range(i+1, N+1) if (i, j) not in edges and (j, i) not in edges]
+    random.shuffle(possible_edges)
+    
+    edges.extend(possible_edges[:additional_edges_needed])
+    random.shuffle(edges)
+    
+    return edges
+
+def tcgen():
+    N = random.randint(2, 10**5)
+    M = random.randint(N-1, N)
+    edges = generate_connected_graph(N, M)
+    
+    input_str = f"{N} {M}\n"
+    for a, b in edges:
+        input_str += f"{a} {b}\n"
+    
+    return input_str.strip()
+
+# Generate a test case and print it
+print(tcgen())
+```
+
+### Explanation:
+
+1. **Generating a Connected Graph:**
+   - We first ensure the graph is connected by creating a tree structure (which is inherently connected). This is done by connecting each vertex \( i \) from 2 to \( N \) to a random vertex from 1 to \( i-1 \).
+   - If \( M > N-1 \), we add additional edges randomly to satisfy the condition \( N-1 \leq M \leq N \).
+
+2. **Generating the Input String:**
+   - The input starts with \( N \) and \( M \).
+   - For each edge, we append the vertices \( a \) and \( b \) to the input string.
+
+3. **Randomization:**
+   - We shuffle the possible additional edges to ensure randomness.
+   - We shuffle the final edge list to avoid any specific order in the output.
+
+This test case generator will produce valid inputs for the given problem, ensuring all constraints are respected.

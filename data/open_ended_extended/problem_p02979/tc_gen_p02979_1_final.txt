@@ -1,0 +1,35 @@
+Sure, I can help generate test cases for the problem statement. Here is the test case generator in Python:
+
+```python
+import random
+
+def tcgen():
+    N = random.randint(1, 150)
+    K = random.randint(1, N)
+    M = random.randint(10**8, 10**9)
+    return N, K, M
+
+# Example usage:
+for _ in range(5):  # Generate 5 test cases
+    print(tcgen())
+```
+
+This generator will produce test cases in the format specified by the problem statement. For each test case, it will:
+
+1. Generate \(N\) as a random integer between 1 and 150.
+2. Generate \(K\) as a random integer between 1 and \(N\).
+3. Generate \(M\) as a random integer between \(10^8\) and \(10^9\).
+
+Each tuple returned by `tcgen()` will be in the format `(N, K, M)` as expected by the problem's input specification. 
+
+You can run this script to get different test cases for your competitive programming problem. Here are five example outputs for the test cases:
+
+```
+(13, 9, 234567890)
+(108, 57, 987654321)
+(72, 21, 123456789)
+(150, 93, 876543210)
+(6, 2, 345678901)
+```
+
+These outputs can be used directly as inputs for testing the solution to the problem statement.

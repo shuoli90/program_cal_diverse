@@ -1,0 +1,53 @@
+Sure, here is a Python test case generator for the given competitive programming problem "Speed":
+
+```python
+import random
+
+def generate_card():
+    suits = ['S', 'H', 'D', 'C']
+    ranks = ['A', 'K', 'Q', 'J', 'X'] + [str(i) for i in range(9, 1, -1)]
+    return random.choice(suits) + random.choice(ranks)
+
+def generate_deck(size):
+    deck = []
+    used_cards = set()
+    while len(deck) < size:
+        card = generate_card()
+        if card not in used_cards:
+            deck.append(card)
+            used_cards.add(card)
+    return deck
+
+def tcgen():
+    test_cases = []
+    num_cases = random.randint(1, 10)
+    for _ in range(num_cases):
+        NA = random.randint(1, 20)  # Adjusting the range for practical test sizes
+        deck_A = generate_deck(NA)
+        NB = random.randint(1, 20)  # Adjusting the range for practical test sizes
+        deck_B = generate_deck(NB)
+        test_cases.append((NA, deck_A, NB, deck_B))
+    return test_cases
+
+if __name__ == "__main__":
+    test_cases = tcgen()
+    for case in test_cases:
+        NA, deck_A, NB, deck_B = case
+        print(NA)
+        print(" ".join(deck_A))
+        print(NB)
+        print(" ".join(deck_B))
+    print(0)  # End of input
+```
+
+### Explanation:
+1. **generate_card()**: This function generates a random card. It randomly selects a suit from `['S', 'H', 'D', 'C']` and a rank from `['A', 'K', 'Q', 'J', 'X', '9', ..., '2']`.
+2. **generate_deck(size)**: This function generates a deck of unique cards of a given size. It ensures no duplicate cards by keeping track of used cards in a set.
+3. **tcgen()**: This function generates a list of test cases. Each test case consists of `NA`, the number of cards for Robot A, the deck for Robot A, `NB`, the number of cards for Robot B, and the deck for Robot B.
+4. **__main__**: This part of the script generates and prints the test cases, followed by a `0` to indicate the end of input.
+
+### Adjustments:
+- The number of test cases is randomized between 1 and 10 for practical testing purposes.
+- The sizes of the decks are randomized between 1 and 20 for practical testing purposes. You might need to adjust these ranges based on your specific needs or constraints.
+
+This generator ensures that each card in the deck is unique and follows the constraints given in the problem statement.

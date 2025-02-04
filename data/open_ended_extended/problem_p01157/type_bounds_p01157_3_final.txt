@@ -1,0 +1,3 @@
+Types: M: int, N: int, D: List[int], P: int, T: int, A: str
+Ranges: 1 ≤ M ≤ 100, 1 ≤ N ≤ 100, 0 ≤ D[i] ≤ 1000, 0 ≤ P < M, 0 ≤ T < 20000, 1 ≤ len(A) ≤ 9
+Addtl Info: None

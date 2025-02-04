@@ -1,0 +1,89 @@
+Certainly! I'll provide a test case generator for the given problem "C: Matching".
+
+### Problem Statement: C: Matching
+
+**Description**
+
+Given a sequence of integers \(a_i\) of length \(N\), output all integers \(K\) (1 ≤ \(K\) ≤ \(N\)) that satisfy the following condition:
+
+**Condition:**
+
+By arranging \(a_1, \cdots, a_K\) appropriately, it matches with \(a_{N-K+1}, \cdots, a_N\).
+
+**Constraints**
+
+- \(1 \le N \le 10^5\)
+- \(1 \le a_i \le 10^9\)
+
+**Input**
+
+- \(N\)
+- \(a_1 \cdots a_N\)
+
+**Output**
+
+Output all \(K\) that satisfies the condition in ascending order, separated by a space. Print a newline character at the end.
+
+**Examples**
+
+_Input_  
+```
+8
+5 2 4 9 4 9 2 5
+```
+
+_Output_  
+```
+1 2 4 6 7 8
+```
+
+_Input_  
+```
+3
+5 7 5
+```
+
+_Output_  
+```
+1 2 3
+```
+
+_Input_  
+```
+9
+118 118 97 116 97 97 114 110 101
+```
+
+_Output_  
+```
+9
+```
+
+### Test Case Generator
+
+Here's a Python function to generate test cases for this problem:
+
+```python
+import random
+
+def tcgen():
+    # Generate N
+    N = random.randint(1, 10**5)
+    
+    # Generate the array A of length N with elements between 1 and 10^9
+    A = [random.randint(1, 10**9) for _ in range(N)]
+    
+    return N, A
+
+# Example usage:
+N, A = tcgen()
+print(N)
+print(' '.join(map(str, A)))
+```
+
+This function generates a random test case as follows:
+
+1. The length of the array \(N\) is chosen randomly between 1 and \(10^5\).
+2. Each element of the array \(A\) is chosen randomly between 1 and \(10^9\).
+
+You can call this function to generate different test cases for the problem. The output will be printed in the required format.

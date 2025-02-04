@@ -1,0 +1,24 @@
+An integer N (1 ≤ N ≤ 10^4), representing some quantity or size.
+A list of tuples, where each tuple consists of two integers (x, y) with both integers in the range [-10^17, 10^17].
+The tuples are pairwise distinct.
+
+### Example Input:
+
+```
+4
+-2 1
+-2 2
+0 1
+1 0
+```
+
+### Function Signature:
+Write a function f(inputs) that takes in the input.
+```python
+from typing import List, Tuple
+
+def f(inputs: List[Tuple[int, int]]):
+    '''
+    inputs: a list of tuples, where each tuple consists of two integers
+    '''
+```

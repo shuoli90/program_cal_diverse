@@ -1,0 +1,23 @@
+An integer \( M \) (1 ≤ \( M \) ≤ 3000), representing the length of the first string.
+An integer \( N \) (1 ≤ \( N \) ≤ 3000), representing the length of the second string.
+A string \( X \) of length \( M \), consisting of lowercase English letters.
+A string \( Y \) of length \( N \), consisting of lowercase English letters.
+
+### Example Input:
+
+```
+4
+5
+axyb
+abyxb
+```
+
+### Function Signature:
+Write a function f(M, N, X, Y) that takes in the input.
+def f(M: int, N: int, X: str, Y: str): 
+    ''' 
+    M: an integer
+    N: an integer
+    X: a string
+    Y: a string
+    '''

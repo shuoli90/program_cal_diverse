@@ -1,0 +1,224 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p00863 - Generation 1</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p00863 - Generation 1</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>
+Problem J: The Teacher’s Side of Math
+One of the tasks students routinely carry out in their mathematics classes is to solve a polynomial equation. It is, given a polynomial, say X2 - 4X + 1, to find its roots (2 ± √3).
+If the students’ task is to find the roots of a given polynomial, the teacher’s task is then to find a polynomial that has a given root. Ms. Galsone is an enthusiastic mathematics teacher who is bored with finding solutions of quadratic equations that are as simple as a + b√c. She wanted to make higher-degree equations whose solutions are a little more complicated. As usual in problems in mathematics classes, she wants to maintain all coefficients to be integers and keep the degree of the polynomial as small as possible (provided it has the specified root). Please help her by writing a program that carries out the task of the teacher’s side.
+You are given a number t of the form:
+    t = m√a+n√b
+where a and b are distinct prime numbers, and m and n are integers greater than 1.
+In this problem, you are asked to find t's minimal polynomial on integers, which is the polynomial F(X) = adXd + ad-1Xd-1 + ... + a1X + a0 satisfying the following conditions.
+ Coefficients a0, ... , ad are integers and ad > 0.
+ F(t) = 0.
+ The degree d is minimum among polynomials satisfying the above two conditions.
+ F(X) is primitive. That is, coefficients a0, ... , ad have no common divisors greater than one.
+For example, the minimal polynomial of √3+ √2 on integers is F(X) = X4 - 10X2 + 1. Verifying F(t) = 0 is as simple as the following (α = 3, β = 2).
+F(t) = (α + β)4 - 10(α + β)2 + 1
+= (α4 + 4α3β + 6α2β2 + 4αβ3 + β4 ) - 10(α2 + 2αβ + β2) + 1
+= 9 + 12αβ + 36 + 8αβ + 4 - 10(3 + 2αβ + 2) + 1
+= (9 + 36 + 4 - 50 + 1) + (12 + 8 - 20)αβ
+                     = 0
+Verifying that the degree of F(t) is in fact minimum is a bit more difficult. Fortunately, under
+the condition given in this problem, which is that a and b are distinct prime numbers and m and n greater than one, the degree of the minimal polynomial is always mn. Moreover, it is
+always monic. That is, the coefficient of its highest-order term (ad) is one.
+Input
+The input consists of multiple datasets, each in the following format.
+   a    m   b      n
+This line represents m√a + n√b. The last dataset is followed by a single line consisting of four zeros. Numbers in a single line are separated by a single space.
+Every dataset satisfies the following conditions.
+ m√a + n√b ≤ 4.
+ mn ≤ 20.
+ The coefficients of the answer a0, ... , ad are between (-231 + 1) and (231 - 1), inclusive.
+Output
+For each dataset, output the coefficients of its minimal polynomial on integers F(X) = adXd + ad-1Xd-1 + ... + a1X + a0, in the following format.
+ad ad-1    ...   a1 a0
+Non-negative integers must be printed without a sign (+ or -). Numbers in a single line must
+be separated by a single space and no other characters or extra spaces may appear in the output.
+Sample Input
+3 2 2 2
+3 2 2 3
+2 2 3 4
+31 4 2 3
+3 2 2 7
+0 0 0 0
+Output for the Sample Input
+1 0 -10 0 1
+1 0 -9 -4 27 -36 -23
+1 0 -8 0 18 0 -104 0 1
+1 0 0 -8 -93 0 24 -2976 2883 -32 -3720 -23064 -29775
+1 0 -21 0 189 0 -945 -4 2835 -252 -5103 -1260 5103 -756 -2183
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An integer \(a\) (a distinct prime number ≤ 31), representing some quantity.
+An integer \(m\) (2 ≤ \(m\) ≤ 4), representing some other quantity.
+An integer \(b\) (a distinct prime number ≤ 31 and not equal to \(a\)), representing some quantity.
+An integer \(n\) (2 ≤ \(n\) ≤ 7), representing another quantity.
+
+### Example Input:
+```
+3 2 2 2
+```
+
+### Function Signature:
+Write a function f(inputs) that takes in the input.
+```python
+from typing import List, Tuple
+
+def f(inputs: List[Tuple[int, int, int, int]]):
+    '''
+    inputs: a list of tuples, each containing four integers
+    '''
+```</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Certainly! To generate test cases for the given problem, we need to ensure that the generated values adhere to the constraints provided. Below is a Python function that generates test cases for the problem "The Teacher’s Side of Math":
+
+```python
+import random
+
+def generate_prime():
+    """ Helper function to generate a random prime number """
+    primes = [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31]
+    return random.choice(primes)
+
+def tcgen():
+    """
+    Test case generator for the problem "The Teacher’s Side of Math"
+    Generates valid inputs ensuring:
+    - a and b are distinct prime numbers
+    - m and n are integers greater than 1
+    - m√a + n√b ≤ 4
+    - mn ≤ 20
+    """
+    test_cases = []
+    
+    while True:
+        a = generate_prime()
+        b = generate_prime()
+        
+        # Ensure a and b are distinct primes
+        while b == a:
+            b = generate_prime()
+        
+        m = random.randint(2, 4)  # m between 2 and 4
+        n = random.randint(2, 4)  # n between 2 and 4
+        
+        if m * n > 20:
+            continue
+        
+        # Check if m√a + n√b <= 4
+        if m * (a ** 0.5) + n * (b ** 0.5) <= 4:
+            test_cases.append((a, m, b, n))
+        
+        # To stop the infinite loop after generating a reasonable number of test cases
+        if len(test_cases) >= 10:
+            break
+    
+    # Add the end line (0 0 0 0)
+    test_cases.append((0, 0, 0, 0))
+    
+    return test_cases
+
+def print_test_cases(test_cases):
+    """
+    Function to print the test cases in the required format
+    """
+    for case in test_cases:
+        print(' '.join(map(str, case)))
+
+# Generate and print test cases
+test_cases = tcgen()
+print_test_cases(test_cases)
+```
+
+### Explanation
+
+1. **Prime Generation**: The function `generate_prime` selects a random prime number from a predefined list of small primes. This ensures that the selected numbers are prime.
+
+2. **Test Case Generation**:
+    - We ensure that `a` and `b` are distinct primes.
+    - `m` and `n` are chosen randomly between 2 and 4, ensuring they are greater than 1.
+    - We check the constraint `m√a + n√b ≤ 4` to ensure it's satisfied.
+    - We also ensure that `mn ≤ 20`.
+    - We loop until we have generated a sufficient number of valid test cases (e.g., 10).
+
+3. **Output**: The function `print_test_cases` formats and prints the test cases. Each test case is printed on a new line, and the final line is `0 0 0 0`.
+
+The above script generates valid test inputs for the problem statement while adhering to the constraints provided.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    inputs = []
+    while True:
+        line = fh.readline().strip()
+        if line == "0 0 0 0":
+            break
+        a, m, b, n = map(int, line.split())
+        inputs.append((a, m, b, n))
+    return inputs
+
+# if __name__ == "__main__":
+#     input_path = sys.argv[1]
+#     with open(input_path, 'r') as fh: 
+#         inputs = extract_arguments(fh)
+#         f(inputs)</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

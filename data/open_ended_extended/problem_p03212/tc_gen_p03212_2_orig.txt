@@ -1,0 +1,25 @@
+Sure, I can help you with a test case generator for your problem statement. The main task is to generate a random integer \( N \) within the given constraints and output it.
+
+Here's the test case generator for the given problem statement:
+
+```python
+import random
+
+def tcgen():
+    # Generate a random N within the given constraint 1 <= N < 10^9
+    N = random.randint(1, 10**9 - 1)
+    
+    return N
+
+# Example usage:
+if __name__ == "__main__":
+    test_case = tcgen()
+    print(test_case)
+```
+
+This function `tcgen` will generate a random integer \( N \) between 1 and \( 10^9 - 1 \) and return it. You can call this function to generate test cases for your problem.
+
+### Explanation:
+- **N**: The integer \( N \) is randomly chosen to be between 1 and \( 10^9 - 1 \) inclusive, ensuring it meets the problem constraints.
+
+Feel free to integrate this generator in your testing setup and generate as many test cases as you need!

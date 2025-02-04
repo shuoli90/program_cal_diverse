@@ -1,0 +1,161 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p00128 - Generation 1</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p00128 - Generation 1</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>Soroban
+At the request of a friend who has just started learning soroban, you are asked to create a program that displays the arrangement of soroban beads. Create a program that takes a number as input and outputs the arrangement of soroban beads. However, assume that the number of digits to be displayed on the soroban is 5, and that the configuration of the beads for numbers 0 to 9 is represented by '*' (half-width asterisk), ' ' (half-width space), and '=' (half-width equal sign) as follows:
+Input
+Multiple test cases are given. Each test case consists of a single line containing a number (integer) of up to 5 digits.
+The number of test cases does not exceed 1024.
+Output
+For each test case, output the arrangement of soroban beads. Put a blank line between the test cases.
+Sample Input
+2006
+1111
+Output for the Sample Input
+**** 
+    *
+=====
+ *  *
+**** 
+* ***
+*****
+*****
+*****
+=====
+ ****
+*    
+*****
+*****
+*****
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>Canonicalized Input Description:
+
+Multiple test cases are given.
+Each test case consists of a single line containing a number (integer) of up to 5 digits.
+The number of test cases does not exceed 1024.
+
+### Example Input:
+
+```
+2006
+1111
+```
+
+### Function Signature:
+Write a function f(inputs) that takes in the input.
+def f(inputs: List[str]):
+    '''
+    inputs: a list of strings
+    '''</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Certainly! To generate test cases for the "Soroban" problem, we need to create random numbers with up to 5 digits and multiple test cases. Below is the test case generator for the given problem statement:
+
+```python
+import random
+
+def tcgen():
+    # Number of test cases
+    T = random.randint(1, 1024)
+    
+    test_cases = []
+    
+    for _ in range(T):
+        num = random.randint(0, 99999)
+        test_cases.append(num)
+    
+    return test_cases
+
+# Generating and printing test cases
+test_cases = tcgen()
+for test_case in test_cases:
+    print(test_case)
+```
+
+### Explanation of the Test Case Generator:
+
+1. **Number of Test Cases (T)**:
+   - Randomly generate the number of test cases, ensuring it is between 1 and 1024.
+
+2. **Generating Numbers**:
+   - For each test case, generate a random number between 0 and 99999 to ensure it is up to 5 digits.
+
+3. **Output**:
+   - The test cases are stored in a list and printed one by one.
+
+When the generated test cases are used as input to the program, each number will be formatted according to the soroban bead arrangement rules specified in the problem statement. The output will need to be formatted so that there is a blank line between each test case's output.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    inputs = []
+    for line in fh:
+        number = line.strip()
+        if number:
+            inputs.append(int(number))
+    return inputs
+
+# if __name__ == "__main__":
+#     input_path = sys.argv[1]
+#     with open(input_path, 'r') as fh:
+#         inputs = extract_arguments(fh)
+#         f(inputs)</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

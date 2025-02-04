@@ -1,0 +1,5 @@
+Types: n: int, h: int, marks: List[Tuple[str, int, int]]
+
+Ranges: 0 ≤ n ≤ 500, 0 ≤ h ≤ 200, marks[i][0] in {'xy', 'xz', 'yz'}, 1 ≤ marks[i][1] ≤ n, 1 ≤ marks[i][2] ≤ n
+
+Addtl Info: Input terminates when n = 0 and h = 0.

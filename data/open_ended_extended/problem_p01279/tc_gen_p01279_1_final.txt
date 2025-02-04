@@ -1,0 +1,66 @@
+Sure! Here is a test case generator for the problem "Defend the Bases":
+
+```python
+import random
+import math
+
+def tcgen():
+    # Define the bounds for the random values
+    max_coordinate = 10000
+    max_speed = 100
+    max_troops = 100
+    max_bases = 100
+
+    # Generate random values for N and M within the specified limits
+    N = random.randint(1, max_troops)
+    M = random.randint(1, max_bases)
+
+    # Generate random positions and speeds for the troops
+    troops = []
+    for _ in range(N):
+        x = random.randint(0, max_coordinate)
+        y = random.randint(0, max_coordinate)
+        v = random.randint(1, max_speed)
+        troops.append((x, y, v))
+
+    # Generate random positions for the bases
+    bases = []
+    for _ in range(M):
+        x = random.randint(0, max_coordinate)
+        y = random.randint(0, max_coordinate)
+        bases.append((x, y))
+
+    return N, M, troops, bases
+
+def format_test_case(N, M, troops, bases):
+    test_case = f"{N} {M}\n"
+    for (x, y, v) in troops:
+        test_case += f"{x} {y} {v}\n"
+    for (x, y) in bases:
+        test_case += f"{x} {y}\n"
+    test_case += "0 0\n"
+    return test_case
+
+if __name__ == "__main__":
+    random.seed(42)  # Optional: For reproducibility
+    N, M, troops, bases = tcgen()
+    test_case = format_test_case(N, M, troops, bases)
+    print(test_case)
+```
+
+### Explanation:
+1. **tcgen()**:
+   - Generates random values for the number of troops \(N\) and the number of bases \(M\).
+   - For each troop, generates random coordinates \((x, y)\) and a speed \(v\).
+   - For each base, generates random coordinates \((x', y')\).
+
+2. **format_test_case()**:
+   - Formats the generated test case into the string format expected in the problem statement.
+   - Adds a terminating line "0 0" as specified.
+
+3. **Main Execution**:
+   - Calls `tcgen()` to generate a test case.
+   - Formats the test case using `format_test_case()`.
+   - Prints the formatted test case.
+
+This will give you random test cases each time you run the script. You can seed the random number generator for reproducibility by setting `random.seed()`. The generated test cases will help you test the program designed to solve the "Defend the Bases" problem.

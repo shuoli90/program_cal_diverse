@@ -1,0 +1,152 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p01873 - Generation 3</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p01873 - Generation 3</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>B: Periodic Sequence
+Problem
+Dr. Period, who serves as a professor at H University, researches the property called the "period" that is said to lurk in everything. As a basic period generally known, a period lurking in a sequence could be considered. That is, if the length N sequence S = S_1, S_2, ... , S_N satisfies the following property, it is a fact that it has a period t (t \≤ N).
+For 1 \≤ i \≤ N − t, S_i=S_{i+t}.
+Now, Dr. Period is focusing on sequences that can be described more simply using periods. For example, if a length N sequence has a period t (\≤ N), and it can be written as N=kt using an integer k, the sequence can be described as a length t sequence S_1, ... , S_t that is a concatenation of k continuous ones. Dr. Period has decided to call such a sequence a k-part.
+Dr. Period is interested in the largest k-part. Therefore, you, as an assistant, have been asked to create a program that takes a sequence as input and outputs the largest k when it is a k-part. Create a program that accurately responds to Dr. Period's request.
+Input Format
+N
+S_1 ... S_N
+The first line contains an integer N, which represents the length of the sequence. The second line contains integers S_i (1 \≤ i \≤ N) that represent each element of the length N sequence, separated by spaces. The input satisfies 1 \≤ N \≤ 200,000 and 1 \≤ S_i \≤ 100,000 (1 \≤ i \≤ N).
+Output Format
+For the given sequence, output the maximum value of k when it is a k-part on one line.
+Sample Input 1
+6
+1 2 3 1 2 3
+Sample Output 1
+2
+Sample Input 2
+12
+1 2 1 2 1 2 1 2 1 2 1 2
+Sample Output 2
+6
+Sample Input 3
+6
+1 2 3 4 5 6
+Sample Output 3
+1</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An integer N (1 ≤ N ≤ 200,000), representing some quantity or size.
+A list of N integers S, where each integer is between 1 and 100,000.
+
+### Example Input:
+
+```
+6
+1 2 3 1 2 3
+```
+
+### Function Signature:
+Write a function f(N, S) that takes in the input.
+def f(N: int, S: List[int]):
+    '''
+    N: an integer
+    S: a list of integers
+    '''</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Certainly! Here is a test case generator for the given problem statement "Periodic Sequence":
+
+```python
+import random
+
+def generate_periodic_sequence(N, t):
+    k = N // t
+    base_sequence = [random.randint(1, 100000) for _ in range(t)]
+    return base_sequence * k
+
+def tcgen():
+    N = random.randint(1, 200000)  # Length of the sequence
+    t = random.randint(1, N)  # Period length
+
+    # Generate a periodic sequence with period t
+    S = generate_periodic_sequence(N, t)
+    
+    return N, S
+
+# Example of generating a test case
+N, S = tcgen()
+print(N)
+print(" ".join(map(str, S)))
+```
+
+**Explanation:**
+
+1. **`generate_periodic_sequence(N, t)`**: This function generates a sequence of length `N` with a period `t`. It first creates a base sequence of length `t` with random values between 1 and 100000. Then, it repeats this base sequence `k` times to form the full sequence of length `N`, where `k` is the integer division of `N` by `t`.
+
+2. **`tcgen`**: This function generates a random test case:
+   - It picks a random `N` between 1 and 200000.
+   - It picks a random `t` between 1 and `N`.
+   - It uses the `generate_periodic_sequence` function to generate the sequence `S` with the chosen `N` and `t`.
+
+3. **Printing the Test Case**: The generated sequence `S` is printed in a format suitable for the problem's input specification.
+
+This generator will create test cases that help in assessing the program's ability to identify the largest k-part in a sequence, ensuring diverse and rigorous testing of the implementation.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    N = int(fh.readline().strip())
+    S = list(map(int, fh.readline().strip().split()))
+    return N, S</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

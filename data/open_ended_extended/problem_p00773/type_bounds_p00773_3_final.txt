@@ -1,0 +1,5 @@
+Types: x: int, y: int, s: int
+
+Ranges: 0 < x < 100, 0 < y < 100, 10 < s < 1000, x ≠ y
+
+Addtl Info: None

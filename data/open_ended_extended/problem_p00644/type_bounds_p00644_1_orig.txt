@@ -1,0 +1,3 @@
+Types: n: int, m: int, p: int, edges: List[Tuple[int, int, int]], c: List[int]
+Ranges: 3 ≤ n ≤ 100, 0 < weight of the edge < 10000, 0 ≤ c[i] < n
+Addtl Info: No parallel edges and no edges with identical endpoints

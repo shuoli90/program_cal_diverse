@@ -1,0 +1,43 @@
+Certainly! Here's a Python function that generates test cases for the given problem statement about Takahashi and Aoki's game on a grid:
+
+```python
+import random
+
+def tcgen():
+    # Constraints
+    H = random.randint(1, 2 * 10**5)
+    W = random.randint(1, 2 * 10**5)
+    N = random.randint(0, 2 * 10**5)
+    
+    # Generate N unique obstacles
+    obstacles = set()
+    while len(obstacles) < N:
+        x = random.randint(1, H)
+        y = random.randint(1, W)
+        if (x, y) != (1, 1):  # (1,1) should not have an obstacle
+            obstacles.add((x, y))
+    
+    # Convert set to sorted list for consistent output
+    obstacles = sorted(list(obstacles))
+    
+    # Format the output as described
+    output = f"{H} {W} {N}\n"
+    for (x, y) in obstacles:
+        output += f"{x} {y}\n"
+    
+    return output.strip()
+
+# Example usage
+if __name__ == "__main__":
+    print(tcgen())
+```
+
+This function `tcgen` will generate random test cases based on the constraints provided:
+
+1. `H` and `W` are chosen randomly between 1 and \(2 \times 10^5\).
+2. `N` is chosen randomly between 0 and \(2 \times 10^5\).
+3. Obstacles are generated as unique pairs that are not equal to (1,1) to ensure the start position is always free.
+
+The set ensures that no duplicate obstacles are generated. Finally, the obstacles are formatted into the required input format.
+
+You can run the `tcgen` function multiple times to generate different test cases for your competitive programming problem.

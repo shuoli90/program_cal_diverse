@@ -1,0 +1,40 @@
+Sure, here is a test case generator for the "Cleaning Robot" problem. This generator will create random datasets according to the problem constraints.
+
+```python
+import random
+import string
+
+def tcgen():
+    test_cases = []
+    
+    for _ in range(random.randint(1, 100)):
+        n = random.randint(1, 15)
+        
+        # Randomly select 3 different rooms from the 9 possible rooms
+        rooms = list("ABCDEFGHI")
+        s, t, b = random.sample(rooms, 3)
+        
+        test_cases.append((n, s, t, b))
+    
+    # Add the terminating dataset (0)
+    test_cases.append((0,))
+    
+    return test_cases
+
+# Generate a test case
+test_cases = tcgen()
+
+# Print the generated test case
+for case in test_cases:
+    print(' '.join(map(str, case)))
+```
+
+This generator creates a list of datasets for the problem, each consisting of:
+- `n`: an integer indicating the initial battery points (1 ≤ n ≤ 15).
+- `s`: a character representing the initial room.
+- `t`: a character representing the battery room.
+- `b`: a character representing the junk room.
+
+The generator ensures that `s`, `t`, and `b` are distinct and randomly selected from the set of rooms {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I'}. The generator also ensures the number of test cases does not exceed 100 and includes a terminating dataset `(0,)` at the end of the cases.
+
+You can run the generator and it will print the test cases in the format expected by the problem statement. Each test case is printed on a new line, with the terminating dataset printed last.

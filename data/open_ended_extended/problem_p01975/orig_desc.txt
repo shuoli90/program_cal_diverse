@@ -1,0 +1,35 @@
+B: Mapping
+Problem
+AOR Ika-chan created a mapping $f:S\rightarrow S$ for a set $S=\{a_1, ..., a_N\}$, where $f(a_i)=b_i$. For any element $x$ in set $S$, determine whether all mappings $g,h:S\rightarrow S$ that satisfy $g(f(x))=h(f(x))$ also satisfy  $g(x)=h(x)$. If they do not satisfy this condition, provide a counterexample.
+Constraints:
+$1 \le N \le 10^5$
+$1 \le a_i,b_i \le N$
+$a_i \neq a_j \ (i \neq j)$
+All input is integers
+Input:
+$N$
+$a_1 \cdots a_N$
+$b_1 \cdots b_N$
+Output:
+If the condition is satisfied, output
+Yes
+If the condition is not satisfied, provide a counterexample $g(a_i) = c_i, h(a_i) = d_i$, and output
+No
+$c_1 \cdots c_N$
+$d_1 \cdots d_N$
+Output a newline character at the end.
+Sample
+Sample Input 1
+5
+1 2 3 4 5
+3 4 2 5 1
+Sample Output 1
+Yes
+Sample Input 2
+5
+1 2 3 4 5
+3 4 3 5 1
+Sample Output 2
+No
+3 1 5 2 4
+3 2 5 2 4

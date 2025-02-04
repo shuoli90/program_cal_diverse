@@ -1,0 +1,75 @@
+Sure! Here is a test case generator for the given problem statement.
+
+### Problem Statement
+**Score**: 200 points
+
+**Description**
+
+Square1001 has seen an electric bulletin board displaying the integer 1. He can perform the following operations A and B to change this value:
+- **Operation A**: The displayed value is doubled.
+- **Operation B**: The displayed value increases by K.
+
+Square1001 needs to perform these operations N times in total. Find the minimum possible value displayed on the board after N operations.
+
+**Constraints**
+- \(1 \leq N, K \leq 10\)
+
+All input values are integers.
+
+**Input**
+```
+N
+K
+```
+
+**Output**
+Print the minimum possible value displayed on the board after N operations.
+
+**Examples**
+
+*Example 1:*
+```
+Input
+4
+3
+Output
+10
+```
+The value will be minimized when the operations are performed in the following order: A, A, B, B.
+In this case, the value will change as follows: 1 → 2 → 4 → 7 → 10.
+
+*Example 2:*
+```
+Input
+10
+10
+Output
+276
+```
+The value will be minimized when the operations are performed in the following order: A, A, A, A, B, B, B, B, B, B.
+In this case, the value will change as follows: 1 → 2 → 4 → 8 → 16 → 26 → 36 → 46 → 56 → 66 → 76.
+
+### Test Case Generator
+
+```python
+import random
+
+def tcgen():
+    # Generate random values for N and K within the given constraints
+    N = random.randint(1, 10)
+    K = random.randint(1, 10)
+    
+    return N, K
+
+# Function to print the test case in the required input format
+def print_test_case(N, K):
+    print(N)
+    print(K)
+
+# Example usage
+if __name__ == "__main__":
+    N, K = tcgen()
+    print_test_case(N, K)
+```
+
+This generator will produce random test cases where \(N\) and \(K\) are between 1 and 10. You can use the `print_test_case` function to display the generated test case in the correct format.

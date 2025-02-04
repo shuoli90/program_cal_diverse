@@ -1,0 +1,64 @@
+To generate test cases for the given tree problem, we need to:
+
+1. Randomly generate a tree with \(N\) vertices.
+2. Ensure that the tree is connected and has \(N-1\) edges.
+3. Generate \(Q\) queries that ask for the shortest path between two vertices via a specific vertex \(K\).
+
+Here is a Python function that generates such test cases:
+
+```python
+import random
+
+def generate_tree(N):
+    edges = []
+    for i in range(2, N + 1):
+        u = random.randint(1, i - 1)
+        v = i
+        c = random.randint(1, 10**9)
+        edges.append((u, v, c))
+    return edges
+
+def generate_queries(Q, N, K):
+    queries = []
+    for _ in range(Q):
+        while True:
+            x = random.randint(1, N)
+            y = random.randint(1, N)
+            if x != y and x != K and y != K:
+                break
+        queries.append((x, y))
+    return queries
+
+def tcgen():
+    N = random.randint(3, 10**5)
+    edges = generate_tree(N)
+    
+    Q = random.randint(1, 10**5)
+    K = random.randint(1, N)
+    
+    queries = generate_queries(Q, N, K)
+    
+    return N, edges, Q, K, queries
+
+def print_test_case():
+    N, edges, Q, K, queries = tcgen()
+    
+    print(N)
+    for u, v, c in edges:
+        print(u, v, c)
+    print(Q, K)
+    for x, y in queries:
+        print(x, y)
+
+# Example usage:
+print_test_case()
+```
+
+### Explanation:
+
+1. **generate_tree(N)**: This function generates a tree with \(N\) vertices. It ensures the tree is connected by connecting each new vertex \(v\) to an existing vertex \(u\) (always ensuring \(u < v\) to avoid cycles). Each edge has a randomly assigned weight between 1 and \(10^9\).
+2. **generate_queries(Q, N, K)**: This function generates \(Q\) queries. Each query is a pair of vertices \(x\) and \(y\) such that \(x \neq y\), \(x \neq K\), and \(y \neq K\).
+3. **tcgen()**: This function integrates the above functions to generate a complete test case with \(N\) vertices, a list of edges, \(Q\) queries, and the specific vertex \(K\).
+4. **print_test_case()**: This function prints the generated test case in the specified format.
+
+This approach ensures the generated test cases adhere to the problem constraints and are suitable for thorough testing of the solution.

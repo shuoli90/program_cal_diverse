@@ -1,0 +1,25 @@
+An integer \( n \) (1 ≤ \( k \) ≤ \( n \) ≤ 600), representing some quantity or size.
+An integer \( k \) (1 ≤ \( k \) ≤ \( n \)), representing another quantity.
+An integer \( a \) (0 ≤ \( a \)).
+An integer \( b \) (\( a \) ≤ \( b \) ≤ 180,000).
+A list of \( n \) integers where each integer \( x_i \) (0 ≤ \( x_i \) ≤ 300).
+
+### Example Input:
+
+```
+4 2 58 100
+10 10 50 80
+```
+
+### Function Signature:
+Write a function f(n, k, a, b, x) that takes in the input. 
+```python
+def f(n: int, k: int, a: int, b: int, x: List[int]):
+    '''
+    n: an integer
+    k: an integer
+    a: an integer
+    b: an integer
+    x: a list of integers
+    '''
+```

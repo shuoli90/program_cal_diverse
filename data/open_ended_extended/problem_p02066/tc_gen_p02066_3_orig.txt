@@ -1,0 +1,56 @@
+Certainly! Here is a test case generator for the "G: Treasure Hunter" problem. This generator will create random values for the number of piles, the budget, the treasure values, and the road connections along with their costs.
+
+```python
+import random
+
+def tcgen():
+    N = random.randint(1, 100)  # Number of piles
+    W = random.randint(1, 100000)  # Budget for road construction costs
+
+    # Treasure values for each pile
+    p = [random.randint(1, 1000000000) for _ in range(N)]
+
+    roads = []
+    for i in range(N - 1):
+        u = i + 1
+        v = random.randint(u + 1, N)
+        c = random.randint(1, 100000)
+        roads.append((u, v, c))
+    
+    # Shuffle to create more varied connections
+    random.shuffle(roads)
+
+    return N, W, p, roads
+
+# Function to print the generated test case in required format
+def print_test_case():
+    N, W, p, roads = tcgen()
+    print(f"{N} {W}")
+    print(' '.join(map(str, p)))
+    for u, v, c in roads:
+        print(f"{u} {v} {c}")
+
+# Example usage
+print_test_case()
+```
+
+Here's a breakdown of this code:
+
+1. **Number of Piles and Budget**:
+   - `N` is randomly chosen between 1 and 100.
+   - `W` is randomly chosen between 1 and 100000.
+
+2. **Treasure Values**:
+   - `p` is a list of treasure values for each pile. Each value is randomly chosen between 1 and 1000000000.
+
+3. **Roads**:
+   - The loop creates `N-1` roads. Each road connects pile `u` to pile `v` with a cost `c`.
+   - `u` is fixed as `i + 1` so that it always starts from the first pile and increments.
+   - `v` is chosen randomly between `u + 1` and `N` to ensure `u < v`.
+   - The cost `c` is randomly chosen between 1 and 100000.
+   - The list of roads is then shuffled to ensure that the order of connections is varied.
+
+4. **Printing the Test Case**:
+   - The function `print_test_case()` is provided to print the generated test case in the required format.
+
+This generator can be run multiple times to create different test cases suitable for testing the competitive programming problem.

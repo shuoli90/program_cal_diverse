@@ -1,0 +1,41 @@
+Sure! To generate test cases for the Convex Hull problem, we'll need to produce random sets of points within the given constraints. Here's a Python function to generate such test cases:
+
+```python
+import random
+
+def tcgen():
+    # Number of points
+    n = random.randint(3, 100000)
+    
+    # Generate a set of unique points within the range [-10000, 10000]
+    points = set()
+    while len(points) < n:
+        x = random.randint(-10000, 10000)
+        y = random.randint(-10000, 10000)
+        points.add((x, y))
+    
+    # Convert the set of points to a list to maintain order
+    points_list = list(points)
+    
+    return n, points_list
+
+# Example usage:
+n, points = tcgen()
+print(n)
+for x, y in points:
+    print(x, y)
+```
+
+### Explanation:
+
+1. **Number of Points**: Randomly select the number of points \( n \) between 3 and 100,000.
+2. **Generate Points**: Use a set to ensure all points are unique. Randomly generate \( x \) and \( y \) coordinates within the range [-10,000, 10,000]. Continue adding points to the set until we have \( n \) unique points.
+3. **Return Points**: Convert the set to a list for ordered output.
+
+This approach ensures we respect the constraints and provide valid test cases for the Convex Hull problem. 
+
+### Output Format:
+- The first line is the number of points \( n \).
+- The following \( n \) lines contain the coordinates of each point.
+
+Feel free to run the function and generate test cases for your problem!

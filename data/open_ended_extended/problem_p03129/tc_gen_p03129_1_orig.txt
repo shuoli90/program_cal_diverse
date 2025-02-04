@@ -1,0 +1,76 @@
+Sure, here’s a test case generator for the given problem statement:
+
+### Problem Statement: Determine if we can choose \(K\) different integers between 1 and \(N\) (inclusive) so that no two of them differ by 1.
+
+**Constraints:**
+- \(1 \leq N, K \leq 100\)
+- \(N\) and \(K\) are integers.
+
+**Input:**
+Input is given from Standard Input in the following format:
+```
+N K
+```
+
+**Output:**
+If we can choose \(K\) integers as above, print `YES`; otherwise, print `NO`.
+
+**Sample Input 1:**
+```
+13 2
+```
+
+**Sample Output 1:**
+```
+YES
+```
+
+**Sample Input 2:**
+```
+25 5
+```
+
+**Sample Output 2:**
+```
+NO
+```
+
+**Sample Input 3:**
+```
+31 10
+```
+
+**Sample Output 3:**
+```
+YES
+```
+
+**Sample Input 4:**
+```
+10 9
+```
+
+**Sample Output 4:**
+```
+NO
+```
+
+### Test Case Generator:
+Here’s the code to generate random test cases for this problem:
+
+```python
+import random
+
+def tcgen():
+    N = random.randint(1, 100)
+    K = random.randint(1, 100)
+    
+    return N, K
+
+# Example usage:
+for _ in range(5):
+    N, K = tcgen()
+    print(f"{N} {K}")
+```
+
+This code will generate random test cases within the specified constraints. You can run this multiple times to get different sets of \(N\) and \(K\).

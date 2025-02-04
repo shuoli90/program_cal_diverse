@@ -1,0 +1,54 @@
+Sure, let's create a test case generator for the given problem statement. The generator will create datasets with varying lengths and broken samples following the specified rules.
+
+Here's a test case generator for the problem:
+
+```python
+import random
+
+def tcgen():
+    datasets = []
+
+    # Number of datasets
+    num_datasets = random.randint(1, 100)
+
+    for _ in range(num_datasets):
+        # Random length of the audio signal (N)
+        N = random.randint(2, 1000)
+
+        # Create the audio signal array with a mix of integers and 'x' (broken samples)
+        audio_signal = []
+        for i in range(N):
+            if random.random() < 0.3:  # 30% chance that a sample is broken
+                audio_signal.append('x')
+            else:
+                audio_signal.append(random.randint(-10**9, 10**9))
+
+        # Append the generated dataset to datasets list
+        datasets.append((N, audio_signal))
+
+    return datasets
+
+# Function to print the datasets in the required format
+def print_datasets(datasets):
+    for dataset in datasets:
+        N, audio_signal = dataset
+        print(N)
+        print(" ".join(map(str, audio_signal)))
+    print(0)
+
+# Generate and print the datasets
+datasets = tcgen()
+print_datasets(datasets)
+```
+
+This Python script creates a function `tcgen` that generates multiple datasets according to the given constraints. The `print_datasets` function prints these datasets in the required format.
+
+Here is a step-by-step explanation of the script:
+
+1. **Generating the Number of Datasets**: We randomly determine the number of datasets (1 to 100).
+2. **Generating Each Dataset**:
+    - We randomly determine the length \( N \) of the audio signal for each dataset (2 to 1000).
+    - We construct the audio signal array with a mix of integers and 'x' (broken samples). There is a 30% chance that any given sample is broken.
+3. **Printing the Datasets**: We print each dataset followed by a zero to indicate the end of input.
+
+You can run this script to generate multiple test cases for the given problem.

@@ -1,0 +1,49 @@
+Sure, I can write a test case generator for the given problem statement "Vector II". Here's the code for generating random test cases:
+
+```python
+import random
+
+def tcgen():
+    # Number of dynamic arrays
+    n = random.randint(1, 1000)
+    
+    # Number of queries
+    q = random.randint(1, 500000)
+    
+    queries = []
+    
+    for _ in range(q):
+        operation = random.choice([0, 1, 2])
+        t = random.randint(0, n-1)
+        if operation == 0:
+            # pushBack operation
+            x = random.randint(-1000000000, 1000000000)
+            queries.append(f"0 {t} {x}")
+        elif operation == 1:
+            # dump operation
+            queries.append(f"1 {t}")
+        elif operation == 2:
+            # clear operation
+            queries.append(f"2 {t}")
+    
+    # Combine n, q and queries into the final input format
+    input_data = f"{n} {q}\n" + "\n".join(queries)
+    
+    return input_data
+
+# Generate a test case and print it
+print(tcgen())
+```
+
+This script generates a random test case for the "Vector II" problem. It randomly chooses the values for \( n \) and \( q \), and then generates a list of \( q \) queries. The queries are randomly selected among the three operations: `pushBack`, `dump`, and `clear`. The generated test case is formatted as specified in the problem statement. 
+
+Here’s a breakdown of the code:
+1. **Initialization**: Randomly determine the number of dynamic arrays \( n \) and the number of queries \( q \) within the specified constraints.
+2. **Query Generation**:
+   - For each query, randomly choose an operation among `pushBack`, `dump`, and `clear`.
+   - Generate the required parameters for each operation:
+     - `pushBack` requires an array index \( t \) and a value \( x \).
+     - `dump` and `clear` only require an array index \( t \).
+3. **Formatting**: Combine \( n \), \( q \), and the list of queries into the final input format and return it.
+
+You can run this script to generate multiple test cases and use them for testing your competitive programming solution.

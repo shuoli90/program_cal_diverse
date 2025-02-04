@@ -1,0 +1,20 @@
+An integer N (1 ≤ N ≤ 150), representing some quantity or size.
+An integer K (1 ≤ K ≤ N), representing another quantity or size.
+An integer M (10^8 ≤ M ≤ 10^9), representing yet another quantity or size.
+
+### Example Input:
+
+```
+13
+1
+998244353
+```
+
+### Function Signature:
+Write a function f(N, K, M) that takes in the input. 
+def f(N: int, K: int, M: int): 
+    ''' 
+    N: an integer 
+    K: an integer
+    M: an integer
+    '''

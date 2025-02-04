@@ -1,0 +1,50 @@
+Problem A:Saizou
+    In a certain country, a TV program called "Saizou" is popular.
+    This program is about participants challenging a field athletics,
+    and if they successfully clear it, they can receive a prize money.
+  
+    The field athletics is made by arranging blocks of different heights in a row,
+    and it is important to figure out how to climb and descend the steps
+    (Figure 1) in order to clear it.
+    Your friend who is going to participate in this program
+    has asked you, a skilled programmer, to write a program to calculate
+    the maximum step to climb and the maximum step to descend
+    when the structure of the field athletics is given.
+  
+Figure 1: An example of the structure of the athletics (the first dataset of the input example).
+Input
+    The first line of the input contains the number of datasets, t
+    (0 < t ≤ 100).
+    This is followed by t datasets.
+  
+    The first line of each dataset is the number of blocks that make up the field athletics, n
+    (2 ≤ n ≤ 100).
+    The second line shows a sequence of integers that represent the height of the blocks
+    from the start to the goal.
+    The first number corresponds to the starting block and the n-th number corresponds to the goal block.
+    These integers are separated by a single space.
+    The height h of each block satisfies 0 < h ≤ 1000.
+  
+Output
+    For each dataset, output the maximum height difference to climb and the maximum height difference to descend,
+    separated by a single space on a single line.
+    If there is no step to climb or to descend, the maximum height difference for that should be 0.
+  
+Sample Input
+5
+5
+10 70 30 50 90
+2
+20 100
+2
+100 30
+3
+50 50 50
+7
+123 45 678 901 234 567 890
+Output for the Sample Input
+60 40
+80 0
+0 70
+0 0
+633 667

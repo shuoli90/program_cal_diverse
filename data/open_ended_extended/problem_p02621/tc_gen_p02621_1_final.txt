@@ -1,0 +1,24 @@
+Sure! Let's create a test case generator for the given problem statement where you need to compute \(a + a^2 + a^3\) for a given integer \(a\).
+
+Here's the Python code for the test case generator:
+
+```python
+import random
+
+def tcgen():
+    # Generate a random integer a within the given constraints
+    a = random.randint(1, 10)
+    
+    return a
+
+# Example usage:
+test_case = tcgen()
+print(f"Input: {test_case}")
+# For verification purposes, compute the expected output
+expected_output = test_case + test_case**2 + test_case**3
+print(f"Output: {expected_output}")
+```
+
+This generator will produce a random integer \(a\) in the range \(1 \leq a \leq 10\), as specified in the problem constraints. The printed output includes the test input and the expected result based on the formula \(a + a^2 + a^3\). 
+
+You can run this code to generate multiple test cases and verify that the output matches the expected results.

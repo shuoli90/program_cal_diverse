@@ -1,0 +1,36 @@
+An integer N (1 ≤ N ≤ 80), representing some quantity or size.
+N lines follow, each containing three integers X, Y, and V where:
+- 1 ≤ X, Y ≤ 100
+- 1 ≤ V ≤ 10^15
+An integer M (1 ≤ M ≤ 320), representing some quantity or size.
+M lines follow, each containing a character T from the set {'L', 'R', 'U', 'D'}, and two integers A and B where:
+- 1 ≤ A ≤ 100
+- 0 ≤ B ≤ N - 1
+
+### Example Input:
+
+```
+7
+1 3 6
+1 5 9
+3 1 8
+4 3 8
+6 2 9
+5 4 11
+5 7 10
+4
+L 3 1
+R 2 3
+D 5 3
+U 4 2
+```
+
+### Function Signature:
+Write a function f(N, coordinates_values, M, conditions) that takes in the input.
+def f(N: int, coordinates_values: List[Tuple[int, int, int]], M: int, conditions: List[Tuple[str, int, int]]):
+    '''
+    N: an integer
+    coordinates_values: a list of tuples, each containing three integers
+    M: an integer
+    conditions: a list of tuples, each containing a character and two integers
+    '''

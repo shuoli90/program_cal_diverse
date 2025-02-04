@@ -1,0 +1,64 @@
+Sure, I can help you create a test case generator for the problem "D: Rescue a Postal Worker". The test case generator will create random inputs that conform to the problem's constraints. Here's the Python code for it:
+
+```python
+import random
+
+def generate_test_case():
+    # Number of vertices
+    n = random.randint(3, 1000)
+    # Number of edges
+    m = random.randint(1, min(2000, n*(n-1)//2))
+    # Number of dropped mails
+    k = random.randint(1, 6)
+    # Starting vertex
+    p = random.randint(1, n)
+    
+    edges = set()
+    for _ in range(m):
+        while True:
+            x = random.randint(1, n)
+            y = random.randint(1, n)
+            if x != y and (x, y) not in edges and (y, x) not in edges:
+                w = random.randint(1, 1000)
+                edges.add((x, y, w))
+                break
+    
+    mail_positions = set()
+    while len(mail_positions) < k:
+        s = random.randint(1, n)
+        t = random.randint(1, n)
+        if s != t and s != p and (s, t) not in mail_positions:
+            mail_positions.add((s, t))
+    
+    test_case = f"{n} {m} {k} {p}\n"
+    for x, y, w in edges:
+        test_case += f"{x} {y} {w}\n"
+    for s, t in mail_positions:
+        test_case += f"{s} {t}\n"
+    
+    return test_case
+
+# Example usage
+print(generate_test_case())
+```
+
+### Explanation
+
+1. **Vertices and Edges**:
+    - `n`: The number of vertices, chosen randomly between 3 and 1000.
+    - `m`: The number of edges, chosen randomly between 1 and the minimum of 2000 or the maximum number of possible edges for `n`.
+
+2. **Starting Vertex and Mail**:
+    - `p`: The starting vertex, chosen randomly between 1 and `n`.
+    - `k`: The number of dropped mails, chosen randomly between 1 and 6.
+
+3. **Edges Generation**:
+    - Each edge is chosen randomly, ensuring no self-loops and no multiple edges between the same vertices. The weight of each edge is between 1 and 1000.
+
+4. **Mail Drops**:
+    - The positions of the dropped mails and their destinations are chosen randomly, ensuring that no mail drops at the starting vertex and each mail has a unique source-destination pair.
+
+5. **Test Case Construction**:
+    - The test case is formatted as the problem specifies, combining the vertices, edges, and mail drops into a single string.
+
+This function will generate a random test case whenever it is called. You can adjust the random seed or modify the constraints to generate specific types of test cases if needed.

@@ -1,0 +1,19 @@
+An integer N (1 ≤ N ≤ 16), representing some quantity or size.
+An integer M (0 ≤ M ≤ 16), representing some quantity or size.
+A list of integers A of size M, where each integer is between 2 and 2^N and sorted in strictly increasing order.
+
+### Example Input:
+
+```
+1 1
+3
+```
+
+### Function Signature:
+Write a function f(N, M, A) that takes in the input.
+def f(N: int, M: int, A: List[int]):
+    '''
+    N: an integer
+    M: an integer
+    A: a list of integers
+    '''

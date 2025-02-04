@@ -1,0 +1,171 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p00586 - Generation 1</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p00586 - Generation 1</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>
+A + B Problem
+Compute A + B. 
+Input
+The input will consist of a series of pairs of integers A and B separated by a space, one pair of integers per line. The input will be terminated by EOF.
+Output
+For each pair of input integers A and B, you must output the sum of A and B in one line.
+Constraints
+ -1000 ≤ A, B ≤ 1000
+Sample Input
+1 2
+10 5
+100 20
+Output for the Sample Input
+3
+15
+120
+Sample Program
+#include<stdio.h>
+int main(){
+    int a, b;
+    while( scanf("%d %d", &a, &b) != EOF ){
+        printf("%d\n", a + b);
+    }
+    return 0;
+}
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>Canonicalized Input Description: 
+
+A series of pairs of integers. Each pair is separated by a space, one pair of integers per line. The input is terminated by EOF.
+Each integer in the pair is between -1000 and 1000.
+
+### Example Input:
+
+```
+1 2
+10 5
+100 20
+```
+
+### Function Signature:
+Write a function f(inputs) that takes in the input.
+def f(inputs: List[Tuple[int, int]]): 
+    ''' 
+    inputs: a list of tuples, each containing two integers
+    '''</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Sure! Below is a test case generator for the "A + B Problem". Since the input will be terminated by EOF, the generator will create a random number of pairs of integers within the given constraints:
+
+```python
+import random
+
+def tcgen():
+    # Define the number of test cases to generate (you can change this if needed)
+    num_cases = random.randint(1, 100)  # random number of pairs for the test case
+    cases = []
+
+    for _ in range(num_cases):
+        A = random.randint(-1000, 1000)
+        B = random.randint(-1000, 1000)
+        cases.append((A, B))
+    
+    return cases
+
+def generate_input_output():
+    cases = tcgen()
+    input_data = ""
+    output_data = ""
+    
+    for A, B in cases:
+        input_data += f"{A} {B}\n"
+        output_data += f"{A + B}\n"
+    
+    return input_data, output_data
+
+# Example usage:
+if __name__ == "__main__":
+    input_data, output_data = generate_input_output()
+    print("Generated Input:")
+    print(input_data)
+    print("Expected Output:")
+    print(output_data)
+```
+
+### Explanation:
+1. **tcgen Function**:
+    - Generates a random number of test cases (between 1 and 100).
+    - For each test case, generates a pair of integers \(A\) and \(B\) within the range [-1000, 1000].
+    - Returns a list of these pairs.
+
+2. **generate_input_output Function**:
+    - Uses the `tcgen` function to generate test cases.
+    - Constructs the input data as a string with each pair of integers on a new line.
+    - Constructs the expected output data as a string with each sum on a new line.
+    - Returns both the input data and the expected output data.
+
+### Usage:
+- The `generate_input_output` function can be used to obtain both the input and the expected output for the generated test cases. 
+- This can be useful for testing the implementation of the problem in a competitive programming context.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    inputs = []
+    for line in fh:
+        A, B = map(int, line.strip().split())
+        inputs.append((A, B))
+    return inputs</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

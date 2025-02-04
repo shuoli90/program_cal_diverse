@@ -1,0 +1,61 @@
+To generate test cases for the "Wall Painting" problem, we need to generate random inputs that adhere to the constraints specified in the problem statement. The input consists of:
+
+1. \( n \): the number of panels.
+2. \( m \): the number of robots.
+3. \( x \): the bonus value.
+4. \( y \): the penalty value.
+5. \( m \) lines, each containing:
+   - \( c_i \): the color (1, 2, or 3).
+   - \( l_i \): the starting position (1 ≤ \( l_i \) ≤ \( r_i \) ≤ \( n \)).
+   - \( r_i \): the ending position.
+
+Given these constraints, we can create a function to generate random test cases. Here is the Python function to generate test cases:
+
+```python
+import random
+
+def generate_test_case():
+    # Randomly generate n within the allowed range
+    n = random.randint(1, 10**9)
+    
+    # Randomly generate m within the allowed range
+    m = random.randint(1, 2 * 10**5)
+    
+    # Randomly generate x and y within the allowed range
+    x = random.randint(1, 10**5)
+    y = random.randint(1, 10**5)
+    
+    # Initialize the list of robot operations
+    operations = []
+    
+    for _ in range(m):
+        # Randomly choose a color c_i from {1, 2, 3}
+        c_i = random.choice([1, 2, 3])
+        
+        # Randomly choose l_i and r_i within the allowed range
+        l_i = random.randint(1, n)
+        r_i = random.randint(l_i, n)
+        
+        # Add the operation to the list
+        operations.append((c_i, l_i, r_i))
+    
+    return n, m, x, y, operations
+
+# Function to format the generated test case for output
+def format_test_case(n, m, x, y, operations):
+    output = f"{n} {m} {x} {y}\n"
+    for c_i, l_i, r_i in operations:
+        output += f"{c_i} {l_i} {r_i}\n"
+    return output
+
+# Example usage
+n, m, x, y, operations = generate_test_case()
+test_case = format_test_case(n, m, x, y, operations)
+print(test_case)
+```
+
+This function, `generate_test_case`, first generates random values for \( n \), \( m \), \( x \), and \( y \). It then creates random robot operations while ensuring the constraints are respected. Finally, the `format_test_case` function formats the generated test case into the required input format for the problem.
+
+Note:
+- This generator will produce random test cases within the specified constraints. You might want to add specific scenarios to thoroughly test edge cases and different conditions, such as minimal and maximal values for \( n \), \( m \), \( x \), and \( y \).
+- Printing the test cases with very large values of \( n \) and \( m \) might not be practical for manual inspection, but it is essential for testing the efficiency and correctness of the solution in a competitive programming environment.

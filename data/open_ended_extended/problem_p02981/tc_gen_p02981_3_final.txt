@@ -1,0 +1,28 @@
+Sure! Below is the test case generator for the given problem statement:
+
+```python
+import random
+
+def tcgen():
+    # Generate N within the given constraints
+    N = random.randint(1, 20)
+    
+    # Generate A and B within the given constraints
+    A = random.randint(1, 50)
+    B = random.randint(1, 50)
+    
+    return N, A, B
+
+# Example of how to use the test case generator
+def print_test_case(tc):
+    N, A, B = tc
+    print(f"{N} {A} {B}")
+
+# Generate and print a test case
+test_case = tcgen()
+print_test_case(test_case)
+```
+
+This function `tcgen` generates random test cases according to the constraints provided in the problem statement. It ensures that the values of `N`, `A`, and `B` are within their respective allowable ranges. The `print_test_case` function is provided for convenience to print the generated test case in the required format. 
+
+You can call `tcgen` multiple times to generate as many test cases as needed for thorough testing.

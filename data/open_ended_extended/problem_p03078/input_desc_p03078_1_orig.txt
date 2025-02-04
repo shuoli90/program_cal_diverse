@@ -1,0 +1,31 @@
+An integer X (1 ≤ X ≤ 1000).
+An integer Y (1 ≤ Y ≤ 1000).
+An integer Z (1 ≤ Z ≤ 1000).
+An integer K (1 ≤ K ≤ min(3000, X * Y * Z)).
+A list of integers A of size X, each between 1 and 10^10.
+A list of integers B of size Y, each between 1 and 10^10.
+A list of integers C of size Z, each between 1 and 10^10.
+
+### Example Input:
+
+```
+2 2 2 8
+4 6
+1 5
+3 8
+```
+
+### Function Signature:
+Write a function f(X, Y, Z, K, A, B, C) that takes in the input.
+```python
+def f(X: int, Y: int, Z: int, K: int, A: List[int], B: List[int], C: List[int]):
+    ''' 
+    X: an integer 
+    Y: an integer 
+    Z: an integer 
+    K: an integer 
+    A: a list of integers 
+    B: a list of integers 
+    C: a list of integers 
+    '''
+```

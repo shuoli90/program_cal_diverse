@@ -1,0 +1,26 @@
+Sure, here is a test case generator for the given problem statement:
+
+```python
+import random
+
+def tcgen():
+    # Generate a random even number for n within the given constraints
+    n = random.randint(1, 5 * 10**4) * 2
+    
+    # Generate the sequence v with length n where each element is between 1 and 10^5
+    v = [random.randint(1, 10**5) for _ in range(n)]
+    
+    return n, v
+
+# Example usage:
+# This will generate a test case with n and v
+n, v = tcgen()
+print(n)
+print(" ".join(map(str, v)))
+```
+
+To explain this generator:
+1. **n**: We generate a random even number \( n \) within the constraint \( 2 \leq n \leq 10^5 \). Since \( n \) must be even, we generate a number in the range \( 1 \) to \( 5 \times 10^4 \) and multiply it by 2.
+2. **v**: We generate a list \( v \) of length \( n \) where each element is a random integer between 1 and \( 10^5 \).
+
+This generator produces valid inputs for the problem ensuring that the constraints are respected.

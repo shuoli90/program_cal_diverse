@@ -1,0 +1,36 @@
+Certainly! Based on the problem statement for "Partial String Decomposition," here is a test case generator written in Python:
+
+```python
+import random
+import string
+
+def generate_string(length):
+    return ''.join(random.choice(string.ascii_lowercase) for _ in range(length))
+
+def tcgen():
+    # Generate random lengths for S and T within the given constraints.
+    len_S = random.randint(1, 2 * 10**5)
+    len_T = random.randint(1, 2 * 10**5)
+    
+    # Generate random strings S and T of the given lengths.
+    S = generate_string(len_S)
+    T = generate_string(len_T)
+    
+    # Generate a random integer k within the constraint 1 ≤ k ≤ |T|
+    k = random.randint(1, len_T)
+    
+    return S, T, k
+
+# Example of generating a test case
+S, T, k = tcgen()
+print("S:", S)
+print("T:", T)
+print("k:", k)
+```
+
+This test case generator creates random strings `S` and `T` and a random integer `k` as per the constraints given in the problem statement. It ensures that:
+- `S` and `T` are composed of lowercase alphabets.
+- The lengths of `S` and `T` are within the range [1, 200,000].
+- The integer `k` is within the range [1, len(T)].
+
+To use this test case generator, simply run the code, and it will print out a randomly generated test case for you.

@@ -1,0 +1,335 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p00729 - Generation 2</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p00729 - Generation 2</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>
+Problem B: Analyzing Login/Logout Records
+You have a computer literacy course in your university. In the computer
+system, the login/logout records of all PCs in a day are stored in a
+file.  Although students may use two or more PCs at a time, no one can
+log in to a PC which has been logged in by someone who has not
+logged out of that PC yet.
+You are asked to write a program that calculates the total time of a
+student that he/she used at least one PC in a given time period
+(probably in a laboratory class) based on the records in the file.
+ The following are example login/logout records.
+ The student 1 logged in to the PC 1 at 12:55
+ The student 2 logged in to the PC 4 at 13:00
+ The student 1 logged in to the PC 2 at 13:10
+ The student 1 logged out of the PC 2 at 13:20
+ The student 1 logged in to the PC 3 at 13:30
+ The student 1 logged out of the PC 1 at 13:40
+ The student 1 logged out of the PC 3 at 13:45
+ The student 1 logged in to the PC 1 at 14:20
+ The student 2 logged out of the PC 4 at 14:30
+ The student 1 logged out of the PC 1 at 14:40
+For a query such as "Give usage of the student 1 between 13:00 and
+14:30", your program should answer "55 minutes", that is, the sum of
+45 minutes from 13:00 to 13:45 and 10 minutes from 14:20 to 14:30, as
+depicted in the following figure.
+Input
+The input is a sequence of a number of datasets.
+The end of the input is indicated by a line containing two zeros
+separated by a space.
+The number of datasets never exceeds 10.
+Each dataset is formatted as follows.
+N M 
+r 
+record1
+... 
+recordr 
+q   
+query1
+... 
+queryq 
+The numbers N  and M  in the first line are the numbers of
+PCs and the students, respectively. r  is the number of
+records.  q  is the number of queries.  These four are integers
+satisfying the following.
+1 ≤ N  ≤ 1000, 1 ≤ M  ≤ 10000, 2 ≤ r  ≤ 1000, 1 ≤ q  ≤ 50
+Each record consists of four integers, delimited by a space, as follows.
+t  n  m  s 
+s  is 0 or 1.
+If s  is 1, this line means that the student m  logged in
+to the PC n  at time t .  If s  is 0, it means that
+the student m  logged out of the PC n  at time t .
+The time is expressed as elapsed minutes from 0:00 of the day.
+t , n  and m  satisfy the following.
+540 ≤ t  ≤ 1260,
+1 ≤ n  ≤ N , 1 ≤ m  ≤ M 
+You may assume the following about the records.
+Records are stored in ascending order of time t. 
+  No two records for the same PC has the same time t. 
+  No PCs are being logged in before the time of the first record
+  nor after that of the last record in the file.
+  Login and logout records for one PC appear alternatingly, and each of the login-logout record pairs is for the same student.
+Each query consists of three integers delimited by a space, as follows.
+ts  te  m 
+It represents "Usage of the student m  between 
+ts  and te ".
+ts , te  and m 
+satisfy the following.
+540 ≤ ts  < te  ≤ 1260,
+1 ≤ m  ≤ M 
+Output
+For each query, print a line having a decimal integer indicating the
+time of usage in minutes.  Output lines should not have any character
+other than this number.
+Sample Input
+4 2
+10
+775 1 1 1
+780 4 2 1
+790 2 1 1
+800 2 1 0
+810 3 1 1
+820 1 1 0
+825 3 1 0
+860 1 1 1
+870 4 2 0
+880 1 1 0
+1
+780 870 1
+13 15
+12
+540 12 13 1
+600 12 13 0
+650 13 15 1
+660 12 15 1
+665 11 13 1
+670 13 15 0
+675 11 13 0
+680 12 15 0
+1000 11 14 1
+1060 12 14 1
+1060 11 14 0
+1080 12 14 0
+3
+540 700 13
+600 1000 15
+1000 1200 11
+1 1
+2
+600 1 1 1
+700 1 1 0
+5
+540 600 1
+550 650 1
+610 620 1
+650 750 1
+700 800 1
+0 0
+Output for the Sample Input
+55
+70
+30
+0
+0
+50
+10
+50
+0
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An integer N (1 ≤ N ≤ 1000), representing some quantity or size.
+An integer M (1 ≤ M ≤ 10000), representing some quantity or size.
+An integer r (2 ≤ r ≤ 1000), representing a number of records.
+An integer q (1 ≤ q ≤ 50), representing a number of queries.
+A list of r tuples, where each tuple contains:
+    - An integer t (540 ≤ t ≤ 1260)
+    - An integer n (1 ≤ n ≤ N)
+    - An integer m (1 ≤ m ≤ M)
+    - An integer s (0 or 1)
+A list of q tuples, where each tuple contains:
+    - An integer ts (540 ≤ ts < te ≤ 1260)
+    - An integer te (ts < te ≤ 1260)
+    - An integer m (1 ≤ m ≤ M)
+
+### Example Input:
+
+```
+4 2
+10
+775 1 1 1
+780 4 2 1
+790 2 1 1
+800 2 1 0
+810 3 1 1
+820 1 1 0
+825 3 1 0
+860 1 1 1
+870 4 2 0
+880 1 1 0
+1
+780 870 1
+```
+
+### Function Signature:
+Write a function f(N, M, r, q, records, queries) that takes in the input.
+def f(N: int, M: int, r: int, q: int, records: List[Tuple[int, int, int, int]], queries: List[Tuple[int, int, int]]): 
+    ''' 
+    N: an integer 
+    M: an integer
+    r: an integer
+    q: an integer
+    records: a list of tuples
+    queries: a list of tuples
+    '''</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Sure, I can create a test case generator for the "Analyzing Login/Logout Records" problem statement. The generator will create random datasets that conform to the constraints provided. Here's the code:
+
+```python
+import random
+
+def generate_time():
+    # Generate a random time between 540 and 1260 (inclusive)
+    return random.randint(540, 1260)
+
+def generate_records(N, M, r):
+    records = []
+    for _ in range(r):
+        t = generate_time()
+        n = random.randint(1, N)
+        m = random.randint(1, M)
+        s = random.randint(0, 1)
+        records.append((t, n, m, s))
+    # Sort records by time t to satisfy the problem constraint
+    records.sort(key=lambda x: x[0])
+    return records
+
+def generate_queries(M, q):
+    queries = []
+    for _ in range(q):
+        ts = generate_time()
+        te = generate_time()
+        while te <= ts:
+            te = generate_time()
+        m = random.randint(1, M)
+        queries.append((ts, te, m))
+    return queries
+
+def dataset():
+    # Number of PCs
+    N = random.randint(1, 1000)
+    # Number of students
+    M = random.randint(1, 10000)
+    # Number of records
+    r = random.randint(2, 1000)
+    # Number of queries
+    q = random.randint(1, 50)
+    
+    records = generate_records(N, M, r)
+    queries = generate_queries(M, q)
+    
+    return (N, M, r, records, q, queries)
+
+def tcgen():
+    datasets = []
+    num_datasets = random.randint(1, 10)
+    for _ in range(num_datasets):
+        datasets.append(dataset())
+    
+    return datasets
+
+# Generate and print a sample test case
+if __name__ == "__main__":
+    test_cases = tcgen()
+    for case in test_cases:
+        N, M, r, records, q, queries = case
+        print(N, M)
+        print(r)
+        for record in records:
+            print(*record)
+        print(q)
+        for query in queries:
+            print(*query)
+        print("0 0")
+```
+
+This generator creates a number of datasets (up to 10) each with a random number of PCs, students, records, and queries within the specified ranges. Each record consists of a time, PC number, student number, and a login/logout indicator. The queries ask for usage times for specific students within given time ranges. The generated output is printed in the format required by the problem statement.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    datasets = []
+    while True:
+        N, M = map(int, fh.readline().strip().split())
+        if N == 0 and M == 0:
+            break
+        r = int(fh.readline().strip())
+        records = []
+        for _ in range(r):
+            t, n, m, s = map(int, fh.readline().strip().split())
+            records.append((t, n, m, s))
+        q = int(fh.readline().strip())
+        queries = []
+        for _ in range(q):
+            ts, te, m = map(int, fh.readline().strip().split())
+            queries.append((ts, te, m))
+        datasets.append((N, M, r, records, q, queries))
+    return datasets
+
+# if __name__ == "__main__":
+#     input_path = sys.argv[1]
+#     with open(input_path, 'r') as fh:
+#         datasets = extract_arguments(fh)
+#         for dataset in datasets:
+#             process_dataset(*dataset)</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

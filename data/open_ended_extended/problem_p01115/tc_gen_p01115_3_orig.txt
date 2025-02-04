@@ -1,0 +1,67 @@
+Certainly! Let's write a test case generator to create valid inputs for the "Expression Mining" problem. This generator will produce both the integer `n` and the string `s` representing the arithmetic expression. Given the constraints, the generated test cases will ensure that the length of expressions and the depth of nesting are within allowed limits.
+
+Here's the Python code for the test case generator:
+
+```python
+import random
+
+def generate_expression(depth=0):
+    if depth > 0 and random.choice([True, False]):
+        return f"({generate_expression(depth-1)})"
+    
+    expr_type = random.choice(['single', 'add', 'mult'])
+    
+    if expr_type == 'single':
+        return random.choice('123456789')
+    elif expr_type == 'add':
+        return generate_expression(depth) + '+' + generate_expression(depth)
+    elif expr_type == 'mult':
+        return generate_expression(depth) + '*' + generate_expression(depth)
+    
+def tcgen(num_cases=1):
+    cases = []
+    total_length = 0
+    
+    for _ in range(num_cases):
+        n = random.randint(1, 10**9)
+        max_len = min(2 * 10**6, 5 * 10**6 - total_length)
+        length = random.randint(1, max_len)
+        depth = random.randint(0, 1000)
+        
+        s = generate_expression(depth)
+        
+        while len(s) > length:
+            s = generate_expression(depth)
+        
+        total_length += len(s)
+        cases.append((n, s))
+        
+        if total_length >= 5 * 10**6:
+            break
+    
+    return cases
+
+# Generate test cases
+test_cases = tcgen(num_cases=5)
+
+# Print the test cases
+for n, s in test_cases:
+    print(n)
+    print(s)
+print(0)  # End of input marker
+```
+
+### Explanation:
+
+1. **generate_expression(depth=0)**: This function recursively generates a valid arithmetic expression based on the given grammar. It ensures that the depth of the parentheses does not exceed the specified limit.
+   - If the depth is greater than 0, there is a chance to create a nested expression with parentheses.
+   - Depending on the randomly chosen expression type, it generates a single digit, an addition expression, or a multiplication expression.
+
+2. **tcgen(num_cases=1)**: This function generates multiple test cases.
+   - It initializes the total length of all expressions to ensure it does not exceed the allowed limit.
+   - For each test case, it generates a random target value `n` and a random arithmetic expression `s` with a specified maximum length and depth.
+   - The expressions are generated until their combined length reaches the maximum allowed total length.
+
+3. **Printing the test cases**: After generating the test cases, it prints them according to the problem's input format. Finally, it prints `0` to mark the end of input.
+
+This generator ensures that all generated expressions are valid and conform to the specified constraints, making it suitable for creating diverse test cases for the "Expression Mining" problem.

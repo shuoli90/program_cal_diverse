@@ -1,0 +1,38 @@
+Certainly! Below is the test case generator for the provided problem statement involving a triangular grid with lamps.
+
+```python
+import random
+
+def tcgen():
+    N = random.randint(1, 10**4)
+    
+    lamps = set()
+    while len(lamps) < N:
+        x = random.randint(-10**17, 10**17)
+        y = random.randint(-10**17, 10**17)
+        lamps.add((x, y))
+    
+    lamps_list = list(lamps)
+    
+    return N, lamps_list
+
+def format_input(N, lamps_list):
+    formatted_input = f"{N}\n"
+    for x, y in lamps_list:
+        formatted_input += f"{x} {y}\n"
+    return formatted_input
+
+# Example Usage
+N, lamps_list = tcgen()
+input_data = format_input(N, lamps_list)
+print(input_data)
+```
+
+This script generates a test case for the problem. It creates a random number of lamps `N` within the constraints and ensures that the coordinates of the lamps are unique. It also formats the input to match the expected standard input format for the problem.
+
+### Explanation:
+1. **Generating `N`**: Randomly choose the number of lamps `N` between 1 and 10,000.
+2. **Generating Unique Lamp Coordinates**: Use a set to store unique lamp coordinates. Randomly generate `x` and `y` coordinates in the range \([-10^{17}, 10^{17}]\) until we have `N` unique lamps.
+3. **Formatting the Input**: Convert the set of lamps to a list and format it into the required input format.
+
+The `format_input` function is used to convert the generated test case into the format specified in the problem statement, making it easy to pass the input to your solution for testing.

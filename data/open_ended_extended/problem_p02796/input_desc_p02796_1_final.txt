@@ -1,0 +1,23 @@
+Canonicalized Input Description:
+
+An integer N (1 ≤ N ≤ 100,000), representing some quantity or size.
+A list of N tuples (X_i, L_i), where each X_i (0 ≤ X_i ≤ 10^9) and each L_i (1 ≤ L_i ≤ 10^9).
+
+### Example Input:
+
+```
+4
+2 4
+4 3
+9 3
+100 5
+```
+
+### Function Signature:
+Write a function f(inputs) that takes in the input.
+```python
+def f(inputs: List[Tuple[int, int]]): 
+    ''' 
+    inputs: a list of tuples, where each tuple contains two integers
+    '''
+```

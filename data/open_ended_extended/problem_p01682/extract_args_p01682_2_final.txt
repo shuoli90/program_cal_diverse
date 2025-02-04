@@ -1,0 +1,14 @@
+def extract_arguments(fh):
+    lines = []
+    for line in fh:
+        line = line.strip()
+        if line == '#':
+            break
+        lines.append(line)
+    return lines
+
+# if __name__ == "__main__":
+#     input_path = sys.argv[1]
+#     with open(input_path, 'r') as fh:
+#         inputs = extract_arguments(fh)
+#         f(inputs)

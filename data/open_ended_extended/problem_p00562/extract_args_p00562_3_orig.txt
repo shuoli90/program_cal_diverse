@@ -1,0 +1,12 @@
+def extract_arguments(fh):
+    H, W = map(int, fh.readline().strip().split())
+    A, B, C = map(int, fh.readline().strip().split())
+    N = int(fh.readline().strip())
+    positions = [tuple(map(int, fh.readline().strip().split())) for _ in range(N)]
+    return H, W, A, B, C, N, positions
+
+# if __name__ == "__main__":
+#     input_path = sys.argv[1]
+#     with open(input_path, 'r') as fh: 
+#     H, W, A, B, C, N, positions = extract_arguments(fh)
+#     f(H, W, A, B, C, N, positions)

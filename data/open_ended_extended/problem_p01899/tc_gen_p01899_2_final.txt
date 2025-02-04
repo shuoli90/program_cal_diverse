@@ -1,0 +1,32 @@
+Certainly! Here is a Python function to generate test cases for the "Yamanote-line Game" problem:
+
+```python
+import random
+
+def tcgen():
+    # N is the number of stations
+    N = random.randint(3, 1000)
+    
+    # d is the fare to ride the Yamanote-line modoki
+    d = random.randint(1, 1000)
+    
+    # p is the list of rewards at each station
+    p = [random.randint(1, 1000) for _ in range(N)]
+    
+    return N, d, p
+
+# Generate a test case and print it in the required format
+N, d, p = tcgen()
+print(N, d)
+print(" ".join(map(str, p)))
+```
+
+This function generates random values for the number of stations \(N\), the fare \(d\), and the rewards \(p[i]\) for each station within the provided constraints. It then prints the test case in the required format.
+
+You can use this function to generate various test cases for the "Yamanote-line Game" problem. Here's how it works:
+
+1. `N` is randomly chosen between 3 and 1000.
+2. `d` is randomly chosen between 1 and 1000.
+3. `p` is a list of \(N\) integers, each randomly chosen between 1 and 1000.
+
+You can run this function multiple times to generate different test cases for testing your solution.

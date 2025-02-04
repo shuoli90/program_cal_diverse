@@ -1,0 +1,21 @@
+Sure, I can help you write a test case generator for the given problem statement. Here is the Python code for the test case generator:
+
+```python
+import random
+
+def tcgen():
+    # Length of the string |S| is between 2 and 2 * 10^5.
+    length = random.randint(2, 2 * 10**5)
+
+    # The string S consists of characters 'a', 'b', and 'c'.
+    S = ''.join(random.choice(['a', 'b', 'c']) for _ in range(length))
+
+    return S
+
+# Example usage
+if __name__ == "__main__":
+    test_case = tcgen()
+    print(test_case)
+```
+
+This generator function creates a random string \( S \) of length between 2 and 200,000, with each character being randomly chosen from 'a', 'b', and 'c'. You can use this function to generate test cases for the problem statement.

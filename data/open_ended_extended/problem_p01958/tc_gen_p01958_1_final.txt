@@ -1,0 +1,35 @@
+Sure! Let's build a test case generator for the "Prime-Factor Prime" problem. This generator will create random intervals `[l, r]` according to the constraints given in the problem statement.
+
+Here's the Python code to generate such test cases:
+
+```python
+import random
+
+def tcgen():
+    # Generate l and r such that 1 ≤ l ≤ r ≤ 10^9 and 0 ≤ r - l < 1,000,000
+    l = random.randint(1, 10**9 - 999999)  # Ensuring that r can go up to 10^9
+    r = l + random.randint(0, 999999)
+    
+    return l, r
+
+# Example usage
+for _ in range(5):
+    l, r = tcgen()
+    print(l, r)
+```
+
+### Explanation:
+
+1. **Generating `l`**: 
+   - We use `random.randint(1, 10**9 - 999999)` to ensure that `l` is within the range `[1, 10^9 - 999999]`. This ensures that adding a number between `0` and `999999` to `l` will keep `r` within the limit of `10^9`.
+
+2. **Generating `r`**: 
+   - We set `r` as `l + random.randint(0, 999999)` to ensure that the difference `r - l` is always less than `1,000,000`.
+
+3. **Output**: 
+   - The generator returns a tuple `(l, r)` which represents the interval.
+
+### Example usage:
+The example usage part of the code generates and prints 5 random test cases.
+
+Feel free to run the code to generate test cases for the "Prime-Factor Prime" problem!

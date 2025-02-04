@@ -1,0 +1,17 @@
+An integer M (1 ≤ M ≤ 50), representing some quantity or size.
+A list of strings S of size M, where each string consists of uppercase letters, lowercase letters, digits, and symbols, and is within 100 characters.
+
+### Example Input:
+
+```
+2
+ab@5C1@8050
+@99+1=1@90
+```
+
+### Function Signature:
+Write a function f(inputs) that takes in the input.
+def f(inputs: List[str]):
+    '''
+    inputs: a list of strings
+    '''

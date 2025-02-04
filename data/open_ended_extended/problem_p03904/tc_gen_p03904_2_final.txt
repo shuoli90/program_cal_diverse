@@ -1,0 +1,44 @@
+Sure, I can help you create a test case generator for the described problem. Below is the Python code for the test case generator:
+
+```python
+import random
+
+def tcgen():
+    # Generate a random length for the string S within the given constraints
+    max_length = 100000
+    S_length = random.randint(1, max_length)
+    
+    # Generate a random string S consisting of digits between 1 and 9
+    S = ''.join(random.choice('123456789') for _ in range(S_length))
+    
+    # Generate a random value for K such that 0 ≤ K < |S|
+    K = random.randint(0, S_length - 1)
+    
+    return K, S
+
+# Example of generating a test case and printing it
+K, S = tcgen()
+print(K)
+print(S)
+```
+
+### Explanation
+
+1. **String Length (`S_length`)**: The length of the string \(S\) is randomly chosen between 1 and 100,000 (inclusive).
+2. **String Generation (`S`)**: A string of length `S_length` is generated, consisting of random digits between 1 and 9.
+3. **Commas (`K`)**: A random integer \(K\) is generated such that \(0 \leq K < \text{length of } S\).
+
+### Usage
+
+Run the above script to generate a random test case. The generated test case will consist of an integer \(K\) and a string \(S\) that can be used to test the solution for the problem. Each run of the script will produce different random values for \(K\) and \(S\) within the specified constraints.
+
+### Example Output
+
+Here is an example of what the output might look like when you run the script:
+
+```
+5234
+827364928364928374928374987234987234987234897234987
+```
+
+This output can be used as input for the problem statement.

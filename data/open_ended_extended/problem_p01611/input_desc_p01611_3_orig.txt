@@ -1,0 +1,27 @@
+Canonicalized Input Description:
+
+An integer N (1 ≤ N ≤ 10^5), representing some quantity or size.
+An integer A (1 ≤ A ≤ 26), representing some quantity or size.
+An integer K (1 ≤ K ≤ 10^18), representing some quantity or size.
+A list of integers SA of size N, where each integer is between 1 and N and all integers are unique.
+
+### Example Input:
+
+```
+3 4 2
+2
+1
+3
+```
+
+### Function Signature:
+Write a function f(N, A, K, SA) that takes in the input.
+```python
+def f(N: int, A: int, K: int, SA: List[int]):
+    '''
+    N: an integer
+    A: an integer
+    K: an integer
+    SA: a list of integers
+    '''
+```

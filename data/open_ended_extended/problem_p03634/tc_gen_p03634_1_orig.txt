@@ -1,0 +1,73 @@
+To create a test case generator for the given problem, we'll generate a tree structure with \(N\) vertices, random edges with lengths, and multiple queries. Here's a detailed step-by-step solution:
+
+1. **Generate Vertices and Edges:**
+    - We need to generate \(N-1\) edges to form a tree.
+    - Ensure the tree remains connected by using a union-find (disjoint-set) structure or simply connecting a new node to any of the existing nodes.
+
+2. **Generate Edge Lengths:**
+    - Each edge length \(c_i\) should be a random integer between 1 and \(10^9\).
+
+3. **Generate Queries:**
+    - Each query should consist of two vertices \(x_j\) and \(y_j\) (both different and neither equal to \(K\)).
+    - Generate \(Q\) such queries.
+
+4. **Constraints:**
+    - \(3 \leq N \leq 10^5\)
+    - \(1 \leq c_i \leq 10^9\)
+    - \(1 \leq Q \leq 10^5\)
+    - Vertices in queries should not be the same and should not be equal to \(K\).
+
+Here's the Python code for the test case generator:
+
+```python
+import random
+
+def generate_tree_edges(N):
+    edges = []
+    for i in range(2, N+1):
+        u = i
+        v = random.randint(1, i-1)  # Connect to any vertex that is already part of the tree
+        c = random.randint(1, 10**9)
+        edges.append((u, v, c))
+    return edges
+
+def generate_queries(N, Q, K):
+    queries = []
+    for _ in range(Q):
+        while True:
+            x = random.randint(1, N)
+            y = random.randint(1, N)
+            if x != y and x != K and y != K:
+                break
+        queries.append((x, y))
+    return queries
+
+def tcgen():
+    N = random.randint(3, 10**5)
+    edges = generate_tree_edges(N)
+    
+    Q = random.randint(1, 10**5)
+    K = random.randint(1, N)
+    
+    queries = generate_queries(N, Q, K)
+    
+    input_data = f"{N}\n"
+    input_data += "\n".join(f"{u} {v} {c}" for u, v, c in edges)
+    input_data += f"\n{Q} {K}\n"
+    input_data += "\n".join(f"{x} {y}" for x, y in queries)
+    
+    return input_data
+
+# Example usage
+print(tcgen())
+```
+
+**Explanation:**
+
+1. **generate_tree_edges(N):** This function generates \(N-1\) edges to form a connected tree. Each edge connects a new vertex \(i\) to any previous vertex \(v\) ensuring connectivity.
+
+2. **generate_queries(N, Q, K):** This function generates \(Q\) queries. It ensures that the vertices \(x\) and \(y\) in each query are different and neither is equal to \(K\).
+
+3. **tcgen():** This function calls the above helper functions to generate the tree and queries, formats them as a single input string, and returns it.
+
+You can place this generator script in your testing environment to generate and verify multiple test cases for the problem.

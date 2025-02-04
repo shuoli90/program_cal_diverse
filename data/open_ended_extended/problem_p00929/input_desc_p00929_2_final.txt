@@ -1,0 +1,24 @@
+An integer N (3 ≤ N ≤ 500), representing some quantity or size.
+An integer M (N-1 ≤ M ≤ min(50000, N(N-1)/2)), representing some quantity or size.
+M tuples of three integers (S_i, D_i, C_i) where (1 ≤ S_i < D_i ≤ N) and (1 ≤ C_i ≤ 10000).
+
+### Example Input:
+
+```
+4 4
+1 2 3
+1 3 3
+2 3 3
+2 4 3
+```
+
+### Function Signature:
+Write a function f(N, M, bridges) that takes in the input.
+```python
+def f(N: int, M: int, bridges: List[Tuple[int, int, int]]):
+    '''
+    N: an integer
+    M: an integer
+    bridges: a list of tuples, each containing three integers
+    '''
+```

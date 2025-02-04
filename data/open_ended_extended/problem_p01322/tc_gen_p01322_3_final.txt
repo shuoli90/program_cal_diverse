@@ -1,0 +1,51 @@
+Sure, I can help you create a test case generator for the given problem statement "Lottery Checker". Below is the code to generate random test cases for this problem:
+
+```python
+import random
+import string
+
+def generate_winning_number():
+    """ Generates an 8-digit winning number with possible '*' characters. """
+    number = ''.join(random.choice(string.digits + '*') for _ in range(8))
+    # Ensure at least one digit is not '*', so it's a valid matchable pattern
+    if '*' not in number:
+        index = random.randint(0, 7)
+        number = number[:index] + '*' + number[index + 1:]
+    return number
+
+def generate_ticket_number():
+    """ Generates a random 8-digit ticket number. """
+    return ''.join(random.choice(string.digits) for _ in range(8))
+
+def tcgen():
+    n = random.randint(1, 100)  # number of winning numbers
+    m = random.randint(1, 1000)  # number of lottery tickets
+
+    winning_numbers = []
+    for _ in range(n):
+        winning_number = generate_winning_number()
+        prize_money = random.randint(1, 1000000)
+        winning_numbers.append((winning_number, prize_money))
+
+    lottery_tickets = [generate_ticket_number() for _ in range(m)]
+
+    return n, m, winning_numbers, lottery_tickets
+
+# Example usage:
+n, m, winning_numbers, lottery_tickets = tcgen()
+
+# Printing the test case in the specified format
+print(n, m)
+for number, prize in winning_numbers:
+    print(number, prize)
+for ticket in lottery_tickets:
+    print(ticket)
+```
+
+This test case generator produces:
+- `n`: The number of winning numbers (between 1 and 100).
+- `m`: The number of lottery tickets you have (between 1 and 1000).
+- A list of `n` winning numbers, each paired with a prize money amount.
+- A list of `m` lottery tickets.
+
+The winning numbers are generated with a mix of digits and '*' characters, ensuring at least one character is a digit. The lottery tickets are purely 8-digit numbers. The output is formatted as described in the problem statement.

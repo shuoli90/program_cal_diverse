@@ -1,0 +1,140 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p03066 - Generation 3</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p03066 - Generation 3</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>
+Score : 800 points
+Problem StatementFind the number, modulo 998244353, of sequences of length N consisting of 0, 1 and 2 such that none of their contiguous subsequences totals to X.
+Constraints
+1 \leq N \leq 3000
+1 \leq X \leq 2N
+N and X are integers.
+InputInput is given from Standard Input in the following format:
+N X
+OutputPrint the number, modulo 998244353, of sequences that satisfy the condition.
+Sample Input 13 3
+Sample Output 114
+14 sequences satisfy the condition: (0,0,0),(0,0,1),(0,0,2),(0,1,0),(0,1,1),(0,2,0),(0,2,2),(1,0,0),(1,0,1),(1,1,0),(2,0,0),(2,0,2),(2,2,0) and (2,2,2).
+Sample Input 28 6
+Sample Output 21179
+Sample Input 310 1
+Sample Output 31024
+Sample Input 49 13
+Sample Output 418402
+Sample Input 5314 159
+Sample Output 5459765451
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An integer N (1 ≤ N ≤ 3000), representing some quantity or size.
+An integer X (1 ≤ X ≤ 2N), representing some other quantity or size.
+
+### Example Input:
+
+```
+13 3
+```
+
+### Function Signature:
+Write a function f(N, X) that takes in the input. 
+def f(N: int, X: int):
+    ''' 
+    N: an integer 
+    X: an integer 
+    '''</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Certainly! Here's a test case generator for the given problem statement:
+
+```python
+import random
+
+MOD = 998244353
+
+def tcgen():
+    N = random.randint(1, 3000)
+    X = random.randint(1, 2 * N)
+    return N, X
+
+def test_case_to_input(N, X):
+    return f"{N} {X}\n"
+
+# Example usage
+if __name__ == "__main__":
+    for _ in range(5):  # Generate 5 test cases
+        N, X = tcgen()
+        print(test_case_to_input(N, X))
+```
+
+### Explanation:
+1. **Function `tcgen()`**: This function generates random values for \( N \) and \( X \) within the given constraints.
+   - \( N \) is generated as a random integer between 1 and 3000.
+   - \( X \) is generated as a random integer between 1 and \( 2N \).
+
+2. **Function `test_case_to_input(N, X)`**: This function formats the test case into the required input format as a string.
+
+3. **Example Usage**: The `if __name__ == "__main__":` block generates and prints 5 test cases.
+
+You can adjust the number of test cases by changing the range in the for loop. Each test case is formatted correctly to match the input specifications of the problem.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    N, X = map(int, fh.readline().strip().split())
+    return N, X</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

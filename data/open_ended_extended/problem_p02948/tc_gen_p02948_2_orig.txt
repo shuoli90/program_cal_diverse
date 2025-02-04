@@ -1,0 +1,33 @@
+Certainly! Here is the test case generator for the given problem statement:
+
+```python
+import random
+
+def tcgen():
+    # Define constraints
+    N = random.randint(1, 10**5)
+    M = random.randint(1, 10**5)
+    
+    A = [random.randint(1, 10**5) for _ in range(N)]
+    B = [random.randint(1, 10**4) for _ in range(N)]
+    
+    return N, M, A, B
+
+def generate_test_case():
+    N, M, A, B = tcgen()
+    print(f"{N} {M}")
+    for i in range(N):
+        print(f"{A[i]} {B[i]}")
+
+# Example of generating and printing a test case
+generate_test_case()
+```
+
+### Explanation
+
+1. **N**: The number of jobs, randomly chosen between 1 and \(10^5\).
+2. **M**: The maximum number of days, randomly chosen between 1 and \(10^5\).
+3. **A**: A list of integers representing the days after which the reward will be earned, randomly chosen between 1 and \(10^5\).
+4. **B**: A list of integers representing the rewards for each job, randomly chosen between 1 and \(10^4\).
+
+This script generates a random valid test case according to the problem constraints. You can run `generate_test_case()` to print the test case in the required format.

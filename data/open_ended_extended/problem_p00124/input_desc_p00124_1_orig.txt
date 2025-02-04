@@ -1,0 +1,32 @@
+An integer \( n \) (1 ≤ \( n \) ≤ 10), representing some quantity or size. The number of data sets will not exceed 50.
+Multiple lines follow, with each line containing:
+- A string (up to 20 alphabets) representing a name.
+- Three integers \( w \), \( l \), \( d \) (0 ≤ \( w, l, d \) ≤ 9), representing some quantities.
+
+The input ends when \( n = 0 \).
+
+### Example Input:
+
+```
+4
+TeamA 1 0 2
+TeamB 1 2 0
+TeamC 0 2 1
+TeamD 2 0 1
+3
+TeamE 0 2 0
+TeamF 1 0 1
+TeamG 1 0 1
+0
+```
+
+### Function Signature:
+Write a function `f(inputs)` that takes in the input.
+```python
+def f(inputs: List[Tuple[int, List[Tuple[str, int, int, int]]]]):
+    '''
+    inputs: a list of tuples, where each tuple consists of:
+        - an integer
+        - a list of tuples, each containing a string and three integers
+    '''
+```

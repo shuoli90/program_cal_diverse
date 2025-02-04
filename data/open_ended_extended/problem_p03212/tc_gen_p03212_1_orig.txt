@@ -1,0 +1,46 @@
+Certainly! Below is a test case generator for the problem statement that counts the number of Shichi-Go-San numbers between 1 and N.
+
+### Test Case Generator
+
+```python
+import random
+
+def tcgen():
+    N = random.randint(1, 10**9)
+    return N
+
+# Example usage:
+print(tcgen())
+```
+
+### Explanation of the Generator
+
+1. **Random Integer Generation**: The generator will produce a single integer \( N \) within the specified range \( 1 \leq N < 10^9 \).
+2. **Output**: The function returns this integer \( N \) which then can be used as an input to the solution function.
+
+### Example Outputs from the Generator
+
+Here are a few example outputs that the generator might produce:
+
+- 52346789
+- 1000000
+- 987654321
+
+You can use these generated test cases to check the correctness and performance of your solution for the Shichi-Go-San numbers problem.
+
+### Python Script to Run the Generator
+
+```python
+import random
+
+def tcgen():
+    N = random.randint(1, 10**9)
+    return N
+
+if __name__ == "__main__":
+    # Generate and print a test case
+    test_case = tcgen()
+    print(test_case)
+```
+
+This script will generate a random test case each time it's run, which can help in thorough testing of the solution to ensure it works for a wide range of inputs.

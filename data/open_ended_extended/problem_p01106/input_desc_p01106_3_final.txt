@@ -1,0 +1,18 @@
+An integer n (1 ≤ n ≤ 60), an integer i (1 ≤ i ≤ 2^n), an integer j (1 ≤ j ≤ 2^n). 
+
+### Example Input:
+```
+3 3 2
+12 578 2214
+59 471605241352156968 431565444592236940
+0 0 0
+```
+
+### Function Signature:
+Write a function f(inputs) that takes in the input.
+```python
+def f(inputs: List[Tuple[int, int, int]]):
+    '''
+    inputs: a list of tuples, each containing three integers
+    '''
+```

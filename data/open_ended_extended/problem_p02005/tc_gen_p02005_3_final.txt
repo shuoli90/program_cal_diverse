@@ -1,0 +1,46 @@
+Sure! Below is a Python function to generate test cases for the "Colorful Drink" problem.
+
+```python
+import random
+import string
+
+def generate_random_string(length):
+    return ''.join(random.choices(string.ascii_lowercase, k=length))
+
+def tcgen():
+    # Number of prepared colored liquids (1 ≤ N ≤ 10^5)
+    N = random.randint(1, 10**5)
+    
+    # Generating N prepared colored liquids
+    liquids = []
+    for _ in range(N):
+        C_i = generate_random_string(random.randint(1, 20))  # Color name of length between 1 and 20
+        D_i = random.randint(1, 10**5)  # Density between 1 and 10^5
+        liquids.append((C_i, D_i))
+    
+    # Number of color layers of a drink request (1 ≤ M ≤ 10^5)
+    M = random.randint(1, 10**5)
+    
+    # Generating M color layers for the drink request
+    layers = []
+    for _ in range(M):
+        O_i = generate_random_string(random.randint(1, 20))  # Color name of length between 1 and 20
+        layers.append(O_i)
+    
+    return N, liquids, M, layers
+
+# Example of generating a test case
+N, liquids, M, layers = tcgen()
+
+# Print the test case in the required format
+print(N)
+for color, density in liquids:
+    print(color, density)
+print(M)
+for layer in layers:
+    print(layer)
+```
+
+This function `tcgen` generates a random test case for the "Colorful Drink" problem. It creates a random number of colored liquids and a random number of color layers for the drink request. The generated test case is then printed in the required format.
+
+You can use this function to generate multiple test cases for testing purposes.

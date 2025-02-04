@@ -1,0 +1,14 @@
+An uppercase English string S with length between 9 and 50, inclusive, that ends with the substring "FESTIVAL".
+
+### Example Input:
+
+```
+CODEFESTIVAL
+```
+
+### Function Signature:
+Write a function f(S) that takes in the input.
+def f(S: str): 
+    ''' 
+    S: a string 
+    '''

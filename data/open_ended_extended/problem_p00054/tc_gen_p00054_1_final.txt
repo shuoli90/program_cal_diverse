@@ -1,0 +1,43 @@
+Sure, I can help you write a test case generator for the "Sum of Decimal Digits" problem. Below is the implementation of the generator:
+
+```python
+import random
+
+def tcgen():
+    datasets = []
+    num_datasets = random.randint(1, 100)
+    
+    for _ in range(num_datasets):
+        a = random.randint(1, 1000)
+        b = random.randint(1, 10000)
+        n = random.randint(1, 100)
+        datasets.append((a, b, n))
+    
+    return datasets
+
+def print_test_cases(datasets):
+    for a, b, n in datasets:
+        print(f"{a} {b} {n}")
+
+# Generate and print test cases
+datasets = tcgen()
+print_test_cases(datasets)
+```
+
+### Explanation of the Test Case Generator:
+
+1. **`tcgen()` Function**:
+   - Generates a random number of datasets (between 1 and 100).
+   - For each dataset, it randomly selects values for `a` (1 to 1000), `b` (1 to 10000), and `n` (1 to 100).
+   - Stores each dataset as a tuple `(a, b, n)` in a list `datasets`.
+   - Returns the list `datasets`.
+
+2. **`print_test_cases()` Function**:
+   - Accepts the list of datasets.
+   - Prints each dataset in the required format.
+
+3. **Usage**:
+   - The function `tcgen()` is called to generate random datasets.
+   - The `print_test_cases()` function is called with the generated datasets to print them in the required format.
+
+You can run this script to generate a random set of test cases for the "Sum of Decimal Digits" problem. Each time you run it, you will get a different set of test cases.

@@ -1,0 +1,173 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p00539 - Generation 2</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p00539 - Generation 2</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>JOI Park
+In preparation for the Olympics to be held in the IOI country in 20XX, it was decided to develop the JOI Park in the IOI country. JOI Park has N squares, and the squares are numbered from 1 to N. There are M roads that connect the squares, and the roads are numbered from 1 to M. Road i (1 ≤ i ≤ M) connects square Ai and square Bi bidirectionally, and its length is Di. It is possible to reach any square from any other square by following some roads.
+In the development plan, first, an integer X greater than or equal to 0 is chosen, and all squares (including square 1) whose distance from square 1 is less than or equal to X are connected by an underground passage. Here, the distance between square i and square j is the minimum sum of the lengths of the roads that are traveled to go from square i to square j. The integer C related to the cost of building underground passages is determined in the development plan. The cost of building an underground passage is C × X.
+Next, all roads that connect squares by an underground passage are removed. There is no cost for removing the roads. Finally, all the remaining roads are repaired. The cost of repairing a road of length d is d. There are no underground passages in the JOI Park before the development plan is implemented. Find the minimum sum of the costs required for development of the JOI Park.
+Task
+Given the information about the squares in the JOI Park and an integer related to the cost of building underground passages, write a program to find the minimum sum of the costs required for development of the JOI Park.
+Input
+The data is read from standard input in the following format:
+ The first line contains three integers N, M, and C, separated by a single space, indicating that there are N squares, M roads, and the integer related to the cost of building underground passages is C.
+ Among the following M lines, the i-th line (1 ≤ i ≤ M) contains three integers Ai, Bi, and Di, separated by a single space, indicating that road i connects square Ai and square Bi with a length of Di.
+Output
+Print a single integer to standard output, indicating the minimum sum of the costs required for development of the JOI Park.
+Constraints
+For all input data, the following conditions hold.
+ 2 ≤ N ≤ 100,000.
+ 1 ≤ M ≤ 200,000.
+ 1 &le</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An integer N (2 ≤ N ≤ 100,000), representing some quantity or size.
+An integer M (1 ≤ M ≤ 200,000), representing some quantity or size.
+An integer C, representing some cost-related parameter.
+M lines follow, each containing three integers Ai, Bi (1 ≤ Ai, Bi ≤ N), and Di (1 ≤ Di ≤ 1,000,000), representing connections and distances.
+
+### Example Input:
+
+```
+5 7 10
+1 2 3
+2 3 4
+3 4 5
+4 5 6
+5 1 7
+2 4 8
+3 5 9
+```
+
+### Function Signature:
+Write a function f(N, M, C, connections) that takes in the input.
+def f(N: int, M: int, C: int, connections: List[Tuple[int, int, int]]):
+    '''
+    N: an integer
+    M: an integer
+    C: an integer
+    connections: a list of tuples, each containing three integers
+    '''</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Certainly! To generate test cases for the JOI Park problem, we'll need to create a function that outputs random but valid inputs that adhere to the constraints specified. Here's the implementation:
+
+```python
+import random
+
+def tcgen():
+    # Constraints
+    N = random.randint(2, 100000)  # Number of squares
+    M = random.randint(1, 200000)  # Number of roads
+    C = random.randint(1, 10000)   # Cost related to building underground passages
+
+    roads = []
+    for _ in range(M):
+        Ai = random.randint(1, N)
+        Bi = random.randint(1, N)
+        while Bi == Ai:  # Ensure Bi is different from Ai to avoid self-loops
+            Bi = random.randint(1, N)
+        Di = random.randint(1, 1000)  # Length of the road
+        roads.append((Ai, Bi, Di))
+
+    return N, M, C, roads
+
+def format_test_case(N, M, C, roads):
+    test_case = f"{N} {M} {C}\n"
+    for Ai, Bi, Di in roads:
+        test_case += f"{Ai} {Bi} {Di}\n"
+    return test_case
+
+# Example usage
+N, M, C, roads = tcgen()
+print(format_test_case(N, M, C, roads))
+```
+
+### Explanation:
+
+1. **N, M, and C Generation:**
+   - We generate \(N\) randomly between 2 and 100,000.
+   - We generate \(M\) randomly between 1 and 200,000.
+   - The cost \(C\) is randomly generated between 1 and 10,000.
+
+2. **Roads Generation:**
+   - For each road, we randomly choose two different squares \(A_i\) and \(B_i\) between 1 and \(N\).
+   - We ensure that \(A_i \neq B_i\) to avoid self-loops.
+   - The length \(D_i\) of each road is randomly chosen between 1 and 1000.
+
+3. **Formatting:**
+   - The function `format_test_case` converts the generated data into the format required for the problem input.
+
+This generator will create random but valid test cases within the given constraints. You can call the `tcgen` function multiple times to generate different test cases.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    N, M, C = map(int, fh.readline().strip().split())
+    roads = []
+    for _ in range(M):
+        Ai, Bi, Di = map(int, fh.readline().strip().split())
+        roads.append((Ai, Bi, Di))
+    return N, M, C, roads
+
+# Example usage, assuming input is read from a file handle `fh`
+# if __name__ == "__main__":
+#     with open('input.txt', 'r') as fh:
+#         N, M, C, roads = extract_arguments(fh)
+#         print(N, M, C, roads)</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

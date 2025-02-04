@@ -1,0 +1,188 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p00167 - Generation 3</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p00167 - Generation 3</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>Bubble Sort
+Sorting algorithms are essential basic algorithms in computer science for arranging data. For example, sorting an array of integer values in ascending order is a sorting operation, as shown in the figure below.
+Many sorting algorithms have been developed, but one of the basic algorithms is bubble sort. For example, let's try to arrange an given array of integers in ascending order using bubble sort.
+In bubble sort, at each calculation step, the array is divided into a "sorted part" and an "unsorted part". At the beginning, the entire array becomes the unsorted part.
+Starting from the beginning of the unsorted part, adjacent elements are compared (green elements in the figure), and they are swapped so that the larger value comes to the right. If the two values are equal, they are not swapped.
+Repeat this process until the end of the unsorted part (white elements in the figure). Finally, add the end to the sorted part (blue elements), and one step is completed.
+Repeat this step until the length of the unsorted part becomes 1.
+When the length of the unsorted part becomes 1, the sorting process is finished.
+Now, create a program that takes an array of n numbers as input and sorts them in ascending order from the beginning of the array using the above bubble sort procedure, and outputs the number of array element swaps required.
+Input
+The input consists of multiple datasets. The end of the input is indicated by a single zero.
+Each dataset is given in the following format.
+n
+a1
+a2
+:
+an
+The first line contains the number of numbers n (1 ≤ n ≤ 100), and the following n lines contain the i-th number ai (1 ≤ ai ≤ 1000000).
+The number of datasets does not exceed 20.
+Output
+For each dataset, output the number of swaps required to sort the data elements in one line.
+Sample Input
+5
+5
+3
+2
+1
+4
+6
+1
+2
+3
+4
+5
+6
+3
+3
+2
+1
+0
+Output for the Sample Input
+7
+0
+3
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An integer n (1 ≤ n ≤ 100), followed by n integers, each between 1 and 1,000,000. The end of input is indicated by a single zero. The input consists of multiple datasets, not exceeding 20.
+
+### Example Input:
+
+```
+5
+5
+3
+2
+1
+4
+6
+1
+2
+3
+4
+5
+6
+3
+3
+2
+1
+0
+```
+
+### Function Signature:
+Write a function f(inputs) that takes in the input.
+```python
+def f(inputs: List[Tuple[int, List[int]]]):
+    '''
+    inputs: a list of tuples, each containing an integer and a list of integers
+    '''
+```</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Sure! Here is a test case generator for the Bubble Sort problem:
+
+```python
+import random
+
+def generate_single_test_case():
+    n = random.randint(1, 100)
+    a = [random.randint(1, 1000000) for _ in range(n)]
+    return n, a
+
+def tcgen():
+    test_cases = []
+    num_datasets = random.randint(1, 20)  # The number of datasets does not exceed 20
+    
+    for _ in range(num_datasets):
+        n, a = generate_single_test_case()
+        test_cases.append((n, a))
+    
+    # Adding the termination line
+    test_cases.append((0, []))
+    
+    return test_cases
+
+# Example of how to use the generator
+if __name__ == "__main__":
+    test_cases = tcgen()
+    with open("test_cases.txt", "w") as f:
+        for n, a in test_cases:
+            f.write(f"{n}\n")
+            for num in a:
+                f.write(f"{num}\n")
+```
+
+This code will generate test cases for the Bubble Sort problem adhering to the constraints provided. Each test case will be written in the format specified in the problem statement. The file `test_cases.txt` will end with a `0` to indicate the end of the input. This can be adjusted as needed based on how you want to handle the test cases.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    datasets = []
+    while True:
+        n = int(fh.readline().strip())
+        if n == 0:
+            break
+        a = [int(fh.readline().strip()) for _ in range(n)]
+        datasets.append((n, a))
+    return datasets</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

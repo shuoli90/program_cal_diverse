@@ -1,0 +1,44 @@
+Sure, here is a test case generator for the given problem statement:
+
+```python
+import random
+
+def tcgen():
+    N = random.randint(1, 1000)
+    M = random.randint(1, 1000)
+    K = random.randint(0, N * M)
+    
+    return N, M, K
+
+# Example usage to generate a test case
+if __name__ == "__main__":
+    N, M, K = tcgen()
+    print(N, M, K)
+```
+
+### Explanation:
+1. **N**: Number of rows in the grid, chosen randomly between 1 and 1000.
+2. **M**: Number of columns in the grid, chosen randomly between 1 and 1000.
+3. **K**: Number of black squares desired, chosen randomly between 0 and \(N \times M\).
+
+### Example Output:
+Running the `tcgen()` function will produce outputs in the format:
+```
+N M K
+```
+where `N`, `M`, and `K` are integers that meet the problem's constraints.
+
+### Sample Outputs:
+1. `tcgen()` might generate:
+   ```
+   500 600 150000
+   ```
+   This would mean a grid of 500 rows and 600 columns, and the goal is to have exactly 150000 black squares.
+
+2. Another run might generate:
+   ```
+   1000 1000 500000
+   ```
+   This would mean a grid of 1000 rows and 1000 columns, and the goal is to have exactly 500000 black squares.
+
+This generator ensures that all possible edge cases and typical scenarios are covered by randomizing within the problem constraints.

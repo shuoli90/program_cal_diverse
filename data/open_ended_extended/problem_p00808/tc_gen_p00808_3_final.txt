@@ -1,0 +1,63 @@
+To generate test cases for the "Young, Poor and Busy" problem, we need to create a function that generates random train schedules and fares while adhering to the constraints provided in the problem statement. Here is a test case generator in Python for this problem:
+
+```python
+import random
+import string
+
+def random_time():
+    hour = random.randint(0, 23)
+    minute = random.randint(0, 59)
+    return f"{hour:02}:{minute:02}"
+
+def random_city():
+    length = random.randint(1, 16)
+    return ''.join(random.choices(string.ascii_uppercase + string.ascii_lowercase, k=length)).capitalize()
+
+def generate_schedule(num_connections):
+    schedule = []
+    cities = [random_city() for _ in range(100)]
+    
+    for _ in range(num_connections):
+        start_city = random.choice(cities)
+        arrival_city = random.choice(cities)
+        
+        while arrival_city == start_city:
+            arrival_city = random.choice(cities)
+        
+        start_time = random_time()
+        arrival_time = random_time()
+        
+        # Ensure arrival time is strictly after start time
+        while arrival_time <= start_time:
+            arrival_time = random_time()
+        
+        price = random.randint(1, 10000)
+        schedule.append(f"{start_city} {start_time} {arrival_city} {arrival_time} {price}")
+    
+    return schedule
+
+def tcgen():
+    num_data_sets = random.randint(1, 10)  # Generate up to 10 data sets for variety
+    data_sets = []
+    
+    for _ in range(num_data_sets):
+        num_connections = random.randint(1, 2000)
+        schedule = generate_schedule(num_connections)
+        data_sets.append(f"{num_connections}\n" + "\n".join(schedule))
+    
+    return "\n".join(data_sets) + "\n0"  # End of input marker
+
+# Example of generating a test case and printing it
+print(tcgen())
+```
+
+### Explanation:
+1. **random_time**: Generates a random time in HH:MM format.
+2. **random_city**: Generates a random city name with up to 16 alphabetical characters.
+3. **generate_schedule**: Creates a schedule of connections based on the number of connections required. Ensures that arrival time is strictly after the start time and that the start and arrival cities are different.
+4. **tcgen**: Generates multiple data sets. Each data set contains a random number of connections (up to 2000). The function ends the input with a '0' to signal the end of data sets.
+
+### Usage:
+The `tcgen` function generates a complete set of test cases in the format expected by the problem. The generated test cases can be directly used to test the solution of the given problem.
+
+Feel free to adjust the parameters (such as the number of data sets and connections) to generate a more diverse and comprehensive set of test cases.

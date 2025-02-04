@@ -1,0 +1,50 @@
+Sure! Here is a test case generator for the "Deadly Dice Game" problem:
+
+```python
+import random
+
+def tcgen():
+    # Generate random values for N and T within their respective limits
+    N = random.randint(1, 2000)
+    T = random.randint(1, 2000)
+    
+    # Generate a random string of length N consisting of 'R' and 'B'
+    cells = ''.join(random.choice(['R', 'B']) for _ in range(N))
+    
+    return N, T, cells
+
+# Function to generate multiple test cases
+def generate_test_cases(num_cases):
+    test_cases = []
+    for _ in range(num_cases):
+        N, T, cells = tcgen()
+        test_cases.append(f"{N} {T}\n{cells}")
+    
+    # Add the termination line "0 0"
+    test_cases.append("0 0")
+    
+    return "\n".join(test_cases)
+
+# Example usage
+if __name__ == "__main__":
+    num_cases = 5  # Number of test cases to generate
+    print(generate_test_cases(num_cases))
+```
+
+### Explanation:
+
+1. **Random Values for N and T**:
+    - We generate random integers `N` and `T` within the specified limits (1 ≤ N ≤ 2000 and 1 ≤ T ≤ 2000).
+
+2. **Generating the Cells String**:
+    - We generate a random string of length `N` where each character is randomly chosen to be 'R' or 'B'.
+
+3. **Generating Multiple Test Cases**:
+    - We loop to generate the desired number of test cases.
+    - After generating the required number of test cases, we add the termination line "0 0".
+
+4. **Example Usage**:
+    - The `generate_test_cases` function can be called to generate a specific number of test cases.
+    - The example usage demonstrates generating 5 test cases.
+
+You can run the script to generate test cases for the "Deadly Dice Game" problem, and use the output for testing purposes.

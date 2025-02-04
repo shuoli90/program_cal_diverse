@@ -1,0 +1,24 @@
+### Canonicalized Input Description: 
+
+A string S consisting of only upper- and lowercase letters.
+A string T' consisting of only upper- and lowercase letters.
+
+1 ≤ |S| ≤ 300,000
+1 ≤ |T'| ≤ |S|
+
+### Example Input:
+
+```
+abcbcdbc
+abc
+```
+
+### Function Signature:
+Write a function f(S, T') that takes in the input.
+```python
+def f(S: str, T: str):
+    '''
+    S: a string
+    T: a string
+    '''
+```

@@ -1,0 +1,45 @@
+()
+Problem Statement
+Given a string S. Initially, S is an empty string.
+You perform the following operation n times in order:
+Add x_i occurrences of p_i (which is either "(" or ")") to the end of S.
+Determine whether or not S becomes a balanced string after the operations.
+A string is balanced if:
+The empty string is balanced.
+If a and b are balanced strings, then a + b is also balanced.
+If a is a balanced string, then "(" + a + ")" is also balanced.
+Input
+The input is in the following format. All numbers given are integers.
+n
+p_1 x_1
+. . .
+p_n x_n
+Constraints
+1≦n≦1,000
+1≦x_i≦10^6
+p_i is either "(" or ")".
+Output
+If S becomes a balanced string, print "YES" on a line. Otherwise, print "NO" on a line.
+Sample Input 1
+3
+( 5
+) 4
+) 1
+Output for the Sample Input 1
+YES
+The string S="((((()))))" is balanced.
+Sample Input 2
+5
+( 2
+) 2
+( 3
+) 1
+) 2
+Output for the Sample Input 2
+YES
+Sample Input 3
+2
+) 1
+( 1
+Output for the Sample Input 3
+NO

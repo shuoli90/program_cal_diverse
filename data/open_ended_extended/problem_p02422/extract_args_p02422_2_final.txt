@@ -1,0 +1,13 @@
+def extract_arguments(fh):
+    str_input = fh.readline().strip()
+    q = int(fh.readline().strip())
+    commands = []
+    for _ in range(q):
+        commands.append(fh.readline().strip().split())
+    return str_input, q, commands
+
+# if __name__ == "__main__":
+#     input_path = sys.argv[1]
+#     with open(input_path, 'r') as fh:
+#         str_input, q, commands = extract_arguments(fh)
+#         f(str_input, q, commands)

@@ -1,0 +1,5 @@
+Types: N: int, M: int, xi: List[int], yi: List[int], si: List[int]
+
+Ranges: 2 ≤ N ≤ 100, 1 ≤ M ≤ 1000, 0 ≤ xi < yi ≤ N - 1, 1 ≤ si ≤ 1000
+
+Addtl Info: None

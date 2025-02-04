@@ -1,0 +1,1494 @@
+problem_id,type_group_id,type_bounds,n_testcases,is_duplicate,specification_no,extract_no,additional_notes,Subjective Score (1-10),Use?,type_group_id_int
+p00007,p00007_4,"Types: n: int
+Ranges: 0 ≤ n ≤ 100
+Addtl Info: None",102,False,,,,,False,7
+p00019,p00019_4,"Types: n: int
+Ranges: 1 ≤ n ≤ 20
+Addtl Info: None",102,False,,,,,False,19
+p00025,p00025_4,"Types: a1: int, a2: int, a3: int, a4: int, b1: int, b2: int, b3: int, b4: int
+
+Ranges: 0 ≤ a1, a2, a3, a4 ≤ 9; 0 ≤ b1, b2, b3, b4 ≤ 9
+
+Addtl Info: The four numbers in each of A's and B's sets are all different. The number of datasets is less than or equal to 50.",102,False,,,,,False,25
+p00026,p00026_4,"Types: x: int, y: int, s: int
+Ranges: 0 ≤ x < 10, 0 ≤ y < 10, s in {1, 2, 3}
+Addtl Info: The number of drops is less than or equal to 50.",102,False,,,,,False,26
+p00054,p00054_4,"Types: a: int, b: int, n: int
+Ranges: 1 ≤ a ≤ 1000, 1 ≤ b ≤ 10000, 1 ≤ n ≤ 100
+Addtl Info: No more than 100 datasets",102,False,,,,,False,54
+p00077,p00077_4,"Types: S: List[str]
+Ranges: 1 ≤ len(S) ≤ 50, 1 ≤ len(S[i]) ≤ 100, S[i] consists of uppercase and lowercase letters, digits, symbols, and '@'.
+Addtl Info: Consecutive characters encoded with '@' are up to 9 characters.",102,False,,,,,False,77
+p00087,p00087_4,"Types: datasets: List[str]
+Ranges: 1 ≤ len(datasets) ≤ 50, 1 ≤ len(formula) ≤ 80, formula consists of integers and operation symbols separated by a single space
+Addtl Info: No division by 0 or near 0 in the formulas",102,False,,,,,False,87
+p00101,p00101_4,"Types: n: int, datasets: List[str]
+
+Ranges: 1 ≤ n ≤ 1000, 1 ≤ len(datasets[i]) ≤ 1000
+
+Addtl Info: Each line in datasets consists of English texts.",102,False,,,,,False,101
+p00108,p00108_4,"Types: n: int, s: List[int]
+Ranges: 1 ≤ n ≤ 12, 1 ≤ si ≤ 100
+Addtl Info: 0 ≤ number of datasets ≤ 200",102,False,,,,,False,108
+p00115,p00115_4,"Types: Coordinates: Tuple[int, int, int]
+Ranges: -100 ≤ x, y, z ≤ 100
+Addtl Info: The UAZ Advance spacecraft and the enemy will never be in the same position.",103,False,,,,,False,115
+p00118,p00118_4,"Types: H: int, W: int, orchard: List[str]
+Ranges: 0 ≤ H ≤ 50, 0 ≤ W ≤ 50, orchard[i]: str of length W
+Addtl Info: orchard[i][j] in {' ', '@', '#', '*'}",103,False,,,,,False,118
+p00124,p00124_4,"Types: n: int, name: str, w: int, l: int, d: int
+Ranges: n ≤ 10, len(name) ≤ 20, 0 ≤ w ≤ 9, 0 ≤ l ≤ 9, 0 ≤ d ≤ 9
+Addtl Info: The number of data sets will not exceed 50.",102,False,,,,,False,124
+p00125,p00125_4,"Types: y1: int, m1: int, d1: int, y2: int, m2: int, d2: int
+Ranges: y1, y2 ≥ 0, 1 ≤ m1, m2 ≤ 12, 1 ≤ d1, d2 ≤ 31
+Addtl Info: The number of datasets will not exceed 50; an input terminates when any value is negative; y1, m1, d1 ≤ y2, m2, d2",102,False,,,,,False,125
+p00128,p00128_4,"Types: test_cases: List[int]
+Ranges: 1 ≤ len(test_cases) ≤ 1024, 0 ≤ test_cases[i] ≤ 99999
+Addtl Info: None",32,False,,,,,False,128
+p00146,p00146_4,"Types: n: int, si: int, di: int, vi: int
+Ranges: 1 ≤ n ≤ 15, 1 ≤ si ≤ 100, 1 ≤ di ≤ 10,000, 1 ≤ vi ≤ 10,000
+Addtl Info: None",104,False,,,,,False,146
+p00150,p00150_4,"Types: n: int
+Ranges: 5 ≤ n ≤ 10000
+Addtl Info: Input ends with a line containing a zero",102,False,,,,,False,150
+p00152,p00152_4,"Types: m: int, id: int, s: List[int]
+Ranges: 3 ≤ m ≤ 40, 0 ≤ id ≤ 9999, 0 ≤ s[j] ≤ 10
+Addtl Info: 12 ≤ len(s) ≤ 21",102,False,,,,,False,152
+p00167,p00167_4,"Types: n: int, ai: int
+Ranges: 1 ≤ n ≤ 100, 1 ≤ ai ≤ 1000000
+Addtl Info: The number of datasets does not exceed 20. The end of the input is indicated by a single zero.",102,False,,,,,False,167
+p00168,p00168_4,"Types: n: int
+Ranges: 1 ≤ n ≤ 30
+Addtl Info: There are no more than 30 datasets; the end of the input is indicated by a single zero line.",102,False,,,,,False,168
+p00184,p00184_4,"Types: n: int, a: List[int]
+Ranges: 1 ≤ n ≤ 10^6, 0 ≤ a[i] ≤ 120
+Addtl Info: Input consists of multiple datasets, each ending with a line containing a single zero.",102,False,,,,,False,184
+p00190,p00190_4,"Types: datasets: List[List[int]]
+Ranges: 0 ≤ pi ≤ 11, no more than 100 datasets
+Addtl Info: Each dataset follows the puzzle shape: [p1, [p2, p3, p4], [p5, p6, p7, p8, p9], [p10, p11, p12], p13]",102,False,,,,,False,190
+p00193,p00193_4,"Types: m: int, n: int, existing_stores: List[Tuple[int, int]], candidate_locations: List[Tuple[int, int]]
+Ranges: 1 ≤ m, n ≤ 100, (1 ≤ x, y ≤ m, n) for coordinates in existing_stores and candidate_locations
+Addtl Info: End of input is indicated by a line containing a single zero.",102,False,,,,,False,193
+p00195,p00195_4,"Types: s1A: int, s2A: int, s1B: int, s2B: int, s1C: int, s2C: int, s1D: int, s2D: int, s1E: int, s2E: int  
+Ranges: 1 ≤ s1A, s2A, s1B, s2B, s1C, s2C, s1D, s2D, s1E, s2E ≤ 10000  
+Addtl Info: The number of datasets is no more than 100. Each dataset ends with ""0 0"". Ensure there are no stores that sell the same number of items for the day.",102,False,,,,,False,195
+p00199,p00199_4,"Types: n: int, m: int, a: List[str]
+Ranges: 1 ≤ n ≤ 100, m ≤ n, a[i] in {'A', 'B', 'C', 'D'}
+Addtl Info: None",102,False,,,,,False,199
+p00218,p00218_4,"Types: n: int, pm: List[int], pe: List[int], pj: List[int]
+Ranges: 1 ≤ n ≤ 10000, 0 ≤ pm[i] ≤ 100, 0 ≤ pe[i] ≤ 100, 0 ≤ pj[i] ≤ 100
+Addtl Info: No more than 1000 datasets, each dataset ends with a single line containing 0",102,False,,,,,False,218
+p00221,p00221_4,"Types: m: int, n: int, statements: List[Union[int, str]]
+Ranges: 2 ≤ m ≤ 1000, 1 ≤ n ≤ 10000, statements[i] in {1, ..., 10000, 'Fizz', 'Buzz', 'FizzBuzz'}
+Addtl Info: There are no more than 50 datasets in the input. The end of the input is indicated by two zeros.",102,False,,,,,False,221
+p00222,p00222_4,"Types: n: int
+Ranges: 13 ≤ n ≤ 10,000,000
+Addtl Info: No more than 2000 datasets, input ends with a single zero",102,False,,,,,False,222
+p00225,p00225_4,"Types: n: int, wordi: str
+Ranges: 2 ≤ n ≤ 10000, 1 ≤ len(wordi) ≤ 32
+Addtl Info: <= 50 datasets",102,False,,,,,False,225
+p00235,p00235_4,"Types: N: int, bridges: List[Tuple[int, int, int]]
+Ranges: 2 ≤ N ≤ 20, 1 ≤ ai, bi ≤ N, 1 ≤ ti ≤ 500
+Addtl Info: Number of data sets ≤ 100",102,False,,,,,False,235
+p00254,p00254_4,"Types: N: int
+Ranges: 1 ≤ N ≤ 9999
+Addtl Info: The number of datasets does not exceed 10,000",102,False,,,,,False,254
+p00265,p00265_4,"Types: N: int, Q: int, c: List[int], q: List[int]
+Ranges: 2 ≤ N ≤ 300000, 2 ≤ Q ≤ 100000, 1 ≤ ci ≤ 300000, 1 ≤ qi ≤ 300000
+Addtl Info: None",102,False,,,,,False,265
+p00268,p00268_4,"Types: C: int, W: int, x: List[int], y: List[int], s: List[int], t: List[int]
+Ranges: 3 ≤ C ≤ 100, 3 ≤ W ≤ 300, -1000 ≤ xi ≤ 1000, -1000 ≤ yi ≤ 1000, 1 ≤ si ≤ C, 1 ≤ ti ≤ C
+Addtl Info: No two pillars occupy the same position. No two different walls overlap or cross at a location other than a pillar. A single pillar supports two or more walls. The length of the wall is greater than zero. The pillar is only located at the ends of the wall. The wall separates different rooms or rooms and the outside. Any two different pillars can be reached by following the walls. The number of datasets does not exceed 50.",102,False,,,,,False,268
+p00301,p00301_4,"Types: w: int  
+Ranges: 1 ≤ w ≤ 100000  
+Addtl Info: None",102,False,,,,,False,301
+p00311,p00311_4,"Types: h1: int, h2: int, k1: int, k2: int, a: int, b: int, c: int, d: int
+Ranges: 0 ≤ h1 ≤ 100, 0 ≤ h2 ≤ 100, 0 ≤ k1 ≤ 100, 0 ≤ k2 ≤ 100, 1 ≤ a ≤ 100, 1 ≤ b ≤ 100, 0 ≤ c ≤ 100, 0 ≤ d ≤ 100
+Addtl Info: None",104,False,,,,,False,311
+p00312,p00312_4,"Types: D: int, L: int  
+Ranges: 1 ≤ D ≤ 10000, 2 ≤ L ≤ 10000  
+Addtl Info: None",103,False,,,,,False,312
+p00318,p00318_4,"Types: N: int, xi: List[int], ri: List[int], Output: float
+Ranges: 1 ≤ N ≤ 100000, 0 ≤ xi ≤ 1,000,000, 1 ≤ ri ≤ 1,000,000
+Addtl Info: Output error should not exceed plus or minus 0.001 meters",104,False,,,,,False,318
+p00321,p00321_4,"Types: N: int, F: int, info: List[Tuple[int, List[str]]]
+
+Ranges: 1 ≤ N ≤ 100, 1 ≤ F ≤ 100, 1 ≤ M ≤ 10, item: str of length 1 to 30 lowercase English letters
+
+Addtl Info: No two items in infoi are the same",103,False,,,,,False,321
+p00324,p00324_4,"Types: N: int, d: List[int]
+Ranges: 1 ≤ N ≤ 200000, -10^9 ≤ d[i] ≤ 10^9
+Addtl Info: None",103,False,,,,,False,324
+p00338,p00338_4,"Types: N: int, C: int, command: List[Tuple[int, Union[Tuple[int, int], int]]]
+Ranges: 2 ≤ N ≤ 100000, 1 ≤ C ≤ 100000, 1 ≤ t ≤ N, 1 ≤ p ≤ 10^9, 1 ≤ m ≤ N
+Addtl Info: None",103,False,,,,,False,338
+p00344,p00344_4,"Types: N: int, a: List[int]
+Ranges: 1 ≤ N ≤ 100000, 1 ≤ ai ≤ 10^9
+Addtl Info: None",104,False,,,,,False,344
+p00370,p00370_4,"Types: x_s: int, y_s: int, x_g: int, y_g: int, N: int, coordinates: List[Tuple[int, int]]
+Ranges: 0 ≤ x_s, y_s, x_g, y_g ≤ 10^4, 3 ≤ N ≤ 100, 0 ≤ coordinates[i][0], coordinates[i][1] ≤ 10^4
+Addtl Info: Start and end points of the expedition are not within the area enclosed by the polygon nor on boundaries. Start and end points of the expedition are not identical. No duplicate coordinates are given. The area enclosed by the polygon has a positive value. Any three coordinates that define an area are not aligned on a line.",103,False,,,,,False,370
+p00374,p00374_4,"Types: N: int, M: int, X: int, Y: int, a: List[int], b: List[int]
+Ranges: 6 ≤ N ≤ 6000, 0 ≤ M ≤ N, 0 ≤ X ≤ 6, 0 ≤ Y ≤ 12, 1 ≤ a[i] ≤ 6000, 1 ≤ b[i] ≤ 3000
+Addtl Info: 2X + Y = 12, X + Y ≤ N, X ≤ M, 1 ≤ a[i] - b[i] ≤ 3000",102,False,,,,,False,374
+p00390,p00390_4,"Types: N: int, a: List[int], w: List[int]
+Ranges: 3 ≤ N ≤ 10, a[i] ∈ {0, 1}, 1 ≤ w[i] ≤ 1000
+Addtl Info: None",103,False,,,,,False,390
+p00441,p00441_4,"Types: n: int, x: int, y: int
+Ranges: 1 ≤ n ≤ 3000, 0 ≤ x ≤ 5000, 0 ≤ y ≤ 5000
+Addtl Info: There are no more than 10 datasets. 30% of the score is for datasets where 1 ≤ n ≤ 100, and 60% of the score is for datasets where 1 ≤ n ≤ 500.",102,False,,,,,False,441
+p00447,p00447_4,"Types: m: int, constellation: List[Tuple[int, int]], n: int, photo: List[Tuple[int, int]]
+Ranges: 1 ≤ m ≤ 200, 1 ≤ n ≤ 1000, 0 ≤ x, y ≤ 1000000
+Addtl Info: No more than 5 datasets, m = 0 indicates end of input",102,False,,,,,False,447
+p00539,p00539_4,"Types: N: int, M: int, C: int, Ai: int, Bi: int, Di: int  
+Ranges: 2 ≤ N ≤ 100,000, 1 ≤ M ≤ 200,000, 0 ≤ C ≤ 10^9, 1 ≤ Ai, Bi ≤ N, 1 ≤ Di ≤ 10^6  
+Addtl Info: None",102,False,,,,,False,539
+p00562,p00562_4,"Types: H: int, W: int, A: int, B: int, C: int, N: int, S: List[int], T: List[int]
+Ranges: 1 ≤ H ≤ 500, 1 ≤ W ≤ 500, 0 ≤ A ≤ 1,000,000,000, 0 ≤ B ≤ 1,000,000,000, 0 ≤ C ≤ 1,000,000,000, 2 ≤ N ≤ 100,000, 0 ≤ S[i] ≤ H (1 ≤ i ≤ N), 0 ≤ T[i] ≤ W (1 ≤ i ≤ N)
+Addtl Info: (S[0], T[0]) ≠ (S[N-1], T[N-1])",102,False,,,,,False,562
+p00574,p00574_4,"Types: L: int, Q: int, S: str, T_d: List[str]
+Ranges: 1 ≤ L ≤ 20, 1 ≤ Q ≤ 1,000,000, S is a length 2^L string, S consists of {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9'}, T_d is a length L string, T_d consists of {'0', '1', '?'}
+Addtl Info: None",102,False,,,,,False,574
+p00586,p00586_4,"Types: A: int, B: int
+Ranges: -1000 ≤ A, B ≤ 1000
+Addtl Info: Input terminated by EOF",102,False,,,,,False,586
+p00593,p00593_4,"Types: N: int
+Ranges: 0 < N < 10
+Addtl Info: Input ends with a line containing a single zero",102,False,,,,,False,593
+p00594,p00594_4,"Types: |A|: int, A: List[int]  
+Ranges: 0 ≤ |A| < 1,000,000, -2^31 < A[i] < 2^31  
+Addtl Info: Input terminates with a line containing a single 0.",102,False,,,,,False,594
+p00606,p00606_4,"Types: n: int, s: str, t: str, b: str
+
+Ranges: 0 ≤ n ≤ 15, s in {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I'}, t in {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I'}, b in {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I'}
+
+Addtl Info: n = 0 indicates the end of input, s, t, b are distinct, at most 100 datasets",102,False,,,,,False,606
+p00608,p00608_4,"Types: H: int, W: int, Grid: List[str], n: int, Characters: List[str]
+
+Ranges: 
+1 ≤ H ≤ 10,
+1 ≤ W ≤ 10,
+H * W characters in Grid,
+1 ≤ n ≤ 10,
+0 ≤ Characters[i] ≤ 9 or Characters[i] in {'+', '-', '*', '/', '='}
+
+Addtl Info: Judge data includes at most 100 data sets, input ends with a line containing ""0 0""",82,False,,,,,False,608
+p00616,p00616_4,"Types: n: int, h: int, ci: str, ai: int, bi: int
+
+Ranges: 1 ≤ n ≤ 500, 0 ≤ h ≤ 200, ci in {""xy"", ""xz"", ""yz""}, 1 ≤ ai, bi ≤ n
+
+Addtl Info: Input terminates with n = 0 and h = 0",102,False,,,,,False,616
+p00625,p00625_4,"Types: N: int, M: int, Dix: float, Diy: float, Vi: float, FPix: float, FPin: float, FVix: float, FViy: float
+Ranges: 1 ≤ N ≤ 10, 1 ≤ M ≤ 1000, -1000 ≤ Dix, Diy, FPix, FPin ≤ 1000, 1 ≤ Vi ≤ 100, -25 ≤ FVix, FViy ≤ 25
+Addtl Info: N = 0 and M = 0 indicates the end of input, absolute values of x and y coordinates of dogs do not exceed 1e+8 during simulation, no Frisbee is unattainable by any dog, no dog can acquire a Frisbee before t + 1e-6 seconds after it is acquired by another dog.",102,False,,,,,False,625
+p00626,p00626_4,"Types: H: int, W: int, chocolate_bar: List[List[int]]
+
+Ranges: 1 ≤ H ≤ 12, 1 ≤ W ≤ 12, chocolate_bar[i][j] in {0, 1}
+
+Addtl Info: The number of blocks with heart marks ('1's) is six or less. The end of the input is indicated by a dataset where H = W = 0. Do not output anything for this case.",102,False,,,,,False,626
+p00638,p00638_4,"Types: n: int, treasures: List[Tuple[int, int]]
+Ranges: 1 ≤ n ≤ 25, 0 < treasures[i][0] ≤ 10^6, 1 ≤ treasures[i][1] ≤ 10^6
+Addtl Info: Input ends when n = 0",102,False,,,,,False,638
+p00639,p00639_4,"Types: D: float, px: float, py: float, vx: float, vy: float
+Ranges: 0 < D ≤ 50, 0.0001 ≤ |V| ≤ 0.9999, 0.0001 ≤ |P| ≤ 0.9999
+Addtl Info: terminates when D = 0",102,False,,,,,False,639
+p00642,p00642_4,"Types: n: int
+Ranges: 1 ≤ n ≤ 100,000
+Addtl Info: Input terminates with a dataset where n = 0",102,False,,,,,False,642
+p00644,p00644_4,"Types: n: int, m: int, p: int, edges: List[Tuple[int, int, int]], c: List[int]
+Ranges: 3 ≤ n ≤ 100, 0 < weight of the edge < 10000, 0 ≤ c[i] < n
+Addtl Info: No parallel edges and no edges with identical endpoints",102,False,,,,,False,644
+p00653,p00653_4,"Types: r: int, c: int, q: int, grid: List[List[int]], r1: int, c1: int, r2: int, c2: int  
+Ranges: 1 ≤ r*c ≤ 10^6, 0 ≤ grid[i][j] ≤ 2^31-1, 1 ≤ q ≤ 10^4, 0 ≤ r1 ≤ r2 < r, 0 ≤ c1 ≤ c2 < c  
+Addtl Info: If r*c ≤ 250000, then q ≤ 100",102,False,,,,,False,653
+p00690,p00690_4,"Types: ns: int, nl: int, si: List[Tuple[int, int]], di: List[int]
+Ranges: 1 ≤ ns ≤ 10, 1 ≤ nl ≤ 20, 1 ≤ si ≤ ns, 1 ≤ di ≤ 100
+Addtl Info: The input terminates with two zeros (0 0). There is at most one direct route between any pair of stations. Each station has at most four direct routes leaving from it.",103,False,,,,,False,690
+p00703,p00703_4,"Types: L: int, H: int, TRY: str, HIT: int, BLOW: int  
+Ranges: 4 ≤ L ≤ 10, 1 ≤ H ≤ 100, TRY: string of length L with unique digits from {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9'}, 0 ≤ HIT, BLOW ≤ L  
+Addtl Info: None",102,False,,,,,False,703
+p00729,p00729_4,"Types: N: int, M: int, r: int, q: int, records: List[Tuple[int, int, int, int]], queries: List[Tuple[int, int, int]]
+Ranges: 1 ≤ N ≤ 1000, 1 ≤ M ≤ 10000, 2 ≤ r ≤ 1000, 1 ≤ q ≤ 50, 540 ≤ t ≤ 1260, 1 ≤ n ≤ N, 1 ≤ m ≤ M, 540 ≤ ts < te ≤ 1260
+Addtl Info: records are tuples (t, n, m, s) where s is 0 or 1; queries are tuples (ts, te, m)",102,False,,,,,False,729
+p00732,p00732_4,"Types: L: float, R: float, N: int, Xi: int, Yi: int  
+Ranges: 1.0 ≤ L ≤ 500.0, 1.0 ≤ R ≤ 10.0, 3 ≤ N ≤ 100, -1000 ≤ Xi ≤ 1000, -1000 ≤ Yi ≤ 1000  
+Addtl Info: Number of datasets ≤ 100",102,False,,,,,False,732
+p00735,p00735_4,"Types: inputs: List[int]
+Ranges: 2 ≤ inputs[i] < 300000
+Addtl Info: inputs end with a single digit 1 which is not processed",102,False,,,,,False,735
+p00764,p00764_4,"Types: n: int, xi: int, yi: int, ri: int
+Ranges: 3 ≤ n ≤ 100, 0 ≤ xi ≤ 1000, 0 ≤ yi ≤ 1000, 1 ≤ ri ≤ 25
+Addtl Info: End of input indicated by a line containing a zero",102,False,,,,,False,764
+p00773,p00773_4,"Types: x: int, y: int, s: int  
+Ranges: 0 < x < 100, 0 < y < 100, 10 < s < 1000, x ≠ y  
+Addtl Info: Input ends with ""0 0 0""",102,False,,,,,False,773
+p00780,p00780_4,"Types: even_numbers: List[int]
+
+Ranges: 4 ≤ even_numbers[i] < 215
+
+Addtl Info: all integers in even_numbers are even, input terminated by 0",102,False,,,,,False,780
+p00782,p00782_4,"Types: n: int, xi: float, yi: float, ri: float  
+Ranges: 2 ≤ n ≤ 100, 0.0 ≤ xi ≤ 200.0, 0.0 ≤ yi ≤ 200.0, 0.0 ≤ ri ≤ 200.0  
+Addtl Info: The end of the input is indicated by a data set with 0 as the value of n.",102,False,,,,,False,782
+p00808,p00808_4,"Types: T: int, Start_city: str, Departure_time: str, Arrival_city: str, Arrival_time: str, price: int  
+Ranges: 1 ≤ T ≤ 2000, Start_city: str (1-16 alphabetical characters, first in upper case), Departure_time: str (HH:MM, 00:00 to 23:59), Arrival_city: str (1-16 alphabetical characters, first in upper case), Arrival_time: str (HH:MM, 00:00 to 23:59), 1 ≤ price ≤ 10000  
+Addtl Info: Number of cities ≤ 100, Arrival time is strictly after departure time",102,False,,,,,False,808
+p00812,p00812_4,"Types: List[List[str]]
+Ranges: Each expression is a string of at most 80 characters.
+Addtl Info: Input ends with a line solely containing a period ('.'). Each block of expressions ends with a line containing a period ('.'). The first expression in each block is the correct answer. Each expression contains only lowercase letters, digits, '+', '-', '^', '(', ')', and spaces.",102,False,,,,,False,812
+p00815,p00815_4,"Types: n: int, records: List[List[int]]
+Ranges: 1 ≤ n < 100, each record is a list of integers terminated by 0, each integer in the record is either a positive integer (number of doors in a room ≤ 40) or a negative integer (distance difference), each record has total length < 1000 characters.
+Addtl Info: The number of rooms in each Ninja House is less than 100.",102,False,,,,,False,815
+p00840,p00840_4,"Types: r: float, s: int, w: List[int]
+Ranges: 0 < r < 10, 1 ≤ s ≤ 6, 1 ≤ wi ≤ 1000
+Addtl Info: None",102,False,,,,,False,840
+p00844,p00844_4,"Types: 
+- L: float
+- Polygon: Tuple[int, List[Tuple[int, int]]]
+
+Ranges: 
+- 0.1 < L < 50.0
+- 2 < n < 15
+- 0 ≤ xi, yi < 500
+
+Addtl Info: 
+- Vertices are given in counterclockwise order
+- Polygons are simple and do not self-intersect
+- |w(L ± 10^-7) - w(L)| < 10^-4",102,False,,,,,False,844
+p00862,p00862_4,"Types: n: int, coordinates: List[Tuple[int, int]]
+Ranges: 3 ≤ n ≤ 100, 0 ≤ xi ≤ 10000, 0 ≤ yi ≤ 10000
+Addtl Info: The last dataset is followed by a line containing a single zero. The given polygon is always a convex one.",102,False,,,,,False,862
+p00863,p00863_4,"Types: a: int, m: int, b: int, n: int
+Ranges: 1 < a, b ≤ 10^4, 1 < m, n ≤ 20
+Addtl Info: a and b are distinct prime numbers",102,False,,,,,False,863
+p00864,p00864_4,"Types: n: int, w: int, v: List[int]
+Ranges: 1 ≤ n ≤ 100, 10 ≤ w ≤ 50, 0 ≤ v_i ≤ 100 for 1 ≤ i ≤ n
+Addtl Info: Input ends with a line containing two zeros",102,False,,,,,False,864
+p00916,p00916_4,"Types: n: int, li: int, ti: int, ri: int, bi: int
+
+Ranges: 1 ≤ n ≤ 50, 0 ≤ li < ri ≤ 10^6, 0 ≤ bi < ti ≤ 10^6
+
+Addtl Info: Input is terminated by a single zero.",102,False,,,,,False,916
+p00929,p00929_4,"Types: N: int, M: int, S: List[int], D: List[int], C: List[int]  
+Ranges: 3 ≤ N ≤ 500, N - 1 ≤ M ≤ min(50000, N(N - 1) / 2), 1 ≤ S[i] < D[i] ≤ N, 1 ≤ C[i] ≤ 10000  
+Addtl Info: No two bridges connect the same pair of two islands, and if all candidate bridges are built, all islands are reachable from any other islands via one or more bridges.",102,False,,,,,False,929
+p00935,p00935_4,"Types: n: int, d: List[int]
+Ranges: 1 ≤ n ≤ 1000, 0 ≤ d[k] ≤ 9
+Addtl Info: None",102,False,,,,,False,935
+p00950,p00950_4,"Types: input_string: str
+
+Ranges: 1 ≤ len(input_string) ≤ 31
+
+Addtl Info: input_string contains only Roman alphabet characters (both lowercase and uppercase), binary digits (""0"" and ""1""), operator symbols (""+"", ""-"", ""*""), parentheses (""("" and "")""), and equal signs (""="").",102,False,,,,,False,950
+p00974,p00974_4,"Types: n: int, a: List[int]
+
+Ranges: 1 ≤ n ≤ 100,000, 1 ≤ a[i] ≤ 100,000
+
+Addtl Info: None",102,False,,,,,False,974
+p00981,p00981_4,"Types: n: int, m: int, x: int, y: int, c: List[int], l: List[int], r: List[int]
+Ranges: 1 ≤ n ≤ 10^9, 1 ≤ m ≤ 2 × 10^5, 1 ≤ x ≤ 10^5, 1 ≤ y ≤ 10^5, 1 ≤ l_i ≤ r_i ≤ n, c_i ∈ {1, 2, 3}
+Addtl Info: None",102,False,,,,,False,981
+p00991,p00991_4,"Types: r: int, c: int, a1: int, a2: int, b1: int, b2: int
+Ranges: 1 ≤ r, c ≤ 1,000, 0 ≤ a1, b1 < r, 0 ≤ a2, b2 < c
+Addtl Info: None",105,False,,,,,False,991
+p00993,p00993_4,"Types: N: int
+Ranges: 1 ≤ N ≤ 1,500
+Addtl Info: None",103,False,,,,,False,993
+p01005,p01005_4,"Types: Q: int, L: int, d: int, k: int, x: int, r: int  
+Ranges: 1 ≤ Q ≤ 100000, 1 ≤ L ≤ 10^9, 1 ≤ d ≤ 10^9, 1 ≤ k ≤ 10^9, 0 ≤ x ≤ L, 0 ≤ r ≤ 10^9  
+Addtl Info: None",102,False,,,,,False,1005
+p01019,p01019_4,"Types: N: int, M: int, segments: List[Tuple[int, int, int, int]]
+Ranges: 1 ≤ N, M ≤ 10^3, 0 ≤ x1, y1, x2, y2 ≤ 10^3
+Addtl Info: The expressions will always have the correct syntax. No numbers other than 0 will have a leading 0.",103,False,,,,,False,1019
+p01040,p01040_4,"Types: Y1: int, M1: int, D1: int, Y2: int, M2: int, D2: int  
+Ranges: 1 ≤ Y1 ≤ Y2 ≤ 10^18, 1 ≤ M1, M2 ≤ 12, 1 ≤ D1, D2 ≤ 31 (for months 1, 3, 5, 7, 8, 10, 12), 1 ≤ D1, D2 ≤ 30 (for months 4, 6, 9, 11), 1 ≤ D1, D2 ≤ 28 (for February in a non-leap year), 1 ≤ D1, D2 ≤ 29 (for February in a leap year)  
+Addtl Info: Y1, M1, D1 is a date that is at least 0 days before Y2, M2, D2",104,False,,,,,False,1040
+p01048,p01048_4,"Type Bounds:
+
+Types: N: int
+Ranges: 1 ≤ N ≤ 12
+Addtl Info: None",28,False,,,,,False,1048
+p01055,p01055_4,"### Problem Statement: Bomb Removal
+
+**Description**
+
+There are \(N\) fuse cords and bombs, each with one bomb, on a grid of height \(H\) and width \(W\). Each fuse cord and bomb are placed on a path consisting of \(L_i\) squares, with the \(j\)-th square of the path \((p_{x_{ij}}, p_{y_{ij}})\). Each bomb is located at the last square \((p_{x_{iL_i}}, p_{y_{iL_i}})\).
+
+**Input**
+
+1. An integer \(H\) (1 ≤ \(H\) ≤ 1000), representing the height of the grid.
+2. An integer \(W\) (1 ≤ \(W\) ≤ 1000), representing the width of the grid.
+3. An integer \(N\) (1 ≤ \(N\) ≤ 100), representing the number of fuse cords and bombs.
+4. For each fuse cord, an integer \(L_i\) (1 ≤ \(L_i\) ≤ 100), representing the length of the fuse cord's path.
+5. For each fuse cord, a list of \(L_i\) pairs of integers \((p_{x_{ij}}, p_{y_{ij}})\) (1 ≤ \(p_{x_{ij}} ≤ H\), 1 ≤ \(p_{y_{ij}} ≤ W\)), representing the coordinates of the squares on the path.
+
+**Output**
+
+For each bomb, print the coordinates \((p_{x_{iL_i}}, p_{y_{iL_i}})\) where the bomb is located.
+
+**Examples**
+
+_Input_
+```
+5
+5
+3
+4
+1 1
+2 1
+3 1
+4 1
+2
+2 2
+2 3
+1
+5 5
+```
+
+_Output_
+```
+4 1
+2 3
+5 5
+```
+
+**Explanation**
+
+In the first example, there is a grid of size 5x5 with 3 fuse cords and bombs. The first fuse cord has a path length of 4 with coordinates (1,1), (2,1), (3,1), and (4,1). The bomb is located at (4,1). Similarly, the second fuse cord has a path length of 2 with coordinates (2,2) and (2,3), placing the bomb at (2,3). The third fuse cord has a path length of 1 with coordinates (5,5), placing the bomb at (5,5).
+
+**Note**
+
+This problem tests the ability to parse and utilize multidimensional coordinate data.
+
+Types: H: int, W: int, N: int, L: List[int], path: List[List[Tuple[int, int]]]
+Ranges: 1 ≤ H ≤ 1000, 1 ≤ W ≤ 1000, 1 ≤ N ≤ 100, 1 ≤ L[i] ≤ 100, 1 ≤ p_{x_{ij}} ≤ H, 1 ≤ p_{y_{ij}} ≤ W
+Addtl Info: None",105,False,,,,,False,1055
+p01075,p01075_4,"Types: N: int, M: int, a: List[int], b: List[int], c: List[int]  
+Ranges: 2 ≤ N ≤ 10^5, 1 ≤ M ≤ 2 × 10^5, 1 ≤ a[i] < N, 1 ≤ b[i] ≤ N, 1 ≤ c[i] ≤ 10^9, a[i] ≠ b[i]  
+Addtl Info: None",106,False,,,,,False,1075
+p01082,p01082_4,"Types: n: int, m: int, k: int, xi: List[int], yi: List[int]  
+Ranges: 1 ≤ n, m ≤ 5 × 10^4, 1 ≤ k ≤ min(10^5, n × m), 0 ≤ xi ≤ n−1, 0 ≤ yi ≤ m−1  
+Addtl Info: The given coordinates (xi, yi) are all different.",104,False,,,,,False,1082
+p01089,p01089_4,"Types: n: int, s: str
+Ranges: 1 ≤ n ≤ 10,000, s consists of {'0'-'9', 'u'}, ends with 'u'
+Addtl Info: Input terminates with a line containing zero",102,False,,,,,False,1089
+p01097,p01097_4,"Types: n: int, k: int, s: int, coordinates: List[Tuple[int, int, int]]
+Ranges: 1 ≤ k ≤ n ≤ 2000, 3 ≤ s ≤ 100, -4×10^7 ≤ xi, yi, zi ≤ 4×10^7
+Addtl Info: The number of datasets is at most 100.",102,False,,,,,False,1097
+p01103,p01103_4,"Types: d: int, w: int, e: int
+Ranges: 3 ≤ d ≤ 10, 3 ≤ w ≤ 10, 0 ≤ e ≤ 9
+Addtl Info: At most 100 datasets, end of input indicated by a line containing two zeros separated by a space",102,False,,,,,False,1103
+p01106,p01106_4,"Types: n: int, i: int, j: int  
+Ranges: 1 ≤ n ≤ 60, 1 ≤ i ≤ 2^n, 1 ≤ j ≤ 2^n  
+Addtl Info: None",102,False,,,,,False,1106
+p01115,p01115_4,"Types: n: int, s: str
+Ranges: 1 ≤ n ≤ 10^9, 1 ≤ len(s) ≤ 2×10^6
+Addtl Info: The sum of the lengths of s in all datasets does not exceed 5×10^6, nesting depth of parentheses ≤ 1000, end of input is indicated by a line containing a single zero",102,False,,,,,False,1115
+p01121,p01121_4,"Types: n: int, pieces: List[List[str]]
+
+Ranges: 3 ≤ n ≤ 9, n is odd, pieces: 6n lines of n characters where each character is either 'X' or '.'
+
+Addtl Info: None",102,False,,,,,False,1121
+p01130,p01130_4,"Types: n: int, m: int, s: int, g1: int, g2: int, b1: int, b2: int, c: int
+Ranges: 3 ≤ n ≤ 100, 2 ≤ m ≤ 1000, 1 ≤ s ≤ n, 1 ≤ g1 ≤ n, 1 ≤ g2 ≤ n, 1 ≤ b1 ≤ n, 1 ≤ b2 ≤ n, 1 ≤ c ≤ 1000
+Addtl Info: s, g1, and g2 are distinct, b1 and b2 are distinct, the input ends with a line containing ""0 0 0 0 0""",102,False,,,,,False,1130
+p01146,p01146_4,"Types: N: int, M: int, L: int, K: int, A: int, H: int, freezing_facilities: List[int], roads: List[Tuple[int, int, int]]
+
+Ranges: 
+- 2 ≤ N ≤ 100
+- 1 ≤ M ≤ 100
+- 0 ≤ L ≤ N - 2
+- 0 ≤ K
+- 0 ≤ A < N
+- 0 ≤ H < N
+- freezing_facilities[i] (for i in [0, L)): 0 ≤ freezing_facilities[i] < N
+- roads[i] (for i in [0, K)): 0 ≤ X < N, 0 ≤ Y < N, 0 ≤ T
+
+Addtl Info: 
+- Capital (A) and Hospital (H) are different cities.
+- Capital (A) and Hospital (H) are not included in freezing_facilities.
+- Each city is assigned a number from 0 to N-1.
+- Roads are bi-directional.
+- At most one road directly connects any pair of cities.",102,False,,,,,False,1146
+p01147,p01147_4,"Types: N: int, words: List[str]
+Ranges: 1 ≤ N ≤ 10, 1 ≤ len(words[i]) ≤ 10
+Addtl Info: words[i] contains only lowercase letters of the alphabet",102,False,,,,,False,1147
+p01157,p01157_4,"Types: M: int, N: int, D: List[int], L: int, P: int, T: int, A: str
+Ranges: 1 ≤ M ≤ 100, 1 ≤ N ≤ 100, 0 ≤ D[i] ≤ 10^5, 1 ≤ L ≤ M, 0 ≤ P ≤ M-1, 0 ≤ T ≤ 19999, 1 ≤ len(A) ≤ 9
+Addtl Info: None",102,False,,,,,False,1157
+p01173,p01173_4,"Types: n: int, vw: int, vc: int, coordinates: List[Tuple[int, int]]
+Ranges: 1 ≤ n ≤ 1,000, 1 ≤ vw, vc ≤ 10, -10,000 ≤ xi, yi ≤ 10,000
+Addtl Info: xi < xj for all i < j, input terminated by n = 0",102,False,,,,,False,1173
+p01199,p01199_4,"Types: N: int, M: int, L: int, Ai: int, Bi: int, Di: int, P: List[int], K: List[int]
+
+Ranges: 
+1 ≤ N ≤ 100, 
+M ≥ 0, 
+1 ≤ L ≤ 10000, 
+1 ≤ Ai < Bi ≤ N, 
+1 ≤ Di ≤ 10000, 
+0 ≤ Pi ≤ 10^6, 
+0 ≤ Ki ≤ 10^6
+
+Addtl Info: Input is terminated by EOF. All integers in each line are separated by a whitespace.",102,False,,,,,False,1199
+p01210,p01210_4,"Types: NA: int, deckA: List[str], NB: int, deckB: List[str]
+Ranges: 1 ≤ NA, NB ≤ 10, 1 ≤ len(deckA[i]), len(deckB[i]) ≤ 2
+Addtl Info: deckA and deckB contain unique cards from the set {'S', 'H', 'D', 'C'} x {'A', 'K', 'Q', 'J', 'X', '2', '3', '4', '5', '6', '7', '8', '9'}",102,False,,,,,False,1210
+p01212,p01212_4,"Types: W: int, H: int, grid: List[List[str]]  
+Ranges: 3 ≤ W, H ≤ 30, grid contains {'@', '<', 'a'-'z', 'A'-'Z', '#', '.'}  
+Addtl Info: grid is W × H in size, surrounded by '#', exactly one '@' and one '<', up to 8 distinct uppercase and lowercase labels",103,False,,,,,False,1212
+p01223,p01223_4,"Types: t: int, n: int, heights: List[int]
+Ranges: 0 < t ≤ 100, 2 ≤ n ≤ 100, 0 < heights[i] ≤ 1000
+Addtl Info: None",102,False,,,,,False,1223
+p01226,p01226_4,"Types: T: int, H: int, W: int, initial_map: List[List[str]], input_sequence: str  
+Ranges: 1 ≤ T ≤ 100, 1 ≤ H, W ≤ 100, initial_map[i][j] in {'.', '*', '#', '-', '^', 'v', '<', '>'}, input_sequence in {'U', 'D', 'L', 'R', 'S'}  
+Addtl Info: None",102,False,,,,,False,1226
+p01237,p01237_4,"Types: N: int, M: int, L: int, grid: List[List[int]]
+Ranges: 1 ≤ N ≤ 6, 2 ≤ M ≤ 10^9, 1 ≤ L ≤ 10^9, 0 ≤ grid[i][j] < M
+Addtl Info: grid consists of 2N - 1 rows, where the ith row contains N + abs(i - (N - 1)) colonies",102,False,,,,,False,1237
+p01240,p01240_4,"Types: N: int, W: int, H: int, r: List[List[int]]
+Ranges: 1 ≤ N ≤ 10, 1 ≤ W, H ≤ 20, 0 ≤ rx,y < 10000
+Addtl Info: None",102,False,,,,,False,1240
+p01252,p01252_4,"Types: N: int, x11: int, y11: int, x12: int, y12: int, x21: int, y21: int, x22: int, y22: int, ..., xN1: int, yN1: int, xN2: int, yN2: int, Ax: int, Ay: int, Bx: int, By: int
+Ranges: 0 < N ≤ 30, -10000 ≤ xi1, yi1, xi2, yi2, Ax, Ay, Bx, By ≤ 10000
+Addtl Info: Input ends with a single line containing a zero. No buildings touch or overlap other buildings.",102,False,,,,,False,1252
+p01253,p01253_4,"Types: N: int, T: int, colors: str
+Ranges: 1 ≤ N ≤ 2000, 1 ≤ T ≤ 2000, colors[i] in {'R', 'B'}
+Addtl Info: Input is terminated by a line with two zeros which should not be processed.",102,False,,,,,False,1253
+p01258,p01258_4,"Types: N: int
+Ranges: 2 ≤ N ≤ 1000, N is even
+Addtl Info: Multiple datasets, terminated by a single zero which is not part of the input",102,False,,,,,False,1258
+p01279,p01279_4,"Types: N: int, M: int, troop_positions_and_speeds: List[Tuple[int, int, int]], base_positions: List[Tuple[int, int]]
+Ranges: 1 ≤ N ≤ 100, 1 ≤ M ≤ 100, 0 ≤ xi, yi ≤ 10000, 1 ≤ vi ≤ 100, 0 ≤ x'j, y'j ≤ 10000
+Addtl Info: The input ends with a line containing two zeros which should not be processed.",102,False,,,,,False,1279
+p01292,p01292_4,"Types: Time: int, R: int, L: int, Mary: List[Tuple[int, int, int]], M: int, George: List[Tuple[int, int, int]], N: int, Blocks: List[Tuple[int, int, int, int]]
+Ranges: 
+- 0 ≤ Time ≤ 100
+- 0 < R < 30000
+- 2 ≤ L ≤ 20
+- Mary[i][0], Mary[i][1]: -10000 ≤ MaryXi, MaryYi ≤ 10000
+- Mary[i][2]: 0 ≤ MaryTi ≤ Time
+- 2 ≤ M ≤ 20
+- George[j][0], George[j][1]: -10000 ≤ GeorgeXj, GeorgeYj ≤ 10000
+- George[j][2]: 0 ≤ GeorgeTj ≤ Time
+- 0 ≤ N ≤ 20
+- Blocks[k][0], Blocks[k][1], Blocks[k][2], Blocks[k][3]: -10000 ≤ BlockSXk, BlockSYk, BlockTXk, BlockTYk ≤ 10000
+Addtl Info: Coordinates are integers; time constraints ensure MaryTi < MaryTi+1 and GeorgeTj < GeorgeTj+1; no obstacles touch or cross each other.",102,False,,,,,False,1292
+p01302,p01302_4,"Types: n: int, vx: int, vy: int, x: List[int], y: List[int]
+Ranges: 3 ≤ n ≤ 100, -10000 ≤ vx, vy ≤ 10000, 0 ≤ xi, yi ≤ 10000, vx^2 + vy^2 > 0
+Addtl Info: The input is terminated by a line with a zero. This should not be processed. The polygon is always simple, given in counterclockwise order.",102,False,,,,,False,1302
+p01322,p01322_4,"Types: n: int, m: int, N: List[str], M: List[int], B: List[str]
+Ranges: 1 ≤ n ≤ 100, 1 ≤ m ≤ 1000, 1 ≤ Mi ≤ 1000000, Length of Ni = 8, Length of Bi = 8
+Addtl Info: Ni consists of digits and '*', Bi consists of digits",104,False,,,,,False,1322
+p01347,p01347_4,"Types: N: int, M: int, paths: List[Tuple[int, int, int]]
+Ranges: 2 ≤ N ≤ 100, 1 ≤ M ≤ 1000, 0 ≤ xi < yi ≤ N - 1, 1 ≤ si ≤ 1000
+Addtl Info: None",104,False,,,,,False,1347
+p01349,p01349_4,"Types: h: int, w: int, n: int, field: List[str]
+Ranges: 2 ≤ h, w, n ≤ 30
+Addtl Info: field contains h strings of length w consisting of uppercase letters ('A'-'Z') and periods ('.')",103,False,,,,,False,1349
+p01351,p01351_4,"Types: m: int, n: int, a: int, b: int, c: int, d: int
+Ranges: 1 ≤ m, n, a, b, c, d ≤ 100,000
+Addtl Info: None",102,False,,,,,False,1351
+p01354,p01354_4,"Types: m: int, n: int, probabilities: List[List[float]]
+Ranges: 1 ≤ m, n ≤ 16, 0.000 ≤ probabilities[i][j] ≤ 1.000
+Addtl Info: Probabilities are given up to three decimal places, output error should be within 10^-9 of the true value.",102,False,,,,,False,1354
+p01413,p01413_4,"Types: 
+- N: int
+- M: int
+- W: int
+- T: int
+- S[i]: str
+- V[i]: int
+- P[i]: int
+- L[i]: int
+- X[i]: int
+- Y[i]: int
+- R[i][j]: str
+- Q[i][j]: int
+
+Ranges: 
+- 1 ≤ N ≤ 10^2
+- 1 ≤ M ≤ 10^2
+- 1 ≤ W ≤ 10^4
+- 1 ≤ T ≤ 10^4
+- 1 ≤ V[i] ≤ 10^3
+- 1 ≤ P[i] ≤ 10^4
+- 1 ≤ L[i] ≤ 10^2
+- -10^3 ≤ X[i] ≤ 10^3
+- -10^3 ≤ Y[i] ≤ 10^3
+- 1 ≤ Q[i][j] ≤ 10^4
+
+Addtl Info: 
+- S[i] is a string with a maximum length of 20 characters. 
+- R[i][j] is a string with a maximum length of 20 characters.",103,False,,,,,False,1413
+p01420,p01420_4,"Types: N: int, M: int, L: int, P: List[int], T: List[int], V: List[int]
+Ranges: 1 ≤ N ≤ 100, 0 ≤ M ≤ 50, 1 ≤ L ≤ 100,000, 0 ≤ P[i] ≤ 100, 0 ≤ T[i] ≤ 100, 0 ≤ V[i] ≤ 100
+Addtl Info: None",105,False,,,,,False,1420
+p01424,p01424_4,"Types: N: int, M: int, words: List[str], ordered_pairs: List[Tuple[int, int]]
+Ranges: 1 ≤ N ≤ 100, 0 ≤ M ≤ 1,000, 1 ≤ len(words[i]) ≤ 10, 1 ≤ X_j, Y_j ≤ N
+Addtl Info: None",104,False,,,,,False,1424
+p01453,p01453_4,"Types: W: int, H: int, c: List[str]
+Ranges: 3 ≤ W ≤ 500, 3 ≤ H ≤ 500, c[i] in {'.', '#', 's', 'g', '*'}
+Addtl Info: None",105,False,,,,,False,1453
+p01459,p01459_4,"Types: N: int, M: int, A: int, grid: List[List[str]]
+
+Ranges: 2 ≤ N, M ≤ 100, 0 ≤ A ≤ 10, grid[i][j] in {'#', '.', 'S', 'G'}
+
+Addtl Info: None",105,False,,,,,False,1459
+p01468,p01468_4,"Types: N: int, x: List[List[int]], y: List[List[int]]
+Ranges: 2 ≤ N ≤ 10^5, 0 ≤ x[i][j], y[i][j] ≤ 100
+Addtl Info: (x[i][0], y[i][0]) ≠ (x[i][1], y[i][1])",105,False,,,,,False,1468
+p01472,p01472_4,"Types: N: int, F: int, X: List[List[int]]
+Ranges: 1 ≤ N ≤ 8, -10^5 ≤ F ≤ 10^5, -10^5 ≤ X[i][j] ≤ 10^5
+Addtl Info: None",104,False,,,,,False,1472
+p01495,p01495_4,"Types: N: int, X: int, Y: int, Z: int
+Ranges: 1 ≤ N ≤ 1,000; 0 ≤ X, Y, Z ≤ 10^18
+Addtl Info: None",102,False,,,,,False,1495
+p01531,p01531_4,"Types: input_str: str
+Ranges: 2 ≤ len(input_str) ≤ 1000, input_str consists of characters '0'-'9' and 'T', 'L', 'U', 'R', 'D'
+Addtl Info: None",102,False,,,,,False,1531
+p01541,p01541_4,"Types: n: int, Si: List[int]
+Ranges: 1 ≤ n ≤ 10^3, 1 ≤ Si[i] ≤ 10^4
+Addtl Info: None",105,False,,,,,False,1541
+p01547,p01547_4,"Types: 
+- Number of polygons: int
+- Number of polygon vertices: List[int]
+- x-coordinate: List[List[int]]
+- y-coordinate: List[List[int]]
+- Number of occurrence points and important facility data: int
+- x-coordinate of the occurrence position: List[int]
+- y-coordinate of the occurrence position: List[int]
+- x-coordinate of the important facility: List[int]
+- y-coordinate of the important facility: List[int]
+
+Ranges:
+- Number of polygons: 1 ≤ number of polygons ≤ 5
+- Number of polygon vertices[i]: 3 ≤ number of polygon vertices[i] ≤ 5
+- x-coordinate[i][j], y-coordinate[i][j]: -1000 ≤ x-coordinate[i][j], y-coordinate[i][j] ≤ 1000
+- Number of occurrence points and important facility data: 1 ≤ number of occurrence points and important facility data ≤ 100
+- x-coordinate of the occurrence position[i], y-coordinate of the occurrence position[i], x-coordinate of the important facility[i], y-coordinate of the important facility[i]: -1000 ≤ x-coordinate of the occurrence position[i], y-coordinate of the occurrence position[i], x-coordinate of the important facility[i], y-coordinate of the important facility[i] ≤ 1000
+
+Addtl Info: 
+- The coordinates included in the input are integers.
+- A polygon refers to a polygon that can be created by connecting the given vertices in order, and has no self-intersection.
+- Neither the occurrence point nor the important facility is on the vertex or the edge of the polygon.",106,False,,,,,False,1547
+p01559,p01559_4,"Types: N: int, M: int, obstacles: List[Tuple[int, int]]
+Ranges: 2 ≤ N ≤ 10^6, 0 ≤ M ≤ 50, 1 ≤ Xi, Yi ≤ N
+Addtl Info: i ≠ j implies (Xi, Yi) ≠ (Xj, Yj), (Xi, Yi) ≠ (1, 1), (Xi, Yi) ≠ (N, N)",106,False,,,,,False,1559
+p01562,p01562_4,"Types: N: int, Xi: int, Yi: int
+Ranges: 2 ≤ N ≤ 100, -10^5 ≤ Xi, Yi ≤ 10^5
+Addtl Info: 1 ≤ i ≤ N, (Xj, Yj) ≠ (Xj+1, Yj+1), 1 ≤ j ≤ N-1",106,False,,,,,False,1562
+p01599,p01599_4,"Types:  
+NAB: int, NBA: int,  
+AB: List[Tuple[int, int, int]],  
+BA: List[Tuple[int, int, int]]  
+
+Ranges:  
+0 ≤ NAB ≤ 50,  
+0 ≤ NBA ≤ 50,  
+1 ≤ Ci ≤ 10,  
+0 ≤ Di < 86400,  
+0 ≤ Ai < 86400  
+
+Addtl Info:  
+NAB + NBA ≤ 50",103,False,,,,,False,1599
+p01602,p01602_4,"Types: n: int, p: List[Tuple[str, int]]
+Ranges: 1 ≤ n ≤ 1,000, 1 ≤ x_i ≤ 10^6, p_i in {'(', ')'}
+Addtl Info: None",104,False,,,,,False,1602
+p01611,p01611_4,"Types: N: int, A: int, K: int, SA: List[int]
+Ranges: 1 ≤ N ≤ 10^5, 1 ≤ A ≤ 26, 1 ≤ K ≤ 10^{18}, 1 ≤ SA[i] ≤ N, i ≠ j implies SA_i ≠ SA_j
+Addtl Info: None",103,False,,,,,False,1611
+p01626,p01626_4,"Types: N: int, M: int, B: List[List[Tuple[int, int]]], L: Tuple[Tuple[int, int], Tuple[int, int]], P: Tuple[int, int]  
+Ranges: 1 ≤ N ≤ 10^3, 1 ≤ M ≤ 10^3, 1 ≤ len(B[i]) ≤ 10^3, -10^9 ≤ B[i][j][0], B[i][j][1] ≤ 10^9, -10^9 ≤ L[0][0], L[0][1], L[1][0], L[1][1] ≤ 10^9, -10^9 ≤ P[0], P[1] ≤ 10^9  
+Addtl Info: B is a list of size N, each element is a list of tuples (x, y) representing the vertices of a polygon. L is a tuple of two tuples, each representing a point (x, y) on the dividing line. P is a tuple (x, y) representing the position of the hero.",102,False,,,,,False,1626
+p01630,p01630_4,"Types: N: int, bit_line: str
+Ranges: 1 ≤ N ≤ 10, bit_line is a string of length 2^N consisting of '0' and '1'
+Addtl Info: None",106,False,,,,,False,1630
+p01643,p01643_4,"Types: n: int, k: int, a: List[int]
+Ranges: 2 ≤ n ≤ 8000, n is even, 0 ≤ k ≤ min(n/2, 20), 1 ≤ a[i] ≤ n, a[i] ≠ i
+Addtl Info: a_i ≠ a_j (i ≠ j), a[a_i] = i",102,False,,,,,False,1643
+p01649,p01649_4,"Types: 
+- n: int
+- w: int
+- h: int
+- r: int
+- v_x: int
+- v_y: int
+- x_i: int
+- y_i: int
+
+Ranges:
+- 2 ≤ n ≤ 11
+- 4 ≤ w, h ≤ 1000
+- 1 ≤ r ≤ 100
+- -10,000 ≤ v_x, v_y ≤ 10,000 and (v_x, v_y) ≠ (0, 0)
+- r < x_i < w - r
+- r < y_i < h - r
+
+Addtl Info:
+- The number of datasets is less than 100.",102,False,,,,,False,1649
+p01655,p01655_4,"Types: l: int, d: int, str_1: str, str_2: str, str_3: str
+Ranges: 1 ≤ l ≤ 100,000, 0 ≤ d ≤ 5,000
+Addtl Info: Strings consist of only lower and upper case alphabets. Input ends with a line containing two zeros, which should not be processed.",102,False,,,,,False,1655
+p01676,p01676_4,"Types: N: int, M: int, s: List[int], t: List[int]
+Ranges: 1 ≤ N ≤ 500, 0 ≤ M ≤ 3,000, 1 ≤ s_i, t_i ≤ N
+Addtl Info: s_i ≠ t_i, {s_i, t_i} are unique pairs, graph is strongly connected",102,False,,,,,False,1676
+p01677,p01677_4,"Types: N: int, a: List[Union[int, str]]
+Ranges: 2 ≤ N ≤ 1,000; -10^9 ≤ a[i] ≤ 10^9 or a[i] = 'x'
+Addtl Info: The number of datasets does not exceed 100. The end of input is indicated by a single 0.",102,False,,,,,False,1677
+p01682,p01682_4,"Types: expr: str, number: int
+Ranges: number between 0 and 1,000,000,000 inclusive
+Addtl Info: The maximum number of datasets is 100; the total size of the input file does not exceed 2,000,000 bytes",102,False,,,,,False,1682
+p01699,p01699_4,"Types: N: int, low: List[int], high: List[int]
+Ranges: 2 ≤ N ≤ 6, 1 ≤ low[i] ≤ high[i] ≤ 99
+Addtl Info: Input ends with a single zero on a separate line",102,False,,,,,False,1699
+p01704,p01704_4,"Types: N: int, pw: int, vw: List[int], pf: List[int], vf: List[int], th: List[int]
+Ranges: 1 ≤ N ≤ 10^5, 1 ≤ pw ≤ 100, -100 ≤ vw[i] ≤ 100, 1 ≤ pf[i] ≤ 100, 1 ≤ vf[i] ≤ 100, -100 ≤ th[i] ≤ 100
+Addtl Info: None",102,False,,,,,False,1704
+p01707,p01707_4,"Types: N: int, D: int, X: int  
+Ranges: 1 ≤ N ≤ 2,000, 1 ≤ D ≤ 10^12, 1 ≤ X ≤ 2,000  
+Addtl Info: Input consists of multiple datasets, no more than 100 datasets, end of input denoted by a line containing three zeros, output is the number of ways modulo 1,000,000,007",102,False,,,,,False,1707
+p01726,p01726_4,"Types: S: str, T_prime: str
+Ranges: 1 ≤ |S| ≤ 300,000, 1 ≤ |T_prime| ≤ |S|
+Addtl Info: S and T_prime consist only of upper- and lowercase letters.",104,False,,,,,False,1726
+p01775,p01775_4,"Types: n: int, m: int, k: int, p: int, x_i: int, y_i: int, w_i: int, s_j: int, t_j: int  
+Ranges: 3 ≤ n ≤ 1,000, 1 ≤ m ≤ 2,000, 1 ≤ k ≤ 6, 1 ≤ p ≤ n, 1 ≤ x_i ≤ n, 1 ≤ y_i ≤ n, 1 ≤ w_i ≤ 1,000, 1 ≤ s_j ≤ n, 1 ≤ t_j ≤ n  
+Addtl Info: None",102,False,,,,,False,1775
+p01777,p01777_4,"Types: D: int, X: List[int], Q: int, queries: List[Tuple[int, int, int]]
+Ranges: 1 ≤ D ≤ 100,000, -10^8 ≤ X[i] ≤ 10^8, 1 ≤ Q ≤ 100,000, 1 ≤ l_j ≤ r_j ≤ D, 0 ≤ e_j ≤ 10^8
+Addtl Info: None",102,False,,,,,False,1777
+p01791,p01791_4,"Types: n: int, k: int, a: int, b: int, x: List[int]
+
+Ranges: 1 ≤ k ≤ n ≤ 600, 0 ≤ a ≤ b ≤ 180,000, 0 ≤ x[i] ≤ 300
+
+Addtl Info: None",102,False,,,,,False,1791
+p01802,p01802_4,"Types: D: int, E: int
+
+Ranges: 1 ≤ D ≤ 100, 1 ≤ E ≤ 100
+
+Addtl Info: Up to 100 data sets, end of input indicated by ""0 0""",102,False,,,,,False,1802
+p01868,p01868_4,"Types: N: int, T: List[int]
+Ranges: 1 ≤ N ≤ 50, 1 ≤ T[i] ≤ 50
+Addtl Info: None",102,False,,,,,False,1868
+p01870,p01870_4,"Types: N: int, p: List[int], w: List[int]
+Ranges: 2 ≤ N ≤ 100000, 0 ≤ p[i] ≤ N-1, 1 ≤ w[i] ≤ 1000
+Addtl Info: All islands can be reached from any other island",102,False,,,,,False,1870
+p01873,p01873_4,"Types: N: int, S: List[int]
+
+Ranges: 1 ≤ N ≤ 200,000, 1 ≤ S[i] ≤ 100,000
+
+Addtl Info: None",102,False,,,,,False,1873
+p01877,p01877_4,"Types: 
+- N: int 
+- S: List[int] 
+- Q: int 
+- queries: List[Tuple[int, int, int]]
+
+Ranges: 
+- 2 ≤ N ≤ 500,000
+- N is even
+- -100,000,000 ≤ S[j] ≤ 100,000,000 for 1 ≤ j ≤ N
+- 1 ≤ Q ≤ 100,000
+- 1 ≤ l ≤ r ≤ N
+- -1,000 ≤ x ≤ 1,000
+
+Addtl Info: None",102,False,,,,,False,1877
+p01881,p01881_4,"Types: H: int, W: int, map: List[str]
+Ranges: 2 ≤ H ≤ 200, 2 ≤ W ≤ 200, map_i: str of length W
+Addtl Info: 'map' contains '@', '%', '$', '.', '#' with exactly one '@' and one '%'",102,False,,,,,False,1881
+p01882,p01882_4,"Types: N: int, s_i: str, a_i: int, M: int, t_j: str, b_j: int  
+Ranges: 1 ≤ N ≤ 50,000, 1 ≤ |s_i| ≤ 20, 0 ≤ a_i ≤ 10^5, 1 ≤ M ≤ 20,000, 1 ≤ |t_j| ≤ 20, 0 ≤ b_j ≤ 10^5  
+Addtl Info: Each character of \(s_i\) and \(t_j\) is an English letter and they are case-sensitive. No two members have the same name at the same time, but a member who has left may rejoin.",102,False,,,,,False,1882
+p01885,p01885_4,"Types: N: int, L: int, A: List[int], B: List[int], C: List[int]
+Ranges: 1 ≤ N ≤ 10^5, 1 ≤ L ≤ 10^9, 1 ≤ A[i] ≤ 10^9, 1 ≤ B[i] ≤ 10^9, 1 ≤ C[i] ≤ 10^9
+Addtl Info: None",102,False,,,,,False,1885
+p01890,p01890_4,"Types: N: int, g: List[int], a: List[int], b: List[int], d: List[int]
+
+Ranges: 1 ≤ N ≤ 100,000, 1 ≤ g[i] ≤ 10,000, 1 ≤ a[i], b[i] ≤ N, a[i] ≠ b[i], 1 ≤ d[i] ≤ 10,000
+
+Addtl Info: None",102,False,,,,,False,1890
+p01891,p01891_4,"Types: N: int, M: int, A: int, B: int, D: List[int]
+Ranges: 1 ≤ N ≤ 1000, 0 ≤ M ≤ N, 1 ≤ A ≤ B ≤ 1000, 1 ≤ D[i] ≤ 1000
+Addtl Info: None",102,False,,,,,False,1891
+p01897,p01897_4,"Types: N: int, M: int, a: List[int], b: List[int]  
+Ranges: 3 ≤ N ≤ 500, max(3, N−1) ≤ M ≤ 30000, 1 ≤ a_i, b_i ≤ N  
+Addtl Info: The graph is connected when ignoring the direction of edges. \(a_i \neq b_i\) for all \(i\). \(\{a_i, b_i\} \neq \{a_j, b_j\}\) for all \(i \neq j\).",102,False,,,,,False,1897
+p01899,p01899_4,"Types: N: int, d: int, p: List[int]  
+Ranges: 3 ≤ N ≤ 1,000, 1 ≤ d ≤ 1,000, 1 ≤ p[i] ≤ 1,000 (1 ≤ i ≤ N)  
+Addtl Info: None",102,False,,,,,False,1899
+p01925,p01925_4,"Types: N: int, M: int, S: List[int], k: List[int], c: List[List[int]]
+Ranges: 2 ≤ N ≤ 10,000, 1 ≤ M ≤ 1,000, 1 ≤ Si ≤ 100, 1 ≤ ki ≤ N, 1 ≤ ci,j ≤ N
+Addtl Info: Σki ≤ 100,000",102,False,,,,,False,1925
+p01939,p01939_4,"Types: n: int, m: int
+Ranges: 1 ≤ n ≤ 10^15, 0 ≤ m ≤ 10^15
+Addtl Info: Output result modulo 10^9 + 7",102,False,,,,,False,1939
+p01957,p01957_4,"Types: S: str, a_i: str, v_i: int  
+Ranges: 2 ≤ N ≤ 26, v_i ≤ 26  
+Addtl Info: Each a_i is distinct and appears exactly once in S. S satisfies the BNF: `<winner> ::= <person> | ""["" <winner> ""-"" <winner> ""]""`, `<person> ::= ""a"" | ""b"" | ""c"" | ... | ""z""`.",103,False,,,,,False,1957
+p01958,p01958_4,"Types: l: int, r: int
+Ranges: 1 ≤ l ≤ r ≤ 10^9, 0 ≤ r - l < 1,000,000
+Addtl Info: None",107,False,,,,,False,1958
+p01966,p01966_4,"Types: N: int, Q: int, a: List[int], b: List[int], p: List[int]
+Ranges: 2 ≤ N ≤ 10^5, 1 ≤ Q ≤ 10^5, 1 ≤ a[i] < b[i] ≤ N, 1 ≤ p[i] ≤ 10^9
+Addtl Info: None",105,False,,,,,False,1966
+p01968,p01968_4,"Types: N: int, a: List[int]  
+Ranges: 1 ≤ N ≤ 60, -2 ≤ a[i] ≤ 2  
+Addtl Info: None",102,False,,,,,False,1968
+p01975,p01975_4,"Types: N: int, a: List[int], b: List[int]
+Ranges: 1 ≤ N ≤ 10^5, 1 ≤ a[i], b[i] ≤ N, a[i] ≠ a[j] for all i ≠ j
+Addtl Info: All input is integers",14,False,,,,,False,1975
+p01976,p01976_4,"Types: N: int, a: List[int]
+Ranges: 1 ≤ N ≤ 10^5, 1 ≤ a[i] ≤ 10^9
+Addtl Info: None",102,False,,,,,False,1976
+p01978,p01978_4,"Types: N: int, M: int, s: int, t: int, a: List[int], b: List[int], c: List[int], d: List[int]
+
+Ranges: 2 ≤ N ≤ 10^5, 1 ≤ M ≤ 10^5, 1 ≤ s, t ≤ N, 1 ≤ a[i], b[i], c[i] ≤ N, 1 ≤ d[i] ≤ 10^9
+
+Addtl Info: s ≠ t, A path from s to t exists in the original graph",102,False,,,,,False,1978
+p01989,p01989_4,"Types: S: str
+Ranges: 4 ≤ |S| ≤ 12, S consists only of digits
+Addtl Info: None",102,False,,,,,False,1989
+p01996,p01996_4,"Types: N: int, M: int, A: List[int]
+Ranges: 1 ≤ N ≤ 1000, 1 ≤ M ≤ N, 1 ≤ A[i] ≤ N
+Addtl Info: If 1 ≤ i < j ≤ M, then A[i] < A[j]",102,False,,,,,False,1996
+p02005,p02005_4,"Types: N: int, C: List[Tuple[str, int]], M: int, O: List[str]
+Ranges: 1 ≤ N ≤ 10^5, 1 ≤ len(C[i][0]) ≤ 20, 1 ≤ C[i][1] ≤ 10^5, 1 ≤ M ≤ 10^5, 1 ≤ len(O[i]) ≤ 20
+Addtl Info: C[i][0] and O[i] are strings consisting of lowercase alphabets only.",106,False,,,,,False,2005
+p02024,p02024_4,"Types: H: int, W: int, S: int, T: int
+Ranges: 2 ≤ H, W ≤ 10^9, 1 ≤ S ≤ H, 1 ≤ T ≤ W
+Addtl Info: None",102,False,,,,,False,2024
+p02030,p02030_4,"Types: n: int, m: int, a: List[int], b: List[int]
+Ranges: 1 ≤ n, m ≤ 2 × 10^5, 1 ≤ a_i, b_i ≤ 10^9
+Addtl Info: a_i < a_j (i < j), b_i < b_j (i < j)",102,False,,,,,False,2030
+p02042,p02042_4,"Types: N: int, M: int, A: List[int]
+Ranges: 2 ≤ N ≤ 10^5, 0 ≤ M ≤ N, 0 ≤ A[i] ≤ 10^5
+Addtl Info: None",102,False,,,,,False,2042
+p02060,p02060_4,"Types: N: int, p_A: int, p_B: int, p_C: int, p_D: int, t_A: int, t_B: int, t_C: int, t_D: int  
+Ranges: 1 ≤ N ≤ 100, 1 ≤ p_X ≤ 100, 1 ≤ t_X ≤ 100  
+Addtl Info: All input values are integers.",102,False,,,,,False,2060
+p02061,p02061_4,"Types: Q: int, N: List[int]
+Ranges: 1 ≤ Q ≤ 10^5, 2 ≤ N[i] ≤ 10^5
+Addtl Info: None",102,False,,,,,False,2061
+p02066,p02066_4,"Types: N: int, W: int, p: List[int], u: List[int], v: List[int], c: List[int]
+Ranges: 1 ≤ N ≤ 10^2, 1 ≤ W ≤ 10^5, 1 ≤ p[i] ≤ 10^9, 1 ≤ u[i] < v[i] ≤ N, 1 ≤ c[i] ≤ 10^5
+Addtl Info: If i ≠ j, then u_i ≠ u_j or v_i ≠ v_j",102,False,,,,,False,2066
+p02108,p02108_4,"Types: n: int, m: int, c: List[int], a: List[int], b: List[int]
+Ranges: 1 ≤ n ≤ 10^5, 0 ≤ m ≤ min(n×(n−1),10^5), 0 ≤ c[i] ≤ 1000, 0 ≤ a[i], b[i] ≤ n − 1
+Addtl Info: No self-loops or multiple edges",104,False,,,,,False,2108
+p02110,p02110_4,"Types: N: int, K: int, x: List[int], y: List[int]
+Ranges: 2 ≤ K ≤ N ≤ 6,000, 1 ≤ xi, yi ≤ 1,000,000, xi mod 2 = floor(yi ÷ 2) mod 2
+Addtl Info: Coordinates (xi, yi) are unique",104,False,,,,,False,2110
+p02113,p02113_4,"Types: N: int, L: int, s: List[str]
+Ranges: 1 ≤ N ≤ 1000, 1 ≤ L ≤ 30, si consists of lowercase English letters
+Addtl Info: None",104,False,,,,,False,2113
+p02121,p02121_4,"Types: n: int, m: int, a: List[Tuple[int, int]], b: List[Tuple[int, int]], x: List[Tuple[int, int]]
+Ranges: 2 ≤ n ≤ 200, 1 ≤ m ≤ 15, 0 ≤ ai, bi, ci, di, xi, yi ≤ 1000
+Addtl Info: None",103,False,,,,,False,2121
+p02123,p02123_4,"Types: N: int, A: List[List[str]]
+Ranges: 3 ≤ N ≤ 2047, A[i][j] in {'o', 'x'}
+Addtl Info: N is odd",104,False,,,,,False,2123
+p02132,p02132_4,"Types: N: int, M: int, x_i: int, y_i: int
+Ranges: 1 ≤ M ≤ N ≤ 14, 0 ≤ x_i, y_i ≤ 10^5
+Addtl Info: None",105,False,,,,,False,2132
+p02137,p02137_4,"Types: P: int
+Ranges: 1 ≤ P ≤ 10^5
+Addtl Info: None",104,False,,,,,False,2137
+p02149,p02149_4,"Types: a: int, b: int, c: int
+Ranges: 1 ≤ a, b, c ≤ 5000
+Addtl Info: a ≠ b, b ≠ c, c ≠ a",103,False,,,,,False,2149
+p02163,p02163_4,"Types: N: int, q: List[Tuple[int, int]]
+Ranges: 1 ≤ N ≤ 15, 1 ≤ q[i][0] ≤ 3, 1 ≤ q[i][1] ≤ 10
+Addtl Info: None",103,False,,,,,False,2163
+p02169,p02169_4,"Types: M: int, N: int, K: int
+Ranges: 1 ≤ M ≤ 10^18, 1 ≤ N ≤ 10^18, 1 ≤ K ≤ 1000
+Addtl Info: None",106,False,,,,,False,2169
+p02177,p02177_4,"Types: N: int, M: int, a: List[int], b: List[int]
+Ranges: 2 ≤ N ≤ 300, 1 ≤ M ≤ N(N-1), 1 ≤ a[i], b[i] ≤ N
+Addtl Info: a_i ≠ b_i",102,False,,,,,False,2177
+p02187,p02187_4,"Types: S: str, T: str, k: int  
+Ranges: 1 ≤ |S|, |T| ≤ 2×10^5, 1 ≤ k ≤ |T|  
+Addtl Info: Both S and T are composed of lowercase alphabets.",102,False,,,,,False,2187
+p02188,p02188_4,"Types: N: int, A: List[int], u: List[int], v: List[int]
+Ranges: 1 ≤ N ≤ 3 × 10^5, 0 ≤ A[i] ≤ 10^9, 1 ≤ u_i < v_i ≤ N
+Addtl Info: The graph given is guaranteed to be a tree.",102,False,,,,,False,2188
+p02194,p02194_4,"Types: N: int, A: List[int]
+Ranges: 1 ≤ N ≤ 10^5, 0 ≤ A[i] ≤ 2^{20}-1
+Addtl Info: Output the answer modulo 10^9+7",102,False,,,,,False,2194
+p02201,p02201_4,"Types: N: int, S: List[str]
+Ranges: 1 ≤ N ≤ 1000, 1 ≤ (length of S_i) ≤ 100
+Addtl Info: S_i consists of numbers and uppercase letters",102,False,,,,,False,2201
+p02238,p02238_4,"Types: n: int, G: List[Tuple[int, int, List[int]]]
+Ranges: 1 ≤ n ≤ 100, 1 ≤ u ≤ n, 0 ≤ k ≤ n-1, 1 ≤ v_i ≤ n
+Addtl Info: Vertices are identified by IDs 1, 2, ..., n respectively, IDs in the adjacency list are arranged in ascending order, and the input graph is represented as an adjacency list where each entry is a tuple (u, k, [v1, v2, ..., vk]).",103,False,,,,,False,2238
+p02253,p02253_4,"Types: \( n: \text{int}, s: \text{List[int]}, t: \text{List[int]} \)
+Ranges: \( 1 \le n \le 10^5 \), \( 1 \le s_i < t_i \le 10^9 \) (\( 1 \le i \le n \))
+Addtl Info: None",104,False,,,,,False,2253
+p02277,p02277_4,"Types: n: int, A: List[Tuple[str, int]]
+Ranges: 1 ≤ n ≤ 100,000, 1 ≤ A[i][1] ≤ 10^9, A[i][0] in {'S', 'H', 'C', 'D'}
+Addtl Info: None",103,False,,,,,False,2277
+p02300,p02300_4,"Types: n: int, points: List[Tuple[int, int]]
+Ranges: 3 ≤ n ≤ 100000, -10000 ≤ xi, yi ≤ 10000
+Addtl Info: No point in the points list will occur more than once.",103,False,,,,,False,2300
+p02320,p02320_4,"Types: N: int, W: int, vi: int, wi: int, mi: int
+Ranges: 1 ≤ N ≤ 100, 1 ≤ vi ≤ 1,000, 1 ≤ wi ≤ 1,000, 1 ≤ mi ≤ 10,000, 1 ≤ W ≤ 10,000
+Addtl Info: None",103,False,,,,,False,2320
+p02327,p02327_4,"Types: H: int, W: int, c: List[List[int]]
+Ranges: 1 ≤ H, W ≤ 1,400, c[i][j] in {0, 1}
+Addtl Info: None",102,False,,,,,False,2327
+p02348,p02348_4,"Types: n: int, q: int, queries: List[Tuple[int, int, Optional[int], Optional[int]]]
+Ranges: 1 ≤ n ≤ 100000, 1 ≤ q ≤ 100000, 0 ≤ s ≤ t < n, 0 ≤ i < n, 0 ≤ x < 2^31−1
+Addtl Info: queries is a list where each element is a tuple representing a query. For an update query, the tuple is (0, s, t, x). For a find query, the tuple is (1, i, None, None).",103,False,,,,,False,2348
+p02357,p02357_4,"Types: N: int, L: int, a: List[int]  
+Ranges: 1 ≤ N ≤ 10^6, 1 ≤ L ≤ 10^6, 1 ≤ a[i] ≤ 10^9, L ≤ N  
+Addtl Info: None",102,False,,,,,False,2357
+p02374,p02374_4,"Types: n: int, ki: int, c: List[int], q: int, query: List[Tuple[int, int, int]]
+
+Ranges: 2 ≤ n ≤ 100000, 1 ≤ ki ≤ n-1, 1 ≤ c[j] < c[j+1] ≤ n-1, 2 ≤ q ≤ 200000, 0 ≤ query[i][0] ≤ 1, 1 ≤ query[i][1] ≤ n-1, 1 ≤ query[i][2] ≤ 10000
+
+Addtl Info: None",104,False,,,,,False,2374
+p02400,p02400_4,"Types: r: float
+Ranges: 0 < r < 10000
+Addtl Info: The output should not contain an absolute error greater than 10^-5",103,False,,,,,False,2400
+p02412,p02412_4,"Types: n: int, x: int  
+Ranges: 3 ≤ n ≤ 100, 0 ≤ x ≤ 300  
+Addtl Info: Input is terminated by two zeros (n and x). Do not process the program for these end symbols.",102,False,,,,,False,2412
+p02422,p02422_4,"Types: str: str, q: int, command: List[Tuple[str, int, int, Optional[str]]]
+Ranges: 1 ≤ len(str) ≤ 1000, 1 ≤ q ≤ 100, 0 ≤ a ≤ b < len(str)
+Addtl Info: for replace command, b - a + 1 = len(p)",103,False,,,,,False,2422
+p02434,p02434_4,"### Problem Statement: Vector II
+
+**Description**
+
+For \( n \) dynamic arrays \( A_i \) (\( i = 0, 1, ..., n-1 \)), perform a sequence of the following operations:
+- `pushBack(t, x)`: Add element \( x \) at the end of \( A_t \).
+- `dump(t)`: Print all elements in \( A_t \).
+- `clear(t)`: Clear \( A_t \). If \( A_t \) is empty, do nothing.
+
+\( A_i \) is a 0-origin array and it is empty in the initial state.
+
+**Input**
+
+The input is given in the following format:
+```
+n q
+query_1
+query_2
+:
+query_q
+```
+Each query \( query_i \) is given by:
+- `0 t x`
+- `1 t`
+- `2 t`
+
+where the first digits 0, 1, and 2 represent pushBack, dump, and clear operations respectively.
+
+**Output**
+
+For each dump operation, print elements of \( A_t \) on a line. Separate adjacent elements by a space character (do not print the space after the last element). Note that, if the array is empty, an empty line should be printed.
+
+**Constraints**
+
+- \( 1 \leq n \leq 1,000 \)
+- \( 1 \leq q \leq 500,000 \)
+- \( -1,000,000,000 \leq x \leq 1,000,000,000 \)
+- The total number of elements printed by dump operations do not exceed 500,000
+
+**Sample Input 1**
+```
+3 13
+0 0 1
+0 0 2
+0 0 3
+0 1 -1
+0 2 4
+0 2 5
+1 0
+1 1
+1 2
+2 1
+1 0
+1 1
+1 2
+```
+
+**Sample Output 1**
+```
+1 2 3
+-1
+4 5
+1 2 3
+4 5
+```
+
+**Type Bounds**
+
+Types: \( n \): int, \( q \): int, \( t \): int, \( x \): int  
+Ranges: \( 1 \leq n \leq 1,000 \), \( 1 \leq q \leq 500,000 \), \( -1,000,000,000 \leq x \leq 1,000,000,000 \), \( 0 \leq t < n \)  
+Addtl Info: None",102,False,,,,,False,2434
+p02436,p02436_4,"Types: n: int, q: int, query_i: Tuple[int, int, Optional[int]]
+Ranges: 1 ≤ n ≤ 1,000; 1 ≤ q ≤ 200,000; -1,000,000,000 ≤ x ≤ 1,000,000,000
+Addtl Info: query_i[0] in {0, 1, 2}; query_i[0] == 0 implies query_i[2] is present and is an integer",102,False,,,,,False,2436
+p02457,p02457_4,"Types: q: int, query_i: Union[Tuple[int, int], Tuple[int, int, int]]
+Ranges: 1 ≤ q ≤ 200,000, 0 ≤ x ≤ 1,000,000,000
+Addtl Info: The total number of elements printed by dump operations does not exceed 1,000,000",102,False,,,,,False,2457
+p02461,p02461_4,"Types: q: int, query: List[Union[Tuple[int, str, int], Tuple[int, str], Tuple[int, str], Tuple[int, str, str]]]
+Ranges: 1 ≤ q ≤ 200,000, 1 ≤ x ≤ 1,000,000,000, 1 ≤ length of key ≤ 20, key consists of lower-case letters, L ≤ R in lexicographic order
+Addtl Info: The total number of elements printed by dump operations does not exceed 1,000,000",102,False,,,,,False,2461
+p02465,p02465_4,"Types: n: int, a: List[int], m: int, b: List[int]
+Ranges: 1 ≤ n, m ≤ 200,000, 0 ≤ a[i] < 10^9, 0 ≤ b[i] < 10^9
+Addtl Info: Elements in a and b are given in ascending order, no duplicate elements in each set",102,False,,,,,False,2465
+p02470,p02470_4,"Types: n: int
+Ranges: 1 ≤ n ≤ 10^9
+Addtl Info: None",103,False,,,,,False,2470
+p02471,p02471_4,"Types: a: int, b: int
+Ranges: 1 ≤ a, b ≤ 10^9
+Addtl Info: None",103,False,,,,,False,2471
+p02546,p02546_4,"Types: S: str  
+Ranges: 1 ≤ len(S) ≤ 1000  
+Addtl Info: S contains only lowercase English letters",104,False,,,,,False,2546
+p02556,p02556_4,"Types: N: int, coordinates: List[Tuple[int, int]]
+Ranges: 2 ≤ N ≤ 2 × 10^5, 1 ≤ x_i, y_i ≤ 10^9
+Addtl Info: None",103,False,,,,,False,2556
+p02581,p02581_4,"Types: N: int, A: List[int]
+Ranges: 1 ≤ N ≤ 2000, 1 ≤ A_i ≤ N
+Addtl Info: None",104,False,,,,,False,2581
+p02602,p02602_4,"Types: N: int, K: int, A: List[int]
+Ranges: 2 ≤ N ≤ 200000, 1 ≤ K ≤ N-1, 1 ≤ A[i] ≤ 10^9
+Addtl Info: None",104,False,,,,,False,2602
+p02614,p02614_4,"Types: H: int, W: int, K: int, c: List[List[str]]  
+Ranges: 1 ≤ H, W ≤ 6, 1 ≤ K ≤ HW, c[i][j] in {'.', '#'}  
+Addtl Info: None",106,False,,,,,False,2614
+p02621,p02621_4,"Types: a: int
+Ranges: 1 ≤ a ≤ 10
+Addtl Info: None",103,False,,,,,False,2621
+p02626,p02626_4,"Types: N: int, A: List[int]
+Ranges: 2 ≤ N ≤ 300, 1 ≤ A[i] ≤ 10^12
+Addtl Info: None",106,False,,,,,False,2626
+p02642,p02642_4,"Types: N: int, A: List[int]
+Ranges: 1 ≤ N ≤ 2 × 10^5, 1 ≤ A[i] ≤ 10^6
+Addtl Info: None",104,False,,,,,False,2642
+p02646,p02646_4,"Types: A: int, V: int, B: int, W: int, T: int  
+Ranges: -10^9 ≤ A, B ≤ 10^9, 1 ≤ V, W ≤ 10^9, 1 ≤ T ≤ 10^9  
+Addtl Info: A ≠ B",104,False,,,,,False,2646
+p02661,p02661_4,"Types: N: int, A: List[int], B: List[int]
+Ranges: 2 ≤ N ≤ 2 × 10^5, 1 ≤ A_i ≤ B_i ≤ 10^9
+Addtl Info: All values in input are integers.",103,False,,,,,False,2661
+p02673,p02673_4,"Types: N: int, A: List[int], B: List[int]
+Ranges: 2 ≤ N ≤ 200,000, 0 ≤ A[p] ≤ 10^12 for any p = 1, ..., N, 0 ≤ B[p] ≤ 100 for any p = 1, ..., N
+Addtl Info: None",105,False,,,,,False,2673
+p02675,p02675_4,"Types: N: int  
+Ranges: 1 ≤ N ≤ 999  
+Addtl Info: None",104,False,,,,,False,2675
+p02677,p02677_4,"Types: A: int, B: int, H: int, M: int
+Ranges: 1 ≤ A, B ≤ 1000, 0 ≤ H ≤ 11, 0 ≤ M ≤ 59
+Addtl Info: None",103,False,,,,,False,2677
+p02695,p02695_4,"Types: N: int, M: int, Q: int, a: List[int], b: List[int], c: List[int], d: List[int]
+Ranges: 2 ≤ N ≤ 10, 1 ≤ M ≤ 10, 1 ≤ Q ≤ 50, 1 ≤ a_i < b_i ≤ N, 0 ≤ c_i ≤ M - 1, 1 ≤ d_i ≤ 10^5
+Addtl Info: (a_i, b_i, c_i) ≠ (a_j, b_j, c_j) for i ≠ j",104,False,,,,,False,2695
+p02701,p02701_4,"Types: N: int, S: List[str]  
+Ranges: 1 ≤ N ≤ 2×10^5, 1 ≤ len(S[i]) ≤ 10, S[i] consists of lowercase English letters  
+Addtl Info: None",104,False,,,,,False,2701
+p02708,p02708_4,"Types: N: int, K: int
+
+Ranges: 1 ≤ N ≤ 2×10^5, 1 ≤ K ≤ N+1
+
+Addtl Info: None",104,False,,,,,False,2708
+p02713,p02713_4,"Types: K: int
+Ranges: 1 ≤ K ≤ 200
+Addtl Info: None",102,False,,,,,False,2713
+p02733,p02733_4,"Types: H: int, W: int, K: int, S: List[List[int]]
+Ranges: 1 ≤ H ≤ 10, 1 ≤ W ≤ 1000, 1 ≤ K ≤ H * W, S_{i,j} is 0 or 1
+Addtl Info: None",104,False,,,,,False,2733
+p02748,p02748_4,"Types: A: int, B: int, M: int, a: List[int], b: List[int], x: List[int], y: List[int], c: List[int]
+Ranges: 1 ≤ A ≤ 10^5, 1 ≤ B ≤ 10^5, 1 ≤ M ≤ 10^5, 1 ≤ a[i] ≤ 10^5, 1 ≤ b[i] ≤ 10^5, 1 ≤ x[i] ≤ A, 1 ≤ y[i] ≤ B, 1 ≤ c[i] ≤ 10^5, c[i] ≤ a[x[i]] + b[y[i]]
+Addtl Info: None",104,False,,,,,False,2748
+p02752,p02752_4,"Types: N: int, a: List[int], b: List[int]
+Ranges: 3 ≤ N ≤ 2 × 10^5, 1 ≤ a_i, b_i ≤ N
+Addtl Info: The given graph is a tree.",105,False,,,,,False,2752
+p02763,p02763_4,"Types: N: int, S: str, Q: int, Query: List[Tuple[int, Union[Tuple[int, str], Tuple[int, int]]]]
+Ranges: 1 ≤ N ≤ 500000, 1 ≤ Q ≤ 20000, 1 ≤ i_q ≤ N, 1 ≤ l_q ≤ r_q ≤ N
+Addtl Info: c_q is a lowercase English letter, S is a string consisting of lowercase English letters, |S| = N, There is at least one query of type 2 in each testcase.",102,False,,,,,False,2763
+p02765,p02765_4,"Types: N: int, R: int  
+Ranges: 1 ≤ N ≤ 100, 0 ≤ R ≤ 4111  
+Addtl Info: None",103,False,,,,,False,2765
+p02783,p02783_4,"Types: H: int, A: int  
+Ranges: 1 ≤ H ≤ 10^4, 1 ≤ A ≤ 10^4  
+Addtl Info: None",104,False,,,,,False,2783
+p02796,p02796_4,"Types: N: int, X: List[int], L: List[int]
+Ranges: 1 ≤ N ≤ 100,000, 0 ≤ X[i] ≤ 10^9 (1 ≤ i ≤ N), 1 ≤ L[i] ≤ 10^9 (1 ≤ i ≤ N)
+Addtl Info: If i ≠ j, X[i] ≠ X[j]",104,False,,,,,False,2796
+p02798,p02798_4,"Types: N: int, A: List[int], B: List[int]
+Ranges: 1 ≤ N ≤ 18, 1 ≤ A[i], B[i] ≤ 50 (1 ≤ i ≤ N)
+Addtl Info: All values in input are integers.",106,False,,,,,False,2798
+p02800,p02800_4,"Types: H: int, W: int, A: List[str]  
+Ranges: 1 ≤ H, W ≤ 10, |A_i| = W (1 ≤ i ≤ H), A_i consists of '.' and '#'  
+Addtl Info: None",106,False,,,,,False,2800
+p02806,p02806_4,"Types: N: int, s: List[str], t: List[int], X: str  
+Ranges: 1 ≤ N ≤ 50, 1 ≤ len(s_i) ≤ 100, 1 ≤ len(X) ≤ 100, 1 ≤ t_i ≤ 1000  
+Addtl Info: s_i and X consist of lowercase English letters, s_1, ..., s_N are distinct, there exists an integer i such that s_i = X",104,False,,,,,False,2806
+p02840,p02840_4,"Types: N: int, X: int, D: int
+Ranges: 1 ≤ N ≤ 2 × 10^5, -10^8 ≤ X, D ≤ 10^8
+Addtl Info: None",104,False,,,,,False,2840
+p02904,p02904_4,"Types: N: int, K: int, P: List[int]
+Ranges: 2 ≤ N ≤ 200000, 2 ≤ K ≤ N, 0 ≤ P[i] ≤ N-1
+Addtl Info: P_0, P_1, ..., P_{N-1} are all different and form a permutation of (0, 1, ..., N-1)",104,False,,,,,False,2904
+p02910,p02910_4,"Types: S: str
+Ranges: 1 ≤ len(S) ≤ 100, S[i] in {'L', 'R', 'U', 'D'}
+Addtl Info: None",106,False,,,,,False,2910
+p02918,p02918_4,"Types: N: int, K: int, S: str
+Ranges: 1 ≤ N ≤ 10^5, 1 ≤ K ≤ 10^5, |S| = N
+Addtl Info: Each character of S is 'L' or 'R'",105,False,,,,,False,2918
+p02929,p02929_4,"Types: N: int, S: str  
+Ranges: 1 ≤ N ≤ 10^5, |S| = 2N, S[i] in {'B', 'W'} (0 ≤ i < 2N)  
+Addtl Info: None",104,False,,,,,False,2929
+p02937,p02937_4,"Types: s: str, t: str
+Ranges: 1 ≤ |s| ≤ 10^5, 1 ≤ |t| ≤ 10^5
+Addtl Info: s and t consist of lowercase English letters.",104,False,,,,,False,2937
+p02948,p02948_4,"Types: N: int, M: int, A: List[int], B: List[int]
+Ranges: 1 ≤ N ≤ 10^5, 1 ≤ M ≤ 10^5, 1 ≤ A[i] ≤ 10^5, 1 ≤ B[i] ≤ 10^4
+Addtl Info: None",104,False,,,,,False,2948
+p02954,p02954_4,"Types: S: str
+Ranges: 2 ≤ len(S) ≤ 10^5, S[0] = 'R', S[-1] = 'L', all characters of S in {'L', 'R'}
+Addtl Info: None",104,False,,,,,False,2954
+p02962,p02962_4,"Types: s: str, t: str  
+Ranges: 1 ≤ |s| ≤ 5 × 10^5, 1 ≤ |t| ≤ 5 × 10^5  
+Addtl Info: s and t consist of lowercase English letters",104,False,,,,,False,2962
+p02979,p02979_4,"Types: N: int, K: int, M: int
+Ranges: 1 ≤ K ≤ N ≤ 150, 10^8 ≤ M ≤ 10^9
+Addtl Info: None",106,False,,,,,False,2979
+p02981,p02981_4,"Types: N: int, A: int, B: int
+Ranges: 1 ≤ N ≤ 20, 1 ≤ A ≤ 50, 1 ≤ B ≤ 50
+Addtl Info: None",104,False,,,,,False,2981
+p03005,p03005_4,"Types: N: int, K: int
+Ranges: 1 ≤ K ≤ N ≤ 100
+Addtl Info: None",104,False,,,,,False,3005
+p03006,p03006_4,"Types: N: int, x: List[int], y: List[int]
+Ranges: 1 ≤ N ≤ 50, |x[i]|, |y[i]| ≤ 10^9
+Addtl Info: If i ≠ j, x[i] ≠ x[j] or y[i] ≠ y[j]",104,False,,,,,False,3006
+p03008,p03008_4,"Types: N: int, g_A: int, s_A: int, b_A: int, g_B: int, s_B: int, b_B: int
+Ranges: 1 ≤ N ≤ 5000, 1 ≤ g_A ≤ 5000, 1 ≤ s_A ≤ 5000, 1 ≤ b_A ≤ 5000, 1 ≤ g_B ≤ 5000, 1 ≤ s_B ≤ 5000, 1 ≤ b_B ≤ 5000
+Addtl Info: None",102,False,,,,,False,3008
+p03012,p03012_4,"Types: N: int, W: List[int]
+Ranges: 2 ≤ N ≤ 100, 1 ≤ W[i] ≤ 100
+Addtl Info: None",104,False,,,,,False,3012
+p03018,p03018_4,"Types: s: str
+
+Ranges: 1 ≤ |s| ≤ 200000, s[i] ∈ {'A', 'B', 'C'}
+
+Addtl Info: None",104,False,,,,,False,3018
+p03020,p03020_4,"Types: N: int, RX: List[int], RY: List[int], RC: List[int], BX: List[int], BY: List[int], BC: List[int]
+Ranges: 1 ≤ N ≤ 1000, 0 ≤ RX[i], RY[i], BX[i], BY[i] ≤ 10^9, 1 ≤ RC[i], BC[i] ≤ 10, ∑_{i=1}^{N} RC[i] = ∑_{i=1}^{N} BC[i]
+Addtl Info: All values in input are integers.",104,False,,,,,False,3020
+p03031,p03031_4,"Types: N: int, M: int, k_i: List[int], s_ij: List[List[int]], p_i: List[int]
+Ranges: 1 ≤ N, M ≤ 10, 1 ≤ k_i ≤ N, 1 ≤ s_ij ≤ N, p_i in {0, 1}
+Addtl Info: s_ia ≠ s_ib (a ≠ b)",104,False,,,,,False,3031
+p03037,p03037_4,"Types: N: int, M: int, L: List[int], R: List[int]
+Ranges: 1 ≤ N ≤ 10^5, 1 ≤ M ≤ 10^5, 1 ≤ L_i ≤ R_i ≤ N
+Addtl Info: None",104,False,,,,,False,3037
+p03052,p03052_4,"Types: N: int, M: int, a: List[int], b: List[int]
+Ranges: 2 ≤ N ≤ 20, N-1 ≤ M ≤ N(N-1)/2, 1 ≤ a_i, b_i ≤ N
+Addtl Info: G does not have self-loops or multiple edges, the subgraph consisting of Vertex 1,2,...,N and Edge 1,2,...,N-1 is a spanning tree of G",104,False,,,,,False,3052
+p03066,p03066_4,"Types: N: int, X: int
+Ranges: 1 ≤ N ≤ 3000, 1 ≤ X ≤ 2N
+Addtl Info: None",106,False,,,,,False,3066
+p03078,p03078_4,"Types: X: int, Y: int, Z: int, K: int, A: List[int], B: List[int], C: List[int]
+Ranges: 1 ≤ X ≤ 1000, 1 ≤ Y ≤ 1000, 1 ≤ Z ≤ 1000, 1 ≤ K ≤ min(3000, X * Y * Z), 1 ≤ A_i ≤ 10^10, 1 ≤ B_i ≤ 10^10, 1 ≤ C_i ≤ 10^10
+Addtl Info: None",104,False,,,,,False,3078
+p03099,p03099_4,"Types: 
+- N: int 
+- M: int
+- coordinates_and_values: List[Tuple[int, int, int]]
+- conditions: List[Tuple[str, int, int]]
+
+Ranges: 
+- 1 ≤ N ≤ 80
+- 1 ≤ x_i, y_i ≤ 100
+- 1 ≤ v_i ≤ 10^15
+- 1 ≤ M ≤ 320
+- t_i in {'L', 'R', 'U', 'D'}
+- 1 ≤ a_i ≤ 100
+- 0 ≤ b_i ≤ N - 1
+
+Addtl Info: 
+- (x_i, y_i) are pairwise distinct.
+- (t_i, a_i) are pairwise distinct.
+- (t_i, b_i) are pairwise distinct.",105,False,,,,,False,3099
+p03111,p03111_4,"Types: N: int, A: int, B: int, C: int, l: List[int]  
+Ranges: 3 ≤ N ≤ 8, 1 ≤ C < B < A ≤ 1000, 1 ≤ l_i ≤ 1000  
+Addtl Info: All values in input are integers.",104,False,,,,,False,3111
+p03122,p03122_4,"Types: 
+N: int, 
+coordinates: List[Tuple[int, int]]
+
+Ranges: 
+1 ≤ N ≤ 10^4, 
+-10^17 ≤ x_i, y_i ≤ 10^17",102,False,,,,,False,3122
+p03129,p03129_4,"Types: N: int, K: int  
+Ranges: 1 ≤ N ≤ 100, 1 ≤ K ≤ 100  
+Addtl Info: None",105,False,,,,,False,3129
+p03131,p03131_4,"Types: K: int, A: int, B: int  
+Ranges: 1 ≤ K ≤ 10^9, 1 ≤ A ≤ 10^9, 1 ≤ B ≤ 10^9  
+Addtl Info: None",104,False,,,,,False,3131
+p03133,p03133_4,"Types: N: int, M: int, a: List[List[int]]
+Ranges: 1 ≤ N, M ≤ 300, 0 ≤ a[i][j] ≤ 1 (1 ≤ i ≤ N, 1 ≤ j ≤ M)
+Addtl Info: None",103,False,,,,,False,3133
+p03136,p03136_4,"Types: N: int, L: List[int]
+Ranges: 3 ≤ N ≤ 10, 1 ≤ L[i] ≤ 100
+Addtl Info: None",104,False,,,,,False,3136
+p03139,p03139_4,"Types: N: int, A: int, B: int
+Ranges: 1 ≤ N ≤ 100, 0 ≤ A ≤ N, 0 ≤ B ≤ N
+Addtl Info: None",104,False,,,,,False,3139
+p03159,p03159_4,"Types: N: int, A: List[int], U: List[int], V: List[int]
+Ranges: 1 ≤ N ≤ 5000, 1 ≤ |A_i| ≤ 10^9 (1 ≤ i ≤ N), 1 ≤ U_i, V_i ≤ N (1 ≤ i ≤ N - 1)
+Addtl Info: U_i ≠ V_i (1 ≤ i ≤ N - 1), Any two different devices are connected through some number of cables.",106,False,,,,,False,3159
+p03165,p03165_4,"Types: s: str, t: str
+Ranges: 1 ≤ |s|, |t| ≤ 3000
+Addtl Info: s and t consist of lowercase English letters",105,False,,,,,False,3165
+p03170,p03170_4,"Types: N: int, K: int, a: List[int]
+Ranges: 1 ≤ N ≤ 100, 1 ≤ K ≤ 10^5, 1 ≤ a_1 < a_2 < ... < a_N ≤ K
+Addtl Info: None",107,False,,,,,False,3170
+p03183,p03183_4,"Types: N: int, W: List[int], S: List[int], V: List[int]  
+Ranges: 1 ≤ N ≤ 10^3, 1 ≤ W[i], S[i] ≤ 10^4, 1 ≤ V[i] ≤ 10^9  
+Addtl Info: None",105,False,,,,,False,3183
+p03197,p03197_4,"Types: N: int, a: List[int]
+Ranges: 1 ≤ N ≤ 10^5, 1 ≤ a_i ≤ 10^9
+Addtl Info: None",103,False,,,,,False,3197
+p03203,p03203_4,"Types: H: int, W: int, N: int, X: List[int], Y: List[int]
+
+Ranges: 
+1 ≤ H ≤ 2×10^5 
+1 ≤ W ≤ 2×10^5 
+0 ≤ N ≤ 2×10^5 
+1 ≤ X[i] ≤ H 
+1 ≤ Y[i] ≤ W 
+
+Addtl Info: 
+If i ≠ j, (X[i], Y[i]) ≠ (X[j], Y[j]) 
+(X[i], Y[i]) ≠ (1, 1) 
+X[i] and Y[i] are integers.",104,False,,,,,False,3203
+p03212,p03212_4,"Types: N: int  
+Ranges: 1 ≤ N < 10^9  
+Addtl Info: None",104,False,,,,,False,3212
+p03244,p03244_4,"Types: n: int, v: List[int]
+
+Ranges: 2 ≤ n ≤ 10^5, 1 ≤ v[i] ≤ 10^5
+
+Addtl Info: n is even",104,False,,,,,False,3244
+p03250,p03250_4,"Types: A: int, B: int, C: int  
+Ranges: 1 ≤ A, B, C ≤ 9  
+Addtl Info: None",104,False,,,,,False,3250
+p03252,p03252_4,"Types: S: str, T: str
+Ranges: 1 ≤ |S| ≤ 2 × 10^5, |S| = |T|
+Addtl Info: S and T consist of lowercase English letters.",104,False,,,,,False,3252
+p03254,p03254_4,"Types: N: int, x: int, a: List[int]
+Ranges: 2 ≤ N ≤ 100, 1 ≤ x ≤ 10^9, 1 ≤ a[i] ≤ 10^9
+Addtl Info: None",105,False,,,,,False,3254
+p03263,p03263_4,"Types: H: int, W: int, a: List[List[int]]
+
+Ranges: 1 ≤ H ≤ 500, 1 ≤ W ≤ 500, 0 ≤ a_{ij} ≤ 9
+
+Addtl Info: None",104,False,,,,,False,3263
+p03272,p03272_4,"Types: N: int, i: int
+Ranges: 1 ≤ N ≤ 100, 1 ≤ i ≤ N
+Addtl Info: None",104,False,,,,,False,3272
+p03315,p03315_4,"Types: S: str
+Ranges: len(S) = 4, S[i] in {'+', '-'}
+Addtl Info: None",43,False,,,,,False,3315
+p03336,p03336_4,"Types: N: int, M: int, K: int, S: str, T: str  
+Ranges: 1 ≤ K ≤ 10^6, 1 ≤ N, M ≤ 10^6  
+Addtl Info: The initial characters of S and T are '1'",104,False,,,,,False,3336
+p03346,p03346_4,"Types: N: int, P: List[int]
+
+Ranges: 1 ≤ N ≤ 2 × 10^5, P is a permutation of (1, 2, ..., N)
+
+Addtl Info: None",23,False,,,,,False,3346
+p03364,p03364_4,"Types: N: int, S: List[List[str]]
+Ranges: 1 ≤ N ≤ 300, S_{i,j} is a lowercase English letter
+Addtl Info: None",104,False,,,,,False,3364
+p03365,p03365_4,"Types: N: int  
+Ranges: 2 ≤ N ≤ 10^6  
+Addtl Info: None",105,False,,,,,False,3365
+p03370,p03370_4,"Types: N: int, X: int, m: List[int]  
+Ranges: 2 ≤ N ≤ 100, 1 ≤ m_i ≤ 1000, m_1 + m_2 + ... + m_N ≤ X ≤ 10^5  
+Addtl Info: None",104,False,,,,,False,3370
+p03386,p03386_4,"Types: A: int, B: int, K: int
+Ranges: 1 ≤ A ≤ B ≤ 10^9, 1 ≤ K ≤ 100
+Addtl Info: None",104,False,,,,,False,3386
+p03391,p03391_4,"Types: N: int, A: List[int], B: List[int]
+Ranges: 1 ≤ N ≤ 2 × 10^5, 0 ≤ A[i] ≤ 10^9, 0 ≤ B[i] ≤ 10^9
+Addtl Info: The sums of the elements in A and B are equal.",104,False,,,,,False,3391
+p03392,p03392_4,"Types: S: str  
+Ranges: 2 ≤ |S| ≤ 2 × 10^5, S consists of {'a', 'b', 'c'}  
+Addtl Info: None",105,False,,,,,False,3392
+p03396,p03396_4,"Types: N: int, L: int, x: List[int], t: List[int]
+Ranges: 1 ≤ N ≤ 300000, 1 ≤ L ≤ 10^9, 0 < x[i] < L, 1 ≤ t[i] ≤ 10^9
+Addtl Info: x is strictly increasing",105,False,,,,,False,3396
+p03406,p03406_4,"Types: N: int, M: int, A: List[int]
+Ranges: 1 ≤ N ≤ 16, 0 ≤ M ≤ 16, 2 ≤ A[i] ≤ 2^N (1 ≤ i ≤ M), A[i] < A[i + 1] (1 ≤ i < M)
+Addtl Info: None",106,False,,,,,False,3406
+p03449,p03449_4,"Types: N: int, A: List[List[int]]
+Ranges: 1 ≤ N ≤ 100, 1 ≤ A[i][j] ≤ 100 (1 ≤ i ≤ 2, 1 ≤ j ≤ N)
+Addtl Info: None",105,False,,,,,False,3449
+p03461,p03461_4,"Types: A: int, B: int, d: List[List[int]]
+Ranges: 1 ≤ A, B ≤ 10, 1 ≤ d[x][y] ≤ 100 (1 ≤ x ≤ A, 1 ≤ y ≤ B)
+Addtl Info: None",103,False,,,,,False,3461
+p03462,p03462_4,"Types: N: int, K: int, s: str
+Ranges: 1 ≤ N ≤ 70, 1 ≤ K ≤ 70, |s| = K
+Addtl Info: s consists of characters 'r' and 'b' only",105,False,,,,,False,3462
+p03479,p03479_4,"Types: X: int, Y: int  
+Ranges: 1 ≤ X ≤ Y ≤ 10^18  
+Addtl Info: None",104,False,,,,,False,3479
+p03500,p03500_4,"Types: N: int, K: int, A: List[int]
+
+Ranges: 1 ≤ N ≤ 200, 1 ≤ A[i] ≤ 10^18, 1 ≤ K ≤ 10^18
+
+Addtl Info: None",105,False,,,,,False,3500
+p03537,p03537_4,"Types: S: str, N: int, L: List[int], R: List[int]  
+Ranges: 1 ≤ |S| ≤ 10^5, S consists of lowercase English letters, 1 ≤ N ≤ 10^5, 1 ≤ L_i ≤ R_i ≤ |S|  
+Addtl Info: None",104,False,,,,,False,3537
+p03544,p03544_4,"Types: N: int
+
+Ranges: 1 ≤ N ≤ 86
+
+Addtl Info: Answer is less than 10^{18}",103,False,,,,,False,3544
+p03564,p03564_4,"Types: N: int, K: int
+Ranges: 1 ≤ N ≤ 10, 1 ≤ K ≤ 10
+Addtl Info: All input values are integers",103,False,,,,,False,3564
+p03565,p03565_4,"Types: S_prime: str, T: str  
+Ranges: 1 ≤ |S_prime|, |T| ≤ 50, S_prime consists of lowercase English letters and '?', T consists of lowercase English letters  
+Addtl Info: None",103,False,,,,,False,3565
+p03573,p03573_4,"Types: A: int, B: int, C: int
+Ranges: -100 ≤ A, B, C ≤ 100
+Addtl Info: A, B and C are integers. The input satisfies the condition in the statement.",104,False,,,,,False,3573
+p03577,p03577_4,"Types: S: str
+Ranges: 9 ≤ |S| ≤ 50
+Addtl Info: S consists of uppercase English letters and ends with ""FESTIVAL""",104,False,,,,,False,3577
+p03586,p03586_4,"### Problem Statement: Process the Queries
+
+**Description**
+
+You are given two integers \(A_i\) and \(M_i\). Determine whether there exists a positive integer \(K_i\) not exceeding \(2 \times 10^{18}\) such that \(A_i^{K_i} \equiv K_i \ (\text{mod} \ M_i)\), and find one if it exists.
+
+**Input**
+
+1. An integer \(Q\) (1 ≤ \(Q\) ≤ 100), representing the number of queries.
+2. For each query, two integers \(A_i\) and \(M_i\) where:
+   - \(A_i\) (0 ≤ \(A_i\) ≤ 10^9)
+   - \(M_i\) (1 ≤ \(M_i\) ≤ 10^9)
+
+**Output**
+
+For each query, print -1 if there is no integer \(K_i\) that satisfies the condition. Otherwise, print an integer \(K_i\) not exceeding \(2 \times 10^{18}\) such that \(A_i^{K_i} \equiv K_i \ (\text{mod} \ M_i)\). If there are multiple solutions, any of them will be accepted.
+
+**Examples**
+
+_Input 1_
+```
+4
+2 4
+3 8
+9 6
+10 7
+```
+
+_Output 1_
+```
+4
+11
+9
+2
+```
+
+_Input 2_
+```
+3
+177 168
+2028 88772
+123456789 987654321
+```
+
+_Output 2_
+```
+7953
+234831584
+471523108231963269
+```
+
+**Explanation**
+
+In the first example, the condition is satisfied:
+- \(2^4 = 16 \equiv 4 \ (\text{mod} \ 4)\)
+- \(3^{11} = 177147 \equiv 11 \ (\text{mod} \ 8)\)
+- \(9^9 = 387420489 \equiv 9 \ (\text{mod} \ 6)\)
+- \(10^2 = 100 \equiv 2 \ (\text{mod} \ 7)\)
+
+In the second example:
+- For the first query, \(A_1 = 177\) and \(M_1 = 168\), \(K_1 = 7953\) satisfies \(177^{7953} \equiv 7953 \ (\text{mod} \ 168)\).
+- For the second query, \(A_2 = 2028\) and \(M_2 = 88772\), \(K_2 = 234831584\) satisfies \(2028^{234831584} \equiv 234831584 \ (\text{mod} \ 88772)\).
+- For the third query, \(A_3 = 123456789\) and \(M_3 = 987654321\), \(K_3 = 471523108231963269\) satisfies \(123456789^{471523108231963269} \equiv 471523108231963269 \ (\text{mod} \ 987654321)\).
+
+**Note**
+
+This problem tests the ability to work with modular arithmetic and exponentiation under constraints suitable for intermediate-level competitive programmers.
+
+### Type Bounds:
+Types: Q: int, A: List[int], M: List[int]
+Ranges: 1 ≤ Q ≤ 100, 0 ≤ A_i ≤ 10^9 (1 ≤ i ≤ Q), 1 ≤ M_i ≤ 10^9 (1 ≤ i ≤ Q)
+Addtl Info: None",103,False,,,,,False,3586
+p03592,p03592_4,"Types: N: int, M: int, K: int
+Ranges: 1 ≤ N, M ≤ 1000, 0 ≤ K ≤ N*M
+Addtl Info: None",105,False,,,,,False,3592
+p03600,p03600_4,"Types: N: int, A: List[List[int]]
+
+Ranges: 1 ≤ N ≤ 300, 1 ≤ A[i][j] ≤ 10^9 (if i ≠ j), A[i][i] = 0
+
+Addtl Info: A is symmetric, i.e., A[i][j] = A[j][i]",105,False,,,,,False,3600
+p03603,p03603_4,"Types: N: int, P: List[int], X: List[int]
+
+Ranges: 1 ≤ N ≤ 1,000, 1 ≤ P[i] ≤ i - 1, 0 ≤ X[i] ≤ 5,000
+
+Addtl Info: Vertex 1 is the root of the tree.",105,False,,,,,False,3603
+p03609,p03609_4,"Types: X: int, t: int
+Ranges: 1 ≤ X ≤ 10^9, 1 ≤ t ≤ 10^9
+Addtl Info: None",104,False,,,,,False,3609
+p03615,p03615_4,"Types: N: int, x: List[int], y: List[int]
+
+Ranges: 1 ≤ N ≤ 200, 0 ≤ x[i], y[i] < 10^4
+
+Addtl Info: x[i], y[i] are integers, if i ≠ j, x[i] ≠ x[j] or y[i] ≠ y[j]",104,False,,,,,False,3615
+p03616,p03616_4,"Types: X: int, K: int, r: List[int], Q: int, t: List[int], a: List[int]
+
+Ranges: 1 ≤ X ≤ 10^9, 1 ≤ K ≤ 10^5, 1 ≤ r_i ≤ 10^9, 1 ≤ Q ≤ 10^5, 0 ≤ t_i ≤ 10^9, 0 ≤ a_i ≤ X
+
+Addtl Info: All input values are integers.",104,False,,,,,False,3616
+p03626,p03626_4,"Types: N: int, S_1: str, S_2: str
+Ranges: 1 ≤ N ≤ 52, |S_1| = |S_2| = N, S_1 and S_2 consist of lowercase and uppercase English letters
+Addtl Info: None",104,False,,,,,False,3626
+p03634,p03634_4,"Types: N: int, a: List[int], b: List[int], c: List[int], Q: int, K: int, x: List[int], y: List[int]
+
+Ranges: 3 ≤ N ≤ 10^5, 1 ≤ a_i, b_i ≤ N (1 ≤ i ≤ N-1), 1 ≤ c_i ≤ 10^9 (1 ≤ i ≤ N-1), 1 ≤ Q ≤ 10^5, 1 ≤ K ≤ N, 1 ≤ x_j, y_j ≤ N (1 ≤ j ≤ Q), x_j ≠ y_j (1 ≤ j ≤ Q), x_j ≠ K, y_j ≠ K (1 ≤ j ≤ Q)
+
+Addtl Info: The given graph is a tree.",104,False,,,,,False,3634
+p03651,p03651_4,"Types: N: int, K: int, A: List[int]
+Ranges: 1 ≤ N ≤ 10^5, 1 ≤ A[i] ≤ 10^9, 1 ≤ K ≤ 10^9
+Addtl Info: None",105,False,,,,,False,3651
+p03662,p03662_4,"Types: 
+- N: int
+- a: List[int]
+- b: List[int]
+
+Ranges: 
+- 2 ≤ N ≤ 10^5
+- 1 ≤ a_i, b_i ≤ N
+
+Addtl Info: 
+- The graph formed by the cells and the roads is a tree.",103,False,,,,,False,3662
+p03686,p03686_4,"Types: N: int, M: int, L: List[int], R: List[int]
+
+Ranges: 
+- 1 ≤ N ≤ 2 × 10^5
+- 1 ≤ M ≤ 2 × 10^5
+- 0 ≤ L_i < R_i ≤ M + 1 (1 ≤ i ≤ N)
+
+Addtl Info: 
+- All input values are integers.
+- The input format is given as:
+  ```
+  N M
+  L_1 R_1
+  L_2 R_2
+  ...
+  L_N R_N
+  ```",105,False,,,,,False,3686
+p03703,p03703_4,"Types: N: int, K: int, a: List[int]
+Ranges: 1 ≤ N ≤ 2 × 10^5, 1 ≤ K ≤ 10^9, 1 ≤ a[i] ≤ 10^9
+Addtl Info: None",104,False,,,,,False,3703
+p03722,p03722_4,"Types: N: int, M: int, a: List[int], b: List[int], c: List[int]
+Ranges: 2 ≤ N ≤ 1000, 1 ≤ M ≤ min(N(N-1), 2000), 1 ≤ a[i], b[i] ≤ N (1 ≤ i ≤ M), -10^9 ≤ c[i] ≤ 10^9 (1 ≤ i ≤ M)
+Addtl Info: a_i≠b_i (1≤i≤M), a_i≠a_j or b_i≠b_j (1≤i<j≤M), a_i, b_i, c_i are integers, there exists a path from vertex 1 to vertex N",104,False,,,,,False,3722
+p03738,p03738_4,"Types: A: str, B: str
+Ranges: 1 ≤ len(A) ≤ 100, 1 ≤ len(B) ≤ 100
+Addtl Info: A and B only contain digits and do not begin with 0",105,False,,,,,False,3738
+p03740,p03740_4,"Types: X: int, Y: int  
+Ranges: 0 ≤ X, Y ≤ 10^{18}  
+Addtl Info: None",105,False,,,,,False,3740
+p03743,p03743_4,"Types: N: int, D: int, d: List[int], Q: int, q: List[int]
+Ranges: 1 ≤ N ≤ 5*10^5, 1 ≤ D ≤ 10^9, 1 ≤ d_i ≤ 10^9 (1 ≤ i ≤ N), 1 ≤ Q ≤ 5*10^5, 1 ≤ q_i ≤ N (1 ≤ i ≤ Q)
+Addtl Info: None",104,False,,,,,False,3743
+p03748,p03748_4,"Types: N: int, M: int
+
+Ranges: 1 ≤ N ≤ 3000, 1 ≤ M ≤ 3000
+
+Addtl Info: None",104,False,,,,,False,3748
+p03762,p03762_4,"Types: n: int, m: int, x: List[int], y: List[int]
+Ranges: 2 ≤ n, m ≤ 10^5, -10^9 ≤ x[i] < x[i+1] ≤ 10^9, -10^9 ≤ y[i] < y[i+1] ≤ 10^9
+Addtl Info: None",103,False,,,,,False,3762
+p03766,p03766_4,"Types: n: int
+Ranges: 1 ≤ n ≤ 10^6
+Addtl Info: Output should be the count of sequences modulo 10^9+7",103,False,,,,,False,3766
+p03767,p03767_4,"Types: N: int, a: List[int]
+Ranges: 1 ≤ N ≤ 10^5, 1 ≤ a_i ≤ 10^9
+Addtl Info: None",103,False,,,,,False,3767
+p03802,p03802_4,"Types: N: int, x: List[int], y: List[int]
+Ranges: 2 ≤ N ≤ 10^4, 1 ≤ x_i, y_i ≤ 10^9
+Addtl Info: None",104,False,,,,,False,3802
+p03809,p03809_4,"Types: N: int, A: List[int], a: List[int], b: List[int]
+Ranges: 2 ≤ N ≤ 10^5, 0 ≤ A_i ≤ 10^9, 1 ≤ a_i, b_i ≤ N
+Addtl Info: The given graph is a tree.",104,False,,,,,False,3809
+p03820,p03820_4,"Types: N: int, K: int  
+Ranges: 1 ≤ K ≤ N ≤ 2,000  
+Addtl Info: None",104,False,,,,,False,3820
+p03824,p03824_4,"Types: N: int, a: List[int], b: List[int]
+Ranges: 2 ≤ N ≤ 10^5, 1 ≤ a_i, b_i ≤ N (1 ≤ i ≤ N-1)
+Addtl Info: The given graph is a tree.",103,False,,,,,False,3824
+p03825,p03825_4,"Types: N: int, M: int, K: int
+Ranges: 1 ≤ N, M ≤ 2000, 2 ≤ K ≤ 2000
+Addtl Info: N + M - 1 is divisible by K - 1",104,False,,,,,False,3825
+p03840,p03840_4,"Types: a_I: int, a_O: int, a_T: int, a_J: int, a_L: int, a_S: int, a_Z: int
+Ranges: 0 ≤ a_I, a_O, a_T, a_J, a_L, a_S, a_Z ≤ 10^9
+Addtl Info: a_I + a_O + a_T + a_J + a_L + a_S + a_Z ≥ 1",103,False,,,,,False,3840
+p03890,p03890_4,"Types: N: int, A: List[int]  
+Ranges: 1 ≤ N ≤ 18, 1 ≤ A[i] ≤ 10^9  
+Addtl Info: A_i is an integer, A has exactly 2^N elements",103,False,,,,,False,3890
+p03904,p03904_4,"Types: K: int, S: str  
+Ranges: 0 ≤ K < |S| ≤ 100,000, S consists of digits between 1 and 9, inclusive  
+Addtl Info: None",104,False,,,,,False,3904
+p03910,p03910_4,"Types: N: int
+Ranges: 1 ≤ N ≤ 10^7
+Addtl Info: None",104,False,,,,,False,3910
+p03942,p03942_4,"Types: N: int, S_0: str, T: str
+Ranges: 1 ≤ N ≤ 1,000,000
+Addtl Info: S_0 and T consist of lowercase English letters",105,False,,,,,False,3942
+p03952,p03952_4,"Types: N: int, x: int
+
+Ranges: 2 ≤ N ≤ 10^5, 1 ≤ x ≤ 2N-1
+
+Addtl Info: None",103,False,,,,,False,3952
+p03974,p03974_4,"Types: N: int, Q: int, S: List[str], k: List[int], p: List[str]
+Ranges: 1 ≤ N, Q ≤ 100000, 1 ≤ |S_i| (1 ≤ i ≤ N), Sum of |S_i| ≤ 400000, 1 ≤ k_i ≤ N
+Addtl Info: S_i is a string of lowercase alphabet, and every S_i is unique. p_{i,1}p_{i,2}...p_{i,26} is a permutation of 'abcdefghijklmnopqrstuvwxyz'.",103,False,,,,,False,3974
+p03976,p03976_4,"Types: N: int, K: int, P: List[str]
+Ranges: 1 ≤ N ≤ 10^4, 1 ≤ K ≤ 26, 1 ≤ |P_i| ≤ 10
+Addtl Info: All characters in P_i are capital letters.",103,False,,,,,False,3976
+p03992,p03992_4,"Types: s: str
+Ranges: len(s) = 12
+Addtl Info: s contains only uppercase English letters",104,False,,,,,False,3992
+p04010,p04010_4,"Types: N: int, M: int, a: List[int], b: List[int]
+Ranges: 2 ≤ N ≤ 10^5, N-1 ≤ M ≤ N, 1 ≤ a_i, b_i ≤ N
+Addtl Info: No self-loops or multiple edges, the graph is connected",105,False,,,,,False,4010
+p04011,p04011_4,"Types: N: int, K: int, X: int, Y: int
+Ranges: 1 ≤ N, K ≤ 10000, 1 ≤ Y < X ≤ 10000
+Addtl Info: None",103,False,,,,,False,4011
+p04028,p04028_4,"Types: N: int, s: str  
+Ranges: 1 ≤ N ≤ 5000, 1 ≤ |s| ≤ N  
+Addtl Info: s consists of the letters '0' and '1'",104,False,,,,,False,4028
+p04035,p04035_4,"Types: N: int, L: int, a: List[int]
+Ranges: 2 ≤ N ≤ 10^5, 1 ≤ L ≤ 10^9, 1 ≤ a[i] ≤ 10^9
+Addtl Info: None",104,False,,,,,False,4035
+p04049,p04049_4,"Types: N: int, K: int, A: List[int], B: List[int]
+Ranges: 2 ≤ N ≤ 2000, 1 ≤ K ≤ N-1, 1 ≤ A[i] ≤ N, 1 ≤ B[i] ≤ N
+Addtl Info: The graph defined by A and B is a tree.",103,False,,,,,False,4049
+p04052,p04052_4,"Types: N: int, K: int, P: List[int]
+Ranges: 2 ≤ N ≤ 500,000, 1 ≤ K ≤ N-1, P is a permutation of the set {1, 2, ..., N}
+Addtl Info: None",104,False,,,,,False,4052

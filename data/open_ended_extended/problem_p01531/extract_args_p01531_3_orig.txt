@@ -1,0 +1,3 @@
+def extract_arguments(fh):
+    flick_input = fh.readline().strip()
+    return flick_input

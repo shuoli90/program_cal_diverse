@@ -1,0 +1,27 @@
+Canonicalized Input Description:
+
+An integer N (1 ≤ N ≤ 10^3), representing some quantity or size.
+A list of tuples, where each tuple contains:
+- Two integers x1, y1 (0 ≤ x1, y1 ≤ 10^3), representing coordinates.
+- Two integers x2, y2 (0 ≤ x2, y2 ≤ 10^3), representing coordinates.
+
+### Example Input:
+
+```
+5
+0 0 1 0
+1 0 1 1
+1 1 2 1
+1 1 1 1
+2 0 2 2
+```
+
+### Function Signature:
+Write a function f(N, segments) that takes in the input.
+```python
+def f(N: int, segments: List[Tuple[int, int, int, int]]):
+    '''
+    N: an integer
+    segments: a list of tuples, each containing four integers
+    '''
+```

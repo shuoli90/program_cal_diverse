@@ -1,0 +1,25 @@
+An integer L (1 ≤ L ≤ 20) and an integer Q (1 ≤ Q ≤ 1,000,000) separated by a space.
+A string S of length 2^L consisting of characters {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9'}.
+Q strings, each of length L, consisting of characters {'0', '1', '?'}.
+
+### Example Input:
+
+```
+3 5
+12345678
+000
+0??
+1?0
+?11
+???
+```
+
+### Function Signature:
+Write a function f(L, Q, S, complaints) that takes in the input. 
+def f(L: int, Q: int, S: str, complaints: List[str]): 
+    ''' 
+    L: an integer 
+    Q: an integer 
+    S: a string 
+    complaints: a list of strings 
+    '''

@@ -1,0 +1,33 @@
+Sure, here is the test case generator for the provided competitive programming problem:
+
+```python
+import random
+
+def tcgen():
+    # Define the range for N
+    N = random.randint(1, 10**5)
+    
+    # Generate the list of strengths for 3N participants
+    a = [random.randint(1, 10**9) for _ in range(3 * N)]
+    
+    return N, a
+
+# Function to print the generated test case in the required format
+def print_test_case():
+    N, a = tcgen()
+    print(N)
+    print(" ".join(map(str, a)))
+
+# Generate and print a test case
+print_test_case()
+```
+
+### Explanation:
+1. **Random Input Generation**:
+   - The number of teams \( N \) is randomly generated within the range `[1, 10^5]`.
+   - For \( 3N \) participants, their strengths \( a_i \) are generated randomly within the range `[1, 10^9]`.
+
+2. **Output Formatting**:
+   - The function `print_test_case()` prints the generated values in the specified format: first the integer \( N \), followed by the list of strengths.
+
+By running the `print_test_case()` function, you can generate a test case in the required format for this competitive programming problem.

@@ -1,0 +1,35 @@
+Kobuta Nuki Kitsuneko
+B-boy, a relative of Mrs. A, came to her house. He loves singing and is only 3 years old. He enthusiastically sings a song called "Kobuta Nuki Kitsuneko" (written and composed by Naotoshi Yamamoto) that he learned in kindergarten. In this song, four words, "kobuta," "nuki," "kitsune", and "neko," are played in order, and the last sound and the first sound are the same. B-boy asked A if she could make a similar word chain using words he said.
+To help A, let's create a program that determines whether it is possible to make a word chain using all the given words in order and whether the first letter of the first word and the last letter of the last word are the same.
+Create a program that takes n words as input and determines whether a word chain can be created from the combination of those words. If it is possible, output OK, and if it is impossible, output NG.
+Input
+Multiple datasets are given as input. The end of the input is indicated by a single zero line.
+Each dataset is given in the following format.
+n
+word1
+word2
+:
+wordn
+The number of words n (2 ≤ n ≤ 10000) is given on the first line. The following n lines contain n words wordi (a string consisting of up to 32 lowercase English letters).
+There are no more than 50 datasets.
+Output
+For each input dataset, output the determination result on one line.
+Sample Input
+5
+apple
+yellow
+georgia
+king
+email
+7
+apple
+yellow
+georgia
+king
+email
+wink
+lucky
+0
+Output for the Sample Input
+NG
+OK

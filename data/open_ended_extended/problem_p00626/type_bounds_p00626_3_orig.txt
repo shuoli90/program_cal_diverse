@@ -1,0 +1,3 @@
+Types: H: int, W: int, blocks: List[List[int]]
+Ranges: 1 ≤ H, W ≤ 12, blocks[i][j] ∈ {0, 1}, number of '1's in blocks ≤ 6
+Addtl Info: Input terminates with a dataset where H = W = 0 (this case should not be processed).

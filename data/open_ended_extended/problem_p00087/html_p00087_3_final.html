@@ -1,0 +1,215 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p00087 - Generation 3</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p00087 - Generation 3</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>Formula for beginners
+Doctor: Peter, I finally did it!
+Peter: What is it this time? What kind of pointless invention did you come up with now?
+Doctor: I came up with a revolutionary method for processing formulas with a computer. Take a look at this table.
+Normal notationDoctor's "revolutionary" notation
+1 + 21 2 +
+3 * 4 + 73 4 * 7 +
+10 / ( 2 - 12 )	10 2 12 - /
+( 3 - 4 ) * ( 7 + 2 * 3 )3 4 - 7 2 3 * + *
+Peter: Huh?
+Doctor: Hahaha. I guess it's still too complicated for you, a beginner. This is where it gets interesting.
+Peter: Uh, what...?
+Doctor: You know that computers have a data structure called a stack, right? It's the one where you put in things in first and take them out last.
+Peter: Yes, I know, but...
+Doctor: This revolutionary notation uses that stack. For example, in 10 2 12 - /, the processing goes like this:
+Object10212-/
+ ↓↓↓↓2-12↓10/-10
+Stack
+.
+.
+10
+.
+2
+10
+12
+2
+10
+.
+-10
+10
+.
+.
+-1
+Doctor: See? You don't need to worry about parentheses or operator precedence. The word order is "divide 10 by the result of subtracting 2 from 12." It sounds a bit like Japanese, doesn't it? With this revolutionary invention, our research lab is safe and sound. Hahaha.
+Peter: Uh, Doctor? This is something we learned in the basic course at Aizu University when I was in Japan. They called it "Reverse Polish Notation," and everyone in the class could program it easily.
+Doctor: ...
+And so, Peter had to teach the program to the Doctor. Create a program that takes a formula written in Reverse Polish Notation as input and outputs the result of the calculation.
+Input
+Multiple datasets will be given. In each dataset, one line will be given, consisting of a formula written in Reverse Polish Notation (a string of up to 80 characters consisting of integers and operation symbols separated by a single space (half-width) character). No formulas that divide a value by 0 or a value close to 0 will be given.
+The number of datasets is no more than 50.
+Output
+For each dataset, output the result of the calculation (a real number) on one line. The calculation result may include an error of up to 0.00001.
+Sample Input
+10 2 12 - /
+3 4 - 7 2 3 * + *
+-1 -2 3 + +
+Output for the Sample Input
+-1.000000
+-13.000000
+0.000000
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An integer T (1 ≤ T ≤ 50), representing the number of datasets.
+A list of T strings, each containing up to 80 characters. Each string consists of integers and operation symbols {'+', '-', '*', '/'}, separated by single spaces.
+
+### Example Input:
+
+```
+3
+10 2 12 - /
+3 4 - 7 2 3 * + *
+-1 -2 3 + +
+```
+
+### Function Signature:
+Write a function f(T, datasets) that takes in the input. 
+def f(T: int, datasets: List[str]): 
+    ''' 
+    T: an integer 
+    datasets: a list of strings
+    '''</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Certainly! To generate test cases for the given problem, we need to create multiple datasets of formulas written in Reverse Polish Notation (RPN). Each dataset should consist of a single line that contains integers and operations separated by spaces.
+
+Here is a Python function to generate such test cases:
+
+```python
+import random
+
+def generate_rpn_expression(max_length=80):
+    operators = ['+', '-', '*', '/']
+    expression = []
+    num_count = 0
+    op_count = 0
+
+    while len(' '.join(expression)) < max_length - 2:
+        if num_count < 2:
+            # We need at least two numbers before we can use an operator
+            num = random.randint(-100, 100)
+            expression.append(str(num))
+            num_count += 1
+        else:
+            # Randomly decide whether to add a number or an operator
+            if random.random() < 0.5 and num_count - op_count > 1:
+                # Add an operator
+                expression.append(random.choice(operators))
+                op_count += 1
+            else:
+                # Add a number
+                num = random.randint(-100, 100)
+                expression.append(str(num))
+                num_count += 1
+                
+    # Ensure we end with a valid RPN expression
+    while num_count - op_count > 1:
+        expression.append(random.choice(operators))
+        op_count += 1
+
+    return ' '.join(expression)
+
+def tcgen():
+    num_datasets = random.randint(1, 50)
+    datasets = [generate_rpn_expression() for _ in range(num_datasets)]
+    return datasets
+
+# Example usage
+for dataset in tcgen():
+    print(dataset)
+```
+
+### Explanation:
+1. **generate_rpn_expression**: This function generates a single RPN expression with a maximum length of 80 characters.
+    - **operators**: List of possible operators.
+    - **expression**: The list that will be converted to a string representing the RPN expression.
+    - **num_count**: Counter for the numbers added to the expression.
+    - **op_count**: Counter for the operators added to the expression.
+    - It alternates between adding numbers and operators to ensure that the expression remains valid.
+    - It ensures that the final expression ends with operators such that it is a valid RPN expression.
+
+2. **tcgen**: This function generates multiple datasets.
+    - **num_datasets**: Randomly decides the number of datasets (between 1 and 50).
+    - **datasets**: List of RPN expressions generated using the **generate_rpn_expression** function.
+
+### Example Output:
+Running the function would generate outputs similar to the following:
+```
+10 2 12 - /
+3 4 - 7 2 3 * + *
+-1 -2 3 + +
+...
+```
+
+Each line represents a formula in RPN which can be used to test the program handling RPN calculations.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    inputs = []
+    for line in fh:
+        formula = line.strip()
+        if formula:
+            inputs.append(formula)
+    return inputs</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

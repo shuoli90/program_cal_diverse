@@ -1,0 +1,69 @@
+Sure, I can help you create a test case generator for the problem statement you've provided. Let's break down the input format and generate random test cases accordingly.
+
+### Problem Breakdown
+
+1. **Number of Chairs (n)**
+   - \(1 \leq n \leq 100\)
+
+2. **Number of Passengers (m)**
+   - \(m \leq n\)
+
+3. **Information of the passengers (ai)**
+   - Each passenger is represented by a single character from {'A', 'B', 'C', 'D'}.
+
+### Test Case Generator
+
+We'll be generating multiple sets of inputs until we get an input of `0 0`, which indicates the end of the input.
+
+Here is the Python code for the test case generator:
+
+```python
+import random
+
+def generate_test_case():
+    # Number of chairs (1 ≤ n ≤ 100)
+    n = random.randint(1, 100)
+    
+    # Number of passengers (m ≤ n)
+    m = random.randint(1, n)
+    
+    # Passenger list (m characters from {'A', 'B', 'C', 'D'})
+    passengers = [random.choice(['A', 'B', 'C', 'D']) for _ in range(m)]
+    
+    return n, m, passengers
+
+def generate_multiple_test_cases(num_cases=10):
+    test_cases = []
+    for _ in range(num_cases):
+        n, m, passengers = generate_test_case()
+        test_cases.append((n, m, passengers))
+    
+    return test_cases
+
+def print_test_cases(test_cases):
+    for n, m, passengers in test_cases:
+        print(f"{n} {m}")
+        for passenger in passengers:
+            print(passenger)
+    print("0 0")
+
+# Generate and print 10 test cases
+test_cases = generate_multiple_test_cases(10)
+print_test_cases(test_cases)
+```
+
+### Explanation
+
+1. **generate_test_case**:
+   - Randomly generates the number of chairs `n` (between 1 and 100).
+   - Randomly generates the number of passengers `m` (between 1 and `n`).
+   - Creates a list of `m` passengers, each represented by a character from {'A', 'B', 'C', 'D'}.
+
+2. **generate_multiple_test_cases**:
+   - Calls `generate_test_case` multiple times (default 10) to generate multiple sets of test cases.
+
+3. **print_test_cases**:
+   - Prints each test case in the required format.
+   - Ends the input with `0 0`.
+
+You can run the script to generate multiple test cases for the problem. Adjust the number of test cases by changing the `num_cases` parameter in `generate_multiple_test_cases` function if needed.

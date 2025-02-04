@@ -1,0 +1,19 @@
+An integer D (1 ≤ D ≤ 50), representing the number of datasets.
+A list of strings F of size D, where each string is up to 80 characters long and consists of integers and operation symbols separated by a single space.
+
+### Example Input:
+
+```
+3
+10 2 12 - /
+3 4 - 7 2 3 * + *
+-1 -2 3 + +
+```
+
+### Function Signature:
+Write a function f(D, F) that takes in the input.
+def f(D: int, F: List[str]):
+    ''' 
+    D: an integer 
+    F: a list of strings
+    '''

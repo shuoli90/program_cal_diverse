@@ -1,0 +1,16 @@
+An uppercase string \( s \) of exactly 12 letters.
+
+### Example Input:
+
+```
+ABCDEFGHIJKL
+```
+
+### Function Signature:
+Write a function f(s) that takes in the input.
+```python
+def f(s: str):
+    '''
+    s: a string
+    '''
+```

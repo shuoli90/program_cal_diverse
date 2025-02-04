@@ -1,0 +1,49 @@
+Sure, I can help you write a test case generator for the "Soccer" problem statement. Here is a Python function that generates random test cases based on the given constraints:
+
+```python
+import random
+
+def generate_test_case():
+    # Field dimensions
+    H = random.randint(1, 500)
+    W = random.randint(1, 500)
+    
+    # Fatigue degree increments
+    A = random.randint(0, 10**9)
+    B = random.randint(0, 10**9)
+    C = random.randint(0, 10**9)
+    
+    # Number of players
+    N = random.randint(2, 100000)
+    
+    # Player positions
+    S = [random.randint(0, H) for _ in range(N)]
+    T = [random.randint(0, W) for _ in range(N)]
+    
+    # Make sure player 1 (index 0) and player N (index N-1) are not at the same position
+    while S[0] == S[N-1] and T[0] == T[N-1]:
+        S[N-1] = random.randint(0, H)
+        T[N-1] = random.randint(0, W)
+    
+    # Formatting the test case as required by the problem statement
+    test_case = f"{H} {W}\n"
+    test_case += f"{A} {B} {C}\n"
+    test_case += f"{N}\n"
+    
+    for i in range(N):
+        test_case += f"{S[i]} {T[i]}\n"
+    
+    return test_case
+
+# Example usage:
+print(generate_test_case())
+```
+
+This function generates a random test case according to the problem constraints:
+
+1. Randomly sets the height `H` and width `W` of the field.
+2. Randomly determines the fatigue degree increments `A`, `B`, and `C`.
+3. Randomly generates the number of players `N`.
+4. Randomly assigns initial positions `(S_i, T_i)` for each player, ensuring that the first player (with the ball) and the last player (where the ball needs to be passed to) are not at the same position.
+
+You can call `generate_test_case()` to get a new random test case each time. Adjust the `print` statement as needed to integrate with your testing framework.

@@ -1,0 +1,29 @@
+Certainly! Here is a test case generator for the Extended Euclid Algorithm problem:
+
+```python
+import random
+
+def tcgen():
+    # Generate two positive integers a and b within the given constraints
+    a = random.randint(1, 10**9)
+    b = random.randint(1, 10**9)
+    
+    return a, b
+
+# Example of generating a test case
+a, b = tcgen()
+print(f"{a} {b}")
+```
+
+### Explanation:
+
+1. **Generating `a` and `b`**:
+   - We use `random.randint(1, 10**9)` to generate random integers `a` and `b` in the range `[1, 10^9]`.
+
+2. **Returning the Test Case**:
+   - The function returns a tuple of the two generated integers.
+
+3. **Example Usage**:
+   - An example usage is provided to demonstrate how to generate and print a test case.
+
+This generator will provide random pairs of integers `a` and `b` within the given constraints, ready to be used for testing implementations of the Extended Euclid Algorithm problem.

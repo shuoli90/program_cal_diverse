@@ -1,0 +1,30 @@
+def extract_arguments(fh):
+    datasets = []
+    while True:
+        # Read the first line to get N and M
+        line = fh.readline().strip()
+        if line == "0 0":
+            break
+        N, M = map(int, line.split())
+        
+        # Read the number of records
+        r = int(fh.readline().strip())
+        
+        # Read the records
+        records = []
+        for _ in range(r):
+            t, n, m, s = map(int, fh.readline().strip().split())
+            records.append((t, n, m, s))
+        
+        # Read the number of queries
+        q = int(fh.readline().strip())
+        
+        # Read the queries
+        queries = []
+        for _ in range(q):
+            ts, te, m = map(int, fh.readline().strip().split())
+            queries.append((ts, te, m))
+        
+        datasets.append((N, M, r, records, q, queries))
+    
+    return datasets

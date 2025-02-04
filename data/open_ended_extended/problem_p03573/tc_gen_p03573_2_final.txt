@@ -1,0 +1,34 @@
+Sure, here is a test case generator for the given problem statement:
+
+```python
+import random
+
+def tcgen():
+    # Generate two identical integers
+    identical_value = random.randint(-100, 100)
+    
+    # Generate a different integer
+    different_value = identical_value
+    while different_value == identical_value:
+        different_value = random.randint(-100, 100)
+    
+    # Place the identical and different values in a random order
+    values = [identical_value, identical_value, different_value]
+    random.shuffle(values)
+    
+    return values
+
+# Example usage:
+for _ in range(5):
+    print(tcgen())
+```
+
+### Explanation
+
+1. We first generate a random integer `identical_value` that will be used for the two identical values.
+2. We then generate another integer `different_value` that must be different from `identical_value`. We use a loop to ensure this condition.
+3. We put the two identical values and the different value into a list called `values`.
+4. We shuffle the `values` list to randomize the order of the three integers.
+5. The function returns the list of values.
+
+You can use the `tcgen()` function to generate random test cases for your problem statement. Each generated test case will meet the constraints and conditions specified in the problem statement.

@@ -1,0 +1,35 @@
+Sure, I can help you with that. Here's a test case generator for the "Grid" problem:
+
+```python
+import random
+
+def tcgen():
+    # Define the maximum values for r and c
+    max_r = 1000
+    max_c = 1000
+    
+    # Randomly select values for r and c within the specified range
+    r = random.randint(1, max_r)
+    c = random.randint(1, max_c)
+    
+    # Randomly select coordinates (a1, a2) and (b1, b2) within the grid
+    a1 = random.randint(0, r - 1)
+    a2 = random.randint(0, c - 1)
+    b1 = random.randint(0, r - 1)
+    b2 = random.randint(0, c - 1)
+    
+    return r, c, a1, a2, b1, b2
+
+# Example usage
+if __name__ == "__main__":
+    for _ in range(10):  # Generate 10 test cases
+        print(tcgen())
+```
+
+This script randomly generates test cases for the given problem within the specified constraints (1 ≤ r, c ≤ 1,000 and appropriate ranges for the coordinates). Here's how it works:
+
+1. **Grid Size**: It randomly selects the number of rows \(r\) and columns \(c\) within the range [1, 1000].
+2. **Coordinates**: It randomly selects the start coordinates \((a1, a2)\) and the end coordinates \((b1, b2)\) ensuring they are within the grid bounds.
+3. **Output**: The function returns a tuple with the values \((r, c, a1, a2, b1, b2)\).
+
+To generate multiple test cases, you can call `tcgen()` multiple times as shown in the example usage.

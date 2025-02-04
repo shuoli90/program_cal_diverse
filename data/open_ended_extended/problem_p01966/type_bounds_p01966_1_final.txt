@@ -1,0 +1,4 @@
+    
+Types: N: int, Q: int, a: List[int], b: List[int], p: List[int]
+Ranges: 2 ≤ N ≤ 10^5, 1 ≤ Q ≤ 10^5, 1 ≤ a[i] < b[i] ≤ N, 1 ≤ p[i] ≤ 10^9
+Addtl Info: None

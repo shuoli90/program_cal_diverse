@@ -1,0 +1,170 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p02320 - Generation 3</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p02320 - Generation 3</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>
+Knapsack Problem with Limitations
+You have N items that you want to put them into a knapsack. Item i has value vi, weight wi and limitation mi.
+You want to find a subset of items to put such that:
+The total value of the items is as large as possible.
+The items have combined weight at most W, that is capacity of the knapsack.
+You can select at most mi items for ith item.
+Find the maximum total value of items in the knapsack.
+Input
+N W
+v1 w1 m1
+v2 w2 m2
+:
+vN wN mN
+The first line consists of the integers N and W. In the following N lines, the value, weight and limitation of the i-th item are given.
+Output
+Print the maximum total values of the items in a line.
+Constraints
+ 1 ≤ N ≤ 100
+ 1 ≤ vi ≤ 1,000
+ 1 ≤ wi ≤ 1,000
+ 1 ≤ mi ≤ 10,000
+ 1 ≤ W ≤ 10,000
+Sample Input 1
+4 8
+4 3 2
+2 1 1
+1 2 4
+3 2 2
+Sample Output 1
+12
+Sample Input 2
+2 100
+1 1 100
+2 1 50
+Sample Output 2
+150
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>    
+An integer N (1 ≤ N ≤ 100), representing some quantity or size.
+An integer W (1 ≤ W ≤ 10,000), representing some capacity or limit.
+N lines each containing three integers v, w, and m, where 1 ≤ v ≤ 1,000, 1 ≤ w ≤ 1,000, and 1 ≤ m ≤ 10,000.
+
+### Example Input:
+
+```
+4 8
+4 3 2
+2 1 1
+1 2 4
+3 2 2
+```
+
+### Function Signature:
+Write a function f(N, W, items) that takes in the input.
+def f(N: int, W: int, items: List[Tuple[int, int, int]]):
+    '''
+    N: an integer
+    W: an integer
+    items: a list of N tuples, where each tuple contains three integers
+    '''</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Certainly! Here is a test case generator for the given Knapsack problem with limitations:
+
+```python
+import random
+
+def tcgen():
+    # Constraints
+    N = random.randint(1, 100)  # Number of items
+    W = random.randint(1, 10000)  # Capacity of the knapsack
+    
+    items = []
+    for _ in range(N):
+        v = random.randint(1, 1000)  # Value of item
+        w = random.randint(1, 1000)  # Weight of item
+        m = random.randint(1, 10000)  # Limitation of item
+        items.append((v, w, m))
+    
+    return N, W, items
+
+# Example usage
+N, W, items = tcgen()
+print(N, W)
+for item in items:
+    print(item[0], item[1], item[2])
+```
+
+### Explanation
+- **N**: Number of items, randomly chosen between 1 and 100.
+- **W**: Capacity of the knapsack, randomly chosen between 1 and 10,000.
+- **items**: List of tuples where each tuple contains:
+  - **v**: Value of the item, randomly chosen between 1 and 1,000.
+  - **w**: Weight of the item, randomly chosen between 1 and 1,000.
+  - **m**: Limitation on the number of that item, randomly chosen between 1 and 10,000.
+
+This generator will create a variety of test cases within the constraints provided by the problem statement. You can use this to generate multiple test cases to thoroughly test your solution to the problem.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    N, W = map(int, fh.readline().strip().split())
+    items = []
+    for _ in range(N):
+        v, w, m = map(int, fh.readline().strip().split())
+        items.append((v, w, m))
+    return N, W, items</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

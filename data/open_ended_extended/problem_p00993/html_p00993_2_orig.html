@@ -1,0 +1,173 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p00993 - Generation 2</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p00993 - Generation 2</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>Problem D: Numbers
+Given n, find n consecutive positive integers such that each number has no divisors other than 1 and itself.
+Input
+The input is given in the following format.
+n
+The input satisfies the following constraints.
+1 ≤ n ≤ 1,500
+Output
+On the first line, output the smallest of the n selected consecutive positive integers.
+From the second to the n+1-th line, output the divisors of each value.
+Any value other than 1 or itself can be output as a divisor.
+Let x be the value output on the first line and output the divisor of x+i-2 on the i-th line.
+The output value must not exceed 5,000 digits.
+Sample Input 1
+2
+Sample Output 1
+8
+2
+3
+Sample Input 2
+3
+Sample Output 2
+8
+2
+3
+5
+Hint
+In Sample Output 2, 8, 9, and 10 are selected as three consecutive integers.
+On the second line, 2 is output as the divisor of 8, on the third and fourth lines, 3 and 4 are output as the divisor of 9, and on the fifth line, 5 is output as the divisor of 10.
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An integer n (1 ≤ n ≤ 1,500), representing some quantity or size.
+
+### Example Input:
+
+```
+2
+```
+
+### Function Signature:
+Write a function f(n) that takes in the input.
+```python
+def f(n: int):
+    ''' 
+    n: an integer 
+    '''
+```</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>To generate test cases for Problem D: Numbers, we need to ensure that we are creating valid sets of consecutive integers and their respective divisors. The crucial aspect here is to generate consecutive integers starting from a base integer and list divisors other than 1 and the number itself for each consecutive integer.
+
+Here's the test case generator for your problem:
+
+```python
+import random
+
+def tcgen():
+    # Generate a random n within the given range
+    n = random.randint(1, 1500)
+    
+    # Start from a random positive integer
+    start = random.randint(2, 10**5)  # Starting from 2 or higher to ensure we get valid divisors
+    
+    # Generate the list of consecutive integers
+    consecutive_integers = list(range(start, start + n))
+    
+    # Generate the divisors for each number in the list
+    divisors = []
+    for num in consecutive_integers:
+        divs = []
+        for i in range(2, num):
+            if num % i == 0:
+                divs.append(i)
+        if not divs:
+            divs.append(2)  # If a number is prime, add 2 as a divisor for simplicity
+        divisors.append(divs)
+    
+    # Prepare the output format
+    output = []
+    output.append(str(start))
+    for i in range(n):
+        output.append(" ".join(map(str, divisors[i])))
+    
+    return n, output
+
+# To print a test case for visualization
+n, output = tcgen()
+print(n)
+for line in output:
+    print(line)
+```
+
+### Explanation:
+1. **Random `n` Generation**: We generate a random `n` between 1 and 1500, ensuring we adhere to the problem constraints.
+2. **Starting Point Selection**: We select a starting integer randomly from 2 to \(10^5\). This selection range ensures we have enough room to generate consecutive integers and their divisors.
+3. **Consecutive Integers**: We create a list of `n` consecutive integers starting from the randomly selected starting point.
+4. **Divisors Calculation**: For each integer, we calculate its divisors excluding 1 and the integer itself. If the number is prime (i.e., it has no divisors other than 1 and itself), we add 2 as a divisor for simplicity.
+5. **Output Preparation**: We format the output according to the problem's requirements, with the first line being the smallest integer in the set and the subsequent lines listing the divisors of each integer.
+
+This generator will produce valid test cases suitable for the problem statement. You can call `tcgen()` multiple times to generate different test cases for thorough testing.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    n = int(fh.readline().strip())
+    return n
+
+# if __name__ == "__main__":
+#     input_path = sys.argv[1]
+#     with open(input_path, 'r') as fh: 
+#         n = extract_arguments(fh)
+#         f(n)</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

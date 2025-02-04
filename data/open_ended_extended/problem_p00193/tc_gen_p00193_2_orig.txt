@@ -1,0 +1,62 @@
+Certainly! Here is a test case generator for the given competitive programming problem "Convenience Store":
+
+```python
+import random
+
+def tcgen():
+    # Generate the map dimensions m and n
+    m = random.randint(1, 20)  # Adjust the upper limit as per problem constraints
+    n = random.randint(1, 20)  # Adjust the upper limit as per problem constraints
+    
+    # Generate the number of existing convenience stores
+    num_stores = random.randint(1, min(m * n, 10))  # Ensuring at least one store and not more stores than blocks
+    
+    # Generate the coordinates of the existing convenience stores
+    existing_stores = set()
+    while len(existing_stores) < num_stores:
+        x = random.randint(1, m)
+        y = random.randint(1, n)
+        existing_stores.add((x, y))
+    existing_stores = list(existing_stores)
+    
+    # Generate the number of candidate locations
+    num_candidates = random.randint(1, min(m * n - num_stores, 10))  # Ensuring not to exceed the available blocks
+    
+    # Generate the coordinates of the candidate store locations
+    candidate_locations = set()
+    while len(candidate_locations) < num_candidates:
+        x = random.randint(1, m)
+        y = random.randint(1, n)
+        if (x, y) not in existing_stores:
+            candidate_locations.add((x, y))
+    candidate_locations = list(candidate_locations)
+    
+    return m, n, existing_stores, candidate_locations
+
+# Example usage
+for _ in range(5):  # Generate 5 test cases
+    m, n, existing_stores, candidate_locations = tcgen()
+    print(f"Map dimensions: {m}x{n}")
+    print(f"Existing stores: {existing_stores}")
+    print(f"Candidate locations: {candidate_locations}")
+    print()
+```
+
+### Explanation
+
+1. **Map Dimensions (m and n)**:
+   - The dimensions of the city map are generated with both values ranging between 1 and 20. These bounds can be adjusted according to the problem constraints.
+
+2. **Number of Existing Convenience Stores**:
+   - A random number of stores is chosen between 1 and the minimum of \(m \times n\) and 10. This ensures that at least one store exists and does not exceed the number of blocks.
+
+3. **Coordinates of Existing Stores**:
+   - Unique coordinates are generated for the existing stores until the desired number of stores is reached.
+
+4. **Number of Candidate Locations**:
+   - A random number of candidate locations is chosen, ensuring that it does not exceed the number of available blocks after placing the existing stores.
+
+5. **Coordinates of Candidate Stores**:
+   - Unique coordinates are generated for the candidate stores, ensuring no overlap with the existing stores.
+
+The generated test cases provide various scenarios of map sizes, existing store placements, and candidate locations, facilitating thorough testing of the solution.

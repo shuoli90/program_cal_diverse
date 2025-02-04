@@ -1,0 +1,22 @@
+def extract_arguments(fh):
+    datasets = []
+    while True:
+        line = fh.readline().strip()
+        if line == "0 0":
+            break
+        m, n = map(int, line.split())
+        existing_stores = [tuple(map(int, fh.readline().strip().split())) for _ in range(m)]
+        candidate_locations = []
+        while True:
+            line = fh.readline().strip()
+            if line == "":
+                break
+            candidate_locations.append(tuple(map(int, line.split())))
+        datasets.append((m, n, existing_stores, candidate_locations))
+    return datasets
+
+# if __name__ == "__main__":
+#     input_path = sys.argv[1]
+#     with open(input_path, 'r') as fh:
+#         datasets = extract_arguments(fh)
+#         process_datasets(datasets)  # Assuming process_datasets is the function to process the data

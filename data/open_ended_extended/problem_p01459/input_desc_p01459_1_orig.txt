@@ -1,0 +1,25 @@
+Canonicalized Input Description:
+
+An integer N (2 ≤ N ≤ 100), representing some quantity or size.
+An integer M (2 ≤ M ≤ 100), representing some quantity or size.
+An integer A (0 ≤ A ≤ 10), representing some quantity or size.
+A grid of size NxM, where each cell contains one of the following characters: {'#', '.', 'S', 'G'}.
+
+### Example Input:
+
+```
+3 3 2
+S#.
+...
+.#G
+```
+
+### Function Signature:
+Write a function f(N, M, A, grid) that takes in the input.
+def f(N: int, M: int, A: int, grid: List[str]):
+    '''
+    N: an integer
+    M: an integer
+    A: an integer
+    grid: a list of strings
+    '''

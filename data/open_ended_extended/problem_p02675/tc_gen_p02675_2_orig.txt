@@ -1,0 +1,42 @@
+Sure, I can help you write a test case generator for the problem described. The generator will produce a random integer \( N \) within the specified constraints (1 ≤ \( N \) ≤ 999) and the expected output based on the last digit of \( N \).
+
+Here is the test case generator:
+
+```python
+import random
+
+def tcgen():
+    # Generate a random integer N between 1 and 999
+    N = random.randint(1, 999)
+    
+    # Determine the reading based on the last digit of N
+    last_digit = N % 10
+    if last_digit in [2, 4, 5, 7, 9]:
+        reading = "hon"
+    elif last_digit in [0, 1, 6, 8]:
+        reading = "pon"
+    elif last_digit == 3:
+        reading = "bon"
+    
+    return N, reading
+
+# Example usage
+for _ in range(5):
+    N, reading = tcgen()
+    print(f"Input: {N}")
+    print(f"Expected Output: {N}{reading}")
+```
+
+### Explanation:
+
+1. **Generate a Random Integer \( N \)**:
+   - We use `random.randint(1, 999)` to generate a random integer \( N \) within the required range.
+
+2. **Determine the Reading**:
+   - The last digit of \( N \) is found using `N % 10`.
+   - Depending on the last digit, we determine the reading as "hon", "pon", or "bon" following the given rules.
+
+3. **Output the Test Case**:
+   - The function returns the integer \( N \) and its corresponding reading.
+
+This generator will produce a variety of test cases, each consisting of a random integer \( N \) and the correct output string.

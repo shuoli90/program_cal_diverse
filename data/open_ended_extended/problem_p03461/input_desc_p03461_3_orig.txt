@@ -1,0 +1,22 @@
+An integer A (1 ≤ A ≤ 10), representing some quantity or size.
+An integer B (1 ≤ B ≤ 10), representing some quantity or size.
+A list of lists containing integers d_{i,j} (1 ≤ d_{i,j} ≤ 100), where each sublist corresponds to a row of size B and there are A such sublists.
+
+### Example Input:
+
+```
+2 3
+1 2 2
+1 2 3
+```
+
+### Function Signature:
+Write a function f(A, B, d) that takes in the input.
+```python
+def f(A: int, B: int, d: List[List[int]]):
+    ''' 
+    A: an integer 
+    B: an integer 
+    d: a list of lists of integers 
+    '''
+```

@@ -1,0 +1,38 @@
+Sure! Below is a Python function to generate test cases for the "Partial String Decomposition" problem.
+
+```python
+import random
+import string
+
+def generate_random_string(length):
+    return ''.join(random.choices(string.ascii_lowercase, k=length))
+
+def tcgen():
+    # Generate lengths for S and T within the constraints
+    len_S = random.randint(1, 2 * 10**5)
+    len_T = random.randint(1, 2 * 10**5)
+    
+    # Generate the random strings S and T
+    S = generate_random_string(len_S)
+    T = generate_random_string(len_T)
+    
+    # Generate k such that 1 ≤ k ≤ |T|
+    k = random.randint(1, len_T)
+    
+    return S, T, k
+
+# Example usage
+S, T, k = tcgen()
+print(f"S: {S}")
+print(f"T: {T}")
+print(f"k: {k}")
+```
+
+Explanation of the `tcgen` function:
+- `generate_random_string(length)` generates a random string of a given length composed of lowercase alphabets.
+- `tcgen()` generates random lengths for `S` and `T` within the specified constraints.
+- It then generates random strings `S` and `T` with those lengths.
+- It picks a random integer `k` such that `1 ≤ k ≤ |T|`.
+- The function returns the generated strings `S`, `T`, and the integer `k`.
+
+This will give you varied test cases for the problem, ensuring comprehensive coverage for different scenarios within the allowed constraints.

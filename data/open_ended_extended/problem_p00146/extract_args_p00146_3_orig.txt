@@ -1,0 +1,13 @@
+def extract_arguments(fh):
+    n = int(fh.readline().strip())
+    warehouses = []
+    for _ in range(n):
+        s, d, v = map(int, fh.readline().strip().split())
+        warehouses.append((s, d, v))
+    return n, warehouses
+
+# if __name__ == "__main__":
+#     input_path = sys.argv[1]
+#     with open(input_path, 'r') as fh: 
+#         n, warehouses = extract_arguments(fh)
+#         f(n, warehouses)

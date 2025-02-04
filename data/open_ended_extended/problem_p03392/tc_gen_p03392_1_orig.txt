@@ -1,0 +1,22 @@
+Sure! To create a test case generator for the given problem statement, we need to generate random strings composed of the characters 'a', 'b', and 'c' with lengths between 2 and 200,000. Here's a Python function to generate such test cases:
+
+```python
+import random
+
+def generate_test_case():
+    # Length of the string
+    length = random.randint(2, 2 * 10**5)
+    
+    # Generate a random string of the given length consisting of 'a', 'b', and 'c'
+    S = ''.join(random.choice(['a', 'b', 'c']) for _ in range(length))
+    
+    return S
+
+# Example usage:
+for _ in range(5):  # Generate 5 test cases for demonstration
+    print(generate_test_case())
+```
+
+This function will generate a string `S` of random length between 2 and 200,000 characters. Each character in the string will be randomly chosen from the set {'a', 'b', 'c'}.
+
+You can call this function multiple times to generate different test cases. The generated strings can then be used as input for testing your solution to the problem.

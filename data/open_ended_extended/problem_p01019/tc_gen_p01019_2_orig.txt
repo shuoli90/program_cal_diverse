@@ -1,0 +1,71 @@
+Certainly! Let's first summarize the problem statement you provided for "Problem D: Cheat Case" and then create a test case generator for it.
+
+### Problem Statement: Cheat Case
+
+**Description**
+
+Given brush-strokes on a grid that represent arithmetic expressions, you need to interpret these strokes and solve the resulting arithmetic expressions. The arithmetic symbols available are + (addition), - (subtraction), and · (multiplication). Multiplication takes priority over addition and subtraction. The grid-based brush-strokes can be horizontal, vertical, or dots.
+
+**Input**
+
+1. An integer \(N\) (1 ≤ \(N\) ≤ 10^3), representing the number of line segments.
+2. A list of \(N\) line segments. Each line segment is represented by four integers \(x1, y1, x2, y2\):
+   - \(x1, y1\): Starting point of the line segment.
+   - \(x2, y2\): Ending point of the line segment.
+3. The grid is such that \(0 \leq x1, y1, x2, y2 \leq 1000\).
+
+**Output**
+
+The result of the arithmetic expression formed by the brush-strokes.
+
+### Test Case Generator
+
+Let's create a function `tcgen()` that generates test cases for this problem. The function will randomly generate a number of line segments and their coordinates, ensuring they stay within the grid bounds.
+
+```python
+import random
+
+def tcgen():
+    N = random.randint(1, 10**3)
+    line_segments = []
+    
+    for _ in range(N):
+        x1 = random.randint(0, 1000)
+        y1 = random.randint(0, 1000)
+        if random.choice([True, False]):
+            # Horizontal or vertical line
+            if random.choice([True, False]):
+                # Horizontal line
+                x2 = random.randint(0, 1000)
+                y2 = y1
+            else:
+                # Vertical line
+                x2 = x1
+                y2 = random.randint(0, 1000)
+        else:
+            # Dot
+            x2 = x1
+            y2 = y1
+        
+        line_segments.append((x1, y1, x2, y2))
+    
+    return N, line_segments
+
+# Example usage
+N, segments = tcgen()
+print(f"N: {N}")
+for seg in segments:
+    print(f"{seg[0]} {seg[1]} {seg[2]} {seg[3]}")
+```
+
+### Explanation:
+
+1. **Number of Segments (N)**: A random integer between 1 and 1000.
+2. **Line Segments**: For each segment, randomly decide if it is a horizontal/vertical line or a dot.
+   - **Horizontal Line**: Keep `y1` and `y2` the same, vary `x1` to `x2`.
+   - **Vertical Line**: Keep `x1` and `x2` the same, vary `y1` to `y2`.
+   - **Dot**: Keep `x1`, `y1`, `x2`, and `y2` the same.
+
+The generated test cases will provide a variety of segment configurations, covering different types of lines and dots.
+
+Feel free to run this generator function to create the required test cases for your competitive programming problem, and adapt it if necessary to better suit any specific needs or constraints of your problem.

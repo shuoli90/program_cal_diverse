@@ -1,0 +1,200 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p02748 - Generation 2</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p02748 - Generation 2</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>
+Score : 200 points
+Problem Statement
+You are visiting a large electronics store to buy a refrigerator and a microwave.
+The store sells A kinds of refrigerators and B kinds of microwaves. The i-th refrigerator ( 1 \le i \le A ) is sold at a_i yen (the currency of Japan), and the j-th microwave ( 1 \le j \le B ) is sold at b_j yen.
+You have M discount tickets. With the i-th ticket ( 1 \le i \le M ), you can get a discount of c_i yen from the total price when buying the x_i-th refrigerator and the y_i-th microwave together. Only one ticket can be used at a time.
+You are planning to buy one refrigerator and one microwave. Find the minimum amount of money required.
+Constraints
+All values in input are integers.
+ 1 \le A \le 10^5 
+ 1 \le B \le 10^5 
+ 1 \le M \le 10^5 
+ 1 \le a_i , b_i , c_i \le 10^5 
+ 1 \le x_i \le A 
+ 1 \le y_i \le B 
+ c_i \le a_{x_i} + b_{y_i} 
+Input
+Input is given from Standard Input in the following format:
+A B M
+a_1 a_2 ... a_A
+b_1 b_2 ... b_B
+x_1 y_1 c_1
+\vdots
+x_M y_M c_M
+Output
+Print the answer.
+Sample Input 12 3 1
+3 3
+3 3 3
+1 2 1
+Sample Output 15
+With the ticket, you can get the 1-st refrigerator and the 2-nd microwave for 3+3-1=5 yen.
+Sample Input 21 1 2
+10
+10
+1 1 5
+1 1 10
+Sample Output 210
+Note that you cannot use more than one ticket at a time.
+Sample Input 32 2 1
+3 5
+3 5
+2 2 2
+Sample Output 36
+You can get the 1-st refrigerator and the 1-st microwave for 6 yen, which is the minimum amount to pay in this case.
+Note that using a ticket is optional.
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An integer A (1 ≤ A ≤ 10^5), representing some quantity or size.
+An integer B (1 ≤ B ≤ 10^5), representing some quantity or size.
+An integer M (1 ≤ M ≤ 10^5), representing some quantity or size.
+A list of integers a of size A, where each integer is between 1 and 10^5.
+A list of integers b of size B, where each integer is between 1 and 10^5.
+A list of tuples (x, y, c) of size M, where each tuple contains three integers:
+  - x (1 ≤ x ≤ A)
+  - y (1 ≤ y ≤ B)
+  - c (1 ≤ c ≤ 10^5)
+
+### Example Input:
+
+```
+3 1 2
+3 3 3
+3
+1 2 1
+1 1 10
+```
+
+### Function Signature:
+Write a function f(inputs) that takes in the input.
+```python
+def f(inputs: Tuple[int, int, int, List[int], List[int], List[Tuple[int, int, int]]]):
+    '''
+    inputs: a tuple containing three integers, two lists of integers, and a list of tuples
+    '''</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>To generate test cases for the problem statement, we need to create random values for the inputs \(A\), \(B\), and \(M\), and then generate appropriate values for the arrays \(a\), \(b\), and tuples \((x, y, c)\). Here is a Python function that will generate such test cases:
+
+```python
+import random
+
+def tcgen():
+    # Constraints
+    A = random.randint(1, 10**5)
+    B = random.randint(1, 10**5)
+    M = random.randint(1, 10**5)
+    
+    # Generating the prices of refrigerators and microwaves
+    a = [random.randint(1, 10**5) for _ in range(A)]
+    b = [random.randint(1, 10**5) for _ in range(B)]
+    
+    # Generating the discount tickets
+    tickets = []
+    for _ in range(M):
+        x = random.randint(1, A)
+        y = random.randint(1, B)
+        c = random.randint(1, a[x - 1] + b[y - 1])  # c_i must be less than or equal to a[x_i] + b[y_i]
+        tickets.append((x, y, c))
+    
+    return A, B, M, a, b, tickets
+
+# Function to format the test case for printing
+def format_test_case(A, B, M, a, b, tickets):
+    result = []
+    result.append(f"{A} {B} {M}")
+    result.append(" ".join(map(str, a)))
+    result.append(" ".join(map(str, b)))
+    for x, y, c in tickets:
+        result.append(f"{x} {y} {c}")
+    return "\n".join(result)
+
+# Example usage
+A, B, M, a, b, tickets = tcgen()
+test_case = format_test_case(A, B, M, a, b, tickets)
+print(test_case)
+```
+
+This function `tcgen()` generates random values for \(A\), \(B\), and \(M\) within the given constraints and populates the arrays \(a\), \(b\), and the list of discount tickets. The helper function `format_test_case()` formats these values into the required input structure.
+
+To use the test case generator, simply call `tcgen()` to create a new test case, and `format_test_case()` to print it in the required format. This will help you generate a variety of test cases for your competitive programming problem.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    A, B, M = map(int, fh.readline().strip().split())
+    a = list(map(int, fh.readline().strip().split()))
+    b = list(map(int, fh.readline().strip().split()))
+    discounts = []
+    for _ in range(M):
+        x, y, c = map(int, fh.readline().strip().split())
+        discounts.append((x, y, c))
+    return A, B, M, a, b, discounts
+
+# if __name__ == "__main__":
+#     input_path = sys.argv[1]
+#     with open(input_path, 'r') as fh: 
+#         A, B, M, a, b, discounts = extract_arguments(fh)
+#         f(A, B, M, a, b, discounts)</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

@@ -1,0 +1,175 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p02169 - Generation 2</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p02169 - Generation 2</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>Problem H: Count Words
+Problem
+  There are $M$ types of characters. Create a string of length $N$ using these characters. How many strings have at least $K$ different types of characters used in them? Find the answer modulo $998244353$.
+  Here two strings of length $N$ are considered different if there exists an $i$ $(1 \leq i \leq N)$ such that $S_i \neq T_i$ where $S = S_1S_2 \ldots S_N$ and $T = T_1T_2 \ldots T_N$.
+Input
+The input is given in the following format:
+$M$ $N$ $K$
+  $M, N,$ and $K$ are given on a single line separated by a single space.
+Constraints
+The input satisfies the following constraints:
+$1 \leq M \leq 10^{18} $
+$1 \leq N \leq 10^{18} $
+$1 \leq K \leq 1000 $
+All input values are integers.
+Output
+  Print the number of strings of length $N$ using $M$ characters such that at least $K$ different types of characters are used. The answer should be printed modulo $998244353$.
+Sample Input 1
+2 10 1
+Sample Output 1
+1024
+Sample Input 2
+1 1 2
+Sample Output 2
+0
+Sample Input 3
+5 10 3
+Sample Output 3
+9755400
+Sample Input 4
+7 8 3
+Sample Output 4
+5759460
+Sample Input 5
+1000000000000000000 1000000000000000000 1000
+Sample Output 5
+133611974
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>Canonicalized Input Description:
+
+An integer M (1 ≤ M ≤ 10^18).
+An integer N (1 ≤ N ≤ 10^18).
+An integer K (1 ≤ K ≤ 1000).
+
+### Example Input:
+
+```
+2 10 1
+```
+
+### Function Signature:
+Write a function f(M, N, K) that takes in the input.
+def f(M: int, N: int, K: int):
+    '''
+    M: an integer
+    N: an integer
+    K: an integer
+    '''
+</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>To generate test cases for the given problem statement, you need to consider the constraints and ensure that the generated values for \(M\), \(N\), and \(K\) are within the specified ranges. Here's a Python function that generates such test cases:
+
+```python
+import random
+
+def tcgen():
+    M = random.randint(1, 10**18)
+    N = random.randint(1, 10**18)
+    K = random.randint(1, 1000)
+    
+    return M, N, K
+
+# Example to generate and print a test case
+if __name__ == "__main__":
+    test_case = tcgen()
+    print(test_case)
+```
+
+This function generates random values for \(M\), \(N\), and \(K\) within their respective constraints. Since the ranges for \(M\) and \(N\) are very large, you might want to handle the output carefully if you are using this in a real test scenario.
+
+Let's break down the constraints and ensure the generated values are within the specified ranges:
+- \(1 \leq M \leq 10^{18}\)
+- \(1 \leq N \leq 10^{18}\)
+- \(1 \leq K \leq 1000\)
+
+The function `tcgen` uses Python's `random.randint` to generate random numbers within these ranges. The `print` statement at the end is for demonstration purposes to show how you can generate and print a test case.
+
+If you need to generate multiple test cases, you can call the `tcgen` function multiple times, and optionally, write the results to a file for further use.
+
+Here’s an example of generating multiple test cases and printing them:
+
+```python
+def generate_multiple_test_cases(num_cases):
+    test_cases = []
+    for _ in range(num_cases):
+        test_cases.append(tcgen())
+    return test_cases
+
+if __name__ == "__main__":
+    num_cases = 10  # You can specify how many test cases you want to generate
+    test_cases = generate_multiple_test_cases(num_cases)
+    for idx, test_case in enumerate(test_cases, 1):
+        M, N, K = test_case
+        print(f"Test Case {idx}: M={M}, N={N}, K={K}")
+```
+
+This script will generate and print 10 random test cases, each satisfying the constraints. Adjust the `num_cases` variable to generate more or fewer test cases as needed.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    M, N, K = map(int, fh.readline().strip().split())
+    return M, N, K</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

@@ -1,0 +1,37 @@
+Certainly! Here is a test case generator for the given problem statement "Problem D: One-Time Path":
+
+```python
+import random
+
+def generate_test_case():
+    # Constraints
+    N = random.randint(2, 10**5)
+    M = random.randint(1, 2 * 10**5)
+    
+    bridges = []
+    for _ in range(M):
+        ai = random.randint(1, N-1)
+        bi = random.randint(1, N)
+        while bi == ai:
+            bi = random.randint(1, N)
+        ci = random.randint(1, 10**9)
+        bridges.append((ai, bi, ci))
+    
+    return N, M, bridges
+
+def print_test_case():
+    N, M, bridges = generate_test_case()
+    print(N, M)
+    for bridge in bridges:
+        print(bridge[0], bridge[1], bridge[2])
+
+# Example usage:
+print_test_case()
+```
+
+This generator function creates a random test case for the problem. It ensures:
+1. The number of islands \(N\) is between 2 and \(10^5\).
+2. The number of bridges \(M\) is between 1 and \(2 \times 10^5\).
+3. For each bridge, \(a_i\) is an integer between 1 and \(N-1\), \(b_i\) is an integer between 1 and \(N\) (but not equal to \(a_i\)), and \(c_i\) is an integer between 1 and \(10^9\).
+
+The function `print_test_case` can be called to generate and print a random test case in the required format.

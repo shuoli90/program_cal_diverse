@@ -1,0 +1,20 @@
+Types: 
+- N: int
+- pw: int
+- vw: List[int]
+- pf: List[int]
+- vf: List[int]
+- th: List[int]
+
+Ranges: 
+- 1 ≤ N ≤ 10^5
+- 1 ≤ pw ≤ 100
+- -100 ≤ vw[i] ≤ 100
+- 1 ≤ pf[i] ≤ 100
+- 1 ≤ vf[i] ≤ 100
+- -100 ≤ th[i] ≤ 100
+
+Addtl Info: 
+- The number of datasets does not exceed 100.
+- The data size of the input does not exceed 20 MB.
+- The end of the input is indicated by a line containing a zero.

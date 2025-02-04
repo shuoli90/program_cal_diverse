@@ -1,0 +1,7 @@
+def extract_arguments(fh):
+    N = int(fh.readline().strip())
+    A = list(map(int, fh.readline().strip().split()))
+    edges = []
+    for _ in range(N - 1):
+        edges.append(tuple(map(int, fh.readline().strip().split())))
+    return N, A, edges

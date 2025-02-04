@@ -1,0 +1,33 @@
+Certainly! Below is a test case generator for the given problem statement. This generator will create random values for \(A\), \(B\), \(H\), and \(M\) according to the constraints specified.
+
+```python
+import random
+
+def tcgen():
+    A = random.randint(1, 1000)
+    B = random.randint(1, 1000)
+    H = random.randint(0, 11)
+    M = random.randint(0, 59)
+    
+    return A, B, H, M
+
+# Example of generating a test case
+if __name__ == "__main__":
+    A, B, H, M = tcgen()
+    print(f"{A} {B} {H} {M}")
+```
+
+### Explanation:
+
+- `A` and `B` are generated randomly between 1 and 1000 inclusive, representing the lengths of the hour and minute hands, respectively.
+- `H` is generated randomly between 0 and 11 inclusive, representing the hour on the clock.
+- `M` is generated randomly between 0 and 59 inclusive, representing the minutes on the clock.
+
+### Example Output:
+
+Running the generator might give you output like:
+```
+715 932 4 37
+```
+
+You can use this output as an input for your program to test its correctness. Each time you run the generator, it will produce different values, giving you a wide variety of test cases.

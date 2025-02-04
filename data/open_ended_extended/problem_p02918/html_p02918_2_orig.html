@@ -1,0 +1,156 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p02918 - Generation 2</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p02918 - Generation 2</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>
+Score : 400 points
+Problem StatementThere are N people standing in a queue from west to east.
+Given is a string S of length N representing the directions of the people.
+The i-th person from the west is facing west if the i-th character of S is L, and east if that character of S is R.
+A person is happy if the person in front of him/her is facing the same direction.
+If no person is standing in front of a person, however, he/she is not happy.
+You can perform the following operation any number of times between 0 and K (inclusive):
+Operation: Choose integers l and r such that 1 \leq l \leq r \leq N, and rotate by 180 degrees the part of the queue: the l-th, (l+1)-th, ..., r-th persons. That is, for each i = 0, 1, ..., r-l, the (l + i)-th person from the west will stand the (r - i)-th from the west after the operation, facing east if he/she is facing west now, and vice versa.
+What is the maximum possible number of happy people you can have?
+Constraints
+N is an integer satisfying 1 \leq N \leq 10^5.
+K is an integer satisfying 1 \leq K \leq 10^5.
+|S| = N
+Each character of S is L or R.
+InputInput is given from Standard Input in the following format:
+N K
+S
+OutputPrint the maximum possible number of happy people after at most K operations.
+Sample Input 16 1
+LRLRRL
+Sample Output 13
+If we choose (l, r) = (2, 5), we have LLLRLL, where the 2-nd, 3-rd, and 6-th persons from the west are happy.
+Sample Input 213 3
+LRRLRLRRLRLLR
+Sample Output 29
+Sample Input 310 1
+LLLLLRRRRR
+Sample Output 39
+Sample Input 49 2
+RRRLRLRLL
+Sample Output 47
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An integer N (1 ≤ N ≤ 10^5), representing some quantity or size.
+An integer K (1 ≤ K ≤ 10^5), representing some quantity or limit.
+A string S of length N, where each character is either 'L' or 'R'.
+
+### Example Input:
+
+```
+6 1
+LRLRRL
+```
+
+### Function Signature:
+Write a function f(N, K, S) that takes in the input.
+```python
+def f(N: int, K: int, S: str):
+    '''
+    N: an integer
+    K: an integer
+    S: a string
+    '''
+```</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Sure, here is a test case generator for the given problem statement. This generator will create random test cases based on the constraints provided.
+
+```python
+import random
+
+def tcgen():
+    N = random.randint(1, 10**5)
+    K = random.randint(1, 10**5)
+    
+    # Generate a random string S of length N with characters 'L' or 'R'
+    S = ''.join(random.choice('LR') for _ in range(N))
+    
+    return N, K, S
+
+# Example usage
+if __name__ == "__main__":
+    for _ in range(5):  # Generate 5 test cases for demonstration
+        N, K, S = tcgen()
+        print(N, K)
+        print(S)
+```
+
+This test case generator will produce random values for `N` and `K` within the specified constraints and generate a random string `S` of length `N` consisting of characters 'L' and 'R'. The example usage part will generate and print five test cases.
+
+Here's how the output might look for a single generated test case:
+```
+95341 28470
+LRLRLLRRLLRRL... (and so on, a string of length 95341)
+```
+
+You can use this generator to create multiple test cases for thorough testing of your solution.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    N, K = map(int, fh.readline().strip().split())
+    S = fh.readline().strip()
+    return N, K, S</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

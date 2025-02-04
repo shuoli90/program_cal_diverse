@@ -1,0 +1,18 @@
+Canonicalized Input Description:
+
+A string S of length between 1 and 1000, inclusive, containing only lowercase English letters.
+
+### Example Input:
+
+```
+apple
+```
+
+### Function Signature:
+Write a function f(S) that takes in the input. 
+```python
+def f(S: str):
+    '''
+    S: a string
+    '''
+```

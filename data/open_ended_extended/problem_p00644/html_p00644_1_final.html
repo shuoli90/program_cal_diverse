@@ -1,0 +1,213 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p00644 - Generation 1</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p00644 - Generation 1</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>
+Problem H: Winter Bells
+The best night ever in the world has come! It's 8 p.m. of December 24th, yes, the night of Cristmas Eve. Santa Clause comes to a silent city with ringing bells. Overtaking north wind, from a sleigh a reindeer pulls she shoot presents to soxes hanged near windows for children.
+The sleigh she is on departs from a big christmas tree on the fringe of the city. Miracle power that the christmas tree spread over the sky like a web and form a paths that the sleigh can go on. Since the paths with thicker miracle power is easier to go, these paths can be expressed as undirected weighted graph.
+Derivering the present is very strict about time. When it begins dawning the miracle power rapidly weakens and Santa Clause can not continue derivering any more. Her pride as a Santa Clause never excuses such a thing, so she have to finish derivering before dawning.
+The sleigh a reindeer pulls departs from christmas tree (which corresponds to 0th node), and go across the city to the opposite fringe (n-1 th node) along the shortest path. Santa Clause create presents from the miracle power and shoot them from the sleigh the reindeer pulls at his full power. If there are two or more shortest paths, the reindeer selects one of all shortest paths with equal probability and go along it.
+By the way, in this city there are p children that wish to see Santa Clause and are looking up the starlit sky from their home. Above the i-th child's home there is a cross point of the miracle power that corresponds to c[i]-th node of the graph. The child can see Santa Clause if (and only if) Santa Clause go through the node.
+Please find the probability that each child can see Santa Clause.
+Input
+Input consists of several datasets.
+The first line of each dataset contains three integers n, m, p, which means the number of nodes and edges of the graph, and the number of the children. Each node are numbered 0 to n-1.
+Following m lines contains information about edges. Each line has three integers. The first two integers means nodes on two endpoints of the edge. The third one is weight of the edge.
+Next p lines represent c[i] respectively.
+Input terminates when n = m = p = 0.
+Output
+For each dataset, output p decimal values in same order as input. Write a blank line after that.
+You may output any number of digit and may contain an error less than 1.0e-6.
+Constraints
+3 ≤ n ≤ 100
+There are no parallel edges and a edge whose end points are identical.
+ 0 < weight of the edge < 10000
+Sample Input
+3 2 1
+0 1 2
+1 2 3
+1
+4 5 2
+0 1 1
+0 2 1
+1 2 1
+1 3 1
+2 3 1
+1
+2
+0 0 0
+Output for the Sample Input
+1.00000000
+0.50000000
+0.50000000
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>### Canonicalized Input Description:
+
+An integer n (3 ≤ n ≤ 100), representing some quantity or size.
+An integer m, representing some quantity or size.
+An integer p, representing some quantity or size.
+m lines follow, each containing three integers: the first two integers represent nodes, and the third integer is a weight (0 < weight < 10000).
+p lines follow, each containing one integer.
+
+### Example Input:
+
+```
+3 2 1
+0 1 2
+1 2 3
+1
+```
+
+### Function Signature:
+Write a function f(inputs) that takes in the input.
+def f(inputs: List[Tuple[int, List[Tuple[int, int, int]], List[int]]]):
+    '''
+    inputs: a list of tuples, each containing:
+        - an integer n
+        - a list of tuples, each containing three integers
+        - a list of integers
+    '''</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Sure! Below is a Python function to generate test cases for the "Winter Bells" problem described in the problem statement:
+
+```python
+import random
+
+def generate_edge_list(n, m):
+    edges = []
+    all_possible_edges = [(i, j) for i in range(n) for j in range(i+1, n)]
+    chosen_edges = random.sample(all_possible_edges, m)
+    
+    for (u, v) in chosen_edges:
+        weight = random.randint(1, 9999)
+        edges.append((u, v, weight))
+    
+    return edges
+
+def tcgen():
+    test_cases = []
+    
+    while True:
+        # Randomly decide whether to end the input
+        if random.random() < 0.1:
+            test_cases.append((0, 0, 0, [], []))
+            break
+        
+        n = random.randint(3, 100)
+        m = random.randint(1, n*(n-1)//2)
+        p = random.randint(1, n)
+        
+        edges = generate_edge_list(n, m)
+        
+        children_nodes = [random.randint(0, n-1) for _ in range(p)]
+        
+        test_cases.append((n, m, p, edges, children_nodes))
+    
+    return test_cases
+
+# Example of generating a test case
+test_cases = tcgen()
+for t in test_cases:
+    n, m, p, edges, children_nodes = t
+    print(f"{n} {m} {p}")
+    for u, v, w in edges:
+        print(f"{u} {v} {w}")
+    for c in children_nodes:
+        print(c)
+    print()
+```
+
+### Explanation:
+- **Function `generate_edge_list(n, m)`**:
+  - This function generates `m` unique edges for a graph with `n` nodes.
+  - It creates all possible edges, then randomly selects `m` of these edges.
+  - Each edge is assigned a random weight between 1 and 9999.
+
+- **Function `tcgen()`**:
+  - This function generates multiple test cases until it randomly decides to end the input with `0 0 0`.
+  - For each test case:
+    - It generates random values for `n` (number of nodes), `m` (number of edges), and `p` (number of children).
+    - It uses `generate_edge_list` to create a list of `m` edges.
+    - It generates a list of `p` random child positions (nodes).
+  - It appends each test case to the `test_cases` list.
+  - Finally, it returns the list of test cases.
+
+The test case generator function `tcgen()` will produce a list of test cases, each consisting of the number of nodes `n`, the number of edges `m`, the number of children `p`, a list of `m` edges, and a list of `p` child positions. The format of each test case corresponds to the input format specified in the problem statement.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    datasets = []
+    while True:
+        n, m, p = map(int, fh.readline().strip().split())
+        if n == 0 and m == 0 and p == 0:
+            break
+        edges = []
+        for _ in range(m):
+            u, v, w = map(int, fh.readline().strip().split())
+            edges.append((u, v, w))
+        children = []
+        for _ in range(p):
+            children.append(int(fh.readline().strip()))
+        datasets.append((n, m, p, edges, children))
+    return datasets</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

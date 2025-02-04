@@ -1,0 +1,10 @@
+Types: N: int, D: int, d: List[int], Q: int, q: List[int]
+
+Ranges: 
+1 ≤ N ≤ 5*10^5, 
+1 ≤ Q ≤ 5*10^5, 
+1 ≤ D ≤ 10^9, 
+1 ≤ d_i ≤ 10^9 (1 ≤ i ≤ N), 
+1 ≤ q_i ≤ N (1 ≤ i ≤ Q)
+
+Addtl Info: None

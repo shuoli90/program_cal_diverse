@@ -1,0 +1,19 @@
+Sure! Below is a test case generator for the "Special Chat" problem:
+
+```python
+import random
+
+def tcgen():
+    # Generate a random amount of points P within the given constraints
+    P = random.randint(1, 10**5)
+    return P
+
+# Example usage:
+if __name__ == "__main__":
+    # Generate 10 test cases
+    for _ in range(10):
+        P = tcgen()
+        print(P)
+```
+
+This function generates a single random integer \(P\) within the range from 1 to \(10^5\), which represents the total amount of points you currently have. You can call this function multiple times to generate multiple test cases. The example usage at the bottom demonstrates generating and printing 10 test cases.

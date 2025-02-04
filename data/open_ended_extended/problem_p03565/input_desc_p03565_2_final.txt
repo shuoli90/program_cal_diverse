@@ -1,0 +1,22 @@
+Canonicalized Input Description:
+
+Two strings, S' and T.
+
+1 ≤ |S'|, |T| ≤ 50
+S' consists of lowercase English letters and '?'.
+T consists of lowercase English letters.
+
+### Example Input:
+
+```
+?tc????
+coder
+```
+
+### Function Signature:
+Write a function f(S_prime, T) that takes in the input.
+def f(S_prime: str, T: str):
+    ''' 
+    S_prime: a string 
+    T: a string
+    '''

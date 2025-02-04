@@ -1,0 +1,27 @@
+def extract_arguments(fh):
+    datasets = []
+    while True:
+        # Read dimensions m and n
+        line = fh.readline().strip()
+        if line == '':
+            break
+        m, n = map(int, line.split())
+        
+        # Read the map
+        city_map = []
+        for _ in range(m):
+            row = list(map(int, fh.readline().strip().split()))
+            city_map.append(row)
+        
+        # Read the number of candidate locations
+        num_candidates = int(fh.readline().strip())
+        
+        # Read candidate locations
+        candidates = []
+        for _ in range(num_candidates):
+            x, y = map(int, fh.readline().strip().split())
+            candidates.append((x, y))
+        
+        datasets.append((m, n, city_map, candidates))
+    
+    return datasets

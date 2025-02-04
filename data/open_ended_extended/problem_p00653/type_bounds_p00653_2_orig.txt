@@ -1,0 +1,3 @@
+Types: r: int, c: int, q: int, grid: List[List[int]], r1: int, c1: int, r2: int, c2: int
+Ranges: 1 ≤ r ≤ 10^6, 1 ≤ c ≤ 10^6, 1 ≤ q ≤ 10^4, 0 ≤ grid[i][j] ≤ 2^31-1, 0 ≤ r1 ≤ r2 < r, 0 ≤ c1 ≤ c2 < c
+Addtl Info: r * c ≤ 10^6, If r * c ≤ 250000, q ≤ 100

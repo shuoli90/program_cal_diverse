@@ -1,0 +1,24 @@
+An integer N (1 ≤ N ≤ 10), representing some quantity.
+N lines of strings, each string containing only lowercase letters of the alphabet and having a maximum length of 10.
+The input containing only a line of 0 indicates the end of the input.
+
+### Example Input:
+
+```
+4
+apple
+length
+things
+thin
+2
+icp
+cpc
+0
+```
+
+### Function Signature:
+Write a function f(inputs) that takes in the input.
+def f(inputs: List[Tuple[int, List[str]]]):
+    '''
+    inputs: a list of tuples where each tuple consists of an integer and a list of strings
+    '''

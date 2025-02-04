@@ -1,0 +1,69 @@
+Sure! The problem "Flame of Nucleus" is a bit more complex and involves generating graphs with specific properties. Below is a Python function to generate test cases for this problem:
+
+```python
+import random
+
+def generate_test_case():
+    # Generate N, M, L
+    N = random.randint(1, 100)
+    M = random.randint(0, N * (N - 1) // 2)  # Maximum number of edges in a complete graph
+    L = random.randint(1, 10000)
+    
+    # Generate M edges
+    edges = set()
+    while len(edges) < M:
+        A = random.randint(1, N)
+        B = random.randint(1, N)
+        if A != B:
+            D = random.randint(1, 10000)
+            edge = (min(A, B), max(A, B), D)
+            edges.add(edge)
+    
+    # Generate P and K arrays
+    P = [random.randint(0, 10**6) for _ in range(N)]
+    K = [random.randint(0, 10**6) for _ in range(N)]
+    
+    # Format the test case as a string
+    test_case = f"{N} {M} {L}\n"
+    for edge in edges:
+        test_case += f"{edge[0]} {edge[1]} {edge[2]}\n"
+    test_case += ' '.join(map(str, P)) + '\n'
+    test_case += ' '.join(map(str, K)) + '\n'
+    
+    return test_case
+
+# Generate multiple test cases
+def generate_multiple_test_cases(num_cases):
+    test_cases = []
+    for _ in range(num_cases):
+        test_cases.append(generate_test_case())
+    return test_cases
+
+# Example usage
+if __name__ == "__main__":
+    test_cases = generate_multiple_test_cases(3)
+    for case in test_cases:
+        print(case)
+        print("-" * 40)
+```
+
+### Explanation:
+1. **N, M, L Generation**:
+    - `N`: Random number of domes between 1 and 100.
+    - `M`: Random number of pipelines. This is capped by the maximum number of edges in a complete graph.
+    - `L`: Random days before radiation hits between 1 and 10000.
+
+2. **Edges Generation**:
+    - Generate unique edges by randomly selecting pairs of nodes and a travel time `D` between 1 and 10000. The set ensures no duplicate edges.
+
+3. **Population and Shelter Capacities**:
+    - `P`: Array representing the number of citizens in each dome. Each value is randomly generated between 0 and 1,000,000.
+    - `K`: Array representing the capacity of shelters in each dome. Each value is randomly generated between 0 and 1,000,000.
+
+4. **Formatting**:
+    - The test case is formatted as a string to match the input format described in the problem statement.
+
+5. **Multiple Test Cases**:
+    - The `generate_multiple_test_cases` function generates a specified number (e.g., 3) of test cases.
+
+This generator should help you create diverse and comprehensive test cases for the "Flame of Nucleus" problem.

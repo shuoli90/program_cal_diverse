@@ -1,0 +1,41 @@
+Sure, here is a test case generator for the "Flame of Nucleus" problem:
+
+```python
+import random
+
+def generate_test_case():
+    N = random.randint(1, 100)
+    M = random.randint(0, N * (N - 1) // 2)  # Maximum M is the total number of unique pairs in N domes
+    L = random.randint(1, 10000)
+    
+    pipelines = []
+    dome_pairs = set()
+    for _ in range(M):
+        while True:
+            Ai = random.randint(1, N)
+            Bi = random.randint(1, N)
+            if Ai != Bi and (Ai, Bi) not in dome_pairs and (Bi, Ai) not in dome_pairs:
+                break
+        Di = random.randint(1, 10000)
+        pipelines.append((Ai, Bi, Di))
+        dome_pairs.add((Ai, Bi))
+    
+    P = [random.randint(0, 10**6) for _ in range(N)]
+    K = [random.randint(0, 10**6) for _ in range(N)]
+    
+    return N, M, L, pipelines, P, K
+
+def print_test_case():
+    N, M, L, pipelines, P, K = generate_test_case()
+    
+    print(f"{N} {M} {L}")
+    for Ai, Bi, Di in pipelines:
+        print(f"{Ai} {Bi} {Di}")
+    print(" ".join(map(str, P)))
+    print(" ".join(map(str, K)))
+
+# Example usage:
+print_test_case()
+```
+
+This generator will create a test case with random values for the number of domes (N), the number of pipelines (M), the maximum days (L), and the respective properties of each dome and pipeline. Each generated test case adheres to the constraints given in the problem statement. You can call `print_test_case()` to generate and print a new test case.

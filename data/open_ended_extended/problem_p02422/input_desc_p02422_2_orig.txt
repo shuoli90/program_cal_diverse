@@ -1,0 +1,30 @@
+An integer \(N\) (1 ≤ \(N\) ≤ 1000), representing the length of a string.
+A string \(S\) of length \(N\), consisting of lowercase letters.
+An integer \(Q\) (1 ≤ \(Q\) ≤ 100), representing the number of commands.
+A list of \(Q\) commands, each command can be one of the following:
+- "print a b": where \(0 \leq a \leq b < N\)
+- "reverse a b": where \(0 \leq a \leq b < N\)
+- "replace a b p": where \(0 \leq a \leq b < N\) and \(b - a + 1 = \) length of \(p\), and \(p\) is a string of lowercase letters.
+
+### Example Input:
+
+```
+5
+abcde
+3
+replace 1 3 xyz
+reverse 0 2
+print 1 4
+```
+
+### Function Signature:
+Write a function f(N, S, Q, commands) that takes in the input.
+```python
+def f(N: int, S: str, Q: int, commands: List[str]):
+    '''
+    N: an integer
+    S: a string
+    Q: an integer
+    commands: a list of strings
+    '''
+```

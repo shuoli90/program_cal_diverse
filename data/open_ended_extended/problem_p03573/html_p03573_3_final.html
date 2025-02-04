@@ -1,0 +1,142 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p03573 - Generation 3</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p03573 - Generation 3</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>
+Score : 100 points
+Problem StatementYou are given three integers, A, B and C.
+Among them, two are the same, but the remaining one is different from the rest.
+For example, when A=5,B=7,C=5, A and C are the same, but B is different.
+Find the one that is different from the rest among the given three integers.  
+Constraints
+-100 \leq A,B,C \leq 100 
+A, B and C are integers.
+The input satisfies the condition in the statement.
+InputInput is given from Standard Input in the following format:  
+A B C
+OutputAmong A, B and C, print the integer that is different from the rest.
+Sample Input 15 7 5
+Sample Output 17
+This is the same case as the one in the statement.
+Sample Input 21 1 7
+Sample Output 27
+In this case, C is the one we seek.
+Sample Input 3-100 100 100
+Sample Output 3-100
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An integer A (-100 ≤ A ≤ 100).
+An integer B (-100 ≤ B ≤ 100).
+An integer C (-100 ≤ C ≤ 100).
+
+### Example Input:
+
+```
+5 7 5
+```
+
+### Function Signature:
+Write a function f(A, B, C) that takes in the input.
+def f(A: int, B: int, C: int):
+    '''
+    A: an integer
+    B: an integer
+    C: an integer
+    '''</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Sure, I can write a test case generator for the given problem statement. Here’s how you can generate test cases for this problem:
+
+```python
+import random
+
+def tcgen():
+    # Generate two equal numbers
+    common_value = random.randint(-100, 100)
+    
+    # Generate a different number
+    different_value = common_value
+    while different_value == common_value:
+        different_value = random.randint(-100, 100)
+    
+    # Place the different value in a random position among the three
+    positions = [common_value, common_value, different_value]
+    random.shuffle(positions)
+    
+    A, B, C = positions
+    return A, B, C
+
+# Example usage:
+for _ in range(5):
+    print(tcgen())
+```
+
+Here's a breakdown of the test case generator:
+1. **Generate two equal numbers:** `common_value` is randomly chosen within the range -100 to 100.
+2. **Generate a different number:** `different_value` is chosen such that it is different from `common_value`.
+3. **Place the different value randomly:** The different number is shuffled into one of the three positions (A, B, C).
+
+This generator strictly follows the constraints and ensures that two out of the three numbers are the same, and one is different.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    A, B, C = map(int, fh.readline().strip().split())
+    return A, B, C</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

@@ -1,0 +1,57 @@
+Sure! Here's a test case generator for the problem "Decrypting the Princess's Code".
+
+```python
+import random
+import string
+
+def generate_word(max_length=10):
+    length = random.randint(1, max_length)
+    return ''.join(random.choices(string.ascii_lowercase, k=length))
+
+def tcgen():
+    datasets = []
+    while True:
+        N = random.randint(1, 10)
+        words = [generate_word() for _ in range(N)]
+        datasets.append((N, words))
+        
+        # Decide randomly whether to stop adding datasets
+        if random.choice([True, False]):
+            break
+    
+    return datasets
+
+def format_output(datasets):
+    output = []
+    for N, words in datasets:
+        output.append(str(N))
+        output.extend(words)
+    output.append("0")
+    return '\n'.join(output)
+
+# Example usage
+datasets = tcgen()
+print(format_output(datasets))
+```
+
+This test case generator will create multiple datasets each containing a random number of words (between 1 and 10) consisting of random lowercase letters, and it will format the datasets as required by the problem statement. Each word has a maximum length of 10 characters. The generation of datasets stops randomly to simulate multiple datasets ending with a '0'. 
+
+You can use this generator to create inputs for testing your solution to the given problem. The `format_output` function is used to format the datasets into a string that mimics the input format.
+
+Here's an example of what the output might look like:
+
+```
+4
+xykwj
+a
+yze
+lmno
+3
+opqrs
+uvwxy
+bcd
+2
+xyz
+abc
+0
+```

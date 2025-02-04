@@ -1,0 +1,192 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p03386 - Generation 2</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p03386 - Generation 2</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>
+Score : 200 points
+Problem StatementPrint all the integers that satisfies the following in ascending order:
+Among the integers between A and B (inclusive), it is either within the K smallest integers or within the K largest integers.
+Constraints
+1 \leq A \leq B \leq 10^9
+1 \leq K \leq 100
+All values in input are integers.
+InputInput is given from Standard Input in the following format:
+A B K
+OutputPrint all the integers that satisfies the condition above in ascending order.
+Sample Input 13 8 2
+Sample Output 13
+4
+7
+8
+3 is the first smallest integer among the integers between 3 and 8.
+4 is the second smallest integer among the integers between 3 and 8.
+7 is the second largest integer among the integers between 3 and 8.
+8 is the first largest integer among the integers between 3 and 8.
+Sample Input 24 8 3
+Sample Output 24
+5
+6
+7
+8
+Sample Input 32 9 100
+Sample Output 32
+3
+4
+5
+6
+7
+8
+9
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An integer A (1 ≤ A ≤ 10^9).
+An integer B (A ≤ B ≤ 10^9).
+An integer K (1 ≤ K ≤ 100).
+
+### Example Input:
+
+```
+3 8 2
+```
+
+### Function Signature:
+Write a function f(A, B, K) that takes in the input.
+```python
+def f(A: int, B: int, K: int):
+    '''
+    A: an integer
+    B: an integer
+    K: an integer
+    '''
+```</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Certainly! Below is a test case generator for the given problem statement.
+
+### Test Case Generator
+
+```python
+import random
+
+def tcgen():
+    # Constraints
+    A = random.randint(1, 10**9)
+    B = random.randint(A, 10**9)  # Ensure B >= A
+    K = random.randint(1, 100)
+    
+    return A, B, K
+
+# Example of generating a test case
+if __name__ == "__main__":
+    A, B, K = tcgen()
+    print(A, B, K)
+```
+
+### Explanation
+
+1. **A**: Randomly generate the starting integer within the range [1, 10^9].
+2. **B**: Randomly generate the ending integer within the range [A, 10^9] to ensure B is always greater than or equal to A.
+3. **K**: Randomly generate K within the range [1, 100].
+
+### Sample Output Generation
+
+To generate the sample output based on the generated test case, you can follow this logic:
+
+```python
+def generate_output(A, B, K):
+    numbers = list(range(A, B + 1))
+    smallest_k = numbers[:K]
+    largest_k = numbers[-K:]
+    
+    result = sorted(set(smallest_k + largest_k))
+    return result
+
+# Example of generating a test case and its output
+if __name__ == "__main__":
+    A, B, K = tcgen()
+    print(f"Generated Test Case: A={A}, B={B}, K={K}")
+    
+    output = generate_output(A, B, K)
+    print("Output:")
+    for num in output:
+        print(num)
+```
+
+### Explanation of Output Generation
+
+1. **Numbers**: Create a list of numbers from A to B inclusive.
+2. **Smallest K**: Extract the first K elements from the list.
+3. **Largest K**: Extract the last K elements from the list.
+4. **Merge and Sort**: Merge the two lists, remove duplicates using `set`, and sort the result.
+5. **Print**: Print the sorted result.
+
+By using the above functions, you can generate both the test case and the expected output to verify the correctness of your implementation.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    A, B, K = map(int, fh.readline().strip().split())
+    return A, B, K
+
+# if __name__ == "__main__":
+#     input_path = sys.argv[1]
+#     with open(input_path, 'r') as fh: 
+#         A, B, K = extract_arguments(fh)
+#         f(A, B, K)</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

@@ -1,0 +1,38 @@
+Sure, here is the test case generator for the given problem statement "Fishing Competition":
+
+```python
+import random
+
+def tcgen():
+    # Generate random counts of iwana and yamame for Hiroshi and Kenjiro
+    h1 = random.randint(0, 100)  # Hiroshi's iwana
+    h2 = random.randint(0, 100)  # Hiroshi's yamame
+    k1 = random.randint(0, 100)  # Kenjiro's iwana
+    k2 = random.randint(0, 100)  # Kenjiro's yamame
+
+    # Generate random point values and bonuses
+    a = random.randint(1, 100)  # Points for one iwana
+    b = random.randint(1, 100)  # Points for one yamame
+    c = random.randint(0, 100)  # Additional points for every 10 iwana
+    d = random.randint(0, 100)  # Additional points for every 20 yamame
+
+    return (h1, h2), (k1, k2), (a, b, c, d)
+
+# Generate a test case and print it
+test_case = tcgen()
+print("Test Case:")
+print(test_case[0][0], test_case[0][1])
+print(test_case[1][0], test_case[1][1])
+print(test_case[2][0], test_case[2][1], test_case[2][2], test_case[2][3])
+```
+
+### Explanation
+This test case generator function `tcgen` generates random values for the number of fish caught by Hiroshi and Kenjiro as well as the points and bonus points for the fish. Here is how the values are generated:
+- `h1`, `h2`: Number of iwana and yamame caught by Hiroshi, respectively. These values are randomly chosen between 0 and 100.
+- `k1`, `k2`: Number of iwana and yamame caught by Kenjiro, respectively. These values are randomly chosen between 0 and 100.
+- `a`, `b`: Points for one iwana and one yamame, respectively. These values are randomly chosen between 1 and 100.
+- `c`, `d`: Additional points awarded for every 10 iwana and 20 yamame, respectively. These values are randomly chosen between 0 and 100.
+
+The generated test case includes all the random values as described and prints them in the required input format.
+
+You can use this function to generate multiple random test cases for the "Fishing Competition" problem.

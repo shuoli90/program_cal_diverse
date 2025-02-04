@@ -1,0 +1,47 @@
+To generate test cases for the given problem statement, you need to consider the constraints and ensure that the generated values for \(M\), \(N\), and \(K\) are within the specified ranges. Here's a Python function that generates such test cases:
+
+```python
+import random
+
+def tcgen():
+    M = random.randint(1, 10**18)
+    N = random.randint(1, 10**18)
+    K = random.randint(1, 1000)
+    
+    return M, N, K
+
+# Example to generate and print a test case
+if __name__ == "__main__":
+    test_case = tcgen()
+    print(test_case)
+```
+
+This function generates random values for \(M\), \(N\), and \(K\) within their respective constraints. Since the ranges for \(M\) and \(N\) are very large, you might want to handle the output carefully if you are using this in a real test scenario.
+
+Let's break down the constraints and ensure the generated values are within the specified ranges:
+- \(1 \leq M \leq 10^{18}\)
+- \(1 \leq N \leq 10^{18}\)
+- \(1 \leq K \leq 1000\)
+
+The function `tcgen` uses Python's `random.randint` to generate random numbers within these ranges. The `print` statement at the end is for demonstration purposes to show how you can generate and print a test case.
+
+If you need to generate multiple test cases, you can call the `tcgen` function multiple times, and optionally, write the results to a file for further use.
+
+Here’s an example of generating multiple test cases and printing them:
+
+```python
+def generate_multiple_test_cases(num_cases):
+    test_cases = []
+    for _ in range(num_cases):
+        test_cases.append(tcgen())
+    return test_cases
+
+if __name__ == "__main__":
+    num_cases = 10  # You can specify how many test cases you want to generate
+    test_cases = generate_multiple_test_cases(num_cases)
+    for idx, test_case in enumerate(test_cases, 1):
+        M, N, K = test_case
+        print(f"Test Case {idx}: M={M}, N={N}, K={K}")
+```
+
+This script will generate and print 10 random test cases, each satisfying the constraints. Adjust the `num_cases` variable to generate more or fewer test cases as needed.

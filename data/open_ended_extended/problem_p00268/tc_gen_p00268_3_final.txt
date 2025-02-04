@@ -1,0 +1,66 @@
+Certainly! To generate test cases for the problem "Cat Going Straight II", we need to create a function that generates random valid inputs according to the given constraints. Here's the test case generator:
+
+```python
+import random
+
+def generate_dataset():
+    # Number of pillars (3 ≤ C ≤ 100)
+    C = random.randint(3, 100)
+    
+    # Number of walls (3 ≤ W ≤ 300)
+    W = random.randint(3, 300)
+    
+    # Generating unique coordinates for the pillars
+    pillars = set()
+    while len(pillars) < C:
+        x = random.randint(-1000, 1000)
+        y = random.randint(-1000, 1000)
+        pillars.add((x, y))
+    
+    pillars = list(pillars)
+    
+    # Generating walls
+    walls = set()
+    while len(walls) < W:
+        s = random.randint(1, C)
+        t = random.randint(1, C)
+        if s != t:
+            wall = (min(s, t), max(s, t))
+            walls.add(wall)
+    
+    walls = list(walls)
+    
+    # Constructing the dataset as a string
+    dataset = f"{C} {W}\n"
+    dataset += "\n".join(f"{x} {y}" for x, y in pillars)
+    dataset += "\n"
+    dataset += "\n".join(f"{s} {t}" for s, t in walls)
+    
+    return dataset
+
+def tcgen():
+    # Generate multiple datasets
+    num_datasets = random.randint(1, 50)
+    test_cases = []
+    
+    for _ in range(num_datasets):
+        test_cases.append(generate_dataset())
+    
+    # Add the terminating "0 0" at the end
+    test_cases.append("0 0")
+    
+    return "\n\n".join(test_cases)
+
+# Example usage:
+print(tcgen())
+```
+
+This function `tcgen` generates multiple datasets (up to 50) and appends the end-of-input marker `0 0` at the end. Each dataset consists of a number of pillars and walls, with randomly generated coordinates for the pillars and randomly generated connections (walls) between the pillars.
+
+**Key Points:**
+- The number of pillars \(C\) is between 3 and 100.
+- The number of walls \(W\) is between 3 and 300.
+- Each pillar has unique coordinates within the range \([-1000, 1000]\).
+- Each wall connects two different pillars.
+
+This generator ensures that the generated datasets conform to the constraints provided in the problem statement.

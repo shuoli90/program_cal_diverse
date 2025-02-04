@@ -1,0 +1,157 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p03254 - Generation 2</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p03254 - Generation 2</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>
+Score : 200 points
+Problem StatementThere are N children, numbered 1, 2, ..., N.
+Snuke has decided to distribute x sweets among them.
+He needs to give out all the x sweets, but some of the children may get zero sweets.
+For each i (1 \leq i \leq N), Child i will be happy if he/she gets exactly a_i sweets.
+Snuke is trying to maximize the number of happy children by optimally distributing the sweets.
+Find the maximum possible number of happy children.
+Constraints
+All values in input are integers.
+2 \leq N \leq 100
+1 \leq x \leq 10^9
+1 \leq a_i \leq 10^9
+InputInput is given from Standard Input in the following format:
+N x
+a_1 a_2 ... a_N
+OutputPrint the maximum possible number of happy children.
+Sample Input 13 70
+20 30 10
+Sample Output 12
+One optimal way to distribute sweets is (20, 30, 20).
+Sample Input 23 10
+20 30 10
+Sample Output 21
+The optimal way to distribute sweets is (0, 0, 10).
+Sample Input 34 1111
+1 10 100 1000
+Sample Output 34
+The optimal way to distribute sweets is (1, 10, 100, 1000).
+Sample Input 42 10
+20 20
+Sample Output 40
+No children will be happy, no matter how the sweets are distributed.
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An integer N (2 ≤ N ≤ 100), representing some quantity or size.
+An integer x (1 ≤ x ≤ 10^9), representing some quantity.
+A list of integers A of size N, where each integer is between 1 and 10^9.
+
+### Example Input:
+
+```
+3 70
+20 30 10
+```
+
+### Function Signature:
+Write a function f(N, x, A) that takes in the input. 
+def f(N: int, x: int, A: List[int]): 
+    ''' 
+    N: an integer 
+    x: an integer
+    A: a list of integers
+    '''</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Sure, I can write a test case generator for the given problem statement. The generator will create random values for \(N\), \(x\), and the list \(a\) according to the constraints specified in the problem.
+
+Here is the test case generator:
+
+```python
+import random
+
+def tcgen():
+    # Generate a random value for N within the range [2, 100]
+    N = random.randint(2, 100)
+    
+    # Generate a random value for x within the range [1, 10^9]
+    x = random.randint(1, 10**9)
+    
+    # Generate a list a of size N, with each element within the range [1, 10^9]
+    a = [random.randint(1, 10**9) for _ in range(N)]
+    
+    return N, x, a
+
+# Generating a random test case
+test_case = tcgen()
+print("N:", test_case[0])
+print("x:", test_case[1])
+print("a:", test_case[2])
+```
+
+This function will generate random test cases that adhere to the constraints:
+
+- \(N\) is an integer between 2 and 100.
+- \(x\) is an integer between 1 and \(10^9\).
+- Each \(a_i\) is an integer between 1 and \(10^9\).
+
+You can run the `tcgen()` function to generate a new test case each time. The output will be in the format required by the problem statement, with \(N\), \(x\), and the list \(a\).</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    N, x = map(int, fh.readline().strip().split())
+    a = list(map(int, fh.readline().strip().split()))
+    return N, x, a</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

@@ -1,0 +1,10 @@
+def extract_arguments(fh):
+    A, B = map(int, fh.readline().strip().split())
+    d = [list(map(int, fh.readline().strip().split())) for _ in range(A)]
+    return A, B, d
+
+# if __name__ == "__main__":
+#     input_path = sys.argv[1]
+#     with open(input_path, 'r') as fh: 
+#     A, B, d = extract_arguments(fh)
+#     f(A, B, d)

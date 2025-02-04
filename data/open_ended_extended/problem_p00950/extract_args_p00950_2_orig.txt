@@ -1,0 +1,3 @@
+def extract_arguments(fh):
+    encrypted_equation = fh.readline().strip()
+    return encrypted_equation

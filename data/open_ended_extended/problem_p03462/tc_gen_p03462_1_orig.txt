@@ -1,0 +1,41 @@
+Sure, here's a test case generator for the given problem statement:
+
+### Test Case Generator for the Problem Statement
+
+```python
+import random
+
+def tcgen():
+    N = random.randint(1, 70)  # Generate a random N within the specified range
+    K = random.randint(1, 70)  # Generate a random K within the specified range
+    s = ''.join(random.choice(['r', 'b']) for _ in range(K))  # Generate a random string of length K consisting of 'r' and 'b'
+    
+    return N, K, s
+
+# Example of generating a test case
+def format_test_case(N, K, s):
+    return f"{N} {K}\n{s}"
+
+# Generate a test case and print it
+N, K, s = tcgen()
+print(format_test_case(N, K, s))
+```
+
+### Explanation
+
+1. **N**: Generates a random integer between 1 and 70, inclusive. This represents the number of balls.
+2. **K**: Generates a random integer between 1 and 70, inclusive. This represents the length of the string `s`.
+3. **s**: Creates a string of length `K` where each character is either 'r' or 'b', randomly chosen.
+
+This ensures that the test cases generated respect the constraints given in the problem statement. 
+
+### Example Output
+
+Below is an example of how a test case might look when generated:
+
+```
+56 45
+rrbbrrbrbbrrrbbrbrbrrbbrrrbrbbrbrrbbbrrrbbrrbb
+```
+
+This output can be directly used as input for the problem's solution function.

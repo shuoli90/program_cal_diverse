@@ -1,0 +1,43 @@
+Certainly! Creating a test case generator for the given problem involves generating valid inputs that adhere to the constraints specified. Here's a Python function that generates such test cases:
+
+```python
+import random
+
+def tcgen():
+    # Step 1: Generate a random N within the given constraints
+    N = random.randint(2, 10**5)
+    
+    # Step 2: Generate a random x within the range 1 to 2N-1
+    x = random.randint(1, 2 * N - 1)
+    
+    return N, x
+
+# Function to generate multiple test cases
+def generate_test_cases(num_cases):
+    test_cases = []
+    for _ in range(num_cases):
+        test_cases.append(tcgen())
+    return test_cases
+
+# Example of generating 5 test cases
+if __name__ == "__main__":
+    test_cases = generate_test_cases(5)
+    for case in test_cases:
+        print(f"Input: {case[0]} {case[1]}")
+```
+
+### Explanation:
+
+1. **Generate a Random N**:
+   - `N` is chosen randomly within the constraints \(2 \leq N \leq 10^5\).
+
+2. **Generate a Random x**:
+   - `x` is chosen randomly within the range \(1 \leq x \leq 2N-1\).
+
+3. **Generate Multiple Test Cases**:
+   - A helper function `generate_test_cases` is defined to generate a specified number of test cases. This function calls `tcgen` multiple times to generate the desired number of test cases.
+
+4. **Print Example Test Cases**:
+   - In the main block, we generate and print 5 example test cases.
+
+This script will generate valid input pairs `(N, x)` adhering to the problem constraints, which can be used for testing the competitive programming solution.

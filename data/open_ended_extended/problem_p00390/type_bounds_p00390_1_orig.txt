@@ -1,0 +1,3 @@
+Types: N: int, a: List[int], w: List[int]
+Ranges: 3 ≤ N ≤ 10, a[i] ∈ {0, 1}, 1 ≤ w[i] ≤ 1000
+Addtl Info: None

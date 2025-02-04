@@ -1,0 +1,45 @@
+Certainly! To generate test cases for the given problem, we can create a function that generates random values for \( N \) and \( M \), and then fills the grid with random 0s and 1s. Here's a sample test case generator for the given problem statement:
+
+```python
+import random
+
+def tcgen():
+    # Define the constraints
+    N = random.randint(1, 300)
+    M = random.randint(1, 300)
+    
+    # Generate the grid with random 0s and 1s
+    grid = []
+    for _ in range(N):
+        row = [random.randint(0, 1) for _ in range(M)]
+        grid.append(row)
+    
+    return N, M, grid
+
+# Example usage
+N, M, grid = tcgen()
+print(N, M)
+for row in grid:
+    print(' '.join(map(str, row)))
+```
+
+### Explanation:
+1. **Constraints**: We generate \( N \) and \( M \) within the allowed range [1, 300].
+2. **Grid Generation**: We create a grid of size \( N \times M \) where each cell contains either 0 or 1, chosen randomly.
+3. **Output**: The function returns \( N \), \( M \), and the generated grid.
+
+### Example Output:
+Here’s an example of what the output might look like when you run the generator:
+
+```
+3 4
+1 0 1 1
+0 1 0 0
+1 1 0 1
+```
+
+You can use this output to manually check or integrate with your testing framework to validate the solutions for the problem statement.
+
+### Note:
+- The printed output format follows the one expected by the problem statement.
+- You can run the `tcgen()` function multiple times to generate multiple test cases.

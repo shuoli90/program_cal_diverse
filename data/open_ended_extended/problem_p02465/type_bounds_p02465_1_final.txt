@@ -1,0 +1,3 @@
+Types: n: int, a: List[int], m: int, b: List[int]
+Ranges: 1 ≤ n, m ≤ 200,000, 0 ≤ a[i] < 10^9, 0 ≤ b[i] < 10^9
+Addtl Info: Elements in a and b are given in ascending order, no duplicate elements in each set

@@ -1,0 +1,18 @@
+Sure, let's write a test case generator for the given problem statement. Here is the generator function:
+
+```python
+import random
+
+def tcgen():
+    # Generate a random value for N within the constraints
+    N = random.randint(1, 10**7)
+    
+    return N
+
+# Example usage
+print(tcgen())
+```
+
+This generator function will produce a random test case for the given problem where \(N\) is a single integer within the range \([1, 10^7]\).
+
+Since the problem requires only a single integer \(N\) as input, the generator function is straightforward. You can call this function to generate random test cases for testing your solution to the problem.

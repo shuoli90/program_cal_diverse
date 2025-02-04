@@ -1,0 +1,16 @@
+Canonicalized Input Description: 
+
+A list of 7 integers, where each integer is between 0 and 1e9. The sum of the integers must be at least 1.
+
+### Example Input:
+
+```
+12 1 1 0 0 0 0
+```
+
+### Function Signature:
+Write a function f(inputs) that takes in the input. 
+def f(inputs: List[int]): 
+    ''' 
+    inputs: a list of 7 integers
+    '''

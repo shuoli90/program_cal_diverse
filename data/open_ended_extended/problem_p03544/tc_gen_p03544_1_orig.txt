@@ -1,0 +1,59 @@
+Here is a test case generator for the given problem statement, which generates the N-th Lucas number:
+
+```python
+import random
+
+def tcgen():
+    N = random.randint(1, 86)
+    return N
+
+# Example Usage
+if __name__ == "__main__":
+    N = tcgen()
+    print(N)
+```
+
+### Explanation:
+
+1. **N Generation**: The generator function `tcgen()` generates a random integer \( N \) within the given constraint \( 1 \leq N \leq 86 \). This range is ensured using `random.randint(1, 86)`.
+2. **Output**: The function returns the randomly generated \( N \).
+
+### Example Usage:
+
+When you call `tcgen()`, it will produce a random \( N \). For example:
+
+```python
+N = tcgen()
+print(N)
+```
+
+This will print a random integer \( N \) within the range \([1, 86]\), suitable for testing the problem of finding the N-th Lucas number.
+
+To actually compute the N-th Lucas number for verification or further testing, you can use the following function:
+
+```python
+def nth_lucas_number(N):
+    if N == 0:
+        return 2
+    elif N == 1:
+        return 1
+    else:
+        L0, L1 = 2, 1
+        for _ in range(2, N + 1):
+            L_next = L0 + L1
+            L0, L1 = L1, L_next
+        return L1
+
+# Example Usage
+if __name__ == "__main__":
+    N = tcgen()
+    print("Generated N:", N)
+    print("N-th Lucas Number:", nth_lucas_number(N))
+```
+
+### Explanation of the Lucas Number Calculation:
+
+1. **Base Cases**: For \( N = 0 \) and \( N = 1 \), the Lucas numbers are 2 and 1, respectively.
+2. **Iterative Calculation**: For \( N \geq 2 \), the Lucas number is calculated iteratively using the relation \( L_i = L_{i-1} + L_{i-2} \).
+
+This will generate the required Lucas number for the given \( N \).

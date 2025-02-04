@@ -1,0 +1,40 @@
+Sure! Let's create a test case generator for the given problem statement. Here is the code:
+
+```python
+import random
+
+def tcgen():
+    N = random.randint(1, 100)
+    i = random.randint(1, N)
+    return N, i
+
+# Example of generating a test case
+if __name__ == "__main__":
+    N, i = tcgen()
+    print(f"{N} {i}")
+```
+
+This generator will create a random test case with values for \(N\) and \(i\) within the specified constraints.
+
+To understand how the test case is generated:
+
+1. **N** is generated randomly between 1 and 100.
+2. **i** is generated randomly between 1 and \(N\).
+
+These values are then printed out in the format expected by the problem statement. To test the generator, you can run the script, and it will output a random test case each time.
+
+Let's walk through a few generated examples to ensure clarity:
+
+1. If the generator outputs `4 2`, this means:
+   - \(N = 4\), which indicates there are 4 cars in the train.
+   - \(i = 2\), which means we need to find the position of the 2nd car from the front when counting from the back.
+
+   The solution can be calculated as \(j = N - i + 1\). In this case, \(j = 4 - 2 + 1 = 3\).
+
+2. If the generator outputs `15 11`, this means:
+   - \(N = 15\), which indicates there are 15 cars in the train.
+   - \(i = 11\), which means we need to find the position of the 11th car from the front when counting from the back.
+
+   The solution can be calculated as \(j = N - i + 1\). In this case, \(j = 15 - 11 + 1 = 5\).
+
+This generator provides a valid and random set of inputs each time it is called, ensuring thorough testing coverage for the problem.

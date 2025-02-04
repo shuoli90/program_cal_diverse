@@ -1,0 +1,44 @@
+Sure, I can write a test case generator for the given problem. Here's the Python code for generating test cases:
+
+```python
+import random
+
+def tcgen():
+    N = random.randint(2, 10**5)
+    x = random.randint(1, 2 * N - 1)
+    return (N, x)
+
+def main():
+    for _ in range(10):  # Generating 10 test cases for example
+        N, x = tcgen()
+        print(N, x)
+
+if __name__ == "__main__":
+    main()
+```
+
+### Explanation:
+
+1. **Random Generation of \( N \) and \( x \)**:
+    - \( N \) is randomly chosen between 2 and \( 10^5 \) (inclusive) as per the problem constraints.
+    - \( x \) is randomly chosen between 1 and \( 2N - 1 \) (inclusive) as per the problem constraints.
+  
+2. **Printing the Test Cases**:
+    - The function `main()` is used to generate and print several test cases (in this case, 10 test cases).
+
+### Example Output:
+
+Running the `main()` function might produce output such as:
+
+```
+18904 25027
+73290 146579
+55660 111319
+36885 73742
+10234 20457
+...
+```
+
+This output corresponds to different test cases of \( N \) and \( x \) that can be used to test your solution to the problem.
+
+Feel free to adjust the number of test cases generated or the range of values if necessary.

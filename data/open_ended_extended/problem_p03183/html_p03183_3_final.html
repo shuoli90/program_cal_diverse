@@ -1,0 +1,197 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p03183 - Generation 3</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p03183 - Generation 3</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>
+Score : 100 points
+Problem StatementThere are N blocks, numbered 1, 2, \ldots, N.
+For each i (1 \leq i \leq N), Block i has a weight of w_i, a solidness of s_i and a value of v_i.
+Taro has decided to build a tower by choosing some of the N blocks and stacking them vertically in some order.
+Here, the tower must satisfy the following condition:
+For each Block i contained in the tower, the sum of the weights of the blocks stacked above it is not greater than s_i.
+Find the maximum possible sum of the values of the blocks contained in the tower.
+Constraints
+All values in input are integers.
+1 \leq N \leq 10^3
+1 \leq w_i, s_i \leq 10^4
+1 \leq v_i \leq 10^9
+InputInput is given from Standard Input in the following format:
+N
+w_1 s_1 v_1
+w_2 s_2 v_2
+:
+w_N s_N v_N
+OutputPrint the maximum possible sum of the values of the blocks contained in the tower.
+Sample Input 13
+2 2 20
+2 1 30
+3 1 40
+Sample Output 150
+If Blocks 2, 1 are stacked in this order from top to bottom, this tower will satisfy the condition, with the total value of 30 + 20 = 50.
+Sample Input 24
+1 2 10
+3 1 10
+2 4 10
+1 6 10
+Sample Output 240
+Blocks 1, 2, 3, 4 should be stacked in this order from top to bottom.
+Sample Input 35
+1 10000 1000000000
+1 10000 1000000000
+1 10000 1000000000
+1 10000 1000000000
+1 10000 1000000000
+Sample Output 35000000000
+The answer may not fit into a 32-bit integer type.
+Sample Input 48
+9 5 7
+6 2 7
+5 7 3
+7 8 8
+1 9 6
+3 3 3
+4 1 7
+4 5 5
+Sample Output 422
+We should, for example, stack Blocks 5, 6, 8, 4 in this order from top to bottom.
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An integer N (1 ≤ N ≤ 10^3), representing some quantity or size.
+A list of N tuples, where each tuple contains three integers (a, b, c) such that:
+1 ≤ a, b ≤ 10^4
+1 ≤ c ≤ 10^9
+
+### Example Input:
+
+```
+3
+2 2 20
+2 1 30
+3 1 40
+```
+
+### Function Signature:
+Write a function f(inputs) that takes in the input.
+```python
+def f(inputs: List[Tuple[int, int, int]]):
+    '''
+    inputs: a list of tuples, each containing three integers
+    '''
+```</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Sure! Below is the test case generator for the given problem statement:
+
+```python
+import random
+
+def tcgen():
+    # Step 1: Generate a random integer N (1 ≤ N ≤ 10^3)
+    N = random.randint(1, 1000)
+    
+    # Step 2: Generate N blocks with random weights, solidness, and values
+    blocks = []
+    for _ in range(N):
+        w = random.randint(1, 10000)
+        s = random.randint(1, 10000)
+        v = random.randint(1, 1000000000)
+        blocks.append((w, s, v))
+    
+    return N, blocks
+
+# Example usage
+N, blocks = tcgen()
+print(N)
+for w, s, v in blocks:
+    print(w, s, v)
+```
+
+### Explanation
+1. **Generate N**: The first step is to generate a random integer \( N \) between 1 and 1000 inclusive, which represents the number of blocks.
+2. **Generate Blocks**: For each block, we generate:
+   - A weight \( w \) between 1 and 10000 inclusive.
+   - A solidness \( s \) between 1 and 10000 inclusive.
+   - A value \( v \) between 1 and 1000000000 inclusive.
+3. **Return Values**: The function returns \( N \) and a list of tuples, where each tuple contains the weight, solidness, and value of a block.
+
+### Example Output
+Here is an example of the output you might get from running the test case generator:
+```
+5
+1234 5678 9101112
+3456 7890 1234567
+2345 6789 12345678
+4567 8901 23456789
+6789 1234 34567890
+```
+
+This output represents:
+- \( N \) as 5, which means there are 5 blocks.
+- Each subsequent line represents the weight, solidness, and value of a block respectively.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    N = int(fh.readline().strip())
+    blocks = []
+    for _ in range(N):
+        w, s, v = map(int, fh.readline().strip().split())
+        blocks.append((w, s, v))
+    return N, blocks</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

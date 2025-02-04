@@ -1,0 +1,27 @@
+Certainly! The problem statement you've provided is significantly more complex than the earlier example, primarily due to the very large constraints on \( M \) and \( N \). However, I'll write a test case generator that follows the problem constraints.
+
+Here's the test case generator for "Problem H: Count Words":
+
+```python
+import random
+
+def tcgen():
+    # Generate M in the range [1, 10^18]
+    M = random.randint(1, 10**18)
+    
+    # Generate N in the range [1, 10^18]
+    N = random.randint(1, 10**18)
+    
+    # Generate K in the range [1, 1000]
+    K = random.randint(1, 1000)
+    
+    return M, N, K
+
+# Example usage
+for _ in range(5):  # Generate 5 test cases
+    M, N, K = tcgen()
+    print(f"{M} {N} {K}")
+
+```
+
+This generator will produce valid random test cases according to the constraints specified in the problem statement. When using this generator, keep in mind that \( M \) and \( N \) can be extremely large, so handling them properly in your solution is critical.

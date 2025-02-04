@@ -1,0 +1,133 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p03766 - Generation 2</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p03766 - Generation 2</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>
+Score : 1000 points
+Problem StatementHow many infinite sequences a_1, a_2, ... consisting of {{1, ... ,n}} satisfy the following conditions?
+The n-th and subsequent elements are all equal. That is, if n \leq i,j, a_i = a_j.
+For every integer i, the a_i elements immediately following the i-th element are all equal. That is, if i < j < k\leq i+a_i, a_j = a_k.
+Find the count modulo 10^9+7.
+Constraints
+1 \leq n \leq 10^6
+InputInput is given from Standard Input in the following format:
+n
+OutputPrint how many sequences satisfy the conditions, modulo 10^9+7.
+Sample Input 12
+Sample Output 14
+The four sequences that satisfy the conditions are:
+1, 1, 1, ...
+1, 2, 2, ...
+2, 1, 1, ...
+2, 2, 2, ...
+Sample Input 2654321
+Sample Output 2968545283
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An integer n (1 ≤ n ≤ 10^6).
+
+### Example Input:
+
+```
+12
+```
+
+### Function Signature:
+Write a function f(n) that takes in the input. 
+def f(n: int):
+    ''' 
+    n: an integer 
+    '''</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Certainly! Here's a test case generator for the given problem statement:
+
+```python
+import random
+
+def tcgen():
+    # Randomly generate N within the constraints 1 ≤ n ≤ 10^6
+    N = random.randint(1, 10**6)
+    
+    return N
+
+# Example of using the test case generator
+if __name__ == "__main__":
+    # Generate a test case
+    N = tcgen()
+    
+    # Print the test case in the required format
+    print(N)
+```
+
+This generator will produce a single integer \( N \) in the range from 1 to \( 10^6 \), which is the input according to the problem statement. You can run this generator to produce random test cases for your competitive programming problem. 
+
+For instance, running the generator might yield an output like:
+```
+857321
+```
+
+This output represents a test case where \( n = 857321 \).</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    n = int(fh.readline().strip())
+    return (n,)</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

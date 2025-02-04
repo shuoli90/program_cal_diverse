@@ -1,0 +1,45 @@
+Sure, I can help you write a test case generator for this problem. Here's the Python code that generates random test cases for the given problem statement:
+
+```python
+import random
+
+def generate_tree_edges(N):
+    edges = []
+    available_nodes = list(range(2, N+1))
+    random.shuffle(available_nodes)
+    
+    for i in range(1, N):
+        parent = random.randint(1, i)
+        child = available_nodes.pop()
+        edges.append((parent, child))
+    
+    return edges
+
+def tcgen():
+    N = random.randint(3, 200000)
+    
+    edges = generate_tree_edges(N)
+    
+    return N, edges
+
+def print_test_case():
+    N, edges = tcgen()
+    print(N)
+    for edge in edges:
+        print(edge[0], edge[1])
+
+# Example usage
+print_test_case()
+```
+
+### Explanation:
+1. **generate_tree_edges(N)**: This function generates edges for a tree with \(N\) nodes. It ensures that the tree remains connected by connecting each new node to a random existing node.
+2. **tcgen()**: This function generates a random \(N\) (number of nodes) and calls `generate_tree_edges` to get the edges of the tree.
+3. **print_test_case()**: This function prints the generated test case in the required format.
+
+### Steps:
+1. **Randomly select \(N\)**: The number of vertices in the tree.
+2. **Generate Tree Edges**: Ensure a connected tree by always connecting each new node to an existing node.
+3. **Print the Test Case**: Format the output to match the required input format.
+
+You can run the `print_test_case()` function to generate and print a random test case for the problem. Adjust the random seed or modify the functions as needed to get specific types of test cases.

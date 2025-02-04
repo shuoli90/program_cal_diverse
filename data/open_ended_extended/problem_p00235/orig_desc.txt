@@ -1,0 +1,29 @@
+Sergeant Ryan
+Under the orders to "rescue Sergeant Ryan", the rescue team of the Aizu army was engaged in a fierce battle with enemy forces in the water city of Germany. They safely joined forces with Sergeant Ryan, but there were many enemy tanks and they were unable to call for rescue helicopters. So, they decided to execute a plan to blow up all the bridges in the city to confuse the enemy tanks.
+The plan was immediately relayed to headquarters and preparations for the rescue helicopter were underway. To fly the rescue helicopter, it is necessary to predict when all the bridges will be blown up. Your task as a programmer in the military is to calculate the time required for the rescue team to blow up all the bridges.
+The water city consists of N islands, and there are bridges between each island. All islands are connected like a tree (see diagram below). There is only one route from one island to another. Crossing each bridge takes a certain amount of time, and it is possible to cross the bridge in both directions in that time.
+The rescue team has no means of moving on water, so they have no choice but to cross the bridges to move between islands. The rescue team can blow up the necessary bridges in the island where they are currently located in an instant. What is the minimum time required for the rescue team to blow up all the bridges? However, the time required to move within the island is not considered.
+Create a program that takes the number of islands and the information on each bridge as input and outputs the minimum time required to blow up all the bridges. Each island is represented by a number from 1 to N. There are N-1 bridges. Bridge information consists of the numbers of two islands adjacent to the bridge (a, b) and the time required to cross the bridge t. The rescue team starts from island number 1.
+Input
+A sequence of multiple data sets is given as input. The end of the input is indicated by a single zero line. Each data set is given in the following format.
+N
+a1 b1 t1
+a2 b2 t2
+:
+aN-1 bN-1 tN-1
+All input is given as integers. The number of islands N (2 ≤ N ≤ 20) is given on the first line.
+For the following N-1 lines, information on the i-th bridge is given. ai, bi, and ti (1 ≤ ti ≤ 500) represent that it is possible to travel between island ai and island bi in time ti by passing through the i-th bridge.
+The number of data sets does not exceed 100.
+Output
+For each data set, output a line with the minimum time required to blow up all the bridges.
+Sample Input
+7
+1 2 5
+2 3 2
+3 4 3
+2 5 3
+5 6 3
+5 7 8
+0
+Output for the Sample Input
+12

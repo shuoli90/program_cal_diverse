@@ -1,0 +1,171 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p00594 - Generation 3</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p00594 - Generation 3</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>What Color Is The Universe?
+On a clear night, a boy, Campanella looked up at the sky, there were many stars which have different colors such as red, yellow, green, blue, purple, etc. He was watching the stars and just lost track of time. Presently, he wondered,
+"There are many stars in the space. What color is the universe if I look up it from outside?"
+Until he found the answer to this question, he couldn't sleep. After a moment's thought, he proposed a hypothesis,
+"When I observe the stars in the sky, if more than half of the stars have the same color, that is the color of the universe."
+He has collected data of stars in the universe after consistently observing them. However, when he try to count the number of star, he was in bed sick with a cold. You decided to help him by developing a program to identify the color of the universe.
+You are given an array A. Let |A| be the number of element in A, and let Nm be the number of m in A. For example, if A = {3, 1, 2, 3, 3, 1, 5, 3}, |A| = 8, N3 = 4, N1 = 2, N5 = 1. Your program have to find m such that:
+ Nm > (|A| / 2 )
+If there is no such m, you also have to report the fact. There is no
+such m for the above example, but for a array A = {5, 2, 5, 3, 4, 5, 5}, 5 is the answer.
+Input
+There are several test cases. For each test case, in the first line |A| is given. In the next line, there will be |A| integers. The integers are less than 231 and |A| < 1,000,000. The input terminate with a line which contains single 0.
+Output
+For each test case, output m in a line. If there is no answer, output "NO COLOR" in a line.
+Sample Input
+8
+3 1 2 3 3 1 5 3
+7
+5 2 5 3 4 5 5
+0
+Output for the Sample Input
+NO COLOR
+5
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An integer N (0 ≤ N < 1,000,000), representing some quantity or size. A list of N integers, where each integer is less than 2^31.
+
+### Example Input:
+
+```
+8
+3 1 2 3 3 1 5 3
+7
+5 2 5 3 4 5 5
+0
+```
+
+### Function Signature:
+Write a function f(inputs) that takes in the input. 
+def f(inputs: List[Tuple[int, List[int]]]): 
+    ''' 
+    inputs: a list of tuples, where each tuple contains:
+        - an integer
+        - a list of integers
+    '''</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Sure, I can help you create a test case generator for the given problem statement "What Color Is The Universe?". Below is the Python code that generates test cases:
+
+```python
+import random
+
+def tcgen():
+    # Generate a random size for the array |A| (1 ≤ |A| < 1,000,000)
+    N = random.randint(1, 10**6)
+    
+    # Generate the array A with random integers (each integer is less than 2^31)
+    A = [random.randint(0, (2**31) - 1) for _ in range(N)]
+    
+    return N, A
+
+def generate_test_cases(num_cases=5):
+    test_cases = []
+    for _ in range(num_cases):
+        N, A = tcgen()
+        test_cases.append((N, A))
+    return test_cases
+
+def format_test_cases(test_cases):
+    formatted_cases = []
+    for N, A in test_cases:
+        formatted_case = f"{N}\n" + " ".join(map(str, A))
+        formatted_cases.append(formatted_case)
+    formatted_cases.append("0")  # End of input
+    return "\n\n".join(formatted_cases)
+
+# Generate and format test cases
+test_cases = generate_test_cases()
+formatted_test_cases = format_test_cases(test_cases)
+
+print(formatted_test_cases)
+```
+
+### Explanation:
+
+1. **`tcgen()` function:** Generates a single test case.
+   - It creates a random size `N` for the array `A` such that \(1 \leq N < 1,000,000\).
+   - It populates the array `A` with `N` random integers, each ranging from `0` to \(2^{31} - 1\).
+
+2. **`generate_test_cases(num_cases=5)` function:** Generates multiple test cases.
+   - It creates a list of test cases by calling `tcgen()` a specified number of times (default is 5).
+
+3. **`format_test_cases(test_cases)` function:** Formats the test cases into the required input format.
+   - It formats each test case into a string as required, and appends a "0" at the end to signify the end of input.
+
+4. **Printing the formatted test cases:** Concatenates all test cases into a single string and prints them to simulate the input format expected by the problem.
+
+You can adjust the `num_cases` parameter in the `generate_test_cases` function call to generate more or fewer test cases as needed.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    inputs = []
+    while True:
+        N = int(fh.readline().strip())
+        if N == 0:
+            break
+        A = list(map(int, fh.readline().strip().split()))
+        inputs.append((N, A))
+    return inputs</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

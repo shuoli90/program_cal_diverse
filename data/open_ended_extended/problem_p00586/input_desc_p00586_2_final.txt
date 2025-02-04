@@ -1,0 +1,18 @@
+Canonicalized Input Description:
+
+An unspecified number of lines, each containing a pair of integers separated by a space. Each integer is between -1000 and 1000.
+
+### Example Input:
+
+```
+1 2
+10 5
+100 20
+```
+
+### Function Signature:
+Write a function f(inputs) that takes in the input as a list of tuples.
+def f(inputs: List[Tuple[int, int]]):
+    '''
+    inputs: a list of tuples, where each tuple contains two integers
+    '''

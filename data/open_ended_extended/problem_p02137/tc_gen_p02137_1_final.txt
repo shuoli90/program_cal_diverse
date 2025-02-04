@@ -1,0 +1,24 @@
+Sure, I can help you write a test case generator for the given problem statement "Special Chat". Here's a Python function that generates random test cases for this problem:
+
+```python
+import random
+
+def tcgen():
+    # Constraint for P: 1 ≤ P ≤ 10^5
+    P = random.randint(1, 100000)
+    return P
+
+# Example of using the test case generator
+if __name__ == "__main__":
+    print(tcgen())
+```
+
+This function generates a random integer \( P \) within the given constraints, which represents the total amount of points you currently have. You can call this function to generate multiple test cases for the "Special Chat" problem. Here's how you might use it to generate and print several test cases:
+
+```python
+if __name__ == "__main__":
+    for _ in range(10):  # Generate 10 test cases
+        print(tcgen())
+```
+
+Feel free to modify the number of test cases or any other parameters as needed.

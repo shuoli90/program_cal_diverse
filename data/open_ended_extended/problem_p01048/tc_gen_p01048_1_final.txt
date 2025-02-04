@@ -1,0 +1,17 @@
+Certainly! To generate test cases for the "Divisor" problem, we can create a function that randomly selects a number \( N \) within the given range and then outputs it. Here is the test case generator for the problem:
+
+```python
+import random
+
+def tcgen():
+    # Generate a random number N within the range 1 to 12
+    N = random.randint(1, 12)
+    
+    return N
+
+# Example usage:
+for _ in range(5):  # Generate 5 test cases as an example
+    print(tcgen())
+```
+
+This function will generate a random integer \( N \) within the specified range (1 ≤ \( N \) ≤ 12) each time it is called. You can run this function multiple times to generate multiple test cases. Each test case will consist of a single line containing the integer \( N \).

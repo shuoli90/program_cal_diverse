@@ -1,0 +1,3 @@
+Types: N: int, xi: List[int], ri: List[int], Output: float
+Ranges: 1 ≤ N ≤ 100000, 0 ≤ xi ≤ 1,000,000, 1 ≤ ri ≤ 1,000,000
+Addtl Info: Output error should not exceed plus or minus 0.001 meters

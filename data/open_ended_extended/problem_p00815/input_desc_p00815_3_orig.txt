@@ -1,0 +1,19 @@
+An integer n (1 ≤ n < 100), representing the number of records.
+Each record consists of a sequence of integers followed by a zero terminator. Each number is delimited by a space or a newline. Each sequence is comprised of one or more lines, each less than 1000 characters in length. The integers can be both positive and negative. 
+
+### Example Input:
+
+```
+2
+3 3 3 3 -3 3 2 -5 3 2 -5 -3 0
+3 5 4 -2 4 -3 -2 -2 -1 0
+```
+
+### Function Signature:
+Write a function f(inputs) that takes in the input.
+```python
+def f(inputs: List[Tuple[int]]):
+    ''' 
+    inputs: a list of tuples, where each tuple contains a sequence of integers representing one record.
+    '''
+```

@@ -1,0 +1,13 @@
+def extract_arguments(fh):
+    N = int(fh.readline().strip())
+    prepared_liquids = []
+    for _ in range(N):
+        C_i, D_i = fh.readline().strip().split()
+        D_i = int(D_i)
+        prepared_liquids.append((C_i, D_i))
+    M = int(fh.readline().strip())
+    requested_layers = []
+    for _ in range(M):
+        O_i = fh.readline().strip()
+        requested_layers.append(O_i)
+    return N, prepared_liquids, M, requested_layers

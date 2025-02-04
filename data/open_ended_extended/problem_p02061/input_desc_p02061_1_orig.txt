@@ -1,0 +1,20 @@
+Canonicalized Input Description:
+
+An integer Q (1 ≤ Q ≤ 10^5), representing some quantity.
+A list of Q integers, where each integer Ni (2 ≤ Ni ≤ 10^5).
+
+### Example Input:
+
+```
+3
+43
+9
+24
+```
+
+### Function Signature:
+Write a function f(inputs) that takes in the input.
+def f(inputs: List[int]):
+    '''
+    inputs: a list of integers
+    '''

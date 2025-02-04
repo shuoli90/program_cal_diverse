@@ -1,0 +1,13 @@
+def extract_arguments(fh):
+    N = int(fh.readline().strip())
+    vertices = []
+    for _ in range(N):
+        x, y = map(int, fh.readline().strip().split())
+        vertices.append((x, y))
+    return N, vertices
+
+# if __name__ == "__main__":
+#     input_path = sys.argv[1]
+#     with open(input_path, 'r') as fh: 
+#     N, vertices = extract_arguments(fh)
+#     f(N, vertices)

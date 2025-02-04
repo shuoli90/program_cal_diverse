@@ -1,0 +1,50 @@
+Sure, I can help you create a test case generator for the described Bubble Sort problem. Here is a Python function that generates random test cases within the given constraints:
+
+```python
+import random
+
+def generate_single_dataset():
+    # Generate a random integer n (1 ≤ n ≤ 100)
+    n = random.randint(1, 100)
+    
+    # Generate n random integers (1 ≤ ai ≤ 1000000)
+    array = [random.randint(1, 1000000) for _ in range(n)]
+    
+    return n, array
+
+def tcgen():
+    datasets = []
+    
+    # Number of datasets (up to 20)
+    num_datasets = random.randint(1, 20)
+    for _ in range(num_datasets):
+        n, array = generate_single_dataset()
+        datasets.append((n, array))
+    
+    return datasets
+
+def format_datasets(datasets):
+    result = []
+    for n, array in datasets:
+        result.append(f"{n}")
+        result.extend(map(str, array))
+    result.append("0")  # End of input indicator
+    return "\n".join(result)
+
+# Example usage
+datasets = tcgen()
+formatted_datasets = format_datasets(datasets)
+print(formatted_datasets)
+```
+
+Here's a breakdown of the code:
+
+1. **`generate_single_dataset` function**: This function generates a single dataset. It creates a random integer `n` (1 ≤ `n` ≤ 100) and then generates a list of `n` random integers (1 ≤ `ai` ≤ 1000000).
+
+2. **`tcgen` function**: This function generates up to 20 datasets by calling `generate_single_dataset` repeatedly. Each dataset is appended to a list.
+
+3. **`format_datasets` function**: This function formats the datasets into the required format for the Bubble Sort problem. It concatenates all datasets into a single string and adds the end-of-input indicator (`0`).
+
+4. **Example usage**: The last part of the code demonstrates how to use these functions to generate and print the formatted datasets.
+
+You can run the provided code to generate random test cases for the Bubble Sort problem.

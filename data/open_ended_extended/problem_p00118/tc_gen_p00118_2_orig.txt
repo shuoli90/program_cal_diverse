@@ -1,0 +1,50 @@
+Certainly! Below is a Python function that generates test cases for the "Land Distribution" problem:
+
+```python
+import random
+
+def generate_orchard(H, W):
+    chars = [' ', '@', '#', '*']
+    orchard = []
+    for _ in range(H):
+        row = ''.join(random.choice(chars) for _ in range(W))
+        orchard.append(row)
+    return orchard
+
+def tcgen():
+    datasets = []
+    num_datasets = random.randint(1, 20)
+    
+    for _ in range(num_datasets):
+        H = random.randint(1, 10)
+        W = random.randint(1, 10)
+        orchard = generate_orchard(H, W)
+        dataset = (H, W, orchard)
+        datasets.append(dataset)
+    
+    # Adding the terminating dataset
+    datasets.append((0, 0, []))
+    
+    return datasets
+
+def format_dataset(dataset):
+    H, W, orchard = dataset
+    if H == 0 and W == 0:
+        return "0 0"
+    formatted_orchard = "\n".join(orchard)
+    return f"{H} {W}\n{formatted_orchard}"
+
+# Example usage
+if __name__ == "__main__":
+    test_cases = tcgen()
+    for dataset in test_cases:
+        print(format_dataset(dataset))
+        print()
+```
+
+Explanation:
+1. **generate_orchard()**: Generates a random orchard map with given dimensions H and W, filled with characters representing apples ('@'), oysters ('#'), oranges ('*'), and whitespace (' ').
+2. **tcgen()**: Generates multiple datasets, each containing the dimensions H and W, and the corresponding orchard map. The number of datasets is randomly chosen between 1 and 20. The end condition of '0 0' is appended to signify the end of input.
+3. **format_dataset()**: This helper function formats a dataset into a string suitable for printing or further processing.
+
+The **Example usage** section demonstrates how to generate and print the test cases. Each dataset is printed in the required format, followed by a blank line for readability.

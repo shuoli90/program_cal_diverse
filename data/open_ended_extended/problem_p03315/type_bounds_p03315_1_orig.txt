@@ -1,0 +1,3 @@
+Types: S: str
+Ranges: len(S) = 4, S[i] in {'+', '-'}
+Addtl Info: None

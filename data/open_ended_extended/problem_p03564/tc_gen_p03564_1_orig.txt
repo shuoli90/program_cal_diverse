@@ -1,0 +1,39 @@
+Sure! The task is to create a test case generator for the problem where we need to find the minimum possible value displayed on the board after a series of operations. Below is a Python function that generates random test cases for this problem:
+
+```python
+import random
+
+def tcgen():
+    N = random.randint(1, 10)  # N is between 1 and 10 inclusive
+    K = random.randint(1, 10)  # K is between 1 and 10 inclusive
+    
+    return N, K
+
+# Example of generating and printing a test case
+N, K = tcgen()
+print(N)
+print(K)
+```
+
+### Explanation
+
+- `N` represents the number of operations to be performed and can be any integer between 1 and 10 inclusive.
+- `K` represents the value by which the number on the board increases when operation B is performed and can be any integer between 1 and 10 inclusive.
+
+This function will generate random values for `N` and `K` within the specified constraints. You can call this function to generate test cases for your problem.
+
+### Example Output
+
+Here are some example outputs you might get from running the `tcgen` function:
+
+```
+3
+7
+```
+
+```
+10
+2
+```
+
+You can use these random generated test cases to test your solution to the problem.

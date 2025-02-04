@@ -1,0 +1,5 @@
+Types: |A|: int, A: List[int]
+
+Ranges: 0 < |A| < 1,000,000, -2^31 < A[i] < 2^31
+
+Addtl Info: Input terminates with a single 0 line

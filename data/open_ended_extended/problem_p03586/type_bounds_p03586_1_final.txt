@@ -1,0 +1,72 @@
+### Problem Statement: Process the Queries
+
+**Description**
+
+You are given two integers \(A_i\) and \(M_i\). Determine whether there exists a positive integer \(K_i\) not exceeding \(2 \times 10^{18}\) such that \(A_i^{K_i} \equiv K_i \ (\text{mod} \ M_i)\), and find one if it exists.
+
+**Input**
+
+1. An integer \(Q\) (1 ≤ \(Q\) ≤ 100), representing the number of queries.
+2. For each query, two integers \(A_i\) and \(M_i\) where:
+   - \(A_i\) (0 ≤ \(A_i\) ≤ 10^9)
+   - \(M_i\) (1 ≤ \(M_i\) ≤ 10^9)
+
+**Output**
+
+For each query, print -1 if there is no integer \(K_i\) that satisfies the condition. Otherwise, print an integer \(K_i\) not exceeding \(2 \times 10^{18}\) such that \(A_i^{K_i} \equiv K_i \ (\text{mod} \ M_i)\). If there are multiple solutions, any of them will be accepted.
+
+**Examples**
+
+_Input 1_
+```
+4
+2 4
+3 8
+9 6
+10 7
+```
+
+_Output 1_
+```
+4
+11
+9
+2
+```
+
+_Input 2_
+```
+3
+177 168
+2028 88772
+123456789 987654321
+```
+
+_Output 2_
+```
+7953
+234831584
+471523108231963269
+```
+
+**Explanation**
+
+In the first example, the condition is satisfied:
+- \(2^4 = 16 \equiv 4 \ (\text{mod} \ 4)\)
+- \(3^{11} = 177147 \equiv 11 \ (\text{mod} \ 8)\)
+- \(9^9 = 387420489 \equiv 9 \ (\text{mod} \ 6)\)
+- \(10^2 = 100 \equiv 2 \ (\text{mod} \ 7)\)
+
+In the second example:
+- For the first query, \(A_1 = 177\) and \(M_1 = 168\), \(K_1 = 7953\) satisfies \(177^{7953} \equiv 7953 \ (\text{mod} \ 168)\).
+- For the second query, \(A_2 = 2028\) and \(M_2 = 88772\), \(K_2 = 234831584\) satisfies \(2028^{234831584} \equiv 234831584 \ (\text{mod} \ 88772)\).
+- For the third query, \(A_3 = 123456789\) and \(M_3 = 987654321\), \(K_3 = 471523108231963269\) satisfies \(123456789^{471523108231963269} \equiv 471523108231963269 \ (\text{mod} \ 987654321)\).
+
+**Note**
+
+This problem tests the ability to work with modular arithmetic and exponentiation under constraints suitable for intermediate-level competitive programmers.
+
+### Type Bounds:
+Types: Q: int, A: List[int], M: List[int]
+Ranges: 1 ≤ Q ≤ 100, 0 ≤ A_i ≤ 10^9 (1 ≤ i ≤ Q), 1 ≤ M_i ≤ 10^9 (1 ≤ i ≤ Q)
+Addtl Info: None

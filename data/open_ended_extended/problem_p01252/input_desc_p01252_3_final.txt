@@ -1,0 +1,28 @@
+    
+An integer N (0 < N ≤ 30), representing some quantity or size.
+N lines follow, each containing four integers xi1, yi1, xi2, yi2, where each integer is between -10000 and 10000, inclusive.
+A pair of integers Ax, Ay, each between -10000 and 10000, inclusive.
+A pair of integers Bx, By, each between -10000 and 10000, inclusive.
+The end of input is indicated by a line containing a single zero.
+
+### Example Input:
+
+```
+2
+2 5 5 9
+6 1 9 5
+1 5 10 5
+0
+```
+
+### Function Signature:
+Write a function f(inputs) that takes in the input.
+def f(inputs: List[Tuple[int, List[Tuple[int, int, int, int]], Tuple[int, int], Tuple[int, int]]]): 
+    ''' 
+    inputs: a list of tuples where each tuple contains:
+        - an integer N
+        - a list of N tuples, each containing 4 integers
+        - a tuple containing 2 integers
+        - another tuple containing 2 integers
+    '''
+    

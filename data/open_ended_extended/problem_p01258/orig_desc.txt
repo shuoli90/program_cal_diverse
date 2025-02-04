@@ -1,0 +1,37 @@
+
+Problem I: Memory Match
+Memory match is a single-player game which employs a set of 2M cards. Each card is labeled with a
+number between 1 and M on its face. For each number i (1 ≤ i ≤ M), there are exactly two cards which
+have the number i. At the start of the game, all cards are shuffled and laid face down on a table. In each
+turn you choose two cards and turn them face up. If two numbers on the cards are the same, they are
+removed from the table. Otherwise, they are turned face down again (this is called a mismatch). When
+you choose cards, you do not have to turn two cards simultaneously; you can choose the second card
+after you see the number of the first card. The objective of the game is to remove all the cards with as
+few mismatches as possible.
+Royce A. Mitchell has extraordinary memory, so he can remember all the positions and the numbers of
+the cards that he has already turned face up. Your task is to write a program that calculates the expected
+number of mismatches, on average, when he plays the game optimally.
+Input
+The input consists of multiple datasets.
+Each dataset consists of one even number N (2 ≤ N ≤ 1000) which denotes the number of cards in the
+set.
+The end of input is indicated by a line that contains a single zero. This is not part of the input and you
+may not treat this line as a dataset.
+Output
+For each dataset, print the expected number of mismatches. Each output value may have an arbitrary
+number of fractional digits, provided that the error is within 10-6.
+Sample Input
+2
+4
+6
+8
+10
+52
+0
+Output for the Sample Input
+0.0000000000
+0.6666666667
+1.3333333333
+1.9238095238
+2.5523809524
+15.4435236099

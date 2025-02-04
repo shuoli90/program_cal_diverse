@@ -1,0 +1,92 @@
+Sure, let's create a test case generator for the given problem statement.
+
+### Problem Statement: Lexicographical Permutation Queries
+
+**Description**
+
+You are given `N` unique strings composed of lowercase alphabets. For each of the `Q` queries, you are provided with an integer `k` and a permutation of the alphabet. You need to output the lexicographical rank of the `k`-th string among the `N` strings when sorted according to the given permutation.
+
+**Constraints:**
+
+- \( 1 \leq N, Q \leq 100000 \)
+- \( 1 \leq |S_i| \) for \( 1 \leq i \leq N \)
+- The sum of \(|S_i|\) is no more than 400000.
+- Every \( S_i \) is unique.
+- \( 1 \leq k_i \leq N \) for \( 1 \leq i \leq Q \)
+- For all \( 1 \leq i \leq Q \), \( p_{i,1}p_{i,2}...p_{i,26} \) is a permutation of `abcdefghijklmnopqrstuvwxyz`.
+
+**Input**
+
+Inputs are provided in the following form:
+```
+N
+S_1
+S_2
+...
+S_N
+Q
+k_1 p_{1,1}p_{1,2}...p_{1,26}
+...
+k_Q p_{Q,1}p_{Q,2}...p_{Q,26}
+```
+
+**Output**
+
+Output `Q` lines, each containing an integer indicating the lexicographical rank of the string \( S_{k_i} \) among the `N` strings when sorted according to the given permutation.
+
+Here's the test case generator:
+
+```python
+import random
+import string
+
+def generate_random_string(max_length=50):
+    length = random.randint(1, max_length)
+    return ''.join(random.choices(string.ascii_lowercase, k=length))
+
+def generate_permutation():
+    return ''.join(random.sample(string.ascii_lowercase, len(string.ascii_lowercase)))
+
+def tcgen():
+    # Number of strings N
+    N = random.randint(1, 100000)
+    
+    # Generate N unique strings
+    strings = set()
+    while len(strings) < N:
+        s = generate_random_string()
+        strings.add(s)
+    strings = list(strings)
+
+    # Number of queries Q
+    Q = random.randint(1, 100000)
+
+    queries = []
+    for _ in range(Q):
+        # Randomly select k
+        k = random.randint(1, N)
+        
+        # Generate a random permutation of the alphabet
+        permutation = generate_permutation()
+        
+        queries.append((k, permutation))
+    
+    # Print the input in the specified format
+    print(N)
+    for s in strings:
+        print(s)
+    print(Q)
+    for k, p in queries:
+        print(k, p)
+
+# Example usage:
+tcgen()
+```
+
+### Explanation
+
+- **generate_random_string**: Generates a random string of lowercase alphabets with a length between 1 and 50 (you can adjust `max_length` if needed).
+- **generate_permutation**: Creates a random permutation of the alphabet `abcdefghijklmnopqrstuvwxyz`.
+- **tcgen**: Generates the entire test case. It first picks `N` (the number of strings) and ensures all generated strings are unique. It then picks `Q` (the number of queries) and generates each query consisting of a random integer `k` (indicating the index of the string) and a random permutation of the alphabet.
+
+This generator ensures that the inputs respect the constraints given in the problem statement. Adjust the `max_length` of the strings and other constraints if needed to generate test cases of varying difficulty.

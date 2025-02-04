@@ -1,0 +1,20 @@
+Canonicalized Input Description:
+
+A sequence of integers, each integer on a new line. Each integer is even, and is greater than or equal to 4 and less than 215. The end of the input is indicated by a number 0.
+
+### Example Input:
+```
+6
+10
+12
+0
+```
+
+### Function Signature:
+Write a function f(inputs) that takes in the input.
+```python
+def f(inputs: List[int]):
+    ''' 
+    inputs: a list of integers 
+    '''
+```

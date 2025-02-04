@@ -1,0 +1,160 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p04035 - Generation 3</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p04035 - Generation 3</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>
+Problem StatementWe have N pieces of ropes, numbered 1 through N. The length of piece i is a_i.
+At first, for each i (1≤i≤N-1), piece i and piece i+1 are tied at the ends, forming one long rope with N-1 knots. Snuke will try to untie all of the knots by performing the following operation repeatedly:
+Choose a (connected) rope with a total length of at least L, then untie one of its knots.
+Is it possible to untie all of the N-1 knots by properly applying this operation? If the answer is positive, find one possible order to untie the knots.
+Constraints
+2≤N≤10^5
+1≤L≤10^9
+1≤a_i≤10^9
+All input values are integers.
+InputThe input is given from Standard Input in the following format:
+N L
+a_1 a_2 ... a_n
+OutputIf it is not possible to untie all of the N-1 knots, print Impossible.
+If it is possible to untie all of the knots, print Possible, then print another N-1 lines that describe a possible order to untie the knots. The j-th of those N-1 lines should contain the index of the knot that is untied in the j-th operation. Here, the index of the knot connecting piece i and piece i+1 is i.
+If there is more than one solution, output any.
+Sample Input 13 50
+30 20 10
+Sample Output 1Possible
+2
+1
+If the knot 1 is untied first, the knot 2 will become impossible to untie.
+Sample Input 22 21
+10 10
+Sample Output 2Impossible
+Sample Input 35 50
+10 20 30 40 50
+Sample Output 3Possible
+1
+2
+3
+4
+Another example of a possible solution is 3, 4, 1, 2.
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An integer N (2 ≤ N ≤ 10^5), representing some quantity or size.
+An integer L (1 ≤ L ≤ 10^9), representing some threshold.
+A list of integers A of size N, where each integer is between 1 and 10^9.
+
+### Example Input:
+```
+3 50
+30 20 10
+```
+
+### Function Signature:
+Write a function f(N, L, A) that takes in the input.
+```python
+def f(N: int, L: int, A: List[int]):
+    '''
+    N: an integer
+    L: an integer
+    A: a list of integers
+    '''
+```</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Sure, I can help you create a test case generator for the given problem statement. Below is the Python code for the test case generator:
+
+```python
+import random
+
+def tcgen():
+    # Define constraints
+    N = random.randint(2, 10**5)
+    L = random.randint(1, 10**9)
+    
+    # Generate the lengths of the ropes
+    a = [random.randint(1, 10**9) for _ in range(N)]
+    
+    return N, L, a
+
+# Example usage
+for _ in range(5):  # Generate 5 test cases
+    N, L, a = tcgen()
+    print(f"Input:")
+    print(f"{N} {L}")
+    print(" ".join(map(str, a)))
+    print()
+```
+
+This code snippet generates random test cases for the problem. Here is a breakdown of the code:
+
+1. **Define Constraints**: The number of ropes \( N \) is randomly chosen between 2 and \( 10^5 \). The minimum length \( L \) is randomly chosen between 1 and \( 10^9 \).
+
+2. **Generate Lengths of the Ropes**: The lengths of the ropes are generated as a list \( a \) with \( N \) elements, each randomly chosen between 1 and \( 10^9 \).
+
+3. **Return the Generated Test Case**: The function returns the values of \( N \), \( L \), and \( a \).
+
+4. **Example Usage**: The example at the end demonstrates how to use the `tcgen` function to generate and print 5 test cases.
+
+You can run this script to generate as many test cases as you need for the problem.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    N, L = map(int, fh.readline().strip().split())
+    A = list(map(int, fh.readline().strip().split()))
+    return N, L, A</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

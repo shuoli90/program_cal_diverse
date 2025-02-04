@@ -1,0 +1,24 @@
+Canonicalized Input Description:
+
+An integer N (1 ≤ N ≤ 2000), representing some quantity.
+An integer D (1 ≤ D ≤ 10^12), representing some quantity.
+An integer X (1 ≤ X ≤ 2000), representing some quantity.
+
+### Example Input:
+
+```
+5 2 5
+3 3 3
+5 4 5
+4 1 2
+1 5 1
+1250 50 50
+0 0 0
+```
+
+### Function Signature:
+Write a function f(inputs) that takes in the input. 
+def f(inputs: List[Tuple[int, int, int]]):
+    ''' 
+    inputs: a list of tuples, where each tuple consists of three integers 
+    '''

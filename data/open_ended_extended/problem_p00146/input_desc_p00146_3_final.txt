@@ -1,0 +1,28 @@
+    
+Canonicalized Input Description:
+
+An integer \( n \) (1 ≤ \( n \) ≤ 15), representing some quantity.
+
+A list of \( n \) tuples, where each tuple contains:
+  - An integer \( s \) (1 ≤ \( s \) ≤ 100),
+  - An integer \( d \) (1 ≤ \( d \) ≤ 10,000),
+  - An integer \( v \) (1 ≤ \( v \) ≤ 10,000).
+
+### Example Input:
+
+```
+3
+11 100 1
+13 200 20
+12 300 3
+```
+
+### Function Signature:
+Write a function f(n, warehouses) that takes in the input.
+```python
+def f(n: int, warehouses: List[Tuple[int, int, int]]):
+    '''
+    n: an integer
+    warehouses: a list of tuples, each containing three integers
+    '''
+```

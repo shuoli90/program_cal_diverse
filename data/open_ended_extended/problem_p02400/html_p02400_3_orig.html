@@ -1,0 +1,132 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p02400 - Generation 3</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p02400 - Generation 3</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>Circle
+Write a program which calculates the area and circumference of a circle for given radius r.
+Input
+A real number r is given.
+Output
+Print the area and circumference of the circle in a line. Put a single space between them. The output should not contain an absolute error greater than 10-5.
+Constraints
+ 0 < r < 10000
+Sample Input 1
+2
+Sample Output 1
+12.566371 12.566371
+Sample Input 2
+3
+Sample Output 2
+28.274334 18.849556
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>Canonicalized Input Description:
+
+A real number r (0 < r < 10000).
+
+### Example Input:
+
+```
+2
+```
+
+### Function Signature:
+Write a function f(r) that takes in the input.
+def f(r: float):
+    '''
+    r: a real number
+    '''</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Sure! Below is a test case generator for the given "Circle" problem statement:
+
+```python
+import random
+import math
+
+def tcgen():
+    # Generate a random radius r between 0 (exclusive) and 10000 (exclusive)
+    r = random.uniform(0.00001, 9999.99999)
+    
+    # Calculate the area and circumference of the circle
+    area = math.pi * r * r
+    circumference = 2 * math.pi * r
+    
+    # Format the output to ensure precision up to 10^-5
+    area = format(area, '.6f')
+    circumference = format(circumference, '.6f')
+    
+    return r, area, circumference
+
+# Example usage:
+r, area, circumference = tcgen()
+print(f"Radius: {r}")
+print(f"Expected Output: {area} {circumference}")
+```
+
+This function generates a random radius `r` within the specified constraints, calculates the area and circumference of the circle, and formats the results to ensure that they do not contain an absolute error greater than \(10^{-5}\). The generated test cases can be used for testing solutions to the problem.
+
+To generate multiple test cases or to integrate this into a larger testing framework, you can call `tcgen()` multiple times and collect the results.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    r = float(fh.readline().strip())
+    return r</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

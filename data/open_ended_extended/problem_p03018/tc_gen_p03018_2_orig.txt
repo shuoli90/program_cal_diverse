@@ -1,0 +1,21 @@
+Sure! Here's a test case generator for the given problem statement:
+
+```python
+import random
+
+def generate_string(length):
+    return ''.join(random.choice('ABC') for _ in range(length))
+
+def tcgen():
+    # Length of the string s
+    length = random.randint(1, 200000)
+    # Generate string of specified length consisting of characters A, B, and C
+    s = generate_string(length)
+    return s
+
+# Example usage:
+s = tcgen()
+print(s)
+```
+
+This script generates a test case for the problem where you need to find the maximum number of operations to replace "ABC" with "BCA". The test case consists of a string `s` with a length between 1 and 200,000 containing only characters 'A', 'B', and 'C'. The `generate_string` function helps in creating a random string of the specified length.

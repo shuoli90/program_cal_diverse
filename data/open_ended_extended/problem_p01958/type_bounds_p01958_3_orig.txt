@@ -1,0 +1,3 @@
+Types: l: int, r: int  
+Ranges: 1 ≤ l ≤ r ≤ 10^9, 0 ≤ r - l < 1,000,000  
+Addtl Info: None

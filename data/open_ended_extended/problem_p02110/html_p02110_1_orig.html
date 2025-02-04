@@ -1,0 +1,196 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p02110 - Generation 1</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p02110 - Generation 1</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>Problem M: Settler
+Problem
+  There are N vacant lots on a two-dimensional plane, and each is assigned a number from 1 to N. Since all the vacant lots are very small, they can be considered as points. The ith vacant lot exists at (xi,yi).
+  Taro decided to select exactly K of these N vacant lots and build buildings on these vacant lots. However, he thought that it would not be interesting to build multiple buildings in too close proximity, so he decided to select vacant lots so that the Euclidean distance between any two vacant lots is always 2 or more.
+  Create a program that outputs the combinations of vacant lots that Taro chooses. If there are multiple possible combinations, output the minimum one in lexicographic order. If, however, no matter how K vacant lots are selected, the Euclidean distance between any two vacant lots becomes less than 2, output -1 instead.
+Input
+Input is given in the following format:
+N K
+x1 y1
+x2 y2
+...
+xN yN
+Constraints
+Input satisfies the following conditions:
+All input is integers.
+2 ≤ K ≤ N ≤ 6,000
+1 ≤ xi , yi ≤ 1,000,000    ( 1 ≤ i ≤ N )
+ xi mod 2 = floor ( yi ÷ 2 ) mod 2 ( 1 ≤ i ≤ N )
+    (where floor ( yi ÷ 2 ) is the value obtained by dividing yi by 2 and truncating the decimal places.)
+There are no multiple vacant lots at the same coordinate.
+Output
+Output the numbers of the vacant lots that Taro selects in ascending order, one per line.
+Sample Input 1
+3 2
+2 1
+1 2
+1 3
+Sample Output 1
+1
+3
+Sample Input 2
+4 3
+2 1
+1 2
+1 3
+2 4
+Sample Output 2
+-1
+Sample Input 3
+5 3
+5 7
+5 6
+6 8
+20 20
+4 8
+Sample Output 3
+2
+3
+4
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>### Canonicalized Input Description:
+
+An integer N (2 ≤ N ≤ 6,000), representing some quantity or size.
+An integer K (2 ≤ K ≤ N), representing some quantity or size.
+A list of N tuples, where each tuple consists of two integers (x, y) such that 1 ≤ x, y ≤ 1,000,000 and x mod 2 = floor(y ÷ 2) mod 2.
+
+### Example Input:
+
+```
+3 2
+2 1
+1 2
+1 3
+```
+
+### Function Signature:
+
+Write a function f(N, K, coordinates) that takes in the input.
+```python
+def f(N: int, K: int, coordinates: List[Tuple[int, int]]):
+    ''' 
+    N: an integer 
+    K: an integer
+    coordinates: a list of tuples where each tuple contains two integers
+    '''
+```</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Sure! Here's a Python function to generate random test cases for the "Settler" problem. This function will ensure that the constraints provided in the problem statement are respected.
+
+```python
+import random
+
+def tcgen():
+    # Generate N and K
+    N = random.randint(2, 6000)
+    K = random.randint(2, N)
+    
+    # Generate coordinates for N vacant lots
+    # xi mod 2 = floor(yi / 2) mod 2
+    vacant_lots = []
+    for _ in range(N):
+        while True:
+            xi = random.randint(1, 1000000)
+            yi = random.randint(1, 1000000)
+            if xi % 2 == (yi // 2) % 2:
+                vacant_lots.append((xi, yi))
+                break
+    
+    # Prepare the input format
+    input_data = f"{N} {K}\n"
+    for xi, yi in vacant_lots:
+        input_data += f"{xi} {yi}\n"
+    
+    return input_data
+
+# Example of generating a test case
+print(tcgen())
+```
+
+### Explanation:
+
+1. **N and K Generation**:
+   - We generate `N` randomly between 2 and 6000.
+   - We generate `K` randomly between 2 and `N`.
+   
+2. **Coordinates Generation**:
+   - For each vacant lot, generate random coordinates `(xi, yi)` within the specified range.
+   - Ensure the constraint `xi % 2 == (yi // 2) % 2` is met before adding the coordinates to the list.
+   
+3. **Formatting the Output**:
+   - The function constructs the input in the required format, starting with `N` and `K`, followed by the coordinates of the vacant lots.
+
+This function ensures all generated test cases adhere to the constraints provided in the problem statement. You can call the `tcgen()` function to generate different test cases for your testing purposes.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    N, K = map(int, fh.readline().strip().split())
+    coordinates = []
+    for _ in range(N):
+        x, y = map(int, fh.readline().strip().split())
+        coordinates.append((x, y))
+    return N, K, coordinates</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

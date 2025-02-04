@@ -1,0 +1,21 @@
+An integer N (1 ≤ N ≤ 3 * 10^5), representing some quantity or size.
+A list of N integers, where each integer is between 0 and 10^9.
+A list of N-1 pairs of integers, where each integer in the pair is between 1 and N.
+
+### Example Input:
+
+```
+3
+1 2 3
+1 2
+1 3
+```
+
+### Function Signature:
+Write a function f(N, A, edges) that takes in the input. 
+def f(N: int, A: List[int], edges: List[Tuple[int, int]]): 
+    ''' 
+    N: an integer 
+    A: a list of integers
+    edges: a list of pairs of integers
+    '''

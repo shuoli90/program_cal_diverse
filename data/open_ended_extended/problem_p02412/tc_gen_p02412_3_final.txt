@@ -1,0 +1,41 @@
+Sure, let's create a test case generator for the given problem statement. The generator will produce multiple datasets of integers \( n \) and \( x \) until it hits the termination set of (0, 0).
+
+Here's how you can create the test case generator:
+
+```python
+import random
+
+def tcgen():
+    test_cases = []
+
+    while True:
+        n = random.randint(3, 100)
+        x = random.randint(0, 300)
+
+        # Append the generated test case to the list
+        test_cases.append((n, x))
+
+        # Randomly decide to add the termination case
+        if random.random() < 0.1:  # 10% chance to terminate
+            test_cases.append((0, 0))
+            break
+
+    return test_cases
+
+# Generate a sample test case list
+sample_test_cases = tcgen()
+for n, x in sample_test_cases:
+    print(n, x)
+```
+
+### Explanation:
+1. **Initialization**: We start by creating an empty list `test_cases` to store the generated test cases.
+2. **Random Generation**:
+   - Generate a random integer `n` within the range \([3, 100]\).
+   - Generate a random integer `x` within the range \([0, 300]\).
+   - Append the generated pair `(n, x)` to the `test_cases` list.
+3. **Termination Condition**:
+   - Using `random.random() < 0.1`, we give a 10% chance to append the termination case `(0, 0)` and break out of the loop.
+4. **Return**: Finally, return the list of test cases.
+
+This generator ensures a variety of test cases with different values of \( n \) and \( x \), and it randomly decides when to stop generating more cases by adding the termination set `(0, 0)`.

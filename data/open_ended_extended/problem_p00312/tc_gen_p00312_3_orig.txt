@@ -1,0 +1,38 @@
+Sure, I'll create a test case generator for the "Frog's Straight Path Home" problem. Here's the generator code which will randomly create valid test cases based on the provided problem constraints:
+
+```python
+import random
+
+def frog_path_tcgen():
+    # D is the distance to the nest (1 ≤ D ≤ 10000)
+    D = random.randint(1, 10000)
+    
+    # L is the distance the frog can jump with a big jump (2 ≤ L ≤ 10000)
+    L = random.randint(2, 10000)
+    
+    return D, L
+
+# Function to print the generated test case in the required format
+def print_test_case(D, L):
+    print(f"{D} {L}")
+
+# Generate a test case and print it
+D, L = frog_path_tcgen()
+print_test_case(D, L)
+```
+
+This generator will create random test cases for the problem while adhering to the constraints specified:
+
+- \(D\) is the distance to the nest, generated randomly between 1 and 10000.
+- \(L\) is the distance the frog can jump with a big jump, generated randomly between 2 and 10000.
+
+Here's an example of how you might use this generator in a script:
+
+```python
+if __name__ == "__main__":
+    # Generate a single test case
+    D, L = frog_path_tcgen()
+    print_test_case(D, L)
+```
+
+You can run this script to generate random test cases for the "Frog's Straight Path Home" problem. Each run will produce a different test case within the given constraints.

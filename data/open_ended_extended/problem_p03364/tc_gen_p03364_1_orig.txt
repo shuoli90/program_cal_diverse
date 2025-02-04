@@ -1,0 +1,40 @@
+Sure, I can help you craft a test case generator for the given problem statement. The generator will create random inputs that follow the constraints of the problem. Here's the Python code for the test case generator:
+
+```python
+import random
+import string
+
+def generate_board(N):
+    """Generate a random NxN board with lowercase English letters."""
+    return [''.join(random.choices(string.ascii_lowercase, k=N)) for _ in range(N)]
+
+def test_case_generator():
+    N = random.randint(1, 300)
+    board = generate_board(N)
+    return N, board
+
+# Example usage:
+if __name__ == "__main__":
+    N, board = test_case_generator()
+    print(N)
+    for row in board:
+        print(row)
+```
+
+### Explanation:
+1. **generate_board(N)**: This function generates an NxN board filled with random lowercase English letters.
+2. **test_case_generator()**: This function generates the value of \(N\) and the corresponding board.
+3. **Example usage**: When executed, this will print a randomly generated test case in the format specified by the problem statement.
+
+### Sample Output:
+Here’s what a sample output might look like:
+
+```plaintext
+4
+abcd
+efgh
+ijkl
+mnop
+```
+
+This output represents a 4x4 board with randomly chosen characters. Each execution of the script will produce a different board since it uses random choices.

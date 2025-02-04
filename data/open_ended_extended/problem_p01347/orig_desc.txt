@@ -1,0 +1,43 @@
+
+Problem I: How to Create a Good Game
+A video game company called ICPC (International Company for Playing and Competing) is now developing a new arcade game. The new game features a lot of branches. This makes the game enjoyable for everyone, since players can choose their routes in the game depending on their skills. Rookie players can choose an easy route to enjoy the game, and talented players can choose their favorite routes to get high scores.
+In the game, there are many checkpoints connected by paths. Each path consists of several stages, and completing stages on a path leads players to the next checkpoint. The game ends when players reach a particular checkpoint. At some checkpoints, players can choose which way to go, so routes diverge at that time. Sometimes different routes join together at a checkpoint. The paths between checkpoints are directed, and there is no loop (otherwise, players can play the game forever). In other words, the structure of the game can be viewed as a DAG (directed acyclic graph), when considering paths between checkpoints as directed edges.
+Recently, the development team completed the beta version of the game and received feedbacks from other teams. They were quite positive overall, but there are some comments that should be taken into consideration. Some testers pointed out that some routes were very short compared to the longest ones. Indeed, in the beta version, the number of stages in one play can vary drastically depending on the routes. Game designers complained many brilliant ideas of theirs were unused in the beta version because of the tight development schedule. They wanted to have more stages included in the final product. 
+However, it’s not easy to add more stages. this is an arcade game – if the playing time was too long, it would bring down the income of the game and owners of arcades would complain. So, the longest route of the final product can’t be longer than that of the beta version. Moreover, the producer of the game didn’t want to change the structure of paths (i.e., how the checkpoints connect to each other), since it would require rewriting the scenario, recording voices, creating new cutscenes, etc.
+Considering all together, the producer decided to add as many new stages as possible, while keeping the maximum possible number of stages in one play and the structure of paths unchanged. How many new stages can be added to the game?
+Input
+N M
+x1 y1 s1
+.
+.
+.
+xM yM sM
+The first line of the input contains two positive integers N and M (2 ≤ N ≤ 100, 1 ≤ M ≤ 1000). N indicates the number of checkpoints, including the opening and ending of the game. M indicates the number of paths between checkpoints.
+The following M lines describe the structure of paths in the beta version of the game. The i-th line contains three integers xi , yi and si (0 ≤ xi < yi ≤ N - 1, 1 ≤ si ≤ 1000), which describe that there is a path from checkpoint xi to yi consists of si stages. As for indices of the checkpoints, note that 0 indicates the opening of the game and N - 1 indicates the ending of the game. You can assume that, for every checkpoint i, there exists a route from the opening to the ending which passes through checkpoint i. You can also assume that no two paths connect the same pair of checkpoints.
+Output
+Output a line containing the maximum number of new stages that can be added to the game under the following constraints:
+ You can’t increase the maximum possible number of stages in one play (i.e., the length of the longest route to the ending).
+ You can’t change the structure of paths (i.e., how the checkpoints connect to each other).
+ You can’t delete any stage that already exists in the beta version.
+Sample Input 1
+3 3
+0 1 5
+1 2 3
+0 2 2
+Output for the Sample Input 1
+6
+Sample Input 2
+2 1
+0 1 10
+Output for the Sample Input 2
+0
+Sample Input 3
+4 6
+0 1 5
+0 2 5
+0 3 5
+1 2 5
+1 3 5
+2 3 5
+Output for the Sample Input 3
+20

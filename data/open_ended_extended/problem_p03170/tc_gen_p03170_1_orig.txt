@@ -1,0 +1,45 @@
+Sure, let's write a test case generator for the competitive programming problem you've described. The generator will create random values for \( N \), \( K \), and the set \( A \).
+
+Here is the Python code for the test case generator:
+
+```python
+import random
+
+def tcgen():
+    # Generate a random value for N (1 ≤ N ≤ 100)
+    N = random.randint(1, 100)
+    
+    # Generate a random value for K (1 ≤ K ≤ 10^5)
+    K = random.randint(1, 10**5)
+    
+    # Generate a sorted list of N unique integers for A, where 1 ≤ a_1 < a_2 < ... < a_N ≤ K
+    A = sorted(random.sample(range(1, K + 1), N))
+    
+    return N, K, A
+
+# Generate a random test case and print it
+if __name__ == "__main__":
+    N, K, A = tcgen()
+    print(N)
+    print(K)
+    print(" ".join(map(str, A)))
+```
+
+This script will generate a test case with the following steps:
+1. Randomly select \( N \) within the range \([1, 100]\).
+2. Randomly select \( K \) within the range \([1, 10^5]\).
+3. Generate a sorted list \( A \) of \( N \) unique integers such that \( 1 \leq a_1 < a_2 < \ldots < a_N \leq K \).
+
+You can run this script to get random test cases for the problem. Each run will produce different values for \( N \), \( K \), and the list \( A \), ensuring a wide variety of test cases for thorough testing.
+
+Here is an example of how to use this generator:
+
+```python
+# Example usage
+N, K, A = tcgen()
+print(f"N = {N}")
+print(f"K = {K}")
+print(f"A = {A}")
+```
+
+This will print a generated test case in a format that you can use directly for your problem statement.

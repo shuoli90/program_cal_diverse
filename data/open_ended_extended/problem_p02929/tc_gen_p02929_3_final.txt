@@ -1,0 +1,32 @@
+Sure, here is a test case generator for the given problem statement:
+
+```python
+import random
+
+def tcgen():
+    # Define the constraints
+    MAX_N = 10**5
+    MOD = 10**9 + 7
+    
+    # Generate a random N within the given constraints
+    N = random.randint(1, MAX_N)
+    
+    # Generate a random string S of length 2*N with characters 'B' and 'W'
+    S = ''.join(random.choice(['B', 'W']) for _ in range(2 * N))
+    
+    return N, S
+
+# Example usage
+if __name__ == "__main__":
+    N, S = tcgen()
+    print(N)
+    print(S)
+```
+
+This generator function `tcgen` will produce a random test case for the given problem. It ensures that:
+- \( N \) is a random integer within the range \([1, 10^5]\).
+- \( S \) is a string of length \( 2N \) consisting of random 'B' and 'W' characters.
+
+You can run the `tcgen` function to generate and print a random test case. The output will be in the format expected by the problem statement:
+- First line: The integer \( N \).
+- Second line: The string \( S \) of length \( 2N \).

@@ -1,0 +1,63 @@
+Sure, I can help you write a test case generator for the given problem statement "What are the popular stalls?". Here is the Python code for the test case generator:
+
+```python
+import random
+
+def generate_test_case():
+    test_cases = []
+    
+    # Number of datasets
+    num_datasets = random.randint(1, 100)
+    
+    for _ in range(num_datasets):
+        dataset = []
+        total_sales = []
+        stores = ['A', 'B', 'C', 'D', 'E']
+        
+        for store in stores:
+            s1 = random.randint(1, 10000)
+            s2 = random.randint(1, 10000)
+            total = s1 + s2
+            dataset.append((s1, s2))
+            total_sales.append((total, store))
+        
+        # Ensure no two stores have the same total sales
+        total_sales = list(set(total_sales))
+        
+        # Sort to find the highest sale
+        total_sales.sort(reverse=True)
+        
+        test_cases.append((dataset, total_sales[0]))
+    
+    # Convert test cases to input-output format
+    input_str = ""
+    output_str = ""
+    
+    for dataset, highest_sale in test_cases:
+        for s1, s2 in dataset:
+            input_str += f"{s1} {s2}\n"
+        output_str += f"{highest_sale[1]} {highest_sale[0]}\n"
+    
+    input_str += "0 0\n"  # End of input
+    
+    return input_str.strip(), output_str.strip()
+
+# Example usage
+input_str, output_str = generate_test_case()
+print("Generated Input:")
+print(input_str)
+print("\nExpected Output:")
+print(output_str)
+```
+
+### Explanation:
+1. **Number of datasets**: Randomly determine the number of datasets (between 1 and 100).
+2. **Dataset Creation**: For each dataset:
+   - Create an array for each store ('A', 'B', 'C', 'D', 'E') containing random sales values for the morning (`s1`) and afternoon (`s2`) sessions.
+   - Calculate the total sales for each store.
+   - Ensure no two stores have the same total sales by using a set.
+3. **Sort and Find Highest Sale**: Sort the total sales in descending order to determine the store with the highest sales.
+4. **Format for Output**: Convert the datasets into the required input and output format.
+5. **End of Input**: Append `0 0` to mark the end of input.
+
+You can run the `generate_test_case()` function to generate a new test case each time.

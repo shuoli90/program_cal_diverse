@@ -1,0 +1,3 @@
+Types: N: int, K: int, M: int  
+Ranges: 1 ≤ K ≤ N ≤ 150, 10^8 ≤ M ≤ 10^9   
+Addtl Info: None

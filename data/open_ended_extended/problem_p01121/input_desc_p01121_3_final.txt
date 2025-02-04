@@ -1,0 +1,49 @@
+An integer n (3 ≤ n ≤ 9, n is odd), representing some quantity or size.
+A grid of characters, consisting of 'X' and '.'.
+6n lines, each containing n characters.
+
+### Example Input:
+
+```
+5
+..XX.
+.XXX.
+XXXXX
+XXXXX
+X....
+....X
+XXXXX
+.XXX.
+.XXX.
+.....
+..XXX
+XXXX.
+.XXXX
+.XXXX
+...X.
+...X.
+.XXXX
+XXXX.
+XXXX.
+.X.X.
+XXX.X
+.XXXX
+XXXXX
+.XXXX
+.XXXX
+XX...
+.XXXX
+XXXXX
+XXXXX
+XX...
+```
+
+### Function Signature:
+Write a function f(n, grids) that takes in the input.
+```python
+def f(n: int, grids: List[str]):
+    ''' 
+    n: an integer
+    grids: a list of strings
+    '''
+```

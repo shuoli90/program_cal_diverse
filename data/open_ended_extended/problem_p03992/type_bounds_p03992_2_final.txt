@@ -1,0 +1,3 @@
+Types: s: str  
+Ranges: len(s) = 12  
+Addtl Info: s contains only uppercase English letters

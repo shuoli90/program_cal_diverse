@@ -1,0 +1,53 @@
+Sure! Below is a test case generator for the given problem statement involving Fennec and Snuke:
+
+```python
+import random
+
+def generate_tree(N):
+    """Generates a random tree with N nodes."""
+    edges = []
+    for i in range(2, N+1):
+        edges.append((i, random.randint(1, i-1)))
+    random.shuffle(edges)
+    return edges
+
+def tcgen():
+    N = random.randint(2, 10**5)
+    
+    edges = generate_tree(N)
+    
+    return N, edges
+
+def format_test_case(N, edges):
+    """Formats the test case in the required input format."""
+    result = f"{N}\n"
+    for a, b in edges:
+        result += f"{a} {b}\n"
+    return result.strip()
+
+# Example of generating a test case and printing it
+if __name__ == "__main__":
+    N, edges = tcgen()
+    test_case = format_test_case(N, edges)
+    print(test_case)
+```
+
+### Explanation:
+1. **generate_tree(N)**: This function creates a random tree with \(N\) nodes. It does this by ensuring node \(i\) (for \(i\) from 2 to \(N\)) is connected to any of the previous nodes (from 1 to \(i-1\)). This ensures the structure is a connected tree.
+2. **tcgen()**: This function generates the number of nodes \(N\) and the corresponding edges by invoking `generate_tree(N)`.
+3. **format_test_case(N, edges)**: This function formats the test case into the required input format for the problem statement.
+
+When you run the script, it will print a generated test case that you can use for testing the problem.
+
+### Example Output:
+```
+7
+3 6
+1 2
+3 1
+7 4
+5 7
+1 4
+```
+
+This output can be directly used as input for testing your solution to the problem.

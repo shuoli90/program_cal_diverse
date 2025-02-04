@@ -1,0 +1,45 @@
+To create a test case generator for the problem "Memory Match", we need to generate multiple datasets, each consisting of an even number \( N \) (where \( 2 \leq N \leq 1000 \)). The end of input is indicated by a line containing a single zero. Here is the Python code for generating such test cases:
+
+```python
+import random
+
+def tcgen(num_datasets=10):
+    datasets = []
+    for _ in range(num_datasets):
+        N = random.choice(range(2, 1001, 2))  # Choose an even number between 2 and 1000
+        datasets.append(N)
+    datasets.append(0)  # Add the end of input indicator
+    
+    return datasets
+
+# Example usage:
+if __name__ == "__main__":
+    test_cases = tcgen()
+    for case in test_cases:
+        print(case)
+```
+
+### Explanation:
+- The `tcgen` function generates a specified number of datasets (default is 10).
+- For each dataset, it randomly selects an even number \( N \) between 2 and 1000.
+- It adds these numbers to a list named `datasets`.
+- Finally, the function appends a zero to the list, which marks the end of input.
+
+When executed, this function generates a series of test cases, each consisting of an even number \( N \), followed by a zero to indicate the end of input. This matches the format specified in the problem statement.
+
+### Example Output:
+The output of the above test case generator might look like this:
+```
+8
+2
+1000
+14
+6
+10
+52
+4
+12
+18
+0
+```
+Each number represents a dataset, and the zero at the end indicates the end of input.

@@ -1,0 +1,17 @@
+An integer N (1 ≤ N ≤ 2000).
+A list of 3N integers, each between 1 and N.
+
+### Example Input:
+
+```
+2
+1 2 1 2 2 1
+```
+
+### Function Signature:
+Write a function f(N, A) that takes in the input.
+def f(N: int, A: List[int]): 
+    ''' 
+    N: an integer 
+    A: a list of integers
+    '''

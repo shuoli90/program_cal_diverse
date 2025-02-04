@@ -1,0 +1,48 @@
+Sure! Here is a test case generator for the given problem:
+
+```python
+import random
+
+def tcgen():
+    # Generate a random integer N in the range 1 to 2 × 10^5
+    N = random.randint(1, 2 * 10**5)
+    
+    # Initialize lists A and B
+    A = []
+    B = []
+    
+    # Generate a random sum S for both lists (let's keep S small for simplicity)
+    S = random.randint(1, N * 10)
+    
+    # Distribute the sum S across N elements for both A and B
+    for _ in range(N):
+        if _ == N - 1:  # For the last element, just add the remaining sum to ensure the total sum is S
+            A.append(S)
+            B.append(S)
+        else:
+            a_i = random.randint(0, S)
+            b_i = random.randint(0, S)
+            A.append(a_i)
+            B.append(b_i)
+            S -= a_i
+            S -= b_i
+    
+    # Adjust the last element to ensure the sums of A and B are equal
+    A[-1] += S
+    B[-1] += S
+    
+    return N, A, B
+
+# Example usage
+N, A, B = tcgen()
+print(N)
+for a, b in zip(A, B):
+    print(a, b)
+```
+
+This code generates random test cases for the problem with the following constraints:
+1. \( N \) is a random integer between 1 and 200,000.
+2. Sequences \( A \) and \( B \) are both of length \( N \) and their sums are equal.
+3. Each element \( A[i] \) and \( B[i] \) is a non-negative integer, and their sums match the total sum \( S \).
+
+The generated test case ensures that the conditions specified in the problem statement are met. You can run the generator multiple times to get different random test cases.

@@ -1,0 +1,182 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p01802 - Generation 1</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p01802 - Generation 1</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>Problem
+Koto City is a famous city with a grid-like road system, as shown in the figure below. Roads extending north-south and east-west are arranged at intervals of 1 km. Assume that Koto Station located at the southwesternmost intersection of Koto City is (0,0), and the position reached by going x km east and y km north from there is expressed as (x,y) (0 ≤ x,y).
+In anticipation of an increase in tourists due to the Olympics to be held in five years, the city has decided to build a new subway line starting from Koto Station. Currently, a plan is being made to lay rails from Koto Station to Shin-Koto Station, which will be newly built as the next station from Koto Station. The rails will be laid straight from Koto Station to Shin-Koto Station. Therefore, the length of the rails is √(x2+y2) when the location of Shin-Koto Station is expressed as (x,y). The cost of laying rails is required as much as the length of the rails laid, even if the length of the rails is a decimal such as 1.5 km.
+The location (x,y) of Shin-Koto Station has not yet been determined, and it is planned to be located in a place that satisfies the following conditions:
+It is an intersection. That is, x and y are integers, respectively.
+The shortest distance walked along the road from Koto Station is exactly D, that is, x + y = D.
+Among those that satisfy the above two conditions, choose the location of Shin-Koto Station so that the difference between the budget for rails that the city specifies and the cost of the rails |√(x2+y2) - E| is minimized. Here, |A| represents the absolute value of A. Your task is to create a program that outputs the cost difference between the cost of laying the rails and the budget when Shin-Koto Station is built as described above. 
+Input
+The input is composed of multiple data sets, and the number of data sets included in one input is up to 100. The format of each data set is as follows:
+D E
+D (1 ≤ D ≤ 100) is an integer representing the shortest distance walked along the road from Koto Station to Shin-Koto Station. E (1 ≤ E ≤ 100) is an integer representing the budget for rail construction.
+The end of the input is indicated by a line consisting of two zeros separated by a space.
+Output
+For each data set, output the difference between the cost of laying the rails when the rails are laid as described above and the budget in one line. There should be no absolute error greater than 10-3. If you do not output a newline at the end of each line or output unnecessary characters, it will be judged as incorrect answer, so be careful.
+Sample Input
+2 1
+7 5
+7 6
+7 7
+76 5
+8 41
+0 0
+Output for Sample Input
+0.4142135624
+0
+0.0827625303
+0
+48.7401153702
+33
+Hint
+For the first data set, the intersections that are 2 km along the road from Koto Station are expected to be candidates for the location of Shin-Koto Station</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>    
+An integer D (1 ≤ D ≤ 100), representing some quantity.
+An integer E (1 ≤ E ≤ 100), representing another quantity.
+The input consists of multiple datasets, and the number of datasets is up to 100. The end of the input is indicated by a line consisting of two zeros separated by a space.
+
+### Example Input:
+
+```
+2 1
+7 5
+7 6
+7 7
+76 5
+8 41
+0 0
+```
+
+### Function Signature:
+Write a function f(inputs) that takes in the input.
+def f(inputs: List[Tuple[int, int]]):
+    '''
+    inputs: a list of tuples where each tuple contains two integers
+    '''</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Certainly! Below is a test case generator for the given problem statement.
+
+### Test Case Generator
+
+```python
+import random
+import math
+
+def tcgen():
+    test_cases = []
+    num_cases = random.randint(1, 100)
+    
+    for _ in range(num_cases):
+        D = random.randint(1, 100)
+        E = random.randint(1, 100)
+        test_cases.append((D, E))
+    
+    # Append the termination line
+    test_cases.append((0, 0))
+    
+    return test_cases
+
+def format_test_cases(test_cases):
+    formatted = []
+    for D, E in test_cases:
+        formatted.append(f"{D} {E}")
+    return "\n".join(formatted)
+
+
+# Example usage
+if __name__ == "__main__":
+    test_cases = tcgen()
+    formatted_test_cases = format_test_cases(test_cases)
+    print(formatted_test_cases)
+```
+
+### Explanation
+1. **Random Test Case Generation**:
+    - We first determine the number of test cases, which can be up to 100.
+    - For each test case, we generate random integers `D` and `E` within the range [1, 100].
+    - The test cases are stored in a list as tuples `(D, E)`.
+
+2. **Termination Line**:
+    - After generating the required number of test cases, we append the termination line `(0, 0)` to indicate the end of input.
+
+3. **Format Function**:
+    - The `format_test_cases` function converts the list of tuples into a string formatted as required by the problem statement, with each test case on a new line.
+
+4. **Example Usage**:
+    - The script generates and prints out the formatted test cases.
+
+You can run the provided script, and it will generate a set of test cases formatted appropriately for the problem statement. This script ensures that the test cases are within the specified constraints and include the proper termination line.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    inputs = []
+    while True:
+        line = fh.readline().strip()
+        if line == "0 0":
+            break
+        D, E = map(int, line.split())
+        inputs.append((D, E))
+    return inputs</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

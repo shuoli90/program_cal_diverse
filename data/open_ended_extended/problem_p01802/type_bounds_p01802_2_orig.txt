@@ -1,0 +1,3 @@
+Types: List[Tuple[int, int]]
+Ranges: 1 ≤ D ≤ 100, 1 ≤ E ≤ 100
+Addtl Info: Up to 100 datasets, end of input indicated by "0 0"

@@ -1,0 +1,45 @@
+Snake Escaping
+  At the JOI research institute, there are 2^L venomous snakes, each with a number 0, 1, ..., 2^L - 1. All venomous snakes are divided into L segments from the head, and each segment is either blue or red. For venomous snake i, let i be the binary string: i =$\sum_{k=1}^{L}$ c_k2^{L-k} (0 \leq c_k \leq 1) (0 \leq c_k \leq 1).
+ If c_k = 0, then the kth segment from the head of venomous snake i is blue.
+ If c_k = 1, then the kth segment from the head of venomous snake i is red.
+Each venomous snake has a toxicity, which is an integer value greater than or equal to 0 and less than or equal to 9. A length 2^L string S consisting of 0, 1, 2, 3, 4, 5, 6, 7, 8, and 9 is given, with the ith character (1 \leq i \leq 2^L) representing the toxicity of venomous snake i - 1.
+  Snakes are fast-moving, and often escape from the JOI research institute. Residents in the surrounding areas lodge complaints after witnessing escaped venomous snakes.
+You are given information on complaints over Q days.d-th day's complaints (1 <= d <= Q) are represented as a length L string T_d consisting of 0, 1, and ?.
+ If the jth character (1 <= j <= L) of T_d is 0, it means that all escaped venomous snakes on day d have a blue segment at the jth position.
+ If the jth character (1 <= j <= L) of T_d is 1, it means that all escaped venomous snakes on day d have a red segment at the jth position.
+ If the jth character (1 <= j <= L) of T_d is ?, it means that no information was provided by residents regarding the jth segment of the escaped venomous snakes on day d.
+  All complaints contain accurate information. Escaped venomous snakes are captured by the JOI research institute staff on the same day. Captured venomous snakes may escape again on subsequent days.
+  In order to estimate the risk of venomous snake escaping, Mr. K, the director of the JOI research institute, wants to know the total toxicity of possibly escaped venomous snakes. Your task is to create a program that, from the information of complaints over Q days, calculates the total toxicity of possibly escaped venomous snakes for each day.
+Task
+  Given a string S that represents the toxicity of venomous snakes and information on complaints over Q days, create a program to calculate the total toxicity of potentially escaped venomous snakes for each day.
+  Keep in mind the small memory limit.
+Input
+  Read the following input from standard input:
+ In the first line, the integers L and Q are written separated by a space. These represent, in order, the number of venomous snake segments and the number of days when complaints are lodged. 
+ In the second line, a length 2^L string S is written. This string represents the toxicity of venomous snakes.
+ In the following Q lines, the length L string T_d is written in the dth line (1 <= d <= Q). This string represents the complaint on day d.
+Output
+  Print the output on Q lines. On the dth line, print the integer representing the total toxicity of potentially escaped venomous snakes on day d.
+Constraints
+  All input data meets the following conditions:
+1 \leq L \leq 20
+1 \leq Q \leq 1 000 000
+S is a length 2^L string.
+ The string S consists of the characters 0, 1, 2, 3, 4, 5, 6, 7, 8, and 9.
+ T_d is a length L string (1 <= d <= Q).
+ The string T_d consists of the characters 0, 1, and ? (1 <= d <= Q).
+Example Input and Output
+Example Input 1 
+3 5
+12345678
+000
+0??
+1?0
+?11
+???
+Example Output 1
+1
+10
+12
+12
+36

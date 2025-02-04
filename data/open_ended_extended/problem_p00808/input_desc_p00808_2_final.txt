@@ -1,0 +1,34 @@
+An integer M (1 ≤ M ≤ 2000), representing the number of connections.
+M lines follow, each containing:
+- A string S1, the name of a starting location (1 to 16 alphabetical characters, first character uppercase).
+- A time T1 in the format HH:MM, representing the departure time (00:00 ≤ HH:MM ≤ 23:59).
+- A string S2, the name of an arrival location (1 to 16 alphabetical characters, first character uppercase).
+- A time T2 in the format HH:MM, representing the arrival time (00:00 ≤ HH:MM ≤ 23:59).
+- An integer P (1 ≤ P ≤ 10000), representing a price.
+The input ends with a line containing a single zero.
+
+### Example Input:
+
+```
+5
+Hakodate 08:15 Morioka 12:30 2500
+Morioka 14:05 Hakodate 17:30 2500
+Morioka 15:30 Hakodate 18:00 3000
+Morioka 14:30 Tokyo 17:50 3000
+Tokyo 08:30 Morioka 13:35 3000
+0
+```
+
+### Function Signature:
+Write a function f(inputs) that takes in the input. 
+def f(inputs: List[Tuple[int, List[Tuple[str, str, str, str, int]]]]):
+    ''' 
+    inputs: a list of tuples where each tuple contains:
+        - an integer M
+        - a list of M tuples, each containing:
+            - a string S1
+            - a string T1
+            - a string S2
+            - a string T2
+            - an integer P
+    '''

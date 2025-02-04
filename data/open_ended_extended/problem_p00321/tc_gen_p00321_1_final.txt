@@ -1,0 +1,56 @@
+Sure, I can help you create a test case generator for the "Related Products" problem. Below is a Python function that generates random test cases for this problem. This function will generate values for \(N\), \(F\), and the subsequent lines of product purchase information.
+
+```python
+import random
+import string
+
+def generate_random_product_name():
+    length = random.randint(1, 30)
+    return ''.join(random.choices(string.ascii_lowercase, k=length))
+
+def tcgen():
+    N = random.randint(1, 100)
+    F = random.randint(1, 100)
+    
+    info = []
+    for _ in range(N):
+        M = random.randint(1, 10)
+        items = set()
+        while len(items) < M:
+            items.add(generate_random_product_name())
+        info.append(f"{M} " + " ".join(items))
+    
+    return N, F, info
+
+def print_test_case():
+    N, F, info = tcgen()
+    print(N, F)
+    for i in info:
+        print(i)
+
+# Example usage
+print_test_case()
+```
+
+### Explanation:
+
+1. **`generate_random_product_name` Function**:
+    - Generates a random product name of length between 1 and 30 characters composed of lowercase English letters.
+
+2. **`tcgen` Function**:
+    - Randomly selects \(N\) (1 ≤ \(N\) ≤ 100).
+    - Randomly selects \(F\) (1 ≤ \(F\) ≤ 100).
+    - For each piece of information (N times):
+        - Randomly selects \(M\) (1 ≤ \(M\) ≤ 10).
+        - Generates \(M\) unique product names.
+        - Adds the formatted string to the `info` list.
+
+3. **`print_test_case` Function**:
+    - Calls `tcgen` to generate a test case.
+    - Prints the test case in the required format.
+
+### Usage:
+- Run the `print_test_case()` function to generate and print a random test case.
+- Each test case will be printed in the format required by the problem statement.
+
+This should help you generate a variety of test cases for the problem, ensuring comprehensive testing of your solution's correctness and robustness.

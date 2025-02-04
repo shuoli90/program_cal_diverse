@@ -1,0 +1,48 @@
+Sure, I can help you with a test case generator for the "Iron Bars" problem. Here is the Python code to generate random test cases for this problem:
+
+```python
+import random
+
+def generate_test_case():
+    # Constants based on the problem constraints
+    N = random.randint(6, 6000)
+    M = random.randint(0, N)
+    X = random.randint(0, 6)
+    Y = 12 - 2 * X
+    
+    while X + Y > N or X > M:
+        X = random.randint(0, 6)
+        Y = 12 - 2 * X
+
+    a = [random.randint(1, 6000) for _ in range(N)]
+    b = [random.randint(1, min(3000, a[i] - 1)) for i in range(M)]
+    
+    # Ensuring the condition 1 ≤ a_i - b_i ≤ 3000 for bent bars
+    for i in range(M):
+        while a[i] - b[i] > 3000:
+            b[i] = random.randint(1, min(3000, a[i] - 1))
+    
+    return N, M, X, Y, a, b
+
+def format_test_case(N, M, X, Y, a, b):
+    test_case = f"{N} {M} {X} {Y}\n"
+    test_case += "\n".join(map(str, a)) + "\n"
+    test_case += "\n".join(map(str, b))
+    return test_case
+
+# Example usage
+N, M, X, Y, a, b = generate_test_case()
+print(format_test_case(N, M, X, Y, a, b))
+```
+
+### Explanation:
+1. **Constants**: We set the constants for the constraints as specified in the problem.
+2. **Random Values**: Generate random values for \(N\), \(M\), \(X\), and \(Y\) based on the constraints.
+   - \(N\) is the total number of bars.
+   - \(M\) is the number of bent bars.
+   - \(X\) and \(Y\) are chosen in such a way that \(2X + Y = 12\) and other constraints are satisfied.
+3. **Lengths of Bars**: Generate a list of lengths for each of the \(N\) bars.
+4. **Positions of Bends**: Generate positions of bends for each of the \(M\) bent bars such that they adhere to the constraints.
+5. **Formatting**: Format the test case in the required input format.
+
+This code generates random test cases that you can use to test your solution for the "Iron Bars" problem. You can run the code multiple times to generate different test cases.

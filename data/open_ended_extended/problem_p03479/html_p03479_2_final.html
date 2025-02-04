@@ -1,0 +1,138 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p03479 - Generation 2</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p03479 - Generation 2</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>
+Score : 300 points
+Problem StatementAs a token of his gratitude, Takahashi has decided to give his mother an integer sequence.
+The sequence A needs to satisfy the conditions below:
+A consists of integers between X and Y (inclusive).
+For each 1\leq i \leq |A|-1, A_{i+1} is a multiple of A_i and strictly greater than A_i.
+Find the maximum possible length of the sequence.
+Constraints
+1 \leq X \leq Y \leq 10^{18}
+All input values are integers.
+InputInput is given from Standard Input in the following format:
+X Y
+OutputPrint the maximum possible length of the sequence.
+Sample Input 13 20
+Sample Output 13
+The sequence 3,6,18 satisfies the conditions.
+Sample Input 225 100
+Sample Output 23
+Sample Input 3314159265 358979323846264338
+Sample Output 331
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An integer X (1 ≤ X ≤ 10^18), representing the lower bound.
+An integer Y (X ≤ Y ≤ 10^18), representing the upper bound.
+
+### Example Input:
+
+```
+3 20
+```
+
+### Function Signature:
+Write a function f(X, Y) that takes in the input. 
+def f(X: int, Y: int): 
+    ''' 
+    X: an integer
+    Y: an integer
+    '''</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Certainly! Here is a test case generator for the given problem statement:
+
+```python
+import random
+
+def tcgen():
+    # Generate values for X and Y within the given constraints
+    X = random.randint(1, 10**18)
+    Y = random.randint(X, 10**18)  # Ensuring Y >= X
+
+    return X, Y
+
+# Example of how to use the generator
+if __name__ == "__main__":
+    for _ in range(5):  # Generate 5 test cases as an example
+        X, Y = tcgen()
+        print(f"Input: {X} {Y}")
+```
+
+### Explanation:
+
+- **X**: This is the starting point of the sequence. It is chosen randomly between 1 and 10^18.
+- **Y**: This is the upper limit for the sequence. It is chosen randomly between X and 10^18 to ensure that Y is always greater than or equal to X.
+
+This generator will produce random valid inputs for the problem according to the given constraints.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    X, Y = map(int, fh.readline().strip().split())
+    return X, Y
+
+# if __name__ == "__main__":
+#     input_path = sys.argv[1]
+#     with open(input_path, 'r') as fh:
+#         X, Y = extract_arguments(fh)
+#         f(X, Y)</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

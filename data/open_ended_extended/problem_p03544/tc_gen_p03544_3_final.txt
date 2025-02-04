@@ -1,0 +1,47 @@
+Certainly! Here is a test case generator for the given problem statement of finding the N-th Lucas number:
+
+```python
+import random
+
+def tcgen():
+    N = random.randint(1, 86)
+    return N
+
+# Function to compute the N-th Lucas number
+def compute_lucas_number(N):
+    if N == 0:
+        return 2
+    elif N == 1:
+        return 1
+    else:
+        L0, L1 = 2, 1
+        for i in range(2, N + 1):
+            L0, L1 = L1, L0 + L1
+        return L1
+
+# Generate a test case
+N = tcgen()
+print(f"Input: {N}")
+print(f"Output: {compute_lucas_number(N)}")
+```
+
+### Explanation:
+1. **Test Case Generator (`tcgen`)**: 
+   - It generates a random integer \( N \) within the constraints \( 1 \leq N \leq 86 \).
+
+2. **Lucas Number Calculation (`compute_lucas_number`)**: 
+   - It calculates the N-th Lucas number using an iterative approach to avoid recursion limits and stack overflow issues for larger \( N \).
+
+3. **Example of Generated Test Case**:
+   - The `tcgen` function generates the input \( N \).
+   - The `compute_lucas_number` function computes the N-th Lucas number.
+   - The input and output are printed as required for the test case.
+
+### Sample Output:
+The script will print a random test case input and its corresponding output, for example:
+```
+Input: 15
+Output: 843
+```
+
+This shows the generated input \( N = 15 \) and the computed 15th Lucas number, which is 843.

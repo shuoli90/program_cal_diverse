@@ -1,0 +1,18 @@
+An integer K (1 ≤ K ≤ 10^9), representing some quantity or size.
+An integer A (1 ≤ A ≤ 10^9), representing some quantity or size.
+An integer B (1 ≤ B ≤ 10^9), representing some quantity or size.
+
+### Example Input:
+
+```
+14 2 6
+```
+
+### Function Signature:
+Write a function f(K, A, B) that takes in the input.
+def f(K: int, A: int, B: int):
+    '''
+    K: an integer
+    A: an integer
+    B: an integer
+    '''

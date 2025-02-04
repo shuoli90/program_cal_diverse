@@ -1,0 +1,18 @@
+def extract_arguments(fh):
+    graphs = []
+    while True:
+        ns, nl = map(int, fh.readline().strip().split())
+        if ns == 0 and nl == 0:
+            break
+        edges = []
+        for _ in range(nl):
+            s1, s2, d = map(int, fh.readline().strip().split())
+            edges.append((s1, s2, d))
+        graphs.append((ns, nl, edges))
+    return graphs
+
+# Example usage:
+# with open('input.txt', 'r') as fh:
+#     graphs = extract_arguments(fh)
+#     for graph in graphs:
+#         print(graph)

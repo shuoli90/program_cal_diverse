@@ -1,0 +1,5 @@
+Types: n: int, h: int, ci: str, ai: int, bi: int
+
+Ranges: 1 ≤ n ≤ 500, 0 ≤ h ≤ 200, ci in {"xy", "xz", "yz"}, 1 ≤ ai, bi ≤ n
+
+Addtl Info: Input terminates with n = 0 and h = 0

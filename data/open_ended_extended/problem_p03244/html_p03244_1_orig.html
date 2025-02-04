@@ -1,0 +1,143 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p03244 - Generation 1</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p03244 - Generation 1</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>
+Score : 300 points
+Problem StatementA sequence a_1,a_2,... ,a_n is said to be /\/\/\/ when the following conditions are satisfied:
+For each i = 1,2,..., n-2, a_i = a_{i+2}.
+Exactly two different numbers appear in the sequence.
+You are given a sequence v_1,v_2,...,v_n whose length is even.
+We would like to make this sequence /\/\/\/ by replacing some of its elements.
+Find the minimum number of elements that needs to be replaced.
+Constraints
+2 \leq n \leq 10^5
+n is even.
+1 \leq v_i \leq 10^5
+v_i is an integer.
+InputInput is given from Standard Input in the following format:
+n
+v_1 v_2 ... v_n
+OutputPrint the minimum number of elements that needs to be replaced.
+Sample Input 14
+3 1 3 2
+Sample Output 11
+The sequence 3,1,3,2 is not /\/\/\/, but we can make it /\/\/\/ by replacing one of its elements: for example, replace the fourth element to make it 3,1,3,1.
+Sample Input 26
+105 119 105 119 105 119
+Sample Output 20
+The sequence 105,119,105,119,105,119 is /\/\/\/.
+Sample Input 34
+1 1 1 1
+Sample Output 32
+The elements of the sequence 1,1,1,1 are all the same, so it is not /\/\/\/.
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An integer n (2 ≤ n ≤ 10^5), representing some quantity or size.
+A list of integers v of size n, where each integer is between 1 and 1e5.
+
+### Example Input:
+
+```
+4
+3 1 3 2
+```
+
+### Function Signature:
+Write a function f(n, v) that takes in the input.
+def f(n: int, v: List[int]):
+    '''
+    n: an integer
+    v: a list of integers
+    '''</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Sure! Here's a test case generator for the given problem statement:
+
+```python
+import random
+
+def generate_test_case():
+    # Generate a random even number for N within the given constraints.
+    N = random.randint(1, 5 * 10**4) * 2
+    
+    # Generate a list of integers for V with values within the given constraints.
+    V = [random.randint(1, 10**5) for _ in range(N)]
+    
+    return N, V
+
+def format_test_case(N, V):
+    return f"{N}\n{' '.join(map(str, V))}\n"
+
+# Example Usage
+N, V = generate_test_case()
+print(format_test_case(N, V))
+```
+
+This generator will create random test cases that adhere to the problem constraints. The `generate_test_case` function ensures that the length of the sequence `N` is even, and the elements of the sequence `V` are within the range [1, 100000]. The `format_test_case` function formats the generated test case in the required input format.
+
+You can use the generated test cases to test the solution to the problem.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    n = int(fh.readline().strip())
+    v = list(map(int, fh.readline().strip().split()))
+    return n, v</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

@@ -1,0 +1,63 @@
+Sure, I can help you write a test case generator for the given problem statement. Here's the test case generator in Python:
+
+```python
+import random
+
+def generate_precisely_sequence(N, range_min=-100000000, range_max=100000000):
+    half_N = N // 2
+    first_half = [random.randint(range_min, range_max) for _ in range(half_N)]
+    second_half = first_half[::-1]
+    return first_half + second_half
+
+def generate_queries(Q, N, x_min=-1000, x_max=1000):
+    queries = []
+    for _ in range(Q):
+        l = random.randint(1, N)
+        r = random.randint(l, N)
+        x = random.randint(x_min, x_max)
+        queries.append((l, r, x))
+    return queries
+
+def tcgen():
+    # Generate N, which is even and in the range [2, 500,000]
+    N = random.randint(1, 250000) * 2
+
+    # Generate sequence S
+    S = generate_precisely_sequence(N)
+
+    # Generate Q, which is in the range [1, 100,000]
+    Q = random.randint(1, 100000)
+
+    # Generate queries
+    queries = generate_queries(Q, N)
+
+    return N, S, Q, queries
+
+def format_test_case(N, S, Q, queries):
+    test_case = []
+    test_case.append(str(N))
+    test_case.append(" ".join(map(str, S)))
+    test_case.append(str(Q))
+    for query in queries:
+        test_case.append(" ".join(map(str, query)))
+    return "\n".join(test_case)
+
+if __name__ == "__main__":
+    N, S, Q, queries = tcgen()
+    test_case = format_test_case(N, S, Q, queries)
+    print(test_case)
+```
+
+Explanation:
+
+1. **generate_precisely_sequence(N, range_min, range_max)**: This function generates a "precisely" arranged sequence of length \( N \). The sequence is symmetric, so the first half is randomly generated and the second half is the reverse of the first half.
+
+2. **generate_queries(Q, N, x_min, x_max)**: This function generates \( Q \) queries. Each query is a tuple \((l, r, x)\), where \( l \) and \( r \) are indexes within the range of the sequence, and \( x \) is a random integer within the given limits.
+
+3. **tcgen()**: This function coordinates the generation of \( N \), \( S \), \( Q \), and the queries. It uses the previous helper functions to create a consistent test case.
+
+4. **format_test_case(N, S, Q, queries)**: This function formats the generated test case into the required input format for the problem. It returns a string that represents the entire test case.
+
+The `if __name__ == "__main__":` block is for testing and printing the generated test case.
+
+You can run this script to generate a random test case for the given problem statement. Adjust the ranges and limits as necessary to fulfill specific requirements or constraints.

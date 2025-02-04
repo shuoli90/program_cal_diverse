@@ -1,0 +1,61 @@
+Certainly! Here is a test case generator for the problem statement provided.
+
+```python
+import random
+import string
+
+def generate_test_case():
+    N = random.randint(1, 500000)
+    S = ''.join(random.choices(string.ascii_lowercase, k=N))
+    Q = random.randint(1, 20000)
+    
+    queries = []
+    type_2_added = False
+
+    for _ in range(Q):
+        query_type = random.randint(1, 2)
+        
+        if query_type == 1:
+            i_q = random.randint(1, N)
+            c_q = random.choice(string.ascii_lowercase)
+            queries.append(f"1 {i_q} {c_q}")
+        else:
+            l_q = random.randint(1, N)
+            r_q = random.randint(l_q, N)
+            queries.append(f"2 {l_q} {r_q}")
+            type_2_added = True
+
+    # Ensure at least one type 2 query is added
+    if not type_2_added:
+        l_q = random.randint(1, N)
+        r_q = random.randint(l_q, N)
+        queries.append(f"2 {l_q} {r_q}")
+
+    return N, S, Q, queries
+
+def print_test_case():
+    N, S, Q, queries = generate_test_case()
+    print(N)
+    print(S)
+    print(Q)
+    for query in queries:
+        print(query)
+
+# Example usage:
+print_test_case()
+```
+
+This generator creates a random valid test case for the given problem. Here’s how it works:
+
+1. **N**: Randomly selects the length of the string \( S \) within the constraints.
+2. **S**: Generates a random string of length \( N \) with lowercase English letters.
+3. **Q**: Randomly selects the number of queries within the constraints.
+4. **Queries**:
+   - Randomly selects the type of query (1 or 2).
+   - For type 1 queries, it picks a random position in the string and a random lowercase letter.
+   - For type 2 queries, it picks a random range within the string.
+   - Ensures at least one type 2 query is included.
+
+The `print_test_case` function formats and prints the generated test case as expected by the problem statement.
+
+You can run the `print_test_case` function to generate and print a new test case each time.

@@ -1,0 +1,28 @@
+Certainly! Below is the test case generator for the given problem statement:
+
+```python
+import random
+
+def tcgen():
+    # Constraints
+    A = random.randint(1, 10**9)
+    B = random.randint(A, 10**9)
+    K = random.randint(1, 100)
+    
+    return A, B, K
+
+# Example usage of the test case generator:
+if __name__ == "__main__":
+    for _ in range(5):  # Generate 5 test cases for demonstration
+        A, B, K = tcgen()
+        print(f"Input: {A} {B} {K}")
+```
+
+This generator will create random values for \(A\), \(B\), and \(K\) within the specified constraints. Each generated test case will adhere to the constraints mentioned in the problem statement. You can use the `tcgen()` function to generate multiple test cases as needed.
+
+### Explanation:
+1. **A** is a random integer between 1 and \(10^9\).
+2. **B** is a random integer between **A** and \(10^9\) (ensuring \(A \leq B\)).
+3. **K** is a random integer between 1 and 100.
+
+You can run the script and it will print out the generated test cases for you. Adjust the range in the `for` loop to generate the desired number of test cases.

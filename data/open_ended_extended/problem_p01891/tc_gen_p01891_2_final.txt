@@ -1,0 +1,44 @@
+Sure, let's create a test case generator for the given problem statement "Cabbage". The generator will produce random values for the parameters \(N\), \(M\), \(A\), \(B\), and the list \(D\).
+
+Here's the Python code for the test case generator:
+
+```python
+import random
+
+def tcgen():
+    # Generate a random value for N within the constraint 1 ≤ N ≤ 1000
+    N = random.randint(1, 1000)
+    
+    # Generate a random value for M within the constraint 0 ≤ M ≤ N
+    M = random.randint(0, N)
+    
+    # Generate random values for A and B where 1 ≤ A ≤ B ≤ 1000
+    A = random.randint(1, 1000)
+    B = random.randint(A, 1000)
+    
+    # Generate a list D of size N where each element is within the constraint 1 ≤ D[i] ≤ 1000
+    D = [random.randint(1, 1000) for _ in range(N)]
+    
+    return N, M, A, B, D
+
+# Function to format the generated test case in the required input format
+def format_test_case(N, M, A, B, D):
+    return f"{N} {M} {A} {B}\n" + " ".join(map(str, D))
+
+# Generate a test case
+N, M, A, B, D = tcgen()
+print(format_test_case(N, M, A, B, D))
+```
+
+Explanation:
+1. **Random Values Generation**:
+    - \(N\) is generated randomly between 1 and 1000.
+    - \(M\) is generated randomly between 0 and \(N\).
+    - \(A\) is generated randomly between 1 and 1000.
+    - \(B\) is generated randomly between \(A\) and 1000, ensuring \(A \leq B\).
+    - \(D\) is a list of \(N\) integers, each randomly generated between 1 and 1000.
+
+2. **Formatting**:
+    - The `format_test_case` function formats the generated values into the specified input format for the problem.
+
+You can run the code to generate different test cases for the problem statement. Each run will produce a new test case with random values adhering to the constraints provided in the problem statement.

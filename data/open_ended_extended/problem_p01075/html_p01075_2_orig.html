@@ -1,0 +1,177 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p01075 - Generation 2</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p01075 - Generation 2</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>Problem D: One-Time Path
+Problem
+There are N islands and M bridges. 
+Each island is assigned a number from 1 to N.
+Each bridge is assigned a number from 1 to M.
+Gaccho is currently on the first island at time 0. 
+By using the i-th bridge, Gaccho can move unidirectionally from island ai to island bi.
+However, at time 0, all the bridges are submerged underwater because of high tide. 
+The i-th bridge can be crossed when the tide goes out at time ci.
+Once the tide comes in again after time ci, the bridge i will be submerged again, and Gaccho will assume that he can never cross the bridge again.
+Gaccho wants to enjoy the scenery from island 1 to N-1 for as long as possible, but since he has a boat parked on island N, he must reach island N in the end. 
+Also, since he is waiting for his parents on the boat, Gaccho must leave for home as soon as he arrives at island N.
+Since the time Gaccho spends crossing bridges or moving around islands is very short, it can be assumed to be 0. 
+Find the maximum time Gaccho can spend on any of the islands between 1 and N-1. 
+If Gaccho cannot move to island N no matter how he moves, output -1 instead.
+Input
+The input is given in the following format:
+N M
+a1 b1 c1
+a2 b2 c2
+…
+aM bM cM
+The first line contains two integers N and M separated by a space.
+For each of the next M lines, three integers ai, bi, and ci are given separated by a space.
+Constraints
+2 ≤ N ≤ 105
+1 ≤ M ≤ 2 × 105
+1 ≤ ai < N
+1 ≤ bi ≤ N
+1 ≤ ci ≤ 109
+ai ≠ bi
+Output
+If G</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An integer \(N\) (2 ≤ \(N\) ≤ 10^5), representing some quantity or size.
+An integer \(M\) (1 ≤ \(M\) ≤ 2 × 10^5), representing some quantity or size.
+A list of \(M\) tuples, where each tuple contains three integers \((X, Y, Z)\):
+- \(X\) (1 ≤ \(X\) < \(N\)), representing some quantity.
+- \(Y\) (1 ≤ \(Y\) ≤ \(N\)), representing some quantity.
+- \(Z\) (1 ≤ \(Z\) ≤ 10^9), representing some quantity.
+- \(X\) ≠ \(Y\).
+
+### Example Input:
+
+```
+4 3
+1 2 5
+2 3 8
+3 4 10
+```
+
+### Function Signature:
+Write a function f(N, M, bridges) that takes in the input.
+```python
+def f(N: int, M: int, bridges: List[Tuple[int, int, int]]):
+    '''
+    N: an integer
+    M: an integer
+    bridges: a list of tuples, each containing three integers
+    '''
+```</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Certainly! Here is a test case generator for the given problem statement "Problem D: One-Time Path":
+
+```python
+import random
+
+def generate_test_case():
+    # Constraints
+    N = random.randint(2, 10**5)
+    M = random.randint(1, 2 * 10**5)
+    
+    bridges = []
+    for _ in range(M):
+        ai = random.randint(1, N-1)
+        bi = random.randint(1, N)
+        while bi == ai:
+            bi = random.randint(1, N)
+        ci = random.randint(1, 10**9)
+        bridges.append((ai, bi, ci))
+    
+    return N, M, bridges
+
+def print_test_case():
+    N, M, bridges = generate_test_case()
+    print(N, M)
+    for bridge in bridges:
+        print(bridge[0], bridge[1], bridge[2])
+
+# Example usage:
+print_test_case()
+```
+
+This generator function creates a random test case for the problem. It ensures:
+1. The number of islands \(N\) is between 2 and \(10^5\).
+2. The number of bridges \(M\) is between 1 and \(2 \times 10^5\).
+3. For each bridge, \(a_i\) is an integer between 1 and \(N-1\), \(b_i\) is an integer between 1 and \(N\) (but not equal to \(a_i\)), and \(c_i\) is an integer between 1 and \(10^9\).
+
+The function `print_test_case` can be called to generate and print a random test case in the required format.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    N, M = map(int, fh.readline().strip().split())
+    bridges = []
+    for _ in range(M):
+        a, b, c = map(int, fh.readline().strip().split())
+        bridges.append((a, b, c))
+    return N, M, bridges
+
+# if __name__ == "__main__":
+#     input_path = sys.argv[1]
+#     with open(input_path, 'r') as fh:
+#         N, M, bridges = extract_arguments(fh)
+#         f(N, M, bridges)</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

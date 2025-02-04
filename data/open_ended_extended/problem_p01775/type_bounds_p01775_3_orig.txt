@@ -1,0 +1,3 @@
+Types: n: int, m: int, k: int, p: int, x_i: int, y_i: int, w_i: int, s_j: int, t_j: int  
+Ranges: 3 ≤ n ≤ 1,000, 1 ≤ m ≤ 2,000, 1 ≤ k ≤ 6, 1 ≤ p ≤ n, 1 ≤ x_i ≤ n, 1 ≤ y_i ≤ n, 1 ≤ w_i ≤ 1,000, 1 ≤ s_j ≤ n, 1 ≤ t_j ≤ n  
+Addtl Info: The graph is a simple undirected graph without self-loops or multiple edges. No mail or delivery destinations at the starting vertex or any vertex where mail has fallen.

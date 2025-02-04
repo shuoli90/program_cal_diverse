@@ -1,0 +1,39 @@
+Here's a test case generator for the given problem statement "A: Information Search":
+
+```python
+import random
+
+def tcgen():
+    # Generate lengths of the posting lists n and m
+    n = random.randint(1, 2 * 10**5)
+    m = random.randint(1, 2 * 10**5)
+    
+    # Generate posting lists a and b
+    a = sorted(random.sample(range(1, 10**9 + 1), n))
+    b = sorted(random.sample(range(1, 10**9 + 1), m))
+    
+    return n, m, a, b
+
+# Example usage
+if __name__ == "__main__":
+    n, m, a, b = tcgen()
+    print(n, m)
+    print(" ".join(map(str, a)))
+    print(" ".join(map(str, b)))
+```
+
+### Explanation:
+1. **Lengths of Posting Lists (`n` and `m`)**:
+   - Randomly generate `n` and `m` within the given constraints (1 ≤ `n`, `m` ≤ 2 × 10^5).
+
+2. **Posting Lists (`a` and `b`)**:
+   - Use `random.sample` to generate unique values within the range [1, 10^9] for both lists `a` and `b`.
+   - Ensure the lists are sorted, as per the problem constraints.
+
+3. **Return Values**:
+   - The function returns the lengths of the lists (`n`, `m`) and the actual lists (`a`, `b`).
+
+4. **Example Usage**:
+   - The provided example usage demonstrates how to call the `tcgen` function and print the generated test case.
+
+By running this script, you can generate random test cases that follow the given problem constraints.

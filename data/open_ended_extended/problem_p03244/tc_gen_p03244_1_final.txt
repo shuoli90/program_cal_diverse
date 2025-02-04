@@ -1,0 +1,25 @@
+Sure! Here's a test case generator for the given problem statement:
+
+```python
+import random
+
+def generate_test_case():
+    # Generate a random even number for N within the given constraints.
+    N = random.randint(1, 5 * 10**4) * 2
+    
+    # Generate a list of integers for V with values within the given constraints.
+    V = [random.randint(1, 10**5) for _ in range(N)]
+    
+    return N, V
+
+def format_test_case(N, V):
+    return f"{N}\n{' '.join(map(str, V))}\n"
+
+# Example Usage
+N, V = generate_test_case()
+print(format_test_case(N, V))
+```
+
+This generator will create random test cases that adhere to the problem constraints. The `generate_test_case` function ensures that the length of the sequence `N` is even, and the elements of the sequence `V` are within the range [1, 100000]. The `format_test_case` function formats the generated test case in the required input format.
+
+You can use the generated test cases to test the solution to the problem.

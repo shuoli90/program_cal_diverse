@@ -1,0 +1,85 @@
+Sure, I can help you with creating a test case generator for the problem "Help the Princess!". Here's a Python function that generates random test cases for this problem:
+
+```python
+import random
+
+def generate_grid(H, W):
+    grid = [['#' for _ in range(W)] for _ in range(H)]
+
+    # Place the princess (@)
+    while True:
+        pr, pc = random.randint(0, H-1), random.randint(0, W-1)
+        if grid[pr][pc] == '#':
+            grid[pr][pc] = '@'
+            break
+
+    # Place the escape hatch (%)
+    while True:
+        er, ec = random.randint(0, H-1), random.randint(0, W-1)
+        if grid[er][ec] == '#':
+            grid[er][ec] = '%'
+            break
+
+    # Place soldiers ($)
+    num_soldiers = random.randint(0, H * W // 4)
+    for _ in range(num_soldiers):
+        while True:
+            sr, sc = random.randint(0, H-1), random.randint(0, W-1)
+            if grid[sr][sc] == '#':
+                grid[sr][sc] = '$'
+                break
+
+    # Make some cells empty (.)
+    num_empty_cells = random.randint(H * W // 4, H * W // 2)
+    for _ in range(num_empty_cells):
+        while True:
+            er, ec = random.randint(0, H-1), random.randint(0, W-1)
+            if grid[er][ec] == '#':
+                grid[er][ec] = '.'
+                break
+
+    # Ensure there's a path from the princess to the escape hatch
+    grid[pr][pc] = '.'
+    grid[er][ec] = '.'
+    if pr < er:
+        for r in range(pr, er + 1):
+            grid[r][pc] = '.'
+    else:
+        for r in range(er, pr + 1):
+            grid[r][pc] = '.'
+    if pc < ec:
+        for c in range(pc, ec + 1):
+            grid[er][c] = '.'
+    else:
+        for c in range(ec, pc + 1):
+            grid[er][c] = '.'
+    grid[pr][pc] = '@'
+    grid[er][ec] = '%'
+
+    return grid
+
+def tcgen():
+    H = random.randint(2, 200)
+    W = random.randint(2, 200)
+
+    grid = generate_grid(H, W)
+
+    # Convert grid to list of strings
+    grid_str = [''.join(row) for row in grid]
+
+    return H, W, grid_str
+
+# Test the generator
+if __name__ == "__main__":
+    H, W, grid = tcgen()
+    print(H, W)
+    for row in grid:
+        print(row)
+```
+
+This function generates a random test case for the problem "Help the Princess!". It ensures that:
+1. The grid dimensions \(H\) and \(W\) are between 2 and 200.
+2. The grid contains the princess (`@`), the escape hatch (`%`), and zero or more soldiers (`$`).
+3. There is a guaranteed path from the princess to the escape hatch without soldiers.
+
+You can run this script to generate random test cases for your problem.

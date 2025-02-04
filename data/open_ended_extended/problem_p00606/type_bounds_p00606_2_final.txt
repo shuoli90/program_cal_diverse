@@ -1,0 +1,3 @@
+Types: n: int, s: str, t: str, b: str
+Ranges: 0 ≤ n ≤ 15, s in {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I'}, t in {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I'}, b in {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I'}
+Addtl Info: s, t, b are distinct; Judge data includes at most 100 data sets

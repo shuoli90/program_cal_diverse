@@ -1,0 +1,42 @@
+An integer Time (0 ≤ Time ≤ 100).
+An integer R (0 < R < 30000).
+An integer L (2 ≤ L ≤ 20).
+L triplets of integers MaryXi, MaryYi, MaryTi where (abs(MaryXi), abs(MaryYi) ≤ 10000) and (0 ≤ MaryTi ≤ Time).
+
+An integer M (2 ≤ M ≤ 20).
+M triplets of integers GeorgeXj, GeorgeYj, GeorgeTj where (abs(GeorgeXj), abs(GeorgeYj) ≤ 10000) and (0 ≤ GeorgeTj ≤ Time).
+
+An integer N (0 ≤ N ≤ 20).
+N quadruplets of integers BlockSXk, BlockSYk, BlockTXk, BlockTYk where (abs(BlockSXk), abs(BlockSYk), abs(BlockTXk), abs(BlockTYk) ≤ 10000).
+
+Each dataset ends with a line containing two zeros.
+
+### Example Input:
+```
+50 100
+2
+50 50 0
+51 51 50
+2
+0 0 0
+1 1 50
+0
+0 0
+```
+
+### Function Signature:
+Write a function f(inputs) that takes in the input.
+```python
+def f(inputs: List[Tuple[int, int, int, List[Tuple[int, int, int]], int, List[Tuple[int, int, int]], int, List[Tuple[int, int, int, int]]]]):
+    '''
+    inputs: a list of tuples, where each tuple contains the following elements:
+        Time: an integer
+        R: an integer
+        L: an integer
+        MaryMoves: a list of L tuples, each tuple containing three integers
+        M: an integer
+        GeorgeMoves: a list of M tuples, each tuple containing three integers
+        N: an integer
+        Obstacles: a list of N tuples, each tuple containing four integers
+    '''
+```

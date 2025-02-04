@@ -1,0 +1,25 @@
+Canonicalized Input Description:
+
+An integer m (1 ≤ m ≤ 16), representing some quantity.
+An integer n (1 ≤ n ≤ 16), representing some quantity.
+A list of m lists, each containing n real numbers (0.000 ≤ number ≤ 1.000) representing probabilities.
+
+### Example Input:
+
+```
+2 3
+0.900 0.500 0.100
+0.500 0.500 0.500
+```
+
+### Function Signature:
+Write a function f(inputs) that takes in the input.
+```python
+def f(inputs: List[Tuple[int, int, List[List[float]]]]):
+    '''
+    inputs: a list of tuples where each tuple contains:
+        an integer m
+        an integer n
+        a list of m lists, each containing n real numbers
+    '''
+```

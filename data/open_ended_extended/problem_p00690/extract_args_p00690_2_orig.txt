@@ -1,0 +1,13 @@
+def extract_arguments(fh):
+    inputs = []
+    while True:
+        line = fh.readline().strip()
+        ns, nl = map(int, line.split())
+        if ns == 0 and nl == 0:
+            break
+        routes = []
+        for _ in range(nl):
+            s1, s2, d = map(int, fh.readline().strip().split())
+            routes.append((s1, s2, d))
+        inputs.append((ns, nl, routes))
+    return inputs

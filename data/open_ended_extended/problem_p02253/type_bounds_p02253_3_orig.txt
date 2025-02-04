@@ -1,0 +1,3 @@
+Types: n: int, s: List[int], t: List[int]
+Ranges: 1 ≤ n ≤ 10^5, 1 ≤ s[i] < t[i] ≤ 10^9 (1 ≤ i ≤ n)
+Addtl Info: None

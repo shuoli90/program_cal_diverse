@@ -1,0 +1,54 @@
+Sure, let's write a test case generator for the problem "Defend the Bases." The generator will create random test cases based on the given constraints. Here is the Python code for the test case generator:
+
+```python
+import random
+
+def tcgen():
+    datasets = []
+    
+    while True:
+        N = random.randint(1, 100)  # Number of troops
+        M = random.randint(1, 100)  # Number of bases
+        
+        troops = []
+        for _ in range(N):
+            x = random.randint(0, 10000)  # x-coordinate of troop
+            y = random.randint(0, 10000)  # y-coordinate of troop
+            v = random.randint(1, 100)    # speed of troop
+            troops.append((x, y, v))
+        
+        bases = []
+        for _ in range(M):
+            x = random.randint(0, 10000)  # x-coordinate of base
+            y = random.randint(0, 10000)  # y-coordinate of base
+            bases.append((x, y))
+        
+        datasets.append((N, M, troops, bases))
+        
+        # Randomly decide whether to stop or add another dataset
+        if random.choice([True, False]):
+            break
+    
+    return datasets
+
+# Generate a test case and format it as expected
+def format_datasets(datasets):
+    formatted_data = ""
+    for dataset in datasets:
+        N, M, troops, bases = dataset
+        formatted_data += f"{N} {M}\n"
+        for troop in troops:
+            formatted_data += f"{troop[0]} {troop[1]} {troop[2]}\n"
+        for base in bases:
+            formatted_data += f"{base[0]} {base[1]}\n"
+    formatted_data += "0 0\n"
+    return formatted_data
+
+# Example usage
+datasets = tcgen()
+print(format_datasets(datasets))
+```
+
+This script generates test cases for the "Defend the Bases" problem. It randomly decides the number of troops and bases within the specified constraints, assigns random coordinates and speeds to troops, and random coordinates to bases. The generated datasets are formatted as strings in the required input format.
+
+You can run the `tcgen` function to generate a list of datasets and then format them using the `format_datasets` function to get the input in the form suitable for testing. The `print` statement at the end shows how to use these functions to generate and print a test case.

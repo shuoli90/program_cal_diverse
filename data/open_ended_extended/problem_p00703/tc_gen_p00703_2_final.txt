@@ -1,0 +1,50 @@
+Sure! Here's a test case generator for the problem "What is the Number in my Mind?"
+
+```python
+import random
+
+def generate_unique_number(L):
+    digits = random.sample('0123456789', L)
+    return ''.join(digits)
+
+def generate_try_hit_blow(secret_number):
+    L = len(secret_number)
+    try_number = generate_unique_number(L)
+    hit = sum(1 for x, y in zip(secret_number, try_number) if x == y)
+    blow = sum(1 for x in try_number if x in secret_number) - hit
+    return try_number, hit, blow
+
+def tcgen():
+    test_cases = []
+    
+    while True:
+        L = random.randint(4, 10)
+        H = random.randint(1, 10)
+        secret_number = generate_unique_number(L)
+        
+        hints = []
+        for _ in range(H):
+            try_number, hit, blow = generate_try_hit_blow(secret_number)
+            hints.append(f"{try_number} {hit} {blow}")
+        
+        test_cases.append(f"{L} {H}")
+        test_cases.extend(hints)
+
+        # Randomly decide if we should stop generating more hint sets
+        if random.random() < 0.3:
+            break
+    
+    test_cases.append("0 0")
+    
+    return '\n'.join(test_cases)
+
+# Example usage
+if __name__ == "__main__":
+    print(tcgen())
+```
+
+This script will generate test cases for the given problem statement. The function `tcgen` creates multiple hint sets until a random stopping condition is met (approximately 30% chance to stop after each set). Each hint set has a random length for the number of digits (between 4 and 10) and a random number of hints (between 1 and 10).
+
+The function `generate_unique_number` ensures that the generated numbers have unique digits, and `generate_try_hit_blow` computes the try, hit, and blow values for each hint based on a chosen secret number.
+
+The generated test cases include multiple hint sets and conclude with "0 0" to indicate the end of input, as specified in the problem statement.

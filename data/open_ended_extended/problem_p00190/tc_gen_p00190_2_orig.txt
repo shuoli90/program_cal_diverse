@@ -1,0 +1,68 @@
+Sure, I can help you create a test case generator for the "11 Puzzle" problem. The generator will create random configurations of the puzzle and ensure that the constraints are respected. Here is a possible implementation of the test case generator:
+
+```python
+import random
+
+def generate_random_puzzle():
+    puzzle = list(range(12))
+    random.shuffle(puzzle)
+    # Convert the flat list into the 11-puzzle format
+    return [
+        [puzzle[0]],                 # First row
+        puzzle[1:4],                 # Second row
+        puzzle[4:9],                 # Third row
+        puzzle[9:],                  # Fourth row
+    ]
+
+def puzzle_to_string(puzzle):
+    # Convert the 11-puzzle format into a string
+    return "\n".join(" ".join(map(str, row)) for row in puzzle)
+
+def tcgen():
+    num_datasets = random.randint(1, 100)
+    datasets = []
+
+    for _ in range(num_datasets):
+        puzzle = generate_random_puzzle()
+        datasets.append(puzzle_to_string(puzzle))
+    
+    # Append the termination line
+    datasets.append("-1")
+    
+    return "\n\n".join(datasets)
+
+# Example of generating test cases
+if __name__ == "__main__":
+    print(tcgen())
+```
+
+### Explanation:
+1. **generate_random_puzzle()**: This function creates a shuffled list of integers from 0 to 11 and arranges them in the format required by the 11-puzzle problem.
+2. **puzzle_to_string()**: This function converts the puzzle from a list of lists to a formatted string as needed for the input.
+3. **tcgen()**: This function generates a random number of datasets (between 1 and 100), converts each dataset to the string format, and then appends the termination line `"-1"`.
+
+### Sample Output:
+The generated test cases will look similar to the following:
+```
+6
+5 1 2
+3 0 7 9 4
+11 8 10
+0
+
+0
+1 2 3
+4 5 6 7 8
+9 10 11
+0
+
+3
+0 9 7
+8 1 5 10 4
+6 11 2
+0
+
+-1
+```
+
+With this test case generator, you can create diverse and random configurations of the 11-puzzle to thoroughly test your solution.

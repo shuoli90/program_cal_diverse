@@ -1,0 +1,24 @@
+An integer H (1 ≤ H ≤ 6), representing some dimension.
+An integer W (1 ≤ W ≤ 6), representing another dimension.
+An integer K (1 ≤ K ≤ HW), representing some quantity.
+A grid of H rows and W columns, where each cell contains a character from the set {'.', '#'}.
+
+### Example Input:
+
+```
+2
+3
+2
+..#
+###
+```
+
+### Function Signature:
+Write a function f(H, W, K, grid) that takes in the input.
+def f(H: int, W: int, K: int, grid: List[str]):
+    '''
+    H: an integer
+    W: an integer
+    K: an integer
+    grid: a list of strings
+    '''

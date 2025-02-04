@@ -1,0 +1,43 @@
+Certainly! Let's create a test case generator for the given problem statement. The task involves generating a list of \(N\) distinct coordinates within the specified range.
+
+Here's the test case generator function in Python:
+
+```python
+import random
+
+def generate_coordinates(N):
+    coordinates = set()
+    while len(coordinates) < N:
+        x = random.randint(-10**17, 10**17)
+        y = random.randint(-10**17, 10**17)
+        coordinates.add((x, y))
+    return list(coordinates)
+
+def tcgen():
+    N = random.randint(1, 10**4)
+    coordinates = generate_coordinates(N)
+    return N, coordinates
+
+# Example usage
+N, coordinates = tcgen()
+print(N)
+for coord in coordinates:
+    print(coord[0], coord[1])
+```
+
+### Explanation:
+1. **generate_coordinates(N)**: This function generates \(N\) distinct coordinates within the range \([-10^{17}, 10^{17}]\).
+   - We use a set to ensure that the coordinates are unique.
+   - We loop until we have \(N\) distinct coordinates.
+   - For each coordinate, random integers are generated for both \(x\) and \(y\) within the specified range.
+   - The generated coordinates are added to the set.
+   - Finally, the set is converted to a list and returned.
+
+2. **tcgen()**: This function generates the full test case.
+   - It first generates a random number \(N\) within the range \([1, 10^4]\).
+   - Then, it calls the `generate_coordinates` function to get \(N\) unique coordinates.
+   - It returns \(N\) and the list of coordinates.
+
+3. **Example usage**: The last part demonstrates how to use the `tcgen()` function to generate and print a test case.
+
+This generator ensures that the constraints are met, and you will get a new random test case each time you run it.

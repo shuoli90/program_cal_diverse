@@ -1,0 +1,3 @@
+Types: S: List[str]
+Ranges: 1 ≤ len(S) ≤ 50, 1 ≤ len(S[i]) ≤ 100, S[i] consists of uppercase and lowercase letters, digits, symbols, and '@'.
+Addtl Info: Consecutive characters encoded with '@' are up to 9 characters.

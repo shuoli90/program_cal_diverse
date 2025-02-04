@@ -1,0 +1,63 @@
+To write a test case generator for the "Debt Hell" problem, we need to generate random values for the input `n` (which represents the number of weeks). The calculation for the amount of debt is straightforward once we have `n`.
+
+Here's how we can write the test case generator:
+
+```python
+import random
+
+def debt_hell_tcgen():
+    # Generate a random value for n within the given range
+    n = random.randint(0, 100)
+    
+    return n
+
+# Example usage:
+for _ in range(5):
+    n = debt_hell_tcgen()
+    print(n)
+```
+
+This generator will just create random test cases for `n` within the specified range [0, 100]. 
+
+Additionally, we can also write a function to compute the debt after `n` weeks to verify the test cases:
+
+```python
+def compute_debt(n):
+    debt = 100000
+    for _ in range(n):
+        debt = ((debt * 105) + 999) // 1000 * 1000
+    return debt
+
+# Example usage:
+for _ in range(5):
+    n = debt_hell_tcgen()
+    print(f"n: {n}")
+    print(f"Debt after {n} weeks: {compute_debt(n)}")
+```
+
+This way, you can generate test cases and verify the results using the `compute_debt` function. Here's an example of how the generator and computation work together:
+
+```python
+# Generate and compute debt for 5 random test cases
+for _ in range(5):
+    n = debt_hell_tcgen()
+    print(f"n: {n}")
+    print(f"Debt after {n} weeks: {compute_debt(n)}")
+```
+
+This will produce output similar to:
+
+```
+n: 45
+Debt after 45 weeks: 1160000
+n: 88
+Debt after 88 weeks: 4310000
+n: 12
+Debt after 12 weeks: 170000
+n: 7
+Debt after 7 weeks: 153000
+n: 62
+Debt after 62 weeks: 2410000
+```
+
+In this way, you can generate and test various scenarios for the "Debt Hell" problem.

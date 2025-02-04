@@ -1,0 +1,11 @@
+def extract_arguments(fh):
+    inputs = []
+    while True:
+        line_a = fh.readline().strip()
+        if not line_a:
+            break
+        line_b = fh.readline().strip()
+        a = list(map(int, line_a.split()))
+        b = list(map(int, line_b.split()))
+        inputs.append((a, b))
+    return inputs

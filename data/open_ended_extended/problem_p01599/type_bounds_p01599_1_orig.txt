@@ -1,0 +1,14 @@
+Types:  
+NAB: int, NBA: int,  
+AB: List[Tuple[int, int, int]],  
+BA: List[Tuple[int, int, int]]  
+
+Ranges:  
+0 ≤ NAB ≤ 50,  
+0 ≤ NBA ≤ 50,  
+1 ≤ Ci ≤ 10,  
+0 ≤ Di < 86400,  
+0 ≤ Ai < 86400  
+
+Addtl Info:  
+NAB + NBA ≤ 50  

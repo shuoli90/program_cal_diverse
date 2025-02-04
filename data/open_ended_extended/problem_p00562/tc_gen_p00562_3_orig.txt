@@ -1,0 +1,67 @@
+Sure, I can help you write a test case generator for the given problem statement. The generator will produce random values for the field dimensions, fatigue increments, number of players, and their initial positions.
+
+Here's the test case generator in Python:
+
+```python
+import random
+
+def tcgen():
+    # Generate random field dimensions H and W
+    H = random.randint(1, 500)
+    W = random.randint(1, 500)
+    
+    # Generate random fatigue increments A, B, and C
+    A = random.randint(0, 10**9)
+    B = random.randint(0, 10**9)
+    C = random.randint(0, 10**9)
+    
+    # Generate random number of players N
+    N = random.randint(2, 100000)
+    
+    # Generate random initial positions for N players
+    players = []
+    for _ in range(N):
+        S_i = random.randint(0, H)
+        T_i = random.randint(0, W)
+        players.append((S_i, T_i))
+    
+    # Ensure (S_1, T_1) != (S_N, T_N)
+    while players[0] == players[-1]:
+        players[-1] = (random.randint(0, H), random.randint(0, W))
+    
+    return H, W, A, B, C, N, players
+
+# Function to print test case in the required format
+def print_test_case(H, W, A, B, C, N, players):
+    print(H, W)
+    print(A, B, C)
+    print(N)
+    for player in players:
+        print(player[0], player[1])
+
+# Generate a test case
+H, W, A, B, C, N, players = tcgen()
+
+# Print the generated test case
+print_test_case(H, W, A, B, C, N, players)
+```
+
+### Explanation
+
+1. **Field Dimensions (H, W):**
+   - Randomly generate the height (H) and width (W) of the field within the constraints \(1 \leq H, W \leq 500\).
+
+2. **Fatigue Increments (A, B, C):**
+   - Randomly generate the values for fatigue increments \(A, B, C\) within the constraints \(0 \leq A, B, C \leq 1,000,000,000\).
+
+3. **Number of Players (N):**
+   - Randomly generate the number of players \(N\) within the constraints \(2 \leq N \leq 100,000\).
+
+4. **Initial Positions of Players:**
+   - For each player, generate a random initial position \((S_i, T_i)\) within the field dimensions \(0 \leq S_i \leq H\) and \(0 \leq T_i \leq W\).
+   - Ensure that the initial position of player 1 is not the same as the initial position of player \(N\).
+
+5. **Output:**
+   - The function `print_test_case` formats and prints the generated test case data.
+
+This generator ensures that all constraints are met and provides a diverse range of test cases for the problem. You can run the script multiple times to generate different test cases.

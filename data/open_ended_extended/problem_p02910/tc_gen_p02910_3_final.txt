@@ -1,0 +1,29 @@
+Certainly! Below is a test case generator for the described problem statement. The generator will create random strings composed of the characters 'L', 'R', 'U', and 'D', ensuring they meet the constraints.
+
+```python
+import random
+
+def tcgen():
+    length = random.randint(1, 100)  # Length of the string S between 1 and 100 (inclusive)
+    chars = ['L', 'R', 'U', 'D']
+    S = ''.join(random.choice(chars) for _ in range(length))
+    return S
+
+# Example usage:
+if __name__ == "__main__":
+    # Generate and print a test case
+    print(tcgen())
+```
+
+This function `tcgen` will generate a test case by creating a random string `S` of length between 1 and 100, where each character is chosen from the set {'L', 'R', 'U', 'D'}. You can run this function to generate different test cases for your problem.
+
+Here's how you might use this generator to produce multiple test cases:
+
+```python
+if __name__ == "__main__":
+    # Generate and print 10 test cases
+    for _ in range(10):
+        print(tcgen())
+```
+
+This will print 10 different strings that adhere to the problem's constraints, which you can then use to test your solution.

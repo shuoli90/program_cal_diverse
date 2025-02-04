@@ -1,0 +1,15 @@
+Problem F: The Castle
+After successfully defeating the enemy who was lying in wait, the rabbit was able to lead the hero into the enemy's castle. After freeing the cats who were trapped in the castle's underground dungeon, some of them agreed to help the hero using their own abilities.
+According to the cats, the hero must pass through the first n rooms in order to reach the demon king who is located deep within the castle. However, there is an enemy waiting in each room and they must be defeated one by one in order to proceed. For each of the m cats who have become allies, the success rate for defeating each enemy in each room is known. The hero will send the cats one by one toward the back of the castle. Since each room cannot be passed through until the enemy within it is defeated, if a cat is defeated by an enemy in a certain room, the next cat will have to fight that enemy.
+The dispatched cat will advance until it is defeated by the enemy, but it is possible to determine which enemy defeated the dispatched cat each time, allowing the hero to decide which cat to send next. How can the probability of defeating all the enemies that the cats will face be maximized?
+Input
+The first line of the input contains two integers, m and n, separated by a space. 1 ≤ m, n ≤ 16.
+Following that, m lines are given. Each line contains n real numbers representing the probability that a cat will win against the enemy. The j-th real number on the i+1-th line represents the probability of winning against the enemy in the j-th room. Probabilities are given up to three decimal places.
+Output
+Determine the optimal order of cats such that the probability of defeating all the enemies that the cats will face is maximized, and output that probability. The output may contain an error, but the error should be within 10-9 of the true value.
+Sample Input 1
+2 3
+0.900 0.500 0.100
+0.500 0.500 0.500
+Sample Output 1
+0.372500000000

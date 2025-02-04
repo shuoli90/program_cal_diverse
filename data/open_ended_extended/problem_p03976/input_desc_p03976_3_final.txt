@@ -1,0 +1,30 @@
+Canonicalized Input Description:
+
+An integer N (1 ≤ N ≤ 10^4), representing some quantity or size.
+An integer K (1 ≤ K ≤ 26), representing some other quantity or size.
+A list of N strings, each string has a length between 1 and 10 and consists of capital letters.
+
+### Example Input:
+
+```
+9
+3
+APPLE
+ANT
+ATCODER
+BLOCK
+BULL
+BOSS
+CAT
+DOG
+EGG
+```
+
+### Function Signature:
+Write a function f(N, K, P) that takes in the input.
+def f(N: int, K: int, P: List[str]):
+    ''' 
+    N: an integer
+    K: an integer
+    P: a list of strings
+    '''

@@ -1,0 +1,14 @@
+An integer N (1 ≤ N ≤ 86).
+
+### Example Input:
+
+```
+15
+```
+
+### Function Signature:
+Write a function f(N) that takes in the input.
+def f(N: int):
+    '''
+    N: an integer
+    '''

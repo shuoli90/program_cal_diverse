@@ -1,0 +1,42 @@
+To create a test case generator for the given problem statement "Grid", we need to generate random values for the grid size and the coordinates within the given constraints. Below is the test case generator function for the problem:
+
+```python
+import random
+
+def tcgen():
+    # Generate random values for r and c within the constraint 1 ≤ r, c ≤ 1,000
+    r = random.randint(1, 1000)
+    c = random.randint(1, 1000)
+    
+    # Generate random values for coordinates a1, a2, b1, b2 within the grid size
+    a1 = random.randint(0, r - 1)
+    a2 = random.randint(0, c - 1)
+    b1 = random.randint(0, r - 1)
+    b2 = random.randint(0, c - 1)
+    
+    return r, c, a1, a2, b1, b2
+
+# Example of how to use the test case generator
+for _ in range(5):  # Generate 5 test cases
+    test_case = tcgen()
+    print(test_case)
+```
+
+### Explanation:
+1. **Grid Size (r, c)**:
+   - Randomly generate `r` and `c` within the range [1, 1000].
+2. **Coordinates (a1, a2, b1, b2)**:
+   - Randomly generate `a1` and `b1` within the range [0, r-1].
+   - Randomly generate `a2` and `b2` within the range [0, c-1].
+
+### Example Output:
+Executing the test case generator might give you output like:
+```
+(352, 982, 129, 501, 345, 741)
+(87, 451, 3, 220, 85, 300)
+(999, 999, 0, 0, 998, 998)
+(500, 500, 100, 100, 400, 400)
+(10, 20, 0, 19, 9, 0)
+```
+
+This ensures that the generated test cases are within the specified constraints and provide adequate coverage for various grid sizes and coordinate positions.

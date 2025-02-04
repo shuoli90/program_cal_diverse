@@ -1,0 +1,24 @@
+An integer \( n \) (1 ≤ \( n \) ≤ 100), representing some quantity or size.
+An integer \( w \) (10 ≤ \( w \) ≤ 50), representing an interval width.
+A list of \( n \) integers \( v \) (0 ≤ \( v_i \) ≤ 100), where each integer is a value.
+
+### Example Input:
+
+```
+3 50
+100
+0
+100
+```
+
+### Function Signature:
+Write a function `f(inputs)` that takes in the input.
+```python
+def f(inputs: List[Tuple[int, int, List[int]]]):
+    '''
+    inputs: a list of tuples, each containing:
+        - an integer n
+        - an integer w
+        - a list of n integers v
+    '''
+```

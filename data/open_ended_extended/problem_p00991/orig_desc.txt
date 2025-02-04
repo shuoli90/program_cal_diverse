@@ -1,0 +1,27 @@
+Problem B: Grid
+Given two coordinates (a1,a2) and (b1,b2) on a two-dimensional grid of size r × c, find the number of shortest paths from the first coordinate to the second coordinate. Moving from one cell to an adjacent cell (one step) costs one unit, and moving from cell (e,c-1) to cell (e,0), or from cell (r-1,f) to cell (0,f), also costs one unit.
+Input
+The input is given in the following format:
+r c a1 a2 b1 b2
+The input satisfies the following constraints:
+1 ≤ r, c ≤ 1,000
+0 ≤ a1, b1 < r
+0 ≤ a2, b2 < c
+Output
+Output the number of shortest paths from the first coordinate to the second coordinate modulo 100,000,007.
+Sample Input 1
+4 4 0 0 3 3
+Sample Output 1
+2
+Sample Input 2
+4 4 0 0 1 1
+Sample Output 2
+2
+Sample Input 3
+2 3 0 0 1 2
+Sample Output 3
+4
+Sample Input 4
+500 500 0 0 200 200
+Sample Output 4
+34807775

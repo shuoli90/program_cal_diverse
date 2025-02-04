@@ -1,0 +1,67 @@
+Wall Painting
+  Here stands a wall made of a number of vertical panels. The panels are not painted yet.
+  You have a number of robots each of which can paint panels in a single color, either red, green, or blue. Each of the robots, when activated, paints panels between a certain position and another certain position in a certain color. The panels painted and the color to paint them are fixed for each of the robots, but which of them are to be activated and the order of their activation can be arbitrarily decided.
+  You’d like to have the wall painted to have a high aesthetic value. Here, the aesthetic value of the wall is defined simply as the sum of aesthetic values of the panels of the wall, and the aesthetic value of a panel is defined to be:
+ 0, if the panel is left unpainted.
+ The bonus value specified, if it is painted only in a single color, no matter how many times it is painted.
+ The penalty value specified, if it is once painted in a color and then overpainted in one or more different colors.
+Input
+  The input consists of a single test case of the following format.
+$n$ $m$ $x$ $y$
+$c_1$ $l_1$ $r_1$
+.
+.
+.
+$c_m$ $l_m$ $r_m$
+  Here, $n$ is the number of the panels ($1 \leq n \leq 10^9$) and $m$ is the number of robots ($1 \leq m \leq 2 \times 10^5$). $x$ and $y$ are integers between $1$ and $10^5$, inclusive. $x$ is the bonus value and $-y$ is the penalty value. The panels of the wall are consecutively numbered $1$ through $n$. The $i$-th robot, when activated, paints all the panels of numbers $l_i$ through $r_i$ ($1 \leq l_i \leq r_i \leq n$) in color with color number $c_i$ ($c_i \in \{1, 2, 3\}$). Color numbers 1, 2, and 3 correspond to red, green, and blue, respectively.
+Output
+  Output a single integer in a line which is the maximum achievable aesthetic value of the wall.
+Sample Input 1 
+8 5 10 5
+1 1 7
+3 1 2
+1 5 6
+3 1 4
+3 6 8
+Sample Output 1
+70
+Sample Input 2 
+26 3 9 7
+1 11 13
+3 1 11
+3 18 26
+Sample Output 2
+182
+Sample Input 3 
+21 10 10 5
+1 10 21
+3 4 16
+1 1 7
+3 11 21
+3 1 16
+3 3 3
+2 1 17
+3 5 18
+1 7 11
+2 3 14
+Sample Output 3
+210
+Sample Input 4 
+21 15 8 7
+2 12 21
+2 1 2
+3 6 13
+2 13 17
+1 11 19
+3 3 5
+1 12 13
+3 2 2
+1 12 15
+1 5 17
+1 2 3
+1 1 9
+1 8 12
+3 8 9
+3 2 9
+Sample Output 4
+153

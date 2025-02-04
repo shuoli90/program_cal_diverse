@@ -1,0 +1,40 @@
+Sure, I can write a test case generator for the given problem statement. Here is the Python code that generates test cases for this problem:
+
+```python
+import random
+import string
+
+def random_string(length):
+    return ''.join(random.choices(string.ascii_lowercase, k=length))
+
+def tcgen():
+    # Minimum and Maximum constraints
+    N = random.randint(1, 2 * 10**5)
+    
+    # Generating a list of random strings
+    S = [random_string(random.randint(1, 10)) for _ in range(N)]
+    
+    return N, S
+
+def print_test_case():
+    N, S = tcgen()
+    print(N)
+    for s in S:
+        print(s)
+
+# Example usage
+if __name__ == "__main__":
+    print_test_case()
+```
+
+### Explanation:
+1. **random_string(length)**: Generates a random string of lowercase English letters of given length.
+2. **tcgen()**: 
+   - Determines the number of lottery draws \( N \) within the given constraints.
+   - Generates a list of \( N \) random strings, each string having a length between 1 and 10.
+3. **print_test_case()**: 
+   - Calls `tcgen()` to generate a test case.
+   - Prints the number of draws \( N \).
+   - Prints each string \( S_i \) on a new line.
+
+This generator ensures that the constraints and input format are correctly followed. You can run the `print_test_case()` function to print a randomly generated test case to the standard output.

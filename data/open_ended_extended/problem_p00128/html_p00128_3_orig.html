@@ -1,0 +1,185 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p00128 - Generation 3</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p00128 - Generation 3</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>Soroban
+At the request of a friend who has just started learning soroban, you are asked to create a program that displays the arrangement of soroban beads. Create a program that takes a number as input and outputs the arrangement of soroban beads. However, assume that the number of digits to be displayed on the soroban is 5, and that the configuration of the beads for numbers 0 to 9 is represented by '*' (half-width asterisk), ' ' (half-width space), and '=' (half-width equal sign) as follows:
+Input
+Multiple test cases are given. Each test case consists of a single line containing a number (integer) of up to 5 digits.
+The number of test cases does not exceed 1024.
+Output
+For each test case, output the arrangement of soroban beads. Put a blank line between the test cases.
+Sample Input
+2006
+1111
+Output for the Sample Input
+**** 
+    *
+=====
+ *  *
+**** 
+* ***
+*****
+*****
+*****
+=====
+ ****
+*    
+*****
+*****
+*****
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>Canonicalized Input Description:
+
+An integer T (1 ≤ T ≤ 1024), representing the number of test cases.
+Each test case is an integer X (0 ≤ X ≤ 99999), representing a number up to 5 digits.
+
+### Example Input:
+
+```
+2
+2006
+1111
+```
+
+### Function Signature:
+
+Write a function f(T, test_cases) that takes in the input.
+```python
+def f(T: int, test_cases: List[int]):
+    '''
+    T: an integer
+    test_cases: a list of integers
+    '''
+```</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Sure, here's a test case generator for the given Soroban problem:
+
+```python
+import random
+
+def generate_soroban_digit(digit):
+    soroban_patterns = {
+        '0': ["**** ", "    *", "=====", "*****", "*****"],
+        '1': ["* ***", "    *", "=====", "*****", "*****"],
+        '2': ["** **", "    *", "=====", "*****", "*****"],
+        '3': ["*** *", "    *", "=====", "*****", "*****"],
+        '4': ["**** ", "    *", "=====", "**** ", "    *"],
+        '5': ["**** ", "*   *", "=====", "**** ", "*   *"],
+        '6': ["**** ", "**  *", "=====", "**** ", "**  *"],
+        '7': ["**** ", "*** *", "=====", "**** ", "*** *"],
+        '8': ["**** ", "**** ", "=====", "**** ", "**** "],
+        '9': ["**** ", "* ***", "=====", "**** ", "* ***"]
+    }
+    
+    return soroban_patterns[digit]
+
+def print_soroban_number(number):
+    beads = ["", "", "", "", ""]
+    for digit in number:
+        patterns = generate_soroban_digit(digit)
+        for i in range(5):
+            beads[i] += patterns[i] + " "
+    for row in beads:
+        print(row.strip())
+
+def tcgen():
+    num_cases = random.randint(1, 1024)
+    cases = []
+    
+    for _ in range(num_cases):
+        number = str(random.randint(0, 99999)).zfill(5)
+        cases.append(number)
+    
+    return cases
+
+def main():
+    test_cases = tcgen()
+    for case in test_cases:
+        print(case)
+    print("\n")
+    
+    for case in test_cases:
+        print_soroban_number(case)
+        print("\n")
+
+if __name__ == "__main__":
+    main()
+```
+
+Here's what the script does:
+1. **`generate_soroban_digit(digit)`**: This function takes a single digit as input and returns the soroban bead pattern for that digit.
+2. **`print_soroban_number(number)`**: This function takes a 5-digit number as input and constructs the soroban bead arrangement by concatenating the patterns of each digit.
+3. **`tcgen()`**: This function generates a random number of test cases (between 1 and 1024). Each test case is a random number with up to 5 digits.
+4. **`main()`**: This function generates the test cases and prints both the numbers and their corresponding soroban bead arrangements.
+
+This generator should help you create a variety of test cases for the Soroban problem.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    inputs = []
+    for line in fh:
+        line = line.strip()
+        if line:
+            inputs.append(int(line))
+    return inputs</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

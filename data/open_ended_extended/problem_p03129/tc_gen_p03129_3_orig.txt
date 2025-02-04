@@ -1,0 +1,33 @@
+To generate test cases for the given problem statement, we need to ensure that the inputs adhere to the constraints provided and cover different edge cases for the values of \(N\) and \(K\). Here's a test case generator:
+
+```python
+import random
+
+def tcgen():
+    N = random.randint(1, 100)
+    K = random.randint(1, N)  # K should be at most N to make the problem feasible
+    return N, K
+
+# Example usage
+if __name__ == "__main__":
+    for _ in range(5):  # Generate 5 test cases to demonstrate the function
+        N, K = tcgen()
+        print(f"Test case: N = {N}, K = {K}")
+```
+
+This generator function will randomly select values for \(N\) and \(K\) within the given constraints.
+
+### Usage Explanation
+- `random.randint(1, 100)` generates a random integer between 1 and 100 for \(N\).
+- `random.randint(1, N)` ensures that \(K\) is always less than or equal to \(N\).
+
+### Example Output
+```
+Test case: N = 57, K = 23
+Test case: N = 88, K = 65
+Test case: N = 44, K = 35
+Test case: N = 12, K = 7
+Test case: N = 99, K = 99
+```
+
+This ensures a variety of test cases covering different scenarios, from minimal values to maximum edge cases for both \(N\) and \(K\).

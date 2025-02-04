@@ -1,0 +1,5 @@
+def extract_arguments(fh):
+    NAB, NBA = map(int, fh.readline().strip().split())
+    trains_AB = [tuple(map(int, fh.readline().strip().split())) for _ in range(NAB)]
+    trains_BA = [tuple(map(int, fh.readline().strip().split())) for _ in range(NBA)]
+    return NAB, NBA, trains_AB, trains_BA

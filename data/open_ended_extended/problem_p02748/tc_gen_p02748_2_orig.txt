@@ -1,0 +1,44 @@
+To generate test cases for the problem statement, we need to create random values for the inputs \(A\), \(B\), and \(M\), and then generate appropriate values for the arrays \(a\), \(b\), and tuples \((x, y, c)\). Here is a Python function that will generate such test cases:
+
+```python
+import random
+
+def tcgen():
+    # Constraints
+    A = random.randint(1, 10**5)
+    B = random.randint(1, 10**5)
+    M = random.randint(1, 10**5)
+    
+    # Generating the prices of refrigerators and microwaves
+    a = [random.randint(1, 10**5) for _ in range(A)]
+    b = [random.randint(1, 10**5) for _ in range(B)]
+    
+    # Generating the discount tickets
+    tickets = []
+    for _ in range(M):
+        x = random.randint(1, A)
+        y = random.randint(1, B)
+        c = random.randint(1, a[x - 1] + b[y - 1])  # c_i must be less than or equal to a[x_i] + b[y_i]
+        tickets.append((x, y, c))
+    
+    return A, B, M, a, b, tickets
+
+# Function to format the test case for printing
+def format_test_case(A, B, M, a, b, tickets):
+    result = []
+    result.append(f"{A} {B} {M}")
+    result.append(" ".join(map(str, a)))
+    result.append(" ".join(map(str, b)))
+    for x, y, c in tickets:
+        result.append(f"{x} {y} {c}")
+    return "\n".join(result)
+
+# Example usage
+A, B, M, a, b, tickets = tcgen()
+test_case = format_test_case(A, B, M, a, b, tickets)
+print(test_case)
+```
+
+This function `tcgen()` generates random values for \(A\), \(B\), and \(M\) within the given constraints and populates the arrays \(a\), \(b\), and the list of discount tickets. The helper function `format_test_case()` formats these values into the required input structure.
+
+To use the test case generator, simply call `tcgen()` to create a new test case, and `format_test_case()` to print it in the required format. This will help you generate a variety of test cases for your competitive programming problem.

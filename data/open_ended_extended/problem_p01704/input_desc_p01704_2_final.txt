@@ -1,0 +1,49 @@
+An integer T, representing the number of datasets. Each dataset consists of:
+- An integer N (1 ≤ N ≤ 10^5), representing some quantity or size.
+- An integer X (1 ≤ X ≤ 100), representing a cost factor.
+- N lines, each containing four integers: 
+  - Y (−100 ≤ Y ≤ 100), a value related to the quantity.
+  - Z (1 ≤ Z ≤ 100), another cost factor.
+  - W (1 ≤ W ≤ 100), another value related to the quantity.
+  - V (−100 ≤ V ≤ 100), a threshold value.
+
+The end of the input is indicated by a line containing a zero.
+
+### Example Input:
+
+```
+3
+10
+4 3 4 10
+5 4 5 20
+6 5 6 30
+3
+7
+-4 3 4 -10
+5 4 5 20
+6 5 6 30
+3
+1
+-4 3 4 -10
+-5 4 5 -20
+6 5 6 30
+3
+10
+-4 3 4 -10
+-5 4 5 -20
+-6 5 6 -30
+0
+```
+
+### Function Signature:
+Write a function f(datasets) that processes the input list of datasets.
+```python
+def f(datasets: List[Tuple[int, int, List[Tuple[int, int, int, int]]]]):
+    '''
+    datasets: a list of tuples, each representing a dataset
+        - each tuple contains:
+            - an integer N
+            - an integer X
+            - a list of N tuples, each containing four integers (Y, Z, W, V)
+    '''
+```

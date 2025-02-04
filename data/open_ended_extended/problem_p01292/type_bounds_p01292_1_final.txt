@@ -1,0 +1,13 @@
+Types: Time: int, R: int, L: int, Mary: List[Tuple[int, int, int]], M: int, George: List[Tuple[int, int, int]], N: int, Blocks: List[Tuple[int, int, int, int]]
+Ranges: 
+- 0 ≤ Time ≤ 100
+- 0 < R < 30000
+- 2 ≤ L ≤ 20
+- Mary[i][0], Mary[i][1]: -10000 ≤ MaryXi, MaryYi ≤ 10000
+- Mary[i][2]: 0 ≤ MaryTi ≤ Time
+- 2 ≤ M ≤ 20
+- George[j][0], George[j][1]: -10000 ≤ GeorgeXj, GeorgeYj ≤ 10000
+- George[j][2]: 0 ≤ GeorgeTj ≤ Time
+- 0 ≤ N ≤ 20
+- Blocks[k][0], Blocks[k][1], Blocks[k][2], Blocks[k][3]: -10000 ≤ BlockSXk, BlockSYk, BlockTXk, BlockTYk ≤ 10000
+Addtl Info: Coordinates are integers; time constraints ensure MaryTi < MaryTi+1 and GeorgeTj < GeorgeTj+1; no obstacles touch or cross each other.

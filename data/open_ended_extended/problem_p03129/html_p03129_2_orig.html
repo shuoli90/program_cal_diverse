@@ -1,0 +1,132 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p03129 - Generation 2</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p03129 - Generation 2</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>
+Score : 100 points
+Problem StatementDetermine if we can choose K different integers between 1 and N (inclusive) so that no two of them differ by 1.
+Constraints
+1\leq N,K\leq 100
+N and K are integers.
+InputInput is given from Standard Input in the following format:
+N K
+OutputIf we can choose K integers as above, print YES; otherwise, print NO.
+Sample Input 13 2
+Sample Output 1YES
+We can choose 1 and 3.
+Sample Input 25 5
+Sample Output 2NO
+Sample Input 331 10
+Sample Output 3YES
+Sample Input 410 90
+Sample Output 4NO
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>Canonicalized Input Description:
+
+An integer N (1 ≤ N ≤ 100), representing some quantity or size.
+An integer K (1 ≤ K ≤ 100), representing some quantity or size.
+
+### Example Input:
+
+```
+13 2
+```
+
+### Function Signature:
+Write a function f(N, K) that takes in the input.
+def f(N: int, K: int):
+    '''
+    N: an integer
+    K: an integer
+    '''</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Certainly! Here is the test case generator for the given problem statement:
+
+```python
+import random
+
+def tcgen():
+    # Constraints
+    N = random.randint(1, 100)
+    K = random.randint(1, 100)
+    
+    return N, K
+
+# Example usage
+if __name__ == "__main__":
+    test_cases = [tcgen() for _ in range(10)]
+    for i, (N, K) in enumerate(test_cases):
+        print(f"Sample Input {i+1}")
+        print(f"{N} {K}")
+        # Optionally, you can also call the solution function to print the expected output.
+        # For now, we just print the inputs.
+```
+
+This generator will create random test cases for the problem ensuring that values of \(N\) and \(K\) are within the given constraints (1 ≤ \(N, K\) ≤ 100). Each call to `tcgen()` will return a tuple (N, K) representing a test case.
+
+You can run this script and it will generate multiple sample inputs, which you can use to test your solution.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    N, K = map(int, fh.readline().strip().split())
+    return N, K</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

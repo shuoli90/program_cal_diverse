@@ -1,0 +1,57 @@
+Problem K: Donuts Purchase
+Problem
+Rafui has nothing to do during her vacation and she somehow wants to eat donuts, so she decided to go around the stores and buy donuts.
+There is one donut store in each town, and all donut stores are closed on odd days.
+Because Rafui has preferences for donuts, the satisfaction gained from each store is different.
+So Rafui decided to act optimally to get as much satisfaction as possible.
+In the world where Rafui lives, there are n towns numbered from 0 to n-1, and they are connected by m roads.
+Each road is one-way, and Rafui can move from town ai to town bi.
+At first, Rafui is in town 0 on an even day.
+Rafui moves to another town by crossing one road once a day without staying in the town.
+When Rafui arrives at town i on a certain day, she purchases one donut at the store if it is open and gains satisfaction ci.
+She can visit the same town any number of times, but can only purchase once at each store.
+Find the maximum sum of satisfaction obtained by Rafui when she acts optimally until she cannot get any more satisfaction.
+Input
+n m
+c0 ... cn−1
+a0 b0
+...
+am−1 bm−1
+All input is given as an integer.
+The first line contains the number of towns n and the number of roads m separated by a space.
+The second line contains the satisfaction Rafui can get if she buys a donut at the store in town i.
+The next m lines give the information of the roads, represented by ai and bi separated by a space.
+Constraints
+The input satisfies the following conditions.
+1 ≤ n ≤ 105
+0 ≤ m ≤ min(n×(n−1),105)
+0 ≤ ci ≤ 1000
+0 ≤ ai,bi ≤ n − 1
+There are no self-loops or multiple edges.
+Output
+Print the maximum sum of satisfaction on one line.
+Sample Input 1
+2 1
+1 2
+0 1
+Sample Output 1
+1
+Sample Input 2
+5 5
+1 1 1 1 1
+0 1
+1 2
+2 3
+3 0
+3 4
+Sample Output 2
+3
+Sample Input 3
+4 4
+1 1 1 1
+0 1
+1 2
+2 0
+2 3
+Sample Output 3
+4

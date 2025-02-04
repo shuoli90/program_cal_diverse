@@ -1,0 +1,5 @@
+Types: m: int, n: int, s: List[Union[int, str]]
+
+Ranges: 2 ≤ m ≤ 1000, 1 ≤ n ≤ 10000, s[i] in {1 ≤ int ≤ n, "Fizz", "Buzz", "FizzBuzz"}
+
+Addtl Info: No more than 50 datasets, end of input indicated by "0 0"

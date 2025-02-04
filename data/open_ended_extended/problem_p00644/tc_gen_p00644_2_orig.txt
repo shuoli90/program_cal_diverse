@@ -1,0 +1,74 @@
+To generate test cases for the problem "Winter Bells," we need to create a generator that produces random valid inputs fitting the problem's constraints. Here's a Python function to generate such test cases:
+
+```python
+import random
+
+def generate_test_case():
+    # Constraints
+    max_n = 100
+    max_m = max_n * (max_n - 1) // 2  # Maximum edges in a complete graph
+    max_weight = 9999
+    max_p = 100
+    
+    # Randomly choose n, m, p
+    n = random.randint(3, max_n)  # Number of nodes
+    m = random.randint(n-1, min(max_m, n * (n - 1) // 2))  # Number of edges
+    p = random.randint(1, max_p)  # Number of children
+    
+    edges = set()
+    
+    # Generate a connected graph
+    for i in range(1, n):
+        u = i
+        v = random.randint(0, i - 1)
+        weight = random.randint(1, max_weight)
+        edges.add((u, v, weight))
+    
+    # Add additional edges to make it more complex
+    while len(edges) < m:
+        u = random.randint(0, n - 1)
+        v = random.randint(0, n - 1)
+        if u != v:
+            weight = random.randint(1, max_weight)
+            edges.add((u, v, weight))
+    
+    edges = list(edges)
+    
+    children_nodes = [random.randint(0, n - 1) for _ in range(p)]
+    
+    # Transform to the required output format
+    input_data = f"{n} {m} {p}\n"
+    input_data += "\n".join(f"{u} {v} {weight}" for u, v, weight in edges) + "\n"
+    input_data += "\n".join(str(c) for c in children_nodes) + "\n"
+    
+    return input_data
+
+def generate_multiple_test_cases(number_of_cases):
+    test_cases = []
+    for _ in range(number_of_cases):
+        test_cases.append(generate_test_case())
+    return test_cases
+
+# Example usage
+if __name__ == "__main__":
+    random.seed(42)  # For reproducibility
+    num_cases = 5
+    test_cases = generate_multiple_test_cases(num_cases)
+    for i, test_case in enumerate(test_cases):
+        print(f"Test case {i+1}:")
+        print(test_case)
+        print()
+```
+
+This function:
+1. Generates a random number of nodes (`n`) between 3 and 100.
+2. Ensures at least `n-1` edges to keep the graph connected and generates up to `min(max_m, n * (n - 1) // 2)` edges.
+3. Randomly selects the number of children (`p`).
+4. Creates a connected graph by adding edges such that every node is reachable.
+5. Ensures no duplicate edges and no self-loops.
+6. Randomly assigns children nodes from the graph nodes.
+7. Formats the test case according to the specified input format.
+
+The `generate_multiple_test_cases` function can generate multiple test cases and is useful for batch testing.
+
+Make sure to adjust `random.seed()` or remove it if you want different outputs each time you run the generator.

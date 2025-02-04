@@ -1,0 +1,18 @@
+An integer N (1 ≤ N ≤ 2 × 10^5), representing some quantity or size.
+A list of integers P of size N, which is a permutation of the integers from 1 to N.
+
+### Example Input:
+```
+4
+1 3 2 4
+```
+
+### Function Signature:
+Write a function f(N, P) that takes in the input.
+```python
+def f(N: int, P: List[int]):
+    '''
+    N: an integer
+    P: a list of integers
+    '''
+```

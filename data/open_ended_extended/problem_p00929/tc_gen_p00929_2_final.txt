@@ -1,0 +1,54 @@
+Sure, I can create a test case generator for the given problem statement "There is No Alternative". The test case generator will produce random inputs based on the constraints provided in the problem statement.
+
+Here's a Python function to generate random test cases:
+
+```python
+import random
+
+def tcgen():
+    # Generate N: Number of islands
+    N = random.randint(3, 500)
+    
+    # Generate M: Number of possible bridges
+    M = random.randint(N-1, min(50000, N * (N - 1) // 2))
+    
+    bridges = set()
+    while len(bridges) < M:
+        S = random.randint(1, N - 1)
+        D = random.randint(S + 1, N)
+        C = random.randint(1, 10000)
+        bridges.add((S, D, C))
+
+    bridges = list(bridges)
+    
+    # Format the output
+    test_case = f"{N} {M}\n"
+    for S, D, C in bridges:
+        test_case += f"{S} {D} {C}\n"
+        
+    return test_case.strip()
+
+# Example of generating a test case
+print(tcgen())
+```
+
+### Explanation:
+
+1. **N Generation**:
+    - `N` is generated randomly between 3 and 500 (inclusive), which represents the number of islands.
+
+2. **M Generation**:
+    - `M` is generated randomly between `N-1` and `min(50000, N * (N - 1) // 2)` (inclusive), representing the number of possible bridges. This ensures there are enough bridges to potentially connect all islands.
+
+3. **Bridges Generation**:
+    - A set of bridges is generated to ensure no duplicates. Each bridge is represented by a tuple `(S, D, C)` where:
+        - \( S \) is a starting island (randomly chosen between 1 and \( N-1 \)).
+        - \( D \) is a destination island (randomly chosen between \( S+1 \) and \( N \)).
+        - \( C \) is the cost of building the bridge (randomly chosen between 1 and 10000).
+    - This loop continues until we have `M` unique bridges.
+
+4. **Output Formatting**:
+    - The output is formatted as a single string with the first line containing `N` and `M`.
+    - Each subsequent line contains `S`, `D`, and `C` for each bridge.
+
+This generator will create various test cases that can be used to thoroughly test the solution for the given problem, ensuring that it handles a wide range of inputs within the specified constraints.

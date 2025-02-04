@@ -1,0 +1,30 @@
+Decrypting the Princess's Code
+A brave and boyish poor princess from a country secretly obtained an ancient document written in Japanese while she was out. The princess who could read Japanese immediately began reading the document. Surprisingly, the document revealed the location of an ancient treasure. However, the location of the treasure was written in code, and it was not easy to understand. So, the princess ordered you, her handmaiden, to help decipher the message.
+You investigated day and night and discovered that a shortest secret substring (SSS) plays an important role in decoding. SSS is a string that contains all N given words as substrings and has the smallest possible length. You were given the task of finding SSS from the given N words.
+Input
+The input consists of multiple datasets. The first line of each dataset contains an integer N (1≤N≤10), which is the number of words in the dataset. The next N lines contain the words. Input containing only a line of 0 indicates the end of the input.
+The input words contain only lowercase letters of the alphabet and have a maximum length of 10.
+Output
+For each dataset, output SSS on one line. If there are multiple SSS, output the one that comes first in dictionary order.
+Sample Input
+4
+apple
+length
+things
+thin
+2
+icp
+cpc
+3
+zeta
+eta
+alphabet
+2
+until
+till
+0
+Sample Output
+applengthings
+icpc
+zetalphabet
+untill

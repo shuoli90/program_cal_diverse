@@ -1,0 +1,21 @@
+Kannon-Do
+There is a Kannon-Do (a temple dedicated to the goddess of mercy, Kannon) on the mountain behind Ichiro's house. There are 30 steps from the base to the Kannon-Do, and Ichiro goes to the Kannon-Do to play almost every day. Ichiro can climb up to three steps with one step. While playing, Ichiro noticed that there are many ways to climb the steps (various numbers of steps to skip).
+Therefore, he decided to climb up the steps in 10 different ways every day and try all the ways. However, as a mathematician, you should know that this will take Ichiro's entire life.
+To convince Ichiro that his plan is impossible, write a program that takes the number of steps n as input and outputs the number of years it would take for Ichiro to climb all the steps in 10 different ways per day. Assume that a year has 365 days. If at least one day is necessary, it is counted as one year. If there are 365 days, it is one year, and if there are 366 days, it is two years.
+Input
+The input is a sequence of multiple datasets. The end of the input is indicated by a single zero line.
+For each dataset, a single integer n (1 ≤ n ≤ 30) representing the number of steps is given on a line.
+There are no more than 30 datasets.
+Output
+For each dataset, output the number of years (an integer) required for Ichiro to climb all the steps in all 10 ways on a single line.
+Sample Input
+1
+10
+20
+25
+0
+Output for the Sample Input
+1
+1
+34
+701

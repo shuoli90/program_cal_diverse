@@ -1,0 +1,42 @@
+To generate test cases for the problem "Palindrome", we need to create random inputs that satisfy the given constraints. Here's a Python function to generate such test cases:
+
+```python
+import random
+import string
+
+def generate_random_string(length):
+    return ''.join(random.choices(string.ascii_lowercase, k=length))
+
+def tcgen():
+    N = random.randint(1, 1000)
+    L = random.randint(1, 30)
+    
+    strings = [generate_random_string(L) for _ in range(N)]
+    
+    return N, L, strings
+
+# Example usage
+N, L, strings = tcgen()
+print(N, L)
+for s in strings:
+    print(s)
+```
+
+### Explanation:
+1. **generate_random_string(length)**: This helper function generates a random string of lowercase English letters of the specified length `L`.
+2. **tcgen()**: This function generates the required test case.
+   - It first selects random values for `N` (number of strings) and `L` (length of each string) within the given constraints.
+   - It then generates `N` random strings each of length `L` using the `generate_random_string` function.
+   - Finally, it returns `N`, `L`, and the list of strings.
+
+### Example Output
+Running the `tcgen()` function will give an output like this:
+
+```
+983 17
+abcdeabcdeabcde
+fghijfghijfghij
+...
+```
+
+This output will be a randomly generated test case that you can use to test the solution to the problem. You can generate as many test cases as needed by calling the `tcgen()` function multiple times.

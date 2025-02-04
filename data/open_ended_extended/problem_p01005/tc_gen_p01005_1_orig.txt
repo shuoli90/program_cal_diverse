@@ -1,0 +1,66 @@
+Sure, here's a test case generator for the given problem statement, "The Humans Braving the Invaders":
+
+```python
+import random
+
+def generate_query(L):
+    query_type = random.randint(0, 4)
+    if query_type == 0:
+        return "0"
+    elif query_type == 1:
+        d = random.randint(1, 10**9)
+        return f"1 {d}"
+    elif query_type == 2:
+        k = random.randint(1, 10**9)
+        return f"2 {k}"
+    elif query_type == 3:
+        x = random.randint(0, L)
+        r = random.randint(0, 10**9)
+        return f"3 {x} {r}"
+    elif query_type == 4:
+        k = random.randint(1, 10**9)
+        return f"4 {k}"
+
+def tcgen():
+    datasets = []
+    num_datasets = random.randint(1, 3)
+    
+    for _ in range(num_datasets):
+        Q = random.randint(1, 100000)
+        L = random.randint(1, 10**9)
+        queries = [generate_query(L) for _ in range(Q)]
+        datasets.append((Q, L, queries))
+    
+    return datasets
+
+def print_test_case(datasets):
+    for Q, L, queries in datasets:
+        print(Q, L)
+        for query in queries:
+            print(query)
+        print("0 0")
+
+if __name__ == "__main__":
+    random.seed(42)  # For reproducibility
+    datasets = tcgen()
+    print_test_case(datasets)
+```
+
+### Explanation
+
+1. **generate_query(L)**: This function generates a single random query. It selects a query type (0 through 4) and generates appropriate random values for each type.
+    - `0`: Invader appears.
+    - `1 d`: All invaders move `d` closer to the base.
+    - `2 k`: Sniper rifle attack on the k-th invader.
+    - `3 x r`: Grenade launch attack at distance `x` with radius `r`.
+    - `4 k`: Distance query for the k-th closest invader.
+
+2. **tcgen()**: This function generates multiple datasets (between 1 and 3). For each dataset:
+    - It randomly determines `Q` (number of queries) and `L` (distance from the base).
+    - Then, it generates `Q` random queries using the `generate_query(L)` function.
+
+3. **print_test_case(datasets)**: This function prints the generated datasets in the required format.
+
+4. **Main Execution**: The main block sets a random seed for reproducibility, generates the test cases, and prints them.
+
+This generator will create random but valid test cases that you can use to test your solution for the problem "The Humans Braving the Invaders".

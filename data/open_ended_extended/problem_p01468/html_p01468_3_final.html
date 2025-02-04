@@ -1,0 +1,208 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p01468 - Generation 3</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p01468 - Generation 3</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>Problem Statement
+You are given $N$ line segments $s_1, s_2, ..., s_N$. Find the minimum value of dist$(s_i, s_j)$, for $1 \leq i,j \leq N, i \ne j$.
+Here, dist$(s_i, s_j)$ is defined as
+$\sqrt{(x_i-x_j)^2 + (y_i-y_j)^2}$, where $(x_i,y_i)$ is a point on $s_i$ and $(x_j,y_j)$ is a point on $s_j$
+Below is an illustration of the Sample Input dataset.
+Input
+The input is in the following format. All given numbers are integers.
+N
+x_{1,1} y_{1,1} x_{1,2} y_{1,2}
+x_{2,1} y_{2,1} x_{2,2} y_{2,2}
+...
+x_{N,1} y_{N,1} x_{N,2} y_{N,2}
+Each $s_i$ is a line segment with endpoints $(x_{i,1}, y_{i,1})$ and $(x_{i,2}, y_{i,2})$.
+Constraints
+$2 \leq N \leq 10^5$
+$0 \leq x_{i,j}, y_{i,j} \leq 100$
+$(x_{i,1}, y_{i,1}) \neq (x_{i,2}, y_{i,2})$
+Output
+Print the minimum value in one line. The output value must not contain an error greater than $10^{-5}$.
+Sample Input 1
+4
+2 0 2 25
+0 30 15 20
+16 20 5 15
+23 0 23 30
+Output for the Sample Input 1
+0.41380294
+Sample Input 2
+6
+0 0 0 5
+1 3 3 5
+6 0 6 10
+7 4 10 4
+11 1 11 3
+7 0 10 0
+Output for the Sample Input 2
+1.00000000
+Sample Input 3
+6
+5 5 5 45
+7 45 19 45
+7 30 19 30
+21 34 21 44
+26 45 36 28
+45 45 26 5
+Output for the Sample Input 3
+0.83553169
+Sample Input 4
+11
+10 10 10 90
+10 90 35 90
+10 60 35 60
+35 60 35 90
+40 10 40 90
+37 45 60 45
+60 10 60 45
+65 10 65 90
+65 90 90 90
+65 60 90 65
+90 60 90 90
+Output for the Sample Input 4
+0.00000000
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An integer N (2 ≤ N ≤ 10^5), representing some quantity or size.
+A list of N tuples, where each tuple contains four integers: (x1, y1, x2, y2). Each integer is between 0 and 100. For every tuple, (x1, y1) is not equal to (x2, y2).
+
+### Example Input:
+
+```
+4
+2 0 2 25
+0 30 15 20
+16 20 5 15
+23 0 23 30
+```
+
+### Function Signature:
+Write a function f(N, segments) that takes in the input.
+```python
+def f(N: int, segments: List[Tuple[int, int, int, int]]):
+    '''
+    N: an integer
+    segments: a list of tuples, where each tuple contains four integers
+    '''
+```</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Sure! Below is a test case generator for the given problem statement:
+
+```python
+import random
+
+def generate_line_segment():
+    while True:
+        x1 = random.randint(0, 100)
+        y1 = random.randint(0, 100)
+        x2 = random.randint(0, 100)
+        y2 = random.randint(0, 100)
+        if (x1, y1) != (x2, y2):
+            return x1, y1, x2, y2
+
+def tcgen():
+    N = random.randint(2, 10**5)
+    segments = [generate_line_segment() for _ in range(N)]
+    
+    return N, segments
+
+# Example usage:
+N, segments = tcgen()
+print(N)
+for seg in segments:
+    print(*seg)
+```
+
+### Explanation:
+
+1. **Function `generate_line_segment()`**:
+    - This function generates a valid line segment by ensuring that the two endpoints are not the same. It keeps generating random coordinates for the endpoints until they are different.
+   
+2. **Function `tcgen()`**:
+    - This function generates a random value for \( N \) within the given constraints (2 ≤ \( N \) ≤ 10^5).
+    - It then generates \( N \) line segments using the `generate_line_segment()` function.
+    - Finally, it returns \( N \) and the list of segments.
+
+### Example Usage:
+When you run the `tcgen()` function, it will output a random test case in the format specified by the problem statement. Here is an example of how it might look:
+
+```plaintext
+4
+67 2 45 14
+32 81 99 0
+12 34 56 78
+10 20 30 40
+```
+
+This output corresponds to \( N = 4 \) and the four generated line segments. You can use this function to generate multiple test cases for testing your solution to the problem.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    N = int(fh.readline().strip())
+    segments = []
+    for _ in range(N):
+        x1, y1, x2, y2 = map(int, fh.readline().strip().split())
+        segments.append(((x1, y1), (x2, y2)))
+    return N, segments</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

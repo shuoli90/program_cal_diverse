@@ -1,0 +1,77 @@
+To generate test cases for the given problem statement, we need to create datasets that match the input format described while ensuring that all constraints are respected. Here is the test case generator for the problem:
+
+```python
+import random
+
+def tcgen():
+    # Generate random datasets
+    datasets = []
+    num_datasets = random.randint(1, 100)
+
+    for _ in range(num_datasets):
+        # Number of flower seeds N (1 ≤ N ≤ 10^5)
+        N = random.randint(1, 10**5)
+        
+        # Cost of watering one liter pw (1 ≤ pw ≤ 100)
+        pw = random.randint(1, 100)
+        
+        # List to store flower data
+        flowers = []
+        
+        for _ in range(N):
+            # vw_i (-100 ≤ vw_i ≤ 100)
+            vw_i = random.randint(-100, 100)
+            
+            # pf_i (1 ≤ pf_i ≤ 100)
+            pf_i = random.randint(1, 100)
+            
+            # vf_i (1 ≤ vf_i ≤ 100)
+            vf_i = random.randint(1, 100)
+            
+            # th_i (-100 ≤ th_i ≤ 100)
+            th_i = random.randint(-100, 100)
+            
+            flowers.append((vw_i, pf_i, vf_i, th_i))
+        
+        datasets.append((N, pw, flowers))
+
+    return datasets
+
+def format_datasets(datasets):
+    formatted_data = []
+    for dataset in datasets:
+        N, pw, flowers = dataset
+        formatted_data.append(str(N))
+        formatted_data.append(str(pw))
+        for flower in flowers:
+            formatted_data.append(" ".join(map(str, flower)))
+    
+    formatted_data.append("0")  # End of input indicator
+    return "\n".join(formatted_data)
+
+# Example usage
+if __name__ == "__main__":
+    datasets = tcgen()
+    formatted_data = format_datasets(datasets)
+    print(formatted_data)
+```
+
+### Explanation:
+
+1. **Function `tcgen()`**:
+   - Generates a random number of datasets (`num_datasets`), each between 1 and 100.
+   - For each dataset:
+     - Generates a random number of flower seeds \(N\) between 1 and \(10^5\).
+     - Generates a random cost of watering one liter \(pw\) between 1 and 100.
+     - For each of the \(N\) flowers, generates:
+       - \(vw_i\) (water effect) between -100 and 100.
+       - \(pf_i\) (cost of \(i\)-th fertilizer) between 1 and 100.
+       - \(vf_i\) (vitality change by \(i\)-th fertilizer) between 1 and 100.
+       - \(th_i\) (threshold for blooming) between -100 and 100.
+   - Collects and returns all datasets.
+
+2. **Function `format_datasets()`**:
+   - Takes the generated datasets and formats them into the required input format as a single string.
+   - Adds an end-of-input indicator (`"0"`) at the end.
+
+You can run this script to generate random test cases that you can use to test your solution.

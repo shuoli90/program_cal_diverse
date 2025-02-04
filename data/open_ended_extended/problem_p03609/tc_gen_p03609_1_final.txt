@@ -1,0 +1,19 @@
+Sure! Here's a test case generator for the given problem statement:
+
+```python
+import random
+
+def tcgen():
+    # Constraints
+    X = random.randint(1, 10**9)
+    t = random.randint(1, 10**9)
+    
+    return X, t
+
+# Example of generating a test case
+if __name__ == "__main__":
+    X, t = tcgen()
+    print(X, t)
+```
+
+This generator function will produce random values for \(X\) and \(t\) within the given constraints (1 ≤ \(X\) ≤ 10^9 and 1 ≤ \(t\) ≤ 10^9). When you run the code, it will print a randomly generated test case in the format required by the problem statement.

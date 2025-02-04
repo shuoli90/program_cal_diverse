@@ -1,0 +1,245 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p01089 - Generation 3</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p01089 - Generation 3</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>
+Deadlock Detection
+In concurrent processing environments, a deadlock is an undesirable
+situation where two or more threads are mutually waiting for others to
+finish using some resources and cannot proceed further.
+Your task is to detect whether there is any possibility of deadlocks
+when multiple threads try to execute a given instruction sequence concurrently.
+The instruction sequence consists of characters 'u' or digits from
+'0' to '9', and each of them represents one instruction.
+10 threads are trying to execute the same single instruction sequence.
+Each thread starts its execution from the beginning of the sequence and
+continues in the given order, until all the instructions are
+executed.
+There are 10 shared resources called locks from L0 to L9.
+A digit k is the instruction for acquiring the lock Lk.
+After one of the threads acquires a lock Lk,
+it is kept by the thread until it is released by the instruction 'u'.
+While a lock is kept, none of the threads, including one already acquired it,
+cannot newly acquire the same lock Lk.
+Precisely speaking, the following steps are repeated until all threads
+finish.
+One thread that has not finished yet is chosen arbitrarily.
+The chosen thread tries to execute the next instruction that is not executed yet.
+If the next instruction is a digit k and
+		the lock Lk is not kept by any thread,
+		the thread executes the instruction k and acquires Lk.
+If the next instruction is a digit k and
+		the lock Lk is already kept by some thread,
+		the instruction k is not executed.
+If the next instruction is 'u',
+		the instruction is executed and all the locks currently kept by the thread
+		are released.
+After executing several steps, sometimes, it falls into the situation 
+that the next instructions
+of all unfinished threads are for acquiring already kept locks.
+Once such a situation happens, no instruction will ever be executed no 
+matter which thread is chosen. This situation is called a deadlock.
+There are instruction sequences for which threads can never reach a
+deadlock regardless of the execution order.
+Such instruction sequences are called safe.
+Otherwise, in other words, if there exists one or more execution orders
+that lead to a deadlock, the execution sequence is called unsafe.
+Your task is to write a program that tells whether the given instruction sequence is safe or unsafe.
+Input
+The input consists of at most 50 datasets, each in the following format.
+n
+s
+n is the length of the instruction sequence and s is a string representing the sequence.
+n is a positive integer not exceeding 10,000.
+Each character of s is either a digit ('0' to '9') or 'u',
+and s always ends with 'u'.
+The end of the input is indicated by a line with a zero.
+Output
+For each dataset, if the given instruction sequence is safe, then print "SAFE" in a line.
+If it is unsafe, then print "UNSAFE" in a line.
+Sample Input
+11
+01u12u0123u
+6
+01u10u
+8
+201u210u
+9
+01u12u20u
+3
+77u
+12
+9u8u845u954u
+0
+Output for the Sample Input
+SAFE
+UNSAFE
+SAFE
+UNSAFE
+UNSAFE
+UNSAFE
+The second input "01u10u" may possibly cause a deadlock.  After one
+thread has executed the initial four instructions "01u1", the
+thread keeps only one lock L1.  If another thread executes the first
+instruction '0' at this time, this thread acquires L0.  Then, the
+first thread tries to acquire L0, already kept by the second
+thread, while the second thread tries to acquire L1, kept by the
+first thread; This leads to a deadlock.
+ →
+ →
+Figure 1: Why the Sample Input 2 "01u10u" is unsafe.
+Contrarily, the third input "201u210u" is safe.
+If one thread had executed up to "201u21" and another to "20", then
+one may think it would lead to a deadlock, but this
+can never happen because no two threads can simultaneously keep L2.
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An integer n (1 ≤ n ≤ 10,000), representing some quantity or size.
+A string s of length n, where each character is either a digit ('0' to '9') or 'u'. The string always ends with 'u'.
+
+### Example Input:
+
+```
+11
+01u12u0123u
+```
+
+### Function Signature:
+Write a function f(inputs) that takes in the input as a list of tuples.
+def f(inputs: List[Tuple[int, str]]):
+    '''
+    inputs: a list of tuples, each containing an integer and a string
+    '''</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>To generate test cases for the "Deadlock Detection" problem, we'll write a function that creates random instruction sequences according to the given constraints. Each sequence will contain a mix of digits ('0' to '9') and 'u', and will always end with 'u'. Additionally, we'll ensure the number of datasets is varied and adheres to the provided constraints.
+
+Here is the Python code to generate such test cases:
+
+```python
+import random
+import string
+
+def generate_instruction_sequence(n):
+    # Generate a random sequence of digits and 'u'
+    sequence = []
+    for _ in range(n - 1):  # n-1 because the last character must be 'u'
+        char = random.choice(string.digits + 'u')
+        sequence.append(char)
+    sequence.append('u')  # Ensure the sequence ends with 'u'
+    return ''.join(sequence)
+
+def tcgen():
+    datasets = []
+    num_datasets = random.randint(1, 50)  # Generate between 1 and 50 datasets
+
+    for _ in range(num_datasets):
+        n = random.randint(1, 10000)
+        s = generate_instruction_sequence(n)
+        datasets.append((n, s))
+    
+    # Add the terminating zero
+    datasets.append((0, ""))
+
+    return datasets
+
+# Example usage:
+def print_test_cases():
+    test_cases = tcgen()
+    for n, s in test_cases:
+        if n == 0:
+            print(n)
+        else:
+            print(n)
+            print(s)
+
+# Uncomment the following line to print generated test cases
+# print_test_cases()
+```
+
+### Explanation
+1. **generate_instruction_sequence(n):**
+   - This function generates a random instruction sequence of length `n`.
+   - It ensures the sequence ends with 'u'.
+   - The rest of the sequence is filled with randomly chosen characters from digits ('0' to '9') and 'u'.
+
+2. **tcgen():**
+   - This function generates a random number of datasets (between 1 and 50).
+   - For each dataset, it generates a random sequence length `n` (between 1 and 10,000) and a corresponding instruction sequence.
+   - It appends a terminating zero dataset to indicate the end of input.
+
+3. **print_test_cases():**
+   - This function is used to print the generated test cases in the required format.
+   - It iterates over the generated datasets and prints them appropriately.
+   - Uncomment the call to `print_test_cases()` to print the generated test cases.
+
+This generator will help in creating diverse test cases for the "Deadlock Detection" problem, ensuring a thorough testing process.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    datasets = []
+    while True:
+        n = int(fh.readline().strip())
+        if n == 0:
+            break
+        s = fh.readline().strip()
+        datasets.append((n, s))
+    return datasets</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

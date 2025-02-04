@@ -1,0 +1,20 @@
+
+Score : 100 points
+Problem StatementTakahashi is distributing N balls to K persons.
+If each person has to receive at least one ball, what is the maximum possible difference in the number of balls received between the person with the most balls and the person with the fewest balls?
+Constraints
+1 \leq K \leq N \leq 100
+All values in input are integers.
+InputInput is given from Standard Input in the following format:
+N K
+OutputPrint the maximum possible difference in the number of balls received.
+Sample Input 13 2
+Sample Output 11
+The only way to distribute three balls to two persons so that each of them receives at least one ball is to give one ball to one person and give two balls to the other person.
+Thus, the maximum possible difference in the number of balls received is 1.
+Sample Input 23 1
+Sample Output 20
+We have no choice but to give three balls to the only person, in which case the difference in the number of balls received is 0.
+Sample Input 38 5
+Sample Output 33
+For example, if we give 1, 4, 1, 1, 1 balls to the five persons, the number of balls received between the person with the most balls and the person with the fewest balls would be 3, which is the maximum result.

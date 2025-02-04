@@ -1,0 +1,46 @@
+Sure, let's create a test case generator for the problem "Memory Match."
+
+The generator will need to produce multiple datasets, each consisting of an even number \( N \) between 2 and 1000. The input ends with a zero, which is not part of the actual datasets.
+
+Here's the test case generator code:
+
+```python
+import random
+
+def tcgen():
+    # A function to generate a single dataset
+    def generate_dataset():
+        N = random.choice([2 * i for i in range(1, 501)])  # Ensure N is even
+        return N
+    
+    # Generate a list of datasets
+    datasets = []
+    num_datasets = random.randint(1, 10)  # Number of datasets to generate, can be adjusted
+    
+    for _ in range(num_datasets):
+        datasets.append(generate_dataset())
+    
+    # Append the terminating zero
+    datasets.append(0)
+    
+    return datasets
+
+# Example usage:
+test_case = tcgen()
+for n in test_case:
+    print(n)
+```
+
+### Explanation:
+
+1. **`generate_dataset` function**:
+    - This function generates a single dataset value \( N \), ensuring it is an even number between 2 and 1000. It does this by choosing a random integer \( i \) between 1 and 500 and then multiplying by 2.
+
+2. **`tcgen` function**:
+    - Generates a list of random datasets by calling `generate_dataset` a random number of times (between 1 and 10 in this example, but you can adjust this range as needed).
+    - Adds a terminating zero at the end of the list to indicate the end of the input.
+
+3. **Example usage**:
+    - Calls `tcgen` to generate the test case and prints each value in the resulting list, including the terminating zero.
+
+This generator will produce random valid inputs as specified by the problem statement, ensuring that all conditions are met.

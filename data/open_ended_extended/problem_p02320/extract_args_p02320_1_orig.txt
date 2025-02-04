@@ -1,0 +1,16 @@
+def extract_arguments(fh):
+    # Read the first line for N and W
+    N, W = map(int, fh.readline().strip().split())
+    # Initialize the list to hold the tuples (value, weight, limit) for each item
+    items = []
+    # Read the next N lines for the items
+    for _ in range(N):
+        v, w, m = map(int, fh.readline().strip().split())
+        items.append((v, w, m))
+    return N, W, items
+
+# if __name__ == "__main__":
+#     input_path = sys.argv[1]
+#     with open(input_path, 'r') as fh:
+#         N, W, items = extract_arguments(fh)
+#         f(N, W, items)

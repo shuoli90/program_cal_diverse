@@ -1,0 +1,48 @@
+Certainly! Here's a test case generator for the problem statement described:
+
+```python
+import random
+import string
+
+def generate_string(length):
+    return ''.join(random.choices(string.ascii_lowercase, k=length))
+
+def tcgen():
+    # Length of string S
+    S_len = random.randint(1, 10**5)
+    S = generate_string(S_len)
+    
+    # Number of operations N
+    N = random.randint(1, 10**5)
+    
+    operations = []
+    for _ in range(N):
+        L = random.randint(1, S_len)
+        R = random.randint(L, S_len)
+        operations.append((L, R))
+    
+    return S, N, operations
+
+# Function to print the generated test case in the required format
+def print_test_case(S, N, operations):
+    print(S)
+    print(N)
+    for L, R in operations:
+        print(L, R)
+        
+# Example usage
+S, N, operations = tcgen()
+print_test_case(S, N, operations)
+```
+
+### Explanation:
+1. **generate_string(length)**: This function generates a random string of lowercase English letters of a given length.
+2. **tcgen()**: 
+    - Generates a random length for the string \( S \) between 1 and \( 10^5 \).
+    - Generates the random string \( S \) using the `generate_string` function.
+    - Generates a random number \( N \) for the number of operations between 1 and \( 10^5 \).
+    - For each operation, generates two random integers \( L \) and \( R \) such that \( 1 \leq L \leq R \leq |S| \).
+3. **print_test_case(S, N, operations)**:
+    - Prints the string \( S \), the number \( N \), and the list of operations in the required format.
+
+This generator will create random test cases that adhere to the constraints of the problem. You can run this code to generate a test case and print it in the format specified in the problem statement.

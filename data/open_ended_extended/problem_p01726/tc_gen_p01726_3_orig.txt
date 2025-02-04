@@ -1,0 +1,38 @@
+Sure! Below is a test case generator function for the given problem statement:
+
+```python
+import random
+import string
+
+def generate_random_string(length, chars=string.ascii_letters):
+    return ''.join(random.choice(chars) for _ in range(length))
+
+def tcgen():
+    # Length of S (1 ≤ |S| ≤ 300,000)
+    len_S = random.randint(1, 300000)
+    
+    # Length of T' (1 ≤ |T'| ≤ |S|)
+    len_T_prime = random.randint(1, len_S)
+    
+    # Generate random string S
+    S = generate_random_string(len_S)
+    
+    # Generate random string T'
+    T_prime = generate_random_string(len_T_prime)
+
+    return S, T_prime
+
+# Example usage of the test case generator
+if __name__ == "__main__":
+    S, T_prime = tcgen()
+    print("S:", S)
+    print("T':", T_prime)
+```
+
+This test case generator function does the following:
+1. Randomly selects the length of the string `S` within the given constraints (1 to 300,000).
+2. Randomly selects the length of the string `T'` such that it is no greater than the length of `S`.
+3. Generates a random string `S` of the selected length consisting of uppercase and lowercase letters.
+4. Generates a random string `T'` of the selected length consisting of uppercase and lowercase letters.
+
+You can use this function to generate random test cases for the problem. The generated test cases will be in line with the given constraints and will help in testing the solution thoroughly.

@@ -1,0 +1,39 @@
+FizzBuzz
+There is a game that uses numbers called "Fizz Buzz". This game is played by multiple players who count up numbers from 1 in turn, and each player says only one number that the previous player said. At that time, if it is divisible by 3, say "Fizz", if it is divisible by 5, say "Buzz", and if it is divisible by both, say "FizzBuzz" instead of the number. For example, the first 16 statements are as follows.
+    1, 2, Fizz, 4, Buzz, Fizz, 7, 8, Fizz, Buzz, 11, Fizz, 13, 14, FizzBuzz, 16, ...
+  Taro decided to play "Fizz Buzz" with his friends. Taro and his friends decided on the following rule. 
+  "The person who made a mistake drops out. The next person starts from the number after the wrong number. That is, if you say 1, 2, 3, you made a mistake with 3, so you start with 4 next." 
+They play the game according to this rule, but because they are not used to the game, they may not notice their mistakes and cannot make a fair judgment. So you decided to create a program that outputs the remaining players at the end of the designated number of statements so that Taro and his friends can enjoy this game.
+  Create a program that takes the number of players and the number of statements made during the game as input, and outputs the number of remaining players in order of smallest to largest number. However, each player is assigned a number from 1, and statements are made starting from the first player in order, and when all statements are finished, the first player will speak again. If the player whose turn it is has already dropped out, the next player will speak. Also, this program must ignore any statements made after a single player remains.
+Input
+A sequence of multiple datasets is given as input. The end of the input is indicated by two zeros.
+Each dataset is given in the following format.
+m n
+s1
+s2
+:
+sn
+The first line gives the number of players m (2 ≤ m ≤ 1000) and the number of statements n (1 ≤ n ≤ 10000).
+The following n lines give the i-th statement s1. si is an integer, Fizz, Buzz, or FizzBuzz, a string indicating them (up to 8 characters).
+There are no more than 50 datasets in the input.
+Output
+For each dataset, output the numbers of the remaining players in order from smallest to largest after the specified number of statements has been input.
+Sample Input
+5 7
+1
+2
+Fizz
+4
+Buzz
+6
+7
+3 5
+1
+2
+3
+4
+5
+0 0
+Output for the Sample Input
+2 3 4 5
+1

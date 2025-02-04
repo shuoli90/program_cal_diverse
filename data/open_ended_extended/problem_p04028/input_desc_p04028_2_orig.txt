@@ -1,0 +1,17 @@
+An integer N (1 ≤ N ≤ 5000), representing some quantity or size.
+A string s of length between 1 and N, consisting of characters '0' and '1'.
+
+### Example Input:
+
+```
+3
+010
+```
+
+### Function Signature:
+Write a function f(N, s) that takes in the input.
+def f(N: int, s: str):
+    ''' 
+    N: an integer 
+    s: a string
+    '''

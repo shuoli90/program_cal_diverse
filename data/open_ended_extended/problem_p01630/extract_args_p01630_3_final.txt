@@ -1,0 +1,4 @@
+def extract_arguments(fh):
+    N = int(fh.readline().strip())
+    bit_line = fh.readline().strip()
+    return N, bit_line

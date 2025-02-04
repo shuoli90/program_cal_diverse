@@ -1,0 +1,3 @@
+Bomb Removal
+Problem
+There are N fuse cords and bombs, each with one bomb, on a grid of height H and width W. Each fuse cord and bomb are placed on a path consisting of Li squares, with the j-th square of the path (pxij, pyij). Each bomb is located at the last square (pxiLi, py<

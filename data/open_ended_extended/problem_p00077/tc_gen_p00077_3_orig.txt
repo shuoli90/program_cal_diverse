@@ -1,0 +1,52 @@
+Sure! Let's create a test case generator for the "Run Length Encoding" problem. The generator will create multiple compressed strings, each with a mix of plain characters and encoded sequences using the "@" notation.
+
+Here's a possible implementation in Python:
+
+```python
+import random
+import string
+
+def generate_compressed_string():
+    original = []
+    length = random.randint(1, 100)  # Length of the original string is up to 100 characters
+    i = 0
+    
+    while i < length:
+        # Decide whether to add a normal character or a compressed sequence
+        if random.choice([True, False]) and i + 2 <= length:  # Ensure there's space for a compressed sequence
+            char = random.choice(string.ascii_letters + string.digits + string.punctuation)
+            count = random.randint(2, 9)  # 2 to 9 consecutive characters
+            original.append(f"@{count}{char}")
+            i += 2  # One character for '@' and one for the count
+        else:
+            original.append(random.choice(string.ascii_letters + string.digits + string.punctuation))
+            i += 1
+    
+    return ''.join(original)
+
+def tcgen():
+    num_strings = random.randint(1, 50)  # Number of strings, up to 50
+    test_cases = [generate_compressed_string() for _ in range(num_strings)]
+    return test_cases
+
+if __name__ == "__main__":
+    test_cases = tcgen()
+    for tc in test_cases:
+        print(tc)
+```
+
+### Explanation:
+
+1. **generate_compressed_string()**:
+    - This function generates a single compressed string.
+    - It randomly decides whether to add a plain character or an encoded sequence.
+    - Plain characters are chosen from uppercase and lowercase letters, digits, and symbols.
+    - Encoded sequences use the "@" notation with a subsequent digit (2 to 9) and a character.
+
+2. **tcgen()**:
+    - This function generates a list of compressed strings, with the number of strings being up to 50.
+    - Each string is generated using the `generate_compressed_string()` function.
+
+To use this generator, simply call the `tcgen()` function, and it will return a list of compressed strings as test cases. Each string can be printed or used directly in testing environments.
+
+This setup ensures that each test case adheres to the constraints given in the problem statement and provides a diverse set of inputs for robust testing.

@@ -1,0 +1,24 @@
+Certainly! Based on the problem statement for Snuke and the Japanese counter words, here is a test case generator in Python:
+
+```python
+import random
+
+def tcgen():
+    """
+    Test case generator for the problem of determining how to read the count of pencils in Japanese.
+    """
+    N = random.randint(1, 999)
+    return N
+
+# Example usage:
+if __name__ == "__main__":
+    for _ in range(10):  # Generate 10 test cases
+        print(tcgen())
+```
+
+Explanation:
+- The generator function `tcgen()` randomly selects an integer \( N \) between 1 and 999 (inclusive), as per the problem constraints.
+- The function returns this randomly selected integer \( N \).
+- In the example usage, we generate and print 10 test cases to demonstrate its functionality.
+
+This generator will help create diverse test cases for evaluating the solution to the problem.

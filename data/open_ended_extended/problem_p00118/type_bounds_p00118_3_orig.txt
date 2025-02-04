@@ -1,0 +1,3 @@
+Types: H: int, W: int, orchard: List[str]
+Ranges: 1 ≤ H, W ≤ 100, orchard[i] in {'@', '#', '*'}
+Addtl Info: Up to 20 datasets, each ending with "0 0"

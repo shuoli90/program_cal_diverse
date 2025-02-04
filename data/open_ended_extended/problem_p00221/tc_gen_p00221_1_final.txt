@@ -1,0 +1,55 @@
+Sure, I can help you create a test case generator for the FizzBuzz problem described. Here is the Python function that generates test cases for this problem:
+
+```python
+import random
+
+def generate_fizzbuzz_statement(number):
+    if number % 3 == 0 and number % 5 == 0:
+        return "FizzBuzz"
+    elif number % 3 == 0:
+        return "Fizz"
+    elif number % 5 == 0:
+        return "Buzz"
+    else:
+        return str(number)
+
+def tcgen():
+    datasets = []
+    num_datasets = random.randint(1, 50)  # number of datasets
+
+    for _ in range(num_datasets):
+        m = random.randint(2, 1000)  # number of players
+        n = random.randint(1, 10000)  # number of statements
+
+        statements = [generate_fizzbuzz_statement(random.randint(1, 100)) for _ in range(n)]
+        datasets.append((m, n, statements))
+
+    return datasets
+
+# Example usage:
+for dataset in tcgen():
+    m, n, statements = dataset
+    print(f'{m} {n}')
+    for statement in statements:
+        print(statement)
+    print('')  # Print a blank line between datasets
+```
+
+### Explanation:
+
+1. **generate_fizzbuzz_statement:** 
+   This helper function generates a single FizzBuzz statement based on a given number. It checks if the number is divisible by 3 and 5, only 3, or only 5, and returns the appropriate string.
+
+2. **tcgen:**
+   - First, the number of datasets is randomly chosen (between 1 and 50).
+   - For each dataset:
+     - Randomly select the number of players `m` (between 2 and 1000).
+     - Randomly select the number of statements `n` (between 1 and 10000).
+     - Generate `n` statements using the `generate_fizzbuzz_statement` function, with each statement generated from a random number between 1 and 100.
+   - Append each dataset as a tuple `(m, n, statements)` to the `datasets` list.
+   - Return the list of datasets.
+
+3. **Example usage:**
+   The example usage demonstrates how to use the `tcgen` function to generate and print test cases for the given problem. Each dataset is printed in the required format.
+
+This will generate multiple datasets with random players and statements according to the problem's constraints, giving a variety of test scenarios to evaluate the correctness and robustness of your FizzBuzz game implementation.

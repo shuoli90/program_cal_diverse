@@ -1,0 +1,50 @@
+Sure, I can help you write a test case generator for this problem. The test case generator will randomly generate values for \( n \), \( m \), and the coordinates for \( x \) and \( y \) within the provided constraints. Here is the code:
+
+```python
+import random
+
+def tcgen():
+    # Constraints
+    MIN_NM = 2
+    MAX_NM = 100000
+    MIN_COORD = -10**9
+    MAX_COORD = 10**9
+    
+    # Generate random n and m within the given constraints
+    n = random.randint(MIN_NM, MAX_NM)
+    m = random.randint(MIN_NM, MAX_NM)
+    
+    # Generate sorted list of unique random integers for x and y within the given constraints
+    x = sorted(random.sample(range(MIN_COORD, MAX_COORD), n))
+    y = sorted(random.sample(range(MIN_COORD, MAX_COORD), m))
+    
+    return n, m, x, y
+
+# Example usage
+if __name__ == "__main__":
+    n, m, x, y = tcgen()
+    print(n, m)
+    print(" ".join(map(str, x)))
+    print(" ".join(map(str, y)))
+```
+
+### Explanation:
+
+1. **Constraints**:
+   - `MIN_NM` and `MAX_NM` define the range for \( n \) and \( m \).
+   - `MIN_COORD` and `MAX_COORD` define the range for the coordinates \( x \) and \( y \).
+
+2. **Generating \( n \) and \( m \)**:
+   - Randomly generate \( n \) and \( m \) within the range [2, 100000].
+
+3. **Generating Coordinates \( x \) and \( y \)**:
+   - Use `random.sample` to generate a sorted list of unique integers for both \( x \) and \( y \) within the specified coordinate range.
+   - Sorting ensures \( x_1 < x_2 < ... < x_n \) and \( y_1 < y_2 < ... < y_m \), which meets the problem constraints.
+
+4. **Return the generated values**:
+   - The function returns four values: \( n \), \( m \), and the lists \( x \) and \( y \).
+
+### Example Usage:
+- You can run the script and it will print out a randomly generated test case which you can use for testing your solution.
+
+This generator adheres to the constraints and ensures that the generated test cases are valid.

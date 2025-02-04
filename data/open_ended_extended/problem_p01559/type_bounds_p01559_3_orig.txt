@@ -1,0 +1,3 @@
+Types: N: int, M: int, Xi: List[int], Yi: List[int]
+Ranges: 2 ≤ N ≤ 10^6, 0 ≤ M ≤ 50, 1 ≤ Xi ≤ N, 1 ≤ Yi ≤ N
+Addtl Info: (Xi, Yi) not equal to (1, 1) or (N, N); all (Xi, Yi) are unique

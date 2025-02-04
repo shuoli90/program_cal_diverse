@@ -1,0 +1,50 @@
+Sure, I can help you create a test case generator for the given problem statement. Here's a Python function that generates test cases based on the constraints provided:
+
+```python
+import random
+
+def tcgen():
+    N = random.randint(1, 300)
+    M = random.randint(1, 300)
+    
+    # Generate the grid with integers 0 or 1
+    grid = [[random.randint(0, 1) for _ in range(M)] for _ in range(N)]
+    
+    return N, M, grid
+
+# Function to print the generated test case in the required format
+def print_test_case(N, M, grid):
+    print(N, M)
+    for row in grid:
+        print(" ".join(map(str, row)))
+
+# Example usage
+N, M, grid = tcgen()
+print_test_case(N, M, grid)
+```
+
+### Explanation:
+
+1. **N, M Generation**:
+    - `N` and `M` are randomly generated within the given constraints (1 ≤ \(N, M\) ≤ 300).
+
+2. **Grid Generation**:
+    - A 2D list `grid` is created where each element is either 0 or 1. This is done using nested list comprehensions.
+
+3. **Print Function**:
+    - `print_test_case` function prints the generated test case in the required input format.
+
+You can call the `tcgen` function to generate a random test case and then use `print_test_case` to print it in the format expected by the problem statement.
+
+### Example Output
+
+When you run the provided code, it could generate output like:
+
+```
+3 2
+1 0
+0 1
+1 1
+```
+
+This represents a grid with 3 rows and 2 columns, where the grid values are either 0 or 1. You can adjust the random seed if you need reproducible test cases for debugging or other purposes.

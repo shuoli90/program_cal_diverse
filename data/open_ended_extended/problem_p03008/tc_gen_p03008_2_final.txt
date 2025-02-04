@@ -1,0 +1,39 @@
+Sure! Below is a Python function to generate test cases for the problem where Chokudai the squirrel is trying to maximize the number of acorns he can bring back to the nest after trading in two exchanges:
+
+```python
+import random
+
+def tcgen():
+    # Generate a random integer N in the range [1, 5000]
+    N = random.randint(1, 5000)
+    
+    # Generate random integers for g_A, s_A, b_A, g_B, s_B, b_B in the range [1, 5000]
+    g_A = random.randint(1, 5000)
+    s_A = random.randint(1, 5000)
+    b_A = random.randint(1, 5000)
+    
+    g_B = random.randint(1, 5000)
+    s_B = random.randint(1, 5000)
+    b_B = random.randint(1, 5000)
+    
+    # Return the generated values
+    return N, (g_A, s_A, b_A), (g_B, s_B, b_B)
+
+# Example usage
+for _ in range(5):
+    N, (g_A, s_A, b_A), (g_B, s_B, b_B) = tcgen()
+    print(f"N: {N}\ng_A: {g_A}, s_A: {s_A}, b_A: {b_A}\ng_B: {g_B}, s_B: {s_B}, b_B: {b_B}\n")
+```
+
+This `tcgen` function generates a valid test case based on the constraints provided in the problem statement:
+- \(1 \leq N \leq 5000\)
+- \(1 \leq g_X \leq 5000\)
+- \(1 \leq s_X \leq 5000\)
+- \(1 \leq b_X \leq 5000\)
+
+The output format is given in a way that matches the input requirements of the problem, where:
+- `N` is the initial number of acorns.
+- `g_A`, `s_A`, `b_A` are the parameters for Exchange A.
+- `g_B`, `s_B`, `b_B` are the parameters for Exchange B.
+
+You can use this function to generate multiple test cases to verify the correctness of your solution to the problem.

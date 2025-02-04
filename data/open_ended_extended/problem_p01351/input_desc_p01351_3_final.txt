@@ -1,0 +1,23 @@
+Canonicalized Input Description:
+
+Six integers m, n, a, b, c, and d, each between 1 and 100,000 inclusive.
+
+### Example Input:
+
+```
+6 6 2 2 2 4
+```
+
+### Function Signature:
+Write a function f(m, n, a, b, c, d) that takes in the input.
+```python
+def f(m: int, n: int, a: int, b: int, c: int, d: int):
+    '''
+    m: an integer
+    n: an integer
+    a: an integer
+    b: an integer
+    c: an integer
+    d: an integer
+    '''
+```

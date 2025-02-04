@@ -1,0 +1,43 @@
+Sure, I can help you with that. Let's start by understanding the requirements for generating a test case for the given problem statement:
+
+1. We need to generate random values for \( H \) and \( W \) within the range [1, 200,000].
+2. We need to generate a random number of obstacles \( N \) within the range [0, 200,000].
+3. For each obstacle, generate random coordinates \( (X_i, Y_i) \) such that \( (X_i, Y_i) \neq (1, 1) \) and no two obstacles share the same coordinates.
+
+Now, let's implement the test case generator in Python:
+
+```python
+import random
+
+def generate_unique_obstacles(H, W, N):
+    obstacles = set()
+    while len(obstacles) < N:
+        x = random.randint(1, H)
+        y = random.randint(1, W)
+        if (x, y) != (1, 1):
+            obstacles.add((x, y))
+    return list(obstacles)
+
+def tcgen():
+    H = random.randint(1, 200000)
+    W = random.randint(1, 200000)
+    N = random.randint(0, 200000)
+    
+    obstacles = generate_unique_obstacles(H, W, N)
+    
+    return H, W, N, obstacles
+
+# Example usage
+if __name__ == "__main__":
+    H, W, N, obstacles = tcgen()
+    print(H, W, N)
+    for x, y in obstacles:
+        print(x, y)
+```
+
+### Explanation:
+1. **generate_unique_obstacles**: This function generates a set of unique obstacle coordinates. It ensures that each obstacle is unique and not placed at (1, 1).
+2. **tcgen**: This is the main test case generator function. It generates random values for \( H \), \( W \), and \( N \). It then calls `generate_unique_obstacles` to generate the list of obstacles.
+3. **Printing the output**: The generated values for \( H \), \( W \), \( N \), and obstacle coordinates are printed in the required format.
+
+This script should generate valid and random test cases for the given problem statement. Feel free to run and test it as needed.

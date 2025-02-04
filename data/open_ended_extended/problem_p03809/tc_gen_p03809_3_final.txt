@@ -1,0 +1,71 @@
+To write a test case generator for the given problem statement, we need to ensure the constraints are adhered to and that the generated test cases are valid trees. Below is the Python code to generate random test cases for this problem:
+
+```python
+import random
+
+def generate_tree_edges(N):
+    # Generate a random tree using the Prüfer sequence method
+    prufer = [random.randint(1, N) for _ in range(N - 2)]
+    degree = [1] * (N + 1)
+    
+    for node in prufer:
+        degree[node] += 1
+    
+    edges = []
+    ptr = 1
+    while ptr <= N and degree[ptr] != 1:
+        ptr += 1
+    leaf = ptr
+    
+    for node in prufer:
+        edges.append((leaf, node))
+        degree[leaf] -= 1
+        if degree[node] == 1:
+            leaf = node
+        else:
+            ptr += 1
+            while ptr <= N and degree[ptr] != 1:
+                ptr += 1
+            leaf = ptr
+    
+    for node in range(1, N):
+        if degree[node] == 1:
+            edges.append((leaf, node))
+            degree[leaf] -= 1
+            degree[node] -= 1
+            break
+    
+    return edges
+
+def tcgen():
+    N = random.randint(2, 10**5)
+    
+    A = [random.randint(0, 10**9) for _ in range(N)]
+    
+    edges = generate_tree_edges(N)
+    
+    return N, A, edges
+
+def print_test_case():
+    N, A, edges = tcgen()
+    print(N)
+    print(' '.join(map(str, A)))
+    for edge in edges:
+        print(f"{edge[0]} {edge[1]}")
+
+# Example of generating and printing a test case
+print_test_case()
+```
+
+### Explanation:
+
+1. **Tree Generation**:
+    - The `generate_tree_edges` function generates a random tree using the Prüfer sequence method, which is a common algorithm for generating trees in competitive programming. It ensures that the generated edges form a valid tree structure.
+2. **Random Values Generation**:
+    - `N` is randomly chosen between 2 and \(10^5\).
+    - The list `A` is generated with `N` random integers between 0 and \(10^9\).
+3. **Output**:
+    - The `tcgen` function returns the tree size `N`, the list `A`, and the list of edges.
+    - The `print_test_case` function prints the generated test case in the required format.
+
+This generator ensures that every test case adheres to the constraints and conditions specified in the problem statement.

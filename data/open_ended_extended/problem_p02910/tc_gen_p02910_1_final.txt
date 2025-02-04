@@ -1,0 +1,18 @@
+Sure, here's a test case generator for the given problem statement:
+
+```python
+import random
+
+def generate_test_case():
+    length = random.randint(1, 100)
+    S = ''.join(random.choice(['L', 'R', 'U', 'D']) for _ in range(length))
+    return S
+
+# Example usage:
+if __name__ == "__main__":
+    for _ in range(5):  # Generate 5 test cases
+        test_case = generate_test_case()
+        print(test_case)
+```
+
+This generator creates a random string `S` of length between 1 and 100, with each character being one of 'L', 'R', 'U', or 'D'. You can run the code to generate multiple test cases for your problem statement. Adjust the loop count in the example usage to generate as many test cases as you need.

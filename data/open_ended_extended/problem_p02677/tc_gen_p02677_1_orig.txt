@@ -1,0 +1,56 @@
+Sure! Below is a test case generator for the provided problem statement:
+
+```python
+import random
+import math
+
+def generate_test_case():
+    # Constants
+    MAX_HAND_LENGTH = 1000
+    MAX_HOURS = 11
+    MAX_MINUTES = 59
+    
+    # Generate random values for A, B, H, and M within their respective constraints
+    A = random.randint(1, MAX_HAND_LENGTH)
+    B = random.randint(1, MAX_HAND_LENGTH)
+    H = random.randint(0, MAX_HOURS)
+    M = random.randint(0, MAX_MINUTES)
+    
+    return A, B, H, M
+
+def calculate_distance(A, B, H, M):
+    # Calculate angles in degrees
+    hour_angle = (H % 12) * 30 + M * 0.5
+    minute_angle = M * 6
+    
+    # Convert angles to radians
+    hour_angle_rad = math.radians(hour_angle)
+    minute_angle_rad = math.radians(minute_angle)
+    
+    # Calculate coordinates of the endpoints
+    hour_x = A * math.cos(hour_angle_rad)
+    hour_y = A * math.sin(hour_angle_rad)
+    minute_x = B * math.cos(minute_angle_rad)
+    minute_y = B * math.sin(minute_angle_rad)
+    
+    # Calculate distance between the two endpoints
+    distance = math.sqrt((hour_x - minute_x)**2 + (hour_y - minute_y)**2)
+    
+    return distance
+
+def main():
+    # Generate test case
+    A, B, H, M = generate_test_case()
+    
+    # Calculate the distance
+    distance = calculate_distance(A, B, H, M)
+    
+    # Print input and output in the required format
+    print(f"Input: {A} {B} {H} {M}")
+    print(f"Output: {distance:.20f}")
+
+# Run the main function to generate a test case and its corresponding output
+main()
+```
+
+This script generates random values for A, B, H, and M within the specified constraints, calculates the distance between the endpoint of the hour and minute hands, and prints both the input and the output. The calculation ensures that the distance is accurate up to the required precision of \(10^{-9}\).

@@ -1,0 +1,179 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p00993 - Generation 3</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p00993 - Generation 3</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>Problem D: Numbers
+Given n, find n consecutive positive integers such that each number has no divisors other than 1 and itself.
+Input
+The input is given in the following format.
+n
+The input satisfies the following constraints.
+1 ≤ n ≤ 1,500
+Output
+On the first line, output the smallest of the n selected consecutive positive integers.
+From the second to the n+1-th line, output the divisors of each value.
+Any value other than 1 or itself can be output as a divisor.
+Let x be the value output on the first line and output the divisor of x+i-2 on the i-th line.
+The output value must not exceed 5,000 digits.
+Sample Input 1
+2
+Sample Output 1
+8
+2
+3
+Sample Input 2
+3
+Sample Output 2
+8
+2
+3
+5
+Hint
+In Sample Output 2, 8, 9, and 10 are selected as three consecutive integers.
+On the second line, 2 is output as the divisor of 8, on the third and fourth lines, 3 and 4 are output as the divisor of 9, and on the fifth line, 5 is output as the divisor of 10.
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An integer N (1 ≤ N ≤ 1,500), representing some quantity or size.
+
+### Example Input:
+
+```
+2
+```
+
+### Function Signature:
+Write a function f(N) that takes in the input.
+def f(N: int):
+    '''
+    N: an integer
+    '''</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Sure, I can help you write a test case generator for the given problem statement "Problem D: Numbers". Below is the Python code for the test case generator:
+
+```python
+import random
+
+def tcgen():
+    # Generate a random value for n within the given constraints
+    n = random.randint(1, 1500)
+    return n
+
+# Example usage
+n = tcgen()
+print(n)
+```
+
+This function will generate a random value for \( n \) within the given constraints \( 1 \leq n \leq 1500 \). To generate and format the test cases for this problem, we will need to generate the smallest of \( n \) consecutive positive integers and their divisors.
+
+Here's an example of how you can generate valid test cases for this problem:
+
+```python
+def generate_divisors(x):
+    """ Return a list of divisors of x excluding 1 and x. """
+    divisors = []
+    for i in range(2, int(x**0.5) + 1):
+        if x % i == 0:
+            divisors.append(i)
+            if i != x // i:
+                divisors.append(x // i)
+    return divisors
+
+def generate_test_case(n):
+    smallest_x = random.randint(2, 10**6)  # Generate a random starting point (reasonably large to avoid trivial cases)
+    consecutive_numbers = [smallest_x + i for i in range(n)]
+    
+    # Collect divisors for each number
+    divisors_list = [generate_divisors(num) for num in consecutive_numbers]
+
+    # Ensure each number has at least one non-trivial divisor
+    for i in range(len(divisors_list)):
+        if not divisors_list[i]:
+            divisors_list[i] = [smallest_x + i]
+    
+    return smallest_x, consecutive_numbers, divisors_list
+
+def tcgen():
+    n = random.randint(1, 1500)
+    smallest_x, consecutive_numbers, divisors_list = generate_test_case(n)
+    
+    return n, smallest_x, consecutive_numbers, divisors_list
+
+# Example usage
+n, smallest_x, consecutive_numbers, divisors_list = tcgen()
+print(n)
+print(smallest_x)
+for i in range(n):
+    print(consecutive_numbers[i])
+    print(divisors_list[i])
+```
+
+### Explanation:
+1. **`generate_divisors`**: A helper function to get divisors of a number excluding 1 and itself.
+2. **`generate_test_case`**: This generates a list of \( n \) consecutive numbers starting from a random number `smallest_x` and ensures each number has at least one non-trivial divisor. If a number has no divisors other than 1 and itself, the number itself is added as its divisor.
+3. **`tcgen`**: Generates the value for \( n \) and then calls `generate_test_case` to produce the smallest number, the consecutive numbers, and their divisors.
+
+Using this generator, you can produce valid test cases for the given problem statement. The example usage shows how to generate and print a test case. Adjusting the `smallest_x` random range can help to control the size of the numbers generated.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    n = int(fh.readline().strip())
+    return (n,)</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

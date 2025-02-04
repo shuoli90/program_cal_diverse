@@ -1,0 +1,16 @@
+An integer N (1 ≤ N ≤ 2,000), representing some quantity or size.
+An integer K (1 ≤ K ≤ N), representing some quantity or index.
+
+### Example Input:
+
+```
+12 1
+```
+
+### Function Signature:
+Write a function f(N, K) that takes in the input.
+def f(N: int, K: int): 
+    ''' 
+    N: an integer 
+    K: an integer
+    '''

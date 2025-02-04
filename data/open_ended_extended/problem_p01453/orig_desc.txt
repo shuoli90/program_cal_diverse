@@ -1,0 +1,67 @@
+Problem G: Spring Tile
+One morning, when you woke up, you were in a maze full of springs.
+You don't know why you are in this unfamiliar place. Though there is an option to wait for help quietly, you know from experience that if you stay in such a maze for a long time, a sudden gust of wind will eventually blow and blow you away. However, it is impossible to judge the time until the gust of wind comes. Therefore, you thought that the best strategy would be to act so that the expected value of the number of moves required to escape from the maze is minimized before the gust of wind blows.
+You picked up an unidentified scroll that had fallen at your feet and tried reading it, and by chance, you were able to perceive the entire map of the maze. Furthermore, by drinking the grass you happened to have, you were able to know the positions of all the traps. Apparently, there are no other traps in this maze except for dangerous monsters and springs.
+This maze is in the shape of a rectangle with several types of tiles arranged in a row, as shown below, for example.
+########
+#..##g.#
+#*#.*#.#
+#......#
+#*s#*.*#
+########
+"." : Floor. You can move around freely on it.
+"#" : Wall. You cannot enter the wall.
+"s" : Your initial position. The tile below this tile is a floor.
+"g" : Stairs. If you get on this tile, you will have escaped from the maze.
+"*" : Spring. If you get on this tile, you will be randomly thrown onto one of the floors (excluding the stair and spring tiles). The probability of being thrown onto each floor is the same.
+The type of tile is one of the five listed above.
+You can move one square in any direction (up, down, left, or right) from the tile you are currently on. However, you cannot move diagonally.
+Given the map of the maze, find the expected number of moves required to escape from the maze if you take the best strategy. Do not include the number of moves you are thrown by the spring in the total number of moves.
+Input
+W H
+c11 c12 ... c1w
+c21 c22 ... c2w
+::    :
+ch1 ch2 ... ccw
+The first line of input contains two integers W (3 ≤ W ≤ 500) and H (3 ≤ H ≤ 500), written in this order, separated by a single space. W is the width of the maze and H is the height of the maze.
+The next H lines contain W characters each, representing the map of the maze (not separated by spaces). The format of this part is as shown in the example above. Note that "s" and "g" appear exactly once each in the data. Also, the outermost layer of the maze is surrounded by walls.
+It can be assumed that even if you move or are thrown by a spring in any way, it will not fall into a "state where it is impossible to escape, even if you can arbitrarily set the floor you are thrown by a spring".
+Output
+Find the expected number of moves required to escape from the maze if you take the best strategy. The output may contain an error, but the relative error with respect to the true value must be less than 10-9.
+Sample Input 1
+8 6
+########
+#..##g.#
+#*#.*#.#
+#......#
+#*s#*.*#
+########
+Sample Output 1
+5.857142857143
+Sample Input 2
+21 11
+#####################
+#*#*.*.*.*.*.*.*.*#*#
+#*#...............#*#
+#*#.#.#.#.#.#.#.#.#*#
+##.#.#.#.#.#.#.#.#.##
+#...................#
+##.#.#.#.#.#.#.#.#.##
+#s#.#.#.#.#.#.#.#.#g#
+#...................#
+#...................#
+#####################
+Sample Output 2
+20.000000000000
+Sample Input 3
+9 8
+#########
+#...#*.*#
+#.*.#...#
+#...#*.*#
+#########
+#.s....g#
+#.*#.*..#
+#########
+Sample Output 3
+5.000000000000

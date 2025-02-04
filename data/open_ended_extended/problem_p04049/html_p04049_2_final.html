@@ -1,0 +1,184 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p04049 - Generation 2</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p04049 - Generation 2</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>
+Score : 600 points
+Problem StatementGiven an undirected tree, let the distance between vertices u and v be the
+number of edges on the simple path from u to v.
+The diameter of a tree is the maximum among the distances between any two vertices.
+We will call a tree good if and only if its diameter is at most K.
+You are given an undirected tree with N vertices numbered 1 through N.
+For each i (1≦i≦N-1), there is an edge connecting vertices A_i and B_i.
+You want to remove zero or more vertices from the tree, so that the resulting tree is good.
+When a vertex is removed, all incident edges will also be removed.
+The resulting graph must be connected.
+Find the minimum number of vertices that you need to remove in order to produce a good tree.
+Constraints
+2≦N≦2000
+1≦K≦N-1
+1≦A_i≦N, 1≦B_i≦N
+The graph defined by A_i and B_i is a tree.
+InputThe input is given from Standard Input in the following format:
+N K
+A_1 B_1
+A_2 B_2
+:
+A_{N-1} B_{N-1}
+OutputPrint the minimum number of vertices that you need to remove in order to produce a good tree.
+Sample Input 16 2
+1 2
+3 2
+4 2
+1 6
+5 6
+Sample Output 12
+The tree is shown below. Removing vertices 5 and 6 will result in a good tree with the diameter of 2.
+Sample Input 26 5
+1 2
+3 2
+4 2
+1 6
+5 6
+Sample Output 20
+Since the given tree is already good, you do not need to remove any vertex.
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An integer N (2 ≤ N ≤ 2000), representing some quantity or size.
+An integer K (1 ≤ K ≤ N-1), representing another quantity or size.
+A list of pairs of integers [(A1, B1), (A2, B2), ..., (AN-1, BN-1)], where each integer in the pairs is between 1 and N.
+
+### Example Input:
+
+```
+6 2
+1 2
+3 2
+4 2
+1 6
+5 6
+```
+
+### Function Signature:
+Write a function f(N, K, edges) that takes in the input. 
+```python
+def f(N: int, K: int, edges: List[Tuple[int, int]]):
+    '''
+    N: an integer
+    K: an integer
+    edges: a list of pairs of integers
+    '''
+```</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Sure! Here is a test case generator for the given problem statement:
+
+```python
+import random
+
+def generate_tree(n):
+    edges = []
+    for i in range(2, n + 1):
+        # Connect each new node to a random existing node to form a tree
+        edges.append((i, random.randint(1, i - 1)))
+    return edges
+
+def tcgen():
+    N = random.randint(2, 2000)
+    K = random.randint(1, N - 1)
+    edges = generate_tree(N)
+    
+    return N, K, edges
+
+def format_input(N, K, edges):
+    input_str = f"{N} {K}\n"
+    input_str += "\n".join(f"{a} {b}" for a, b in edges)
+    return input_str
+
+# Example of generating a test case and formatting it
+N, K, edges = tcgen()
+print(format_input(N, K, edges))
+```
+
+This test case generator will create valid random trees and format the input appropriately to fit the problem's requirements. Here's a step-by-step breakdown of the code:
+
+1. **generate_tree(n)**:
+    - Generates a random tree with `n` nodes.
+    - Ensures the created structure is a valid tree by connecting each new node to a previously existing one.
+
+2. **tcgen()**:
+    - Randomly selects `N` (number of vertices) between 2 and 2000.
+    - Randomly selects `K` (maximum allowed diameter) between 1 and `N-1`.
+    - Uses the `generate_tree(N)` function to create the edges of the tree.
+
+3. **format_input(N, K, edges)**:
+    - Formats the generated tree and parameters into the required input format.
+
+This generator ensures that you get a variety of test cases, from very small trees to large ones close to the upper constraints, with random connections ensuring different tree shapes.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    N, K = map(int, fh.readline().strip().split())
+    edges = []
+    for _ in range(N-1):
+        A, B = map(int, fh.readline().strip().split())
+        edges.append((A, B))
+    return N, K, edges</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

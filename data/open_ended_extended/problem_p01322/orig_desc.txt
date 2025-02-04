@@ -1,0 +1,54 @@
+Problem B: Lottery Checker
+You have just finished sorting out your university placement and are in the middle of moving from Komaba to Hongou. As you tidy up your house, you find a large number of lottery tickets that you purchased last year. After checking the exchange deadline, you realize that you must redeem them by tomorrow. However, you have not finished preparing for the move and it would be a hassle to go to the lottery ticket sales office for a small amount of prize money. Therefore, you have decided to investigate how much prize money you can win.
+The lottery consists of an 8-digit number. The winning numbers are also 8 digits long and consist of numbers and '*'. If the number portion of the ticket you have matches the number portion of the winning number, you will receive the corresponding prize money. For example, if you have a ticket with the number "12345678", you will win if the winning number is "*******8" or "****5678", but not if the winning number is "****4678". There may be multiple winning numbers, and each winning number will be paid independently. However, a single lottery ticket will not win more than one winning number. For example, if there are two winning numbers, "*******8" and "****5678", the ticket "12345678" will win both, which is not possible. 
+Your task is to write a program that, given the lottery ticket number you hold and the winning number of the lottery, will output how much prize money you can win.
+Input
+The input is given in the following format.
+n m
+N1 M1
+...
+Nn Mn
+B1
+...
+Bm
+The first line contains two integers: the number of winning numbers n (1 ≤ n ≤ 100) and the number of lottery tickets you have m (1 ≤ m ≤ 1000).
+For the next n lines, each line contains a winning number Ni and the prize money Mi (1 ≤ Mi ≤ 1000000). The prize money is an integer. The format of the winning number is as described in the problem statement.
+For the next m lines, the lottery ticket numbers that you hold are given. 
+Output
+Output the total amount of prize money.
+Notes on Test Cases
+Multiple data sets are given in the input format above. Create a program that outputs in the output format above for each data set.
+The end of the input is indicated by n = 0.
+Sample Input
+3 3
+*******1 100
+******22 1000
+11111112 1000000
+01203291
+02382022
+11111111
+10 10
+****3228 149416
+****3992 198635
+****4286 77783
+****4843 225244
+***49835 231046
+***59393 379996
+*5763748 437345
+*6726222 58054
+*8117882 16375
+*9244339 537727
+77885716
+96726222
+26971031
+66652868
+89599648
+37772338
+64679621
+65479161
+92959393
+57855682
+0 0
+Output for Sample Input
+1200
+438050

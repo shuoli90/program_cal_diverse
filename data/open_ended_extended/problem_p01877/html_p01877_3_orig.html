@@ -1,0 +1,230 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p01877 - Generation 3</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p01877 - Generation 3</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>F: Precisely - Kitsuchiri -
+Problem
+Chisato Atsuji, a second-year student in the Wakakamatsu High School Class 2-H, can't be satisfied unless the sequence is "precisely" arranged.
+According to Atsuji, a "precisely" arranged sequence is a sequence that is even in length and symmetrical from left to right.
+That is, for a sequence S of length N (N is even), the sequence S is "precisely" arranged if it satisfies the following conditions.
+S_1 = S_N, S_2 = S_{N-1}, ..., S_{N/2} = S_{N - N/2 + 1}
+The math teacher in charge of the second year's class has been struggling to make the sequence "precisely" arranged by applying many queries to add a number x to each element from the l-th to the r-th of the sequence.
+Your job as a genius programmer belonging to the second year's class is to create a program that checks whether the sequence being rebuilt by the teacher is "precisely" arranged before the teacher becomes hopeless.
+Input format
+The input consists of the following format.
+N
+S_1 ... S_N
+Q
+q_1
+...
+q_Q
+Q is the total number of queries, and for each i (1 ≤ i ≤ Q), each q_i gives l, r, and x in order, separated by a single half-width space.
+Also, the following constraints are satisfied.
+2 ≤ N ≤ 500,000.
+N is even.
+For 1 ≤ j ≤ N, -100,000,000 ≤ S_j ≤ 100,000,000.
+Each element T_{i,j} of the sequence after applying each i-th query satisfies -100,000,000 ≤ T_{i,j} ≤ 100,000,000.
+1 ≤ Q ≤ 100,000.
+1 ≤ l ≤ r ≤ N.
+-1,000 ≤ x ≤ 1,000.
+Output format
+If the sequence after processing query i is "precisely" arranged, output "1" on the i-th line; otherwise, output "0".
+Sample Input 1
+10
+0 1 2 3 4 4 3 2 1 0
+7
+2 6 0
+2 4 5
+7 9 10
+2 4 5
+3 8 100
+4 6 1000
+7 7 1000
+Sample Output 1
+1
+0
+0
+1
+1
+0
+1
+Sample Input 2
+10
+4 4 4 4 4 4 4 4 6 4
+5
+9 9 -2
+1 10 1000
+1 10 -1000
+3 8 100
+5 6 1
+Sample Output 2
+1
+1
+1
+1
+1
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An integer N (2 ≤ N ≤ 500,000), representing some quantity or size. N is even.
+A list of integers S of size N, where each integer is between -100,000,000 and 100,000,000.
+An integer Q (1 ≤ Q ≤ 100,000), representing the number of queries.
+A list of Q tuples, where each tuple contains three integers l, r, and x. l and r are indices (1 ≤ l ≤ r ≤ N), and x is an integer between -1,000 and 1,000.
+
+### Example Input:
+
+```
+10
+0 1 2 3 4 4 3 2 1 0
+7
+2 6 0
+2 4 5
+7 9 10
+2 4 5
+3 8 100
+4 6 1000
+7 7 1000
+```
+
+### Function Signature:
+Write a function f(N, S, Q, queries) that takes in the input.
+def f(N: int, S: List[int], Q: int, queries: List[Tuple[int, int, int]]): 
+    ''' 
+    N: an integer 
+    S: a list of integers
+    Q: an integer
+    queries: a list of tuples containing three integers each
+    '''</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Sure, I can help you write a test case generator for the given problem statement. Here's the test case generator in Python:
+
+```python
+import random
+
+def generate_precisely_sequence(N, range_min=-100000000, range_max=100000000):
+    half_N = N // 2
+    first_half = [random.randint(range_min, range_max) for _ in range(half_N)]
+    second_half = first_half[::-1]
+    return first_half + second_half
+
+def generate_queries(Q, N, x_min=-1000, x_max=1000):
+    queries = []
+    for _ in range(Q):
+        l = random.randint(1, N)
+        r = random.randint(l, N)
+        x = random.randint(x_min, x_max)
+        queries.append((l, r, x))
+    return queries
+
+def tcgen():
+    # Generate N, which is even and in the range [2, 500,000]
+    N = random.randint(1, 250000) * 2
+
+    # Generate sequence S
+    S = generate_precisely_sequence(N)
+
+    # Generate Q, which is in the range [1, 100,000]
+    Q = random.randint(1, 100000)
+
+    # Generate queries
+    queries = generate_queries(Q, N)
+
+    return N, S, Q, queries
+
+def format_test_case(N, S, Q, queries):
+    test_case = []
+    test_case.append(str(N))
+    test_case.append(" ".join(map(str, S)))
+    test_case.append(str(Q))
+    for query in queries:
+        test_case.append(" ".join(map(str, query)))
+    return "\n".join(test_case)
+
+if __name__ == "__main__":
+    N, S, Q, queries = tcgen()
+    test_case = format_test_case(N, S, Q, queries)
+    print(test_case)
+```
+
+Explanation:
+
+1. **generate_precisely_sequence(N, range_min, range_max)**: This function generates a "precisely" arranged sequence of length \( N \). The sequence is symmetric, so the first half is randomly generated and the second half is the reverse of the first half.
+
+2. **generate_queries(Q, N, x_min, x_max)**: This function generates \( Q \) queries. Each query is a tuple \((l, r, x)\), where \( l \) and \( r \) are indexes within the range of the sequence, and \( x \) is a random integer within the given limits.
+
+3. **tcgen()**: This function coordinates the generation of \( N \), \( S \), \( Q \), and the queries. It uses the previous helper functions to create a consistent test case.
+
+4. **format_test_case(N, S, Q, queries)**: This function formats the generated test case into the required input format for the problem. It returns a string that represents the entire test case.
+
+The `if __name__ == "__main__":` block is for testing and printing the generated test case.
+
+You can run this script to generate a random test case for the given problem statement. Adjust the ranges and limits as necessary to fulfill specific requirements or constraints.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    N = int(fh.readline().strip())
+    S = list(map(int, fh.readline().strip().split()))
+    Q = int(fh.readline().strip())
+    queries = []
+    for _ in range(Q):
+        l, r, x = map(int, fh.readline().strip().split())
+        queries.append((l, r, x))
+    return N, S, Q, queries</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

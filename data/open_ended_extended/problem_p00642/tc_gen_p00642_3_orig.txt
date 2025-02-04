@@ -1,0 +1,42 @@
+Sure, let's create a test case generator for the given problem statement "Problem F: Ben Toh".
+
+### Test Case Generator for "Problem F: Ben Toh"
+
+The generator will create random test cases within the constraints provided by the problem statement. Here, we only need to generate one integer `n` for each test case.
+
+```python
+import random
+
+def tcgen(num_cases=10):
+    # Generating multiple test cases
+    test_cases = []
+    
+    for _ in range(num_cases):
+        # Generate a random number of days between 1 and 100000 (inclusive)
+        n = random.randint(1, 100000)
+        test_cases.append(n)
+    
+    # Adding the termination case
+    test_cases.append(0)
+    
+    return test_cases
+
+# Example usage:
+if __name__ == "__main__":
+    cases = tcgen()
+    for case in cases:
+        print(case)
+```
+
+### Explanation
+
+1. **Function Definition**: The `tcgen` function generates a specified number of test cases (`num_cases`). By default, it generates 10 cases.
+2. **Random Test Case Generation**: For each test case, it generates a random integer `n` between 1 and 100,000 inclusive.
+3. **Termination Case**: After generating the requested number of test cases, it appends the termination case `0` to the list of test cases.
+4. **Return Value**: The function returns a list of integers representing the test cases.
+
+### Sample Usage
+
+When you run the provided script, it will print out the generated test cases, including the termination case `0`, which should be the last printed value.
+
+By using this generator, you can easily create a variety of test cases to thoroughly test your solution for the "Problem F: Ben Toh".

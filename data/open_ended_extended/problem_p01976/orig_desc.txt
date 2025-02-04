@@ -1,0 +1,30 @@
+C: Matching
+Problem
+Given a sequence of integers $a_i$ of length $N$, output all integers $K (1 \le K \le N)$ that satisfy the following condition:
+Condition:
+By arranging $a_1, \cdots, a_K$ appropriately, it matches with $a_{N-K+1}, \cdots, a_N$.
+Constraints
+$1 \le N \le 10^5$
+$1 \le a_i \le 10^9$
+All inputs are integers.
+Input:
+$N$
+$a_1 \cdots a_N$
+Output:
+Output all $K$ that satisfies the condition in ascending order, separated by a space. Print a newline character at the end.
+Sample
+Sample Input 1
+8
+5 2 4 9 4 9 2 5
+Sample Output 1
+1 2 4 6 7 8
+Sample Input 2
+3
+5 7 5
+Sample Output 2
+1 2 3
+Sample Input 3
+9
+118 118 97 116 97 97 114 110 101
+Sample Output 3
+9

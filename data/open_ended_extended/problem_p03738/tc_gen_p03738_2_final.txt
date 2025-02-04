@@ -1,0 +1,49 @@
+Certainly! Here is the test case generator for the problem statement you provided:
+
+```python
+import random
+
+def generate_large_integer(max_digits):
+    # Generate a random number with a specific number of digits
+    return ''.join(random.choices('123456789', k=1) + random.choices('0123456789', k=max_digits-1))
+
+def tcgen():
+    # Maximum number of digits is 100
+    max_digits = 100
+    
+    # Generate random lengths for A and B
+    len_A = random.randint(1, max_digits)
+    len_B = random.randint(1, max_digits)
+    
+    # Generate the numbers with the specified lengths
+    A = generate_large_integer(len_A)
+    B = generate_large_integer(len_B)
+    
+    return A, B
+
+# Example usage:
+A, B = tcgen()
+print(A)
+print(B)
+```
+
+### Explanation:
+1. **Generating Large Integers**:
+    - `generate_large_integer`: This function generates a large integer represented as a string with a specified number of digits. The first digit is chosen from '1' to '9' to ensure it does not begin with '0'.
+    - The rest of the digits are chosen from '0' to '9'.
+
+2. **Test Case Generator**:
+    - `tcgen`: This function randomly determines the lengths of integers \(A\) and \(B\) (up to 100 digits each).
+    - Uses `generate_large_integer` to create \(A\) and \(B\) with the specified lengths.
+    - Returns \(A\) and \(B\) as strings.
+
+### Running the Generator
+- When you run the generator, it prints the two large integers \(A\) and \(B\). You can use these values as input for your competitive programming problem.
+
+### Sample Output:
+Below is an example of what the output might look like when you run the generator:
+
+```
+2754893274018947583947501984750198475019847501984750198475019847501984750198475019847501984750198475
+8750198475019847501984750198475019847501984750198475019847501984750198475019847501984750198475019847
+```

@@ -1,0 +1,179 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p01531 - Generation 2</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p01531 - Generation 2</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre> Flick Input 
+ A: Flick Input 
+2D-kun, a college student who loves 2D, also known as "2D" bought a smartphone to replace the Galapagos mobile phone that he had been using for years. When 2D-kun operated a smartphone for the first time, he noticed that the method of character input was a little different from that of the old mobile phone. The smartphone used a method called "flick input", which takes advantage of the ability to touch and flick the screen. Flick input is a character input method shown below.
+In flick input, input is performed using ten buttons, 0-9, as shown in Figure A (a) (Note that "#" and "*" have been omitted this time). Each button is assigned one character from the "A-row" to the "Wa-row", as shown in the figure.
+Figure A: Smartphone button details
+One button can be operated in the manner shown in Figure A (b). That is,
+ If you just "touch" the button, the corresponding "A-row" character will be output.
+ If you "flick to the left", the "I-row" will be output.
+ If you "flick upwards", the "U-row" will be output.
+ If you "flick to the right", the "E-row" will be output.
+ If you "flick down", the "O-row" will be output.
+This is how flick input works for all buttons, as shown in Figure A (c). Note that to output "n", you must flick button 0 upward.
+Your task is to find the string of characters that will be output by the operation represented by the string of characters representing the flick input.
+ Input 
+A string representing the flick input operation is given on one line (2 to 1,000 characters in length). This string consists of a combination of '0'-'9' digits representing the button to be operated, and five types of characters 'T', 'L', 'U', 'R', and 'D' representing the flick direction.
+The characters representing the flick directions have the following meanings.
+ 'T': just touch
+ 'L': flick to the left
+ 'U': flick upwards
+ 'R': flick to the right
+ 'D': flick downwards
+For example, "2D" represents the operation of "flicking button 2 downward", so "ko" can be output.
+The string given starts with a single digit and ends with a character representing the flick direction. Furthermore, it is guaranteed that no flick is made towards a place where there is no character (there is no input such as "8L" in Figure A (c)).
+ Output 
+Output a string representing the result of the flick input operation in Roman letters. 
+For the consonants in Roman letters,
+ ka-row: 'k'
+ sa-row: 's'
+ ta-row: 't'
+ na-row: 'n'
+ ha-row: 'h'
+ ma-row: 'm'
+ ya-row: 'y'
+ ra-row: 'r'
+ wa-row: 'w'
+should be used. The Roman letters representing one hiragana character consist of a set of consonants and vowels ('a', 'i', 'u', 'e', 'o') and are output in two characters. "Shi" and "fu" violate this condition and are therefore incorrect. However, for the "A-row" characters, only one vowel should be output, and "n" should be output twice as "nn".
+Output a newline character at the end of the string.
+ Sample Input 1 
+5R2D
+ Sample Output 1 
+neko
+ Sample Input 2 
+8U9U6U0T
+ Sample Output 2 
+yuruhuwa
+ Sample Input 3 
+9L4U7R1L2D0U4R3U4D
+ Sample Output 3 
+ritumeikonntesuto
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An integer S (2 ≤ S ≤ 1000), representing the length of a string.
+A string of size S, consisting of digits '0'-'9' and characters 'T', 'L', 'U', 'R', 'D'.
+
+### Example Input:
+
+```
+5R2D
+```
+
+### Function Signature:
+Write a function f(S, input_string) that takes in the input.
+def f(S: int, input_string: str):
+    '''
+    S: an integer
+    input_string: a string of size S
+    '''</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Certainly! Given the problem statement for the "Flick Input" problem, we need to create a test case generator that can produce random but valid inputs for this competitive programming problem. Here's how we can construct the test case generator:
+
+```python
+import random
+
+def tcgen():
+    # Define the length of the input string (2 to 1000 characters)
+    length = random.randint(2, 1000)
+
+    # Define possible digits and flick directions
+    digits = '0123456789'
+    flicks = 'TLURD'
+
+    # Generate a random sequence of operations
+    input_str = ''.join(random.choice(digits) + random.choice(flicks) for _ in range(length // 2))
+    
+    # If the length is odd, add one more digit-flick pair
+    if length % 2 == 1:
+        input_str += random.choice(digits) + random.choice(flicks)
+
+    return input_str
+
+# Example of generating a test case
+print(tcgen())
+```
+
+### Explanation:
+1. **Input Length**: The length of the input string is chosen randomly between 2 and 1000.
+2. **Digits and Flick Directions**: The digits `0-9` and flick directions `T, L, U, R, D` are defined.
+3. **Generating Input String**: 
+   - A loop runs for half the length (since each operation is a digit followed by a flick direction).
+   - For each iteration, a random digit and a random flick direction are concatenated.
+   - If the length is odd, an additional digit-flick pair is added to ensure the total length is within the valid range.
+
+This generator will produce random yet valid test cases for the given problem. You can call `tcgen()` to get a new test case each time you run it.
+
+### Example Output:
+```
+3T7L0D8U
+```
+This output represents a sequence of flick operations starting with touching button 3, flicking button 7 to the left, and so on.
+
+This test case generator ensures that the input is always within the constraints specified in the problem statement and provides a diverse set of inputs to thoroughly test the solution.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    flick_input = fh.readline().strip()
+    return flick_input</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

@@ -1,0 +1,66 @@
+Sure! Let's write a test case generator for the "Spring Tile" problem.
+
+The generator will need to:
+1. Randomly generate the dimensions \(W\) and \(H\) within the specified limits.
+2. Create a maze map that includes exactly one 's' (start) tile and one 'g' (goal/stairs) tile, surrounded by walls ('#') on the outermost layer.
+3. Randomly place the other types of tiles ('.', '*') within the maze.
+
+Here is the Python code for the test case generator:
+
+```python
+import random
+
+def generate_maze(W, H):
+    # Initialize maze with walls
+    maze = [['#' for _ in range(W)] for _ in range(H)]
+
+    # Place the start 's' and goal 'g' tiles
+    start_x, start_y = random.randint(1, H-2), random.randint(1, W-2)
+    goal_x, goal_y = random.randint(1, H-2), random.randint(1, W-2)
+    while goal_x == start_x and goal_y == start_y:
+        goal_x, goal_y = random.randint(1, H-2), random.randint(1, W-2)
+
+    maze[start_x][start_y] = 's'
+    maze[goal_x][goal_y] = 'g'
+
+    # Randomly place other tiles ('.' and '*')
+    for i in range(1, H-1):
+        for j in range(1, W-1):
+            if maze[i][j] == '#':
+                if (i, j) not in [(start_x, start_y), (goal_x, goal_y)]:
+                    maze[i][j] = random.choice(['.', '*'])
+
+    return maze
+
+def print_maze(maze):
+    for row in maze:
+        print(''.join(row))
+
+def tcgen():
+    W = random.randint(3, 500)
+    H = random.randint(3, 500)
+
+    maze = generate_maze(W, H)
+
+    # Output the generated test case
+    print(f"{W} {H}")
+    print_maze(maze)
+
+# Generate and print a random test case
+tcgen()
+```
+
+### Explanation:
+1. **`generate_maze(W, H)`:**
+   - Initializes a maze with walls ('#') on all tiles.
+   - Randomly selects positions for the start 's' and goal 'g' tiles, ensuring they are not on the same tile.
+   - Fills the rest of the maze with either floor tiles ('.') or spring tiles ('*').
+
+2. **`print_maze(maze)`:**
+   - Converts and prints the maze in the required format.
+
+3. **`tcgen()`:**
+   - Randomly generates the dimensions \(W\) and \(H\).
+   - Generates the maze and prints it.
+
+You can call `tcgen()` to generate a random test case for the "Spring Tile" problem. The output will be in the form required by the problem statement.

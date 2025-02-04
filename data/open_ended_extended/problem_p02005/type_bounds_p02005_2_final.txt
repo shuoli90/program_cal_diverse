@@ -1,0 +1,15 @@
+Types: 
+- N: int
+- C: List[str]
+- D: List[int]
+- M: int
+- O: List[str]
+
+Ranges: 
+- 1 ≤ N ≤ 10^5
+- 1 ≤ len(C[i]) ≤ 20
+- 1 ≤ D[i] ≤ 10^5
+- 1 ≤ M ≤ 10^5
+- 1 ≤ len(O[i]) ≤ 20
+
+Addtl Info: None

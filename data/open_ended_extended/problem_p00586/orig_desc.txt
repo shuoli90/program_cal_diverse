@@ -1,0 +1,26 @@
+
+A + B Problem
+Compute A + B. 
+Input
+The input will consist of a series of pairs of integers A and B separated by a space, one pair of integers per line. The input will be terminated by EOF.
+Output
+For each pair of input integers A and B, you must output the sum of A and B in one line.
+Constraints
+ -1000 ≤ A, B ≤ 1000
+Sample Input
+1 2
+10 5
+100 20
+Output for the Sample Input
+3
+15
+120
+Sample Program
+#include<stdio.h>
+int main(){
+    int a, b;
+    while( scanf("%d %d", &a, &b) != EOF ){
+        printf("%d\n", a + b);
+    }
+    return 0;
+}

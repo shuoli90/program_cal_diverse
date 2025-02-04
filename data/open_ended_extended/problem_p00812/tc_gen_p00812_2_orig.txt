@@ -1,0 +1,66 @@
+Certainly! To generate test cases for the "Equals are Equals" problem, we need to create algebraic expressions that can test the equivalence logic of the program. Below is a test case generator that produces random algebraic expressions for this problem:
+
+```python
+import random
+import string
+
+def generate_variable():
+    var = random.choice(string.ascii_lowercase)
+    if random.choice([True, False]):
+        power = random.randint(1, 9)
+        var += f"^{power}"
+    return var
+
+def generate_term():
+    term = ""
+    if random.choice([True, False]):
+        term += str(random.randint(1, 1000))
+    
+    if random.choice([True, False]):
+        term += generate_variable()
+    
+    if random.choice([True, False]):
+        term = f"({generate_expression()})"
+    
+    return term
+
+def generate_expression():
+    num_terms = random.randint(1, 5)
+    expr = generate_term()
+    for _ in range(num_terms - 1):
+        operator = random.choice(['+', '-'])
+        expr += f" {operator} {generate_term()}"
+    return expr
+
+def generate_block():
+    num_lines = random.randint(2, 5)
+    block = [generate_expression() for _ in range(num_lines)]
+    block.append('.')  # Terminating line for the block
+    return block
+
+def tcgen():
+    num_blocks = random.randint(1, 5)
+    blocks = [generate_block() for _ in range(num_blocks)]
+    blocks.append(['.'])  # Terminating line for the input
+    return blocks
+
+def print_test_case(blocks):
+    for block in blocks:
+        for line in block:
+            print(line)
+
+# Generate a test case and print it
+test_case = tcgen()
+print_test_case(test_case)
+```
+
+### Explanation:
+
+1. **generate_variable**: Generates a single variable, optionally with a power (e.g., `a`, `b^2`).
+2. **generate_term**: Generates a term that could be a number, variable, or a parenthesized expression.
+3. **generate_expression**: Creates an expression by combining several terms with `+` or `-` operators.
+4. **generate_block**: Creates a block of lines where the first line is Mr. Simpson's answer and the following lines are students' answers, ending with a `.`.
+5. **tcgen**: Generates multiple blocks and appends a final `.` to indicate the end of all blocks.
+6. **print_test_case**: Prints the generated test case in the required format.
+
+This generator can be used to create various test cases for the problem, ensuring that different algebraic expressions are covered.

@@ -1,0 +1,38 @@
+Certainly! Here is a Python function to generate test cases for the "Knapsack Problem with Limitations" problem statement you provided:
+
+```python
+import random
+
+def generate_knapsack_test_case():
+    # Generate values for the constraints
+    N = random.randint(1, 100)
+    W = random.randint(1, 10000)
+    
+    # List to store item details
+    items = []
+    for _ in range(N):
+        vi = random.randint(1, 1000)
+        wi = random.randint(1, 1000)
+        mi = random.randint(1, 10000)
+        items.append((vi, wi, mi))
+    
+    # Format the input as specified in the problem statement
+    input_data = f"{N} {W}\n"
+    for vi, wi, mi in items:
+        input_data += f"{vi} {wi} {mi}\n"
+
+    return input_data.strip()
+
+# Example usage
+print(generate_knapsack_test_case())
+```
+
+This function generates random test cases for the "Knapsack Problem with Limitations" problem. Each test case is formatted as specified in the problem statement. The function ensures that the constraints are respected:
+
+1. \(1 \leq N \leq 100\)
+2. \(1 \leq v_i \leq 1000\)
+3. \(1 \leq w_i \leq 1000\)
+4. \(1 \leq m_i \leq 10000\)
+5. \(1 \leq W \leq 10000\)
+
+The output of the function is a string that can be directly used as input for testing the problem.

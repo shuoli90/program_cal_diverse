@@ -1,0 +1,168 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p01726 - Generation 2</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p01726 - Generation 2</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>Iku is unfortunate in that the important string T he had was rewritten to a different string T' by a virus. It is known that the virus rewrote one character of T to a different character. That is, T and T' differ by exactly one character. Iku has prepared a document S where T is believed to appear. As a preparation for restoring T, he wants to determine the number of substrings of S that may match T by differing by only one character.
+Given strings T' and S, find the number of substrings of S of length |T'| that differ by only one character from T'.
+Input
+The input is given in the following format.
+S
+T'
+The first line contains S.
+The second line contains T'.
+S and T' consist only of upper- and lowercase letters.
+Constraints
+Each variable in the input satisfies the following constraints.
+1 ≤ |S| ≤ 300,000
+1 ≤ |T'| ≤ |S|
+Output
+Output the number of substrings that satisfy the condition in a single line.
+Sample Input 1
+abcbcdbc
+abc
+Output for the Sample Input 1
+2
+cbc starting from the 3rd character of S and dbc starting from the 6th character of S satisfy the condition.
+Sample Input 2
+aaaaaa
+aaaaaa
+Output for the Sample Input 2
+0
+Do not count the string that is a complete match.
+Sample Input 3
+baaaaaaaa
+b
+Output for the Sample Input 3
+8
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>### Canonicalized Input Description: 
+
+A string S consisting of only upper- and lowercase letters.
+A string T' consisting of only upper- and lowercase letters.
+
+1 ≤ |S| ≤ 300,000
+1 ≤ |T'| ≤ |S|
+
+### Example Input:
+
+```
+abcbcdbc
+abc
+```
+
+### Function Signature:
+Write a function f(S, T') that takes in the input.
+```python
+def f(S: str, T: str):
+    '''
+    S: a string
+    T: a string
+    '''
+```</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>To generate test cases for the given problem statement, we need to create random strings \( S \) and \( T' \) that satisfy the constraints. Here is a test case generator for the problem:
+
+```python
+import random
+import string
+
+def generate_random_string(length):
+    return ''.join(random.choices(string.ascii_letters, k=length))
+
+def tcgen():
+    # Length of S
+    len_S = random.randint(1, 300000)
+    
+    # Generate random string S
+    S = generate_random_string(len_S)
+    
+    # Length of T' should be at most |S| and at least 1
+    len_T_prime = random.randint(1, len_S)
+    
+    # Generate random string T'
+    T_prime = generate_random_string(len_T_prime)
+    
+    return S, T_prime
+
+# Example usage:
+S, T_prime = tcgen()
+print(S)
+print(T_prime)
+```
+
+### Explanation:
+- **generate_random_string(length)**: This helper function generates a random string of the given length using uppercase and lowercase letters.
+- **tcgen()**: This function generates a random test case:
+  - It first determines the length of \( S \) which is a random integer between 1 and 300,000.
+  - It then generates a random string \( S \) of that length.
+  - It determines the length of \( T' \) which is a random integer between 1 and the length of \( S \).
+  - It generates a random string \( T' \) of that length.
+  - Finally, it returns the generated strings \( S \) and \( T' \).
+
+By running `tcgen()`, you can generate multiple test cases that adhere to the problem constraints.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    S = fh.readline().strip()
+    T_prime = fh.readline().strip()
+    return S, T_prime</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

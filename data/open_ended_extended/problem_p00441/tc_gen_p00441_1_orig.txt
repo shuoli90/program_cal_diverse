@@ -1,0 +1,40 @@
+Certainly! Here is a test case generator in Python for the problem "The Oldest Site". This generator will create valid input data according to the problem statement, including multiple datasets and a terminating zero line.
+
+```python
+import random
+
+def generate_dataset():
+    n = random.randint(1, 3000)
+    coordinates = set()
+    while len(coordinates) < n:
+        x = random.randint(0, 5000)
+        y = random.randint(0, 5000)
+        coordinates.add((x, y))
+    return n, list(coordinates)
+
+def generate_test_cases(num_datasets=10):
+    datasets = []
+    for _ in range(num_datasets):
+        n, coordinates = generate_dataset()
+        datasets.append((n, coordinates))
+    return datasets
+
+def print_test_cases(datasets):
+    for n, coordinates in datasets:
+        print(n)
+        for x, y in coordinates:
+            print(f"{x} {y}")
+    print(0)  # Terminating line
+
+# Generate and print test cases
+datasets = generate_test_cases()
+print_test_cases(datasets)
+```
+
+### Explanation
+
+- **`generate_dataset` Function**: This function generates a single dataset. It randomly selects a number of pillars \( n \) between 1 and 3000, then generates \( n \) unique coordinates within the range [0, 5000]. Using a set ensures that coordinates are unique.
+- **`generate_test_cases` Function**: This function generates a specified number of datasets (default is 10). It calls `generate_dataset` for each dataset and stores the results.
+- **`print_test_cases` Function**: This function prints out the generated datasets in the required format. It iterates through each dataset, prints the number of pillars \( n \), and then prints each coordinate. Finally, it prints a terminating zero line as specified in the problem statement.
+
+You can run this code to generate test cases for the problem "The Oldest Site".

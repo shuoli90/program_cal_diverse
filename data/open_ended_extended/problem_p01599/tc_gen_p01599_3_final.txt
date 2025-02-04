@@ -1,0 +1,47 @@
+Sure, let's create a test case generator for "Problem I: Train King". This generator will create random valid inputs for the problem following the constraints provided.
+
+Here's the code:
+
+```python
+import random
+
+def generate_timetable(num_trains):
+    """
+    Generate a random timetable for the given number of trains.
+    Each train has a random number of cars, random departure, and arrival times.
+    """
+    timetable = []
+    for _ in range(num_trains):
+        Ci = random.randint(1, 10)  # Number of cars
+        Di = random.randint(0, 86399)  # Departure time
+        Ai = random.randint(0, 86399)  # Arrival time
+        timetable.append((Ci, Di, Ai))
+    return timetable
+
+def tcgen():
+    # Generate the number of trains from A to B and from B to A
+    NAB = random.randint(0, 50)
+    NBA = random.randint(0, 50 - NAB)
+
+    # Generate timetable for trains from A to B
+    timetable_AB = generate_timetable(NAB)
+
+    # Generate timetable for trains from B to A
+    timetable_BA = generate_timetable(NBA)
+
+    # Prepare the input in the required format
+    input_data = f"{NAB} {NBA}\n"
+    for train in timetable_AB:
+        input_data += f"{train[0]} {train[1]} {train[2]}\n"
+    for train in timetable_BA:
+        input_data += f"{train[0]} {train[1]} {train[2]}\n"
+
+    return input_data
+
+# Example usage
+print(tcgen())
+```
+
+This function generates random test cases for the "Train King" problem. It ensures that the number of trains from A to B (`NAB`) and from B to A (`NBA`) are within the specified limits and generates random valid values for the number of cars, departure, and arrival times for each train.
+
+The output is formatted as a string that matches the input format expected by the problem statement. You can use this function to create various test cases to test your solution for the problem.

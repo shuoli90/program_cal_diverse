@@ -1,0 +1,94 @@
+
+We don't wanna work!
+ACM is an organization of programming contests. The purpose of ACM does not matter to you. The only important thing is that workstyles of ACM members are polarized: each member is either a workhorse or an idle fellow.
+Each member of ACM has a motivation level. The members are ranked by their motivation levels: a member who has a higher motivation level is ranked higher. When several members have the same value of motivation levels, the member who joined ACM later have a higher rank. The top 20% highest ranked members work hard, and the other (80%) members never (!) work. Note that if 20% of the number of ACM members is not an integer, its fraction part is rounded down.
+You, a manager of ACM, tried to know whether each member is a workhorse or an idle fellow to manage ACM. Finally, you completed to evaluate motivation levels of all the current members. However, your task is not accomplished yet because the members of ACM are dynamically changed from day to day due to incoming and outgoing of members. So, you want to record transitions of members from workhorses to idle fellows, and vice versa.
+You are given a list of the current members of ACM and their motivation levels in chronological order of their incoming date to ACM. You are also given a list of incoming/outgoing of members in chronological order.
+Your task is to write a program that computes changes of workstyles of ACM members.
+Input
+The first line of the input contains a single integer $N$ ($1 \leq N \leq 50,000$) that means the number of initial members of ACM. The ($i$ + 1)-th line of the input contains a string $s_i$ and an integer $a_i$ ($0 \leq a_i \leq 10^5$), separated by a single space. $s_i$ means the name of the $i$-th initial member and $a_i$ means the motivation level of the $i$-th initial member. Each character of $s_i$ is an English letter, and $1 \leq |s_i| \leq 20$. Note that those $N$ lines are ordered in chronological order of incoming dates to ACM of each member.
+The ($N$ + 2)-th line of the input contains a single integer $M$ ($1 \leq M \leq 20,000$) that means the number of changes of ACM members. The ($N$ + 2 + $j$)-th line of the input contains information of the $j$-th incoming/outgoing member. When the $j$-th information represents an incoming of a member, the information is formatted as "$+ t_j b_j$", where $t_j$ is the name of the incoming member and $b_j$ ($0 \leq b_j \leq 10^5$) is his motivation level. On the other hand, when the $j$-th information represents an outgoing of a member, the information is formatted as "$- t_j$", where $t_j$ means the name of the outgoing member. Each character of $t_j$ is an English letter, and $1 \leq |t_j| \leq 20$. Note that uppercase letters and lowercase letters are distinguished. Note that those $M$ lines are ordered in chronological order of dates when each event happens.
+No two incoming/outgoing events never happen at the same time. No two members have the same name, but members who left ACM once may join ACM again.
+Output
+Print the log, a sequence of changes in chronological order. When each of the following four changes happens, you should print a message corresponding to the type of the change as follows:
+ Member $name$ begins to work hard : "$name$ is working hard now."
+ Member $name$ begins to not work : "$name$ is not working now."
+For each incoming/outgoing, changes happen in the following order:
+ Some member joins/leaves.
+ When a member joins, the member is added to either workhorses or idle fellows.
+ Some member may change from a workhorse to an idle fellow and vice versa. Note that there are no cases such that two or more members change their workstyles at the same time.
+Sample Input 1
+4
+Durett 7
+Gayles 3
+Facenda 6
+Daughtery 0
+1
++ Mccourtney 2
+Output for the Sample Input 1
+Mccourtney is not working now.
+Durett is working hard now.
+Initially, no member works because $4 \times 20$% $< 1$. When one member joins ACM, Durrett begins to work hard.
+Sample Input 2
+3
+Burdon 2
+Orlin 8
+Trumper 5
+1
++ Lukaszewicz 7
+Output for the Sample Input 2
+Lukaszewicz is not working now.
+No member works.
+Sample Input 3
+5
+Andy 3
+Bob 4
+Cindy 10
+David 1
+Emile 1
+3
++ Fred 10
+- David
++ Gustav 3
+Output for the Sample Input 3
+Fred is working hard now.
+Cindy is not working now.
+Gustav is not working now.
+Sample Input 4
+7
+Laplant 5
+Varnes 2
+Warchal 7
+Degregorio 3
+Chalender 9
+Rascon 5
+Burdon 0
+7
++ Mccarroll 1
+- Chalender
++ Orlin 2
++ Chalender 1
++ Marnett 10
+- Chalender
++ Chalender 0
+Output for the Sample Input 4
+Mccarroll is not working now.
+Warchal is working hard now.
+Orlin is not working now.
+Chalender is not working now.
+Marnett is working hard now.
+Warchal is not working now.
+Chalender is not working now.
+Warchal is working hard now.
+Some member may repeat incoming and outgoing.
+Sample Input 5
+4
+Aoba 100
+Yun 70
+Hifumi 120
+Hajime 50
+2
+- Yun
+- Aoba
+Output for the Sample Input 5
+(blank)

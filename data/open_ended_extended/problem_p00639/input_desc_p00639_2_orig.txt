@@ -1,0 +1,23 @@
+An input consists of several datasets.
+- The first line of each dataset contains a real number D.
+- The next line contains 4 real numbers, which means px, py, vx, vy.
+- Input terminates when D = 0.
+
+### Example Input:
+
+```
+10.0
+0.5 0.0 -0.2 0.0
+1.0
+0.1 0.0 0.2 0.2
+0
+```
+
+### Function Signature:
+Write a function f(inputs) that takes in a list of tuples, each containing (D, (px, py, vx, vy)).
+def f(inputs: List[Tuple[float, Tuple[float, float, float, float]]]): 
+    ''' 
+    inputs: a list of tuples, each containing:
+        - D: a real number
+        - (px, py, vx, vy): a tuple of four real numbers
+    '''

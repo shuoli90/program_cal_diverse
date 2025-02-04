@@ -1,0 +1,138 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p03577 - Generation 1</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p03577 - Generation 1</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>
+Score : 100 points
+Problem StatementRng is going to a festival.
+The name of the festival is given to you as a string S, which ends with FESTIVAL, from input. Answer the question: "Rng is going to a festival of what?" Output the answer.
+Here, assume that the name of "a festival of s" is a string obtained by appending FESTIVAL to the end of s.
+For example, CODEFESTIVAL is a festival of CODE.
+Constraints
+9 \leq |S| \leq 50
+S consists of uppercase English letters.
+S ends with FESTIVAL.
+InputInput is given from Standard Input in the following format:
+S
+OutputPrint the answer to the question: "Rng is going to a festival of what?"
+Sample Input 1CODEFESTIVAL
+Sample Output 1CODE
+This is the same as the example in the statement.
+Sample Input 2CODEFESTIVALFESTIVAL
+Sample Output 2CODEFESTIVAL
+This string is obtained by appending FESTIVAL to the end of CODEFESTIVAL, so it is a festival of CODEFESTIVAL.
+Sample Input 3YAKINIKUFESTIVAL
+Sample Output 3YAKINIKU
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An integer \( \text{len}(S) \) (9 ≤ \( \text{len}(S) \) ≤ 50), representing the length of the string.
+A string \( S \) of length \( \text{len}(S) \), consisting of uppercase English letters and ending with a specific suffix.
+
+### Example Input:
+
+```
+CODEFESTIVAL
+```
+
+### Function Signature:
+Write a function f(S) that takes in the input.
+```python
+def f(S: str):
+    '''
+    S: a string
+    '''
+```</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Sure! Here is the test case generator for your problem statement:
+
+```python
+import random
+import string
+
+def tcgen():
+    # Length of S should be between 9 and 50
+    length_of_festival_part = len("FESTIVAL")
+    min_length_s = 9
+    max_length_s = 50
+
+    # Generate a random length for the part that comes before "FESTIVAL"
+    length_of_s_part = random.randint(min_length_s - length_of_festival_part, max_length_s - length_of_festival_part)
+    
+    # Generate the part of the string S that comes before "FESTIVAL"
+    s_part = ''.join(random.choices(string.ascii_uppercase, k=length_of_s_part))
+    
+    # Combine the parts to form the final string S
+    S = s_part + "FESTIVAL"
+    
+    return S
+
+# Example usage:
+for _ in range(5):
+    print(tcgen())
+```
+
+The `tcgen` function generates random strings `S` that meet the constraints of the problem. Each generated string ends with "FESTIVAL" and has a total length between 9 and 50 characters. The part that comes before "FESTIVAL" is generated randomly from uppercase English letters.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    S = fh.readline().strip()
+    return (S,)</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

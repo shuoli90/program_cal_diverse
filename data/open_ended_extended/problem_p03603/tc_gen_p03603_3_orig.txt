@@ -1,0 +1,41 @@
+Sure, I can help you write a test case generator for the problem statement you provided. This generator will create random inputs that respect the constraints of the problem.
+
+Here is the code for the test case generator:
+
+```python
+import random
+
+def tcgen():
+    N = random.randint(1, 1000)  # Generate a random integer N (1 ≤ N ≤ 1000)
+    
+    if N == 1:
+        P = []
+    else:
+        P = [random.randint(1, i - 1) for i in range(2, N + 1)]  # Generate P_2, P_3, ..., P_N
+
+    X = [random.randint(0, 5000) for _ in range(N)]  # Generate X_1, X_2, ..., X_N
+    
+    return N, P, X
+
+
+def print_test_case(N, P, X):
+    print(N)
+    if P:
+        print(' '.join(map(str, P)))
+    print(' '.join(map(str, X)))
+
+
+# Example usage:
+N, P, X = tcgen()
+print_test_case(N, P, X)
+```
+
+This code will generate random test cases within the constraints specified in the problem statement. Here's a brief explanation of each part:
+
+1. **N**: The number of vertices is chosen randomly between 1 and 1000.
+2. **P**: The parent vertices are chosen to ensure that each vertex \(i\) (2 ≤ i ≤ N) has a parent in the range \([1, i-1]\).
+3. **X**: The sequence \(X\) is generated with values between 0 and 5000.
+
+The `print_test_case` function is a helper function to format and print the generated test case.
+
+You can call `tcgen()` to generate a new test case and use `print_test_case(N, P, X)` to print it in the required format.

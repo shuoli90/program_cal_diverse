@@ -1,0 +1,15 @@
+def extract_arguments(fh):
+    A, B, M = map(int, fh.readline().strip().split())
+    a = list(map(int, fh.readline().strip().split()))
+    b = list(map(int, fh.readline().strip().split()))
+    discounts = []
+    for _ in range(M):
+        x, y, c = map(int, fh.readline().strip().split())
+        discounts.append((x, y, c))
+    return A, B, M, a, b, discounts
+
+# if __name__ == "__main__":
+#     input_path = sys.argv[1]
+#     with open(input_path, 'r') as fh: 
+#         A, B, M, a, b, discounts = extract_arguments(fh)
+#         f(A, B, M, a, b, discounts)

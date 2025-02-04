@@ -1,0 +1,15 @@
+def extract_arguments(fh):
+    n = int(fh.readline().strip())
+    records = []
+    for _ in range(n):
+        record = []
+        while True:
+            line = fh.readline().strip()
+            numbers = list(map(int, line.split()))
+            if numbers[-1] == 0:
+                record.extend(numbers[:-1])
+                break
+            else:
+                record.extend(numbers)
+        records.append(record)
+    return records

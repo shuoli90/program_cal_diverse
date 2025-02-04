@@ -1,0 +1,14 @@
+def extract_arguments(fh):
+    datasets = []
+    while True:
+        m = int(fh.readline().strip())
+        if m == 0:
+            break
+        participants = []
+        for _ in range(m):
+            line = fh.readline().strip().split()
+            id = int(line[0])
+            scores = list(map(int, line[1:]))
+            participants.append((id, scores))
+        datasets.append(participants)
+    return datasets

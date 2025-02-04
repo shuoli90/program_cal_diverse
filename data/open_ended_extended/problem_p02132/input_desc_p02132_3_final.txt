@@ -1,0 +1,26 @@
+An integer \(N\) (1 ≤ \(N\) ≤ 14), representing some quantity or size.
+An integer \(M\) (1 ≤ \(M\) ≤ \(N\)), representing some quantity or size.
+A list of \(N\) tuples, each containing two integers \((x_i, y_i)\) where \(0 ≤ x_i, y_i ≤ 10^5\).
+
+### Example Input:
+
+```
+5
+2
+0 0
+5 5
+10 10
+100 100
+200 200
+```
+
+### Function Signature:
+Write a function f(N, M, coordinates) that takes in the input.
+```python
+def f(N: int, M: int, coordinates: List[Tuple[int, int]]):
+    '''
+    N: an integer
+    M: an integer
+    coordinates: a list of tuples, each containing two integers
+    '''
+```

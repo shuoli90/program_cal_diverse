@@ -1,0 +1,31 @@
+Land Distribution
+  Mr. Tanaka has passed away and left a field of HW acres that is divided into HxW squares in the orchard. The orchard has three types of plants: apples, oysters, and oranges, and each square contains one of them. Mr. Tanaka left the inheritance instruction as follows:
+Distribute the land as much as possible to the relatives, but if two adjacent trees are the same, the border of the land is not determined, and they are treated as one plot of land.
+  For example, a 3x10 orchard ('リ' represents apples, 'カ' represents oysters, and 'ミ' represents oranges) is shown in the following figure.
+Adjust the boundary by removing the same species of planted trees, resulting in the following figure.
+  Therefore, it can be divided into 10 plots, corresponding to at most 10 people.
+The distribution must be completed before the border between each plot is no longer visible due to snow (i.e., before winter). The objective of completing the distribution task is to determine how many relatives can be assigned land based on the orchard map.
+Write a program that reads the orchard map and outputs the number of relatives who will receive land.
+Input
+Multiple data sets will be provided; the input ends with 0 0. Each data set starts with a line containing H and W. Separate them by a single space. The next H lines contain H × W characters. The string shall only contain the following characters: whitespace, "@" representing an apple, "#" representing an oyster, "*" representing an orange.
+No more than 20 datasets will be provided.
+Output
+For each test dataset, output the number of relatives who will receive land in one line.
+Sample Input
+10 10
+####
+#####@@
+@#
+@@@@@#*#*
+@##***@@@*
+#****#*@**
+##@*#@@*##
+*@@@@*@@@#
+***#@*@##*
+*@@@*@@##@
+*@*#*@##**
+@****#@@#@ 
+0 0
+"""
+Sample Output
+33

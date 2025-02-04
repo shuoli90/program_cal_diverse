@@ -1,0 +1,17 @@
+def extract_arguments(fh):
+    datasets = []
+    while True:
+        line = fh.readline().strip()
+        if line == "0 0":
+            break
+        N, M = map(int, line.split())
+        dogs = []
+        for _ in range(N):
+            Dix, Diy, Vi = map(float, fh.readline().strip().split())
+            dogs.append((Dix, Diy, Vi))
+        frisbees = []
+        for _ in range(M):
+            FPix, FPin, FVix, FViy = map(float, fh.readline().strip().split())
+            frisbees.append((FPix, FPin, FVix, FViy))
+        datasets.append((N, M, dogs, frisbees))
+    return datasets

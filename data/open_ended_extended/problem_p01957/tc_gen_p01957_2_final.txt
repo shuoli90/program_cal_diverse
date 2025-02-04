@@ -1,0 +1,53 @@
+Sure, I can help you write a test case generator for the "Tournament Chart" problem. Here is a Python function that generates random test cases for this problem:
+
+```python
+import random
+import string
+
+def generate_tournament_chart(contestants):
+    """
+    Generates a balanced tournament chart for a given list of contestants.
+    """
+    if len(contestants) == 1:
+        return contestants[0]
+    mid = len(contestants) // 2
+    left_chart = generate_tournament_chart(contestants[:mid])
+    right_chart = generate_tournament_chart(contestants[mid:])
+    return f"[{left_chart}-{right_chart}]"
+
+def tcgen():
+    N = random.randint(2, 26)  # Number of contestants (2 ≤ N ≤ 26)
+    
+    # Generate unique contestants
+    contestants = random.sample(string.ascii_lowercase, N)
+    
+    # Generate tournament chart
+    S = generate_tournament_chart(contestants)
+    
+    # Generate win counts for each contestant
+    wins = {contestant: random.randint(0, N - 1) for contestant in contestants}
+    
+    # Format the output
+    result = [S]
+    for contestant in contestants:
+        result.append(f"{contestant} {wins[contestant]}")
+    
+    return "\n".join(result)
+
+# Example usage:
+print(tcgen())
+```
+
+### Explanation
+
+1. **generate_tournament_chart(contestants):**
+   This recursive function generates a balanced tournament chart for a given list of contestants. It splits the list into two halves, recursively generates the tournament chart for each half, and then combines them into the required format.
+
+2. **tcgen():**
+   - **N:** Randomly chooses the number of contestants between 2 and 26.
+   - **contestants:** Randomly samples `N` unique lowercase letters to represent the contestants.
+   - **S:** Uses the `generate_tournament_chart` function to create the tournament chart.
+   - **wins:** Randomly generates a win count for each contestant.
+   - **result:** Formats the output as required by the problem statement.
+
+You can run the `tcgen()` function to generate a random test case for the "Tournament Chart" problem. The function prints the tournament chart followed by the win counts for each contestant.

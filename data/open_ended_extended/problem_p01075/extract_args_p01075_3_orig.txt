@@ -1,0 +1,13 @@
+def extract_arguments(fh):
+    N, M = map(int, fh.readline().strip().split())
+    bridges = []
+    for _ in range(M):
+        ai, bi, ci = map(int, fh.readline().strip().split())
+        bridges.append((ai, bi, ci))
+    return N, M, bridges
+
+# if __name__ == "__main__":
+#     input_path = sys.argv[1]
+#     with open(input_path, 'r') as fh: 
+#     N, M, bridges = extract_arguments(fh)
+#     f(N, M, bridges)

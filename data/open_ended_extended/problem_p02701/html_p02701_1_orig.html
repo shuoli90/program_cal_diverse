@@ -1,0 +1,169 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p02701 - Generation 1</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p02701 - Generation 1</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>
+Score : 300 points
+Problem StatementYou drew lottery N times. In the i-th draw, you got an item of the kind represented by a string S_i.
+How many kinds of items did you get?
+Constraints
+1 \leq N \leq 2\times 10^5
+S_i consists of lowercase English letters and has a length between 1 and 10 (inclusive).
+InputInput is given from Standard Input in the following format:
+N
+S_1
+:
+S_N
+OutputPrint the number of kinds of items you got.
+Sample Input 13
+apple
+orange
+apple
+Sample Output 12
+You got two kinds of items: apple and orange.
+Sample Input 25
+grape
+grape
+grape
+grape
+grape
+Sample Output 21
+Sample Input 34
+aaaa
+a
+aaa
+aa
+Sample Output 34
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An integer N (1 ≤ N ≤ 2×10^5), representing some quantity or size.
+A list of N strings, where each string consists of lowercase English letters and has a length between 1 and 10 (inclusive).
+
+### Example Input:
+
+```
+3
+apple
+orange
+apple
+```
+
+### Function Signature:
+Write a function f(N, S) that takes in the input. 
+def f(N: int, S: List[str]): 
+    ''' 
+    N: an integer 
+    S: a list of strings
+    '''</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Sure, I can write a test case generator for the given problem statement. Here is the Python code that generates test cases for this problem:
+
+```python
+import random
+import string
+
+def random_string(length):
+    return ''.join(random.choices(string.ascii_lowercase, k=length))
+
+def tcgen():
+    # Minimum and Maximum constraints
+    N = random.randint(1, 2 * 10**5)
+    
+    # Generating a list of random strings
+    S = [random_string(random.randint(1, 10)) for _ in range(N)]
+    
+    return N, S
+
+def print_test_case():
+    N, S = tcgen()
+    print(N)
+    for s in S:
+        print(s)
+
+# Example usage
+if __name__ == "__main__":
+    print_test_case()
+```
+
+### Explanation:
+1. **random_string(length)**: Generates a random string of lowercase English letters of given length.
+2. **tcgen()**: 
+   - Determines the number of lottery draws \( N \) within the given constraints.
+   - Generates a list of \( N \) random strings, each string having a length between 1 and 10.
+3. **print_test_case()**: 
+   - Calls `tcgen()` to generate a test case.
+   - Prints the number of draws \( N \).
+   - Prints each string \( S_i \) on a new line.
+
+This generator ensures that the constraints and input format are correctly followed. You can run the `print_test_case()` function to print a randomly generated test case to the standard output.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    N = int(fh.readline().strip())
+    S = [fh.readline().strip() for _ in range(N)]
+    return N, S
+
+# if __name__ == "__main__":
+#     input_path = sys.argv[1]
+#     with open(input_path, 'r') as fh: 
+#         N, S = extract_arguments(fh)
+#         f(N, S)</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

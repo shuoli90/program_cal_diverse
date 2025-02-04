@@ -1,0 +1,55 @@
+Certainly! Here is a test case generator for the given problem statement:
+
+```python
+import random
+
+def generate_tree_edges(N):
+    edges = []
+    for i in range(2, N+1):
+        a = random.randint(1, i-1)
+        b = i
+        c = random.randint(1, 10**9)
+        edges.append((a, b, c))
+    return edges
+
+def generate_queries(Q, N, K):
+    queries = []
+    for _ in range(Q):
+        while True:
+            x = random.randint(1, N)
+            y = random.randint(1, N)
+            if x != y and x != K and y != K:
+                break
+        queries.append((x, y))
+    return queries
+
+def tcgen():
+    N = random.randint(3, 10**5)
+    edges = generate_tree_edges(N)
+    
+    Q = random.randint(1, 10**5)
+    K = random.randint(1, N)
+    queries = generate_queries(Q, N, K)
+    
+    # Formatting output as required by the problem statement
+    output = f"{N}\n"
+    for edge in edges:
+        output += f"{edge[0]} {edge[1]} {edge[2]}\n"
+    output += f"{Q} {K}\n"
+    for query in queries:
+        output += f"{query[0]} {query[1]}\n"
+    
+    return output
+
+# Printing a generated test case
+print(tcgen())
+```
+
+### Explanation:
+1. **generate_tree_edges**: This function generates `N-1` edges for a tree with `N` vertices. Each edge connects a vertex `i` to a randomly chosen vertex `a` where `1 ≤ a < i`, ensuring the tree remains connected. Each edge also has a random length between 1 and \(10^9\).
+  
+2. **generate_queries**: This function generates `Q` queries. Each query is a pair `(x, y)` where both `x` and `y` are distinct and different from `K`. This ensures valid inputs according to the problem constraints.
+
+3. **tcgen**: This function combines everything. It randomly picks `N` and `Q` within their respective limits, generates the edges and queries, and formats them into the required output format.
+
+This test case generator ensures that the generated test cases adhere to the constraints and format specified in the problem statement.

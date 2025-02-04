@@ -1,0 +1,3 @@
+Types: A: int, B: int, H: int, M: int
+Ranges: 1 ≤ A, B ≤ 1000, 0 ≤ H ≤ 11, 0 ≤ M ≤ 59
+Addtl Info: None

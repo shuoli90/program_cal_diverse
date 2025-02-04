@@ -1,0 +1,18 @@
+An integer X (0 ≤ X ≤ 10^18), representing some quantity.
+An integer Y (0 ≤ Y ≤ 10^18), representing another quantity.
+
+### Example Input:
+
+```
+2 1
+```
+
+### Function Signature:
+Write a function f(X, Y) that takes in the input.
+```
+def f(X: int, Y: int):
+    '''
+    X: an integer
+    Y: an integer
+    '''
+```

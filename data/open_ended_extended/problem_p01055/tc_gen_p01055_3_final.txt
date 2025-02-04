@@ -1,0 +1,93 @@
+Certainly! Based on the given partial problem statement for "Bomb Removal," here is a more complete problem statement along with a test case generator:
+
+### Problem Statement: Bomb Removal
+
+**Description**
+
+You are given a grid of height \( H \) and width \( W \) with \( N \) bombs, each connected by a fuse cord. Each fuse cord follows a specific path consisting of \( L_i \) squares, and the bomb is located at the last square of the path. The goal is to determine the final positions of all bombs after the paths are traced.
+
+**Input**
+
+1. An integer \( H \) (1 ≤ \( H \) ≤ 100), representing the height of the grid.
+2. An integer \( W \) (1 ≤ \( W \) ≤ 100), representing the width of the grid.
+3. An integer \( N \) (1 ≤ \( N \) ≤ 10), representing the number of bombs.
+4. For each bomb, an integer \( L_i \) (1 ≤ \( L_i \) ≤ 20), representing the length of the path.
+5. For each bomb's path, a list of \( L_i \) tuples \((px_{i,j}, py_{i,j})\) representing the coordinates of the path squares in the grid, where \( 1 ≤ px_{i,j} ≤ H \) and \( 1 ≤ py_{i,j} ≤ W \).
+
+**Output**
+
+For each bomb, print the final position \((px_{i,L_i}, py_{i,L_i})\).
+
+**Examples**
+
+_Input_
+```
+5
+5
+2
+3
+1 1
+2 2
+3 3
+4
+5 5
+4 4
+3 3
+2 2
+```
+
+_Output_
+```
+3 3
+2 2
+```
+
+**Explanation**
+
+In the example, there are two bombs:
+1. The first bomb's path is \((1,1) \rightarrow (2,2) \rightarrow (3,3)\). The final position is \((3,3)\).
+2. The second bomb's path is \((5,5) \rightarrow (4,4) \rightarrow (3,3) \rightarrow (2,2)\). The final position is \((2,2)\).
+
+**Note**
+
+This problem tests your ability to handle multiple sequences of movements on a grid and extracting the final positions from those paths.
+
+### Test Case Generator
+
+Here is the test case generator for the "Bomb Removal" problem:
+
+```python
+import random
+
+def tcgen():
+    H = random.randint(1, 100)
+    W = random.randint(1, 100)
+    N = random.randint(1, 10)
+    
+    bomb_paths = []
+    for _ in range(N):
+        L = random.randint(1, 20)
+        path = []
+        for _ in range(L):
+            px = random.randint(1, H)
+            py = random.randint(1, W)
+            path.append((px, py))
+        bomb_paths.append(path)
+    
+    return H, W, N, bomb_paths
+
+# Generate a test case
+test_case = tcgen()
+H, W, N, bomb_paths = test_case
+
+# Print the test case in the required format
+print(H)
+print(W)
+print(N)
+for path in bomb_paths:
+    print(len(path))
+    for px, py in path:
+        print(px, py)
+```
+
+This generator function creates random values for the height \( H \), width \( W \), and the number of bombs \( N \). For each bomb, it generates a random path of length \( L \) with coordinates within the grid's boundaries.

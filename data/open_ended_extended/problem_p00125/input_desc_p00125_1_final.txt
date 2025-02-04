@@ -1,0 +1,25 @@
+An integer y1 (any integer including negatives), representing some quantity.
+An integer m1 (any integer including negatives), representing some quantity.
+An integer d1 (any integer including negatives), representing some quantity.
+An integer y2 (any integer including negatives), representing some quantity.
+An integer m2 (any integer including negatives), representing some quantity.
+An integer d2 (any integer including negatives), representing some quantity.
+Multiple sets of these integers will be given, and the input terminates when all values in a set are negative.
+
+### Example Input:
+
+```
+2006 9 2 2006 9 3
+2006 9 2 2006 11 11
+2004 1 1 2005 1 1
+2000 1 1 2006 1 1
+2000 1 1 2101 1 1
+-1 -1 -1 -1 -1 -1
+```
+
+### Function Signature:
+Write a function f(inputs) that takes in the input.
+def f(inputs: List[Tuple[int, int, int, int, int, int]]):
+    '''
+    inputs: a list of tuples, where each tuple contains six integers
+    '''

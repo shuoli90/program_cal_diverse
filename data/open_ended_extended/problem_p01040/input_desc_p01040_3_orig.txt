@@ -1,0 +1,29 @@
+An integer Y1 (1 ≤ Y1 ≤ 10^18).
+An integer M1 (1 ≤ M1 ≤ 12).
+An integer D1 (1 ≤ D1 ≤ 31).
+An integer Y2 (1 ≤ Y2 ≤ 10^18).
+An integer M2 (1 ≤ M2 ≤ 12).
+An integer D2 (1 ≤ D2 ≤ 31).
+The date (Y1, M1, D1) is at least 0 days before the date (Y2, M2, D2).
+If M1 or M2 is 2 and not a leap year, 1 ≤ D1, D2 ≤ 28.
+If M1 or M2 is 2 and a leap year, 1 ≤ D1, D2 ≤ 29.
+If M1 or M2 is one of {4, 6, 9, 11}, 1 ≤ D1, D2 ≤ 30.
+If M1 or M2 is one of {1, 3, 5, 7, 8, 10, 12}, 1 ≤ D1, D2 ≤ 31.
+
+### Example Input:
+
+```
+2015 3 13 2015 3 13
+```
+
+### Function Signature:
+Write a function f(Y1, M1, D1, Y2, M2, D2) that takes in the input.
+def f(Y1: int, M1: int, D1: int, Y2: int, M2: int, D2: int):
+    '''
+    Y1: an integer
+    M1: an integer
+    D1: an integer
+    Y2: an integer
+    M2: an integer
+    D2: an integer
+    '''

@@ -1,0 +1,4 @@
+def extract_arguments(fh):
+    n = int(fh.readline().strip())
+    datasets = [fh.readline().strip() for _ in range(n)]
+    return n, datasets

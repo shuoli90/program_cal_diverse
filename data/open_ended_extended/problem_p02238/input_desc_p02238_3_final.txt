@@ -1,0 +1,24 @@
+An integer n (1 ≤ n ≤ 100), representing some quantity or size.
+Next n lines contain:
+  An integer u (1 ≤ u ≤ n), representing some identifier.
+  An integer k (0 ≤ k ≤ n - 1), representing some degree.
+  Followed by k integers, each integer v (1 ≤ v ≤ n), representing some identifiers.
+
+### Example Input:
+
+```
+4
+1 1 2
+2 1 4
+3 0
+4 1 3
+```
+
+### Function Signature:
+Write a function f(inputs) that takes in the input.
+```python
+def f(inputs: List[Tuple[int, int, List[int]]]):
+    '''
+    inputs: a list of tuples, each containing an integer, an integer, and a list of integers
+    '''
+```

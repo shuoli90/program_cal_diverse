@@ -1,0 +1,47 @@
+Sure, here is a test case generator for the given problem statement:
+
+```python
+import random
+
+def lucas_number_generator(n):
+    """Generate the nth Lucas number."""
+    if n == 0:
+        return 2
+    elif n == 1:
+        return 1
+    else:
+        a, b = 2, 1
+        for _ in range(2, n + 1):
+            a, b = b, a + b
+        return b
+
+def tcgen():
+    # Generate a random integer N within the specified constraints
+    N = random.randint(1, 86)
+    
+    # Generate the expected Lucas number for verification
+    lucas_num = lucas_number_generator(N)
+    
+    return N, lucas_num
+
+# Example usage
+if __name__ == "__main__":
+    for _ in range(5):  # Generate 5 test cases
+        N, expected_lucas_number = tcgen()
+        print(f"Input: {N}")
+        print(f"Expected Output: {expected_lucas_number}\n")
+```
+
+### Explanation:
+
+1. **Lucas Number Generator Function (`lucas_number_generator`)**:
+    - This function computes the `N`-th Lucas number using an iterative approach to avoid the overhead of recursion and potential stack overflow issues for larger values of `N`.
+
+2. **Test Case Generator Function (`tcgen`)**:
+    - It generates a random integer `N` within the range `[1, 86]`, as specified in the problem constraints.
+    - It then computes the `N`-th Lucas number using the `lucas_number_generator` function for verification purposes.
+
+3. **Example Usage**:
+    - The `for` loop generates five random test cases, printing both the input `N` and the expected Lucas number output.
+
+This generator ensures that the test cases are valid and within the problem's constraints, and it can be used to verify the correctness of solutions to the problem.

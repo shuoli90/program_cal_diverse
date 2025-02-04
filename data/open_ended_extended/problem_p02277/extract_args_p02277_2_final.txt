@@ -1,0 +1,7 @@
+def extract_arguments(fh):
+    n = int(fh.readline().strip())
+    cards = []
+    for _ in range(n):
+        suit, num = fh.readline().strip().split()
+        cards.append((suit, int(num)))
+    return n, cards

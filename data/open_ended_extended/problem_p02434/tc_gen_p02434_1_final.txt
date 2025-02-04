@@ -1,0 +1,44 @@
+Certainly! Below is a Python test case generator for the problem statement "Vector II."
+
+```python
+import random
+
+def tcgen():
+    # Number of dynamic arrays (1 ≤ n ≤ 1,000)
+    n = random.randint(1, 1000)
+    
+    # Number of queries (1 ≤ q ≤ 500,000)
+    q = random.randint(1, 500000)
+    
+    queries = []
+    
+    for _ in range(q):
+        operation = random.choice([0, 1, 2])  # Select operation type: pushBack (0), dump (1), clear (2)
+        t = random.randint(0, n-1)  # Select array index (0 to n-1)
+        
+        if operation == 0:  # pushBack operation
+            x = random.randint(-1000000000, 1000000000)  # Select value to add to the array
+            queries.append(f"0 {t} {x}")
+        elif operation == 1:  # dump operation
+            queries.append(f"1 {t}")
+        elif operation == 2:  # clear operation
+            queries.append(f"2 {t}")
+    
+    return n, q, queries
+
+# Example usage:
+n, q, queries = tcgen()
+print(n, q)
+for query in queries:
+    print(query)
+```
+
+### Explanation:
+1. **Number of Dynamic Arrays (`n`)**: Randomly chosen between 1 and 1000.
+2. **Number of Queries (`q`)**: Randomly chosen between 1 and 500,000.
+3. **Operations**:
+   - **`pushBack(t, x)`**: Operation type `0`, followed by the array index `t` and a randomly chosen value `x` between -1,000,000,000 and 1,000,000,000.
+   - **`dump(t)`**: Operation type `1`, followed by the array index `t`.
+   - **`clear(t)`**: Operation type `2`, followed by the array index `t`.
+
+This generator produces a set of test cases for the problem "Vector II," ensuring that the constraints are respected.

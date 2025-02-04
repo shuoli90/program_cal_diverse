@@ -1,0 +1,201 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p00321 - Generation 1</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p00321 - Generation 1</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>Related Products
+On internet shopping sites, when users are viewing a product page, the site will display several other products that were purchased together with the product currently being viewed, by other users in the past. This is done in order to increase sales, by presenting products that are thought to be highly relevant to the user.
+A similar approach can be seen in supermarkets, where items that are often purchased together are placed close to each other (e.g., bread and jam). Your job is to write a program to help arrange products in a store. Given a criterion number and information about products that were purchased together, you want to find pairs of products that were purchased together at least the criterion number of times.
+When given information about products that were purchased together and a criterion number, create a program that outputs pairs of products that were purchased together at least the criterion number of times.
+Input
+The input is given in the following format.
+N F
+info1
+info2
+:
+infoN
+The first line contains two integers N (1 ≤ N ≤ 100) and F (1 ≤ F ≤ 100), where N is the number of pieces of information about products purchased together and F is the criterion number. The next N lines contain information about products that were purchased together. Information about products purchased together, infoi, is given in the following format.
+M item1 item2 ...  itemM
+Here, M (1 ≤ M ≤ 10) indicates how many products are included in this information. itemj denotes the name of the purchased product and is a string of 1 to 30 lowercase English letters. No two items in infoi are the same.
+Output
+On the first line, output the number of pairs of products that were purchased together at least F times. From the second line onwards, output all the pairs. If there are no pairs of products, do not output anything from the second line onwards.
+The output order is as follows: sort the pairs of product names in dictionary order (i.e., the order of words in an English-Japanese dictionary) and then sort the pairs of product combinations as follows:
+ Compare the first product names and prioritize the one that comes first in dictionary order.
+ If the first product names are the same, compare the second product names and prioritize the one that comes first in dictionary order.
+Product names are separated by one space, and product combinations are separated by a line break.
+Sample Input 1
+5 2
+3 bread milk banana
+2 milk cornflakes
+3 potato bread milk
+4 cornflakes bread milk butter
+2 potato bread
+Sample Output 1
+3
+bread milk
+bread potato
+cornflakes milk
+Sample Input 2
+5 5
+3 bread milk banana
+2 milk cornflakes
+3 potato bread milk
+4 cornflakes bread milk butter
+2 potato bread
+Sample Output 2
+0
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An integer N (1 ≤ N ≤ 100), representing some quantity or size.
+An integer F (1 ≤ F ≤ 100), representing some criterion or threshold.
+A list of N tuples, where each tuple contains:
+  - An integer M (1 ≤ M ≤ 10), representing the number of items in the tuple.
+  - A list of M strings, each string consists of 1 to 30 lowercase English letters, representing some items.
+
+### Example Input:
+
+```
+5 2
+3 bread milk banana
+2 milk cornflakes
+3 potato bread milk
+4 cornflakes bread milk butter
+2 potato bread
+```
+
+### Function Signature:
+Write a function f(N, F, info) that takes in the input.
+```python
+def f(N: int, F: int, info: List[Tuple[int, List[str]]]):
+    '''
+    N: an integer
+    F: an integer
+    info: a list of tuples, each containing an integer and a list of strings
+    '''
+```</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Sure, I can help you create a test case generator for the "Related Products" problem. Below is a Python function that generates random test cases for this problem. This function will generate values for \(N\), \(F\), and the subsequent lines of product purchase information.
+
+```python
+import random
+import string
+
+def generate_random_product_name():
+    length = random.randint(1, 30)
+    return ''.join(random.choices(string.ascii_lowercase, k=length))
+
+def tcgen():
+    N = random.randint(1, 100)
+    F = random.randint(1, 100)
+    
+    info = []
+    for _ in range(N):
+        M = random.randint(1, 10)
+        items = set()
+        while len(items) < M:
+            items.add(generate_random_product_name())
+        info.append(f"{M} " + " ".join(items))
+    
+    return N, F, info
+
+def print_test_case():
+    N, F, info = tcgen()
+    print(N, F)
+    for i in info:
+        print(i)
+
+# Example usage
+print_test_case()
+```
+
+### Explanation:
+
+1. **`generate_random_product_name` Function**:
+    - Generates a random product name of length between 1 and 30 characters composed of lowercase English letters.
+
+2. **`tcgen` Function**:
+    - Randomly selects \(N\) (1 ≤ \(N\) ≤ 100).
+    - Randomly selects \(F\) (1 ≤ \(F\) ≤ 100).
+    - For each piece of information (N times):
+        - Randomly selects \(M\) (1 ≤ \(M\) ≤ 10).
+        - Generates \(M\) unique product names.
+        - Adds the formatted string to the `info` list.
+
+3. **`print_test_case` Function**:
+    - Calls `tcgen` to generate a test case.
+    - Prints the test case in the required format.
+
+### Usage:
+- Run the `print_test_case()` function to generate and print a random test case.
+- Each test case will be printed in the format required by the problem statement.
+
+This should help you generate a variety of test cases for the problem, ensuring comprehensive testing of your solution's correctness and robustness.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    N, F = map(int, fh.readline().strip().split())
+    info = []
+    for _ in range(N):
+        line = fh.readline().strip().split()
+        M = int(line[0])
+        items = line[1:]
+        info.append((M, items))
+    return N, F, info</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

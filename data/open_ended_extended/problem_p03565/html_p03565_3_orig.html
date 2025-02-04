@@ -1,0 +1,171 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p03565 - Generation 3</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p03565 - Generation 3</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>
+Score : 300 points
+Problem StatementE869120 found a chest which is likely to contain treasure.
+However, the chest is locked. In order to open it, he needs to enter a string S consisting of lowercase English letters.
+He also found a string S', which turns out to be the string S with some of its letters (possibly all or none) replaced with ?.  
+One more thing he found is a sheet of paper with the following facts written on it:  
+Condition 1: The string S contains a string T as a contiguous substring.
+Condition 2: S is the lexicographically smallest string among the ones that satisfy Condition 1.
+Print the string S.
+If such a string does not exist, print UNRESTORABLE.  
+Constraints
+1 \leq |S'|, |T| \leq 50
+S' consists of lowercase English letters and ?.
+T consists of lowercase English letters.
+InputInput is given from Standard Input in the following format:
+S
+T'
+OutputPrint the string S.
+If such a string does not exist, print UNRESTORABLE instead.  
+Sample Input 1?tc????
+coder
+Sample Output 1atcoder
+There are 26 strings that satisfy Condition 1: atcoder, btcoder, ctcoder,..., ztcoder.
+Among them, the lexicographically smallest is atcoder, so we can say S = atcoder.
+Sample Input 2??p??d??
+abc
+Sample Output 2UNRESTORABLE
+There is no string that satisfies Condition 1, so the string S does not exist.
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>Canonicalized Input Description:
+
+A string S' of length between 1 and 50, consisting of lowercase English letters and '?'.
+A string T of length between 1 and 50, consisting of lowercase English letters.
+
+### Example Input:
+
+```
+?tc????
+coder
+```
+
+### Function Signature:
+Write a function f(S_prime, T) that takes in the input.
+```python
+def f(S_prime: str, T: str):
+    '''
+    S_prime: a string
+    T: a string
+    '''
+```</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Sure, I can help you create a test case generator for the described problem. Here is a Python function that generates random test cases for the problem:
+
+```python
+import random
+import string
+
+def generate_random_string(length, allow_question_marks=False):
+    characters = string.ascii_lowercase
+    if allow_question_marks:
+        characters += '?'
+    return ''.join(random.choice(characters) for _ in range(length))
+
+def tcgen():
+    # Define constraints
+    max_length = 50
+    
+    # Generate random lengths for S' and T
+    len_S = random.randint(1, max_length)
+    len_T = random.randint(1, max_length)
+    
+    # Generate the strings S' and T
+    S_prime = generate_random_string(len_S, allow_question_marks=True)
+    T = generate_random_string(len_T, allow_question_marks=False)
+    
+    return S_prime, T
+
+# Example of generating a test case
+S_prime, T = tcgen()
+print("S':", S_prime)
+print("T:", T)
+```
+
+### Explanation:
+
+- `generate_random_string(length, allow_question_marks=False)`: This helper function creates a random string of a given length. If `allow_question_marks` is `True`, it includes `?` in the possible characters.
+
+- `tcgen()`: This function generates random test cases:
+  - Randomly determines the lengths of `S'` and `T` within the constraints.
+  - Uses the helper function to create `S'` (with possible `?` characters) and `T` (only lowercase letters).
+
+### Output Example:
+
+When you run the `tcgen` function, it will print a randomly generated `S'` and `T`:
+
+```
+S': ??a??bc
+T: xyz
+```
+
+Feel free to adjust the random generation logic to meet specific needs or constraints.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    S_prime = fh.readline().strip()
+    T = fh.readline().strip()
+    return S_prime, T</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

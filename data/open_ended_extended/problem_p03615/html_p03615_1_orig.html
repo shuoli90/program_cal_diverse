@@ -1,0 +1,182 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p03615 - Generation 1</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p03615 - Generation 1</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>
+Score : 700 points
+Problem StatementYou are given N points (x_i,y_i) located on a two-dimensional plane.
+Consider a subset S of the N points that forms a convex polygon.
+Here, we say a set of points S forms a convex polygon when there exists a convex polygon with a positive area that has the same set of vertices as S. All the interior angles of the polygon must be strictly less than 180°.
+For example, in the figure above, {A,C,E} and {B,D,E} form convex polygons; {A,C,D,E}, {A,B,C,E}, {A,B,C}, {D,E} and {} do not.
+For a given set S, let n be the number of the points among the N points that are inside the convex hull of S (including the boundary and vertices). Then, we will define the score of S as 2^{n-|S|}.
+Compute the scores of all possible sets S that form convex polygons, and find the sum of all those scores.
+However, since the sum can be extremely large, print the sum modulo 998244353.
+Constraints
+1≤N≤200
+0≤x_i,y_i<10^4 (1≤i≤N)
+If i≠j, x_i≠x_j or y_i≠y_j.
+x_i and y_i are integers.
+InputThe input is given from Standard Input in the following format:
+N
+x_1 y_1
+x_2 y_2
+:
+x_N y_N
+OutputPrint the sum of all the scores modulo 998244353.
+Sample Input 14
+0 0
+0 1
+1 0
+1 1
+Sample Output 15
+We have five possible sets as S, four sets that form triangles and one set that forms a square. Each of them has a score of 2^0=1, so the answer is 5.
+Sample Input 25
+0 0
+0 1
+0 2
+0 3
+1 1
+Sample Output 211
+We have three "triangles" with a score of 1 each, two "triangles" with a score of 2 each, and one "triangle" with a score of 4. Thus, the answer is 11.
+Sample Input 31
+3141 2718
+Sample Output 30
+There are no possible set as S, so the answer is 0.
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An integer N (1 ≤ N ≤ 200), representing some quantity or size.
+A list of N tuples, where each tuple contains two integers (x_i, y_i) with 0 ≤ x_i, y_i < 10^4 and x_i and y_i are distinct for different tuples.
+
+### Example Input:
+
+```
+4
+0 0
+0 1
+1 0
+1 1
+```
+
+### Function Signature:
+Write a function f(N, points) that takes in the input.
+def f(N: int, points: List[Tuple[int, int]]):
+    '''
+    N: an integer
+    points: a list of tuples, each containing two integers
+    '''</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>To generate test cases for the given problem statement, we need to create a function that generates a random set of points on a 2D plane within the given constraints. This function will randomly select the number of points \(N\) and their respective coordinates \((x_i, y_i)\).
+
+Here's the test case generator for the problem statement:
+
+```python
+import random
+
+def tcgen():
+    # Number of points
+    N = random.randint(1, 200)
+    
+    # Generate N unique points
+    points = set()
+    while len(points) < N:
+        x = random.randint(0, 10**4 - 1)
+        y = random.randint(0, 10**4 - 1)
+        points.add((x, y))
+    
+    points = list(points)
+    
+    return N, points
+
+def format_test_case(N, points):
+    test_case = f"{N}\n"
+    for x, y in points:
+        test_case += f"{x} {y}\n"
+    return test_case
+
+# Example usage
+N, points = tcgen()
+test_case = format_test_case(N, points)
+print(test_case)
+```
+
+### Explanation
+1. **Number of Points \(N\)**: The number of points is chosen randomly within the range [1, 200].
+2. **Generating Unique Points**: We generate \(N\) unique points by ensuring that each coordinate pair \((x_i, y_i)\) is unique.
+3. **Coordinate Values**: Each coordinate is randomly chosen within the range [0, 9999].
+4. **Formatting the Output**: The `format_test_case` function formats the generated points to match the required input format for the problem.
+
+You can use this generator to create multiple test cases for your competitive programming problem.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    N = int(fh.readline().strip())
+    points = []
+    for _ in range(N):
+        x, y = map(int, fh.readline().strip().split())
+        points.append((x, y))
+    return N, points
+
+# if __name__ == "__main__":
+#     input_path = sys.argv[1]
+#     with open(input_path, 'r') as fh:
+#         N, points = extract_arguments(fh)
+#         f(N, points)</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

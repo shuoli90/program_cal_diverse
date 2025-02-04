@@ -1,0 +1,35 @@
+Sure, I can help you create a test case generator for the "What Goes Up Must Come Down" problem statement. Here is the Python code for generating test cases:
+
+```python
+import random
+
+def tcgen():
+    # Generate a random n within the given constraints
+    n = random.randint(1, 100000)
+    
+    # Generate n random integers between 1 and 100000
+    a = [random.randint(1, 100000) for _ in range(n)]
+    
+    return n, a
+
+# Example of generating and printing a test case
+n, a = tcgen()
+print(n)
+print(' '.join(map(str, a)))
+```
+
+This function `tcgen()` generates a random integer \( n \) within the specified range [1, 100000] and then creates a list \( a \) of size \( n \) with random integers between 1 and 100000. The generated test case is returned as a tuple. The final part prints out the generated test case in the required format.
+
+To create multiple test cases, you can call `tcgen()` multiple times within a loop.
+
+Here are some examples of how you might use this in a script to generate multiple test cases:
+
+```python
+for _ in range(5):  # Generate 5 test cases
+    n, a = tcgen()
+    print(n)
+    print(' '.join(map(str, a)))
+    print()  # Print a blank line to separate test cases
+```
+
+This will print 5 test cases, each separated by a blank line. Feel free to adjust the number of test cases according to your needs.

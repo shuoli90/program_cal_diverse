@@ -1,0 +1,21 @@
+Canonicalized Input Description:
+
+An integer N (1 ≤ N ≤ 10^5), representing some quantity or size.  
+A string S of length 2N, where each character is either 'B' or 'W'.
+
+### Example Input:
+
+```
+2
+BWWB
+```
+
+### Function Signature:
+Write a function f(N, S) that takes in the input.
+```python
+def f(N: int, S: str):
+    '''
+    N: an integer
+    S: a string
+    '''
+```

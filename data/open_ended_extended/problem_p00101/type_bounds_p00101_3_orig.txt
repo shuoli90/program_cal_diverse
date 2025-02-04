@@ -1,0 +1,3 @@
+Types: n: int, datasets: List[str]
+Ranges: 1 ≤ n ≤ 100, len(datasets[i]) ≤ 1000
+Addtl Info: Each dataset contains only English characters and spaces

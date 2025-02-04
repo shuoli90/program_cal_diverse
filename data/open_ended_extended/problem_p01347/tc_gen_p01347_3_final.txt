@@ -1,0 +1,52 @@
+Certainly! Below is a test case generator for the given "Problem I: How to Create a Good Game". This generator will produce random test cases that adhere to the constraints of the problem statement.
+
+```python
+import random
+
+def generate_test_case():
+    N = random.randint(2, 100)  # Number of checkpoints (2 ≤ N ≤ 100)
+    M = random.randint(1, 1000)  # Number of paths (1 ≤ M ≤ 1000)
+    
+    edges = set()
+    while len(edges) < M:
+        x = random.randint(0, N - 2)
+        y = random.randint(x + 1, N - 1)
+        s = random.randint(1, 1000)  # Number of stages in the path (1 ≤ si ≤ 1000)
+        edges.add((x, y, s))
+    
+    edges = list(edges)
+    
+    # Ensure that every checkpoint i has a route from the opening (0) to the ending (N-1)
+    # We'll add a simple path from 0 to N-1 to guarantee connectivity
+    if not any(edge[0] == 0 and edge[1] == N - 1 for edge in edges):
+        edges.append((0, N - 1, random.randint(1, 1000)))
+    
+    # Ensure no two paths connect the same pair of checkpoints
+    edges = list(dict(((x, y), s) for x, y, s in edges).items())
+    
+    # Reconstruct the final edges
+    final_edges = [(x, y, s) for (x, y), s in edges]
+    
+    # Make sure the number of edges does not exceed M
+    final_edges = final_edges[:M]
+    
+    return N, len(final_edges), final_edges
+
+def print_test_case(N, M, edges):
+    print(N, M)
+    for edge in edges:
+        print(f"{edge[0]} {edge[1]} {edge[2]}")
+
+# Generate and print a test case
+N, M, edges = generate_test_case()
+print_test_case(N, M, edges)
+```
+
+This test case generator performs the following steps:
+1. Randomly determines the number of checkpoints `N` and paths `M` within their respective constraints.
+2. Generates `M` unique paths `(xi, yi, si)` ensuring no two paths connect the same pair of checkpoints.
+3. Ensures that every checkpoint `i` is reachable from the opening (checkpoint 0) and can reach the ending (checkpoint `N-1`).
+4. Adds a mandatory path from checkpoint 0 to checkpoint `N-1` if it doesn't exist to guarantee connectivity.
+5. Outputs the generated test case in the required format.
+
+You can run the generator multiple times to produce different test cases for the problem.

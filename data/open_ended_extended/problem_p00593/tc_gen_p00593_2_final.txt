@@ -1,0 +1,40 @@
+Sure! Here's a test case generator for the given JPEG Compression problem:
+
+```python
+import random
+
+def tcgen():
+    test_cases = []
+    
+    while True:
+        N = random.randint(0, 9)
+        if N == 0:
+            test_cases.append(N)
+            break
+        test_cases.append(N)
+    
+    return test_cases
+
+# Example usage:
+test_cases = tcgen()
+for i, N in enumerate(test_cases):
+    if N == 0:
+        print(f'Test Case {i+1}: End of Input')
+    else:
+        print(f'Test Case {i+1}: N = {N}')
+```
+
+Explanation:
+
+1. **Random Test Case Generation**:
+    - We generate random integers \(N\) between 0 and 9, which simulate the matrix size.
+    - We continue generating values until we get a zero, which signals the end of input.
+
+2. **Output Format**:
+    - For each test case, we print the corresponding \(N\) value.
+    - When \(N = 0\), we denote it as the end of input.
+
+3. **Complete Test Case Output**:
+    - You would need to implement the logic to produce the zigzag matrix for each \(N\) value in your main problem-solving code separately. The generator here just provides random test cases.
+
+This should help you generate random test cases for the given problem. If you need further assistance or additional functionality, feel free to ask!

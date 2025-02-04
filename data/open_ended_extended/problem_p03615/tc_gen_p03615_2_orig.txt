@@ -1,0 +1,43 @@
+Certainly! Below is the test case generator for the given problem statement.
+
+```python
+import random
+
+MOD = 998244353
+
+def tcgen():
+    # Generate a random integer for N within the given constraints
+    N = random.randint(1, 200)
+    
+    # Generate N unique points (x_i, y_i) such that 0 <= x_i, y_i < 10^4
+    points = set()
+    while len(points) < N:
+        x = random.randint(0, 9999)
+        y = random.randint(0, 9999)
+        points.add((x, y))
+        
+    points = list(points)
+    
+    return N, points
+
+# Print the generated test case in the required format
+def print_test_case():
+    N, points = tcgen()
+    print(N)
+    for x, y in points:
+        print(x, y)
+
+# Example usage:
+print_test_case()
+```
+
+### Explanation:
+1. **N Generation**: We generate a random integer \(N\) between 1 and 200.
+2. **Points Generation**: We generate \(N\) unique points \((x_i, y_i)\). Each coordinate \(x_i\) and \(y_i\) is generated randomly between 0 and 9999.
+3. **Uniqueness**: We ensure all points are unique by using a set.
+4. **Output**: The function `print_test_case()` prints the generated test case in the required format.
+
+### Usage:
+To generate and print a test case, simply call `print_test_case()`. This will output \(N\) followed by \(N\) unique points in the specified format.
+
+You can use this generator to create multiple test cases for testing your solution to the problem.

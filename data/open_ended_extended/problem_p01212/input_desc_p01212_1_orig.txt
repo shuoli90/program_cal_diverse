@@ -1,0 +1,26 @@
+An integer W (3 ≤ W ≤ 30), representing some width.
+An integer H (3 ≤ H ≤ 30), representing some height.
+A list of H strings, each containing W characters from the set {'@', '<', 'a'-'z', 'A'-'Z', '#', '.'}.
+The end of the input is indicated by a line containing two zeros.
+
+### Example Input:
+
+```
+8 3
+########
+#<A.@.a#
+########
+0 0
+```
+
+### Function Signature:
+Write a function f(inputs) that takes in the input.
+```python
+def f(inputs: List[Tuple[int, int, List[str]]]):
+    '''
+    inputs: a list of tuples, each containing:
+      - an integer W
+      - an integer H
+      - a list of H strings
+    '''
+```

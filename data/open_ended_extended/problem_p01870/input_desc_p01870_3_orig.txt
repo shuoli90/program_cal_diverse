@@ -1,0 +1,24 @@
+An integer N (2 ≤ N ≤ 100000), representing some quantity or size.
+A list of N-1 tuples, where each tuple contains:
+  - an integer p_i (0 ≤ p_i ≤ N-1)
+  - an integer w_i (1 ≤ w_i ≤ 1000)
+
+### Example Input:
+
+```
+5
+0 1
+0 2
+0 3
+0 4
+```
+
+### Function Signature:
+Write a function f(N, inputs) that takes in the input.
+```python
+def f(N: int, inputs: List[Tuple[int, int]]):
+    ''' 
+    N: an integer 
+    inputs: a list of tuples, where each tuple consists of two integers 
+    '''
+```

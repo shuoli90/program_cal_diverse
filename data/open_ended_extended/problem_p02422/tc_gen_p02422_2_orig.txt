@@ -1,0 +1,56 @@
+Sure, here is a test case generator for the given problem statement:
+
+```python
+import random
+import string
+
+def generate_random_string(length):
+    return ''.join(random.choices(string.ascii_lowercase, k=length))
+
+def generate_commands(str_length, q):
+    commands = []
+    for _ in range(q):
+        command_type = random.choice(['print', 'reverse', 'replace'])
+        a = random.randint(0, str_length - 1)
+        b = random.randint(a, str_length - 1)
+        
+        if command_type == 'print':
+            commands.append(f"print {a} {b}")
+        elif command_type == 'reverse':
+            commands.append(f"reverse {a} {b}")
+        elif command_type == 'replace':
+            p = generate_random_string(b - a + 1)
+            commands.append(f"replace {a} {b} {p}")
+    
+    return commands
+
+def tcgen():
+    # Generate a random string of length between 1 and 1000
+    str_length = random.randint(1, 1000)
+    str_input = generate_random_string(str_length)
+    
+    # Generate the number of commands between 1 and 100
+    q = random.randint(1, 100)
+    
+    # Generate the commands
+    commands = generate_commands(str_length, q)
+    
+    return str_input, q, commands
+
+# Example usage
+if __name__ == "__main__":
+    str_input, q, commands = tcgen()
+    print(str_input)
+    print(q)
+    for command in commands:
+        print(command)
+```
+
+This test case generator performs the following steps:
+
+1. Generates a random string `str` of length between 1 and 1000 consisting of lowercase letters.
+2. Determines the number of commands `q` between 1 and 100.
+3. For each command, randomly selects a command type (`print`, `reverse`, or `replace`), and generates appropriate parameters (indices `a` and `b`, and string `p` for `replace` commands) based on the constraints provided.
+4. Returns the generated string, the number of commands, and the list of commands.
+
+This should adequately cover a variety of potential test cases for the problem.

@@ -1,0 +1,31 @@
+Sure! Here is a test case generator for the given problem statement:
+
+```python
+import random
+
+def tcgen():
+    # Generate a random N within the allowed constraint
+    N = random.randint(1, 2 * 10**5)
+    
+    # Generate a permutation of integers from 1 to N
+    P = list(range(1, N + 1))
+    random.shuffle(P)
+    
+    return N, P
+
+# Example of how to use the test case generator
+if __name__ == "__main__":
+    N, P = tcgen()
+    print(N)
+    for p in P:
+        print(p)
+```
+
+The `tcgen` function generates a random test case by:
+1. Choosing a random integer `N` between 1 and 200,000 (inclusive).
+2. Creating a list `P` that is a permutation of the integers from 1 to `N`.
+3. Shuffling the list `P` to ensure it is in a random order.
+
+The generated values of `N` and `P` can then be printed or used for testing purposes. Here is an example of how you might use the test case generator to print a test case. When running this script, it will generate a new random test case each time.
+
+This test case generator ensures that the constraints specified in the problem statement are met, including that the sequence `P` is a permutation of the integers from 1 through `N`.

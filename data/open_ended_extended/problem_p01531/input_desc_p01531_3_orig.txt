@@ -1,0 +1,16 @@
+An integer N (2 ≤ N ≤ 1000), representing the length of the string.
+A string S of length N, consisting of digits '0'-'9' and characters 'T', 'L', 'U', 'R', 'D'.
+
+### Example Input:
+
+```
+5R2D
+```
+
+### Function Signature:
+Write a function f(N, S) that takes in the input.
+def f(N: int, S: str):
+    ''' 
+    N: an integer
+    S: a string
+    '''

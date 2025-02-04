@@ -1,0 +1,23 @@
+An integer or a floating-point number D.
+A tuple of four floating-point numbers (px, py, vx, vy).
+Input terminates when D is 0.
+
+### Example Input:
+
+```
+10.0
+0.5 0.0 -0.2 0.0
+1.0
+0.1 0.0 0.2 0.2
+0
+```
+
+### Function Signature:
+Write a function f(inputs: List[Tuple[float, Tuple[float, float, float, float]]]) that takes in the input.
+def f(inputs: List[Tuple[float, Tuple[float, float, float, float]]]):
+    '''
+    inputs: a list of tuples where each tuple contains:
+        - a floating-point number D
+        - a tuple of four floating-point numbers (px, py, vx, vy)
+    '''
+    pass

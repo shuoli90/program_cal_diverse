@@ -1,0 +1,56 @@
+Certainly! Let's create a test case generator for the problem "A Light Road". The generator will produce random test cases based on the given constraints.
+
+Here's the test case generator function in Python:
+
+```python
+import random
+
+def tcgen():
+    N = random.randint(2, 100)
+    M = random.randint(2, 100)
+    A = random.randint(0, 10)
+    
+    # Initialize grid with empty spaces
+    grid = [['.' for _ in range(M)] for _ in range(N)]
+    
+    # Place obstacles randomly
+    num_obstacles = random.randint(0, N * M // 4)  # At most 25% of the grid can be obstacles
+    for _ in range(num_obstacles):
+        x, y = random.randint(0, N-1), random.randint(0, M-1)
+        grid[x][y] = '#'
+    
+    # Place the laser generator
+    while True:
+        laser_x, laser_y = random.randint(0, N-1), random.randint(0, M-1)
+        if grid[laser_x][laser_y] == '.':
+            grid[laser_x][laser_y] = 'S'
+            break
+    
+    # Place the creature
+    while True:
+        creature_x, creature_y = random.randint(0, N-1), random.randint(0, M-1)
+        if grid[creature_x][creature_y] == '.' and (creature_x != laser_x or creature_y != laser_y):
+            grid[creature_x][creature_y] = 'G'
+            break
+    
+    # Convert grid to required input format
+    grid_str = "\n".join("".join(row) for row in grid)
+    
+    return f"{N} {M} {A}\n{grid_str}"
+
+# Example usage:
+test_case = tcgen()
+print(test_case)
+```
+
+This function generates a random test case adhering to the constraints of the problem statement. Here's how it works:
+
+1. Randomly select the grid dimensions \(N\) and \(M\) within the given constraints.
+2. Randomly determine the number of type P and type Q mirrors \(A\).
+3. Initialize an empty grid of dimensions \(N \times M\).
+4. Randomly place obstacles in the grid.
+5. Randomly place the laser generator (`S`) in an empty cell.
+6. Randomly place the evil creature (`G`) in an empty cell that is not occupied by the laser generator.
+7. Convert the grid to the required input string format.
+
+You can call this function to generate test cases for the problem. Each call to `tcgen()` will produce a new random test case.

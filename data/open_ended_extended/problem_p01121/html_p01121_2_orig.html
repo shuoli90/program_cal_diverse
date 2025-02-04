@@ -1,0 +1,287 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p01121 - Generation 2</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p01121 - Generation 2</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>
+Cube Surface Puzzle
+Given a set of six pieces, “Cube Surface Puzzle” is to construct a hollow cube with filled surface.
+Pieces of a puzzle is made of a number of small unit cubes laid grid-aligned on a plane.
+For a puzzle constructing a cube of its side length n,
+unit cubes are on either of the following two areas.
+    Core (blue): A square area with its side length n−2.
+    Unit cubes fill up this area.
+Fringe (red): The area of width 1 unit forming the outer fringe of the core.
+     Each unit square in this area may be empty or with a unit cube on it.
+Each piece is connected with faces of its unit cubes.
+Pieces can be arbitrarily rotated and either side of the pieces can
+be inside or outside of the constructed cube.
+The unit cubes on the core area should come in the centers of the
+faces of the constructed cube.
+Consider that we have six pieces in Fig. E-1 (The first dataset of Sample Input).
+Then, we can construct a cube as shown in Fig. E-2.
+  Fig. E-1 Pieces from the first dataset of Sample Input
+  Fig. E-2 Constructing a cube
+Mr. Hadrian Hex has collected a number of cube surface puzzles.
+One day, those pieces were mixed together and he
+cannot find yet from which six pieces he can construct a cube.
+Your task is to write a program to help Mr. Hex, which judges whether we can construct a cube for a given set of pieces.
+Input
+The input consists of at most 200 datasets, each in the following format.
+n
+x1,1x1,2 … x1,n
+x2,1x2,2 … x2,n
+…
+x6n,1x6n,2 … x6n,n
+  The first line contains an integer n denoting the length of one side of the  cube to be constructed (3 ≤ n ≤ 9, n is odd).
+The following 6n lines give the six pieces.
+Each piece is described in n lines.
+Each of the lines corresponds to one grid row and each of the characters in
+the line, either ‘X’ or ‘.’, indicates whether or not a unit cube is on
+the corresponding unit square: ‘X’ means a unit cube is on the column and ‘.’ means none is there.
+  The core area of each piece is centered in the data for the piece.
+The end of the input is indicated by a line containing a zero.
+Output
+  For each dataset, output “Yes” if we can construct a cube, or “No” if we cannot.
+Sample Input
+5
+..XX.
+.XXX.
+XXXXX
+XXXXX
+X....
+....X
+XXXXX
+.XXX.
+.XXX.
+.....
+..XXX
+XXXX.
+.XXXX
+.XXXX
+...X.
+...X.
+.XXXX
+XXXX.
+XXXX.
+.X.X.
+XXX.X
+.XXXX
+XXXXX
+.XXXX
+.XXXX
+XX...
+.XXXX
+XXXXX
+XXXXX
+XX...
+5
+..XX.
+.XXX.
+XXXXX
+XXXX.
+X....
+....X
+XXXXX
+.XXX.
+.XXX.
+.....
+.XXXX
+XXXX.
+.XXXX
+.XXXX
+...X.
+...X.
+.XXXX
+XXXX.
+XXXX.
+.X.X.
+XXX.X
+.XXXX
+XXXXX
+.XXXX
+.XXXX
+XX...
+XXXXX
+XXXXX
+.XXXX
+XX...
+0
+Output for the Sample Input
+Yes
+No
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An integer n (3 ≤ n ≤ 9, n is odd), representing some quantity or size.
+A grid of characters of size n x n, where each character is either 'X' or '.'.
+There are 6 such grids, each described in n lines.
+The input ends with a line containing a zero.
+
+### Example Input:
+
+```
+5
+..XX.
+.XXX.
+XXXXX
+XXXXX
+X....
+....X
+XXXXX
+.XXX.
+.XXX.
+.....
+..XXX
+XXXX.
+.XXXX
+.XXXX
+...X.
+...X.
+.XXXX
+XXXX.
+XXXX.
+.X.X.
+XXX.X
+.XXXX
+XXXXX
+.XXXX
+.XXXX
+XX...
+.XXXX
+XXXXX
+XXXXX
+XX...
+0
+```
+
+### Function Signature:
+
+Write a function f(n, grids) that takes in the input.
+
+```python
+def f(n: int, grids: List[List[str]]):
+    '''
+    n: an integer
+    grids: a list of 6 grids, where each grid is a list of n strings
+    '''
+```</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Here is a Python script that generates test cases for the "Cube Surface Puzzle" problem statement:
+
+```python
+import random
+
+def generate_piece(n):
+    piece = []
+    for _ in range(n):
+        row = ''.join(random.choice(['X', '.']) for _ in range(n))
+        piece.append(row)
+    return piece
+
+def tcgen():
+    datasets = []
+    num_datasets = random.randint(1, 200)
+    
+    for _ in range(num_datasets):
+        n = random.choice([3, 5, 7, 9])
+        pieces = []
+        for _ in range(6):
+            pieces.extend(generate_piece(n))
+        datasets.append((n, pieces))
+    
+    return datasets
+
+def format_datasets(datasets):
+    formatted = []
+    for dataset in datasets:
+        n, pieces = dataset
+        formatted.append(str(n))
+        formatted.extend(pieces)
+    formatted.append('0')  # Indicating end of input
+    return '\n'.join(formatted)
+
+# Generate test cases
+datasets = tcgen()
+formatted_data = format_datasets(datasets)
+
+# Output the generated test cases
+print(formatted_data)
+```
+
+**Explanation:**
+1. `generate_piece(n)`: This function generates a single piece of size \(n \times n\) with each cell randomly being either 'X' or '.'.
+2. `tcgen()`: This function generates a random number of datasets (up to 200). For each dataset, it randomly chooses an odd \(n\) from {3, 5, 7, 9} and then generates 6 pieces for the cube.
+3. `format_datasets(datasets)`: This function formats the datasets into the required input format for the given problem. It ends the formatted data with a "0" to indicate the end of input.
+
+Running this script will provide you with a set of test cases formatted according to the problem statement. Each test case will be a set of six pieces that you need to determine if they can form a valid cube.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    inputs = []
+    while True:
+        n = int(fh.readline().strip())
+        if n == 0:
+            break
+        pieces = []
+        for _ in range(6 * n):
+            pieces.append(fh.readline().strip())
+        inputs.append((n, pieces))
+    return inputs</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

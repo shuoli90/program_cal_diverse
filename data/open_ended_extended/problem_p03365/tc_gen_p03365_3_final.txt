@@ -1,0 +1,23 @@
+Sure, I can help you generate the test cases for the given problem. The test case generator will generate random value for \( N \) within the given constraints and will compute the output based on the problem statement. Here is the test case generator for the given problem.
+
+```python
+import random
+
+def tcgen():
+    # Generate random N within the given constraints
+    N = random.randint(2, 10**6)
+    
+    return N
+
+def main():
+    # Generate and print a test case
+    N = tcgen()
+    print(N)
+
+if __name__ == "__main__":
+    main()
+```
+
+This script generates a random integer \( N \) within the range \([2, 10^6]\) and prints it, which represents the input for the problem. Note that because the problem involves calculating the sum of scores over all possible permutations, actually generating some output based on it would require a more detailed implementation and understanding of the algorithm for calculation.
+
+For the provided competitive programming problem, computing the expected output involves deeper combinatorial logic and handling large numbers efficiently, often beyond the scope of simple random test generation. However, for competitive programming, typically generating the input as shown above is sufficient, while the solution implementation handles the output generation.

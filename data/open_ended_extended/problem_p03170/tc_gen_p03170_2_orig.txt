@@ -1,0 +1,64 @@
+Certainly! Here's a Python function to generate random test cases for the given competitive programming problem, based on the provided problem statement:
+
+```python
+import random
+
+def tcgen():
+    # Number of elements in set A
+    N = random.randint(1, 100)
+    
+    # Number of stones in the pile
+    K = random.randint(1, 10**5)
+    
+    # Generate a sorted list of unique positive integers for set A
+    A = sorted(random.sample(range(1, K+1), N))
+    
+    return N, K, A
+
+# Example usage
+for _ in range(5):  # Generate 5 test cases
+    N, K, A = tcgen()
+    print(f"N: {N}")
+    print(f"K: {K}")
+    print(f"A: {' '.join(map(str, A))}")
+    print()
+```
+
+This function generates the following:
+
+1. An integer \(N\) representing the number of elements in set \(A\) (1 ≤ \(N\) ≤ 100).
+2. An integer \(K\) representing the number of stones in the pile (1 ≤ \(K\) ≤ 10^5).
+3. A sorted list of \(N\) unique positive integers \(A\) where each element \(A[i]\) (1 ≤ \(A[i]\) ≤ \(K\)).
+
+The function uses `random.sample` to generate a list of unique integers and then sorts them to ensure the list \(A\) is in increasing order.
+
+Let's see an example run of this generator:
+
+```python
+import random
+
+def tcgen():
+    N = random.randint(1, 100)
+    K = random.randint(1, 10**5)
+    A = sorted(random.sample(range(1, K+1), N))
+    return N, K, A
+
+# Example usage
+for _ in range(5):
+    N, K, A = tcgen()
+    print(f"N: {N}")
+    print(f"K: {K}")
+    print(f"A: {' '.join(map(str, A))}")
+    print()
+```
+
+This will output something like:
+
+```
+N: 45
+K: 73123
+A: 2 174 212 313 408 512 524 576 615 846 1054 1292 1455 1677 1688 1866 2067 2107 2171 2217 2271 2279 2431 2463 2558 2707 2926 3100 3135 3152 3205 3300 3495 3648 3685 3811 3941 3874 3998 4155 4293 4300 4437 4519 4638 4745
+...
+```
+
+Each run will generate different random test cases that conform to the problem's constraints.

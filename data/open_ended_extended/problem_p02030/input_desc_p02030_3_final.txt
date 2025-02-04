@@ -1,0 +1,22 @@
+An integer n (1 ≤ n ≤ 2 × 10^5), representing some quantity or size.
+An integer m (1 ≤ m ≤ 2 × 10^5), representing some quantity or size.
+A list of n integers, where each integer is between 1 and 10^9, sorted in strictly increasing order.
+A list of m integers, where each integer is between 1 and 10^9, sorted in strictly increasing order.
+
+### Example Input:
+
+```
+4 4
+1 2 4 9
+1 3 4 7
+```
+
+### Function Signature:
+Write a function f(n, m, A, B) that takes in the input.
+def f(n: int, m: int, A: List[int], B: List[int]):
+    '''
+    n: an integer
+    m: an integer
+    A: a list of n integers
+    B: a list of m integers
+    '''

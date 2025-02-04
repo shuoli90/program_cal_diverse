@@ -1,0 +1,3 @@
+Types: C: int, W: int, xi: int, yi: int, si: int, ti: int
+Ranges: 3 ≤ C ≤ 100, 3 ≤ W ≤ 300, -1000 ≤ xi ≤ 1000, -1000 ≤ yi ≤ 1000, 1 ≤ si ≤ C, 1 ≤ ti ≤ C
+Addtl Info: Number of datasets does not exceed 50.

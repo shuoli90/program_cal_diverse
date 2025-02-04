@@ -1,0 +1,19 @@
+An integer n (1 ≤ n ≤ 1000), representing some quantity or size.
+A list of integers d of size n, where each integer is a digit from 0 to 9.
+
+### Example Input:
+
+```
+3
+3 0 1
+```
+
+### Function Signature:
+Write a function f(n, d) that takes in the input.
+```python
+def f(n: int, d: List[int]):
+    '''
+    n: an integer
+    d: a list of integers
+    '''
+```

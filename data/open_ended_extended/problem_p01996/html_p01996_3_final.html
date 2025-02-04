@@ -1,0 +1,168 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p01996 - Generation 3</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p01996 - Generation 3</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>A: Test
+Problem
+  In a classroom with $N$ seats in a straight line, $M$ students are going to take a test.
+  Each seat is numbered from $1 \dots N$, and one student can sit in one seat.
+  At this moment, each student sits in seat $A_1, \dots, A_M$.
+  To start the test, the following condition must be satisfied.
+  
+There must be at least one student in every seat from $1 \dots M$.
+  Therefore, we decided to repeat the following operation until the condition is satisfied.
+  
+Move the student who is sitting at the rearmost position to the frontmost available seat.
+  Find the number of operations required to satisfy the condition.
+Constraints
+All input values are integers.
+$1 \leq N \leq 1000$
+$1 \leq M \leq N$
+$1 \leq A_i \leq N$
+If $1 \leq i < j \leq M$, then $A_i < A_j$
+Input Format
+ The input is given in the following format. 
+  $N\ M$
+  $A_1 \dots A_M$
+Output
+Output the number of operations required to satisfy the condition, followed by a newline character. 
+Sample
+Sample Input 1
+6 4
+1 4 5 6
+Sample Output 1
+2
+Sample Input 2
+10 3
+1 2 3
+Sample Output 2
+0
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An integer N (1 ≤ N ≤ 1000), representing some quantity or size.
+An integer M (1 ≤ M ≤ N), representing some quantity or size.
+A list of integers A of size M, where each integer is between 1 and N, and the list is strictly increasing.
+
+### Example Input:
+
+```
+6 4
+1 4 5 6
+```
+
+### Function Signature:
+Write a function f(N, M, A) that takes in the input.
+```python
+def f(N: int, M: int, A: List[int]):
+    '''
+    N: an integer
+    M: an integer
+    A: a list of integers
+    '''
+```</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Sure, here is a test case generator for the given problem statement:
+
+```python
+import random
+
+def tcgen():
+    # Generate N in the range [1, 1000]
+    N = random.randint(1, 1000)
+    
+    # Generate M in the range [1, N]
+    M = random.randint(1, N)
+    
+    # Generate a list of M unique sorted integers from the range [1, N]
+    A = sorted(random.sample(range(1, N + 1), M))
+    
+    return N, M, A
+
+# Example usage:
+N, M, A = tcgen()
+print(N, M)
+print(" ".join(map(str, A)))
+```
+
+This function generates random test cases for the problem. Here's a breakdown of how it works:
+
+1. It generates `N`, the total number of seats, within the range [1, 1000].
+2. It generates `M`, the number of students, within the range [1, N].
+3. It generates a sorted list `A` of `M` unique integers within the range [1, N] (representing the seats occupied by students).
+
+The output consists of `N` and `M` followed by the list `A`, which are the seats occupied by the students.
+
+### Example output:
+```
+10 3
+2 5 9
+```
+
+In this example, there are 10 seats and 3 students sitting in seats 2, 5, and 9.
+
+You can use this generator to create various test cases to thoroughly test your solution to the problem.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    N, M = map(int, fh.readline().strip().split())
+    A = list(map(int, fh.readline().strip().split()))
+    return N, M, A</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

@@ -1,0 +1,71 @@
+Sure, I can help you write a test case generator for the given problem statement "Most Distant Point from the Sea."
+
+Here is the test case generator in Python:
+
+```python
+import random
+
+def generate_convex_polygon(n, max_coordinate=10000):
+    # Generate n points and sort them in counterclockwise order to form a convex polygon
+    points = []
+    for _ in range(n):
+        x = random.randint(0, max_coordinate)
+        y = random.randint(0, max_coordinate)
+        points.append((x, y))
+
+    # Sort points by angle with respect to centroid
+    centroid_x = sum([point[0] for point in points]) / n
+    centroid_y = sum([point[1] for point in points]) / n
+
+    points.sort(key=lambda point: (point[0] - centroid_x) ** 2 + (point[1] - centroid_y) ** 2)
+    return points
+
+def tcgen():
+    datasets = []
+    num_datasets = random.randint(1, 10)  # generating between 1 and 10 datasets
+
+    for _ in range(num_datasets):
+        n = random.randint(3, 100)
+        points = generate_convex_polygon(n)
+        datasets.append((n, points))
+    
+    # Add a terminating zero dataset
+    datasets.append((0, []))
+    return datasets
+
+def format_datasets(datasets):
+    lines = []
+    for n, points in datasets:
+        if n == 0:
+            lines.append("0")
+        else:
+            lines.append(f"{n}")
+            for x, y in points:
+                lines.append(f"{x} {y}")
+    return "\n".join(lines)
+
+# Example usage
+if __name__ == "__main__":
+    datasets = tcgen()
+    formatted_input = format_datasets(datasets)
+    print(formatted_input)
+```
+
+### Explanation:
+1. **`generate_convex_polygon` function**:
+   - This function generates `n` random points within a `max_coordinate` boundary.
+   - It then sorts these points in counterclockwise order by calculating the angle with respect to the centroid of the points.
+
+2. **`tcgen` function**:
+   - This function generates multiple datasets (between 1 and 10).
+   - Each dataset consists of a convex polygon with `n` vertices where `3 ≤ n ≤ 100`.
+   - The function returns a list of tuples, where each tuple contains the number of vertices and the list of points.
+
+3. **`format_datasets` function**:
+   - This function formats the generated datasets into the required input format.
+   - Each dataset is formatted as specified, followed by a final line containing a single zero.
+   
+4. **Example usage**:
+   - The example usage demonstrates how to generate and print the test cases in the required format.
+
+You can run the script to generate and print the test cases. The generated test cases can be copied and used for testing the implementation of the problem.

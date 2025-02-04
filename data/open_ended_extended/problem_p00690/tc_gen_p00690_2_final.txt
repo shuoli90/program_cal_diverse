@@ -1,0 +1,55 @@
+Certainly! Below is a test case generator for the problem "A Long Ride on a Railway". This generator will create random valid inputs based on the constraints provided.
+
+```python
+import random
+
+def tcgen():
+    # Number of stations (1 <= ns <= 10)
+    ns = random.randint(1, 10)
+    
+    # Number of direct routes (1 <= nl <= 20)
+    nl = random.randint(1, 20)
+    
+    # List to store routes
+    routes = []
+    
+    # Generating the routes
+    for _ in range(nl):
+        # Randomly select two different stations
+        station1 = random.randint(1, ns)
+        station2 = random.randint(1, ns)
+        while station2 == station1:
+            station2 = random.randint(1, ns)
+        
+        # Random distance (di >= 1)
+        distance = random.randint(1, 100)
+        
+        # Add the route to the list
+        routes.append((station1, station2, distance))
+    
+    return ns, nl, routes
+
+def format_input(ns, nl, routes):
+    input_str = f"{ns} {nl}\n"
+    for route in routes:
+        input_str += f"{route[0]} {route[1]} {route[2]}\n"
+    return input_str
+
+# Example usage:
+ns, nl, routes = tcgen()
+print(format_input(ns, nl, routes))
+```
+
+### Explanation:
+1. **Number of Stations (ns)**: Randomly select a number between 1 and 10.
+2. **Number of Direct Routes (nl)**: Randomly select a number between 1 and 20.
+3. **Routes**: For each direct route:
+   - Randomly select two different stations.
+   - Ensure the stations are different.
+   - Randomly select a distance (≥ 1).
+   - Add the route to the list.
+
+### Formatting:
+The `format_input` function converts the generated test case into the required input format for the problem.
+
+You can run the `tcgen` function to generate a test case and then use `format_input` to print it in the correct format. Each time you run it, it will produce a new random test case within the constraints specified.

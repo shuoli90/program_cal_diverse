@@ -1,0 +1,231 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p00593 - Generation 1</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p00593 - Generation 1</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>
+JPEG Compression
+    The fundamental idea in the JPEG compression algorithm is to sort coeffi-
+cient of given image by zigzag path and encode it. In this problem, we don’t
+discuss about details of the algorithm, but you are asked to make simple pro-
+gram. You are given single integer N , and you must output zigzag path on
+a matrix where size is N by N . The zigzag scanning is start at the upper-left
+corner (0, 0) and end up at the bottom-right corner. See the following Figure
+and sample output to make sure rule of the zigzag scanning. For example, if you
+are given N = 8, corresponding output should be a matrix shown in right-side
+of the Figure. This matrix consists of visited time for each element.
+Input
+Several test cases are given. Each test case consists of one integer N (0 < N <
+10) in a line. The input will end at a line contains single zero.
+Output
+For each input, you must output a matrix where each element is the visited
+time. All numbers in the matrix must be right justified in a field of width 3.
+Each matrix should be prefixed by a header “Case x:” where x equals test case
+number.
+Sample Input
+3
+4
+0
+Output for the Sample Input
+Case 1:
+  1  2  6
+  3  5  7
+  4  8  9
+Case 2:
+  1  2  6  7
+  3  5  8 13
+  4  9 12 14
+ 10 11 15 16
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An integer \( N \) (0 < \( N \) < 10) representing some quantity or size, for several test cases. The input ends with a line containing a single zero.
+
+### Example Input:
+```
+3
+4
+0
+```
+
+### Function Signature:
+Write a function `f(inputs)` that takes in a list of tuples containing one integer each. 
+```python
+def f(inputs: List[Tuple[int]]):
+    '''
+    inputs: a list of tuples, where each tuple contains a single integer
+    '''
+```</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Sure! Let's first understand the zigzag traversal of the matrix and then create a test case generator for the given problem.
+
+### Zigzag Traversal Explanation
+
+For an \(N \times N\) matrix, the traversal starts at the upper-left corner (0, 0) and moves in a zigzag manner until it reaches the bottom-right corner. The order of traversal can be visualized as follows:
+
+For \(N = 3\):
+```
+1  2  6
+3  5  7
+4  8  9
+```
+
+For \(N = 4\):
+```
+ 1  2  6  7
+ 3  5  8 13
+ 4  9 12 14
+10 11 15 16
+```
+
+### Test Case Generator
+
+The test case generator will create random values for \(N\) in the given range (0 < N < 10) and generate these matrices accordingly. The input will end with a line containing a single zero.
+
+Here's the Python code for the test case generator:
+
+```python
+import random
+
+def zigzag_traversal(n):
+    matrix = [[0]*n for _ in range(n)]
+    i, j = 0, 0
+    direction = 1  # 1 for down, -1 for up
+    for num in range(1, n*n + 1):
+        matrix[i][j] = num
+        if direction == 1:
+            if j == 0 or i == n - 1:
+                direction = -1
+                if i == n - 1:
+                    j += 1
+                else:
+                    i += 1
+            else:
+                i += 1
+                j -= 1
+        else:
+            if i == 0 or j == n - 1:
+                direction = 1
+                if j == n - 1:
+                    i += 1
+                else:
+                    j += 1
+            else:
+                i -= 1
+                j += 1
+    return matrix
+
+def tcgen():
+    test_cases = []
+    
+    # Generate a random number of test cases between 1 and 10
+    num_cases = random.randint(1, 10)
+    
+    for _ in range(num_cases):
+        N = random.randint(1, 9)
+        test_cases.append(N)
+    
+    # Append the terminating zero
+    test_cases.append(0)
+    
+    return test_cases
+
+def format_output(test_cases):
+    case_number = 1
+    output = ""
+    for N in test_cases:
+        if N == 0:
+            break
+        output += f"Case {case_number}:\n"
+        matrix = zigzag_traversal(N)
+        for row in matrix:
+            output += " ".join(f"{num:3}" for num in row) + "\n"
+        case_number += 1
+    return output
+
+# Example usage
+test_cases = tcgen()
+formatted_output = format_output(test_cases)
+print("Sample Input:")
+print("\n".join(map(str, test_cases)))
+
+print("\nOutput for the Sample Input:")
+print(formatted_output)
+```
+
+### Explanation
+
+1. **`zigzag_traversal(n)`**: Generates the zigzag order matrix for a given \(N \times N\).
+2. **`tcgen()`**: Generates a random number of test cases, each with a random \(N\) in the range (1, 9). Adds a terminating zero at the end.
+3. **`format_output(test_cases)`**: Formats the test cases and their corresponding matrices to match the required output format.
+
+This code first generates random test cases and then formats them to display the required zigzag traversal matrices. The `print` statements demonstrate the sample input and its corresponding output as specified.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    inputs = []
+    case_number = 1
+    while True:
+        N = int(fh.readline().strip())
+        if N == 0:
+            break
+        inputs.append((case_number, N))
+        case_number += 1
+    return inputs</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

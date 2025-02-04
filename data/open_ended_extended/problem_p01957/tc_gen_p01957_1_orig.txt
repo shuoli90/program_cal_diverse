@@ -1,0 +1,52 @@
+Sure, I can help you write a test case generator for the given problem statement "Tournament Chart". Here is a Python function that generates random test cases for this problem:
+
+```python
+import random
+import string
+
+def generate_tournament_chart(contestants):
+    if len(contestants) == 1:
+        return contestants[0]
+    
+    mid = len(contestants) // 2
+    left = generate_tournament_chart(contestants[:mid])
+    right = generate_tournament_chart(contestants[mid:])
+    return f"[{left}-{right}]"
+
+def tcgen():
+    N = random.randint(2, 26)  # Number of contestants
+    contestants = random.sample(string.ascii_lowercase, N)
+    
+    # Generate a valid tournament chart
+    tournament_chart = generate_tournament_chart(contestants)
+    
+    # Generate wins for each contestant
+    contestant_wins = []
+    for contestant in contestants:
+        wins = random.randint(0, 25)
+        contestant_wins.append(f"{contestant} {wins}")
+    
+    return tournament_chart, contestant_wins
+
+def main():
+    tournament_chart, contestant_wins = tcgen()
+    print(tournament_chart)
+    for win in contestant_wins:
+        print(win)
+
+if __name__ == "__main__":
+    main()
+```
+
+### Explanation:
+1. **generate_tournament_chart(contestants)**: This recursive function generates a tournament chart in the required format. It takes a list of contestants and builds the chart by recursively splitting the list into two halves until there's only one contestant left.
+   
+2. **tcgen()**: This function generates:
+   - A random number \( N \) of contestants between 2 and 26.
+   - A list of unique contestants.
+   - A valid tournament chart using the `generate_tournament_chart` function.
+   - Random win values for each contestant between 0 and 25 (inclusive).
+ 
+3. **main()**: This function prints the generated tournament chart and the wins for each contestant in the correct format.
+
+You can run the `main()` function to generate a random test case and print it in the format specified in the problem statement.

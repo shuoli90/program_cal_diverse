@@ -1,0 +1,10 @@
+Types: H: int, W: int, Grid: List[str], n: int, Characters: List[str]
+
+Ranges: 
+1 ≤ H ≤ 10,
+1 ≤ W ≤ 10,
+H * W characters in Grid,
+1 ≤ n ≤ 10,
+0 ≤ Characters[i] ≤ 9 or Characters[i] in {'+', '-', '*', '/', '='}
+
+Addtl Info: Judge data includes at most 100 data sets, input ends with a line containing "0 0"

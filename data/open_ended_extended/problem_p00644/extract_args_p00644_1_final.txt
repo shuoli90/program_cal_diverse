@@ -1,0 +1,15 @@
+def extract_arguments(fh):
+    datasets = []
+    while True:
+        n, m, p = map(int, fh.readline().strip().split())
+        if n == 0 and m == 0 and p == 0:
+            break
+        edges = []
+        for _ in range(m):
+            u, v, w = map(int, fh.readline().strip().split())
+            edges.append((u, v, w))
+        children = []
+        for _ in range(p):
+            children.append(int(fh.readline().strip()))
+        datasets.append((n, m, p, edges, children))
+    return datasets

@@ -1,0 +1,17 @@
+Types: 
+- N: int
+- M: int
+- C: int
+- Ai: List[int]
+- Bi: List[int]
+- Di: List[int]
+
+Ranges: 
+- 2 ≤ N ≤ 100,000
+- 1 ≤ M ≤ 200,000
+- 1 ≤ Ai, Bi ≤ N
+- 1 ≤ Di ≤ 1,000,000
+- 0 ≤ C ≤ 1,000,000,000
+
+Addtl Info: 
+- It is possible to reach any square from any other square by following some roads.

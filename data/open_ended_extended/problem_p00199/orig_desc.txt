@@ -1,0 +1,26 @@
+The Chair on Which Difficult People Sit
+In the neutral city of Aizu in the center of four countries, there is a platform for the transcontinental train Bandai-go. Rows of chairs for passengers waiting for the Bandai-go are provided on the platform, and anyone who enters the platform can use the chairs freely.
+The Bandai-go is cheap, fast, and comfortable, so it is always crowded with users from the surrounding four countries. Today is the opening day, and I'm thinking of doing something special for the people sitting on the platform. For this purpose, we need to know where the people who passed through the gate are sitting. Taking into account the difficult personalities of the people from the four countries, please create a program that simulates how the chairs are filled. The people who passed through the gate sit in a row on the chairs one after another. The people from the four countries have decided personality and seating arrangements for each country. The seating arrangements are as follows for each person.
+Personality of Person from Country A
+   A person from country A just wants to sit. They look at the empty chairs from the left end and sit on the first available chair.
+Personality of Person from Country B
+ People from country B do not like people from country A. They sit in the empty chair from the right end, except next to people from country A. However, if there is no other choice than to sit next to someone from country A, they will endure it and sit in the empty chair from the left end.
+    
+Personality of Person from Country C
+ 
+   People from country C want to sit next to someone. They look at the person sitting from the left and try to sit next to the person sitting on the far left. However, if that seat is taken, they will try to sit next to the person on the left. If that seat is also taken, they will try to sit next to the next person with the same condition. If no chair is taken, they will sit in the middle (if the number of chairs is odd, it is the center chair ((n+1)/2), and if it is even, it is the chair in the middle of n/2+1).
+    
+Personality of Person from Country D
+   People from country D do not want to sit next to anyone. They try to sit in the chair where the distance from the nearest person is the farthest. If there are multiple seats with the same condition or if they have no choice but to sit next to someone, they will sit in the leftmost chair among those. If no one is sitting in the chair, they will sit in the leftmost chair.
+   
+    
+Input the information of the passengers who are trying to get on the Bandai-go, and create a program that outputs how they are sitting on the chairs. The nationality of the person sitting from the left is output. However, if the seat is empty, please output "#" (hash) instead.
+Input
+Multiple sets of data sets are given as input. The end of the input is indicated by two consecutive zeros.
+Each data set is given in the following format.
+n m
+a1
+a2
+:
+am
+The number of chairs n (1 ≤ n ≤ 100) and the number of passengers m (m ≤ n) are given on the first line. The following m lines give the information of the i-th person, ai, in one character. 'A' represents a person from country

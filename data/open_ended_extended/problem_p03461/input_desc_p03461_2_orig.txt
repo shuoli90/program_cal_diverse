@@ -1,0 +1,22 @@
+An integer A (1 ≤ A ≤ 10), representing some quantity.
+An integer B (1 ≤ B ≤ 10), representing some quantity.
+A list of A lists, each containing B integers, where each integer is between 1 and 100.
+
+### Example Input:
+
+```
+2 3
+1 2 2
+1 2 3
+```
+
+### Function Signature:
+Write a function f(A, B, d) that takes in the input.
+```python
+def f(A: int, B: int, d: List[List[int]]):
+    ''' 
+    A: an integer 
+    B: an integer
+    d: a list of lists of integers
+    '''
+```

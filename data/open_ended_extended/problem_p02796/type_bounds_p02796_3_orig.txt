@@ -1,0 +1,3 @@
+Types: N: int, X: List[int], L: List[int]  
+Ranges: 1 ≤ N ≤ 100,000; 0 ≤ X_i ≤ 10^9 (1 ≤ i ≤ N); 1 ≤ L_i ≤ 10^9 (1 ≤ i ≤ N)  
+Addtl Info: X_i ≠ X_j if i ≠ j

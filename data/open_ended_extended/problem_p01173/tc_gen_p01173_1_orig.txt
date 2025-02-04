@@ -1,0 +1,46 @@
+Sure, I can help you with that. Here's a test case generator for the problem "Dig or Climb":
+
+```python
+import random
+
+def tcgen():
+    # Generate a random number of points n, ensuring n is between 1 and 1000
+    n = random.randint(1, 1000)
+    
+    # Generate random walking speed vw and cave speed vc between 1 and 10
+    vw = random.randint(1, 10)
+    vc = random.randint(1, 10)
+    
+    # Generate random coordinates for the points, ensuring xi < xj for all i < j
+    points = []
+    x_prev = random.randint(-10000, 10000)
+    y_prev = random.randint(-10000, 10000)
+    points.append((x_prev, y_prev))
+    
+    for _ in range(n - 1):
+        x_next = x_prev + random.randint(1, 200)  # Ensuring x_next > x_prev
+        y_next = random.randint(-10000, 10000)
+        points.append((x_next, y_next))
+        x_prev, y_prev = x_next, y_next
+    
+    # Format the input as specified
+    input_data = f"{n}\n{vw} {vc}\n" + "\n".join(f"{x} {y}" for x, y in points)
+    
+    return input_data
+
+# Example usage
+if __name__ == "__main__":
+    test_case = tcgen()
+    print(test_case)
+```
+
+### Explanation:
+1. **Number of Points (`n`)**: The number of points is chosen randomly between 1 and 1000.
+2. **Speeds (`vw` and `vc`)**: Both walking speed and cave speed are chosen randomly between 1 and 10.
+3. **Points (`xi`, `yi`)**: 
+    - The `xi` values are generated such that each successive `xi` is greater than the previous one, ensuring the points are sorted by the `xi` coordinate. This is done by starting with a random `xi` and adding a positive random value to it for each subsequent point.
+    - The `yi` values are random within the range -10000 to 10000.
+4. **Formatting**: The generated points are formatted into the required input format.
+
+### Note:
+The termination condition (`n = 0`) is not included in the test case generator, as it is intended to generate a single valid test dataset.

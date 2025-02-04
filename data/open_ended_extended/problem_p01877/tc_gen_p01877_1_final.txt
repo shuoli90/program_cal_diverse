@@ -1,0 +1,40 @@
+Sure! Below is a test case generator for the problem statement you provided:
+
+```python
+import random
+
+def tcgen():
+    # Generate N, ensuring it's even and within the specified range
+    N = random.randint(1, 250000) * 2  # Since N needs to be even and between 2 and 500,000
+    
+    # Generate the sequence S with elements within the specified range
+    S = [random.randint(-100000000, 100000000) for _ in range(N)]
+    
+    # Generate Q, the number of queries
+    Q = random.randint(1, 100000)
+    
+    queries = []
+    
+    for _ in range(Q):
+        l = random.randint(1, N)
+        r = random.randint(l, N)
+        x = random.randint(-1000, 1000)
+        queries.append((l, r, x))
+    
+    # Format the output as required by the problem statement
+    input_data = f"{N}\n" + " ".join(map(str, S)) + f"\n{Q}\n"
+    input_data += "\n".join(f"{l} {r} {x}" for l, r, x in queries)
+    
+    return input_data
+
+# Example Usage:
+print(tcgen())
+```
+
+This test case generator creates:
+1. An even integer `N`, between 2 and 500,000.
+2. A sequence `S` of length `N` with integers between -100,000,000 and 100,000,000.
+3. A number of queries `Q`, between 1 and 100,000.
+4. For each query, values of `l`, `r`, and `x` within the specified ranges.
+
+The output is formatted as required by the input format of the problem statement. This generator can be used to produce robust and varied test cases for the problem.

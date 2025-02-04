@@ -1,0 +1,40 @@
+Sure! Here is the test case generator for the provided problem statement:
+
+```python
+import random
+import string
+
+def tcgen():
+    N = random.randint(1, 2 * 10**5)
+    
+    S = []
+    for _ in range(N):
+        length = random.randint(1, 10)
+        S_i = ''.join(random.choices(string.ascii_lowercase, k=length))
+        S.append(S_i)
+    
+    return N, S
+
+# Example usage
+if __name__ == "__main__":
+    N, S = tcgen()
+    print(N)
+    for s in S:
+        print(s)
+```
+
+This generator creates a random number `N` (the number of lottery draws) within the specified range and generates `N` random strings `S_i` with lengths between 1 and 10, consisting of lowercase English letters. You can run this script to generate test cases for the problem.
+
+Here's a brief explanation of each part:
+
+1. `N = random.randint(1, 2 * 10**5)`: This line generates a random integer `N` in the range [1, 200,000].
+
+2. `S = []`: Initializes an empty list to store the strings.
+
+3. The `for` loop runs `N` times, each time generating a random string `S_i`:
+    - `length = random.randint(1, 10)`: Determines the length of the string `S_i`.
+    - `S_i = ''.join(random.choices(string.ascii_lowercase, k=length))`: Generates a random string of the determined length using lowercase English letters and appends it to the list `S`.
+
+4. `return N, S`: Returns the generated values `N` and `S`.
+
+You can run the script and it will print an example test case to the standard output.

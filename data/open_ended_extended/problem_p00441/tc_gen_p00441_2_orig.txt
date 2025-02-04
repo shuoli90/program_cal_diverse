@@ -1,0 +1,53 @@
+Sure! Below is a test case generator for the problem "The Oldest Site":
+
+```python
+import random
+
+def generate_single_dataset():
+    n = random.randint(1, 3000)
+    pillars = set()
+    
+    while len(pillars) < n:
+        x = random.randint(0, 5000)
+        y = random.randint(0, 5000)
+        pillars.add((x, y))
+
+    pillars_list = list(pillars)
+    
+    dataset = f"{n}\n"
+    for (x, y) in pillars_list:
+        dataset += f"{x} {y}\n"
+    
+    return dataset
+
+def tcgen():
+    num_datasets = random.randint(1, 10)  # Generate between 1 and 10 datasets
+    test_case = ""
+    
+    for _ in range(num_datasets):
+        test_case += generate_single_dataset()
+    
+    test_case += "0"  # Termination line
+    
+    return test_case
+
+# Example usage:
+print(tcgen())
+```
+
+This script generates random test cases for the problem "The Oldest Site". Let's break down what it does:
+
+1. **generate_single_dataset()**:
+   - It generates a single dataset with a random number of pillars \( n \) (between 1 and 3000).
+   - It ensures that each pillar's coordinates are unique by using a set.
+   - The x and y coordinates are randomly chosen between 0 and 5000 inclusive.
+
+2. **tcgen()**:
+   - It creates between 1 and 10 datasets.
+   - It appends each dataset to the final test case string.
+   - It adds a termination line (`0`) at the end of the test case string.
+
+3. **Example usage**:
+   - You can print a generated test case to see the output.
+
+You can run this script to generate random test cases for testing purposes.

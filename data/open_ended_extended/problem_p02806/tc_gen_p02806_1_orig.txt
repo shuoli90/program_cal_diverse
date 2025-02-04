@@ -1,0 +1,57 @@
+Sure! Below is a Python function to generate test cases for the given problem statement:
+
+```python
+import random
+import string
+
+def generate_random_string(length):
+    return ''.join(random.choices(string.ascii_lowercase, k=length))
+
+def tcgen():
+    N = random.randint(1, 50)
+    
+    titles = set()
+    while len(titles) < N:
+        titles.add(generate_random_string(random.randint(1, 100)))
+    titles = list(titles)
+    
+    durations = [random.randint(1, 1000) for _ in range(N)]
+    
+    X = random.choice(titles)
+    
+    return N, list(zip(titles, durations)), X
+
+# Example usage:
+N, song_data, X = tcgen()
+print(N)
+for title, duration in song_data:
+    print(f"{title} {duration}")
+print(X)
+```
+
+### Explanation:
+
+1. **Function `generate_random_string`**:
+   - Generates a random string of lowercase English letters of a given length.
+   
+2. **Function `tcgen`**:
+   - Generates a random integer `N` between 1 and 50 (inclusive).
+   - Creates a set of distinct song titles of random lengths between 1 and 100 characters. The set ensures that all titles are distinct.
+   - Generates a list of random durations for each song, between 1 and 1000 (inclusive).
+   - Randomly selects one of the song titles as `X`, the song where Niwango fell asleep.
+   - Returns the number of songs (`N`), a list of tuples containing song titles and their durations, and the title `X`.
+
+### Example Output:
+
+```
+N
+title1 t1
+title2 t2
+...
+titleN tN
+X
+```
+
+This will print out the number of songs, each song's title and duration, and the title of the song Niwango fell asleep to, similar to the input format expected by the problem. 
+
+Feel free to use this test case generator to create various test cases for your problem!

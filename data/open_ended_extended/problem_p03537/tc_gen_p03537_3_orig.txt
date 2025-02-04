@@ -1,0 +1,45 @@
+Certainly! To generate test cases for the given problem, we need to create a string \( S \), an integer \( N \) representing the number of operations, and \( N \) pairs of integers \( (L_i, R_i) \) representing the ranges for each operation. Here is a Python function to generate such test cases:
+
+```python
+import random
+import string
+
+def generate_test_case():
+    # Generate a random length for the string S
+    S_length = random.randint(1, 10**5)
+    
+    # Generate a random string S of lowercase English letters
+    S = ''.join(random.choices(string.ascii_lowercase, k=S_length))
+    
+    # Generate a random number of operations N
+    N = random.randint(1, 10**5)
+    
+    operations = []
+    for _ in range(N):
+        # Randomly generate L_i and R_i such that 1 <= L_i <= R_i <= |S|
+        L_i = random.randint(1, S_length)
+        R_i = random.randint(L_i, S_length)
+        operations.append((L_i, R_i))
+    
+    return S, N, operations
+
+def print_test_case():
+    S, N, operations = generate_test_case()
+    print(S)
+    print(N)
+    for L, R in operations:
+        print(L, R)
+
+# Example usage
+print_test_case()
+```
+
+This function will generate and print a random test case each time it is called. Here's a breakdown of what each part does:
+
+1. **`S_length`**: Randomly determines the length of the string \( S \) (between 1 and \( 10^5 \)).
+2. **`S`**: Generates a random string of lowercase English letters of length `S_length`.
+3. **`N`**: Randomly determines the number of operations (between 1 and \( 10^5 \)).
+4. **Operations**: For each operation, generate a pair \( (L_i, R_i) \) such that \( 1 \leq L_i \leq R_i \leq |S| \).
+5. **`print_test_case`**: This function prints the generated test case in the required format.
+
+You can run the `print_test_case()` function to see how it generates and prints a new random test case each time. This should be helpful for testing your solution to the problem.

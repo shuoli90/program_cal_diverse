@@ -1,0 +1,22 @@
+Certainly! Here is a test case generator for the given problem statement:
+
+```python
+import random
+
+def tcgen():
+    N = random.randint(1, 3000)
+    X = random.randint(1, 2 * N)
+    return N, X
+
+# Example of generating a test case
+if __name__ == "__main__":
+    N, X = tcgen()
+    print(N, X)
+```
+
+This generator will produce random values for \( N \) and \( X \) within the given constraints:
+
+- \( N \) is a random integer between 1 and 3000.
+- \( X \) is a random integer between 1 and \( 2N \).
+
+This ensures that the generated test cases are valid according to the problem constraints. If you want to run the generator and see an example output, you can use the provided snippet which will print \( N \) and \( X \).

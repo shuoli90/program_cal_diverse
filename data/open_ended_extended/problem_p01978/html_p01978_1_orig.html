@@ -1,0 +1,200 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p01978 - Generation 1</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p01978 - Generation 1</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>E: Mischief Graph
+Problem
+You were solving the flow problem, which is typical as a graph algorithm.
+In the problem given, the graph has $N$ vertices and $M$ edges, and an edge with capacity $z_i$ and cost $d_i$ is connected from vertex $x_i$ to vertex $y_i$.
+However, AOR Squid mischievously shuffled the order of $x_i, y_i,$ and $z_i$, and the vertex and capacity information became indistinguishable.
+Therefore, you gave up finding the flow between $s-t$ and decided to find the shortest distance between $s-t$.
+You decided to create an edge with cost $d_i$ from two input cases $a_i, b_i, c_i$ whose order of $x_i, y_i,$ and $z_i$ was shuffled and turned into two vertex information. That is, one of the three candidates, $a_i$ to $b_i$, $a_i$ to $c_i$, and $b_i$ to $c_i$, has an edge with cost $d_i$.
+Find the minimum value of "the shortest distance from s to t" among the possible graphs.
+Constraints
+$2 \le N \le 10^5$
+$1 \le M \le 10^5$
+$1 \le s,t \le N$
+$1 \le a_i,b_i,c_i \le N$
+$1 \le d_i \le 10^9$
+$s \neq t$
+A path from $s$ to $t$ exists in the original graph
+The input consists of integers only
+Input
+$N \ M \ s \ t$
+$a_1 \ b_1 \ c_1 \ d_1$
+$\vdots$
+$a_M \ b_M \ c_M \ d_M$
+Output
+Output the minimum value of "the shortest distance from $s$ to $t$" among the possible graphs in one line. You must also output a newline at the end.
+Sample
+Sample Input 1
+5 3 1 4
+3 1 2 5
+3 4 2 3
+5 4 2 2
+Sample Output 1
+7
+Sample Input 2
+8 5 8 3
+4 5 1 2
+5 6 2 3
+7 8 5 12
+3 1 2 11
+1 2 3 10
+Sample Output 2
+24
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An integer N (2 ≤ N ≤ 10^5), representing some quantity or size.
+An integer M (1 ≤ M ≤ 10^5), representing some quantity or size.
+An integer s (1 ≤ s ≤ N), representing some quantity or size.
+An integer t (1 ≤ t ≤ N), representing some quantity or size.
+A list of tuples (a_i, b_i, c_i, d_i) of size M, where each tuple contains four integers:
+    a_i (1 ≤ a_i ≤ N)
+    b_i (1 ≤ b_i ≤ N)
+    c_i (1 ≤ c_i ≤ N)
+    d_i (1 ≤ d_i ≤ 10^9)
+
+### Example Input:
+```
+5 3 1 4
+3 1 2 5
+3 4 2 3
+5 4 2 2
+```
+
+### Function Signature:
+Write a function f(N, M, s, t, edges) that takes in the input.
+```python
+def f(N: int, M: int, s: int, t: int, edges: List[Tuple[int, int, int, int]]):
+    '''
+    N: an integer
+    M: an integer
+    s: an integer
+    t: an integer
+    edges: a list of tuples containing four integers each
+    '''</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Sure! Let's write a test case generator for the problem "E: Mischief Graph".
+
+Here's the generator code:
+
+```python
+import random
+
+def tcgen():
+    # Number of vertices
+    N = random.randint(2, 10**5)
+    
+    # Number of edges
+    M = random.randint(1, 10**5)
+    
+    # Start and end vertices (make sure they are different)
+    s = random.randint(1, N)
+    t = random.randint(1, N)
+    while t == s:
+        t = random.randint(1, N)
+    
+    # Generate edges
+    edges = []
+    for _ in range(M):
+        a_i = random.randint(1, N)
+        b_i = random.randint(1, N)
+        c_i = random.randint(1, N)
+        while len({a_i, b_i, c_i}) != 3:  # Ensure all three are different
+            a_i = random.randint(1, N)
+            b_i = random.randint(1, N)
+            c_i = random.randint(1, N)
+        d_i = random.randint(1, 10**9)
+        edges.append((a_i, b_i, c_i, d_i))
+    
+    # Output the generated test case
+    print(N, M, s, t)
+    for a_i, b_i, c_i, d_i in edges:
+        print(a_i, b_i, c_i, d_i)
+
+# Example usage
+tcgen()
+```
+
+Explanation of the code:
+1. **Number of Vertices and Edges**: We randomly select `N` (the number of vertices) between 2 and 100,000, and `M` (the number of edges) between 1 and 100,000.
+2. **Start and End Vertices**: Randomly choose `s` and `t` ensuring that `s` is not equal to `t`.
+3. **Edges Generation**: For each edge, we generate three different vertices `a_i`, `b_i`, and `c_i` ensuring none of them are the same. We also generate a random cost `d_i` for each edge.
+4. **Output Format**: Print the values in the required format.
+
+This generator will create random test cases that you can use to test your solution for the given problem.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    N, M, s, t = map(int, fh.readline().strip().split())
+    edges = []
+    for _ in range(M):
+        a, b, c, d = map(int, fh.readline().strip().split())
+        edges.append((a, b, c, d))
+    return N, M, s, t, edges
+
+# if __name__ == "__main__":
+#     input_path = sys.argv[1]
+#     with open(input_path, 'r') as fh:
+#         N, M, s, t, edges = extract_arguments(fh)
+#         f(N, M, s, t, edges)</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

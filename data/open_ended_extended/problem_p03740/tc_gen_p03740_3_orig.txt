@@ -1,0 +1,37 @@
+Sure, I'll write a test case generator for the given problem statement. Below is the `tcgen()` function to generate random test cases for the "Alice and Brown" game problem.
+
+```python
+import random
+
+def tcgen():
+    # Generate random values for X and Y within the given constraints
+    X = random.randint(0, 10**18)
+    Y = random.randint(0, 10**18)
+    return X, Y
+
+# Example of generating a test case
+for _ in range(5):
+    print(tcgen())
+```
+
+This function will generate random values for \(X\) and \(Y\) within the specified range of \(0 \leq X, Y \leq 10^{18}\). You can call this function to generate multiple test cases. Each call to `tcgen()` will return a tuple with two integers, \(X\) and \(Y\), representing the initial number of stones in the two piles.
+
+Here's how you might use this function to produce a few test cases:
+
+```python
+# Generate and print 5 example test cases
+for _ in range(5):
+    print(tcgen())
+```
+
+This would output something like:
+
+```
+(123456789012345678, 987654321098765432)
+(0, 999999999999999999)
+(12345678901234567, 0)
+(500500500500500500, 999999999999999999)
+(0, 0)
+```
+
+Feel free to run this in your local environment to generate test cases as needed!

@@ -1,0 +1,35 @@
+Sure! Here is a test case generator for the "Debt Hell" problem:
+
+```python
+import random
+
+def tcgen():
+    # Generate a random integer n in the range 0 to 100 inclusive
+    n = random.randint(0, 100)
+    
+    return n
+
+def compute_debt(n):
+    debt = 100000
+    for _ in range(n):
+        debt = debt * 1.05
+        debt = ((debt + 999) // 1000) * 1000  # Round up to the nearest 1000 yen
+    return int(debt)
+
+# Generate a test case
+n = tcgen()
+output = compute_debt(n)
+
+# Display the test case and the expected output
+print(f"Input:\n{n}")
+print(f"Expected Output:\n{output}")
+```
+
+### Explanation:
+1. `tcgen()` function generates a random integer `n` between 0 and 100 inclusive.
+2. `compute_debt(n)` function computes the debt after `n` weeks by:
+   - Starting with an initial debt of 100,000 yen.
+   - Applying a 5% interest and rounding up to the nearest 1,000 yen each week for `n` weeks.
+3. The generated test case and the expected output are printed to the console.
+
+This will help test various scenarios for the problem, ensuring the solution handles different values of `n` correctly.

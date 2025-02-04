@@ -1,0 +1,28 @@
+Sure! Below is a test case generator for the "Round Table of Sages" problem.
+
+```python
+import random
+
+def tcgen():
+    N = random.randint(3, 10)
+    
+    a = [random.randint(0, 1) for _ in range(N)]
+    
+    w = [random.randint(1, 1000) for _ in range(N)]
+    
+    return N, a, w
+
+# Example usage:
+if __name__ == "__main__":
+    N, a, w = tcgen()
+    print(N)
+    print(" ".join(map(str, a)))
+    print(" ".join(map(str, w)))
+```
+
+This generator will create a test case with the following constraints:
+- `N` is randomly chosen between 3 and 10.
+- The array `a` contains integers 0 or 1, randomly chosen, representing whether each sage is right-handed (0) or left-handed (1).
+- The array `w` contains integers between 1 and 1000, randomly chosen, representing the level of frustration each sage bears.
+
+You can run this code to generate a random test case for the problem.

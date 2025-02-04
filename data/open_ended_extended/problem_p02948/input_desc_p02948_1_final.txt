@@ -1,0 +1,21 @@
+An integer N (1 ≤ N ≤ 10^5), representing some quantity or size.
+An integer M (1 ≤ M ≤ 10^5), representing some other quantity or size.
+A list of tuples of size N, where each tuple consists of two integers (A_i, B_i), with 1 ≤ A_i ≤ 10^5 and 1 ≤ B_i ≤ 10^4.
+
+### Example Input:
+
+```
+3 4
+4 3
+4 1
+2 2
+```
+
+### Function Signature:
+Write a function f(N, M, inputs) that takes in the input.
+def f(N: int, M: int, inputs: List[Tuple[int, int]]):
+    '''
+    N: an integer
+    M: an integer
+    inputs: a list of tuples, where each tuple consists of two integers
+    '''

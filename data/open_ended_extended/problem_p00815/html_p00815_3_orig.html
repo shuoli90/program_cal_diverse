@@ -1,0 +1,220 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p00815 - Generation 3</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p00815 - Generation 3</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>Problem E: Map of Ninja House
+An old document says that a Ninja House in Kanazawa City was in fact a defensive fortress, which was designed like a maze. Its rooms were connected by hidden doors in a complicated manner, so that any invader would become lost. Each room has at least two doors.
+The Ninja House can be modeled by a graph, as shown in Figure l. A circle represents a room. Each line connecting two circles represents a door between two rooms. 
+Figure l. Graph Model of Ninja House.
+Figure 2. Ninja House exploration.
+I decided to draw a map, since no map was available. Your mission is to help me draw a map from the record of my exploration.
+I started exploring by entering a single entrance that was open to the outside. The path I walked is schematically shown in Figure 2, by a line with arrows. The rules for moving between rooms are described below.
+    After entering a room, I first open the rightmost door and move to the next room. However, if the next room has already been visited, I close the door without entering, and open the next rightmost door, and so on. When I have inspected all the doors of a room, I go back through the door I used to enter the room. 
+I have a counter with me to memorize the distance from the first room. The counter is incremented when I enter a new room, and decremented when I go back from a room. In Figure 2, each number in parentheses is the value of the counter when I have entered the room, i.e., the distance from the first room. In contrast, the numbers not in parentheses represent the order of my visit.
+I take a record of my exploration. Every time I open a door, I record a single number, according to the following rules.
+ If the opposite side of the door is a new room, I record the number of doors in that room, which is a positive number.
+ If it is an already visited room, say R, I record ``the distance of R from the first room'' minus ``the distance of the current room from the first room'', which is a negative number.
+In the example shown in Figure 2, as the first room has three doors connecting other rooms, I initially record ``3''. Then when I move to the second, third, and fourth rooms, which all have three doors, I append ``3 3 3'' to the record. When I skip the entry from the fourth room to the first room, the distance difference ``-3'' (minus three) will be appended, and so on. So, when I finish this exploration, its record is a sequence of numbers ``3 3 3 3 -3 3 2 -5 3 2 -5 -3''.
+There are several dozens of Ninja Houses in the city. Given a sequence of numbers for each of these houses, you should produce a graph for each house. 
+Input
+The first line of the input is a single integer n, indicating the number of records of Ninja Houses I have visited. You can assume that n is less than 100. Each of the following n records consists of numbers recorded on one exploration and a zero as a terminator. Each record consists of one or more lines whose lengths are less than 1000 characters. Each number is delimited by a space or a newline. You can assume that the number of rooms for each Ninja House is less than 100, and the number of doors in each room is less than 40.
+Output
+For each Ninja House of m rooms, the output should consist of m lines. The j-th line of each such m lines should look as follows:
+i r1 r2  ... rki
+where r1, ... , rki should be rooms adjoining room i, and ki should be the number of doors in room i. Numbers should be separated by exactly one space character. The rooms should be numbered from 1 in visited order. r1, r2, ... , rki should be in ascending order. Note that the room i may be connected to another room through more than one door. In this case, that room number should appear in r1, ... , rki as many times as it is connected by different doors.
+Sample Input
+2
+3 3 3 3 -3 3 2 -5 3 2 -5 -3 0
+3 5 4 -2 4 -3 -2 -2 -1 0
+Output for the Sample Input
+1 2 4 6
+2 1 3 8
+3 2 4 7
+4 1 3 5
+5 4 6 7
+6 1 5
+7 3 5 8
+8 2 7
+1 2 3 4
+2 1 3 3 4 4
+3 1 2 2 4
+4 1 2 2 3
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An integer n (1 ≤ n < 100), representing the number of records.
+Each record consists of a sequence of integers followed by a zero terminator. Each number is delimited by a space or a newline. Each sequence is comprised of one or more lines, each less than 1000 characters in length. The integers can be both positive and negative. 
+
+### Example Input:
+
+```
+2
+3 3 3 3 -3 3 2 -5 3 2 -5 -3 0
+3 5 4 -2 4 -3 -2 -2 -1 0
+```
+
+### Function Signature:
+Write a function f(inputs) that takes in the input.
+```python
+def f(inputs: List[Tuple[int]]):
+    ''' 
+    inputs: a list of tuples, where each tuple contains a sequence of integers representing one record.
+    '''
+```</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>To generate test cases for the "Map of Ninja House" problem, we need to simulate the exploration process described in the problem statement. Here is a Python function that generates such test cases:
+
+```python
+import random
+
+def generate_ninja_house_record(num_rooms, max_doors):
+    record = []
+    visited = [False] * num_rooms
+    stack = []
+    current_room = 0
+    visited[current_room] = True
+    room_distance = [0] * num_rooms
+    room_doors = [random.randint(2, max_doors) for _ in range(num_rooms)]
+
+    while True:
+        if all(visited):
+            break
+
+        appended = False
+        for _ in range(room_doors[current_room]):
+            next_room = random.randint(0, num_rooms-1)
+            if not visited[next_room]:
+                record.append(room_doors[next_room])
+                stack.append(current_room)
+                current_room = next_room
+                visited[current_room] = True
+                room_distance[current_room] = room_distance[stack[-1]] + 1
+                appended = True
+                break
+            else:
+                record.append(room_distance[next_room] - room_distance[current_room])
+
+        if not appended:
+            if stack:
+                current_room = stack.pop()
+            else:
+                break
+
+    record.append(0)
+    return record
+
+def tcgen():
+    n = random.randint(1, 99)
+    max_rooms = 99
+    max_doors = 39
+
+    records = []
+    for _ in range(n):
+        num_rooms = random.randint(2, max_rooms)
+        record = generate_ninja_house_record(num_rooms, max_doors)
+        records.append(record)
+
+    return n, records
+
+def format_test_case(n, records):
+    result = []
+    result.append(str(n))
+    for record in records:
+        record_str = ' '.join(map(str, record))
+        result.append(record_str)
+    return '\n'.join(result)
+
+# Example usage:
+n, records = tcgen()
+test_case = format_test_case(n, records)
+print(test_case)
+```
+
+### Explanation:
+1. **generate_ninja_house_record**: This function creates a record for one Ninja House. It simulates the exploration process as described:
+   - Initializes a `visited` list to keep track of which rooms have been visited.
+   - Uses a `stack` to backtrack when necessary.
+   - Randomly assigns the number of doors to each room.
+   - Records the number of doors or the distance difference based on the exploration rules.
+
+2. **tcgen**: This function generates multiple records:
+   - Chooses a random number of houses (`n`).
+   - For each house, it generates a record using the `generate_ninja_house_record` function.
+
+3. **format_test_case**: This function formats the generated records into the required input format:
+   - Joins the records into one string with appropriate formatting.
+
+### Testing:
+You can run the `tcgen` function and print the formatted test case to see the generated input. This will give you random test cases that can be used to validate your solution for the "Map of Ninja House" problem.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    n = int(fh.readline().strip())
+    records = []
+    for _ in range(n):
+        record = []
+        while True:
+            line = fh.readline().strip()
+            if line == '0':
+                break
+            record.extend(map(int, line.split()))
+        records.append(record)
+    return records</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

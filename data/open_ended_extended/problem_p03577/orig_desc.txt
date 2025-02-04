@@ -1,0 +1,21 @@
+
+Score : 100 points
+Problem StatementRng is going to a festival.
+The name of the festival is given to you as a string S, which ends with FESTIVAL, from input. Answer the question: "Rng is going to a festival of what?" Output the answer.
+Here, assume that the name of "a festival of s" is a string obtained by appending FESTIVAL to the end of s.
+For example, CODEFESTIVAL is a festival of CODE.
+Constraints
+9 \leq |S| \leq 50
+S consists of uppercase English letters.
+S ends with FESTIVAL.
+InputInput is given from Standard Input in the following format:
+S
+OutputPrint the answer to the question: "Rng is going to a festival of what?"
+Sample Input 1CODEFESTIVAL
+Sample Output 1CODE
+This is the same as the example in the statement.
+Sample Input 2CODEFESTIVALFESTIVAL
+Sample Output 2CODEFESTIVAL
+This string is obtained by appending FESTIVAL to the end of CODEFESTIVAL, so it is a festival of CODEFESTIVAL.
+Sample Input 3YAKINIKUFESTIVAL
+Sample Output 3YAKINIKU

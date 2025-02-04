@@ -1,0 +1,31 @@
+Sure, let's create a test case generator for the given problem. The problem involves generating a string `S` that consists of characters 'L' and 'R', with the constraints that the first character is 'R' and the last character is 'L'. The length of the string can vary between 2 and \(10^5\).
+
+Here's the test case generator:
+
+```python
+import random
+
+def generate_test_case():
+    # Set the length of the string S between 2 and 10^5
+    N = random.randint(2, 10**5)
+    
+    # The first character must be 'R' and the last character must be 'L'
+    S = ['R'] + [random.choice(['L', 'R']) for _ in range(N - 2)] + ['L']
+    
+    return ''.join(S)
+
+# Example usage:
+test_case = generate_test_case()
+print(test_case)
+```
+
+This function will generate a random valid string `S` according to the given constraints.
+
+### Explanation:
+1. **Length Constraint**: `N` is generated randomly between 2 and \(10^5\).
+2. **String Generation**: 
+   - The first character is set to `'R'`.
+   - The last character is set to `'L'`.
+   - The characters in between are randomly chosen from `'L'` and `'R'`.
+
+You can run this function multiple times to generate different test cases for your problem.

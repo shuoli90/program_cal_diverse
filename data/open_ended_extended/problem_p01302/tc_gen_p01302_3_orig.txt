@@ -1,0 +1,108 @@
+Sure, here's a test case generator for the provided problem "Cave Explorer":
+
+```python
+import random
+
+def generate_polygon(n):
+    """ Generate a simple polygon with n vertices """
+    points = []
+    for _ in range(n):
+        x = random.randint(0, 10000)
+        y = random.randint(0, 10000)
+        points.append((x, y))
+    return points
+
+def is_simple_polygon(polygon):
+    """ Check if a given polygon is simple (no self-intersecting) """
+    def orientation(p, q, r):
+        """ Return the orientation of the triplet (p, q, r).
+        0 -> p, q and r are collinear
+        1 -> Clockwise
+        2 -> Counterclockwise
+        """
+        val = (q[1] - p[1]) * (r[0] - q[0]) - (q[0] - p[0]) * (r[1] - q[1])
+        if val == 0:
+            return 0
+        elif val > 0:
+            return 1
+        else:
+            return 2
+
+    def do_intersect(p1, q1, p2, q2):
+        """ Return true if line segment 'p1q1' and 'p2q2' intersect. """
+        o1 = orientation(p1, q1, p2)
+        o2 = orientation(p1, q1, q2)
+        o3 = orientation(p2, q2, p1)
+        o4 = orientation(p2, q2, q1)
+
+        if o1 != o2 and o3 != o4:
+            return True
+
+        if o1 == 0 and on_segment(p1, p2, q1):
+            return True
+
+        if o2 == 0 and on_segment(p1, q2, q1):
+            return True
+
+        if o3 == 0 and on_segment(p2, p1, q2):
+            return True
+
+        if o4 == 0 and on_segment(p2, q1, q2):
+            return True
+
+        return False
+
+    def on_segment(p, q, r):
+        """ Check if point q lies on line segment 'pr' """
+        if (q[0] <= max(p[0], r[0]) and q[0] >= min(p[0], r[0]) and
+            q[1] <= max(p[1], r[1]) and q[1] >= min(p[1], r[1])):
+            return True
+        return False
+
+    n = len(polygon)
+    for i in range(n):
+        for j in range(i + 1, n):
+            if do_intersect(polygon[i - 1], polygon[i], polygon[j - 1], polygon[j]):
+                return False
+    return True
+
+def tcgen():
+    datasets = []
+    while True:
+        n = random.randint(3, 100)
+        vx = random.randint(-10000, 10000)
+        vy = random.randint(-10000, 10000)
+        while vx == 0 and vy == 0:
+            vx = random.randint(-10000, 10000)
+            vy = random.randint(-10000, 10000)
+            
+        polygon = generate_polygon(n)
+        # Ensure the polygon is simple
+        while not is_simple_polygon(polygon):
+            polygon = generate_polygon(n)
+            
+        dataset = [str(n)]
+        dataset.append(f"{vx} {vy}")
+        for x, y in polygon:
+            dataset.append(f"{x} {y}")
+        
+        datasets.append("\n".join(dataset))
+        
+        # Randomly decide if this is the last dataset
+        if random.random() < 0.1:
+            break
+    
+    datasets.append("0")
+    return "\n".join(datasets)
+
+# Generate a test case
+print(tcgen())
+```
+
+### Explanation:
+1. **Polygon Generation**: The `generate_polygon` function generates random points within the given constraints, ensuring that the polygon is simple (doesn't self-intersect) using the `is_simple_polygon` function.
+2. **Vector Generation**: Generates a random vector \((vx, vy)\) ensuring that it is not \((0, 0)\).
+3. **Dataset Construction**: Constructs a dataset with the required format.
+4. **Termination**: The generation loop randomly decides when to stop adding datasets to simulate the input termination with a line containing zero.
+
+This generator can produce multiple datasets in one run, adhering to the problem's constraints and ensuring the polygons are simple.

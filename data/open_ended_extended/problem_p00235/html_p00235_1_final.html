@@ -1,0 +1,195 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p00235 - Generation 1</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p00235 - Generation 1</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>Sergeant Ryan
+Under the orders to "rescue Sergeant Ryan", the rescue team of the Aizu army was engaged in a fierce battle with enemy forces in the water city of Germany. They safely joined forces with Sergeant Ryan, but there were many enemy tanks and they were unable to call for rescue helicopters. So, they decided to execute a plan to blow up all the bridges in the city to confuse the enemy tanks.
+The plan was immediately relayed to headquarters and preparations for the rescue helicopter were underway. To fly the rescue helicopter, it is necessary to predict when all the bridges will be blown up. Your task as a programmer in the military is to calculate the time required for the rescue team to blow up all the bridges.
+The water city consists of N islands, and there are bridges between each island. All islands are connected like a tree (see diagram below). There is only one route from one island to another. Crossing each bridge takes a certain amount of time, and it is possible to cross the bridge in both directions in that time.
+The rescue team has no means of moving on water, so they have no choice but to cross the bridges to move between islands. The rescue team can blow up the necessary bridges in the island where they are currently located in an instant. What is the minimum time required for the rescue team to blow up all the bridges? However, the time required to move within the island is not considered.
+Create a program that takes the number of islands and the information on each bridge as input and outputs the minimum time required to blow up all the bridges. Each island is represented by a number from 1 to N. There are N-1 bridges. Bridge information consists of the numbers of two islands adjacent to the bridge (a, b) and the time required to cross the bridge t. The rescue team starts from island number 1.
+Input
+A sequence of multiple data sets is given as input. The end of the input is indicated by a single zero line. Each data set is given in the following format.
+N
+a1 b1 t1
+a2 b2 t2
+:
+aN-1 bN-1 tN-1
+All input is given as integers. The number of islands N (2 ≤ N ≤ 20) is given on the first line.
+For the following N-1 lines, information on the i-th bridge is given. ai, bi, and ti (1 ≤ ti ≤ 500) represent that it is possible to travel between island ai and island bi in time ti by passing through the i-th bridge.
+The number of data sets does not exceed 100.
+Output
+For each data set, output a line with the minimum time required to blow up all the bridges.
+Sample Input
+7
+1 2 5
+2 3 2
+3 4 3
+2 5 3
+5 6 3
+5 7 8
+0
+Output for the Sample Input
+12
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An integer N (2 ≤ N ≤ 20), representing some quantity or size.
+A list of tuples of size N-1, where each tuple consists of three integers (a, b, t). The integers a and b are between 1 and N, and the integer t is between 1 and 500.
+The input ends with a single zero line.
+
+### Example Input:
+
+```
+7
+1 2 5
+2 3 2
+3 4 3
+2 5 3
+5 6 3
+5 7 8
+0
+```
+
+### Function Signature:
+Write a function f(inputs) that takes in the input.
+def f(inputs: List[Tuple[int, List[Tuple[int, int, int]]]]):
+    '''
+    inputs: a list of tuples where each tuple contains an integer and a list of tuples
+    '''</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Sure, let's create a test case generator for the problem "Sergeant Ryan." Here's a Python function that generates test cases based on the problem statement:
+
+```python
+import random
+
+def generate_tree_edges(N):
+    edges = []
+    for i in range(2, N + 1):
+        # Connect each node to a random previous node to ensure it forms a tree
+        a = random.randint(1, i - 1)
+        b = i
+        t = random.randint(1, 500)
+        edges.append((a, b, t))
+    return edges
+
+def tcgen():
+    test_cases = []
+    num_cases = random.randint(1, 100)
+    
+    for _ in range(num_cases):
+        N = random.randint(2, 20)
+        edges = generate_tree_edges(N)
+        test_case = (N, edges)
+        test_cases.append(test_case)
+    
+    return test_cases
+
+def print_test_cases(test_cases):
+    for N, edges in test_cases:
+        print(N)
+        for a, b, t in edges:
+            print(f"{a} {b} {t}")
+    print(0)
+
+# Generate and print the test cases
+test_cases = tcgen()
+print_test_cases(test_cases)
+```
+
+### Explanation
+
+1. **`generate_tree_edges(N)` Function:**
+   - This function generates `N-1` edges to form a tree structure where each node `i` (starting from 2) is connected to a randomly chosen node from 1 to `i-1`.
+   - The travel time `t` for each bridge is randomly chosen between 1 and 500.
+
+2. **`tcgen()` Function:**
+   - This function generates a list of test cases. The number of test cases is randomly chosen between 1 and 100.
+   - For each test case, it randomly selects a number of islands `N` between 2 and 20 and generates the corresponding edges using the `generate_tree_edges(N)` function.
+   - Each test case is stored as a tuple `(N, edges)`.
+
+3. **`print_test_cases(test_cases)` Function:**
+   - This function prints the generated test cases in the required input format.
+   - It iterates through the list of test cases, printing the number of islands `N` followed by the edge information for each test case.
+   - Finally, it prints a single zero to indicate the end of the input.
+
+You can run this script to generate and print random test cases for the "Sergeant Ryan" problem.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    datasets = []
+    while True:
+        N = int(fh.readline().strip())
+        if N == 0:
+            break
+        bridges = []
+        for _ in range(N - 1):
+            a, b, t = map(int, fh.readline().strip().split())
+            bridges.append((a, b, t))
+        datasets.append((N, bridges))
+    return datasets
+
+# if __name__ == "__main__":
+#     input_path = sys.argv[1]
+#     with open(input_path, 'r') as fh:
+#         inputs = extract_arguments(fh)
+#     for dataset in inputs:
+#         f(dataset)</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

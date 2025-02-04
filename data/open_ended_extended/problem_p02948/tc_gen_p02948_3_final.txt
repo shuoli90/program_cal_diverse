@@ -1,0 +1,41 @@
+Sure! Let's create a test case generator for the second problem statement. This generator will create random inputs for the problem of finding the maximum total reward for one-off jobs.
+
+Here's the Python code for the test case generator:
+
+```python
+import random
+
+def tcgen():
+    # Generate random values for N and M within given constraints
+    N = random.randint(1, 100000)
+    M = random.randint(1, 100000)
+    
+    # Generate random values for A_i and B_i within given constraints
+    A = [random.randint(1, 100000) for _ in range(N)]
+    B = [random.randint(1, 10000) for _ in range(N)]
+    
+    return N, M, list(zip(A, B))
+
+def format_test_case(N, M, jobs):
+    # Format the test case as a string
+    result = f"{N} {M}\n"
+    for A_i, B_i in jobs:
+        result += f"{A_i} {B_i}\n"
+    return result.strip()
+
+# Example usage:
+N, M, jobs = tcgen()
+test_case = format_test_case(N, M, jobs)
+print(test_case)
+```
+
+This code will generate a test case with:
+1. A random `N` (number of jobs) between 1 and 100000.
+2. A random `M` (number of days) between 1 and 100000.
+3. A list of `N` pairs `(A_i, B_i)` where:
+   - `A_i` (days after which the reward is received) is between 1 and 100000.
+   - `B_i` (reward for the job) is between 1 and 10000.
+
+The function `format_test_case` formats the generated test case into the required input format. 
+
+You can run the example usage to see a sample test case output!

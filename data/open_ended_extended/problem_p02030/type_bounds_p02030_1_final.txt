@@ -1,0 +1,3 @@
+Types: n: int, m: int, a: List[int], b: List[int]
+Ranges: 1 ≤ n, m ≤ 2 × 10^5, 1 ≤ a_i, b_i ≤ 10^9
+Addtl Info: a_i < a_j (i < j), b_i < b_j (i < j)

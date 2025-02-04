@@ -1,0 +1,17 @@
+An integer \( \text{len}(S) \) (9 ≤ \( \text{len}(S) \) ≤ 50), representing the length of the string.
+A string \( S \) of length \( \text{len}(S) \), consisting of uppercase English letters and ending with a specific suffix.
+
+### Example Input:
+
+```
+CODEFESTIVAL
+```
+
+### Function Signature:
+Write a function f(S) that takes in the input.
+```python
+def f(S: str):
+    '''
+    S: a string
+    '''
+```

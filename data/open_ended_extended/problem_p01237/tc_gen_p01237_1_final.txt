@@ -1,0 +1,51 @@
+Sure, I can create a test case generator for the "Life Game" problem. The generator will produce random valid inputs within the specified constraints. Here's the Python code for the test case generator:
+
+```python
+import random
+
+def generate_initial_state(N, M):
+    initial_state = []
+    for i in range(2 * N - 1):
+        row_length = N + abs(N - 1 - i)
+        row = [random.randint(0, M - 1) for _ in range(row_length)]
+        initial_state.append(row)
+    return initial_state
+
+def tcgen():
+    N = random.randint(1, 6)
+    M = random.randint(2, 10**9)
+    L = random.randint(1, 10**9)
+    
+    initial_state = generate_initial_state(N, M)
+    
+    return N, M, L, initial_state
+
+def print_test_case(N, M, L, initial_state):
+    print(f"{N} {M} {L}")
+    for row in initial_state:
+        print(" ".join(map(str, row)))
+
+# Example usage:
+if __name__ == "__main__":
+    # Generate a single test case
+    N, M, L, initial_state = tcgen()
+    print_test_case(N, M, L, initial_state)
+    
+    # Generate multiple test cases
+    for i in range(5):  # Change the range as needed for more test cases
+        N, M, L, initial_state = tcgen()
+        print(f"Test Case {i + 1}:")
+        print_test_case(N, M, L, initial_state)
+        print()
+    # Print end of input
+    print("0 0 0")
+```
+
+This code does the following:
+
+1. Defines a function `generate_initial_state` to generate the initial state of the hexagonal grid based on the given number of colonies on each edge (N) and the maximum number of viruses (M).
+2. Defines the main `tcgen` function to generate random values for N, M, and L within the specified constraints.
+3. Uses the `print_test_case` function to format and print the generated test case.
+4. Includes an example usage block that generates and prints multiple test cases.
+
+You can run this generator to produce different test cases for the "Life Game" problem, and it will ensure that all constraints are respected.

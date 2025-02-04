@@ -1,0 +1,16 @@
+An input string \( S \) of length between 1 and 1000, inclusive, consisting of lowercase English letters.
+
+### Example Input:
+
+```
+apple
+```
+
+### Function Signature:
+Write a function f(S) that takes in the input.
+```python
+def f(S: str):
+    '''
+    S: a string
+    '''
+```

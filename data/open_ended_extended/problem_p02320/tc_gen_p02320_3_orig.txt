@@ -1,0 +1,35 @@
+Certainly! Here is a test case generator for the given Knapsack problem with limitations:
+
+```python
+import random
+
+def tcgen():
+    # Constraints
+    N = random.randint(1, 100)  # Number of items
+    W = random.randint(1, 10000)  # Capacity of the knapsack
+    
+    items = []
+    for _ in range(N):
+        v = random.randint(1, 1000)  # Value of item
+        w = random.randint(1, 1000)  # Weight of item
+        m = random.randint(1, 10000)  # Limitation of item
+        items.append((v, w, m))
+    
+    return N, W, items
+
+# Example usage
+N, W, items = tcgen()
+print(N, W)
+for item in items:
+    print(item[0], item[1], item[2])
+```
+
+### Explanation
+- **N**: Number of items, randomly chosen between 1 and 100.
+- **W**: Capacity of the knapsack, randomly chosen between 1 and 10,000.
+- **items**: List of tuples where each tuple contains:
+  - **v**: Value of the item, randomly chosen between 1 and 1,000.
+  - **w**: Weight of the item, randomly chosen between 1 and 1,000.
+  - **m**: Limitation on the number of that item, randomly chosen between 1 and 10,000.
+
+This generator will create a variety of test cases within the constraints provided by the problem statement. You can use this to generate multiple test cases to thoroughly test your solution to the problem.

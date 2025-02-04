@@ -1,0 +1,36 @@
+Sure! Below is a test case generator for the given problem statement.
+
+```python
+import random
+
+def tcgen():
+    N = random.randint(2, 200000)
+    K = random.randint(2, N)
+    
+    P = list(range(N))
+    random.shuffle(P)
+    
+    return N, K, P
+
+# Function to format the test case for the problem statement
+def format_test_case(N, K, P):
+    return f"{N} {K}\n" + " ".join(map(str, P))
+
+# Example usage:
+N, K, P = tcgen()
+test_case = format_test_case(N, K, P)
+print(test_case)
+```
+
+### Explanation:
+1. **N** is chosen randomly between 2 and 200,000.
+2. **K** is chosen randomly between 2 and N.
+3. **P** is generated as a permutation of numbers from 0 to N-1 and then shuffled to ensure randomness.
+
+### Example Output:
+```plaintext
+5 3
+0 2 1 4 3
+```
+
+This output corresponds to the sample input provided in the problem statement. You can generate multiple test cases by calling the `tcgen()` function multiple times. The `format_test_case` function formats the output to match the expected input format for the competitive programming problem.

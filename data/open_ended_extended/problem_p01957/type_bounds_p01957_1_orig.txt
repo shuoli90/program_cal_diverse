@@ -1,0 +1,3 @@
+Types: S: str, a_i: str, v_i: int  
+Ranges: 2 ≤ N ≤ 26, v_i ≤ 26  
+Addtl Info: Each a_i is distinct and appears exactly once in S. S satisfies the BNF: `<winner> ::= <person> | "[" <winner> "-" <winner> "]"`, `<person> ::= "a" | "b" | "c" | ... | "z"`.

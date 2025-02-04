@@ -1,0 +1,5 @@
+Types: n: int, name: str, w: int, l: int, d: int
+
+Ranges: 1 ≤ n ≤ 10, 0 ≤ w, l, d ≤ 9, length of name ≤ 20
+
+Addtl Info: The number of data sets will not exceed 50. The input is terminated when n = 0.

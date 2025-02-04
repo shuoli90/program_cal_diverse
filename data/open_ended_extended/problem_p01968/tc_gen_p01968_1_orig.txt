@@ -1,0 +1,24 @@
+Sure! Below is a test case generator for the "Hierarchical Calculator" problem.
+
+```python
+import random
+
+def tcgen():
+    N = random.randint(1, 60)
+    A = [random.randint(-2, 2) for _ in range(N)]
+    
+    return N, A
+
+# Generate a test case
+N, A = tcgen()
+
+# Print the test case in the required format
+print(N)
+print(" ".join(map(str, A)))
+```
+
+This script generates a random test case for the problem where:
+1. The number of formulae \(N\) is randomly chosen between 1 and 60.
+2. The coefficients \(a_i\) are randomly chosen integers between -2 and 2.
+
+The generator then prints the test case in the required format. You can run the `tcgen` function to generate different test cases to test your solution rigorously.

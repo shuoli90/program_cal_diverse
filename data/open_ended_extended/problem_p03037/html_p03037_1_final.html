@@ -1,0 +1,170 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p03037 - Generation 1</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p03037 - Generation 1</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>
+Score : 300 points
+Problem StatementWe have N ID cards, and there are M gates.
+We can pass the i-th gate if we have one of the following ID cards: the L_i-th, (L_i+1)-th, ..., and R_i-th ID cards.
+How many of the ID cards allow us to pass all the gates alone?
+Constraints
+All values in input are integers.
+1 \leq N \leq 10^5
+1 \leq M \leq 10^5
+1 \leq L_i \leq R_i \leq N
+InputInput is given from Standard Input in the following format:
+N M
+L_1 R_1
+L_2 R_2
+\vdots
+L_M R_M
+OutputPrint the number of ID cards that allow us to pass all the gates alone.
+Sample Input 14 2
+1 3
+2 4
+Sample Output 12
+Two ID cards allow us to pass all the gates alone, as follows:
+The first ID card does not allow us to pass the second gate.
+The second ID card allows us to pass all the gates.
+The third ID card allows us to pass all the gates.
+The fourth ID card does not allow us to pass the first gate.
+Sample Input 210 3
+3 6
+5 7
+6 9
+Sample Output 21
+Sample Input 3100000 1
+1 100000
+Sample Output 3100000
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>Canonicalized Input Description:
+
+An integer N (1 ≤ N ≤ 10^5), representing some quantity or size.
+An integer M (1 ≤ M ≤ 10^5), representing some quantity or size.
+A list of M tuples, each tuple containing two integers L_i and R_i (1 ≤ L_i ≤ R_i ≤ N).
+
+### Example Input:
+
+```
+4 2
+1 3
+2 4
+```
+
+### Function Signature:
+
+Write a function f(N, M, intervals) that takes in the input.
+
+```python
+def f(N: int, M: int, intervals: List[Tuple[int, int]]):
+    '''
+    N: an integer
+    M: an integer
+    intervals: a list of tuples, each containing two integers
+    '''
+```</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Sure, here is a test case generator for the given problem statement:
+
+```python
+import random
+
+def tcgen():
+    # Define the constraints
+    N = random.randint(1, 10**5)
+    M = random.randint(1, 10**5)
+    
+    # Generate the list of (L_i, R_i) pairs
+    LR = []
+    for _ in range(M):
+        L = random.randint(1, N)
+        R = random.randint(L, N)  # Ensure L_i <= R_i
+        LR.append((L, R))
+    
+    return N, M, LR
+
+# This function will print the test case in the required format
+def print_test_case():
+    N, M, LR = tcgen()
+    print(N, M)
+    for L, R in LR:
+        print(L, R)
+
+# Example usage
+print_test_case()
+```
+
+This code generates a random test case according to the constraints specified in the problem statement. The function `tcgen` produces random valid values for \(N\) and \(M\), and then generates \(M\) pairs of \((L_i, R_i)\) such that \(1 \leq L_i \leq R_i \leq N\).
+
+The `print_test_case` function prints the generated test case in the required format. You can call `print_test_case()` to generate and print a random test case.
+
+This should help you test your solution with various inputs!</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    N, M = map(int, fh.readline().strip().split())
+    gates = []
+    for _ in range(M):
+        L, R = map(int, fh.readline().strip().split())
+        gates.append((L, R))
+    return N, M, gates</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

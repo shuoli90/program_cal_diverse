@@ -1,0 +1,201 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p01349 - Generation 1</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p01349 - Generation 1</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>Problem A: Ennichi
+A rabbit who came to a shrine's festival found a game booth where the prize was a carrot cake. The rules for this game are as follows:
+There is a rectangular field with h rows and w columns, and at most one block is placed in each square. Each block is colored with one of the uppercase letters ('A' - 'Z'). When n or more blocks of the same color are aligned vertically or horizontally, they disappear.
+Participants can choose two adjacent squares horizontally and swap their states. When a block falls because of swapping, disappearing, or falling, the block falls one square down. When n or more blocks of the same color are aligned again, they disappear. However, the blocks do not disappear while falling, and all the blocks disappear at the same time when all the blocks have finished falling.
+If all the blocks on the field disappear in one operation, the game is successful, and the rabbit can get the cake. The rabbit wants to get the cake by paying the participation fee only once, and does not want to participate if it is impossible. Given the initial state of the field at the start of the game, determine whether the rabbit should participate in the game.
+Input
+The first line of the input contains three integers h, w, and n separated by spaces.
+2 ≤ h, w, n ≤ 30.
+The next h lines give the state of the field from top to bottom. Uppercase letters represent blocks, and periods represent empty squares. The state of the field given does not contain n or more blocks of the same color aligned vertically or horizontally and there is no block in the state that will fall. There is at least one block.
+Output
+If the rabbit should participate in the game, print "YES". Otherwise, print "NO".
+Sample Input 1
+4 6 3
+......
+...Y..
+...Y..
+RRYRYY
+Sample Output 2
+YES
+Sample Input 1
+4 6 3
+......
+...Y..
+...Y..
+RRYRY.
+Sample Output 2
+NO
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An integer h (2 ≤ h ≤ 30), representing some quantity or size.
+An integer w (2 ≤ w ≤ 30), representing some quantity or size.
+An integer n (2 ≤ n ≤ 30), representing some quantity or size.
+A list of h strings, each of length w, consisting of uppercase letters ('A' - 'Z') and periods ('.').
+
+### Example Input:
+
+```
+4 6 3
+......
+...Y..
+...Y..
+RRYRYY
+```
+
+### Function Signature:
+Write a function f(h, w, n, grid) that takes in the input.
+def f(h: int, w: int, n: int, grid: List[str]):
+    '''
+    h: an integer
+    w: an integer
+    n: an integer
+    grid: a list of strings
+    '''</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Sure, I can help you write a test case generator for the "Ennichi" problem. The generator will create random test cases based on the problem constraints. 
+
+Here's the test case generator in Python:
+
+```python
+import random
+import string
+
+def tcgen():
+    # Generate random values for h, w, and n
+    h = random.randint(2, 30)
+    w = random.randint(2, 30)
+    n = random.randint(2, 30)
+    
+    # Generate the field with h rows and w columns
+    field = []
+    for _ in range(h):
+        row = ''.join(random.choice(string.ascii_uppercase + '.') for _ in range(w))
+        field.append(row)
+    
+    # Ensure the field contains at least one block
+    if all(row.count('.') == w for row in field):
+        random_row = random.randint(0, h - 1)
+        random_col = random.randint(0, w - 1)
+        field[random_row] = field[random_row][:random_col] + random.choice(string.ascii_uppercase) + field[random_row][random_col + 1:]
+    
+    # Ensure no initial alignment of n or more blocks of the same color
+    for i in range(h):
+        for j in range(w):
+            if field[i][j] != '.':
+                # Check horizontal alignment
+                if j + n <= w:
+                    block = field[i][j]
+                    if all(field[i][j + k] == block for k in range(n)):
+                        # Invalidate the sequence
+                        for k in range(n):
+                            field[i] = field[i][:j + k] + '.' + field[i][j + k + 1:]
+                
+                # Check vertical alignment
+                if i + n <= h:
+                    block = field[i][j]
+                    if all(field[i + k][j] == block for k in range(n)):
+                        # Invalidate the sequence
+                        for k in range(n):
+                            field[i + k] = field[i + k][:j] + '.' + field[i + k][j + 1:]
+    
+    return h, w, n, field
+
+# Example usage of the test case generator
+h, w, n, field = tcgen()
+print(f"{h} {w} {n}")
+for row in field:
+    print(row)
+```
+
+### Explanation
+
+1. **Parameter Generation**:
+    - Random values for `h`, `w`, and `n` are generated within the given constraints.
+
+2. **Field Creation**:
+    - Each row of the field is generated randomly with uppercase letters and periods.
+    - Ensure there is at least one block (not all periods).
+
+3. **Alignment Check**:
+    - The generator checks for horizontal and vertical alignments of `n` or more blocks and adjusts them to prevent initial alignments.
+
+4. **Output**:
+    - The function returns the values of `h`, `w`, `n`, and the generated field as a list of strings.
+
+You can use this generator to create varied and extensive test cases to thoroughly test the solution for the "Ennichi" problem.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    h, w, n = map(int, fh.readline().strip().split())
+    field = [fh.readline().strip() for _ in range(h)]
+    return h, w, n, field
+
+# Example usage:
+# if __name__ == "__main__":
+#     input_path = sys.argv[1]
+#     with open(input_path, 'r') as fh:
+#         h, w, n, field = extract_arguments(fh)
+#         f(h, w, n, field)</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

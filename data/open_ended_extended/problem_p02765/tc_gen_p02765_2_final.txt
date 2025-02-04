@@ -1,0 +1,25 @@
+Sure! Here is a test case generator for the given competitive programming problem:
+
+```python
+import random
+
+def tcgen():
+    # Generate a random number of contests N (1 ≤ N ≤ 100)
+    N = random.randint(1, 100)
+    
+    # Generate a random Displayed Rating R (0 ≤ R ≤ 4111)
+    R = random.randint(0, 4111)
+    
+    return N, R
+
+# Create a function to print or save the generated test cases
+def print_test_cases(num_cases):
+    for _ in range(num_cases):
+        N, R = tcgen()
+        print(f"{N} {R}")
+
+# Example of generating and printing 5 test cases
+print_test_cases(5)
+```
+
+This Python function `tcgen` will generate random test cases for the given problem. The function `print_test_cases` will print the specified number of test cases. You can call this function to generate and print multiple test cases.

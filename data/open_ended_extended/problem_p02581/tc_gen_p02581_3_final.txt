@@ -1,0 +1,23 @@
+To generate test cases for the given problem statement, we need to ensure that the generated test cases adhere to the constraints and structure specified. Here's a test case generator for the problem:
+
+```python
+import random
+
+def tcgen():
+    N = random.randint(1, 2000)
+    A = [random.randint(1, N) for _ in range(3 * N)]
+    
+    return N, A
+
+# Example usage:
+N, A = tcgen()
+print(N)
+print(" ".join(map(str, A)))
+```
+
+This script will generate random test cases that can be used for the problem statement. Here's a breakdown of the generator function:
+
+1. **N Generation**: Randomly select \(N\) such that \(1 \leq N \leq 2000\).
+2. **A Generation**: Create a list \(A\) with \(3N\) integers, where each integer is between 1 and \(N\) inclusive.
+
+Each time the function `tcgen` is called, it produces a new test case that satisfies the constraints of the problem. The example usage shows how to call the function and print the generated values in the format expected by the problem's input.

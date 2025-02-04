@@ -1,0 +1,192 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p03564 - Generation 3</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p03564 - Generation 3</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>
+Score : 200 points
+Problem StatementSquare1001 has seen an electric bulletin board displaying the integer 1.
+He can perform the following operations A and B to change this value:
+Operation A: The displayed value is doubled.
+Operation B: The displayed value increases by K.
+Square1001 needs to perform these operations N times in total.
+Find the minimum possible value displayed in the board after N operations.
+Constraints
+1 \leq N, K \leq 10
+All input values are integers.
+InputInput is given from Standard Input in the following format:
+N
+K
+OutputPrint the minimum possible value displayed in the board after N operations.
+Sample Input 14
+3
+Sample Output 110
+The value will be minimized when the operations are performed in the following order: A, A, B, B.
+In this case, the value will change as follows: 1 → 2 → 4 → 7 → 10.  
+Sample Input 210
+10
+Sample Output 276
+The value will be minimized when the operations are performed in the following order: A, A, A, A, B, B, B, B, B, B.
+In this case, the value will change as follows: 1 → 2 → 4 → 8 → 16 → 26 → 36 → 46 → 56 → 66 → 76.  
+By the way, this contest is AtCoder Beginner Contest 076.
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An integer N (1 ≤ N ≤ 10).
+An integer K (1 ≤ K ≤ 10).
+
+### Example Input:
+
+```
+3
+10
+```
+
+### Function Signature:
+Write a function f(N, K) that takes in the input.
+```python
+def f(N: int, K: int):
+    '''
+    N: an integer
+    K: an integer
+    '''
+```</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Sure! Here is a test case generator for the given problem statement.
+
+### Problem Statement
+**Score**: 200 points
+
+**Description**
+
+Square1001 has seen an electric bulletin board displaying the integer 1. He can perform the following operations A and B to change this value:
+- **Operation A**: The displayed value is doubled.
+- **Operation B**: The displayed value increases by K.
+
+Square1001 needs to perform these operations N times in total. Find the minimum possible value displayed on the board after N operations.
+
+**Constraints**
+- \(1 \leq N, K \leq 10\)
+
+All input values are integers.
+
+**Input**
+```
+N
+K
+```
+
+**Output**
+Print the minimum possible value displayed on the board after N operations.
+
+**Examples**
+
+*Example 1:*
+```
+Input
+4
+3
+Output
+10
+```
+The value will be minimized when the operations are performed in the following order: A, A, B, B.
+In this case, the value will change as follows: 1 → 2 → 4 → 7 → 10.
+
+*Example 2:*
+```
+Input
+10
+10
+Output
+276
+```
+The value will be minimized when the operations are performed in the following order: A, A, A, A, B, B, B, B, B, B.
+In this case, the value will change as follows: 1 → 2 → 4 → 8 → 16 → 26 → 36 → 46 → 56 → 66 → 76.
+
+### Test Case Generator
+
+```python
+import random
+
+def tcgen():
+    # Generate random values for N and K within the given constraints
+    N = random.randint(1, 10)
+    K = random.randint(1, 10)
+    
+    return N, K
+
+# Function to print the test case in the required input format
+def print_test_case(N, K):
+    print(N)
+    print(K)
+
+# Example usage
+if __name__ == "__main__":
+    N, K = tcgen()
+    print_test_case(N, K)
+```
+
+This generator will produce random test cases where \(N\) and \(K\) are between 1 and 10. You can use the `print_test_case` function to display the generated test case in the correct format.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    N = int(fh.readline().strip())
+    K = int(fh.readline().strip())
+    return N, K</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

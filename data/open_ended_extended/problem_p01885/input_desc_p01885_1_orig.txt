@@ -1,0 +1,25 @@
+An integer N (1 ≤ N ≤ 10^5), representing some quantity or size.  
+An integer L (1 ≤ L ≤ 10^9), representing some length or distance.  
+A list of N tuples, each containing two integers (A_i, B_i), where 1 ≤ A_i ≤ 10^9 and 1 ≤ B_i ≤ 10^9.  
+A list of N integers, each containing one integer C_i, where 1 ≤ C_i ≤ 10^9.  
+
+### Example Input:
+```
+3 9
+6 3
+5 2
+3 1
+2
+2
+2
+```
+
+### Function Signature:
+Write a function f(N, L, AB, C) that takes in the input.
+def f(N: int, L: int, AB: List[Tuple[int, int]], C: List[int]):
+    '''
+    N: an integer
+    L: an integer
+    AB: a list of tuples
+    C: a list of integers
+    '''

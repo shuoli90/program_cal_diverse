@@ -1,0 +1,64 @@
+Certainly! Here's a Python function to generate test cases for the "Cube Surface Puzzle" problem:
+
+```python
+import random
+
+def generate_piece(n):
+    piece = []
+    for _ in range(n):
+        row = ''.join(random.choice(['X', '.']) for _ in range(n))
+        piece.append(row)
+    return piece
+
+def generate_dataset():
+    n = random.choice([3, 5, 7, 9])  # n is odd and between 3 and 9
+    pieces = []
+    for _ in range(6):
+        piece = generate_piece(n)
+        pieces.append(piece)
+    return n, pieces
+
+def tcgen(num_datasets=200):
+    datasets = []
+    for _ in range(num_datasets):
+        n, pieces = generate_dataset()
+        datasets.append((n, pieces))
+    return datasets
+
+def print_dataset(n, pieces):
+    print(n)
+    for piece in pieces:
+        for row in piece:
+            print(row)
+
+# Generate test cases
+datasets = tcgen()
+
+# Print the generated test cases in the required format
+for dataset in datasets:
+    n, pieces = dataset
+    print_dataset(n, pieces)
+print(0)  # End of input indicator
+```
+
+### Explanation:
+1. **generate_piece(n)**:
+   - Generates a single piece of size `n x n`, where each element is either 'X' or '.'.
+   
+2. **generate_dataset()**:
+   - Randomly selects an odd number `n` between 3 and 9.
+   - Generates 6 pieces using the `generate_piece(n)` function.
+   
+3. **tcgen(num_datasets=200)**:
+   - Generates `num_datasets` datasets (default is 200).
+   - Each dataset consists of a value `n` and a list of 6 pieces.
+   
+4. **print_dataset(n, pieces)**:
+   - Prints the dataset in the format specified in the problem statement.
+   
+5. **Printing the generated test cases**:
+   - Generate the datasets using `tcgen()`.
+   - Iterate through each generated dataset and print them using `print_dataset()`.
+   - Finally, print `0` to indicate the end of the input.
+
+When you run this script, it will generate 200 datasets, each with a random configuration of pieces, and print them in the required format. The last line will be `0`, indicating the end of the input.

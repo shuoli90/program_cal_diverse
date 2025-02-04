@@ -1,0 +1,7 @@
+def extract_arguments(fh):
+    inputs = []
+    for line in fh:
+        formula = line.strip()
+        if formula:
+            inputs.append(formula)
+    return inputs

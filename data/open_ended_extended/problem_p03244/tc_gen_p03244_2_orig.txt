@@ -1,0 +1,33 @@
+Sure, I can help write a test case generator for the given problem. Here's the Python code to generate test cases for the problem:
+
+```python
+import random
+
+def generate_test_case():
+    n = random.randint(2, 10**5)
+    if n % 2 != 0:
+        n += 1  # Ensure that n is even
+
+    v = [random.randint(1, 10**5) for _ in range(n)]
+    
+    return n, v
+
+# Function to format the test case for output
+def format_test_case(n, v):
+    return f"{n}\n{' '.join(map(str, v))}"
+
+# Example of generating and printing a test case
+if __name__ == "__main__":
+    n, v = generate_test_case()
+    print(format_test_case(n, v))
+
+```
+
+### Explanation:
+
+1. **n Generation**: We generate `n` such that `2 ≤ n ≤ 10^5` and ensure `n` is even.
+2. **v Generation**: We generate a list `v` of size `n` where each element is an integer between `1` and `10^5`.
+3. **Formatting**: The function `format_test_case` takes the generated `n` and `v` and formats them for output.
+4. **Example Usage**: The main block demonstrates how to generate and print a test case.
+
+This generator will create random valid input test cases for the problem statement provided.

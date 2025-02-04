@@ -1,0 +1,11 @@
+def extract_arguments(fh):
+    datasets = []
+    while True:
+        H, W = map(int, fh.readline().strip().split())
+        if H == 0 and W == 0:
+            break
+        grid = [fh.readline().strip() for _ in range(H)]
+        n = int(fh.readline().strip())
+        characters = list(fh.readline().strip().split())
+        datasets.append((H, W, grid, n, characters))
+    return datasets

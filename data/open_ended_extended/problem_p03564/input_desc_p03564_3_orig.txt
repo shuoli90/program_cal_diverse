@@ -1,0 +1,19 @@
+An integer N (1 ≤ N ≤ 10).
+An integer K (1 ≤ K ≤ 10).
+
+### Example Input:
+
+```
+3
+10
+```
+
+### Function Signature:
+Write a function f(N, K) that takes in the input.
+```python
+def f(N: int, K: int):
+    '''
+    N: an integer
+    K: an integer
+    '''
+```

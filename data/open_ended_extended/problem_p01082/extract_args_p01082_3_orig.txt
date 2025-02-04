@@ -1,0 +1,4 @@
+def extract_arguments(fh):
+    n, m, k = map(int, fh.readline().strip().split())
+    robots = [tuple(map(int, fh.readline().strip().split())) for _ in range(k)]
+    return n, m, k, robots

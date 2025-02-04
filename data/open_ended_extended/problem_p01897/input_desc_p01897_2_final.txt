@@ -1,0 +1,21 @@
+An integer N (3 ≤ N ≤ 500), representing some quantity or size.
+An integer M (max(3, N−1) ≤ M ≤ 30000), representing some quantity or size.
+M pairs of integers (a_i, b_i), where 1 ≤ a_i, b_i ≤ N and a_i ≠ b_i.
+
+### Example Input:
+
+```
+3 3
+1 2
+2 3
+3 1
+```
+
+### Function Signature:
+Write a function f(N, M, edges) that takes in the input.
+def f(N: int, M: int, edges: List[Tuple[int, int]]):
+    '''
+    N: an integer
+    M: an integer
+    edges: a list of tuples of integers
+    '''

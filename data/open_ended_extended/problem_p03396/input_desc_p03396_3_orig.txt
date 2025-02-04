@@ -1,0 +1,23 @@
+An integer N (1 ≤ N ≤ 300000), representing some quantity or size.
+An integer L (1 ≤ L ≤ 10^9), representing some coordinate or distance.
+A list of integers X of size N, where each integer is between 1 and L-1 and sorted in strictly increasing order.
+A list of integers T of size N, where each integer is between 1 and 10^9.
+
+### Example Input:
+
+```
+2 10
+5 8
+10 4
+```
+
+### Function Signature:
+Write a function f(N, L, X, T) that takes in the input.
+```python
+def f(N: int, L: int, X: List[int], T: List[int]):
+    '''
+    N: an integer
+    L: an integer
+    X: a list of integers
+    T: a list of integers
+    '''

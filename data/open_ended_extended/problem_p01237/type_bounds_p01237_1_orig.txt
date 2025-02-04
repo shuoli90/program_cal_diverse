@@ -1,0 +1,3 @@
+Types: N: int, M: int, L: int, grid: List[List[int]]
+Ranges: 1 ≤ N ≤ 6, 2 ≤ M ≤ 10^9, 1 ≤ L ≤ 10^9, 0 ≤ grid[i][j] < M
+Addtl Info: grid consists of 2N - 1 rows, where the ith row contains N + abs(i - (N - 1)) colonies

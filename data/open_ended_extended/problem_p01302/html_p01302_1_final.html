@@ -1,0 +1,236 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p01302 - Generation 1</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p01302 - Generation 1</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>
+Problem J: Cave Explorer
+Mike Smith is a man exploring caves all over the world.
+One day, he faced a scaring creature blocking his way. He got scared, but in short time he took
+his knife and then slashed it to attempt to kill it. Then they were split into parts, which soon
+died out but the largest one. He slashed the creature a couple of times more to make it small
+enough, and finally became able to go forward.
+Now let us think of his situation in a mathematical way. The creature is considered to be a
+polygon, convex or concave. Mike slashes this creature straight with his knife in some direction.
+We suppose here the direction is given for simpler settings, while the position is arbitrary. Then
+all split parts but the largest one disappears.
+Your task is to write a program that calculates the area of the remaining part when the creature
+is slashed in such a way that the area is minimized.
+Input
+The input is a sequence of datasets. Each dataset is given in the following format:
+n
+vx vy
+x1 y1
+       ...
+xn yn
+The first line contains an integer n, the number of vertices of the polygon that represents the
+shape of the creature (3 ≤ n ≤ 100). The next line contains two integers vx and vy, where
+(vx, vy) denote a vector that represents the direction of the knife (-10000 ≤ vx, vy ≤ 10000,
+vx2 + vy2 > 0). Then n lines follow. The i-th line contains two integers xi and yi, where (xi, yi)
+denote the coordinates of the i-th vertex of the polygon (0 ≤ xi, yi ≤ 10000).
+The vertices are given in the counterclockwise order. You may assume the polygon is always
+simple, that is, the edges do not touch or cross each other except for end points.
+The input is terminated by a line with a zero. This should not be processed.
+Output
+For each dataset, print the minimum possible area in a line. The area may be printed with
+an arbitrary number of digits after the decimal point, but should not contain an absolute error
+greater than 10-2.
+Sample Input
+5
+0 1
+0 0
+5 0
+1 1
+5 2
+0 2
+7
+9999 9998
+0 0
+2 0
+3 1
+1 1
+10000 9999
+2 2
+0 2
+0
+Output for the Sample Input
+2.00
+2.2500000
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An integer \( n \) (3 ≤ \( n \) ≤ 100), representing some quantity or size.
+Two integers \( vx \) and \( vy \) (-10000 ≤ \( vx, vy \) ≤ 10000), where \( vx \) and \( vy \) are non-zero vectors.
+A list of \( n \) pairs of integers, where each pair (xi, yi) represents coordinates (0 ≤ \( xi, yi \) ≤ 10000).
+The input is terminated by a line with a zero.
+
+### Example Input:
+
+```
+5
+0 1
+0 0
+5 0
+1 1
+5 2
+0 2
+0
+```
+
+### Function Signature:
+Write a function f(inputs) that takes in the input.
+```python
+def f(inputs: List[Tuple[int, Tuple[int, int], List[Tuple[int, int]]]]):
+    '''
+    inputs: a list of tuples, where each tuple contains:
+        - an integer
+        - a pair of integers
+        - a list of pairs of integers
+    '''
+```</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Sure! To generate test cases for the "Cave Explorer" problem, we need to consider the constraints provided in the problem statement. Here’s a Python function that can generate randomized test cases:
+
+```python
+import random
+
+def generate_polygon(n):
+    """Generate a simple polygon with n vertices."""
+    # Start with a random point
+    points = [(random.randint(0, 10000), random.randint(0, 10000))]
+    
+    for _ in range(n - 1):
+        next_point = (points[-1][0] + random.randint(1, 1000), points[-1][1] + random.randint(1, 1000))
+        next_point = (min(next_point[0], 10000), min(next_point[1], 10000))  # Ensure points are within bounds
+        points.append(next_point)
+    
+    # Ensure the polygon is simple by returning points in counterclockwise order
+    points = sorted(points, key=lambda point: (point[0], point[1]))
+    
+    return points
+
+def tcgen():
+    datasets = []
+    while True:
+        n = random.randint(3, 100)
+
+        vx = random.randint(-10000, 10000)
+        vy = random.randint(-10000, 10000)
+        while vx == 0 and vy == 0:
+            vx = random.randint(-10000, 10000)
+            vy = random.randint(-10000, 10000)
+        
+        vertices = generate_polygon(n)
+
+        dataset = f"{n}\n{vx} {vy}\n"
+        for (x, y) in vertices:
+            dataset += f"{x} {y}\n"
+        
+        datasets.append(dataset)
+        
+        # Randomly decide to stop adding more datasets
+        if random.choice([True, False]):
+            break
+    
+    datasets.append("0\n")
+    return "\n".join(datasets)
+
+# Example usage to generate a test case
+print(tcgen())
+```
+
+### Explanation
+
+1. **generate_polygon(n)**:
+   - Generates a simple polygon with `n` vertices. The vertices are generated in a way that ensures the polygon is simple and in counterclockwise order.
+
+2. **tcgen()**:
+   - Generates multiple datasets.
+   - For each dataset:
+     - Randomly determines the number of vertices `n`.
+     - Randomly generates the direction vector `(vx, vy)` ensuring it's non-zero.
+     - Generates a list of vertices for the polygon.
+   - Each dataset is formatted as a string and added to the list of datasets.
+   - Randomly decides whether to stop adding more datasets to simulate multiple datasets in one test case.
+   - Appends a termination line `"0\n"`.
+
+### Sample Output
+The function prints out a generated test case, which can be used directly in a competitive programming environment for testing the "Cave Explorer" problem.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    datasets = []
+    while True:
+        n = int(fh.readline().strip())
+        if n == 0:
+            break
+        vx, vy = map(int, fh.readline().strip().split())
+        vertices = []
+        for _ in range(n):
+            x, y = map(int, fh.readline().strip().split())
+            vertices.append((x, y))
+        datasets.append((n, (vx, vy), vertices))
+    return datasets
+
+# Example usage:
+# with open('input.txt', 'r') as fh:
+#     inputs = extract_arguments(fh)
+#     for dataset in inputs:
+#         f(*dataset)</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

@@ -1,0 +1,37 @@
+Sure! Here is the test case generator for your problem statement:
+
+```python
+import random
+import string
+
+def tcgen():
+    N = random.randint(1, 1000)
+    
+    def generate_random_name():
+        length = random.randint(1, 100)
+        return ''.join(random.choices(string.ascii_uppercase + string.digits, k=length))
+
+    # Ensure that we have at least one 'E869120' in the list sometimes
+    names = [generate_random_name() for _ in range(N)]
+    if random.choice([True, False]):
+        num_copies = random.randint(1, N)
+        indices = random.sample(range(N), num_copies)
+        for index in indices:
+            names[index] = 'E869120'
+
+    return N, names
+
+# Example usage
+N, names = tcgen()
+print(N)
+for name in names:
+    print(name)
+```
+
+### Explanation
+1. **Generate `N`**: A random integer between 1 and 1000 (inclusive), which represents the number of members.
+2. **Generate Names**: A list of `N` names is generated, each with a random length between 1 and 100 characters. The characters are randomly chosen from uppercase letters and digits.
+3. **Random Inclusion of 'E869120'**: There is a 50% chance to include at least one 'E869120' in the list. If included, a random number of occurrences are inserted at random indices in the list.
+4. **Output**: Returns `N` and the list of names.
+
+Feel free to adjust the probabilities and constraints as needed for more specific scenarios.

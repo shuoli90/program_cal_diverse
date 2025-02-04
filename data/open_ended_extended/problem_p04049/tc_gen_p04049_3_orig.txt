@@ -1,0 +1,53 @@
+To write a test case generator for the given problem statement, we need to generate the following:
+
+1. An integer \(N\) (2 ≤ \(N\) ≤ 2000), representing the number of vertices in the tree.
+2. An integer \(K\) (1 ≤ \(K\) ≤ \(N-1\)), representing the maximum allowed diameter for the tree to be considered good.
+3. \(N-1\) pairs of integers \(A_i\) and \(B_i\) (1 ≤ \(A_i\), \(B_i\) ≤ \(N\)), representing the edges of the tree.
+
+The generated tree must be a valid undirected tree, meaning it should be connected and acyclic.
+
+Here is a Python function to generate such test cases:
+
+```python
+import random
+import networkx as nx
+
+def generate_tree(N):
+    """Generate a random tree with N nodes."""
+    G = nx.generators.trees.random_tree(N)
+    edges = list(G.edges)
+    return edges
+
+def tcgen():
+    # Generate random N and K
+    N = random.randint(2, 2000)
+    K = random.randint(1, N-1)
+    
+    # Generate a random tree with N nodes
+    edges = generate_tree(N)
+    
+    # Convert edges to the required input format
+    A = [edge[0] + 1 for edge in edges]
+    B = [edge[1] + 1 for edge in edges]
+    
+    return N, K, list(zip(A, B))
+
+def print_test_case(N, K, edges):
+    print(N, K)
+    for A_i, B_i in edges:
+        print(A_i, B_i)
+
+# Example usage:
+N, K, edges = tcgen()
+print_test_case(N, K, edges)
+```
+
+This code uses the `networkx` library to generate a random tree and then formats the edges accordingly. The `generate_tree` function ensures that the generated tree is connected and acyclic. The `tcgen` function handles the random selection of \(N\) and \(K\) and the generation of the tree. Finally, the `print_test_case` function formats the output in the required format.
+
+Make sure to install the `networkx` library if you haven't already:
+
+```bash
+pip install networkx
+```
+
+This will properly generate valid test cases conforming to the constraints given in the problem statement.

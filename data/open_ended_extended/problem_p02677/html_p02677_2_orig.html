@@ -1,0 +1,157 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p02677 - Generation 2</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p02677 - Generation 2</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>
+Score: 300 points
+Problem Statement
+Consider an analog clock whose hour and minute hands are A and B centimeters long, respectively.
+An endpoint of the hour hand and an endpoint of the minute hand are fixed at the same point, around which each hand rotates clockwise at constant angular velocity. It takes the hour and minute hands 12 hours and 1 hour to make one full rotation, respectively.
+At 0 o'clock, the two hands overlap each other. H hours and M minutes later, what is the distance in centimeters between the unfixed endpoints of the hands?
+Constraints
+All values in input are integers.
+1 \leq A, B \leq 1000
+0 \leq H \leq 11
+0 \leq M \leq 59
+Input
+Input is given from Standard Input in the following format:
+A B H M
+Output
+Print the answer without units. Your output will be accepted when its absolute or relative error from the correct value is at most 10^{-9}.
+Sample Input 13 4 9 0
+Sample Output 15.00000000000000000000
+The two hands will be in the positions shown in the figure below, so the answer is 5 centimeters.
+Sample Input 23 4 10 40
+Sample Output 24.56425719433005567605
+The two hands will be in the positions shown in the figure below. Note that each hand always rotates at constant angular velocity.
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An integer A (1 ≤ A ≤ 1000).
+An integer B (1 ≤ B ≤ 1000).
+An integer H (0 ≤ H ≤ 11).
+An integer M (0 ≤ M ≤ 59).
+
+### Example Input:
+
+```
+13 4 9 0
+```
+
+### Function Signature:
+Write a function f(A, B, H, M) that takes in the input.
+def f(A: int, B: int, H: int, M: int):
+    '''
+    A: an integer
+    B: an integer
+    H: an integer
+    M: an integer
+    '''</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Certainly! Here's a test case generator for the provided problem statement:
+
+```python
+import random
+import math
+
+def tcgen():
+    A = random.randint(1, 1000)
+    B = random.randint(1, 1000)
+    H = random.randint(0, 11)
+    M = random.randint(0, 59)
+    
+    return A, B, H, M
+
+# Example usage
+for _ in range(5):
+    A, B, H, M = tcgen()
+    print(A, B, H, M)
+```
+
+This generator produces random values for the lengths of the hour and minute hands (`A` and `B`), and the time (`H` hours and `M` minutes). 
+
+### Explanation:
+1. `A` and `B` are randomly chosen from the range [1, 1000] to represent the lengths of the hour and minute hands.
+2. `H` is randomly chosen from the range [0, 11] to represent the hour.
+3. `M` is randomly chosen from the range [0, 59] to represent the minutes.
+
+### Note:
+In a competitive programming environment, you would typically run multiple test cases to validate the correctness of your solution. The example usage demonstrates generating 5 test cases, but you can adjust the loop to produce as many as needed.
+
+### Calculating the Output:
+To calculate the distance between the ends of the hour and minute hands, you would use the given constraints and the properties of the clock:
+
+1. Calculate the angles of the hour and minute hands:
+   - Minute hand angle: \( \theta_m = \frac{M}{60} \times 360 \) degrees
+   - Hour hand angle: \( \theta_h = \left(\frac{H}{12} + \frac{M}{720}\right) \times 360 \) degrees
+
+2. Convert these angles to radians.
+3. Use the law of cosines to find the distance `d` between the points:
+   \[
+   d = \sqrt{A^2 + B^2 - 2 \times A \times B \times \cos(\theta_h - \theta_m)}
+   \]
+
+The precision requirement is very high (absolute or relative error at most \(10^{-9}\)), so ensure your calculations are precise enough to meet this criterion.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    A, B, H, M = map(int, fh.readline().strip().split())
+    return A, B, H, M</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

@@ -1,0 +1,48 @@
+Certainly! Below is a Python function `tcgen` that generates test cases for the described "Fizz Buzz" problem statement:
+
+```python
+import random
+
+def generate_statement(num):
+    if num % 3 == 0 and num % 5 == 0:
+        return "FizzBuzz"
+    elif num % 3 == 0:
+        return "Fizz"
+    elif num % 5 == 0:
+        return "Buzz"
+    else:
+        return str(num)
+
+def tcgen():
+    datasets = []
+    for _ in range(random.randint(1, 50)):  # There are no more than 50 datasets in the input
+        m = random.randint(2, 1000)  # Number of players (2 ≤ m ≤ 1000)
+        n = random.randint(1, 10000)  # Number of statements (1 ≤ n ≤ 10000)
+        
+        statements = [generate_statement(i + 1) for i in range(n)]
+        
+        datasets.append((m, n, statements))
+    
+    return datasets
+
+# Example usage
+test_cases = tcgen()
+
+# Printing generated test cases in the required format
+for m, n, statements in test_cases:
+    print(f"{m} {n}")
+    for statement in statements:
+        print(statement)
+print("0 0")
+```
+
+### Explanation:
+1. **generate_statement(num)**: This helper function takes a number and returns "Fizz", "Buzz", "FizzBuzz", or the number itself as a string depending on its divisibility by 3 and/or 5.
+2. **tcgen()**: This function generates multiple datasets as specified:
+    - It randomly chooses the number of datasets to generate (between 1 and 50).
+    - For each dataset, it randomly determines the number of players (`m`) and the number of statements (`n`).
+    - It then generates `n` statements using the `generate_statement` function.
+    - All datasets are collected in a list and returned.
+3. **Example usage**: The example usage part shows how to call the `tcgen` function to generate test cases and print them in the required format.
+
+This generator ensures that we have a variety of test cases with different numbers of players and statements, covering the edge cases and providing thorough testing for the problem statement.

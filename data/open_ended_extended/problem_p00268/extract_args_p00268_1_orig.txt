@@ -1,0 +1,10 @@
+def extract_arguments(fh):
+    datasets = []
+    while True:
+        C, W = map(int, fh.readline().strip().split())
+        if C == 0 and W == 0:
+            break
+        coordinates = [tuple(map(int, fh.readline().strip().split())) for _ in range(C)]
+        walls = [tuple(map(int, fh.readline().strip().split())) for _ in range(W)]
+        datasets.append((C, W, coordinates, walls))
+    return datasets

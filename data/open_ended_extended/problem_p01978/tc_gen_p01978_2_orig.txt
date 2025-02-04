@@ -1,0 +1,43 @@
+Sure! Here is a test case generator for the "Mischief Graph" problem:
+
+```python
+import random
+
+def generate_test_case():
+    # Define N and M within the given constraints
+    N = random.randint(2, 10**5)
+    M = random.randint(1, 10**5)
+    
+    # Define s and t ensuring s != t
+    s = random.randint(1, N)
+    t = random.randint(1, N)
+    while t == s:
+        t = random.randint(1, N)
+    
+    # Generate edges with a_i, b_i, c_i, d_i
+    edges = []
+    for _ in range(M):
+        a_i = random.randint(1, N)
+        b_i = random.randint(1, N)
+        c_i = random.randint(1, N)
+        while b_i == a_i:
+            b_i = random.randint(1, N)
+        while c_i == a_i or c_i == b_i:
+            c_i = random.randint(1, N)
+        d_i = random.randint(1, 10**9)
+        edges.append((a_i, b_i, c_i, d_i))
+    
+    # Format the output
+    input_str = f"{N} {M} {s} {t}\n"
+    for a_i, b_i, c_i, d_i in edges:
+        input_str += f"{a_i} {b_i} {c_i} {d_i}\n"
+    
+    return input_str
+
+# Example of generating a test case
+print(generate_test_case())
+```
+
+This script generates random test cases for the "Mischief Graph" problem. It ensures that the constraints are met and that `s` and `t` are different vertices. Each edge is represented by three vertex identifiers and a cost, with the vertices shuffled randomly. 
+
+Note: Running this script for large values of `N` and `M` can produce very large output, as specified in the constraints. Make sure your environment can handle these sizes before executing it.

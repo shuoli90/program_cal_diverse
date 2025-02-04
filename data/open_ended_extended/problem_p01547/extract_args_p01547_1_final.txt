@@ -1,0 +1,40 @@
+def extract_arguments(fh):
+    import sys
+    input = sys.stdin.read
+    data = input().split()
+    
+    index = 0
+    
+    num_polygons = int(data[index])
+    index += 1
+    
+    polygons = []
+    for _ in range(num_polygons):
+        num_vertices = int(data[index])
+        index += 1
+        
+        vertices = []
+        for _ in range(num_vertices):
+            x = int(data[index])
+            y = int(data[index + 1])
+            vertices.append((x, y))
+            index += 2
+        polygons.append(vertices)
+    
+    num_occurrences = int(data[index])
+    index += 1
+    
+    occurrences = []
+    for _ in range(num_occurrences):
+        ox = int(data[index])
+        oy = int(data[index + 1])
+        fx = int(data[index + 2])
+        fy = int(data[index + 3])
+        occurrences.append((ox, oy, fx, fy))
+        index += 4
+        
+    return polygons, occurrences
+
+# Example usage:
+# with open('input.txt', 'r') as fh:
+#     polygons, occurrences = extract_arguments(fh)

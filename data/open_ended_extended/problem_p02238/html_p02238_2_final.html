@@ -1,0 +1,221 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p02238 - Generation 2</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p02238 - Generation 2</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>
+Depth First Search
+  Depth-first search (DFS) follows the strategy to search ”deeper” in the graph whenever possible. In DFS, edges are recursively explored out of the most recently discovered vertex $v$ that still has unexplored edges leaving it. When all of $v$'s edges have been explored, the search ”backtracks” to explore edges leaving the vertex from which $v$ was discovered.
+  This process continues until all the vertices that are reachable from the original source vertex have been discovered. If any undiscovered vertices remain, then one of them is selected as a new source and the search is repeated from that source.
+  DFS timestamps each vertex as follows:
+$d[v]$ records when $v$ is first discovered.
+$f[v]$ records when the search finishes examining $v$’s adjacency list.
+  Write a program which reads a directed graph $G = (V, E)$ and demonstrates DFS on the graph based on the following rules:
+$G$ is given in an adjacency-list. Vertices are identified by IDs $1, 2,... n$ respectively.
+IDs in the adjacency list are arranged in ascending order.
+The program should report the discover time and the finish time for each vertex.
+When there are several candidates to visit during DFS, the algorithm should select the vertex with the smallest ID.
+The timestamp starts with 1.
+Input
+  In the first line, an integer $n$ denoting the number of vertices of $G$ is given. In the next $n$ lines, adjacency lists of $u$ are given in the following format:
+$u$ $k$ $v_1$ $v_2$ ... $v_k$
+$u$ is ID of the vertex and $k$ denotes its degree. $v_i$ are IDs of vertices adjacent to $u$.
+Output
+  For each vertex, print $id$, $d$ and $f$ separated by a space character in a line. $id$ is ID of the vertex, $d$ and $f$ is the discover time and the finish time respectively. Print in order of vertex IDs.
+Constraints
+$1 \leq n \leq 100$
+Sample Input 1
+4
+1 1 2
+2 1 4
+3 0
+4 1 3
+Sample Output 1
+1 1 8
+2 2 7
+3 4 5
+4 3 6
+Sample Input 2
+6
+1 2 2 3
+2 2 3 4
+3 1 5
+4 1 6
+5 1 6
+6 0
+Sample Output 2
+1 1 12
+2 2 11
+3 3 8
+4 9 10
+5 4 7
+6 5 6
+  This is example for Sample Input 2 (discover/finish)
+Reference
+Introduction to Algorithms, Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, and Clifford Stein. The MIT Press.
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An integer n (1 ≤ n ≤ 100), representing some quantity or size.
+n lines follow, each containing:
+An integer u (1 ≤ u ≤ n), representing an ID.
+An integer k (0 ≤ k ≤ n), representing a degree.
+k integers v1, v2, ..., vk (1 ≤ vi ≤ n), representing IDs.
+
+### Example Input:
+
+```
+4
+1 1 2
+2 1 4
+3 0
+4 1 3
+```
+
+### Function Signature:
+Write a function f(inputs) that takes in the input.
+```python
+from typing import List, Tuple
+
+def f(inputs: List[Tuple[int, int, List[int]]]):
+    '''
+    inputs: a list of tuples, where each tuple contains:
+        - an integer
+        - an integer
+        - a list of integers
+    '''
+```</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Sure, let's write a test case generator for the Depth First Search (DFS) problem. The generator will create random graphs with the properties specified in the problem statement.
+
+Here is the Python code for the test case generator:
+
+```python
+import random
+
+def tcgen():
+    # Number of vertices
+    n = random.randint(1, 100)
+    
+    # Create an adjacency list for the graph
+    adjacency_list = {}
+    for i in range(1, n + 1):
+        # Number of edges from vertex i
+        k = random.randint(0, n - 1)
+        
+        # Create a list of unique vertices that this vertex connects to
+        if k == 0:
+            adjacency_list[i] = []
+        else:
+            # Ensuring unique vertices in the adjacency list
+            edges = random.sample(range(1, n + 1), k)
+            if i in edges:
+                edges.remove(i)
+                remaining_vertices = [x for x in range(1, n + 1) if x != i and x not in edges]
+                if remaining_vertices:
+                    edges.append(random.choice(remaining_vertices))
+                else:
+                    k -= 1
+            adjacency_list[i] = sorted(edges)
+    
+    # Format the input as specified in the problem statement
+    inputs = []
+    inputs.append(str(n))
+    for u in range(1, n + 1):
+        adj_vertices = adjacency_list[u]
+        line = f"{u} {len(adj_vertices)} " + " ".join(map(str, adj_vertices))
+        inputs.append(line)
+    
+    return "\n".join(inputs)
+
+# Example of generating a test case
+print(tcgen())
+```
+
+### Explanation:
+
+1. **Number of Vertices:** We generate a random number between 1 and 100 to represent the number of vertices.
+2. **Adjacency List Creation:**
+   - For each vertex \( i \), we generate a random number \( k \) which represents the number of edges from vertex \( i \).
+   - We ensure the edges are unique and do not include the vertex itself.
+   - The adjacency list for each vertex is sorted to meet the requirement of having IDs in ascending order.
+3. **Formatting the Input:** The adjacency list is formatted according to the problem's input specifications.
+
+You can call the `tcgen()` function to generate test cases for the DFS problem. The generated test cases will be strings containing the input in the required format.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    n = int(fh.readline().strip())
+    adjacency_list = []
+    
+    for _ in range(n):
+        line = list(map(int, fh.readline().strip().split()))
+        u = line[0]
+        k = line[1]
+        vertices = line[2:]
+        adjacency_list.append((u, k, vertices))
+    
+    return n, adjacency_list
+
+# if __name__ == "__main__":
+#     input_path = sys.argv[1]
+#     with open(input_path, 'r') as fh: 
+#         n, adjacency_list = extract_arguments(fh)
+#         f(n, adjacency_list)</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

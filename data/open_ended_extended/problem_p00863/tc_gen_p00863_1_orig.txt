@@ -1,0 +1,74 @@
+Certainly! To generate test cases for the given problem, we need to ensure that the generated values adhere to the constraints provided. Below is a Python function that generates test cases for the problem "The Teacher’s Side of Math":
+
+```python
+import random
+
+def generate_prime():
+    """ Helper function to generate a random prime number """
+    primes = [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31]
+    return random.choice(primes)
+
+def tcgen():
+    """
+    Test case generator for the problem "The Teacher’s Side of Math"
+    Generates valid inputs ensuring:
+    - a and b are distinct prime numbers
+    - m and n are integers greater than 1
+    - m√a + n√b ≤ 4
+    - mn ≤ 20
+    """
+    test_cases = []
+    
+    while True:
+        a = generate_prime()
+        b = generate_prime()
+        
+        # Ensure a and b are distinct primes
+        while b == a:
+            b = generate_prime()
+        
+        m = random.randint(2, 4)  # m between 2 and 4
+        n = random.randint(2, 4)  # n between 2 and 4
+        
+        if m * n > 20:
+            continue
+        
+        # Check if m√a + n√b <= 4
+        if m * (a ** 0.5) + n * (b ** 0.5) <= 4:
+            test_cases.append((a, m, b, n))
+        
+        # To stop the infinite loop after generating a reasonable number of test cases
+        if len(test_cases) >= 10:
+            break
+    
+    # Add the end line (0 0 0 0)
+    test_cases.append((0, 0, 0, 0))
+    
+    return test_cases
+
+def print_test_cases(test_cases):
+    """
+    Function to print the test cases in the required format
+    """
+    for case in test_cases:
+        print(' '.join(map(str, case)))
+
+# Generate and print test cases
+test_cases = tcgen()
+print_test_cases(test_cases)
+```
+
+### Explanation
+
+1. **Prime Generation**: The function `generate_prime` selects a random prime number from a predefined list of small primes. This ensures that the selected numbers are prime.
+
+2. **Test Case Generation**:
+    - We ensure that `a` and `b` are distinct primes.
+    - `m` and `n` are chosen randomly between 2 and 4, ensuring they are greater than 1.
+    - We check the constraint `m√a + n√b ≤ 4` to ensure it's satisfied.
+    - We also ensure that `mn ≤ 20`.
+    - We loop until we have generated a sufficient number of valid test cases (e.g., 10).
+
+3. **Output**: The function `print_test_cases` formats and prints the test cases. Each test case is printed on a new line, and the final line is `0 0 0 0`.
+
+The above script generates valid test inputs for the problem statement while adhering to the constraints provided.

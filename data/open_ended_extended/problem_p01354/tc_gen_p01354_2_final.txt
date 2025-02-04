@@ -1,0 +1,42 @@
+Sure! Let's start by creating a test case generator for the Problem F: The Castle. This generator will create random test cases based on the given constraints. Here is the Python code for the test case generator:
+
+```python
+import random
+
+def tcgen():
+    # Generate random values for m and n within the given constraints
+    m = random.randint(1, 16)
+    n = random.randint(1, 16)
+    
+    # Generate the probability matrix
+    probabilities = [[round(random.uniform(0.000, 1.000), 3) for _ in range(n)] for _ in range(m)]
+    
+    # Prepare the output in the required format
+    test_case = f"{m} {n}\n"
+    for row in probabilities:
+        test_case += " ".join(f"{prob:.3f}" for prob in row) + "\n"
+    
+    return test_case.strip()
+
+# Example usage:
+print(tcgen())
+```
+
+This function `tcgen` generates random test cases that adhere to the problem constraints. Here's a breakdown of what it does:
+
+1. Randomly selects values for `m` and `n` within the range from 1 to 16.
+2. Creates a 2D list (list of lists) where each inner list represents the probabilities of a cat winning against enemies in each room.
+3. Each probability is a floating-point number between 0.000 and 1.000, rounded to three decimal places.
+4. Formats the test case as a string in the required input format.
+
+You can run the function `tcgen` to generate random test cases and use them to test your solution for the problem.
+
+Example of a generated test case:
+```
+3 4
+0.123 0.456 0.789 0.012
+0.345 0.678 0.901 0.234
+0.567 0.890 0.123 0.456
+```
+
+This output represents a scenario with 3 cats and 4 rooms, along with their respective probabilities of defeating the enemies in each room.

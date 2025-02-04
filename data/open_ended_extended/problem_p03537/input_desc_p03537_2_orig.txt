@@ -1,0 +1,21 @@
+An integer N (1 ≤ N ≤ 10^5), representing some quantity or size.
+A string S of length |S| (1 ≤ |S| ≤ 10^5), consisting of lowercase English letters.
+A list of N pairs (L_i, R_i), where each pair consists of two integers (1 ≤ L_i ≤ R_i ≤ |S|).
+
+### Example Input:
+```
+bixzja
+2
+2 3
+3 6
+```
+
+### Function Signature:
+Write a function f(S, N, intervals) that takes in the input.
+```python
+def f(S: str, N: int, intervals: List[Tuple[int, int]]):
+    '''
+    S: a string
+    N: an integer
+    intervals: a list of tuples, where each tuple contains two integers
+    '''

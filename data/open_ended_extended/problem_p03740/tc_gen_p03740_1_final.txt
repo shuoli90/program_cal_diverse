@@ -1,0 +1,44 @@
+Sure, I can help you write a test case generator for this problem. Here is the code for the test case generator:
+
+```python
+import random
+
+def tcgen():
+    # Generate a random number for X and Y within the given constraints
+    X = random.randint(0, 10**18)
+    Y = random.randint(0, 10**18)
+    
+    return X, Y
+
+# For demonstration, let's generate a few test cases
+for _ in range(5):
+    print(tcgen())
+```
+
+This function `tcgen` generates random values for \(X\) and \(Y\) within the given range of \(0 \leq X, Y \leq 10^{18}\). Each call to `tcgen` will produce a new pair of \(X\) and \(Y\) which can be used as input for the game described in the problem statement.
+
+If you'd like to see a few sample outputs from this generator, you can run the loop at the bottom of the code that prints out several test cases.
+
+Here is more detailed implementation, including the sample output generation:
+
+```python
+import random
+
+def tcgen():
+    # Generate random values for X and Y within the given range
+    X = random.randint(0, 10**18)
+    Y = random.randint(0, 10**18)
+    return X, Y
+
+def main():
+    # Generate a number of test cases
+    num_cases = 10
+    for _ in range(num_cases):
+        X, Y = tcgen()
+        print(f"{X} {Y}")
+
+if __name__ == "__main__":
+    main()
+```
+
+This script will generate 10 test cases and print them in the format expected by the problem statement. Each line will contain two integers \(X\) and \(Y\) separated by a space. You can adjust `num_cases` to generate more or fewer test cases as needed.

@@ -1,0 +1,42 @@
+Certainly! Below is a test case generator for the problem statement "Iron Bars":
+
+```python
+import random
+
+def tcgen():
+    # Define the constraints
+    N = random.randint(6, 6000)
+    M = random.randint(0, N)
+    
+    # Generate X and Y such that 2X + Y = 12
+    possible_pairs = [(X, Y) for X in range(0, 7) for Y in range(0, 13) if 2*X + Y == 12]
+    X, Y = random.choice(possible_pairs)
+    
+    # Generate lengths of N bars (1 ≤ a_i ≤ 6000)
+    A = [random.randint(1, 6000) for _ in range(N)]
+    
+    # Generate positions of bends for M bars (1 ≤ b_i ≤ 3000 and 1 ≤ a_i - b_i ≤ 3000)
+    B = []
+    for i in range(M):
+        a_i = A[i]
+        b_i = random.randint(1, min(3000, a_i - 1))
+        B.append(b_i)
+    
+    return N, M, X, Y, A, B
+
+# Example usage
+N, M, X, Y, A, B = tcgen()
+print(N, M, X, Y)
+for length in A:
+    print(length)
+for bend in B:
+    print(bend)
+```
+
+### Explanation:
+1. **Constraints**: The constraints for `N`, `M`, `X`, and `Y` are defined as per the problem statement.
+2. **Generating X and Y**: We generate all possible pairs `(X, Y)` such that `2X + Y = 12`. Then we randomly choose one of these pairs.
+3. **Lengths of N Bars**: We generate `N` integers representing the lengths of the bars, each between `1` and `6000`.
+4. **Positions of Bends**: For the first `M` bars, we generate bend positions such that `1 ≤ b_i ≤ 3000` and `1 ≤ a_i - b_i ≤ 3000`.
+
+This generator will produce a random valid input for the given problem. You can call the `tcgen` function to generate a new test case each time.

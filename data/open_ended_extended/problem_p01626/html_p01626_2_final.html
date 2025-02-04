@@ -1,0 +1,225 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p01626 - Generation 2</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p01626 - Generation 2</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>Mirror Labyrinth
+You are a proud and brave hero, and you have finally reached the lair of the Demon King. However, to reach the Demon King's throne room, you must first clear the final map he has prepared.
+In this map, everything is transformed into a two-dimensional plane view seen from above. Humans are transformed into mere points on this map. The map is divided into two areas by a straight line. When a person is in one of the areas, their mirror image is projected onto the other area in a position that is symmetric to the line.
+There are multiple buildings in each area. These buildings are made up of polygons that are formed by connecting multiple points. The area inside the polygon and the area on</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>Canonicalized Input Description:
+
+An integer N (1 ≤ N ≤ 1000), representing some quantity or size.
+A list of tuples P of size N, where each tuple contains two integers (x, y) representing coordinates, and both x and y are between -10^6 and 10^6.
+A string S with a length between 1 and 1000, containing only characters from the set {'L', 'R', 'U', 'D'}.
+
+### Example Input:
+
+```
+4
+1 2
+3 4
+-1 -2
+-3 -4
+LRUD
+```
+
+### Function Signature:
+Write a function f(N, P, S) that takes in the input.
+```python
+def f(N: int, P: List[Tuple[int, int]], S: str):
+    '''
+    N: an integer
+    P: a list of tuples with integer coordinates
+    S: a string
+    '''
+```</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Sure! Let's create a test case generator for the given problem statement "Mirror Labyrinth". To ensure we have a complete problem statement and to generate accurate test cases, I'll make some assumptions. If there are additional details or specific requirements, please let me know.
+
+### Problem Statement: Mirror Labyrinth
+
+**Description**
+
+You are a proud and brave hero, and you have finally reached the lair of the Demon King. However, to reach the Demon King's throne room, you must first clear the final map he has prepared.
+
+In this map, everything is transformed into a two-dimensional plane view seen from above. Humans are transformed into mere points on this map. The map is divided into two areas by a straight line. When a person is in one of the areas, their mirror image is projected onto the other area in a position that is symmetric to the line.
+
+There are multiple buildings in each area. These buildings are made up of polygons that are formed by connecting multiple points. The area inside the polygon and the area on the boundary of the polygon are considered as part of the building.
+
+**Input**
+
+1. An integer \(N\) (1 ≤ \(N\) ≤ 100), representing the number of buildings.
+2. For each building:
+    - An integer \(M\) (3 ≤ \(M\) ≤ 100), representing the number of vertices in the polygon.
+    - A list of \(M\) pairs of integers \((x, y)\), representing the coordinates of the vertices.
+
+3. A line represented by the equation \(Ax + By + C = 0\), where \(A\), \(B\), and \(C\) are integers.
+
+**Output**
+
+Print the coordinates of the mirrored image of each building.
+
+**Examples**
+
+_Input_
+```
+2
+4
+1 1
+5 1
+5 5
+1 5
+3
+-1 -1
+-3 -1
+-2 -4
+1 -1 0
+```
+
+_Output_
+```
+4
+-1 -1
+-5 -1
+-5 -5
+-1 -5
+3
+1 -1
+3 -1
+2 -4
+```
+
+### Test Case Generator
+
+Here is a Python test case generator for the "Mirror Labyrinth" problem:
+
+```python
+import random
+
+def tcgen():
+    N = random.randint(1, 100)
+    buildings = []
+    
+    for _ in range(N):
+        M = random.randint(3, 100)
+        vertices = []
+        for _ in range(M):
+            x = random.randint(-1000, 1000)
+            y = random.randint(-1000, 1000)
+            vertices.append((x, y))
+        buildings.append(vertices)
+    
+    A = random.randint(-100, 100)
+    B = random.randint(-100, 100)
+    C = random.randint(-1000, 1000)
+    
+    if A == 0 and B == 0:
+        A = 1  # Ensuring the line equation is valid
+    
+    return N, buildings, (A, B, C)
+
+# Example usage
+N, buildings, line = tcgen()
+print(N)
+for building in buildings:
+    print(len(building))
+    for vertex in building:
+        print(vertex[0], vertex[1])
+print(line[0], line[1], line[2])
+
+```
+
+### Explanation
+
+1. **Number of Buildings (N)**: Randomly generates an integer between 1 and 100.
+2. **Buildings**: For each building:
+    - **Number of Vertices (M)**: Randomly generates an integer between 3 and 100.
+    - **Vertices**: For each vertex, generate random coordinates \(x\) and \(y\) between -1000 and 1000.
+3. **Line Equation (A, B, C)**: Randomly generates integers for \(A\), \(B\), and \(C\) with constraints to ensure the line equation is valid.
+
+This generator will produce a variety of test cases with different configurations of buildings and lines, which should be useful for robustly testing your solution to the "Mirror Labyrinth" problem.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    L = list(map(float, fh.readline().strip().split()))
+    M = int(fh.readline().strip())
+    
+    def read_polygon(num_points):
+        polygon = []
+        for _ in range(num_points):
+            x, y = map(float, fh.readline().strip().split())
+            polygon.append((x, y))
+        return polygon
+        
+    polygons_A = []
+    for _ in range(M):
+        num_points = int(fh.readline().strip())
+        polygons_A.append(read_polygon(num_points))
+        
+    N = int(fh.readline().strip())
+    polygons_B = []
+    for _ in range(N):
+        num_points = int(fh.readline().strip())
+        polygons_B.append(read_polygon(num_points))
+    
+    return L, polygons_A, polygons_B</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

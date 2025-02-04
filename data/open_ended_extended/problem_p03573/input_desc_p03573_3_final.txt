@@ -1,0 +1,18 @@
+An integer A (-100 ≤ A ≤ 100).
+An integer B (-100 ≤ B ≤ 100).
+An integer C (-100 ≤ C ≤ 100).
+
+### Example Input:
+
+```
+5 7 5
+```
+
+### Function Signature:
+Write a function f(A, B, C) that takes in the input.
+def f(A: int, B: int, C: int):
+    '''
+    A: an integer
+    B: an integer
+    C: an integer
+    '''

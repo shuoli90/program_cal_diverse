@@ -1,0 +1,149 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p02024 - Generation 2</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p02024 - Generation 2</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>E: City
+Santa decided to deliver presents to a city.
+This city has the shape of a rectangle divided into $H$ rows and $W$ columns, and each cell contains one house that he has to deliver a present to.
+The houses are numbered from $(1,1)$ to $(H,W)$ in row-major order.
+Santa moves according to the following conditions:
+He starts at cell $(S,T)$.
+At each step, he can move to one of the four neighboring cells (north, south, east or west) as long as he stays inside the city.
+He cannot visit any cell more than once.
+Determine whether Santa can visit all the houses in the city or not.
+Input
+The input consists of a single line containing four integers $H$, $W$, $S$ and $T$ separated by a single space.
+Output
+If Santa can visit all the houses in the city, print "Yes". Otherwise, print "No".
+Constraints
+$2 \leq H, W \leq 10^9$
+$1 \leq S \leq H$
+$1 \leq T \leq W$
+Sample Input 1
+4 5 2 3
+Sample Output 1
+Yes
+For example, he can follow this path:
+Sample Input 2
+3 3 1 2
+Sample Output 2
+No
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An integer H (2 ≤ H ≤ 10^9), representing some quantity or size.
+An integer W (2 ≤ W ≤ 10^9), representing some quantity or size.
+An integer S (1 ≤ S ≤ H), representing some position.
+An integer T (1 ≤ T ≤ W), representing some position.
+
+### Example Input:
+
+```
+4 5 2 3
+```
+
+### Function Signature:
+Write a function f(H, W, S, T) that takes in the input. 
+def f(H: int, W: int, S: int, T: int): 
+    ''' 
+    H: an integer 
+    W: an integer 
+    S: an integer 
+    T: an integer 
+    '''</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Certainly! Let's write a test case generator for the problem where Santa needs to deliver presents to all houses in a city. The city's dimensions can be extremely large, but for generating reasonable and useful test cases, we'll keep them within a practical range for demonstration purposes.
+
+Here's the test case generator:
+
+```python
+import random
+
+def tcgen():
+    # Constraints
+    H = random.randint(2, 10**9)
+    W = random.randint(2, 10**9)
+    S = random.randint(1, H)
+    T = random.randint(1, W)
+    
+    return H, W, S, T
+
+# Example usage:
+H, W, S, T = tcgen()
+print(H, W, S, T)
+```
+
+This generator function will create random test cases within the specified constraints for the given problem. The values of `H`, `W`, `S`, and `T` will be chosen randomly within their respective ranges. The function will output a single line containing the four integers separated by spaces as required by the problem statement.
+
+Here's a sample of how you might use this generator to create and print a test case:
+
+```python
+if __name__ == "__main__":
+    H, W, S, T = tcgen()
+    print(f"{H} {W} {S} {T}")
+```
+
+You can run this script multiple times to generate different test cases. Keep in mind that the upper limits are extremely high (up to \(10^9\)), so in practice, you might want to use smaller ranges if you're running this on a typical computer for testing purposes.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    H, W, S, T = map(int, fh.readline().strip().split())
+    return H, W, S, T</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

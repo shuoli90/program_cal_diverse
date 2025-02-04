@@ -1,0 +1,187 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p00195 - Generation 1</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p00195 - Generation 1</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>What are the popular stalls?
+In Aizu-Wakamatsu City, there is a first market called "Tokaichi" on January 10th every year. This Tokaichi has a history of about 600 years and is the largest first market in the Aizu region. It is also well known that "Okiai Ko-boshi", a familiar good luck item in the Aizu region, is sold. Okiai Ko-boshi is a doll with a center of gravity at the bottom that is about 3 cm in size, and its name comes from the fact that it stands up immediately even if it falls. In each household, one more than the family must be purchased and offered to the household shrine. This one has the meaning of "increasing the family" or "carrying the burden of misfortune".
+The Tokaichi Executive Committee has decided to investigate the store with the highest sales of Okiai Ko-boshi for the next Tokaichi. The number of stores this year is five (A, B, C, D, E: lowercase letters), and the number of items sold has been reported to the Tokaichi Executive Committee separately for the morning and afternoon sessions.
+Create a program that takes information for each store as input and outputs the name and number of the store with the highest sales for the day.
+Input
+The input consists of a sequence of multiple data sets. The end of the input is indicated by two zeros on a line.
+Each dataset is given in the following format.
+s1A s2A
+s1B s2B
+s1C s2C
+s1D s2D
+s1E s2E
+For the i-th line, the morning sales s1i and the afternoon sales s2i (1 ≤ s1i, s2i ≤ 10000) for stores A, B, C, D, and E are given. It is assumed that there are no stores that sell the same number of items for the day.
+The number of datasets is no more than 100.
+Output
+For each dataset, output the name and number of the store with the highest sales for the day on one line.
+Sample Input
+1593 4311
+4321 2155
+1256 6421
+5310 1455
+2152 5421
+1549 3386
+4528 3719
+1234 4321
+3330 3109
+2739 2199
+0 0
+Output for the Sample Input
+C 7677
+B 8247
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>    
+An integer sequence of multiple data sets. The end of the input is indicated by two zeros on a line.
+Each dataset consists of 5 lines, each containing two integers.
+For each line, the two integers \(s1\) and \(s2\) (1 ≤ \(s1\), \(s2\) ≤ 10000) are provided.
+The number of datasets is no more than 100.
+
+### Example Input:
+```
+1593 4311
+4321 2155
+1256 6421
+5310 1455
+2152 5421
+1549 3386
+4528 3719
+1234 4321
+3330 3109
+2739 2199
+0 0
+```
+
+### Function Signature:
+Write a function f(inputs) that takes in the input.
+```python
+def f(inputs: List[Tuple[Tuple[int, int], Tuple[int, int], Tuple[int, int], Tuple[int, int], Tuple[int, int]]]):
+    '''
+    inputs: a list of datasets, where each dataset is a tuple of 5 tuples, and each tuple contains two integers
+    '''
+```</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Certainly! Below is the test case generator for the given problem statement "What are the popular stalls?":
+
+```python
+import random
+
+def tcgen():
+    datasets = []
+    for _ in range(random.randint(1, 100)):  # Number of datasets
+        dataset = []
+        for _ in range(5):  # For each of the 5 stores A, B, C, D, E
+            s1 = random.randint(1, 10000)  # Morning sales
+            s2 = random.randint(1, 10000)  # Afternoon sales
+            dataset.append((s1, s2))
+        datasets.append(dataset)
+    
+    return datasets
+
+def format_input(datasets):
+    input_str = ""
+    for dataset in datasets:
+        for s1, s2 in dataset:
+            input_str += f"{s1} {s2}\n"
+    input_str += "0 0\n"
+    return input_str
+
+def main():
+    datasets = tcgen()
+    input_str = format_input(datasets)
+    print(input_str)
+
+if __name__ == "__main__":
+    main()
+```
+
+### Explanation:
+
+1. **tcgen()**: This function generates random test cases.
+   - It first determines the number of datasets (between 1 and 100).
+   - For each dataset, it generates sales data for 5 stores (A, B, C, D, E).
+   - Each store's sales data consists of two integers representing morning and afternoon sales, each between 1 and 10,000.
+
+2. **format_input(datasets)**: This function formats the generated datasets into the required input format.
+   - It concatenates the morning and afternoon sales of each store in the dataset.
+   - It finally adds the "0 0" line to indicate the end of input.
+
+3. **main()**: This function orchestrates the generation and formatting of the test cases, and then prints the formatted input.
+
+You can run the script to generate and print a random test case for the problem statement. Each run will produce different sales data, ensuring varied test scenarios.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    result = []
+    while True:
+        dataset = []
+        for _ in range(5):
+            line = fh.readline().strip()
+            if line == "0 0":
+                return result
+            s1, s2 = map(int, line.split())
+            dataset.append((s1, s2))
+        result.append(dataset)</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

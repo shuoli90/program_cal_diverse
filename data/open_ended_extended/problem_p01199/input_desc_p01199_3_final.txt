@@ -1,0 +1,37 @@
+An integer N (1 ≤ N ≤ 100), representing some quantity or size.
+An integer M (M ≥ 0), representing some quantity or size.
+An integer L (1 ≤ L ≤ 10000), representing some quantity or size.
+M lines each containing three integers Ai, Bi, and Di (1 ≤ Ai < Bi ≤ N, 1 ≤ Di ≤ 10000), representing some connections or relationships.
+A list of N integers P (0 ≤ P[i] ≤ 1e6), representing some measurements or quantities.
+A list of N integers K (0 ≤ K[i] ≤ 1e6), representing some measurements or quantities.
+
+### Example Input:
+
+```
+1 0 1
+51
+50
+2 1 1
+1 2 1
+1000 0
+0 1000
+4 3 5
+1 2 4
+1 3 1
+3 4 2
+0 1000 1000 1000
+3000 0 0 0
+```
+
+### Function Signature:
+Write a function f(inputs) that takes in the input.
+def f(inputs: List[Tuple[int, int, int, List[Tuple[int, int, int]], List[int], List[int]]]):
+    ''' 
+    inputs: a list of tuples, each containing:
+        - an integer
+        - an integer
+        - an integer
+        - a list of tuples, each containing three integers
+        - a list of integers
+        - a list of integers
+    '''

@@ -1,0 +1,158 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p03252 - Generation 3</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p03252 - Generation 3</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>
+Score : 300 points
+Problem StatementYou are given strings S and T consisting of lowercase English letters.
+You can perform the following operation on S any number of times:
+Operation: Choose two distinct lowercase English letters c_1 and c_2, then replace every occurrence of c_1 with c_2, and every occurrence of c_2 with c_1.
+Determine if S and T can be made equal by performing the operation zero or more times.
+Constraints
+1 \leq |S| \leq 2 \times 10^5
+|S| = |T|
+S and T consists of lowercase English letters.
+InputInput is given from Standard Input in the following format:
+S
+T
+OutputIf S and T can be made equal, print Yes; otherwise, print No.
+Sample Input 1azzel
+apple
+Sample Output 1Yes
+azzel can be changed to apple, as follows:
+Choose e as c_1 and l as c_2. azzel becomes azzle.
+Choose z as c_1 and p as c_2. azzle becomes apple.
+Sample Input 2chokudai
+redcoder
+Sample Output 2No
+No sequences of operation can change chokudai to redcoder.
+Sample Input 3abcdefghijklmnopqrstuvwxyz
+ibyhqfrekavclxjstdwgpzmonu
+Sample Output 3Yes
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An integer \( N \) (1 ≤ \( N \) ≤ 2 \times 10^5), representing the length of two strings.
+A string \( S \) of length \( N \) consisting of lowercase English letters.
+A string \( T \) of length \( N \) consisting of lowercase English letters.
+
+### Example Input:
+
+```
+5
+azzel
+apple
+```
+
+### Function Signature:
+Write a function f(N, S, T) that takes in the input.
+```python
+def f(N: int, S: str, T: str):
+    '''
+    N: an integer
+    S: a string
+    T: a string
+    '''
+```</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Sure! Let's create a test case generator for the problem statement you provided.
+
+### Test Case Generator for the Problem Statement
+
+The goal is to generate random strings \( S \) and \( T \) of equal length such that they follow the constraints given. The strings should consist of lowercase English letters and have lengths between 1 and 200,000.
+
+Here is the code for the test case generator:
+
+```python
+import random
+import string
+
+def tcgen():
+    # Define the length of the strings
+    length = random.randint(1, 2 * 10**5)
+    
+    # Generate two random strings of the same length
+    S = ''.join(random.choices(string.ascii_lowercase, k=length))
+    T = ''.join(random.choices(string.ascii_lowercase, k=length))
+    
+    return S, T
+
+# Example usage:
+for _ in range(5):
+    S, T = tcgen()
+    print(f"S: {S}")
+    print(f"T: {T}")
+    print()
+```
+
+Here is a breakdown of the code:
+1. **Import the necessary modules**: `random` for generating random numbers and `string` for accessing lowercase English letters.
+2. **Define the length of the strings**: A random integer between 1 and 200,000 is chosen.
+3. **Generate two random strings**: Both strings \( S \) and \( T \) are generated using `random.choices` which selects random characters from `string.ascii_lowercase` and forms a string of the specified length.
+4. **Return the generated strings**: The function returns the two generated strings \( S \) and \( T \).
+
+This function will generate random test cases for the problem statement you provided. Note that the generated strings are completely random and do not guarantee any specific relationship between \( S \) and \( T \), which is suitable for general testing.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    S = fh.readline().strip()
+    T = fh.readline().strip()
+    return S, T</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

@@ -1,0 +1,3 @@
+Types: N: int, M: int, troop_positions_and_speeds: List[Tuple[int, int, int]], base_positions: List[Tuple[int, int]]
+Ranges: 1 ≤ N ≤ 100, 1 ≤ M ≤ 100, 0 ≤ xi, yi ≤ 10000, 1 ≤ vi ≤ 100, 0 ≤ x'j, y'j ≤ 10000
+Addtl Info: The input ends with a line containing two zeros which should not be processed.

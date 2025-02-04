@@ -1,0 +1,63 @@
+Sure, I can help you write a test case generator for the given problem statement. Here is a Python function that generates random test cases for the described problem:
+
+```python
+import random
+import string
+
+def generate_random_string(length):
+    return ''.join(random.choices(string.ascii_lowercase, k=length))
+
+def generate_unique_strings(N, max_total_length):
+    unique_strings = set()
+    current_length = 0
+    
+    while len(unique_strings) < N:
+        length = random.randint(1, min(100, max_total_length - current_length))
+        new_string = generate_random_string(length)
+        if new_string not in unique_strings:
+            unique_strings.add(new_string)
+            current_length += length
+    
+    return list(unique_strings)
+
+def tcgen():
+    N = random.randint(1, 100000)
+    max_total_length = 400000
+    strings = generate_unique_strings(N, max_total_length)
+    
+    Q = random.randint(1, 100000)
+    queries = []
+    
+    for _ in range(Q):
+        k = random.randint(1, N)
+        perm = ''.join(random.sample(string.ascii_lowercase, 26))
+        queries.append((k, perm))
+    
+    return N, strings, Q, queries
+
+def format_test_case(N, strings, Q, queries):
+    result = [str(N)]
+    result.extend(strings)
+    result.append(str(Q))
+    for k, perm in queries:
+        result.append(f"{k} {perm}")
+    return "\n".join(result)
+
+# Generate a test case
+N, strings, Q, queries = tcgen()
+test_case = format_test_case(N, strings, Q, queries)
+print(test_case)
+```
+
+### Explanation
+
+1. **generate_random_string(length)**: Generates a random string of lowercase letters of the specified length.
+2. **generate_unique_strings(N, max_total_length)**: Generates `N` unique strings of lowercase letters such that the sum of the lengths does not exceed `max_total_length`.
+3. **tcgen()**: Generates the test case parameters:
+   - `N`: Number of unique strings.
+   - `strings`: List of `N` unique strings.
+   - `Q`: Number of queries.
+   - `queries`: List of tuples where each tuple contains a query in the form `(k, perm)`, where `k` is an integer and `perm` is a permutation of the alphabet.
+4. **format_test_case(N, strings, Q, queries)**: Formats the generated test case into the specified input format.
+
+Run the provided script to generate and print a test case. This will give you random yet valid inputs that adhere to the constraints described in the problem statement.

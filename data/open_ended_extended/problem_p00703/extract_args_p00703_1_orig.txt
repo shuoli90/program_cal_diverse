@@ -1,0 +1,13 @@
+def extract_arguments(fh):
+    hint_sets = []
+    while True:
+        line = fh.readline().strip()
+        if line == "0 0":
+            break
+        L, H = map(int, line.split())
+        hints = []
+        for _ in range(H):
+            try_hit_blow = list(map(int, fh.readline().strip().split()))
+            hints.append(try_hit_blow)
+        hint_sets.append((L, H, hints))
+    return hint_sets

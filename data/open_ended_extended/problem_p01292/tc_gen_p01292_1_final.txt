@@ -1,0 +1,87 @@
+Sure! I'll write a test case generator for the problem statement "Secret Operation". This generator will create random valid test cases following the given constraints.
+
+Here is the Python code for the test case generator:
+
+```python
+import random
+
+def generate_move_sequence(max_time, max_coord, max_segments):
+    segments = random.randint(2, max_segments)
+    times = sorted(random.sample(range(1, max_time), segments - 1))
+    times = [0] + times + [max_time]
+    
+    move_sequence = []
+    for i in range(segments):
+        x = random.randint(-max_coord, max_coord)
+        y = random.randint(-max_coord, max_coord)
+        t = times[i]
+        move_sequence.append((x, y, t))
+        
+    return move_sequence
+
+def generate_obstacles(max_coord, max_obstacles):
+    obstacles = random.randint(0, max_obstacles)
+    
+    obstacle_list = []
+    for _ in range(obstacles):
+        sx = random.randint(-max_coord, max_coord)
+        sy = random.randint(-max_coord, max_coord)
+        tx = random.randint(sx, sx + random.randint(1, 10))  # Ensure non-zero area
+        ty = random.randint(sy, sy + random.randint(1, 10))
+        obstacle_list.append((sx, sy, tx, ty))
+        
+    return obstacle_list
+
+def tcgen():
+    max_time = 100
+    max_coord = 10000
+    max_segments = 20
+    max_obstacles = 20
+    max_vision = 29999
+
+    Time = random.randint(1, max_time)
+    R = random.randint(1, max_vision)
+    
+    L = random.randint(2, max_segments)
+    mary_moves = generate_move_sequence(Time, max_coord, L)
+    
+    M = random.randint(2, max_segments)
+    george_moves = generate_move_sequence(Time, max_coord, M)
+    
+    N = random.randint(0, max_obstacles)
+    obstacles = generate_obstacles(max_coord, N)
+    
+    return Time, R, mary_moves, george_moves, obstacles
+
+def print_test_case(Time, R, mary_moves, george_moves, obstacles):
+    print(f"{Time} {R}")
+    
+    print(len(mary_moves))
+    for x, y, t in mary_moves:
+        print(f"{x} {y} {t}")
+    
+    print(len(george_moves))
+    for x, y, t in george_moves:
+        print(f"{x} {y} {t}")
+    
+    print(len(obstacles))
+    for sx, sy, tx, ty in obstacles:
+        print(f"{sx} {sy} {tx} {ty}")
+    
+    print("0 0")
+
+if __name__ == "__main__":
+    random.seed(42)  # For reproducibility
+    for _ in range(5):  # Generate 5 test cases
+        Time, R, mary_moves, george_moves, obstacles = tcgen()
+        print_test_case(Time, R, mary_moves, george_moves, obstacles)
+        print()
+```
+
+### Explanation:
+- **generate_move_sequence**: Generates a random move sequence for Mary or George with valid constraints.
+- **generate_obstacles**: Generates random obstacles with valid coordinates.
+- **tcgen**: Generates a complete test case with Mary’s moves, George’s moves, and obstacles.
+- **print_test_case**: Prints a generated test case in the required format.
+
+This generator creates random test cases within the constraints specified in the problem statement. You can run this script and it will produce multiple test cases for you.

@@ -1,0 +1,35 @@
+An integer N (1 ≤ N ≤ 10^2).
+An integer M (1 ≤ M ≤ 10^2).
+An integer W (1 ≤ W ≤ 10^2).
+An integer T (1 ≤ T ≤ 10^4).
+A list of M tuples (S, V, P), where S is a string (1 ≤ length ≤ 10), V is an integer (1 ≤ V ≤ 10^2), and P is an integer (1 ≤ P ≤ 10^3).
+A list of N tuples (L, X, Y) followed by L tuples (R, Q), where L is an integer (0 ≤ L ≤ 10^2), X and Y are integers (-100 ≤ X, Y ≤ 100), R is a string (1 ≤ length ≤ 10), and Q is an integer (1 ≤ Q ≤ 10^3).
+
+### Example Input:
+
+```
+3 2 10 100
+apple 5 50
+banana 3 30
+2 1 1
+itemA 100
+itemB 200
+3 2 2
+itemC 300
+itemD 400
+itemE 500
+```
+
+### Function Signature:
+Write a function f(N, M, W, T, products, towns) that takes in the input.
+```python
+def f(N: int, M: int, W: int, T: int, products: List[Tuple[str, int, int]], towns: List[Tuple[int, int, int, List[Tuple[str, int]]]]):
+    '''
+    N: an integer
+    M: an integer
+    W: an integer
+    T: an integer
+    products: a list of tuples, each containing a string and two integers
+    towns: a list of tuples, each containing two integers and a list of tuples
+    '''
+```

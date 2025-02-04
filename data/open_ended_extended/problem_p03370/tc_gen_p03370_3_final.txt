@@ -1,0 +1,35 @@
+Sure! To generate test cases for the given problem, we need to ensure the generated values adhere to the constraints. Here's the test case generator:
+
+```python
+import random
+
+def tcgen():
+    # Number of kinds of doughnut
+    N = random.randint(2, 100)
+    
+    # List of grams of Moto needed for each kind of doughnut
+    m = [random.randint(1, 1000) for _ in range(N)]
+    
+    # Total grams of Moto available, ensuring the sum of m is less than or equal to X and X is in [sum(m), 10^5]
+    sum_m = sum(m)
+    X = random.randint(sum_m, min(10**5, sum_m + random.randint(0, 10**5 - sum_m)))
+    
+    return N, X, m
+
+# Example of generating a test case
+if __name__ == "__main__":
+    for _ in range(5):  # Generate 5 test cases
+        N, X, m = tcgen()
+        print(f"{N} {X}")
+        for grams in m:
+            print(grams)
+```
+
+### Explanation:
+1. **N**: The number of kinds of doughnuts, randomly chosen between 2 and 100.
+2. **m**: A list of integers where each integer is the grams of Moto needed for each kind of doughnut. Each integer is randomly chosen between 1 and 1000.
+3. **X**: The total grams of Moto available, ensuring it adheres to the constraints:
+    - \( \text{sum}(m) \leq X \leq 10^5 \)
+    - \( X \) is randomly chosen between the sum of the elements in \( m \) (to ensure at least one doughnut of each kind can be made) and the minimum of \( 10^5 \) or the sum of \( m \) plus a random value up to \( 10^5 - \text{sum}(m) \).
+
+This ensures that the generated test cases are valid and adhere to the problem's constraints.

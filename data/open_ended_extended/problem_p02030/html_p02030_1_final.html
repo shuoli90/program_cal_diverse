@@ -1,0 +1,212 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p02030 - Generation 1</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p02030 - Generation 1</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>A: Information Search
+Problem
+A posting list is a list that associates search words with the corresponding document IDs where the words appear. For example,
+Hokkaido: 1, 2, 4, 9
+Tourism: 1, 3, 4, 7
+and so on.
+From the above posting list, when conducting an "and search", documents with IDs 1 and 4 are hit, and when conducting an "or search", documents with IDs 1, 2, 3, 4, 7, and 9 are hit.
+Here, an "and search" refers to the process of listing the elements that are included in both lists, and an "or search" refers to the process of listing the elements that are included in at least one of the lists.
+Given the posting list, output the results of both "and search" and "or search".
+Input Format
+n m
+a_1 a_2 $\ldots$ a_n
+b_1 b_2 $\ldots$ b_m
+All input is an integer.
+The first line contains the lengths of the two posting lists to be searched, n and m, separated by a space.
+The second and third lines contain the IDs included in each posting list, separated by spaces.
+Constraints
+ 1 \leq n, m \leq 2\times10^5
+ a_i < a_j (i < j)
+ b_i < b_j (i < j)
+ 1 \leq a_i, b_i \leq 10^9
+Output Format
+Let A be the number of hits in the "and search" and B be the number of hits in the "or search".
+Output a single line containing A B.
+Output the IDs that were hit in ascending order for the "and search" on the next A lines.
+Output the IDs that were hit in ascending order for the "or search" on the next B lines.
+Sample Input 1
+4 4
+1 2 4 9
+1 3 4 7
+Sample Output 1
+2 6
+1
+4
+1
+2
+3
+4
+7
+9
+Sample Input 2
+4 4
+1 3 5 7
+2 4 6 8
+Sample Output 2
+0 8
+1
+2
+3
+4
+5
+6
+7
+8
+Sample Input 3
+3 5
+1 2 3
+1 2 3 4 5
+Sample Output 3
+3 5
+1
+2
+3
+1
+2
+3
+4
+5
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An integer n (1 ≤ n ≤ 2 × 10^5), representing some quantity or size.
+An integer m (1 ≤ m ≤ 2 × 10^5), representing some quantity or size.
+A list of integers a of size n, where each integer is between 1 and 1e9, and the list is strictly increasing.
+A list of integers b of size m, where each integer is between 1 and 1e9, and the list is strictly increasing.
+
+### Example Input:
+
+```
+4 4
+1 2 4 9
+1 3 4 7
+```
+
+### Function Signature:
+Write a function f(n, m, a, b) that takes in the input.
+def f(n: int, m: int, a: List[int], b: List[int]):
+    ''' 
+    n: an integer
+    m: an integer
+    a: a list of integers
+    b: a list of integers
+    '''</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Certainly! Below is the test case generator for the given problem statement "Information Search".
+
+```python
+import random
+
+def tcgen():
+    # Define the constraints
+    n = random.randint(1, 2*10**5)
+    m = random.randint(1, 2*10**5)
+    
+    # Generate unique IDs for the first posting list
+    a = sorted(random.sample(range(1, 10**9 + 1), n))
+    
+    # Generate unique IDs for the second posting list
+    b = sorted(random.sample(range(1, 10**9 + 1), m))
+    
+    return n, m, a, b
+
+# Function to format the test case for output
+def format_test_case(n, m, a, b):
+    test_case = f"{n} {m}\n"
+    test_case += " ".join(map(str, a)) + "\n"
+    test_case += " ".join(map(str, b)) + "\n"
+    return test_case
+
+# Generate a test case
+n, m, a, b = tcgen()
+
+# Print the formatted test case
+print(format_test_case(n, m, a, b))
+```
+
+### Explanation:
+1. **Constraints**:
+    - \( n \) and \( m \) are chosen between 1 and 200,000 (both inclusive).
+    - IDs in each list \( a \) and \( b \) are unique and sorted in ascending order.
+    - Each ID is between 1 and \( 10^9 \) (both inclusive).
+
+2. **Random Generation**:
+    - `random.randint(1, 2*10^5)` generates a random integer for the length of each posting list.
+    - `random.sample(range(1, 10^9 + 1), n)` generates `n` unique random IDs from the range 1 to \( 10^9 \).
+
+3. **Formatting**:
+    - The function `format_test_case` formats the generated test case into the required input format:
+      - First line: \( n \) and \( m \).
+      - Second line: \( n \) space-separated integers representing the first posting list.
+      - Third line: \( m \) space-separated integers representing the second posting list.
+
+You can run the above script to generate and print a valid test case for the problem statement "Information Search".</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    n, m = map(int, fh.readline().strip().split())
+    a = list(map(int, fh.readline().strip().split()))
+    b = list(map(int, fh.readline().strip().split()))
+    return n, m, a, b</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

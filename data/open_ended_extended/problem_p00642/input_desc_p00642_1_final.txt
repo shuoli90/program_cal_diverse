@@ -1,0 +1,17 @@
+An integer \( n \) (1 ≤ \( n \) ≤ 100,000). The input terminates with a dataset where \( n = 0 \).
+
+### Example Input:
+
+```
+1
+2
+3
+0
+```
+
+### Function Signature:
+Write a function `f(inputs)` that takes in the input.
+def f(inputs: List[int]):
+    ''' 
+    inputs: a list of integers
+    '''

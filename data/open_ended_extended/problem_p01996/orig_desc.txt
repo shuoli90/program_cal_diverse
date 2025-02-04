@@ -1,0 +1,35 @@
+A: Test
+Problem
+  In a classroom with $N$ seats in a straight line, $M$ students are going to take a test.
+  Each seat is numbered from $1 \dots N$, and one student can sit in one seat.
+  At this moment, each student sits in seat $A_1, \dots, A_M$.
+  To start the test, the following condition must be satisfied.
+  
+There must be at least one student in every seat from $1 \dots M$.
+  Therefore, we decided to repeat the following operation until the condition is satisfied.
+  
+Move the student who is sitting at the rearmost position to the frontmost available seat.
+  Find the number of operations required to satisfy the condition.
+Constraints
+All input values are integers.
+$1 \leq N \leq 1000$
+$1 \leq M \leq N$
+$1 \leq A_i \leq N$
+If $1 \leq i < j \leq M$, then $A_i < A_j$
+Input Format
+ The input is given in the following format. 
+  $N\ M$
+  $A_1 \dots A_M$
+Output
+Output the number of operations required to satisfy the condition, followed by a newline character. 
+Sample
+Sample Input 1
+6 4
+1 4 5 6
+Sample Output 1
+2
+Sample Input 2
+10 3
+1 2 3
+Sample Output 2
+0

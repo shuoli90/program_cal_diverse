@@ -1,0 +1,151 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p03738 - Generation 3</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p03738 - Generation 3</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>
+Score : 200 points
+Problem StatementYou are given two positive integers A and B. Compare the magnitudes of these numbers.
+Constraints
+1 ≤ A, B ≤ 10^{100}
+Neither A nor B begins with a 0.
+InputInput is given from Standard Input in the following format:
+A
+B
+OutputPrint GREATER if A>B, LESS if A<B and EQUAL if A=B.
+Sample Input 136
+24
+Sample Output 1GREATER
+Since 36>24, print GREATER.
+Sample Input 2850
+3777
+Sample Output 2LESS
+Sample Input 39720246
+22516266
+Sample Output 3LESS
+Sample Input 4123456789012345678901234567890
+234567890123456789012345678901
+Sample Output 4LESS
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An integer A (1 ≤ \(A\) ≤ 10^{100}), representing a large number.
+An integer B (1 ≤ \(B\) ≤ 10^{100}), representing another large number.
+
+### Example Input:
+
+```
+36
+24
+```
+
+### Function Signature:
+Write a function f(inputs) that takes in the input.
+def f(inputs: List[Tuple[int, int]]):
+    '''
+    inputs: a list of tuples, each containing two large integers
+    '''</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Sure, here's a test case generator for the given problem statement where you need to compare the magnitudes of two large positive integers \( A \) and \( B \):
+
+```python
+import random
+
+def generate_large_number():
+    length = random.randint(1, 100)
+    number = ''.join(random.choices('123456789', k=1))  # First digit (1-9)
+    if length > 1:
+        number += ''.join(random.choices('0123456789', k=length - 1))  # Remaining digits (0-9)
+    return number
+
+def tcgen():
+    A = generate_large_number()
+    B = generate_large_number()
+    
+    return A, B
+
+# Example usage:
+if __name__ == "__main__":
+    A, B = tcgen()
+    print(A)
+    print(B)
+```
+
+### Explanation:
+
+1. **`generate_large_number` function**: This function generates a large number as a string. The number's length is chosen randomly between 1 and 100 digits. The first digit is ensured to be between '1' and '9' to avoid leading zeros, while the rest of the digits can be any digit from '0' to '9'.
+
+2. **`tcgen` function**: This function uses `generate_large_number` to generate two large numbers \( A \) and \( B \) and returns them.
+
+### Example Output:
+Running this generator will produce a pair of large numbers \( A \) and \( B \) that you can use as test cases for your problem. Here is an example of what the output might look like:
+
+```
+123456789012345678901234567890
+234567890123456789012345678901
+```
+
+You can use these generated test cases to test your solution for comparing large numbers.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    A = fh.readline().strip()
+    B = fh.readline().strip()
+    return A, B</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

@@ -1,0 +1,182 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p02300 - Generation 1</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p02300 - Generation 1</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>
+Convex Hull
+Find the convex hull of a given set of points P. In other words, find the smallest convex polygon containing all the points of P. Here, in a convex polygon, all interior angles are less than or equal to 180 degrees.
+Please note that you should find all the points of P on both corner and boundary of the convex polygon.
+Input
+n
+x1 y1 
+x2 y2
+:
+xn yn
+The first integer n is the number of points in P. The coordinate of the i-th point pi is given by two integers xi and yi. 
+Output
+In the first line, print the number of points on the corner/boundary of the convex polygon. In the following lines, print x y coordinates of the set of points.
+The coordinates should be given in the order of counter-clockwise visit of them starting from the point in P with the minimum y-coordinate, or the leftmost such point in case of a tie.
+Constraints
+3 ≤ n ≤ 100000
+-10000 ≤ xi, yi ≤ 10000
+No point in the P will occur more than once.
+Sample Input 1
+7
+2 1
+0 0
+1 2
+2 2
+4 2
+1 3
+3 3
+Sample Output 1
+5
+0 0
+2 1
+4 2
+3 3
+1 3
+Sample Input 2
+4
+0 0
+2 2
+0 2
+0 1
+Sample Output 2
+4
+0 0
+2 2
+0 2
+0 1
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>Canonicalized Input Description:
+
+An integer n (3 ≤ n ≤ 100000), representing some quantity or size.
+A list of n tuples, where each tuple consists of two integers (xi, yi) and each integer is between -10000 and 10000.
+
+### Example Input:
+
+```
+7
+2 1
+0 0
+1 2
+2 2
+4 2
+1 3
+3 3
+```
+
+### Function Signature:
+Write a function f(n, points) that takes in the input.
+def f(n: int, points: List[Tuple[int, int]]):
+    ''' 
+    n: an integer 
+    points: a list of n tuples, each containing two integers
+    '''</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>To generate test cases for the Convex Hull problem, you need to ensure that the points are distinct and within the specified range. Here’s a Python function that generates test cases compliant with the given problem statement:
+
+```python
+import random
+
+def tcgen():
+    # Number of points, constrained between 3 and 100000
+    n = random.randint(3, 100000)
+    
+    # Ensure uniqueness of points by using a set initially
+    points_set = set()
+    
+    while len(points_set) < n:
+        x = random.randint(-10000, 10000)
+        y = random.randint(-10000, 10000)
+        points_set.add((x, y))
+    
+    # Convert the set to a list for easier manipulation
+    points_list = list(points_set)
+    
+    return n, points_list
+
+# Example of generating a test case and printing it
+n, points = tcgen()
+print(n)
+for point in points:
+    print(point[0], point[1])
+```
+
+### Explanation:
+1. **Number of Points (`n`)**: Randomly generate an integer between 3 and 100,000.
+2. **Generating Points**: Use a set to ensure all points are unique. Randomly generate `x` and `y` coordinates within the range of -10,000 to 10,000.
+3. **Ensure Uniqueness**: Add points to a set until the desired number of unique points (`n`) is achieved.
+4. **Convert to List**: Convert the set of points to a list for easier handling and output.
+
+This code ensures that all constraints are met, including uniqueness of points and specified ranges. The generated test cases can be used to test the convex hull algorithm comprehensively.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    n = int(fh.readline().strip())
+    points = []
+    for _ in range(n):
+        x, y = map(int, fh.readline().strip().split())
+        points.append((x, y))
+    return n, points</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

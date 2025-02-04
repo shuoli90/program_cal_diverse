@@ -1,0 +1,147 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p03131 - Generation 3</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p03131 - Generation 3</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>
+Score : 400 points
+Problem StatementSnuke has one biscuit and zero Japanese yen (the currency) in his pocket.
+He will perform the following operations exactly K times in total, in the order he likes:
+Hit his pocket, which magically increases the number of biscuits by one.
+Exchange A biscuits to 1 yen.
+Exchange 1 yen to B biscuits.
+Find the maximum possible number of biscuits in Snuke's pocket after K operations.
+Constraints
+1 \leq K,A,B \leq 10^9
+K,A and B are integers.
+InputInput is given from Standard Input in the following format:
+K A B
+OutputPrint the maximum possible number of biscuits in Snuke's pocket after K operations.
+Sample Input 14 2 6
+Sample Output 17
+The number of biscuits in Snuke's pocket after K operations is maximized as follows:
+Hit his pocket. Now he has 2 biscuits and 0 yen.
+Exchange 2 biscuits to 1 yen. his pocket. Now he has 0 biscuits and 1 yen.
+Hit his pocket. Now he has 1 biscuits and 1 yen.
+Exchange 1 yen to 6 biscuits. his pocket. Now he has 7 biscuits and 0 yen.
+Sample Input 27 3 4
+Sample Output 28
+Sample Input 3314159265 35897932 384626433
+Sample Output 348518828981938099
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An integer K (1 ≤ K ≤ 10^9).
+An integer A (1 ≤ A ≤ 10^9).
+An integer B (1 ≤ B ≤ 10^9).
+
+### Example Input:
+
+```
+14 2 6
+```
+
+### Function Signature:
+Write a function f(K, A, B) that takes in the input.
+def f(K: int, A: int, B: int):
+    '''
+    K: an integer
+    A: an integer
+    B: an integer
+    '''</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Sure! Let's write a test case generator for the given problem statement. The generator will create random values for \(K\), \(A\), and \(B\) within the specified constraints.
+
+Here is the test case generator:
+
+```python
+import random
+
+def tcgen():
+    K = random.randint(1, 10**9)
+    A = random.randint(1, 10**9)
+    B = random.randint(1, 10**9)
+    
+    return K, A, B
+
+# Example usage:
+K, A, B = tcgen()
+print(K, A, B)
+```
+
+This generator will produce random values for \(K\), \(A\), and \(B\), ensuring they are within the given constraints (1 ≤ \(K, A, B\) ≤ 10^9).
+
+### Explanation:
+1. **K**: The number of operations, randomly chosen between 1 and 10^9.
+2. **A**: The number of biscuits required to exchange for 1 yen, randomly chosen between 1 and 10^9.
+3. **B**: The number of biscuits you get for 1 yen, randomly chosen between 1 and 10^9.
+
+The generator can be used to produce a variety of test cases to thoroughly test the solution for the given problem statement.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    K, A, B = map(int, fh.readline().strip().split())
+    return K, A, B
+
+# if __name__ == "__main__":
+#     input_path = sys.argv[1]
+#     with open(input_path, 'r') as fh:
+#         K, A, B = extract_arguments(fh)
+#         f(K, A, B)</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

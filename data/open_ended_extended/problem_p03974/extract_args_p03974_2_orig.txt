@@ -1,0 +1,11 @@
+def extract_arguments(fh):
+    N = int(fh.readline().strip())
+    strings = [fh.readline().strip() for _ in range(N)]
+    Q = int(fh.readline().strip())
+    queries = []
+    for _ in range(Q):
+        parts = fh.readline().strip().split()
+        k_i = int(parts[0])
+        permutation = parts[1]
+        queries.append((k_i, permutation))
+    return N, strings, Q, queries

@@ -1,0 +1,24 @@
+An integer H (1 ≤ H ≤ 1,400), representing some quantity or size.
+An integer W (1 ≤ W ≤ 1,400), representing some quantity or size.
+A matrix of size H × W, where each element is either 0 or 1.
+
+### Example Input:
+
+```
+4 5
+0 0 1 0 0
+1 0 0 0 0
+0 0 0 1 0
+0 0 0 1 0
+```
+
+### Function Signature:
+Write a function f(H, W, matrix) that takes in the input.
+```python
+def f(H: int, W: int, matrix: List[List[int]]):
+    ''' 
+    H: an integer 
+    W: an integer 
+    matrix: a list of lists of integers
+    '''
+```

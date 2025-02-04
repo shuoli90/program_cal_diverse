@@ -1,0 +1,43 @@
+Certainly! Given the problem statement for the "Flick Input" problem, we need to create a test case generator that can produce random but valid inputs for this competitive programming problem. Here's how we can construct the test case generator:
+
+```python
+import random
+
+def tcgen():
+    # Define the length of the input string (2 to 1000 characters)
+    length = random.randint(2, 1000)
+
+    # Define possible digits and flick directions
+    digits = '0123456789'
+    flicks = 'TLURD'
+
+    # Generate a random sequence of operations
+    input_str = ''.join(random.choice(digits) + random.choice(flicks) for _ in range(length // 2))
+    
+    # If the length is odd, add one more digit-flick pair
+    if length % 2 == 1:
+        input_str += random.choice(digits) + random.choice(flicks)
+
+    return input_str
+
+# Example of generating a test case
+print(tcgen())
+```
+
+### Explanation:
+1. **Input Length**: The length of the input string is chosen randomly between 2 and 1000.
+2. **Digits and Flick Directions**: The digits `0-9` and flick directions `T, L, U, R, D` are defined.
+3. **Generating Input String**: 
+   - A loop runs for half the length (since each operation is a digit followed by a flick direction).
+   - For each iteration, a random digit and a random flick direction are concatenated.
+   - If the length is odd, an additional digit-flick pair is added to ensure the total length is within the valid range.
+
+This generator will produce random yet valid test cases for the given problem. You can call `tcgen()` to get a new test case each time you run it.
+
+### Example Output:
+```
+3T7L0D8U
+```
+This output represents a sequence of flick operations starting with touching button 3, flicking button 7 to the left, and so on.
+
+This test case generator ensures that the input is always within the constraints specified in the problem statement and provides a diverse set of inputs to thoroughly test the solution.

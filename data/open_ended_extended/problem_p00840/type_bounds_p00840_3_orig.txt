@@ -1,0 +1,3 @@
+Types: num_datasets: int, r: float, s: int, w: List[int]  
+Ranges: 1 ≤ num_datasets ≤ 100, 0 < r < 10, 1 ≤ s ≤ 6, 1 ≤ w[i] ≤ 1000  
+Addtl Info: The answer should not have an error greater than 0.00000001.

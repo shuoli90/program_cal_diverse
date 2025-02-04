@@ -1,0 +1,20 @@
+def extract_arguments(fh):
+    datasets = []
+    while True:
+        n, h = map(int, fh.readline().strip().split())
+        if n == 0 and h == 0:
+            break
+        marks = []
+        for _ in range(h):
+            mark = fh.readline().strip().split()
+            ci = mark[0]
+            ai, bi = int(mark[1]), int(mark[2])
+            marks.append((ci, ai, bi))
+        datasets.append((n, h, marks))
+    return datasets
+
+# if __name__ == "__main__":
+#     input_path = sys.argv[1]
+#     with open(input_path, 'r') as fh: 
+#         datasets = extract_arguments(fh)
+#         f(datasets)

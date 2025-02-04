@@ -1,0 +1,42 @@
+Sure, I can write a test case generator for the "Restricted DFS" problem. Here is the code for the test case generator:
+
+```python
+import random
+
+def generate_tree(N):
+    edges = []
+    for i in range(2, N + 1):
+        u = random.randint(1, i - 1)
+        v = i
+        edges.append((u, v))
+    return edges
+
+def tcgen():
+    # Generate N
+    N = random.randint(1, 3 * 10**5)
+    
+    # Generate A
+    A = [random.randint(0, 10**9) for _ in range(N)]
+    
+    # Generate tree edges
+    edges = generate_tree(N)
+    
+    return N, A, edges
+
+def print_test_case(N, A, edges):
+    print(N)
+    print(' '.join(map(str, A)))
+    for u, v in edges:
+        print(u, v)
+
+# Example usage:
+N, A, edges = tcgen()
+print_test_case(N, A, edges)
+```
+
+Explanation:
+1. **generate_tree(N)**: This function generates a simple tree with \( N \) vertices. It ensures that each vertex is connected in a valid tree structure by connecting each new vertex to one of the previous vertices.
+2. **tcgen()**: This function generates the test case by first generating a random \( N \) (number of vertices) within the specified limits. It then generates the list \( A \) of size \( N \) with random integers between 0 and \( 10^9 \). Finally, it generates the edges of the tree using the `generate_tree` function.
+3. **print_test_case(N, A, edges)**: This function prints the generated test case in the required format.
+
+This generator will create random test cases for the problem, ensuring that all constraints are met. You can run the example usage part to generate and print a test case.

@@ -1,0 +1,40 @@
+Sure, I can write a test case generator for the given problem statement. Below is the Python code to generate random test cases for the problem "Takahashi's Tap Dance":
+
+```python
+import random
+
+def tcgen():
+    # Length of the string S, between 1 and 100 inclusive
+    length = random.randint(1, 100)
+    
+    # Characters in S are L, R, U, or D
+    characters = ['L', 'R', 'U', 'D']
+    
+    # Generate a random string of the specified length using the characters
+    S = ''.join(random.choice(characters) for _ in range(length))
+    
+    return S
+
+# Example usage
+if __name__ == "__main__":
+    for _ in range(5):  # Generate 5 test cases
+        print(tcgen())
+```
+
+### Explanation:
+- The `tcgen` function generates a random test case for the problem.
+- The length of the string \( S \) is randomly chosen between 1 and 100 inclusive.
+- Each character in the string \( S \) is randomly chosen from the set {'L', 'R', 'U', 'D'}.
+- The function returns the generated string \( S \).
+
+### Sample Output:
+Running the `tcgen` function multiple times might produce outputs like:
+```
+LURD
+ULRUD
+DDDUUU
+LRLRLR
+URDL
+```
+
+These outputs represent different possible dance instructions for Takahashi according to the constraints and format described in the problem statement.

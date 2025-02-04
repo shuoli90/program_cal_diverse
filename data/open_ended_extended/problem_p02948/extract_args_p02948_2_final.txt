@@ -1,0 +1,7 @@
+def extract_arguments(fh):
+    N, M = map(int, fh.readline().strip().split())
+    jobs = []
+    for _ in range(N):
+        A, B = map(int, fh.readline().strip().split())
+        jobs.append((A, B))
+    return N, M, jobs

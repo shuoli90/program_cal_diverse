@@ -1,0 +1,46 @@
+Sure, I can help you write a test case generator for the given problem. Here's the generator script:
+
+```python
+import random
+
+def tcgen():
+    # Constraints
+    N = random.randint(1, 300000)
+    L = random.randint(1, 10**9)
+    
+    # Generate N unique shopping centre coordinates sorted in increasing order
+    x = sorted(random.sample(range(1, L), N))
+
+    # Generate N shopping times
+    t = [random.randint(1, 10**9) for _ in range(N)]
+
+    return N, L, x, t
+
+# Example usage
+if __name__ == "__main__":
+    N, L, x, t = tcgen()
+    print(N)
+    print(L)
+    print(" ".join(map(str, x)))
+    print(" ".join(map(str, t)))
+```
+
+### Explanation:
+1. **N**: The number of shopping centres is generated randomly between 1 and 300,000.
+2. **L**: The coordinate of the last station is generated randomly between 1 and \(10^9\).
+3. **x**: A sorted list of unique coordinates for the shopping centres is generated. This is done by generating a random sample of `N` unique integers in the range \([1, L-1]\) and then sorting them.
+4. **t**: A list of shopping times, each randomly generated between 1 and \(10^9\).
+
+The generator ensures that the generated input adheres to the constraints provided in the problem statement.
+
+### Example Output:
+Running the above generator might produce output similar to this:
+
+```
+123456
+987654321
+1234 5678 91011 121314 151617 181920 ... (and so on)
+23456 78901 23456 78901 23456 78901 ... (and so on)
+```
+
+Feel free to use this generator to create various test cases and test your solution against them.

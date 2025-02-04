@@ -1,0 +1,11 @@
+def extract_arguments(fh):
+    N = int(fh.readline().strip())
+    S = [fh.readline().strip() for _ in range(N)]
+    Q = int(fh.readline().strip())
+    queries = []
+    for _ in range(Q):
+        k_p = fh.readline().strip().split()
+        k = int(k_p[0])
+        p = k_p[1]
+        queries.append((k, p))
+    return N, S, Q, queries

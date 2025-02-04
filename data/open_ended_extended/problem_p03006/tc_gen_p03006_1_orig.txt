@@ -1,0 +1,37 @@
+Sure! Here is a test case generator for the given problem statement:
+
+```python
+import random
+
+def tcgen():
+    # Generate a random number of balls N (1 ≤ N ≤ 50)
+    N = random.randint(1, 50)
+    
+    # Generate N unique coordinates (x_i, y_i) where |x_i|, |y_i| ≤ 10^9 and no two balls have the same coordinates
+    coordinates = set()
+    while len(coordinates) < N:
+        x = random.randint(-10**9, 10**9)
+        y = random.randint(-10**9, 10**9)
+        coordinates.add((x, y))
+    
+    # Convert the set of coordinates to a list
+    coordinates = list(coordinates)
+    
+    # Format the input in the required structure
+    input_data = f"{N}\n" + "\n".join(f"{x} {y}" for x, y in coordinates)
+    
+    return input_data
+
+# Example usage
+if __name__ == "__main__":
+    test_case = tcgen()
+    print(test_case)
+```
+
+### Explanation:
+
+1. **Generating N**: The number of balls `N` is randomly selected between 1 and 50.
+2. **Generating Coordinates**: Using a set to store coordinates ensures that all coordinates are unique. Each coordinate (x, y) is randomly selected such that \(|x|, |y| \leq 10^9\).
+3. **Formatting Input**: The generated coordinates are formatted into the required input format for the problem: first the number `N`, followed by each pair of coordinates on a new line.
+   
+This code ensures that the generated test cases adhere to the problem constraints and are formatted correctly for use in competitive programming.

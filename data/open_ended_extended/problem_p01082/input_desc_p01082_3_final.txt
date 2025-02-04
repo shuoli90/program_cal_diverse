@@ -1,0 +1,19 @@
+Canonicalized Input Description: 
+
+An integer n (1 ≤ n ≤ 5 × 10^4), an integer m (1 ≤ m ≤ 5 × 10^4), and an integer k (1 ≤ k ≤ min(10^5, n × m)).
+A list of k tuples where each tuple contains two integers xi and yi (0 ≤ xi ≤ n−1, 0 ≤ yi ≤ m−1).
+
+### Example Input:
+
+```
+20 10 2
+0 0
+17 5
+```
+
+### Function Signature:
+Write a function f(inputs) that takes in the input. 
+def f(inputs: List[Tuple[int, int, int]]): 
+    ''' 
+    inputs: a list of tuples where each tuple contains three integers
+    '''

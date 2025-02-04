@@ -1,0 +1,178 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p03703 - Generation 3</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p03703 - Generation 3</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>
+Score : 600 points
+Problem StatementYou are given an integer sequence of length N, a = {a_1, a_2, …, a_N}, and an integer K.
+a has N(N+1)/2 non-empty contiguous subsequences, {a_l, a_{l+1}, …, a_r} (1 ≤ l ≤ r ≤ N). Among them, how many have an arithmetic mean that is greater than or equal to K?
+Constraints
+All input values are integers.
+1 ≤ N ≤ 2 \times 10^5
+1 ≤ K ≤ 10^9
+1 ≤ a_i ≤ 10^9
+InputInput is given from Standard Input in the following format:
+N K
+a_1
+a_2
+:
+a_N
+OutputPrint the number of the non-empty contiguous subsequences with an arithmetic mean that is greater than or equal to K.
+Sample Input 13 6
+7
+5
+7
+Sample Output 15
+All the non-empty contiguous subsequences of a are listed below:
+{a_1} = {7}
+{a_1, a_2} = {7, 5}
+{a_1, a_2, a_3} = {7, 5, 7}
+{a_2} = {5}
+{a_2, a_3} = {5, 7}
+{a_3} = {7}
+Their means are 7, 6, 19/3, 5, 6 and 7, respectively, and five among them are 6 or greater. Note that {a_1} and {a_3} are indistinguishable by the values of their elements, but we count them individually.
+Sample Input 21 2
+1
+Sample Output 20
+Sample Input 37 26
+10
+20
+30
+40
+30
+20
+10
+Sample Output 313
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An integer \( N \) (1 ≤ \( N \) ≤ 2 \times 10^5), representing some quantity or size.
+An integer \( K \) (1 ≤ \( K \) ≤ 10^9), representing some threshold value.
+A list of integers \( A \) of size \( N \), where each integer \( A[i] \) (1 ≤ \( A[i] \) ≤ 10^9).
+
+### Example Input:
+
+```
+3 6
+7
+5
+7
+```
+
+### Function Signature:
+Write a function `f(N, K, A)` that takes in the input.
+```python
+def f(N: int, K: int, A: List[int]):
+    '''
+    N: an integer
+    K: an integer
+    A: a list of integers
+    '''
+```</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Sure! Below is a test case generator for the given problem statement:
+
+```python
+import random
+
+def generate_test_case():
+    # Constraints
+    N = random.randint(1, 2 * 10**5)
+    K = random.randint(1, 10**9)
+    a = [random.randint(1, 10**9) for _ in range(N)]
+    
+    return N, K, a
+
+def format_test_case(N, K, a):
+    # Formatting the generated test case to match the input format
+    test_case = f"{N} {K}\n" + "\n".join(map(str, a))
+    return test_case
+
+# Example of generating and formatting a test case
+N, K, a = generate_test_case()
+formatted_test_case = format_test_case(N, K, a)
+print(formatted_test_case)
+```
+
+### Explanation:
+
+1. **Constraints Handling**:
+   - `N` is randomly selected between 1 and 200,000.
+   - `K` is randomly selected between 1 and 1,000,000,000.
+   - Array `a` of size `N` is generated with each element being a random integer between 1 and 1,000,000,000.
+
+2. **Formatting**:
+   - The function `format_test_case` formats the generated test case in the required format, which is:
+     ```
+     N K
+     a_1
+     a_2
+     ...
+     a_N
+     ```
+
+You can run the provided code to generate random test cases for the given problem statement. The `print(formatted_test_case)` statement will output a formatted test case which can be used directly as input.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    N, K = map(int, fh.readline().strip().split())
+    a = [int(fh.readline().strip()) for _ in range(N)]
+    return N, K, a</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

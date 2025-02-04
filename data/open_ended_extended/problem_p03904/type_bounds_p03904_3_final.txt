@@ -1,0 +1,3 @@
+Types: K: int, S: str  
+Ranges: 0 ≤ K < |S| ≤ 100,000, S consists of digits between '1' and '9', inclusive  
+Addtl Info: None

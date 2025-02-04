@@ -1,0 +1,15 @@
+An input string \( S \) of length 4, where each character in \( S \) is either '+' or '-'.
+
+### Example Input:
+```
++-++
+```
+
+### Function Signature:
+Write a function `f(S)` that takes in the input.
+```python
+def f(S: str):
+    '''
+    S: a string of length 4 containing only '+' or '-'
+    '''
+```

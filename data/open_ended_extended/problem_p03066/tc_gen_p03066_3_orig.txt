@@ -1,0 +1,32 @@
+Certainly! Here's a test case generator for the given problem statement:
+
+```python
+import random
+
+MOD = 998244353
+
+def tcgen():
+    N = random.randint(1, 3000)
+    X = random.randint(1, 2 * N)
+    return N, X
+
+def test_case_to_input(N, X):
+    return f"{N} {X}\n"
+
+# Example usage
+if __name__ == "__main__":
+    for _ in range(5):  # Generate 5 test cases
+        N, X = tcgen()
+        print(test_case_to_input(N, X))
+```
+
+### Explanation:
+1. **Function `tcgen()`**: This function generates random values for \( N \) and \( X \) within the given constraints.
+   - \( N \) is generated as a random integer between 1 and 3000.
+   - \( X \) is generated as a random integer between 1 and \( 2N \).
+
+2. **Function `test_case_to_input(N, X)`**: This function formats the test case into the required input format as a string.
+
+3. **Example Usage**: The `if __name__ == "__main__":` block generates and prints 5 test cases.
+
+You can adjust the number of test cases by changing the range in the for loop. Each test case is formatted correctly to match the input specifications of the problem.

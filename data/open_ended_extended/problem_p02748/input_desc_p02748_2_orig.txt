@@ -1,0 +1,27 @@
+An integer A (1 ≤ A ≤ 10^5), representing some quantity or size.
+An integer B (1 ≤ B ≤ 10^5), representing some quantity or size.
+An integer M (1 ≤ M ≤ 10^5), representing some quantity or size.
+A list of integers a of size A, where each integer is between 1 and 10^5.
+A list of integers b of size B, where each integer is between 1 and 10^5.
+A list of tuples (x, y, c) of size M, where each tuple contains three integers:
+  - x (1 ≤ x ≤ A)
+  - y (1 ≤ y ≤ B)
+  - c (1 ≤ c ≤ 10^5)
+
+### Example Input:
+
+```
+3 1 2
+3 3 3
+3
+1 2 1
+1 1 10
+```
+
+### Function Signature:
+Write a function f(inputs) that takes in the input.
+```python
+def f(inputs: Tuple[int, int, int, List[int], List[int], List[Tuple[int, int, int]]]):
+    '''
+    inputs: a tuple containing three integers, two lists of integers, and a list of tuples
+    '''

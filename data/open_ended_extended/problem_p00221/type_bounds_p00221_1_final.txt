@@ -1,0 +1,3 @@
+Types: m: int, n: int, statements: List[Union[int, str]]
+Ranges: 2 ≤ m ≤ 1000, 1 ≤ n ≤ 10000, statements[i] in {1, ..., 10000, 'Fizz', 'Buzz', 'FizzBuzz'}
+Addtl Info: There are no more than 50 datasets in the input. The end of the input is indicated by two zeros.

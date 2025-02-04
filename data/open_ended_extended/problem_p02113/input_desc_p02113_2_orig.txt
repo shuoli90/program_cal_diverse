@@ -1,0 +1,24 @@
+An integer N (1 ≤ N ≤ 1000), representing some quantity or size.
+An integer L (1 ≤ L ≤ 30), representing some other quantity or size.
+N strings of length L, each consisting of lowercase English letters.
+
+### Example Input:
+
+```
+4 2
+oi
+io
+rr
+rr
+```
+
+### Function Signature:
+Write a function f(N, L, strings) that takes in the input.
+```python
+def f(N: int, L: int, strings: List[str]):
+    '''
+    N: an integer
+    L: an integer
+    strings: a list of strings
+    '''
+```

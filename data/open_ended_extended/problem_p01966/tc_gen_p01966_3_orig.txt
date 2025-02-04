@@ -1,0 +1,30 @@
+Sure, I can help you write a test case generator for the "Conveyor Belt" problem. Here is the Python code for generating random test cases based on the problem statement:
+
+```python
+import random
+
+def generate_test_case():
+    # Generate random values for N and Q
+    N = random.randint(2, 10**5)
+    Q = random.randint(1, 10**5)
+    
+    # Initialize the list of requests
+    requests = []
+    for _ in range(Q):
+        a = random.randint(1, N-1)  # a should be at least 1 and less than N
+        b = random.randint(a+1, N)  # b should be at least a+1 and at most N
+        p = random.randint(1, 10**9)
+        requests.append((a, b, p))
+    
+    # Print the generated test case
+    print(N, Q)
+    for req in requests:
+        print(req[0], req[1], req[2])
+
+# Example usage
+generate_test_case()
+```
+
+This function generates random values for \( N \) and \( Q \) within their specified ranges. For each request, it ensures that \( a \) is less than \( b \), and both are within the range from 1 to \( N \). The number of products \( p \) is also generated randomly within its specified range.
+
+You can run this function to generate random test cases for the "Conveyor Belt" problem. Each call to `generate_test_case` will output a random test case, which you can use to test your solution.

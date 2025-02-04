@@ -1,0 +1,3 @@
+Types: ns: int, nl: int, si: List[Tuple[int, int]], di: List[int]
+Ranges: 1 ≤ ns ≤ 10, 1 ≤ nl ≤ 20, 1 ≤ si ≤ ns, 1 ≤ di ≤ 100
+Addtl Info: The input terminates with two zeros (0 0). There is at most one direct route between any pair of stations. Each station has at most four direct routes leaving from it.

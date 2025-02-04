@@ -1,0 +1,57 @@
+To generate test cases for the problem "Score : 700 points", we need to ensure the following:
+
+1. The lengths of sequences \(A\) and \(B\) are equal to \(N\).
+2. The sums of the elements in \(A\) and \(B\) are equal.
+3. Each element in \(A\) and \(B\) ranges between 0 and \(10^9\).
+4. \(N\) can range between 1 and \(2 \times 10^5\).
+
+Here's a test case generator to fulfill these requirements:
+
+```python
+import random
+
+def tcgen():
+    # Generate a random N within the given constraints
+    N = random.randint(1, 2 * 10**5)
+    
+    # Generate two sequences A and B with the same sum
+    sum_elements = random.randint(N, 10**9)  # Sum of elements in A and B
+    A = [random.randint(0, sum_elements // N) for _ in range(N)]
+    B = [random.randint(0, sum_elements // N) for _ in range(N)]
+    
+    # Adjust A and B to ensure their sums are equal
+    sum_A = sum(A)
+    sum_B = sum(B)
+    
+    # Balance the sums of A and B
+    difference = sum_A - sum_B
+    
+    if difference > 0:
+        # B needs to increase
+        for i in range(difference):
+            B[i % N] += 1
+    elif difference < 0:
+        # A needs to increase
+        for i in range(-difference):
+            A[i % N] += 1
+    
+    # Check the final sums to ensure they are equal
+    assert sum(A) == sum(B)
+    
+    # Format the input as specified in the problem statement
+    test_input = f"{N}\n" + "\n".join(f"{a} {b}" for a, b in zip(A, B))
+    
+    return test_input
+
+# Example of generating a test case:
+print(tcgen())
+```
+
+### How It Works:
+1. **Generate N:** Randomly select an integer \( N \) within the range [1, 200000].
+2. **Generate Sums:** Randomly choose a sum for the sequences \( A \) and \( B \). Ensure this sum is at least \( N \) to distribute non-negative integers.
+3. **Generate Sequences:** Populate \( A \) and \( B \) with random integers such that their individual sums are less than or equal to the target sum.
+4. **Balance the Sums:** Adjust the sequences \( A \) and \( B \) to ensure their sums are equal.
+5. **Format the Input:** Format the sequences as required by the problem statement.
+
+This generator ensures that the input constraints are always met, and it provides valid test cases for the given problem.

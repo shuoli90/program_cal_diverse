@@ -1,0 +1,51 @@
+### Problem Statement: How many ways?
+
+**Description**
+
+Write a program that calculates the number of combinations of three different integers that satisfy the following conditions:
+- You must choose three different integers from 1 to \( n \).
+- The sum of the three integers is \( x \).
+
+For example, if \( n = 5 \) and \( x = 9 \), there are two combinations:
+1 + 3 + 5 = 9
+2 + 3 + 4 = 9
+
+**Input**
+
+The input consists of multiple datasets. For each dataset, two integers \( n \) and \( x \) are given on one line.
+The input is terminated by two zeros (\( n \) and \( x \)). Do not process the program for these end symbols.
+
+**Constraints**
+
+3 ≤ \( n \) ≤ 100
+
+0 ≤ \( x \) ≤ 300
+
+**Output**
+
+For each dataset, output the number of combinations on one line.
+
+**Sample Input**
+
+```
+5 9
+0 0
+```
+
+**Sample Output**
+
+```
+2
+```
+
+**Note**
+
+Commentary
+
+**Type Bounds**
+
+Types: \( n \): int, \( x \): int
+
+Ranges: 3 ≤ \( n \) ≤ 100, 0 ≤ \( x \) ≤ 300
+
+Addtl Info: None

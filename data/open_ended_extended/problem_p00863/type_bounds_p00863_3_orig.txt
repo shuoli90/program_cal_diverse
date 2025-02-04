@@ -1,0 +1,3 @@
+Types: a: int, m: int, b: int, n: int  
+Ranges: 2 ≤ a, b ≤ 31, 2 ≤ m, n ≤ 4  
+Addtl Info: a and b are distinct prime numbers; m√a + n√b ≤ 4; mn ≤ 20; coefficients of the answer are between (-2^31 + 1) and (2^31 - 1)

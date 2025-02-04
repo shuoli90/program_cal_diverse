@@ -1,0 +1,3 @@
+Types: N: int, M: int, (xi, yi, vi): Tuple[int, int, int], (x'j, y'j): Tuple[int, int]
+Ranges: 1 ≤ N ≤ 100, 1 ≤ M ≤ 100, 0 ≤ xi, yi, x'j, y'j ≤ 10000, 1 ≤ vi ≤ 100
+Addtl Info: None

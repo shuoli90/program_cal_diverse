@@ -1,0 +1,140 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p02137 - Generation 2</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p02137 - Generation 2</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>Problem A: Special Chat
+Problem
+The popular video sharing site "ZouTube" is currently in the midst of a unprecedented "virtual ZouTuber" boom. Among them, the one that has recently attracted the most attention is the junior virtual ZouTuber "Aizumari Mu (aka: Azurimu)".
+As a big fan of Azurimu, you plan to send her a "Special Chat" during her live stream today.
+"Special Chat" is a function provided by ZouTube that allows viewers to give points to the streamer. For each Special Chat, viewers can consume either $500$, $1000$, $5000$, or $10000$ points, and give the same amount of points to the streamer.
+Given the total amount of points you currently have, find the maximum number of points you can give to Azurimu by consuming your points. You can perform Special Chat as many times as you like as long as the number of points you consume does not exceed the number of points you have.
+Input
+The input is given in the following format:
+$P$
+An integer $P$ is given on a single line, which represents the total amount of points you currently have.
+Constraints
+The input satisfies the following conditions:
+$1 \le P \le 10^5$
+Output
+Output the maximum number of points you can give to Azurimu on a single line.
+Sample Input 1
+5700
+Sample Output 1
+5500
+Sample Input 2
+1333
+Sample Output 2
+1000
+Sample Input 3
+100000
+Sample Output 3
+100000
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An integer P (1 ≤ P ≤ 10^5), representing some quantity or size.
+
+### Example Input:
+
+```
+5700
+```
+
+### Function Signature:
+Write a function f(P) that takes in the input.
+def f(P: int):
+    ''' 
+    P: an integer 
+    '''</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Sure, I can help you create a test case generator for the "Special Chat" problem. Here is the code for generating a test case:
+
+```python
+import random
+
+def tcgen():
+    # Generating a random integer P in the range [1, 100000]
+    P = random.randint(1, 100000)
+    return P
+
+# Example usage:
+for _ in range(5):  # generating 5 test cases for demonstration
+    print(tcgen())
+```
+
+This function generates a random integer `P` between 1 and 100,000 which represents the total amount of points you currently have.
+
+Here is an example set of outputs when running the test case generator:
+
+```
+23456
+98765
+345
+12345
+67890
+```
+
+Each of these values represents a possible input for the problem statement. You can use this function to generate as many test cases as needed for your testing purposes.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    P = int(fh.readline().strip())
+    return (P,)</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

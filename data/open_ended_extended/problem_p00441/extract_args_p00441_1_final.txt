@@ -1,0 +1,18 @@
+def extract_arguments(fh):
+    datasets = []
+    while True:
+        n = int(fh.readline().strip())
+        if n == 0:
+            break
+        pillars = []
+        for _ in range(n):
+            x, y = map(int, fh.readline().strip().split())
+            pillars.append((x, y))
+        datasets.append((n, pillars))
+    return datasets
+
+# if __name__ == "__main__":
+#     input_path = sys.argv[1]
+#     with open(input_path, 'r') as fh:
+#         datasets = extract_arguments(fh)
+#         f(datasets)

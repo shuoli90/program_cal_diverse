@@ -1,0 +1,16 @@
+Types: 
+- Number of polygons: int
+- Number of polygon vertices: List[int]
+- x-coordinate: int
+- y-coordinate: int
+- Number of occurrence points and important facility data: int
+
+Ranges:
+- Number of polygons: 1 ≤ number of polygons ≤ 5
+- Number of polygon vertices: 3 ≤ number of polygon vertices ≤ 5
+- Coordinates: -1000 ≤ x-coordinate, y-coordinate ≤ 1000
+- Number of occurrence points and important facility data: 1 ≤ number of data ≤ 100
+
+Addtl Info: 
+- Polygons are non-self-intersecting.
+- Occurrence points and important facilities do not lie on the vertices or edges of the polygons.

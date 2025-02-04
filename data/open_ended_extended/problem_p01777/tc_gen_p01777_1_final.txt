@@ -1,0 +1,78 @@
+Certainly! Let's write a test case generator for the given problem "Disordered Data Detection".
+
+### Test Case Generator
+
+Here's a Python function that generates random test cases for the given problem statement. This will help in creating multiple test cases to test the robustness of your solution.
+
+```python
+import random
+
+def generate_test_case():
+    # Constants
+    MAX_D = 100000
+    MAX_X = 10**8
+    MAX_Q = 100000
+
+    # Generate D: Length of the sequence
+    D = random.randint(1, MAX_D)
+    
+    # Generate the sequence x_1, ..., x_D
+    X = [random.randint(-MAX_X, MAX_X) for _ in range(D)]
+    
+    # Generate Q: Number of queries
+    Q = random.randint(1, MAX_Q)
+    
+    queries = []
+    for _ in range(Q):
+        l = random.randint(1, D)
+        r = random.randint(l, D)  # Ensure l <= r
+        e = random.randint(0, MAX_X)
+        queries.append((l, r, e))
+    
+    return D, X, Q, queries
+
+def format_test_case(D, X, Q, queries):
+    # Format the test case as a string in the required input format
+    test_case = f"{D}\n"
+    test_case += " ".join(map(str, X)) + "\n"
+    test_case += f"{Q}\n"
+    for l, r, e in queries:
+        test_case += f"{l} {r} {e}\n"
+    return test_case
+
+# Example usage
+if __name__ == "__main__":
+    D, X, Q, queries = generate_test_case()
+    test_case = format_test_case(D, X, Q, queries)
+    print(test_case)
+```
+
+### Explanation
+
+1. **Constants**:
+   - `MAX_D = 100000`: Maximum length of the sequence.
+   - `MAX_X = 10**8`: Maximum absolute value of the sequence elements.
+   - `MAX_Q = 100000`: Maximum number of queries.
+
+2. **Generating D**:
+   - Randomly choose an integer `D` between 1 and `MAX_D`.
+
+3. **Generating the sequence X**:
+   - Generate a list of `D` integers where each integer is randomly chosen between `-MAX_X` and `MAX_X`.
+
+4. **Generating Q**:
+   - Randomly choose an integer `Q` between 1 and `MAX_Q`.
+
+5. **Generating queries**:
+   - For each query, generate `l`, `r`, and `e`:
+     - `l` is between 1 and `D`.
+     - `r` is between `l` and `D` (ensuring `l ≤ r`).
+     - `e` is between 0 and `MAX_X`.
+
+6. **Formatting**:
+   - Convert the generated test case into the required input format as a string.
+
+7. **Example usage**:
+   - The example usage at the end demonstrates how to generate and format a test case, and then prints it.
+
+You can run this script to generate random test cases for your problem. Each run will produce a different test case, which can be used to thoroughly test your implementation.

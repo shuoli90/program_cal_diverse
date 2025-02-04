@@ -1,0 +1,50 @@
+Certainly! Here is a test case generator for the "Related Products" problem statement:
+
+```python
+import random
+import string
+
+def generate_random_product():
+    length = random.randint(1, 30)
+    return ''.join(random.choices(string.ascii_lowercase, k=length))
+
+def tcgen():
+    N = random.randint(1, 100)
+    F = random.randint(1, 100)
+    
+    product_info = []
+    
+    for _ in range(N):
+        M = random.randint(1, 10)
+        products = set()
+        while len(products) < M:
+            products.add(generate_random_product())
+        product_info.append(f"{M} " + " ".join(products))
+    
+    return N, F, product_info
+
+def format_test_case(N, F, product_info):
+    input_str = f"{N} {F}\n" + "\n".join(product_info)
+    return input_str
+
+# Example usage:
+N, F, product_info = tcgen()
+test_case = format_test_case(N, F, product_info)
+print(test_case)
+```
+
+**Explanation:**
+
+1. **generate_random_product**: This helper function generates a random product name of length between 1 and 30 characters consisting of lowercase English letters.
+
+2. **tcgen**: This function generates a random test case.
+   - `N` is randomly chosen between 1 and 100.
+   - `F` is also randomly chosen between 1 and 100.
+   - For each piece of information about products purchased together:
+     - `M` is randomly chosen between 1 and 10.
+     - A set of unique products is generated until the set contains `M` products.
+     - The products are joined into a space-separated string prefixed by `M` and added to the `product_info` list.
+
+3. **format_test_case**: This function formats the generated test case into the required input format as a single string.
+
+The resulting test case is printed out in the correct input format for the problem statement. You can run the generator multiple times to get different test cases for thorough testing.

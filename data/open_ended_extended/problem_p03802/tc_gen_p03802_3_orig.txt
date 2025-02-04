@@ -1,0 +1,28 @@
+Certainly! Here is the test case generator for the given problem statement:
+
+```python
+import random
+
+def tcgen():
+    # Generate a random number of flags within the given constraints
+    N = random.randint(2, 10**4)
+    
+    # Generate N pairs of coordinates (x_i, y_i) within the given constraints
+    coordinates = [(random.randint(1, 10**9), random.randint(1, 10**9)) for _ in range(N)]
+    
+    return N, coordinates
+
+# Example usage
+if __name__ == "__main__":
+    N, coordinates = tcgen()
+    print(N)
+    for x, y in coordinates:
+        print(x, y)
+```
+
+**Explanation:**
+
+1. **Number of Flags:** The number of flags \( N \) is generated randomly between 2 and \( 10^4 \) (inclusive) to meet the problem's constraints.
+2. **Coordinates:** For each flag, two possible coordinates \( x_i \) and \( y_i \) are generated randomly between 1 and \( 10^9 \) (inclusive).
+
+This script generates a test case, prints the number of flags, and then prints each pair of possible coordinates. You can run this script to generate a new test case each time.

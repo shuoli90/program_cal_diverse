@@ -1,0 +1,19 @@
+Sum of Decimal Digits
+Let a, b, and n be positive integers. Let f(i) be the i-th digit (0 ≤ f(i) ≤ 9) of the decimal expansion of the fraction a / b. Define the sum s as the sum of the first n digits:
+s = f(1) + f(2) + ... + f(n)
+Write a program that reads a, b, and n, and outputs s.
+Input
+The input consists of multiple datasets. Each dataset consists of three integers a (1 ≤ a ≤ 1000), b (1 ≤ b ≤ 10000), and n (1 ≤ n ≤ 100), separated by a single space, on a line.
+There are no more than 100 datasets.
+Output
+For each dataset, output s on a line.
+Sample Input
+1 2 3
+2 3 4
+5 4 3
+4 3 2
+Output for the Sample Input
+5
+24
+7
+6

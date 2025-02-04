@@ -1,0 +1,50 @@
+Certainly! Given the problem description for "Cubes Without Holes," we need to generate test cases that include the size of the cube (`n`), the number of marks (`h`), and the positions of these marks on specific planes. Below is a Python function that generates these test cases:
+
+```python
+import random
+
+def generate_plane_mark(n):
+    plane = random.choice(['xy', 'xz', 'yz'])
+    if plane == 'xy':
+        a = random.randint(1, n)
+        b = random.randint(1, n)
+    elif plane == 'xz':
+        a = random.randint(1, n)
+        b = random.randint(1, n)
+    else:  # 'yz'
+        a = random.randint(1, n)
+        b = random.randint(1, n)
+    return f"{plane} {a} {b}"
+
+def tcgen():
+    datasets = []
+    while True:
+        n = random.randint(1, 500)
+        h = random.randint(1, 200)
+        marks = [generate_plane_mark(n) for _ in range(h)]
+        datasets.append((n, h, marks))
+        if random.random() < 0.1:  # Randomly decide to end the input
+            break
+    datasets.append((0, 0, []))
+    return datasets
+
+# To output the generated test cases in the required format:
+def print_test_cases(test_cases):
+    for n, h, marks in test_cases:
+        print(f"{n} {h}")
+        for mark in marks:
+            print(mark)
+
+# Generate test cases
+test_cases = tcgen()
+
+# Print the test cases
+print_test_cases(test_cases)
+```
+
+This code includes:
+1. `generate_plane_mark(n)`: A helper function that generates a random mark based on the size of the cube `n`.
+2. `tcgen()`: The main test case generator which creates multiple datasets until it randomly decides to end (with a 10% chance on each iteration).
+3. `print_test_cases(test_cases)`: A helper function to print the generated test cases in the required format.
+
+You can run this code to generate and print a series of test cases for the "Cubes Without Holes" problem. Each dataset will contain randomly generated values for `n`, `h`, and the marks on the cube.

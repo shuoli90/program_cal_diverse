@@ -1,0 +1,251 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p00447 - Generation 1</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p00447 - Generation 1</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>Constellation
+Problem
+You are searching for a constellation from a photo of the night sky. The photo always includes exactly one figure of the same shape, orientation, and size as the constellation you are looking for. However, the photo may contain extra stars that are not part of the constellation. 
+For example, the constellation in Figure 1 is included in the photo in Figure 2 (indicated by the enclosed circle). When the coordinates of the stars in the given constellation are moved parallel to the x-axis by 2 and parallel to the y-axis by −3, they match the position in the photo. 
+Write a program that, given the shape of the constellation you are looking for and the positions of the stars in the photo, finds the amount by which to move the constellation in order to match the positions in the photo.
+Figure 1: Constellation you are looking forFigure 2: Photo of the night sky
+Input
+The input consists of multiple datasets. Each dataset is given in the following format.
+The first line of the input contains the number of stars m that make up the constellation you are looking for. The following m lines contain integers separated by a space that indicate the x and y coordinates of the m stars that make up the constellation you are looking for. The (m+2)-th line contains the number of stars n in the photo. The following n lines contain integers separated by a space that indicate the x and y coordinates of the n stars in the photo. 
+All m stars that make up the constellation are at different positions. All n stars in the photo are at different positions. 1 ≤ m ≤ 200, 1 ≤ n ≤ 1000. The x and y coordinates of the stars are all between 0 and 1000000. 
+If m is 0, it indicates the end of the input. There will be no more than 5 datasets. 
+Output
+For each dataset, write a single line of output consisting of two integers separated by a space. The first integer indicates the amount by which to move the constellation parallel to the x-axis, and the second integer indicates the amount by which to move the constellation parallel to the y-axis in order to match the positions in the photo. 
+Sample Input
+5
+8 5
+6 4
+4 3
+7 10
+0 10
+10
+10 5
+2 7
+9 7
+8 10
+10 2
+1 2
+8 1
+6 7
+6 0
+0 9
+5
+904207 809784
+845370 244806
+499091 59863
+638406 182509
+435076 362268
+10
+757559 866424
+114810 239537
+519926 989458
+461089 424480
+674361 448440
+81851 150384
+459107 795405
+299682 6700
+254125 362183
+50795 541942
+0
+Sample Output
+2 -3
+-384281 179674
+Sample Input 1 corresponds to the figure above. 
+The problem statement and test data are provided by the Information Olympiad Japan Committee.
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An integer \( m \) (1 ≤ \( m \) ≤ 200), representing some quantity or size.  
+A list of \( m \) tuples of integers, where each tuple contains two integers (x, y) and each integer is between 0 and 1000000.  
+An integer \( n \) (1 ≤ \( n \) ≤ 1000), representing some quantity or size.  
+A list of \( n \) tuples of integers, where each tuple contains two integers (x, y) and each integer is between 0 and 1000000.
+
+### Example Input:
+
+```
+5
+8 5
+6 4
+4 3
+7 10
+0 10
+10
+10 5
+2 7
+9 7
+8 10
+10 2
+1 2
+8 1
+6 7
+6 0
+0 9
+```
+
+### Function Signature:
+Write a function f(inputs) that takes in the input. 
+```python
+def f(inputs: List[Tuple[int, List[Tuple[int, int]], int, List[Tuple[int, int]]]]):
+    '''
+    inputs: a list of tuples, where each tuple contains:
+        - an integer
+        - a list of tuples of integers
+        - an integer
+        - a list of tuples of integers
+    '''
+```</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Sure! Here is a test case generator for the "Constellation" problem in Python:
+
+```python
+import random
+
+def generate_star_coordinates(num_stars, max_coordinate=1000000):
+    stars = set()
+    while len(stars) < num_stars:
+        x = random.randint(0, max_coordinate)
+        y = random.randint(0, max_coordinate)
+        stars.add((x, y))
+    return list(stars)
+
+def tcgen():
+    datasets = []
+    
+    num_datasets = random.randint(1, 5)
+    for _ in range(num_datasets):
+        # Generate the constellation
+        m = random.randint(1, 200)
+        constellation = generate_star_coordinates(m)
+        
+        # Generate the photo with the constellation and additional stars
+        n = random.randint(m, 1000)
+        photo = generate_star_coordinates(n)
+        
+        # Ensure the constellation is a subset of the photo
+        photo[:m] = constellation
+        
+        # Shuffle the photo to add randomness
+        random.shuffle(photo)
+        
+        datasets.append((m, constellation, n, photo))
+    
+    return datasets
+
+def format_dataset(dataset):
+    m, constellation, n, photo = dataset
+    result = []
+    
+    result.append(str(m))
+    for star in constellation:
+        result.append(f"{star[0]} {star[1]}")
+    
+    result.append(str(n))
+    for star in photo:
+        result.append(f"{star[0]} {star[1]}")
+    
+    return "\n".join(result)
+
+def generate_input():
+    datasets = tcgen()
+    input_str = "\n".join(format_dataset(dataset) for dataset in datasets)
+    input_str += "\n0"  # End of input indicator
+    return input_str
+
+# Example of generating an input
+print(generate_input())
+```
+
+### Explanation:
+1. **`generate_star_coordinates(num_stars, max_coordinate=1000000)`**:
+    - Generates a set of unique star coordinates within the specified range.
+    
+2. **`tcgen()`**:
+    - Generates up to 5 datasets (between 1 and 5).
+    - For each dataset:
+        - It generates the constellation coordinates (`m` stars).
+        - It generates the photo with `n` stars where `n >= m`.
+        - Ensures the constellation is included in the photo.
+        - Randomizes the order of stars in the photo for added complexity.
+        
+3. **`format_dataset(dataset)`**:
+    - Formats a single dataset to match the input format required by the problem statement.
+
+4. **`generate_input()`**:
+    - Combines multiple datasets into a single string, including the end-of-input indicator `0`.
+
+This test case generator creates diverse and complex inputs that conform to the problem's input constraints, ensuring robust testing for the solution.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    datasets = []
+    while True:
+        m = int(fh.readline().strip())
+        if m == 0:
+            break
+        constellation = [tuple(map(int, fh.readline().strip().split())) for _ in range(m)]
+        n = int(fh.readline().strip())
+        photo = [tuple(map(int, fh.readline().strip().split())) for _ in range(n)]
+        datasets.append((m, constellation, n, photo))
+    return datasets</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

@@ -1,0 +1,103 @@
+Sure! Let's first understand the zigzag traversal of the matrix and then create a test case generator for the given problem.
+
+### Zigzag Traversal Explanation
+
+For an \(N \times N\) matrix, the traversal starts at the upper-left corner (0, 0) and moves in a zigzag manner until it reaches the bottom-right corner. The order of traversal can be visualized as follows:
+
+For \(N = 3\):
+```
+1  2  6
+3  5  7
+4  8  9
+```
+
+For \(N = 4\):
+```
+ 1  2  6  7
+ 3  5  8 13
+ 4  9 12 14
+10 11 15 16
+```
+
+### Test Case Generator
+
+The test case generator will create random values for \(N\) in the given range (0 < N < 10) and generate these matrices accordingly. The input will end with a line containing a single zero.
+
+Here's the Python code for the test case generator:
+
+```python
+import random
+
+def zigzag_traversal(n):
+    matrix = [[0]*n for _ in range(n)]
+    i, j = 0, 0
+    direction = 1  # 1 for down, -1 for up
+    for num in range(1, n*n + 1):
+        matrix[i][j] = num
+        if direction == 1:
+            if j == 0 or i == n - 1:
+                direction = -1
+                if i == n - 1:
+                    j += 1
+                else:
+                    i += 1
+            else:
+                i += 1
+                j -= 1
+        else:
+            if i == 0 or j == n - 1:
+                direction = 1
+                if j == n - 1:
+                    i += 1
+                else:
+                    j += 1
+            else:
+                i -= 1
+                j += 1
+    return matrix
+
+def tcgen():
+    test_cases = []
+    
+    # Generate a random number of test cases between 1 and 10
+    num_cases = random.randint(1, 10)
+    
+    for _ in range(num_cases):
+        N = random.randint(1, 9)
+        test_cases.append(N)
+    
+    # Append the terminating zero
+    test_cases.append(0)
+    
+    return test_cases
+
+def format_output(test_cases):
+    case_number = 1
+    output = ""
+    for N in test_cases:
+        if N == 0:
+            break
+        output += f"Case {case_number}:\n"
+        matrix = zigzag_traversal(N)
+        for row in matrix:
+            output += " ".join(f"{num:3}" for num in row) + "\n"
+        case_number += 1
+    return output
+
+# Example usage
+test_cases = tcgen()
+formatted_output = format_output(test_cases)
+print("Sample Input:")
+print("\n".join(map(str, test_cases)))
+
+print("\nOutput for the Sample Input:")
+print(formatted_output)
+```
+
+### Explanation
+
+1. **`zigzag_traversal(n)`**: Generates the zigzag order matrix for a given \(N \times N\).
+2. **`tcgen()`**: Generates a random number of test cases, each with a random \(N\) in the range (1, 9). Adds a terminating zero at the end.
+3. **`format_output(test_cases)`**: Formats the test cases and their corresponding matrices to match the required output format.
+
+This code first generates random test cases and then formats them to display the required zigzag traversal matrices. The `print` statements demonstrate the sample input and its corresponding output as specified.

@@ -1,0 +1,17 @@
+An integer N (1 ≤ N ≤ 70), representing some quantity or size.  
+An integer K (1 ≤ K ≤ 70), representing another quantity or size.  
+A string s of length K, consisting of characters from the set {'r', 'b'}.  
+
+### Example Input:
+
+```
+12 2
+rb
+```
+
+### Function Signature:
+Write a function f(inputs) that takes in the input. 
+def f(inputs: List[Tuple[int, int, str]]): 
+    ''' 
+    inputs: a list of tuples 
+    '''

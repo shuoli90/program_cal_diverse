@@ -1,0 +1,3 @@
+Types: N: int, S: str, Q: int, i_q: int, l_q: int, r_q: int, c_q: str
+Ranges: 1 ≤ N ≤ 500000, 1 ≤ Q ≤ 20000, 1 ≤ i_q ≤ N, 1 ≤ l_q ≤ r_q ≤ N, |S| = N
+Addtl Info: S consists of lowercase English letters, c_q is a lowercase English letter

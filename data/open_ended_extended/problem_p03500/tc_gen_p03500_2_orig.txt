@@ -1,0 +1,30 @@
+Sure, here is a test case generator for the provided problem statement. The generator will create random input values adhering to the constraints specified:
+
+```python
+import random
+
+def tcgen():
+    MOD = 1000000007
+
+    # Generate a random value for N within the given constraints
+    N = random.randint(1, 200)
+    
+    # Generate random values for A_i within the given constraints
+    A = [random.randint(1, 10**18) for _ in range(N)]
+    
+    # Generate a random value for K within the given constraints
+    K = random.randint(1, 10**18)
+    
+    # Return the generated values in the required format
+    return f"{N} {K}\n{' '.join(map(str, A))}"
+
+# Example of how to use the generator
+print(tcgen())
+```
+
+This generator ensures that:
+- `N` is within the range `[1, 200]`.
+- Each element in the array `A` is between `1` and `10^18`.
+- `K` is between `1` and `10^18`.
+
+The output is formatted to match the input format specified in the problem statement. You can run this generator multiple times to get different test cases for thorough testing of the solution.

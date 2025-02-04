@@ -1,0 +1,42 @@
+Sure! Below is a test case generator for the given problem statement:
+
+```python
+import random
+
+def tcgen():
+    # Constants for constraints
+    MAX_XYZ = 1000
+    MAX_K = 3000
+    MAX_DELICIOUSNESS = 10**10
+
+    # Generate random values for X, Y, Z
+    X = random.randint(1, MAX_XYZ)
+    Y = random.randint(1, MAX_XYZ)
+    Z = random.randint(1, MAX_XYZ)
+    
+    # K must be within min(3000, X * Y * Z)
+    max_K = min(MAX_K, X * Y * Z)
+    K = random.randint(1, max_K)
+    
+    # Generate lists A, B, C with random deliciousness values
+    A = [random.randint(1, MAX_DELICIOUSNESS) for _ in range(X)]
+    B = [random.randint(1, MAX_DELICIOUSNESS) for _ in range(Y)]
+    C = [random.randint(1, MAX_DELICIOUSNESS) for _ in range(Z)]
+    
+    return X, Y, Z, K, A, B, C
+
+# Function to print the generated test case in the required format
+def print_test_case(X, Y, Z, K, A, B, C):
+    print(X, Y, Z, K)
+    print(" ".join(map(str, A)))
+    print(" ".join(map(str, B)))
+    print(" ".join(map(str, C)))
+
+# Generating a test case
+X, Y, Z, K, A, B, C = tcgen()
+
+# Printing the generated test case
+print_test_case(X, Y, Z, K, A, B, C)
+```
+
+This generator will create random test cases within the constraints provided in the problem statement. It ensures that the values for `X`, `Y`, `Z`, and `K` stay within their respective limits, and it generates lists `A`, `B`, and `C` with the appropriate ranges for deliciousness values. The `print_test_case` function formats the generated test case in the specified input format for the problem.

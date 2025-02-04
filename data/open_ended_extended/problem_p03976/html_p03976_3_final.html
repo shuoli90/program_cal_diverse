@@ -1,0 +1,205 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p03976 - Generation 3</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p03976 - Generation 3</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>
+Score : 100 points
+Problem Statement
+		                Kyoto University Programming Contest is a programming contest voluntarily held by some Kyoto University students.
+		                This contest is abbreviated as Kyoto University Programming Contest and called KUPC.
+                    
+		                source: Kyoto University Programming Contest Information
+		            The problem-preparing committee met to hold this year's KUPC and N problems were proposed there.
+		            The problems are numbered from 1 to N and the name of i-th problem is P_i.
+		            However, since they proposed too many problems, they decided to divide them into some sets for several contests.
+                
+		            They decided to divide this year's KUPC into several KUPCs by dividing problems under the following conditions.
+                    
+ One KUPC provides K problems. 
+ Each problem appears at most once among all the KUPCs. 
+ All the first letters of the problem names in one KUPC must be different. 
+		            You, one of the committee members, want to hold as many KUPCs as possible.
+		            Write a program to find the maximum number of KUPCs that can be held this year.
+                
+Constraints
+ 1 \leq N \leq 10^4
+ 1 \leq K \leq 26
+ 1 \leq |P_i| \leq 10
+ All characters in P_i are capital letters.
+		            Note that, for each i and j (1 \leq i < j \leq N),
+                    P_i \neq P_j are not necessarily satisfied.
+                
+Input
+The input is given from Standard Input in the following format:
+N K
+P_1
+:
+P_N
+Output
+		                Print the maximum number of KUPCs that can be held on one line.
+                    
+Sample Input 1
+9 3
+APPLE
+ANT
+ATCODER
+BLOCK
+BULL
+BOSS
+CAT
+DOG
+EGG
+For example, three KUPCs can be held by dividing the problems as follows. 
+ First: APPLE, BLOCK, CAT
+ Second: ANT, BULL, DOG
+ Third: ATCODER, BOSS, EGG
+Sample Output 1
+3
+Sample Input 2
+3 2
+KU
+KYOUDAI
+KYOTOUNIV
+Sample Output 2
+0
+No KUPC can be held.
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>Canonicalized Input Description:
+
+An integer N (1 ≤ N ≤ 10^4), representing some quantity or size.
+An integer K (1 ≤ K ≤ 26), representing some other quantity or size.
+A list of N strings, each string has a length between 1 and 10 and consists of capital letters.
+
+### Example Input:
+
+```
+9
+3
+APPLE
+ANT
+ATCODER
+BLOCK
+BULL
+BOSS
+CAT
+DOG
+EGG
+```
+
+### Function Signature:
+Write a function f(N, K, P) that takes in the input.
+def f(N: int, K: int, P: List[str]):
+    ''' 
+    N: an integer
+    K: an integer
+    P: a list of strings
+    '''</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>To generate test cases for the competitive programming problem described, we need to take into account the constraints and format of the input. Here’s a Python function that generates random test cases:
+
+```python
+import random
+import string
+
+def generate_random_problem_name():
+    # Generate a random problem name with length between 1 and 10
+    length = random.randint(1, 10)
+    return ''.join(random.choice(string.ascii_uppercase) for _ in range(length))
+
+def tcgen():
+    N = random.randint(1, 10**4)
+    K = random.randint(1, 26)
+    P = [generate_random_problem_name() for _ in range(N)]
+    
+    # Format the output to match the required input format
+    return N, K, P
+
+# Function to print the generated test case in the required format
+def print_test_case():
+    N, K, P = tcgen()
+    print(N, K)
+    for problem in P:
+        print(problem)
+
+# Example usage:
+print_test_case()
+```
+
+### Explanation:
+1. **generate_random_problem_name:** This function generates a random problem name of length between 1 and 10 using uppercase English letters.
+2. **tcgen:** This function generates the test case:
+   - `N` is an integer between 1 and 10,000.
+   - `K` is an integer between 1 and 26.
+   - `P` is a list of `N` problem names generated by the `generate_random_problem_name` function.
+3. **print_test_case:** This function prints the generated test case in the required format.
+
+### Usage:
+To generate and print a test case, simply call the `print_test_case()` function. This will produce the test case in the format expected by the problem statement. You can run the function multiple times to generate different test cases for extensive testing.
+
+This setup ensures that the generated test cases adhere to the constraints and format specified in the problem statement, making it suitable for testing the solution effectively.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    N, K = map(int, fh.readline().strip().split())
+    P = [fh.readline().strip() for _ in range(N)]
+    return N, K, P</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

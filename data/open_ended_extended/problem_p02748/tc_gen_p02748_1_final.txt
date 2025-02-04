@@ -1,0 +1,53 @@
+Sure! Here's a test case generator for the given problem statement about buying a refrigerator and a microwave.
+
+```python
+import random
+
+def generate_test_case():
+    # Constraints
+    A = random.randint(1, 10**5)
+    B = random.randint(1, 10**5)
+    M = random.randint(1, 10**5)
+    
+    # Generate A kinds of refrigerators prices
+    a = [random.randint(1, 10**5) for _ in range(A)]
+    
+    # Generate B kinds of microwaves prices
+    b = [random.randint(1, 10**5) for _ in range(B)]
+    
+    # Generate M discount tickets
+    tickets = []
+    for _ in range(M):
+        x_i = random.randint(1, A)
+        y_i = random.randint(1, B)
+        c_i = random.randint(1, a[x_i-1] + b[y_i-1])
+        tickets.append((x_i, y_i, c_i))
+    
+    return A, B, M, a, b, tickets
+
+# Function to print the test case in the required format
+def print_test_case():
+    A, B, M, a, b, tickets = generate_test_case()
+    
+    print(A, B, M)
+    print(" ".join(map(str, a)))
+    print(" ".join(map(str, b)))
+    for ticket in tickets:
+        print(ticket[0], ticket[1], ticket[2])
+
+# Example usage
+print_test_case()
+```
+
+Explanation:
+
+1. **generate_test_case() Function**:
+    - Generates random values for \(A\), \(B\), and \(M\) within their respective constraints.
+    - Creates lists of random integers for the prices of \(A\) refrigerators and \(B\) microwaves.
+    - Generates \(M\) discount tickets, where each ticket specifies two indices and a discount amount. The discount amount is ensured to be within the valid range by using the constraint \(c_i \le a_{x_i} + b_{y_i}\).
+
+2. **print_test_case() Function**:
+    - Calls the `generate_test_case()` function to generate a test case.
+    - Prints the test case in the required input format.
+
+This code will produce a random test case that adheres to the given problem constraints.

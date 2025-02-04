@@ -1,0 +1,64 @@
+Sure! Here's a test case generator for the given problem statement "Online Quizu System":
+
+```python
+import random
+import string
+
+def generate_random_answer():
+    length = random.randint(1, 9)
+    return ''.join(random.choices(string.ascii_uppercase + string.digits, k=length))
+
+def generate_test_case():
+    # Generate random number of players and problems
+    M = random.randint(1, 100)
+    N = random.randint(1, 100)
+    
+    # Generate random communication delay for each player
+    D = [random.randint(0, 1000) for _ in range(M)]
+    
+    # Generate submissions for each problem
+    problems = []
+    for _ in range(N):
+        L = random.randint(0, M)
+        submissions = []
+        for _ in range(L):
+            P = random.randint(0, M-1)  # Player ID
+            T = random.randint(0, 19999)  # Time elapsed
+            A = generate_random_answer()  # Answer
+            submissions.append((P, T, A))
+        problems.append((L, submissions))
+    
+    return M, N, D, problems
+
+def format_test_case(M, N, D, problems):
+    output = []
+    output.append(f"{M} {N}")
+    output.append(' '.join(map(str, D)))
+    for L, submissions in problems:
+        output.append(str(L))
+        for P, T, A in submissions:
+            output.append(f"{P} {T} {A}")
+    return '\n'.join(output)
+
+def generate_multiple_test_cases(num_cases):
+    test_cases = []
+    for _ in range(num_cases):
+        test_case = generate_test_case()
+        formatted_case = format_test_case(*test_case)
+        test_cases.append(formatted_case)
+    return '\n\n'.join(test_cases) + '\n0 0'
+
+# Example Usage
+if __name__ == "__main__":
+    num_cases = 5  # Specify the number of test cases to generate
+    test_cases = generate_multiple_test_cases(num_cases)
+    print(test_cases)
+```
+
+Explanation:
+- `generate_random_answer()`: Generates a random alphanumeric answer string with a length between 1 and 9.
+- `generate_test_case()`: Generates a single test case with random values for the number of players \(M\), the number of problems \(N\), communication delays \(D\), and submissions for each problem.
+- `format_test_case(M, N, D, problems)`: Formats the generated test case into the required input format.
+- `generate_multiple_test_cases(num_cases)`: Generates multiple test cases and concatenates them with an additional terminating line "0 0".
+
+This script will generate multiple test cases for the "Online Quizu System" problem, formatted appropriately for input into the problem's solution. You can adjust the number of test cases by changing the value of `num_cases`.

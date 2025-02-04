@@ -1,0 +1,27 @@
+An integer n (1 ≤ n ≤ 2000), an integer k (1 ≤ k ≤ n), and an integer s (3 ≤ s ≤ 100), which are separated by spaces.
+n lines follow, each containing three integers x, y, z (-4×10^7 ≤ x, y, z ≤ 4×10^7), separated by spaces.
+The input consists of multiple datasets. The end of the input is indicated by a line containing three zeros separated by a space.
+
+### Example Input:
+
+```
+1 1 100
+100 100 100
+6 4 10
+100 100 100
+106 102 102
+112 110 104
+104 116 102
+100 114 104
+92 107 100
+0 0 0
+```
+
+### Function Signature:
+Write a function f(inputs) that takes in the input.
+```python
+def f(inputs: List[Tuple[int, int, int, List[Tuple[int, int, int]]]]):
+    '''
+    inputs: a list of tuples, where each tuple contains an integer, an integer, an integer, and a list of tuples of three integers 
+    '''
+```

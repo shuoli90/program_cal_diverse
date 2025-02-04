@@ -1,0 +1,30 @@
+Sure! Here is a test case generator for the given problem statement:
+
+```python
+import random
+
+def tcgen():
+    # Define the constraints
+    max_n = 10**15
+    max_m = 10**15
+    
+    # Generate random values for n and m within the constraints
+    n = random.randint(1, max_n)
+    m = random.randint(0, max_m)
+    
+    return n, m
+
+# Example usage of the test case generator
+if __name__ == "__main__":
+    n, m = tcgen()
+    print(f"{n} {m}")
+```
+
+Explanation:
+- The generator function `tcgen` creates random test cases within the specified constraints.
+- `n` is generated randomly between 1 and \(10^{15}\).
+- `m` is generated randomly between 0 and \(10^{15}\).
+- The function returns a tuple `(n, m)`.
+- The example usage at the end is for demonstration purposes, printing the generated test case in the format expected by the problem.
+
+Since `n` and `m` can be very large and may not fit in a 32-bit integer, Python's `int` type, which can handle arbitrarily large integers, is used.

@@ -1,0 +1,35 @@
+
+Score : 200 points
+Problem StatementPrint all the integers that satisfies the following in ascending order:
+Among the integers between A and B (inclusive), it is either within the K smallest integers or within the K largest integers.
+Constraints
+1 \leq A \leq B \leq 10^9
+1 \leq K \leq 100
+All values in input are integers.
+InputInput is given from Standard Input in the following format:
+A B K
+OutputPrint all the integers that satisfies the condition above in ascending order.
+Sample Input 13 8 2
+Sample Output 13
+4
+7
+8
+3 is the first smallest integer among the integers between 3 and 8.
+4 is the second smallest integer among the integers between 3 and 8.
+7 is the second largest integer among the integers between 3 and 8.
+8 is the first largest integer among the integers between 3 and 8.
+Sample Input 24 8 3
+Sample Output 24
+5
+6
+7
+8
+Sample Input 32 9 100
+Sample Output 32
+3
+4
+5
+6
+7
+8
+9

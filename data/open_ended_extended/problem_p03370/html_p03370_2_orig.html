@@ -1,0 +1,193 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p03370 - Generation 2</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p03370 - Generation 2</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>
+Score : 200 points
+Problem StatementAkaki, a patissier, can make N kinds of doughnut using only a certain powder called "Okashi no Moto" (literally "material of pastry", simply called Moto below) as ingredient. These doughnuts are called Doughnut 1, Doughnut 2, ..., Doughnut N. In order to make one Doughnut i (1 ≤ i ≤ N), she needs to consume m_i grams of Moto. She cannot make a non-integer number of doughnuts, such as 0.5 doughnuts.
+Now, she has X grams of Moto. She decides to make as many doughnuts as possible for a party tonight. However, since the tastes of the guests differ, she will obey the following condition:
+For each of the N kinds of doughnuts, make at least one doughnut of that kind.
+At most how many doughnuts can be made here? She does not necessarily need to consume all of her Moto. Also, under the constraints of this problem, it is always possible to obey the condition.
+Constraints
+2 ≤ N ≤ 100
+1 ≤ m_i ≤ 1000
+m_1 + m_2 + ... + m_N ≤ X ≤ 10^5
+All values in input are integers.
+InputInput is given from Standard Input in the following format:
+N X
+m_1
+m_2
+:
+m_N
+OutputPrint the maximum number of doughnuts that can be made under the condition.
+Sample Input 13 1000
+120
+100
+140
+Sample Output 19
+She has 1000 grams of Moto and can make three kinds of doughnuts. If she makes one doughnut for each of the three kinds, she consumes 120 + 100 + 140 = 360 grams of Moto. From the 640 grams of Moto that remains here, she can make additional six Doughnuts 2. This is how she can made a total of nine doughnuts, which is the maximum.
+Sample Input 24 360
+90
+90
+90
+90
+Sample Output 24
+Making one doughnut for each of the four kinds consumes all of her Moto.
+Sample Input 35 3000
+150
+130
+150
+130
+110
+Sample Output 326
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An integer N (2 ≤ N ≤ 100), representing some quantity or size.
+An integer X (N ≤ X ≤ 10^5).
+A list of integers M of size N, where each integer is between 1 and 1000.
+
+### Example Input:
+
+```
+3 1000
+120
+100
+140
+```
+
+### Function Signature:
+Write a function f(N, X, M) that takes in the input. 
+def f(N: int, X: int, M: List[int]):
+    '''
+    N: an integer
+    X: an integer
+    M: a list of integers
+    '''</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Sure! Here's a test case generator for the given problem statement:
+
+```python
+import random
+
+def tcgen():
+    # Generate N within the range 2 to 100
+    N = random.randint(2, 100)
+    
+    # Generate X within the range sum(m_i) to 10^5 where sum(m_i) is the sum of all m_i
+    m = [random.randint(1, 1000) for _ in range(N)]
+    min_X = sum(m)
+    X = random.randint(min_X, 10**5)
+    
+    return N, X, m
+
+# Example of how to use the test case generator
+if __name__ == "__main__":
+    N, X, m = tcgen()
+    print(N)
+    print(X)
+    for mi in m:
+        print(mi)
+
+# Example Output:
+# 5
+# 3000
+# 150
+# 130
+# 150
+# 130
+# 110
+```
+
+### Explanation:
+
+1. **N** is generated randomly between 2 and 100.
+2. **m** is a list of integers randomly generated between 1 and 1000 for each kind of doughnut.
+3. **X** is generated such that it is at least the sum of all **m_i** (to ensure that making at least one doughnut of each kind is always possible) and at most \(10^5\).
+
+### Sample Execution:
+
+When executed, this generator will print out a random test case, e.g.:
+
+```
+5
+3000
+150
+130
+150
+130
+110
+```
+
+This output represents:
+- **N** = 5 (five kinds of doughnuts)
+- **X** = 3000 grams of Moto available
+- **m** = [150, 130, 150, 130, 110] (grams of Moto required for each kind of doughnut)
+
+You can run the generator multiple times to get different test cases.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    # Read the first line and split to get N and X
+    N, X = map(int, fh.readline().strip().split())
+    # Read the next N lines to get the list of m_i values
+    m = [int(fh.readline().strip()) for _ in range(N)]
+    return N, X, m</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

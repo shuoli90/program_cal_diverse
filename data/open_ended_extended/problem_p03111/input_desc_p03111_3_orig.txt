@@ -1,0 +1,32 @@
+Canonicalized Input Description:
+
+An integer N (3 ≤ N ≤ 8), representing some quantity.
+Three integers A, B, and C (1 ≤ C < B < A ≤ 1000).
+A list of integers l of size N, where each integer is between 1 and 1000.
+
+### Example Input:
+
+```
+5
+100
+90
+80
+98
+40
+30
+21
+80
+```
+
+### Function Signature:
+Write a function f(N, A, B, C, l) that takes in the input.
+```python
+def f(N: int, A: int, B: int, C: int, l: List[int]):
+    '''
+    N: an integer
+    A: an integer
+    B: an integer
+    C: an integer
+    l: a list of integers
+    '''
+```

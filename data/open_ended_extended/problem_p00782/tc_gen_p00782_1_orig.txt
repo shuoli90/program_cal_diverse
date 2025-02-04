@@ -1,0 +1,55 @@
+Sure! Let's write a test case generator for the given problem "Mobile Phone Coverage".
+
+```python
+import random
+
+def tcgen():
+    # Start with an empty list of test cases
+    test_cases = []
+    
+    # Number of cases to generate
+    num_cases = random.randint(1, 10)
+
+    for _ in range(num_cases):
+        # Randomly determine the number of antennas (2 ≤ n ≤ 100)
+        n = random.randint(2, 100)
+        
+        # Generate n antenna data
+        antennas = []
+        for _ in range(n):
+            xi = round(random.uniform(0, 200), 1)
+            yi = round(random.uniform(0, 200), 1)
+            ri = round(random.uniform(0, 200), 1)
+            antennas.append((xi, yi, ri))
+        
+        # Add the generated data set to the list of test cases
+        test_cases.append((n, antennas))
+    
+    # Add the terminator case (0)
+    test_cases.append((0, []))
+    
+    return test_cases
+
+def print_test_cases(test_cases):
+    for seq_num, (n, antennas) in enumerate(test_cases):
+        if n == 0:
+            print("0")
+        else:
+            print(n)
+            for (xi, yi, ri) in antennas:
+                print(f"{xi} {yi} {ri}")
+
+# Generate test cases
+test_cases = tcgen()
+
+# Print the generated test cases
+print_test_cases(test_cases)
+```
+
+This script generates a list of test cases for the "Mobile Phone Coverage" problem. Each test case consists of:
+- A random number of antennas (between 2 and 100).
+- For each antenna, random coordinates (xi, yi) and radius ri, all of which are fractional numbers between 0 and 200 inclusive.
+
+The format of the generated test cases matches the problem statement requirements. The test cases are printed in a format that can be used directly as input for testing the algorithm. The generator also includes a terminating data set with `n = 0`.
+
+You can run the script multiple times to generate different sets of test cases for extensive testing.

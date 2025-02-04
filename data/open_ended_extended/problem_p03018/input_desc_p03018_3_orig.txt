@@ -1,0 +1,18 @@
+Canonicalized Input Description:
+
+A string \( s \) consisting only of the characters 'A', 'B', and 'C', with length between 1 and 200000.
+
+### Example Input:
+
+```
+ABCABC
+```
+
+### Function Signature:
+Write a function f(s) that takes in the input.
+```python
+def f(s: str):
+    '''
+    s: a string
+    '''
+```

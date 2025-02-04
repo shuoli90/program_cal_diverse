@@ -1,0 +1,25 @@
+An integer N (1 ≤ N ≤ 100), representing some quantity or size.
+An integer F (1 ≤ F ≤ 100), representing a criterion number.
+A list of N elements where each element is a tuple. Each tuple contains:
+  - An integer M (1 ≤ M ≤ 10), representing the number of items.
+  - A list of M strings where each string is between 1 and 30 lowercase English letters.
+
+### Example Input:
+
+```
+5 2
+3 bread milk banana
+2 milk cornflakes
+3 potato bread milk
+4 cornflakes bread milk butter
+2 potato bread
+```
+
+### Function Signature:
+Write a function f(N, F, info) that takes in the input. 
+def f(N: int, F: int, info: List[Tuple[int, List[str]]]): 
+    ''' 
+    N: an integer 
+    F: an integer 
+    info: a list of tuples, each containing an integer and a list of strings
+    '''

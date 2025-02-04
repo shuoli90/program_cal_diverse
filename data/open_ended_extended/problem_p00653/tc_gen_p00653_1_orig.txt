@@ -1,0 +1,49 @@
+Sure! Here is a Python function to generate test cases for the "School of Killifish" problem:
+
+```python
+import random
+
+def tcgen():
+    # Constraints
+    max_r_c = 10**6
+    max_q = 10**4
+    max_dangerousness = 2**31 - 1
+    
+    # Generate dimensions r and c such that r * c <= 10^6
+    r = random.randint(1, min(1000, max_r_c // 1000))
+    c = random.randint(1, min(1000, max_r_c // r))
+    
+    # Generate the grid with random dangerousness values
+    grid = [[random.randint(0, max_dangerousness) for _ in range(c)] for _ in range(r)]
+    
+    # Generate the number of plans q
+    q = random.randint(1, max_q)
+    
+    # Generate q plans
+    plans = []
+    for _ in range(q):
+        r1 = random.randint(0, r - 1)
+        c1 = random.randint(0, c - 1)
+        r2 = random.randint(r1, r - 1)
+        c2 = random.randint(c1, c - 1)
+        plans.append((r1, c1, r2, c2))
+    
+    return r, c, q, grid, plans
+
+# Function to print the generated test case in the required format
+def print_test_case(r, c, q, grid, plans):
+    print(r, c, q)
+    for row in grid:
+        print(' '.join(map(str, row)))
+    for plan in plans:
+        print(' '.join(map(str, plan)))
+
+# Example usage:
+if __name__ == "__main__":
+    r, c, q, grid, plans = tcgen()
+    print_test_case(r, c, q, grid, plans)
+```
+
+This code defines a function `tcgen` that generates random test cases for the "School of Killifish" problem. The function ensures the constraints given in the problem statement are respected. It generates a grid with random dangerousness values and a list of subgrid plans. The `print_test_case` function prints the generated test case in the format specified by the problem statement.
+
+You can run the `if __name__ == "__main__":` block to see an example of a generated test case. This generator can be used to create diverse test cases for thorough testing of the solution to the problem.

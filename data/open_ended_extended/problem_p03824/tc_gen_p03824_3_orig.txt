@@ -1,0 +1,53 @@
+Certainly! Let's write a test case generator for the given problem statement. The generator will create random trees adhering to the constraints specified.
+
+### Test Case Generator
+
+```python
+import random
+
+def generate_tree(N):
+    edges = []
+    for i in range(2, N + 1):
+        edges.append((random.randint(1, i - 1), i))
+    random.shuffle(edges)
+    return edges
+
+def tcgen():
+    N = random.randint(2, 10**5)
+    edges = generate_tree(N)
+    return N, edges
+
+def format_tc(N, edges):
+    result = [str(N)]
+    for a, b in edges:
+        result.append(f"{a} {b}")
+    return "\n".join(result)
+
+# Example usage
+if __name__ == "__main__":
+    test_cases = [tcgen() for _ in range(5)]  # Generating 5 test cases
+    for tc in test_cases:
+        N, edges = tc
+        print(format_tc(N, edges))
+        print("\n---\n")
+```
+
+### Explanation
+
+1. **generate_tree(N)**:
+    - This function generates a tree with `N` vertices.
+    - We start from vertex 2 to N, and for each vertex, we randomly choose a parent vertex from the range `[1, i-1]`. This ensures that the generated structure is a tree.
+
+2. **tcgen()**:
+    - Generates a random value for `N` within the given constraints.
+    - Calls `generate_tree(N)` to get the edges for the tree.
+    - Returns the generated value of `N` and the list of edges.
+
+3. **format_tc(N, edges)**:
+    - Formats the test case into the required input format for the problem.
+    - Combines the number of vertices and the edges into a single string with appropriate new line separations.
+
+4. **Example usage**:
+    - Generates 5 test cases and prints them in the required format.
+
+This code will create valid random test cases for the given problem statement. Each test case represents a tree with a specified number of vertices and corresponding edges, formatted correctly for use in competitive programming.

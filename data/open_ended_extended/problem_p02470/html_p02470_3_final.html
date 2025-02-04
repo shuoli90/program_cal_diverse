@@ -1,0 +1,138 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p02470 - Generation 3</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p02470 - Generation 3</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>
+Euler's Phi Function
+For given integer n, count the totatives of n, that is, the positive integers less than or equal to n that are relatively prime to n.
+Input
+n
+An integer n (1 ≤ n ≤ 1000000000).
+Output
+The number of totatives in a line.
+Sample Input 1
+6
+Sample Output 1
+2
+Sample Input 2
+1000000
+Sample Output 2
+400000
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An integer X (1 ≤ X ≤ 10^9).
+
+### Example Input:
+
+```
+6
+```
+
+### Function Signature:
+Write a function f(X) that takes in the input.
+def f(X: int):
+    '''
+    X: an integer
+    '''</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Sure, I can help you write a test case generator for the given problem statement of Euler's Phi function.
+
+Here's a suitable test case generator function for this problem:
+
+```python
+import random
+
+def tcgen():
+    n = random.randint(1, 10**9)
+    return n
+
+# Example usage
+if __name__ == "__main__":
+    n = tcgen()
+    print(n)
+```
+
+This function generates a random integer `n` within the specified range (1 ≤ n ≤ 1000000000) and returns it. When the function is executed, it will print a random value of `n` which can be used as an input for the Euler's Phi function problem.
+
+If you need more test cases at once, you can modify the function slightly to generate multiple test cases:
+
+```python
+def multiple_tcgen(num_cases):
+    test_cases = [random.randint(1, 10**9) for _ in range(num_cases)]
+    return test_cases
+
+# Example usage
+if __name__ == "__main__":
+    num_cases = 10  # Specify the number of test cases you want to generate
+    test_cases = multiple_tcgen(num_cases)
+    for tc in test_cases:
+        print(tc)
+```
+
+This function `multiple_tcgen` will generate a list of random test cases and print each of them. You can adjust the `num_cases` variable to specify how many test cases you want to generate.
+
+These generators provide the input `n` within the required constraints and can be used to create a variety of test cases for the Euler's Phi function problem.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    n = int(fh.readline().strip())
+    return (n,)</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

@@ -1,0 +1,51 @@
+Sure! Let's create a test case generator for the given problem. The generator will create random convex polygons by generating random points and ensuring they form a convex shape. 
+
+Here's the code for the test case generator:
+
+```python
+import random
+import math
+
+def generate_random_convex_polygon(n):
+    """ Generates a random convex polygon with n vertices. """
+    points = []
+    for _ in range(n):
+        x = random.randint(0, 10000)
+        y = random.randint(0, 10000)
+        points.append((x, y))
+    
+    # Sort points to ensure the polygon is convex and counterclockwise
+    points.sort()
+    points.sort(key=lambda point: math.atan2(point[1], point[0]))
+    
+    return points
+
+def tcgen():
+    test_cases = []
+    num_datasets = random.randint(1, 10)  # You can adjust the number of datasets for more tests
+
+    for _ in range(num_datasets):
+        n = random.randint(3, 100)
+        points = generate_random_convex_polygon(n)
+        
+        dataset = f"{n}\n"
+        for x, y in points:
+            dataset += f"{x} {y}\n"
+        
+        test_cases.append(dataset.strip())
+    
+    # Add the terminating zero line
+    test_cases.append("0")
+    
+    return "\n".join(test_cases)
+
+# Example usage:
+print(tcgen())
+```
+
+### Explanation:
+- `generate_random_convex_polygon(n)`: This function generates `n` random points and sorts them to form a convex polygon. Sorting by angles ensures that the points are arranged in a counterclockwise order.
+- `tcgen()`: This function generates multiple datasets by calling `generate_random_convex_polygon` and formats them according to the problem's input specifications. It also appends a terminating zero line to indicate the end of input.
+
+### Usage:
+This generator will output a string that represents the entire input for the problem, including multiple datasets followed by a terminating zero. You can adjust the ranges and numbers to generate different sets of test cases for thorough testing.

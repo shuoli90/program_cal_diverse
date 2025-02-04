@@ -1,0 +1,10 @@
+def extract_arguments(fh):
+    H, W = map(int, fh.readline().strip().split())
+    palace_map = [fh.readline().strip() for _ in range(H)]
+    return H, W, palace_map
+
+# if __name__ == "__main__":
+#     input_path = sys.argv[1]
+#     with open(input_path, 'r') as fh: 
+#         H, W, palace_map = extract_arguments(fh)
+#         f(H, W, palace_map)

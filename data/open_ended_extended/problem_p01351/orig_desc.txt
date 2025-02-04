@@ -1,0 +1,12 @@
+Problem C: Usagitobi
+There is a board of m × n squares. The square in the i-th row and j-th column is represented as (i, j) (0 ≤ i < m, 0 ≤ j < n).
+When the rabbit is at (x, y), it can jump to ((x + a) mod m, (y + b) mod n) or ((x + c) mod m, (y + d) mod n).
+Now, the rabbit is at (0, 0). Assuming that it cannot go back to a square it has jumped to before, how many times can the rabbit jump at most?
+Input
+The input is given on a single line and consists of six integers m, n, a, b, c, and d separated by a space. 1 ≤ m, n, a, b, c, d ≤ 100,000.
+Output
+Output the maximum number of times the rabbit can jump on a single line.
+Sample Input 1
+6 6 2 2 2 4
+Sample Output 1
+8

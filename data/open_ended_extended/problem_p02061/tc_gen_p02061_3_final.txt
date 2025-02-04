@@ -1,0 +1,31 @@
+Sure! Here is a test case generator for the problem "Twice of oneself".
+
+```python
+import random
+
+def tcgen():
+    Q = random.randint(1, 10**5)
+    
+    # Generate Q integers N, each in the range [2, 10^5]
+    N_list = [random.randint(2, 10**5) for _ in range(Q)]
+    
+    return Q, N_list
+
+# Example usage:
+Q, N_list = tcgen()
+print(Q)
+for N in N_list:
+    print(N)
+```
+
+This function generates a random number of queries \( Q \) within the constraints and then generates \( Q \) integers \( N \), each within the specified range. You can use this function to produce input test cases for your problem.
+
+For example, this might output:
+```
+3
+43
+9
+24
+```
+
+Which corresponds to the sample input provided in the problem statement.

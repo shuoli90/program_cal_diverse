@@ -1,0 +1,149 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p02937 - Generation 1</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p02937 - Generation 1</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>
+Score : 500 points
+Problem StatementGiven are two strings s and t consisting of lowercase English letters. Determine if there exists an integer i satisfying the following condition, and find the minimum such i if it exists.
+Let s' be the concatenation of 10^{100} copies of s. t is a subsequence of the string {s'}_1{s'}_2\ldots{s'}_i (the first i characters in s').
+Notes
+A subsequence of a string a is a string obtained by deleting zero or more characters from a and concatenating the remaining characters without changing the relative order. For example, the subsequences of contest include net, c, and contest.
+Constraints
+1 \leq |s| \leq 10^5
+1 \leq |t| \leq 10^5
+s and t consists of lowercase English letters.
+InputInput is given from Standard Input in the following format:
+s
+t
+OutputIf there exists an integer i satisfying the following condition, print the minimum such i; otherwise, print -1.
+Sample Input 1contest
+son
+Sample Output 110
+t = son is a subsequence of the string contestcon (the first 10 characters in s' = contestcontestcontest...), so i = 10 satisfies the condition.
+On the other hand, t is not a subsequence of the string contestco (the first 9 characters in s'), so i = 9 does not satisfy the condition.
+Similarly, any integer less than 9 does not satisfy the condition, either. Thus, the minimum integer i satisfying the condition is 10.
+Sample Input 2contest
+programming
+Sample Output 2-1
+t = programming is not a substring of s' = contestcontestcontest.... Thus, there is no integer i satisfying the condition.
+Sample Input 3contest
+sentence
+Sample Output 333
+Note that the answer may not fit into a 32-bit integer type, though we cannot put such a case here.
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>Canonicalized Input Description:
+
+A string \( s \) of length between 1 and 10^5, consisting of lowercase English letters.
+A string \( t \) of length between 1 and 10^5, consisting of lowercase English letters.
+
+### Example Input:
+
+```
+contest
+son
+```
+
+### Function Signature:
+Write a function f(s, t) that takes in the input.
+def f(s: str, t: str):
+    '''
+    s: a string
+    t: a string
+    '''</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Sure! Below is a test case generator for the given problem statement:
+
+```python
+import random
+import string
+
+def tcgen():
+    # Generate random length for s and t
+    len_s = random.randint(1, 10**5)
+    len_t = random.randint(1, 10**5)
+    
+    # Generate random string s and t of respective lengths
+    s = ''.join(random.choices(string.ascii_lowercase, k=len_s))
+    t = ''.join(random.choices(string.ascii_lowercase, k=len_t))
+    
+    return s, t
+
+# Example usage:
+if __name__ == "__main__":
+    s, t = tcgen()
+    print(s)
+    print(t)
+```
+
+### Explanation
+- `len_s` and `len_t` are the lengths of the strings `s` and `t`, respectively, randomly chosen within the given constraints.
+- `s` and `t` are generated as random sequences of lowercase English letters of lengths `len_s` and `len_t` respectively.
+- The function returns the generated strings `s` and `t`.
+
+You can run the script and it will print two random strings that can be used as input for the problem. This generator ensures that the constraints are met and provides a diverse set of inputs for thorough testing.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    s = fh.readline().strip()
+    t = fh.readline().strip()
+    return s, t</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

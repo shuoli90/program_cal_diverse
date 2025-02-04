@@ -1,0 +1,3 @@
+Types: Time: int, R: int, L: int, MaryX: List[int], MaryY: List[int], MaryT: List[int], M: int, GeorgeX: List[int], GeorgeY: List[int], GeorgeT: List[int], N: int, BlockSX: List[int], BlockSY: List[int], BlockTX: List[int], BlockTY: List[int]
+Ranges: 0 ≤ Time ≤ 100, 0 < R < 30000, 2 ≤ L ≤ 20, -10000 ≤ MaryX[i], MaryY[i] ≤ 10000, 0 ≤ MaryT[i] ≤ Time, 2 ≤ M ≤ 20, -10000 ≤ GeorgeX[j], GeorgeY[j] ≤ 10000, 0 ≤ GeorgeT[j] ≤ Time, 0 ≤ N ≤ 20, -10000 ≤ BlockSX[k], BlockSY[k], BlockTX[k], BlockTY[k] ≤ 10000
+Addtl Info: MaryT1 = 0, MaryTL = Time, MaryTi < MaryTi+1 for 1 ≤ i ≤ L-1, (GeorgeXj, GeorgeYj) ≠ (GeorgeXj+1, GeorgeYj+1) for 1 ≤ j ≤ M-1, no two obstacles touch or cross.

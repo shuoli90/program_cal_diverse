@@ -1,0 +1,48 @@
+Sure! Here's a test case generator for the given problem statement:
+
+```python
+import random
+
+def tcgen():
+    # Generate N (2 ≤ N ≤ 100000)
+    N = random.randint(2, 100000)
+    
+    # Generate C (1 ≤ C ≤ 100000)
+    C = random.randint(1, 100000)
+    
+    commands = []
+    
+    for _ in range(C):
+        command_type = random.choice([0, 1])
+        if command_type == 0:
+            # Update command "0 t p"
+            t = random.randint(1, N)
+            p = random.randint(1, 10**9)
+            commands.append(f"0 {t} {p}")
+        else:
+            # Report command "1 m"
+            m = random.randint(1, N)
+            commands.append(f"1 {m}")
+    
+    return N, C, commands
+
+# Generate a sample test case
+N, C, commands = tcgen()
+
+# Print the test case in the required format
+print(N, C)
+for command in commands:
+    print(command)
+
+```
+
+Explanation:
+1. **Generate N**: The number of teams is randomly selected between 2 and 100000.
+2. **Generate C**: The number of commands is randomly selected between 1 and 100000.
+3. **Generate commands**:
+    - For each command, randomly decide whether it is an update command (`0 t p`) or a report command (`1 m`).
+    - For update commands, generate a team number `t` between 1 and N and a score `p` between 1 and \(10^9\).
+    - For report commands, generate a rank `m` between 1 and N.
+4. **Return**: The generated test case is returned in the required format.
+
+This test case generator creates various random scenarios adhering to the constraints of the problem statement.

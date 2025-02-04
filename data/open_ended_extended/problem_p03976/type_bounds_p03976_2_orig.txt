@@ -1,0 +1,3 @@
+Types: N: int, K: int, P: List[str]
+Ranges: 1 ≤ N ≤ 10^4, 1 ≤ K ≤ 26, 1 ≤ |P[i]| ≤ 10
+Addtl Info: All characters in P[i] are capital letters. P[i] are not necessarily unique.

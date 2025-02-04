@@ -1,0 +1,58 @@
+To generate test cases for the given problem, we need to achieve the following:
+
+1. Randomly generate \(N\) (number of papers) within the given constraints.
+2. Randomly generate a list of integers \(T_i\) representing the time it takes to scan each piece of paper, also within the given constraints.
+
+Here's the test case generator for the given problem:
+
+```python
+import random
+
+def tcgen():
+    # Constraint for N
+    N = random.randint(1, 50)
+    
+    # Constraint for T_i
+    T = [random.randint(1, 50) for _ in range(N)]
+    
+    return N, T
+
+# Example usage
+if __name__ == "__main__":
+    N, T = tcgen()
+    print(N)
+    for t in T:
+        print(t)
+```
+
+### Explanation:
+
+1. **Generating \(N\)**:
+   - `N = random.randint(1, 50)` generates a random integer between 1 and 50 inclusive.
+
+2. **Generating the list \(T\)**:
+   - `[random.randint(1, 50) for _ in range(N)]` generates a list of \(N\) integers, where each integer is between 1 and 50 inclusive.
+
+### Example Output:
+
+Running the `tcgen` function might produce an output like:
+
+```
+10
+3
+45
+21
+30
+3
+8
+25
+10
+47
+29
+```
+
+This output corresponds to:
+- \(N = 10\)
+- \(T = [3, 45, 21, 30, 3, 8, 25, 10, 47, 29]\)
+
+You can run this script multiple times to generate different test cases, which can be useful for testing the robustness and correctness of your solution to the problem.

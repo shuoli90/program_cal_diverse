@@ -1,0 +1,32 @@
+Canonicalized Input Description:
+
+An integer H (1 ≤ H ≤ 10^3), representing some quantity or size.
+An integer W (1 ≤ W ≤ 10^3), representing some quantity or size.
+An integer N (1 ≤ N ≤ 10^3), representing some quantity or size.
+A list of N integers L, where each integer (1 ≤ L[i] ≤ 10^3) represents some quantity or size.
+A list of N lists of tuples, where each tuple contains two integers (1 ≤ x, y ≤ 10^3).
+
+### Example Input:
+
+```
+5
+5
+3
+2 3 4
+[(1, 2), (3, 4)]
+[(1, 1), (2, 2), (3, 3)]
+[(2, 3), (3, 4), (4, 5), (5, 6)]
+```
+
+### Function Signature:
+Write a function f(H, W, N, L, paths) that takes in the input.
+```python
+def f(H: int, W: int, N: int, L: List[int], paths: List[List[Tuple[int, int]]]):
+    '''
+    H: an integer
+    W: an integer
+    N: an integer
+    L: a list of integers
+    paths: a list of lists of tuples, where each tuple contains two integers
+    '''
+```

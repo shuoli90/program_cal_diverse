@@ -1,0 +1,32 @@
+Canonicalized Input Description:
+
+An integer n (1 ≤ n ≤ 25), representing some quantity or size.  
+A list of n tuples, where each tuple contains two integers. The first integer is between 1 and 1e5, and the second integer is between 1 and 1e5.  
+The end of input is represented by a case with n = 0.
+
+### Example Input:
+
+```
+3
+2 3
+3 6
+1 2
+3
+2 3
+3 5
+1 2
+0
+```
+
+### Function Signature:
+
+Write a function f(inputs) that takes in the input. 
+
+```python
+def f(inputs: List[Tuple[int, List[Tuple[int, int]]]]): 
+    ''' 
+    inputs: a list of tuples, where each tuple contains:
+        - an integer 
+        - a list of tuples, where each tuple contains two integers 
+    '''
+```

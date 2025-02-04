@@ -1,0 +1,55 @@
+Certainly! Here's a test case generator for the "Wall Painting" problem:
+
+```python
+import random
+
+def generate_test_case():
+    # Generate `n` and `m`
+    n = random.randint(1, 10**9)
+    m = random.randint(1, 2 * 10**5)
+    
+    # Generate `x` and `y`
+    x = random.randint(1, 10**5)
+    y = random.randint(1, 10**5)
+    
+    # Generate robots' painting instructions
+    robots = []
+    for _ in range(m):
+        ci = random.randint(1, 3) # color
+        li = random.randint(1, n) # left position
+        ri = random.randint(li, n) # right position
+        robots.append((ci, li, ri))
+    
+    return n, m, x, y, robots
+
+def format_test_case(n, m, x, y, robots):
+    output = f"{n} {m} {x} {y}\n"
+    for robot in robots:
+        output += f"{robot[0]} {robot[1]} {robot[2]}\n"
+    return output
+
+# Example usage:
+random.seed(42)  # For reproducibility in this example
+n, m, x, y, robots = generate_test_case()
+formatted_test_case = format_test_case(n, m, x, y, robots)
+print(formatted_test_case)
+```
+
+### Explanation:
+
+1. **`generate_test_case` function**:
+   - Generates random values for `n` (number of panels), `m` (number of robots), `x` (bonus value), and `y` (penalty value) within their specified ranges.
+   - For each of the `m` robots, it generates a random color (`ci`), a random left position (`li`), and a random right position (`ri`). The right position is guaranteed to be greater than or equal to the left position.
+
+2. **`format_test_case` function**:
+   - Takes the generated test case values and formats them into a string that matches the input format specified in the problem statement.
+
+3. **Example Usage**:
+   - The `random.seed(42)` line is added to ensure the generated test case is reproducible for demonstration purposes. Remove this line if you want different test cases each time you run the script.
+   - The generated test case is then printed out in the specified format.
+
+### Notes:
+- Given the large possible range of `n` (up to \(10^9\)), the generator may take a significant amount of time or memory if not constrained properly in a real-world setting. Adjust `n` to smaller values for practical testing if necessary.
+- The generator ensures that every robot's painting range is valid (i.e., `1 ≤ li ≤ ri ≤ n`).
+
+You can use this script to generate multiple test cases for the "Wall Painting" problem to test your solution's correctness and performance.

@@ -1,0 +1,3 @@
+Types: expressions: List[str]
+Ranges: Each expression contains at most 80 characters.
+Addtl Info: Expressions consist of lowercase letters, digits, operators `+`, `-`, `^`, parentheses `(` and `)`, and spaces.

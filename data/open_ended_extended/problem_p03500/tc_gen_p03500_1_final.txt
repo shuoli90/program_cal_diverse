@@ -1,0 +1,31 @@
+Certainly! Here is a test case generator for the provided problem statement:
+
+```python
+import random
+
+def tcgen():
+    # Constraints
+    MAX_N = 200
+    MAX_A = 10**18
+    MAX_K = 10**18
+    
+    # Generate random values within the constraints
+    N = random.randint(1, MAX_N)
+    K = random.randint(1, MAX_K)
+    A = [random.randint(1, MAX_A) for _ in range(N)]
+    
+    return N, K, A
+
+# Printing generated test case for demonstration
+N, K, A = tcgen()
+print(N)
+print(K)
+print(" ".join(map(str, A)))
+```
+
+### Explanation:
+- **N**: The number of integers on the blackboard is chosen randomly between 1 and 200.
+- **K**: The maximum number of operations is chosen randomly between 1 and \(10^{18}\).
+- **A**: The list of integers (each between 1 and \(10^{18}\)) written on the blackboard is generated.
+
+This generator will provide random test cases that adhere to the constraints specified in the problem statement. You can run this script to generate a random test case and then use it for further testing of your solution.

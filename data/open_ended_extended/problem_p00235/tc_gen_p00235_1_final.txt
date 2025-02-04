@@ -1,0 +1,56 @@
+Sure, let's create a test case generator for the problem "Sergeant Ryan." Here's a Python function that generates test cases based on the problem statement:
+
+```python
+import random
+
+def generate_tree_edges(N):
+    edges = []
+    for i in range(2, N + 1):
+        # Connect each node to a random previous node to ensure it forms a tree
+        a = random.randint(1, i - 1)
+        b = i
+        t = random.randint(1, 500)
+        edges.append((a, b, t))
+    return edges
+
+def tcgen():
+    test_cases = []
+    num_cases = random.randint(1, 100)
+    
+    for _ in range(num_cases):
+        N = random.randint(2, 20)
+        edges = generate_tree_edges(N)
+        test_case = (N, edges)
+        test_cases.append(test_case)
+    
+    return test_cases
+
+def print_test_cases(test_cases):
+    for N, edges in test_cases:
+        print(N)
+        for a, b, t in edges:
+            print(f"{a} {b} {t}")
+    print(0)
+
+# Generate and print the test cases
+test_cases = tcgen()
+print_test_cases(test_cases)
+```
+
+### Explanation
+
+1. **`generate_tree_edges(N)` Function:**
+   - This function generates `N-1` edges to form a tree structure where each node `i` (starting from 2) is connected to a randomly chosen node from 1 to `i-1`.
+   - The travel time `t` for each bridge is randomly chosen between 1 and 500.
+
+2. **`tcgen()` Function:**
+   - This function generates a list of test cases. The number of test cases is randomly chosen between 1 and 100.
+   - For each test case, it randomly selects a number of islands `N` between 2 and 20 and generates the corresponding edges using the `generate_tree_edges(N)` function.
+   - Each test case is stored as a tuple `(N, edges)`.
+
+3. **`print_test_cases(test_cases)` Function:**
+   - This function prints the generated test cases in the required input format.
+   - It iterates through the list of test cases, printing the number of islands `N` followed by the edge information for each test case.
+   - Finally, it prints a single zero to indicate the end of the input.
+
+You can run this script to generate and print random test cases for the "Sergeant Ryan" problem.

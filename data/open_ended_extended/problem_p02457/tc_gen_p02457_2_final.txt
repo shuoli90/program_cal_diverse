@@ -1,0 +1,67 @@
+Sure, I can help you write a test case generator for the "Set: Range Search" problem. Below is the Python code for generating random test cases.
+
+```python
+import random
+
+def tcgen():
+    q = random.randint(1, 200000)  # Number of queries
+    
+    queries = []
+    inserted_values = set()
+    
+    for _ in range(q):
+        operation = random.randint(0, 3)
+        
+        if operation == 0:  # insert(x)
+            x = random.randint(0, 1000000000)
+            if x not in inserted_values:
+                inserted_values.add(x)
+            queries.append(f"0 {x}")
+        
+        elif operation == 1:  # find(x)
+            if inserted_values:
+                x = random.choice(list(inserted_values))
+            else:
+                x = random.randint(0, 1000000000)
+            queries.append(f"1 {x}")
+        
+        elif operation == 2:  # delete(x)
+            if inserted_values:
+                x = random.choice(list(inserted_values))
+                inserted_values.remove(x)
+            else:
+                x = random.randint(0, 1000000000)
+            queries.append(f"2 {x}")
+        
+        elif operation == 3:  # dump(L, R)
+            if inserted_values:
+                L = random.choice(list(inserted_values))
+                R = random.choice(list(inserted_values))
+                if L > R:
+                    L, R = R, L
+            else:
+                L = random.randint(0, 1000000000)
+                R = random.randint(0, 1000000000)
+                if L > R:
+                    L, R = R, L
+            queries.append(f"3 {L} {R}")
+    
+    return q, queries
+
+# Example of generating a test case
+q, queries = tcgen()
+print(q)
+for query in queries:
+    print(query)
+```
+
+This generator follows these rules:
+
+1. The number of queries \( q \) is a random integer between 1 and 200,000.
+2. Each query is randomly chosen from the four possible operations (`insert`, `find`, `delete`, `dump`).
+3. For `insert` operations, a random integer \( x \) between 0 and 1,000,000,000 is generated and added to the set, ensuring uniqueness.
+4. For `find` operations, if there are already inserted values, a random choice from the existing values is used; otherwise, a new random integer is generated.
+5. For `delete` operations, if there are values in the set, a random value is chosen from the set and removed.
+6. For `dump` operations, if there are values in the set, two random values from the set are chosen and ordered as \( L \) and \( R \); otherwise, two new random integers are generated and ordered.
+
+This approach ensures that the generated test cases are valid and conform to the problem constraints.

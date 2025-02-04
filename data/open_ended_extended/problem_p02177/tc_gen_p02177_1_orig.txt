@@ -1,0 +1,46 @@
+Sure, let's create a test case generator for the provided problem statement "Equivalent Propositions." The goal is to generate random test cases that adhere to the constraints and input format specified in the problem.
+
+Here's the test case generator:
+
+```python
+import random
+
+def generate_test_case():
+    # Step 1: Randomly generate N within the allowed range
+    N = random.randint(2, 300)
+    
+    # Step 2: Generate a number of implication pairs, M
+    # Ensure M is within the valid range of 1 to N(N-1)
+    M = random.randint(1, min(N * (N-1), 5000))
+    
+    # Step 3: Generate M pairs of implications (a_i, b_i)
+    implications = set()
+    while len(implications) < M:
+        a_i = random.randint(1, N)
+        b_i = random.randint(1, N)
+        if a_i != b_i:
+            implications.add((a_i, b_i))
+    
+    # Convert set to list for consistent ordering
+    implications = list(implications)
+    
+    # Step 4: Format the output
+    output = f"{N} {M}\n"
+    for a_i, b_i in implications:
+        output += f"{a_i} {b_i}\n"
+    
+    return output
+
+# Generate a test case and print it
+print(generate_test_case())
+```
+
+This script generates a random number of propositions `N` and a random number of implication pairs `M` within the specified constraints. Each implication pair is unique and satisfies the conditions \(a_i \neq b_i\) and \(1 \leq a_i, b_i \leq N\).
+
+Here is how it works:
+1. **Randomly choose** \(N\) in the range from 2 to 300.
+2. **Randomly choose** \(M\) in the range from 1 to \( \min(N(N-1), 5000) \), ensuring it doesn't exceed the maximum possible number of pairs.
+3. **Generate unique pairs** \( (a_i, b_i) \), ensuring \( a_i \neq b_i \).
+4. **Format the output** to match the required input format for the problem.
+
+This generator ensures that all generated test cases are valid according to the problem constraints.

@@ -1,0 +1,56 @@
+To create a test case generator for the given Quick Sort problem, we need to generate a random number of cards, each with a suit and a number, and ensure that the generated test cases conform to the specified constraints.
+
+Here's a test case generator using Python:
+
+```python
+import random
+
+def generate_card():
+    suit = random.choice(['S', 'H', 'C', 'D'])
+    number = random.randint(1, 10**9)
+    return f"{suit} {number}"
+
+def tcgen():
+    n = random.randint(1, 100000)
+    cards = [generate_card() for _ in range(n)]
+    return n, cards
+
+def print_test_case(n, cards):
+    print(n)
+    for card in cards:
+        print(card)
+
+# Example usage:
+if __name__ == "__main__":
+    n, cards = tcgen()
+    print_test_case(n, cards)
+```
+
+### Explanation:
+
+1. **generate_card()**:
+    - This function generates a single card by randomly choosing a suit from `['S', 'H', 'C', 'D']` and a number between 1 and \(10^9\).
+    - The card is formatted as a string in the format "Suit Number".
+
+2. **tcgen()**:
+    - This function generates a random number of cards \(n\) between 1 and 100,000.
+    - It then creates a list of \(n\) cards by calling the `generate_card()` function.
+
+3. **print_test_case(n, cards)**:
+    - This function prints the test case in the required format.
+    - It first prints the number of cards \(n\), followed by each card on a new line.
+
+### Example Output:
+
+Running the generator will produce output in the format required by the problem statement. Here is an example of the output:
+
+```
+5
+C 472839
+S 283746
+D 927364
+H 364738
+C 927365
+```
+
+This generator ensures that the test cases are within the constraints and the format specified in the problem statement. Each run of the generator will produce a different test case due to the use of randomization.

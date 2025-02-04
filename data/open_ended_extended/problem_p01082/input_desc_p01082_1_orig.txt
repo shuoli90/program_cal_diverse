@@ -1,0 +1,24 @@
+An integer n (1 ≤ n ≤ 5 × 10^4), representing some dimension or size.
+An integer m (1 ≤ m ≤ 5 × 10^4), representing some other dimension or size.
+An integer k (1 ≤ k ≤ min(10^5, n × m)), representing a count or quantity.
+A list of k tuples, where each tuple (xi, yi) represents coordinates, with:
+  - xi being an integer (0 ≤ xi ≤ n−1)
+  - yi being an integer (0 ≤ yi ≤ m−1)
+
+### Example Input:
+
+```
+20 10 2
+0 0
+17 5
+```
+
+### Function Signature:
+Write a function f(n, m, k, coordinates) that takes in the input.
+def f(n: int, m: int, k: int, coordinates: List[Tuple[int, int]]):
+    ''' 
+    n: an integer 
+    m: an integer 
+    k: an integer 
+    coordinates: a list of tuples, where each tuple contains two integers 
+    '''

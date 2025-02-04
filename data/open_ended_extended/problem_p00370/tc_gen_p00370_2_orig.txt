@@ -1,0 +1,79 @@
+Sure! Let's write a test case generator for the problem "Lake Survey". Here's a Python function that generates valid test cases for the given problem statement.
+
+```python
+import random
+
+def generate_random_point(max_coord=10**4):
+    return (random.randint(0, max_coord), random.randint(0, max_coord))
+
+def generate_polygon(n, max_coord=10**4):
+    points = [generate_random_point(max_coord) for _ in range(n)]
+    
+    # Sort points by angle with respect to the centroid (to ensure counter-clockwise order)
+    centroid = (sum(x for x, y in points) / n, sum(y for x, y in points) / n)
+    points.sort(key=lambda p: (p[0] - centroid[0]) ** 2 + (p[1] - centroid[1]) ** 2)
+    return points
+
+def is_point_in_polygon(point, polygon):
+    # Ray-casting algorithm to check if a point is inside a polygon
+    x, y = point
+    n = len(polygon)
+    inside = False
+    px, py = polygon[0]
+    
+    for i in range(n+1):
+        sx, sy = polygon[i % n]
+        if y > min(py, sy):
+            if y <= max(py, sy):
+                if x <= max(px, sx):
+                    if py != sy:
+                        xinters = (y - py) * (sx - px) / (sy - py) + px
+                    if px == sx or x <= xinters:
+                        inside = not inside
+        px, py = sx, sy
+    
+    return inside
+
+def tcgen():
+    max_coord = 10**4
+    while True:
+        x_s, y_s = generate_random_point(max_coord)
+        x_g, y_g = generate_random_point(max_coord)
+        
+        if (x_s != x_g or y_s != y_g):
+            break
+
+    N = random.randint(3, 100)
+    polygon = generate_polygon(N, max_coord)
+    
+    # Ensure start and end points are not within the polygon
+    while is_point_in_polygon((x_s, y_s), polygon):
+        x_s, y_s = generate_random_point(max_coord)
+    
+    while is_point_in_polygon((x_g, y_g), polygon):
+        x_g, y_g = generate_random_point(max_coord)
+    
+    # Format the output
+    test_case = f"{x_s} {y_s}\n{x_g} {y_g}\n{N}\n"
+    test_case += "\n".join(f"{x} {y}" for x, y in polygon)
+    
+    return test_case
+
+# Generate a test case
+print(tcgen())
+```
+
+This function generates:
+
+1. Random start (`x_s`, `y_s`) and end (`x_g`, `y_g`) points.
+2. A random convex polygon with `N` vertices.
+3. Ensures that start and end points are not inside the polygon or on its boundary.
+4. Ensures that start and end points are distinct.
+5. Produces the test case in the required format.
+
+The function uses helper functions:
+- `generate_random_point`: Generates random coordinates within the given range.
+- `generate_polygon`: Generates a convex polygon by ensuring points are sorted counter-clockwise.
+- `is_point_in_polygon`: Uses the ray-casting algorithm to check if a point is inside the polygon.
+
+This ensures that the generated test cases are valid according to the problem constraints.

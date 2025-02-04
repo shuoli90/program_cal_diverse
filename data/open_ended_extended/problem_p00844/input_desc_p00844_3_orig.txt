@@ -1,0 +1,66 @@
+An integer or decimal L (0.1 < L < 50.0), representing a required distance.
+Two polygons described as follows:
+- Each polygon starts with an integer n (2 < n < 15), representing the number of vertices.
+- Followed by n pairs of non-negative integers (x_i and y_i) (0 ≤ x_i, y_i < 500) representing the coordinates of each vertex.
+The input ends with a line containing a single zero.
+
+### Example Input:
+
+```
+10.5235
+3
+0 0
+100 100
+0 100
+4
+0 50
+20 50
+20 80
+0 80
+10.0
+4
+120 45
+140 35
+140 65
+120 55
+8
+0 0
+100 0
+100 100
+0 100
+0 55
+80 90
+80 10
+0 45
+10.0
+3
+0 0
+1 0
+0 1
+3
+0 100
+1 101
+0 101
+10.0
+3
+0 0
+1 0
+0 100
+3
+0 50
+100 50
+0 51
+0
+```
+
+### Function Signature:
+Write a function f(inputs) that takes in the input.
+```python
+def f(inputs: List[Tuple[float, List[Tuple[int, int]], List[Tuple[int, int]]]]):
+    '''
+    inputs: a list of tuples, each containing:
+      - a float
+      - a list of integer pairs representing the first polygon
+      - a list of integer pairs representing the second polygon
+    '''
+```

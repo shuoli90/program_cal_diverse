@@ -1,0 +1,71 @@
+Sure, I can help with that. Let's create a test case generator for "Problem D: Cheat Case". This problem involves interpreting brush-strokes on a grid to reconstruct arithmetic expressions and then solving them. Here is a suitable test case generator:
+
+```python
+import random
+
+def generate_expression():
+    # Generates a random arithmetic expression with +, -, and * operators
+    operators = ['+', '-', '*']
+    expression = ""
+    
+    # Length of the expression (number of numbers and operators)
+    length = random.randint(3, 10)  # At least one number, one operator, and another number
+    
+    for i in range(length):
+        if i % 2 == 0:
+            # Add a number
+            expression += str(random.randint(0, 99))
+        else:
+            # Add an operator
+            expression += random.choice(operators)
+    
+    # Ensure the expression does not end with an operator
+    if expression[-1] in operators:
+        expression = expression[:-1] + str(random.randint(0, 99))
+    
+    return expression
+
+def generate_brush_strokes(expression):
+    # Generates brush strokes for the given expression on a grid
+    grid_size = 100  # Define a fixed grid size for simplicity
+    brush_strokes = []
+    
+    x, y = 0, 0  # Starting point in the grid
+    for char in expression:
+        if char.isdigit():
+            for digit in char:
+                brush_strokes.append((x, y, x, y))  # Dot for each digit
+                x += 1  # Move to the next column
+        else:
+            if char == '+':
+                brush_strokes.append((x, y, x + 1, y))  # Horizontal stroke for '+'
+            elif char == '-':
+                brush_strokes.append((x, y, x + 2, y))  # Horizontal stroke for '-'
+            elif char == '*':
+                brush_strokes.append((x, y, x, y + 1))  # Vertical stroke for '*'
+            
+            x += 3  # Move to the next column after operator
+    
+    return brush_strokes, grid_size
+
+def tcgen():
+    expression = generate_expression()
+    brush_strokes, grid_size = generate_brush_strokes(expression)
+    return grid_size, brush_strokes
+
+# Example usage
+grid_size, brush_strokes = tcgen()
+print(f"Grid Size: {grid_size}")
+for stroke in brush_strokes:
+    print(stroke)
+```
+
+### Explanation:
+
+1. **generate_expression Function**: This function generates a random arithmetic expression using the operators `+`, `-`, and `*`. The length of the expression varies between 3 and 10 characters to ensure a mix of numbers and operators.
+
+2. **generate_brush_strokes Function**: This function converts the generated arithmetic expression into brush strokes on a fixed grid. Each digit is represented as a dot, and each operator is represented with horizontal or vertical strokes. The starting point for each character is incremented to ensure non-overlapping strokes.
+
+3. **tcgen Function**: This function calls `generate_expression` and `generate_brush_strokes` to create a complete test case, returning the grid size and the list of brush strokes.
+
+This generator should provide a variety of test cases for the given problem statement.

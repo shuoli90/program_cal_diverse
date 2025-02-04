@@ -1,0 +1,22 @@
+An integer \( n \) (1 ≤ \( n \) ≤ 100), representing some quantity or size.
+An integer \( m \) (m ≤ n), representing some quantity or size.
+A list of \( m \) characters \( a \), each character from the set {'A', 'B', 'C', 'D'}.
+
+### Example Input:
+
+```
+5 3
+A
+B
+C
+```
+
+### Function Signature:
+Write a function f(inputs) that takes in the input. 
+def f(inputs: List[Tuple[int, int, List[str]]]): 
+    ''' 
+    inputs: a list of tuples, each containing:
+      - an integer n
+      - an integer m
+      - a list of characters a
+    '''

@@ -1,0 +1,16 @@
+def extract_arguments(fh):
+    first_line = fh.readline().strip().split()
+    N = int(first_line[0])
+    M = int(first_line[1])
+    L = int(first_line[2])
+    runners = []
+    for _ in range(N):
+        P, T, V = map(int, fh.readline().strip().split())
+        runners.append((P, T, V))
+    return N, M, L, runners
+
+# if __name__ == "__main__":
+#     input_path = sys.argv[1]
+#     with open(input_path, 'r') as fh: 
+#     N, M, L, runners = extract_arguments(fh)
+#     f(N, M, L, runners)

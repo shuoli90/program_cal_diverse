@@ -1,0 +1,13 @@
+def extract_arguments(fh):
+    datasets = []
+    while True:
+        N = int(fh.readline().strip())
+        if N == 0:
+            break
+        pw = int(fh.readline().strip())
+        flowers = []
+        for _ in range(N):
+            vw_i, pf_i, vf_i, th_i = map(int, fh.readline().strip().split())
+            flowers.append((vw_i, pf_i, vf_i, th_i))
+        datasets.append((N, pw, flowers))
+    return datasets

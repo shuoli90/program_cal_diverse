@@ -1,0 +1,38 @@
+Sure, I can help you write a test case generator for the given problem statement "F: Absum". Here's a Python function that generates random test cases based on the constraints provided:
+
+```python
+import random
+
+def tcgen():
+    # Generate a random integer N (2 ≤ N ≤ 10^5)
+    N = random.randint(2, 10**5)
+    
+    # Generate a random integer M (0 ≤ M ≤ N)
+    M = random.randint(0, N)
+    
+    # Generate a list of N integers A (0 ≤ A_i ≤ 10^5)
+    A = [random.randint(0, 10**5) for _ in range(N)]
+    
+    return N, M, A
+
+# Example usage:
+if __name__ == "__main__":
+    N, M, A = tcgen()
+    print(N, M)
+    print(' '.join(map(str, A)))
+```
+
+### Explanation:
+
+1. **N Generation**:
+   - `N = random.randint(2, 10**5)` generates a random integer \( N \) within the range [2, 100000].
+
+2. **M Generation**:
+   - `M = random.randint(0, N)` generates a random integer \( M \) within the range [0, \( N \)].
+
+3. **A Generation**:
+   - `A = [random.randint(0, 10**5) for _ in range(N)]` generates a list \( A \) of \( N \) integers, each within the range [0, 100000].
+
+The generator function creates random inputs that conform to the constraints specified in the problem statement. The example usage demonstrates how to generate a test case and print it in the required format.
+
+You can run the script to generate random test cases for testing your solution.

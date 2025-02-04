@@ -1,0 +1,3 @@
+Types: t: int, n: int, h: List[int]
+Ranges: 0 < t ≤ 100, 2 ≤ n ≤ 100, 0 < h[i] ≤ 1000
+Addtl Info: None

@@ -1,0 +1,24 @@
+An integer N (1 ≤ N ≤ 50), representing some quantity or size.
+A list of tuples, each containing a string of length between 1 and 100 (inclusive) consisting of lowercase English letters, and an integer between 1 and 1000.
+A string X of length between 1 and 100 (inclusive) consisting of lowercase English letters.
+
+### Example Input:
+
+```
+3
+ypnxn 279
+kgjgwx 464
+qquhuwq 327
+qquhuwq
+```
+
+### Function Signature:
+Write a function f(N, A, X) that takes in the input.
+```python
+def f(N: int, A: List[Tuple[str, int]], X: str):
+    '''
+    N: an integer
+    A: a list of tuples, where each tuple contains a string and an integer
+    X: a string
+    '''
+```

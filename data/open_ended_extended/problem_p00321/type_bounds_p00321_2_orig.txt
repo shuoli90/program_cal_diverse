@@ -1,0 +1,5 @@
+Types: N: int, F: int, M: int, itemj: str
+
+Ranges: 1 ≤ N ≤ 100, 1 ≤ F ≤ 100, 1 ≤ M ≤ 10, 1 ≤ len(itemj) ≤ 30
+
+Addtl Info: itemj consists of lowercase English letters, no two items in infoi are the same.

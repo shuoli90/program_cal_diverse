@@ -1,0 +1,31 @@
+An integer C (3 ≤ C ≤ 100), representing some quantity.
+An integer W (3 ≤ W ≤ 300), representing some quantity.
+C pairs of integers (x, y), where each integer is between -1000 and 1000.
+W pairs of integers (s, t), where each integer is between 1 and C.
+Multiple datasets terminated by the pair 0 0.
+
+### Example Input:
+
+```
+4 4
+0 0
+1 0
+1 1
+0 1
+1 2
+1 4
+2 3
+3 4
+0 0
+```
+
+### Function Signature:
+Write a function f(inputs) that takes in the input. 
+def f(inputs: List[Tuple[int, int, List[Tuple[int, int]], List[Tuple[int, int]]]]): 
+    ''' 
+    inputs: a list of tuples, each containing:
+        - an integer C
+        - an integer W
+        - a list of C tuples, each with two integers (x, y)
+        - a list of W tuples, each with two integers (s, t)
+    '''

@@ -1,0 +1,217 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p00625 - Generation 2</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p00625 - Generation 2</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>Problem E: Frisbee Dogs
+Crane is trying to enter her beloved dog, Jack, into a Frisbee Dog competition. However, she is not confident that Jack will perform well. She would like you to create a program that simulates the competition and estimates Jack's performance.
+The competition is held by N dogs on a two-dimensional plane. At the start of the competition, the i-th dog is at position (Dix, Diy). The i-th dog can run at a speed of Vi [m/s], and all dogs are small enough to be considered as points. At any time, two or more dogs can be in the same position.
+The competition starts with the launch of the first Frisbee, and from that moment on, the dogs are allowed to move. The Frisbee can also be considered as a point, and the i-th Frisbee is launched from the position (FPix, FPin) with a velocity vector of (FVix, FViy) [m/s], and continues to move at constant speed in a straight line. When the position of a dog and the position of a Frisbee are the same, the dog can acquire the Frisbee.
+When the first Frisbee is acquired by a dog, the second Frisbee is launched. When the second Frisbee is acquired, the third is launched, and so on, with the next Frisbee launched immediately after it is acquired. The competition ends when M Frisbees are acquired.
+Needless to say, the goal of the dogs is to acquire as many Frisbees as possible. The dogs take the following strategy:
+When a Frisbee is launched, a dog moves to be able to acquire it as soon as possible, and acquires the Frisbee. However, if the dog cannot acquire the Frisbee, it waits at its current location.
+Whether a dog can acquire a Frisbee is determined independently of the actions of other dogs. That is, even if a dog moves to acquire a Frisbee, it may be acquired by another dog first. When a Frisbee is acquired by any dog and a new Frisbee is launched, the dogs take the above strategy for the new Frisbee.
+Your program should output the number of Frisbees acquired by each dog.
+Input
+The input file consists of multiple datasets.
+The first line of each dataset gives the number of dogs N (1 ≤ N ≤ 10) and the number of Frisbees M (1 ≤ M ≤ 1000).
+The following N lines give the initial position and speed of the dogs, Dix, Diy, and Vi, separated by a single space.
+The following M lines give the launch position and velocity of the Frisbees, FPix, FPin, FVix, and FViy, separated by a single space.
+The given coordinate values are real numbers, and their absolute value does not exceed 1000. The given speed is a real number, and 1 ≤ Vi ≤ 100, -25 ≤ FVix, FViy ≤ 25. It can be assumed that there is no Frisbee that cannot be acquired by any dog.
+If a Frisbee is acquired by a dog at time t, no dog can acquire it before t+1e-6.
+During the simulation, the absolute values of the x and y coordinates of the dogs do not exceed 1e+8.
+The end of the input is indicated by N=0 and M=0.
+Output
+Output the number of Frisbees acquired by each dog on a single line, separated by a space. The order of the output must be the same as the order of the input.
+Sample Input
+2 1
+12 5 3
+0 17 3
+0 0 2 2
+2 3
+2 0 2
+100 100 2
+0 0 -1 0
+-2 -5 0 3
+100 100 1 1
+0 0
+Output for the Sample Input
+1 0
+2 1
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An integer N (1 ≤ N ≤ 10), representing some quantity.
+An integer M (1 ≤ M ≤ 1000), representing some quantity.
+A list of N tuples, each containing three real numbers.
+A list of M tuples, each containing four real numbers.
+The end of the input is indicated by N=0 and M=0.
+
+### Example Input:
+
+```
+2 1
+12 5 3
+0 17 3
+0 0 2 2
+2 3
+2 0 2
+100 100 2
+0 0 -1 0
+-2 -5 0 3
+100 100 1 1
+0 0
+```
+
+### Function Signature:
+Write a function f(inputs) that takes in the input.
+def f(inputs: List[Tuple[int, int, List[Tuple[float, float, float]], List[Tuple[float, float, float, float]]]]):
+    '''
+    inputs: a list of tuples where each tuple consists of:
+    - an integer
+    - an integer
+    - a list of tuples containing three real numbers
+    - a list of tuples containing four real numbers
+    '''</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Sure! Here is a test case generator for the problem "Frisbee Dogs":
+
+```python
+import random
+
+def random_real_number(low, high, precision=6):
+    return round(random.uniform(low, high), precision)
+
+def tcgen():
+    datasets = []
+    while True:
+        # Generate random values for N and M within their respective constraints
+        N = random.randint(1, 10)
+        M = random.randint(1, 1000)
+        
+        # Create the list of dogs with their positions and speeds
+        dogs = []
+        for _ in range(N):
+            Dix = random_real_number(-1000, 1000)
+            Diy = random_real_number(-1000, 1000)
+            Vi = random_real_number(1, 100)
+            dogs.append((Dix, Diy, Vi))
+
+        # Create the list of Frisbees with their launch positions and velocities
+        frisbees = []
+        for _ in range(M):
+            FPix = random_real_number(-1000, 1000)
+            FPin = random_real_number(-1000, 1000)
+            FVix = random_real_number(-25, 25)
+            FViy = random_real_number(-25, 25)
+            frisbees.append((FPix, FPin, FVix, FViy))
+
+        dataset = (N, M, dogs, frisbees)
+        datasets.append(dataset)
+
+        # Randomly decide to stop or continue adding datasets
+        if random.choice([True, False]):
+            break
+        
+    # Add the end marker
+    datasets.append((0, 0, [], []))
+    return datasets
+
+# Convert the datasets into the required input format
+def format_datasets(datasets):
+    formatted = []
+    for dataset in datasets:
+        N, M, dogs, frisbees = dataset
+        formatted.append(f"{N} {M}")
+        for Dix, Diy, Vi in dogs:
+            formatted.append(f"{Dix} {Diy} {Vi}")
+        for FPix, FPin, FVix, FViy in frisbees:
+            formatted.append(f"{FPix} {FPin} {FVix} {FViy}")
+    return "\n".join(formatted)
+
+# Example usage
+random.seed(0)  # For reproducibility
+datasets = tcgen()
+formatted_input = format_datasets(datasets)
+print(formatted_input)
+```
+
+This code generates random test case datasets for the problem "Frisbee Dogs". The `tcgen` function generates multiple datasets until it randomly decides to stop. Each dataset contains random numbers of dogs and Frisbees within the given constraints, along with their respective positions and velocities. The `format_datasets` function formats these datasets into the required input format for the problem. The example usage at the end shows how to generate and print the formatted test cases.
+
+You can run this code to generate random test cases for the problem statement. Adjust the random seed or modify the constraints as needed to get different test cases.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    datasets = []
+    while True:
+        line = fh.readline().strip()
+        if line == "0 0":
+            break
+        N, M = map(int, line.split())
+        dogs = []
+        for _ in range(N):
+            Dix, Diy, Vi = map(float, fh.readline().strip().split())
+            dogs.append((Dix, Diy, Vi))
+        frisbees = []
+        for _ in range(M):
+            FPix, FPin, FVix, FViy = map(float, fh.readline().strip().split())
+            frisbees.append((FPix, FPin, FVix, FViy))
+        datasets.append((N, M, dogs, frisbees))
+    return datasets</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

@@ -1,0 +1,5 @@
+Types: N: int, A: List[List[int]]
+
+Ranges: 1 ≤ N ≤ 300, 1 ≤ A[i][j] ≤ 10^9 (if i ≠ j), A[i][i] = 0
+
+Addtl Info: A is symmetric, i.e., A[i][j] = A[j][i]

@@ -1,0 +1,31 @@
+Certainly! Below is the test case generator for the given competitive programming problem:
+
+```python
+import random
+
+def tcgen():
+    # Generate N within the constraints
+    N = random.randint(2, 200000)
+    
+    # Generate K within the constraints
+    K = random.randint(2, N)
+    
+    # Generate a permutation of (0, 1, ..., N-1)
+    P = list(range(N))
+    random.shuffle(P)
+    
+    return N, K, P
+
+# Example usage
+N, K, P = tcgen()
+print(N)
+print(K)
+print(' '.join(map(str, P)))
+```
+
+### Explanation:
+1. **N**: We generate a random integer `N` such that \(2 \leq N \leq 200000\).
+2. **K**: We generate a random integer `K` such that \(2 \leq K \leq N\).
+3. **P**: We generate a permutation of the integers from 0 to \(N-1\), shuffle them to ensure randomness.
+
+This generator ensures that the constraints of the problem are respected and provides valid random test cases. You can run the `tcgen` function to get a new test case every time.

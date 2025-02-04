@@ -1,0 +1,3 @@
+Types: n: int, x: int  
+Ranges: 3 ≤ n ≤ 100, 0 ≤ x ≤ 300  
+Addtl Info: Input is terminated by two zeros (n and x). Do not process the program for these end symbols.

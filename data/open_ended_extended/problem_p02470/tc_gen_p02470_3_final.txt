@@ -1,0 +1,37 @@
+Sure, I can help you write a test case generator for the given problem statement of Euler's Phi function.
+
+Here's a suitable test case generator function for this problem:
+
+```python
+import random
+
+def tcgen():
+    n = random.randint(1, 10**9)
+    return n
+
+# Example usage
+if __name__ == "__main__":
+    n = tcgen()
+    print(n)
+```
+
+This function generates a random integer `n` within the specified range (1 ≤ n ≤ 1000000000) and returns it. When the function is executed, it will print a random value of `n` which can be used as an input for the Euler's Phi function problem.
+
+If you need more test cases at once, you can modify the function slightly to generate multiple test cases:
+
+```python
+def multiple_tcgen(num_cases):
+    test_cases = [random.randint(1, 10**9) for _ in range(num_cases)]
+    return test_cases
+
+# Example usage
+if __name__ == "__main__":
+    num_cases = 10  # Specify the number of test cases you want to generate
+    test_cases = multiple_tcgen(num_cases)
+    for tc in test_cases:
+        print(tc)
+```
+
+This function `multiple_tcgen` will generate a list of random test cases and print each of them. You can adjust the `num_cases` variable to specify how many test cases you want to generate.
+
+These generators provide the input `n` within the required constraints and can be used to create a variety of test cases for the Euler's Phi function problem.

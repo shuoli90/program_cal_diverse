@@ -1,0 +1,3 @@
+Types: n: int, G: List[Tuple[int, int, List[int]]]
+Ranges: 1 ≤ n ≤ 100, 1 ≤ u ≤ n, 0 ≤ k ≤ n-1, 1 ≤ v_i ≤ n
+Addtl Info: Vertices are identified by IDs 1, 2, ..., n respectively, IDs in the adjacency list are arranged in ascending order, and the input graph is represented as an adjacency list where each entry is a tuple (u, k, [v1, v2, ..., vk]).

@@ -1,0 +1,3 @@
+Types: X: int, Y: int, Z: int, K: int, A: List[int], B: List[int], C: List[int]
+Ranges: 1 ≤ X ≤ 1000, 1 ≤ Y ≤ 1000, 1 ≤ Z ≤ 1000, 1 ≤ K ≤ min(3000, X * Y * Z), 1 ≤ A_i ≤ 10^10, 1 ≤ B_i ≤ 10^10, 1 ≤ C_i ≤ 10^10
+Addtl Info: None

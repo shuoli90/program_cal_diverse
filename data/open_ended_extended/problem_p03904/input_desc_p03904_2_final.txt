@@ -1,0 +1,19 @@
+An integer \(K\) (0 ≤ \(K\) < 100,000), representing some quantity.
+A string \(S\) of digits, with length \(|S|\) such that \(0 ≤ |S| ≤ 100,000\).
+
+### Example Input:
+
+```
+2
+15267315
+```
+
+### Function Signature:
+Write a function f(K, S) that takes in the input.
+```python
+def f(K: int, S: str):
+    '''
+    K: an integer
+    S: a string of digits
+    '''
+```

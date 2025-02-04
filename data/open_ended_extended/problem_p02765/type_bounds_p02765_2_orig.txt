@@ -1,0 +1,3 @@
+Types: N: int, R: int
+Ranges: 1 ≤ N ≤ 100, 0 ≤ R ≤ 4111
+Addtl Info: None

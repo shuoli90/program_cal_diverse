@@ -1,0 +1,34 @@
+Sure, let's write a test case generator for this problem. The generator will create random inputs that conform to the given constraints.
+
+Here is the Python code for the test case generator:
+
+```python
+import random
+
+def tcgen():
+    # Generate N in the range [2, 100]
+    N = random.randint(2, 100)
+    
+    # Generate x in the range [1, 10^9]
+    x = random.randint(1, 10**9)
+    
+    # Generate list of a_i where each a_i is in the range [1, 10^9]
+    A = [random.randint(1, 10**9) for _ in range(N)]
+    
+    return N, x, A
+
+# Example of using the generator
+if __name__ == "__main__":
+    N, x, A = tcgen()
+    print(N)
+    print(x)
+    print(" ".join(map(str, A)))
+```
+
+This code snippet will generate a random test case each time it runs, ensuring that all constraints are met:
+
+1. `N` is a random integer between 2 and 100.
+2. `x` is a random integer between 1 and \(10^9\).
+3. `A` is a list of `N` integers, each between 1 and \(10^9\).
+
+You can run the generator to produce various test cases, which can then be used to test your algorithm for correctness and performance.

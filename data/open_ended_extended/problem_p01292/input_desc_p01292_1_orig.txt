@@ -1,0 +1,30 @@
+An integer Time (0 ≤ Time ≤ 100), representing some quantity or duration.
+An integer R (0 < R < 30000), representing some other quantity.
+An integer L (2 ≤ L ≤ 20), representing the number of data points in the first list of tuples.
+L tuples, each containing three integers (Xi, Yi, Ti), where each integer is between -10000 and 10000, representing some information.
+An integer M (2 ≤ M ≤ 20), representing the number of data points in the second list of tuples.
+M tuples, each containing three integers (Xj, Yj, Tj), where each integer is between -10000 and 10000, representing some other information.
+An integer N (0 ≤ N ≤ 20), representing the number of data points in the third list of tuples.
+N tuples, each containing four integers (SXk, SYk, TXk, TYk), where each integer is between -10000 and 10000, representing some other information.
+
+### Example Input:
+
+```
+50 100
+2
+50 50 0
+51 51 50
+2
+0 0 0
+1 1 50
+0
+```
+
+### Function Signature:
+Write a function f(inputs) that takes in the input.
+```python
+def f(inputs: List[Tuple[int, int, int, List[Tuple[int, int, int]], int, List[Tuple[int, int, int]], int, List[Tuple[int, int, int, int]]]]):
+    '''
+    inputs: a list of tuples containing integers and nested lists of tuples with integers
+    '''
+```

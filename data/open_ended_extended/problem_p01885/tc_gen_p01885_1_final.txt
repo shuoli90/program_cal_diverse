@@ -1,0 +1,43 @@
+Sure, I can help you create a test case generator for the "Escape from the Hell" problem. Below is a Python function that generates random test cases for this problem.
+
+```python
+import random
+
+def tcgen():
+    # Generate random values for N and L
+    N = random.randint(1, 10**5)
+    L = random.randint(1, 10**9)
+    
+    # Generate the list of Ai, Bi, and Ci values
+    A = [random.randint(1, 10**9) for _ in range(N)]
+    B = [random.randint(1, 10**9) for _ in range(N)]
+    C = [random.randint(1, 10**9) for _ in range(N)]
+    
+    # Prepare the input in the required format
+    input_data = f"{N} {L}\n"
+    for i in range(N):
+        input_data += f"{A[i]} {B[i]}\n"
+    for i in range(N):
+        input_data += f"{C[i]}\n"
+    
+    return input_data
+
+# Example usage
+print(tcgen())
+```
+
+### Explanation:
+1. **N and L Generation**:
+   - `N` is generated randomly between 1 and 100,000 (inclusive).
+   - `L` is generated randomly between 1 and 1,000,000,000 (inclusive).
+
+2. **A, B, and C Lists Generation**:
+   - `A` and `B` are lists of length `N` where each element is a random integer between 1 and 1,000,000,000 (inclusive).
+   - `C` is a list of length `N` where each element is a random integer between 1 and 1,000,000,000 (inclusive).
+
+3. **Input Formatting**:
+   - The first line of the input is `N L`.
+   - The next `N` lines contain pairs of `A[i]` and `B[i]`.
+   - The following `N` lines contain `C[i]`.
+
+This generator ensures that the generated test cases adhere to the problem constraints and are formatted correctly as required by the problem statement. You can run this function to get a new random test case each time.

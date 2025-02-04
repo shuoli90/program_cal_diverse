@@ -1,0 +1,36 @@
+Sure! Here is a test case generator for the described problem:
+
+```python
+import random
+
+def tcgen():
+    N = random.randint(2, 100)
+    W = [random.randint(1, 100) for _ in range(N)]
+    return N, W
+
+# Example of generating a test case
+N, W = tcgen()
+print(N)
+print(" ".join(map(str, W)))
+```
+
+Explanation of the code:
+
+1. **Import the random module**: This allows us to generate random integers for our test cases.
+2. **Define the `tcgen` function**: This function will generate a random test case.
+3. **Generate a random value for `N`**: `N` is the number of weights. We generate a random integer between 2 and 100 (inclusive) to satisfy the constraint `2 ≤ N ≤ 100`.
+4. **Generate the list `W`**: This list contains `N` random integers, each between 1 and 100 (inclusive) to satisfy the constraint `1 ≤ W_i ≤ 100`.
+5. **Return the generated values**: The function returns `N` and `W`.
+
+To generate a test case, simply call the `tcgen` function. The generated test case will have `N` as the number of weights and `W` as the list of weights.
+
+Here is an example of how to run the generator and print the output in the required format:
+
+```python
+# Example of generating a test case and printing it
+N, W = tcgen()
+print(N)
+print(" ".join(map(str, W)))
+```
+
+This will print `N` followed by the weights `W` in a format suitable for input to the program solving the problem.

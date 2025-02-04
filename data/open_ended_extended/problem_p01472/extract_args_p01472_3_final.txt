@@ -1,0 +1,14 @@
+def extract_arguments(fh):
+    # Read the first line to get N and F
+    N, F = map(int, fh.readline().strip().split())
+    # Read the next N lines to get the NxN matrix X
+    X = []
+    for _ in range(N):
+        X.append(list(map(int, fh.readline().strip().split())))
+    return N, F, X
+
+# if __name__ == "__main__":
+#     input_path = sys.argv[1]
+#     with open(input_path, 'r') as fh:
+#         N, F, X = extract_arguments(fh)
+#         f(N, F, X)

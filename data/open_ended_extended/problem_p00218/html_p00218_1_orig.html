@@ -1,0 +1,182 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p00218 - Generation 1</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p00218 - Generation 1</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>Class Assignment
+At Aizu Juku, students take a proficiency test when they enter the cram school and are divided into classes. The test covers three subjects: math, English, and Japanese, and the students are divided into classes A, B, and C. Class A has the highest level, followed by B and C in order.
+The classification is based on the following table.
+               Conditions             Class
+There is a 100 point subject.                     A 
+The average score for math and English is 90 points or higher.                A 
+The average score for all three subjects is 80 points or higher.                  A
+The average score for all three subjects is 70 points or higher.                B
+The average score for all three subjects is 50 points or higher and the score for math or English is 80 points or higher.   B
+Does not meet the above conditions.                       C
+If a student meets multiple conditions, they will be assigned to the higher level class.
+Write a program that takes as input the number of students n (1 ≤ n ≤ 10000), the math scores pmi (0 ≤ pmi ≤ 100), the English scores pei (0 ≤ pei ≤ 100), and the Japanese scores pji (0 ≤ pji ≤ 100) for each student, and outputs the class (in uppercase letters) of each student.
+Input
+The input consists of multiple datasets. The end of the input is indicated by a single line with a zero.
+Each dataset is given in the following format.
+n
+pm1 pe1 pj1
+pm2 pe2 pj2
+:
+pmn pen pjn
+All input is given as integers. There are no more than 1000 datasets.
+Output
+For each input dataset, output the class of each student in order.
+Sample Input
+4
+100 70 20
+98 86 55
+80 34 36
+65 79 65
+2
+99 81 20
+66 72 90
+0
+Output for the Sample Input
+A
+A
+B
+C
+A
+B
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An integer n (1 ≤ n ≤ 10000), representing some quantity or size.  
+A list of tuples of integers, each tuple of size 3, where each integer is between 0 and 100.  
+There are no more than 1000 such lists of tuples.  
+The end of the input is indicated by a single line with a zero.
+
+### Example Input:
+
+```
+4
+100 70 20
+98 86 55
+80 34 36
+65 79 65
+2
+99 81 20
+66 72 90
+0
+```
+
+### Function Signature:
+Write a function f(inputs) that takes in the input.
+```python
+def f(inputs: List[List[Tuple[int, int, int]]]):
+    '''
+    inputs: a list of lists of tuples, where each tuple contains three integers
+    '''
+```</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Sure! Below is a test case generator for the problem statement "Class Assignment":
+
+```python
+import random
+
+def tcgen():
+    # Generate a random number of datasets (1 to 1000)
+    num_datasets = random.randint(1, 1000)
+    datasets = []
+
+    for _ in range(num_datasets):
+        # Generate a random number of students (1 to 10000)
+        n = random.randint(1, 10000)
+        datasets.append(f"{n}")
+        
+        for _ in range(n):
+            # Generate scores for math, English, and Japanese (0 to 100)
+            pm = random.randint(0, 100)
+            pe = random.randint(0, 100)
+            pj = random.randint(0, 100)
+            datasets.append(f"{pm} {pe} {pj}")
+
+    # Append the ending zero line
+    datasets.append("0")
+    
+    # Join all the datasets with newline characters
+    return "\n".join(datasets)
+
+# Example usage: print a generated test case
+print(tcgen())
+```
+
+This generator function creates a random number of datasets (between 1 and 1000). Each dataset contains a random number of students (between 1 and 10000). For each student, it generates random scores for math, English, and Japanese (each between 0 and 100). It then formats the datasets into strings and joins them with newline characters, appending a single '0' at the end to indicate the end of input.
+
+Let me know if you need any further assistance!</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    datasets = []
+    while True:
+        n = int(fh.readline().strip())
+        if n == 0:
+            break
+        students = []
+        for _ in range(n):
+            scores = list(map(int, fh.readline().strip().split()))
+            students.append(scores)
+        datasets.append((n, students))
+    return datasets</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

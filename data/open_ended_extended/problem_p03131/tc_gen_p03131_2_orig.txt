@@ -1,0 +1,25 @@
+Sure, I can help you write a test case generator for the given problem statement. Here is the test case generator in Python:
+
+```python
+import random
+
+def tcgen():
+    # Define the constraints
+    K = random.randint(1, 10**9)
+    A = random.randint(1, 10**9)
+    B = random.randint(1, 10**9)
+    
+    return K, A, B
+
+# Example usage:
+for _ in range(5):  # Generate 5 test cases
+    print(tcgen())
+```
+
+This function will generate random values for \( K \), \( A \), and \( B \) within their specified ranges and return them as a tuple. You can run this function multiple times to get different test cases.
+
+Let's briefly discuss what each component does:
+- `random.randint(1, 10**9)`: Generates a random integer between 1 and \(10^9\) inclusive. This is used for \( K \), \( A \), and \( B \) as per the problem constraints.
+- `for _ in range(5)`: This loop generates 5 test cases as an example usage of the `tcgen` function.
+
+You can adjust the number of test cases generated or modify the function as needed to suit your specific requirements.

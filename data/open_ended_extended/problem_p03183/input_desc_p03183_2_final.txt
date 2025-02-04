@@ -1,0 +1,21 @@
+An integer N (1 ≤ N ≤ 10^3), representing some quantity or size.
+N lines follow, each containing three integers: the first and second between 1 and 10^4, and the third between 1 and 1e9.
+
+### Example Input:
+
+```
+3
+2 2 20
+2 1 30
+3 1 40
+```
+
+### Function Signature:
+Write a function f(N, A) that takes in the input.
+```python
+def f(N: int, A: List[Tuple[int, int, int]]):
+    '''
+    N: an integer
+    A: a list of tuples, each containing three integers
+    '''
+```

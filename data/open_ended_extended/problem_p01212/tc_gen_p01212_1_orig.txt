@@ -1,0 +1,86 @@
+Sure, here is a Python function to generate test cases for the "Mysterious Dungeons" problem. This function will generate random dungeon configurations based on the given constraints:
+
+```python
+import random
+import string
+
+def generate_grid(W, H):
+    grid = [['#'] * W for _ in range(H)]
+    
+    # Place walls around the grid
+    for i in range(W):
+        grid[0][i] = '#'
+        grid[H-1][i] = '#'
+    for i in range(H):
+        grid[i][0] = '#'
+        grid[i][W-1] = '#'
+
+    # Place @ and < ensuring they are not on walls
+    at_x, at_y = random.randint(1, H-2), random.randint(1, W-2)
+    grid[at_x][at_y] = '@'
+    
+    exit_x, exit_y = random.randint(1, H-2), random.randint(1, W-2)
+    while (exit_x, exit_y) == (at_x, at_y):
+        exit_x, exit_y = random.randint(1, H-2), random.randint(1, W-2)
+    grid[exit_x][exit_y] = '<'
+    
+    # Place rocks and carpets randomly
+    num_labels = random.randint(1, 8)
+    labels = random.sample(string.ascii_letters, num_labels * 2)
+    carpet_labels = labels[:num_labels]
+    rock_labels = [l.upper() for l in carpet_labels]
+    
+    for label in carpet_labels + rock_labels:
+        x, y = random.randint(1, H-2), random.randint(1, W-2)
+        while grid[x][y] != '.':
+            x, y = random.randint(1, H-2), random.randint(1, W-2)
+        grid[x][y] = label
+    
+    # Fill the remaining cells with empty spaces
+    for i in range(1, H-1):
+        for j in range(1, W-1):
+            if grid[i][j] == '#':
+                continue
+            if grid[i][j] == '.':
+                grid[i][j] = random.choice(['.', '#'])
+    
+    return grid
+
+def tcgen():
+    test_cases = []
+    
+    while True:
+        W = random.randint(3, 30)
+        H = random.randint(3, 30)
+        
+        grid = generate_grid(W, H)
+        
+        test_cases.append((W, H, grid))
+        
+        if random.random() < 0.1:  # Randomly decide when to stop
+            break
+    
+    test_cases.append((0, 0, []))  # Termination case
+    return test_cases
+
+def format_test_case(tc):
+    W, H, grid = tc
+    if W == 0 and H == 0:
+        return "0 0\n"
+    
+    result = f"{W} {H}\n"
+    for row in grid:
+        result += ''.join(row) + '\n'
+    return result
+
+# Generate test cases
+test_cases = tcgen()
+
+# Print formatted test cases
+for tc in test_cases:
+    print(format_test_case(tc))
+```
+
+This code will generate random dungeons with the constraints given in the problem statement. Each dungeon is surrounded by walls, and it includes exactly one starting position (`@`) and one exit (`<`). There can be up to eight distinct pairs of carpets and rocks. The function will keep generating random test cases until it decides to stop, and it always includes the termination case `0 0`.
+
+You can then run this code and use the generated test cases to test your solution to the problem.

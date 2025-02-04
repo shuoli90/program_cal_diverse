@@ -1,0 +1,36 @@
+Sure! Here's a test case generator for the "Range Update Query (RUQ)" problem. The generator will create random sequences and queries according to the given constraints.
+
+```python
+import random
+
+def tcgen():
+    # Constraints
+    max_n = 100000
+    max_q = 100000
+    max_val = 2**31 - 1
+
+    n = random.randint(1, max_n)
+    q = random.randint(1, max_q)
+
+    queries = []
+    for _ in range(q):
+        query_type = random.choice([0, 1])
+        if query_type == 0:  # update(s, t, x) query
+            s = random.randint(0, n - 1)
+            t = random.randint(s, n - 1)
+            x = random.randint(0, max_val)
+            queries.append(f"0 {s} {t} {x}")
+        else:  # find(i) query
+            i = random.randint(0, n - 1)
+            queries.append(f"1 {i}")
+
+    return n, q, queries
+
+# Example usage
+n, q, queries = tcgen()
+print(n, q)
+for query in queries:
+    print(query)
+```
+
+This script generates random values for `n` (number of elements in the sequence) and `q` (number of queries) within their respective constraints. For each query, it randomly decides between an update (`0 s t x`) or a find (`1 i`) operation, ensuring that all indices and values are within the specified ranges. The output is formatted according to the problem statement.

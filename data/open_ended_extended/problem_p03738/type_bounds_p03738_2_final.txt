@@ -1,0 +1,3 @@
+Types: A: str, B: str
+Ranges: 1 ≤ |A|, |B| ≤ 100
+Addtl Info: A and B consist only of digits (0-9) and do not begin with 0

@@ -1,0 +1,10 @@
+Types: 
+- N: int
+- A: List[int]
+
+Ranges:
+- 1 ≤ N ≤ 2000
+- 1 ≤ A_i ≤ N
+
+Addtl Info: 
+- None

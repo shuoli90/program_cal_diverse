@@ -1,0 +1,26 @@
+Sure! To generate test cases for the given problem statement, we need to take into account the constraints and the format of the input. Here is a test case generator for the problem of counting valid ways to split a string into an IPv4 address:
+
+```python
+import random
+
+def generate_ip_string():
+    length = random.randint(4, 12)  # |S| should be between 4 and 12
+    S = ''.join(random.choices('0123456789', k=length))
+    return S
+
+def tcgen():
+    S = generate_ip_string()
+    return S
+
+# Example usage
+if __name__ == "__main__":
+    for _ in range(5):  # Generate 5 test cases
+        print(tcgen())
+```
+
+This generator function creates a string \( S \) of digits with a length between 4 and 12, which conforms to the constraints provided in the problem statement. This should help generate diverse and random test cases to test the solution's robustness.
+
+Here's a brief explanation of the code:
+1. **generate_ip_string()**: This function generates a random string of digits of a length between 4 and 12.
+2. **tcgen()**: This function calls `generate_ip_string()` to get the test string \( S \) and returns it.
+3. **Example usage**: This section demonstrates how to use the `tcgen()` function to generate multiple test cases. In this example, it generates 5 test cases and prints them.

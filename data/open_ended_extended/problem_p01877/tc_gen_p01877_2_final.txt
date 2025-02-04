@@ -1,0 +1,47 @@
+Sure! Below is a test case generator for the given problem statement "Precisely - Kitsuchiri":
+
+```python
+import random
+
+def tcgen():
+    # Ensure N is even
+    N = random.randint(1, 250000) * 2
+    
+    # Generate random array S with values between -100000000 and 100000000
+    S = [random.randint(-100000000, 100000000) for _ in range(N)]
+    
+    # Number of queries Q
+    Q = random.randint(1, 100000)
+    
+    # Generate Q queries, each with l, r, and x
+    queries = []
+    for _ in range(Q):
+        l = random.randint(1, N)
+        r = random.randint(l, N)
+        x = random.randint(-1000, 1000)
+        queries.append((l, r, x))
+    
+    return N, S, Q, queries
+
+def print_test_case(N, S, Q, queries):
+    print(N)
+    print(' '.join(map(str, S)))
+    print(Q)
+    for query in queries:
+        print(' '.join(map(str, query)))
+
+# Generate a test case
+N, S, Q, queries = tcgen()
+print_test_case(N, S, Q, queries)
+```
+
+This script will generate a random test case for the problem statement you provided. Here's a brief explanation of each part:
+
+1. **N**: Generate an even number between 2 and 500,000.
+2. **S**: Generate an array of `N` integers, where each integer is between -100,000,000 and 100,000,000.
+3. **Q**: Generate a random number of queries between 1 and 100,000.
+4. **Queries**: For each query, generate random values for `l` (start index), `r` (end index), and `x` (value to add), ensuring that `l ≤ r` and `1 ≤ l, r ≤ N`. The value `x` is between -1000 and 1000.
+
+The `print_test_case` function prints the generated test case in the specified format.
+
+You can run the script to generate and print a new test case each time. This will help you create diverse test cases for thorough testing of your solution for the problem "Precisely - Kitsuchiri".

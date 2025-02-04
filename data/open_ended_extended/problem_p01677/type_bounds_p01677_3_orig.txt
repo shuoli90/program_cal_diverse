@@ -1,0 +1,3 @@
+Types: N: int, a: List[Union[int, str]]
+Ranges: 2 ≤ N ≤ 1,000; -10^9 ≤ a[i] ≤ 10^9 or a[i] = 'x'
+Addtl Info: The number of datasets does not exceed 100; The end of input is indicated by a single 0.

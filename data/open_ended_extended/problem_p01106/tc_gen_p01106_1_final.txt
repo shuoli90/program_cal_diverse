@@ -1,0 +1,39 @@
+Sure, I can write a test case generator for the "Folding a Ribbon" problem. This generator will create random datasets adhering to the input constraints specified in the problem statement.
+
+Here's the Python code for the test case generator:
+
+```python
+import random
+
+def tcgen():
+    test_cases = []
+    num_datasets = random.randint(1, 100)  # at most 100 datasets
+
+    for _ in range(num_datasets):
+        n = random.randint(1, 60)  # 1 ≤ n ≤ 60
+        i = random.randint(1, 2**n)  # 1 ≤ i ≤ 2^n
+        j = random.randint(1, 2**n)  # 1 ≤ j ≤ 2^n
+        test_cases.append((n, i, j))
+    
+    # Add the terminating line
+    test_cases.append((0, 0, 0))
+
+    return test_cases
+
+# Example usage:
+if __name__ == "__main__":
+    test_cases = tcgen()
+    for n, i, j in test_cases:
+        print(n, i, j)
+```
+
+**Explanation:**
+
+1. **Number of Datasets**: Randomly choose a number of datasets, up to 100.
+2. **Generating Each Dataset**:
+    - `n`: Number of folds, randomly chosen between 1 and 60.
+    - `i`: Layer index, randomly chosen between 1 and \(2^n\).
+    - `j`: Part index after unfolding, randomly chosen between 1 and \(2^n\).
+3. **Terminating Line**: Add a terminating line `(0, 0, 0)` to signify the end of input.
+
+This script will generate random inputs that can be used to test the solution to the "Folding a Ribbon" problem. You can run the script to get a new set of test cases each time, ensuring that your solution is robust and handles a variety of inputs.

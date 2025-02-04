@@ -1,0 +1,36 @@
+Certainly! To generate test cases for the given problem, we need to create random trees adhering to the constraints provided. Here's a test case generator for the problem:
+
+```python
+import random
+
+def generate_tree(N):
+    edges = []
+    for i in range(2, N + 1):
+        edges.append((i, random.randint(1, i - 1)))
+    return edges
+
+def tcgen():
+    N = random.randint(2, 10**5)
+    edges = generate_tree(N)
+    return N, edges
+
+def format_test_case(N, edges):
+    result = []
+    result.append(str(N))
+    for a, b in edges:
+        result.append(f"{a} {b}")
+    return "\n".join(result)
+
+# Example usage
+N, edges = tcgen()
+test_case = format_test_case(N, edges)
+print(test_case)
+```
+
+### Explanation:
+
+1. **generate_tree(N)**: This function generates a random tree with N vertices. It ensures the tree is connected by connecting each new node to one of the previous nodes.
+2. **tcgen()**: This function generates a random number of vertices \(N\) and then calls `generate_tree(N)` to get the edges of the tree.
+3. **format_test_case(N, edges)**: This function formats the generated tree into the appropriate input format specified in the problem statement.
+
+This generator will create random trees within the given constraints, ensuring each test case is valid and adheres to the problem specifications. You can run the script to generate multiple test cases as needed for thorough testing.

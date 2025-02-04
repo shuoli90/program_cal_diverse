@@ -1,0 +1,45 @@
+Certainly! Here's a test case generator for the "Non-redundant Drive" problem statement:
+
+```python
+import random
+
+def tcgen():
+    # Number of cities
+    N = random.randint(1, 100000)
+    # Gasoline amounts at each city
+    g = [random.randint(1, 10000) for _ in range(N)]
+    # Connections between cities
+    roads = []
+    for i in range(1, N):
+        a = i + 1
+        b = random.randint(1, i)
+        d = random.randint(1, 10000)
+        roads.append((a, b, d))
+    
+    return N, g, roads
+
+def format_test_case(N, g, roads):
+    result = []
+    result.append(f"{N}")
+    result.append(" ".join(map(str, g)))
+    for a, b, d in roads:
+        result.append(f"{a} {b} {d}")
+    return "\n".join(result)
+
+# Example usage
+N, g, roads = tcgen()
+test_case = format_test_case(N, g, roads)
+print(test_case)
+```
+
+This script generates a test case for the problem, ensuring that the generated cities and roads form a valid tree structure (since `N-1` roads are generated). It then formats the test case to match the expected input format of the problem statement. 
+
+Explanation of the generator:
+
+1. **Number of cities (N)**: A random integer between 1 and 100,000 is chosen.
+2. **Gasoline amounts (g)**: For each city, a random integer between 1 and 10,000 is assigned representing the gasoline available at that city's gas station.
+3. **Roads**: To ensure the cities form a tree (connected, acyclic graph), each new city `a` (i.e., `i + 1`) connects to any of the previously added cities `b` (i.e., a random city in the range `[1, i]`). The distance `d` between cities `a` and `b` is a random integer between 1 and 10,000.
+
+The **`format_test_case`** function is used to convert the generated test case into the required string format for the problem statement.
+
+Make sure to adjust the ranges if needed and validate the generated test cases to ensure they fit within the problem constraints.

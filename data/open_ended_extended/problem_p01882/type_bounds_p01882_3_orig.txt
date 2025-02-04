@@ -1,0 +1,18 @@
+Types: 
+- N: int
+- s: List[str]
+- a: List[int]
+- M: int
+- t: List[str]
+- b: List[int]
+Ranges: 
+- 1 ≤ N ≤ 50,000
+- 0 ≤ a[i] ≤ 10^5
+- 1 ≤ |s[i]| ≤ 20
+- 1 ≤ M ≤ 20,000
+- 0 ≤ b[j] ≤ 10^5
+- 1 ≤ |t[j]| ≤ 20
+Addtl Info: 
+- s[i] and t[j] consist of English letters only
+- No two incoming/outgoing events happen at the same time
+- No two members have the same name initially, but members who left ACM once may join ACM again

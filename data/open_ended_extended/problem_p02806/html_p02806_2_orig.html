@@ -1,0 +1,224 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p02806 - Generation 2</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p02806 - Generation 2</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>
+Score : 200 points
+Problem Statement
+Niwango created a playlist of N songs.
+The title and the duration of the i-th song are s_i and t_i seconds, respectively.
+It is guaranteed that s_1,\ldots,s_N are all distinct.
+Niwango was doing some work while playing this playlist. (That is, all the songs were played once, in the order they appear in the playlist, without any pause in between.)
+However, he fell asleep during his work, and he woke up after all the songs were played.
+According to his record, it turned out that he fell asleep at the very end of the song titled X.
+Find the duration of time when some song was played while Niwango was asleep.
+Constraints
+1 \leq N \leq 50
+s_i and X are strings of length between 1 and 100 (inclusive) consisting of lowercase English letters.
+s_1,\ldots,s_N are distinct.
+There exists an integer i such that s_i = X.
+1 \leq t_i \leq 1000
+t_i is an integer.
+Input
+Input is given from Standard Input in the following format:
+N
+s_1 t_1
+\vdots
+s_{N} t_N
+X
+Output
+Print the answer.
+Sample Input 13
+dwango 2
+sixth 5
+prelims 25
+dwango
+Sample Output 130
+While Niwango was asleep, two songs were played: sixth and prelims.
+The answer is the total duration of these songs, 30.
+Sample Input 21
+abcde 1000
+abcde
+Sample Output 20
+No songs were played while Niwango was asleep.
+In such a case, the total duration of songs is 0.
+Sample Input 315
+ypnxn 279
+kgjgwx 464
+qquhuwq 327
+rxing 549
+pmuduhznoaqu 832
+dagktgdarveusju 595
+wunfagppcoi 200
+dhavrncwfw 720
+jpcmigg 658
+wrczqxycivdqn 639
+mcmkkbnjfeod 992
+htqvkgkbhtytsz 130
+twflegsjz 467
+dswxxrxuzzfhkp 989
+szfwtzfpnscgue 958
+pmuduhznoaqu
+Sample Output 36348
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An integer N (1 ≤ N ≤ 50), representing some quantity or size.
+A list of N tuples, each containing a string of length between 1 and 100 (inclusive) consisting of lowercase English letters, and an integer between 1 and 1000.
+A string of length between 1 and 100 (inclusive) consisting of lowercase English letters.
+
+### Example Input:
+
+```
+3
+ypnxn 279
+kgjgwx 464
+qquhuwq 327
+kgjgwx
+```
+
+### Function Signature:
+Write a function f(N, entries, X) that takes in the input.
+def f(N: int, entries: List[Tuple[str, int]], X: str):
+    '''
+    N: an integer
+    entries: a list of tuples, where each tuple contains a string and an integer
+    X: a string
+    '''</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Sure, here's a test case generator for the provided problem statement:
+
+```python
+import random
+import string
+
+def generate_random_string(length):
+    return ''.join(random.choice(string.ascii_lowercase) for _ in range(length))
+
+def tcgen():
+    # Number of songs
+    N = random.randint(1, 50)
+    
+    songs = []
+    titles = set()
+    
+    for _ in range(N):
+        # Ensure unique song titles
+        while True:
+            s_i = generate_random_string(random.randint(1, 100))
+            if s_i not in titles:
+                titles.add(s_i)
+                break
+        
+        # Duration of the song
+        t_i = random.randint(1, 1000)
+        songs.append((s_i, t_i))
+    
+    # Choose a random song title from the list to be the one when Niwango fell asleep
+    X = random.choice(songs)[0]
+    
+    return N, songs, X
+
+def print_test_case(N, songs, X):
+    print(N)
+    for s, t in songs:
+        print(f"{s} {t}")
+    print(X)
+
+# Generate and print a test case
+N, songs, X = tcgen()
+print_test_case(N, songs, X)
+```
+
+### Explanation
+1. **generate_random_string(length)**: Generates a random string of lowercase English letters of the specified length.
+2. **tcgen()**: Generates a test case by:
+   - Randomly selecting the number of songs \(N\).
+   - Creating unique song titles (ensuring no duplicates) and assigning them random durations.
+   - Selecting a random song title \(X\) from the list of songs.
+3. **print_test_case(N, songs, X)**: Outputs the generated test case in the required format.
+
+### Example Output
+Here is an example of what the generated test case might look like:
+
+```
+5
+abc 123
+def 456
+ghi 789
+jkl 101
+mno 202
+ghi
+```
+
+This ensures that the test case is formatted correctly and meets the constraints of the problem.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    N = int(fh.readline().strip())
+    songs = []
+    for _ in range(N):
+        line = fh.readline().strip().split()
+        s = line[0]
+        t = int(line[1])
+        songs.append((s, t))
+    X = fh.readline().strip()
+    return N, songs, X</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

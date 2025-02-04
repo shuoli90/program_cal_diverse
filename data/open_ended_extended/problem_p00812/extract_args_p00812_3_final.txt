@@ -1,0 +1,21 @@
+def extract_arguments(fh):
+    blocks = []
+    current_block = []
+    for line in fh:
+        line = line.strip()
+        if line == '.':
+            if current_block:
+                blocks.append(current_block)
+                current_block = []
+            else:
+                break
+        else:
+            current_block.append(line)
+    return blocks
+
+# if __name__ == "__main__":
+#     input_path = sys.argv[1]
+#     with open(input_path, 'r') as fh: 
+#         blocks = extract_arguments(fh)
+#         for block in blocks:
+#             print(block)

@@ -1,0 +1,42 @@
+An integer M (1 ≤ M ≤ 2000), representing the number of connections.
+M lines follow, each containing:
+- A string S1 representing the starting location (1 to 16 alphabetical characters).
+- A time string T1 in the format HH:MM representing the departure time (00:00 to 23:59).
+- A string S2 representing the arrival location (1 to 16 alphabetical characters).
+- A time string T2 in the format HH:MM representing the arrival time (00:00 to 23:59), strictly after the departure time.
+- An integer P (1 ≤ P ≤ 10000), representing the price of the connection.
+The input ends with a line containing a single integer 0 to signal the end of data sets.
+
+### Example Input:
+
+```
+5
+Hakodate 08:15 Morioka 12:30 2500
+Morioka 14:05 Hakodate 17:30 2500
+Morioka 15:30 Hakodate 18:00 3000
+Morioka 14:30 Tokyo 17:50 3000
+Tokyo 08:30 Morioka 13:35 3000
+4
+Hakodate 08:15 Morioka 12:30 2500
+Morioka 14:04 Hakodate 17:30 2500
+Morioka 14:30 Tokyo 17:50 3000
+Tokyo 08:30 Morioka 13:35 3000
+0
+```
+
+### Function Signature:
+Write a function `f(data_sets)` that processes a list of tuples, where each tuple represents a data set.
+```python
+def f(data_sets: List[Tuple[int, List[Tuple[str, str, str, str, int]]]]):
+    '''
+    data_sets: a list of data sets
+               each data set is a tuple containing:
+               - an integer M
+               - a list of M tuples, each containing:
+                 - a string S1
+                 - a time string T1
+                 - a string S2
+                 - a time string T2
+                 - an integer P
+    '''
+```

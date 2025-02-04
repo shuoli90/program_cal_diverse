@@ -1,0 +1,17 @@
+Types: N: int, M: int, L: List[int], R: List[int]
+
+Ranges: 
+- 1 ≤ N ≤ 2 × 10^5
+- 1 ≤ M ≤ 2 × 10^5
+- 0 ≤ L_i < R_i ≤ M + 1 (1 ≤ i ≤ N)
+
+Addtl Info: 
+- All input values are integers.
+- The input format is given as:
+  ```
+  N M
+  L_1 R_1
+  L_2 R_2
+  ...
+  L_N R_N
+  ```

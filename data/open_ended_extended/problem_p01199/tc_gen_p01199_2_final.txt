@@ -1,0 +1,54 @@
+Sure, I can help you write a test case generator for the "Flame of Nucleus" problem. Here's a Python function that generates random test cases according to the given problem statement:
+
+```python
+import random
+
+def generate_test_case():
+    # Generate N, M, and L
+    N = random.randint(1, 100)
+    M = random.randint(0, N*(N-1)//2)  # Maximum M is the number of unique pairs of domes
+    L = random.randint(1, 10000)
+    
+    # Generate M pipelines
+    pipelines = []
+    existing_pairs = set()
+    for _ in range(M):
+        while True:
+            A = random.randint(1, N)
+            B = random.randint(1, N)
+            if A != B and (A, B) not in existing_pairs and (B, A) not in existing_pairs:
+                existing_pairs.add((A, B))
+                Di = random.randint(1, 10000)
+                pipelines.append((A, B, Di))
+                break
+    
+    # Generate P and K arrays
+    P = [random.randint(0, 10**6) for _ in range(N)]
+    K = [random.randint(0, 10**6) for _ in range(N)]
+    
+    # Prepare the test case in the required format
+    test_case = f"{N} {M} {L}\n"
+    for A, B, Di in pipelines:
+        test_case += f"{A} {B} {Di}\n"
+    test_case += ' '.join(map(str, P)) + '\n'
+    test_case += ' '.join(map(str, K)) + '\n'
+    
+    return test_case
+
+def tcgen(num_cases=5):
+    test_cases = [generate_test_case() for _ in range(num_cases)]
+    return '\n'.join(test_cases)
+
+# Example usage:
+print(tcgen(3))
+```
+
+This generator creates `num_cases` test cases:
+
+1. **N** is the number of domes, and it's randomly chosen between 1 and 100.
+2. **M** is the number of pipelines, and it's randomly chosen between 0 and the maximum number of unique pairs of domes.
+3. **L** is the number of days until nuclear radiation, and it's randomly chosen between 1 and 10000.
+4. For each pipeline, it randomly selects two distinct domes and a travel time **Di** between 1 and 10000.
+5. **P** and **K** arrays are randomly filled with integers between 0 and 10^6.
+
+This function generates the test case as a string formatted according to the problem's input specification. The `tcgen` function is a wrapper that generates a specified number of such test cases and joins them into a single string separated by newlines for easy multiple test case handling.

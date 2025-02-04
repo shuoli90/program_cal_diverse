@@ -1,0 +1,29 @@
+An integer \(T\) (0 < \(T\) ≤ 100), representing the number of datasets.
+For each dataset:
+1. Two integers \(H\) and \(W\), representing dimensions (1 ≤ \(H, W\) ≤ 100).
+2. A list of \(H\) strings, each of length \(W\), where each character is one of {'.', '*', '#', '-', '^', 'v', '<', '>'}.
+3. A string of actions consisting of characters from the set {'U', 'D', 'L', 'R', 'S'}.
+
+### Example Input:
+
+```
+1
+5 5
+.....
+..^..
+.....
+.###.
+.....
+UDLRSS
+```
+
+### Function Signature:
+Write a function f(inputs) that takes in the input. 
+def f(inputs: List[Tuple[int, int, List[str], str]]): 
+    ''' 
+    inputs: a list of tuples, each containing: 
+        an integer 
+        an integer 
+        a list of strings 
+        a string 
+    '''

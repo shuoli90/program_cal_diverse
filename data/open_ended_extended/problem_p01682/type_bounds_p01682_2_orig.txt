@@ -1,0 +1,3 @@
+Types: expression: str
+Ranges: 0 ≤ number ≤ 1,000,000,000
+Addtl Info: Each expression is a valid Shipura expression, the number of datasets is at most 100, the total size of the input file does not exceed 2,000,000 bytes, the character '#' indicates the end of input.

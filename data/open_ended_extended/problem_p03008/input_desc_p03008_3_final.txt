@@ -1,0 +1,24 @@
+An integer N (1 ≤ N ≤ 5000).
+
+A tuple (g_A, s_A, b_A) of three integers, each between 1 and 5000.
+
+A tuple (g_B, s_B, b_B) of three integers, each between 1 and 5000.
+
+### Example Input:
+
+```
+23
+1 1 1
+2 1 1
+```
+
+### Function Signature:
+Write a function f(N, A, B) that takes in the input.
+```python
+def f(N: int, A: Tuple[int, int, int], B: Tuple[int, int, int]):
+    '''
+    N: an integer
+    A: a tuple of three integers
+    B: a tuple of three integers
+    '''
+```

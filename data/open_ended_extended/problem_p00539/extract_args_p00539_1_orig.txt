@@ -1,0 +1,7 @@
+def extract_arguments(fh):
+    N, M, C = map(int, fh.readline().strip().split())
+    roads = []
+    for _ in range(M):
+        Ai, Bi, Di = map(int, fh.readline().strip().split())
+        roads.append((Ai, Bi, Di))
+    return N, M, C, roads

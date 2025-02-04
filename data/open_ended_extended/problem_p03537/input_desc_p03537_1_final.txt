@@ -1,0 +1,25 @@
+Canonicalized Input Description:
+
+A string S of lowercase English letters (1 ≤ |S| ≤ 10^5).
+An integer N (1 ≤ N ≤ 10^5), representing some quantity or size.
+N pairs of integers L and R, where 1 ≤ L ≤ R ≤ |S|.
+
+### Example Input:
+
+```
+bixzja
+2
+2 3
+3 6
+```
+
+### Function Signature:
+Write a function f(S, N, operations) that takes in the input.
+```python
+def f(S: str, N: int, operations: List[Tuple[int, int]]):
+    '''
+    S: a string
+    N: an integer
+    operations: a list of tuples of integers
+    '''
+```

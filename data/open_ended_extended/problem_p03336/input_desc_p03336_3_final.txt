@@ -1,0 +1,24 @@
+An integer N (1 ≤ N ≤ 10^6), representing some quantity.
+An integer M (1 ≤ M ≤ 10^6), representing some quantity.
+An integer K (1 ≤ K ≤ 10^6), representing the number of operations.
+A binary string S of length N, where the initial character is guaranteed to be '1'.
+A binary string T of length M, where the initial character is guaranteed to be '1'.
+
+### Example Input:
+
+```
+2 3 3
+11
+101
+```
+
+### Function Signature:
+Write a function f(N, M, K, S, T) that takes in the input.
+def f(N: int, M: int, K: int, S: str, T: str):
+    '''
+    N: an integer
+    M: an integer
+    K: an integer
+    S: a binary string
+    T: a binary string
+    '''

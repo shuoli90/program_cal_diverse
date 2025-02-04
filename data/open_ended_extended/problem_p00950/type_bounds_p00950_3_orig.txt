@@ -1,0 +1,5 @@
+Types: input_string: str
+
+Ranges: 1 ≤ len(input_string) ≤ 31
+
+Addtl Info: input_string consists of Roman alphabet characters (both uppercase and lowercase), binary digits ("0" and "1"), operator symbols ("+", "-", "*"), parentheses ("(" and ")"), and equal signs ("=").

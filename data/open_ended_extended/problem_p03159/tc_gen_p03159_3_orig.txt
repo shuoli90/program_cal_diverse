@@ -1,0 +1,43 @@
+Certainly! To create a test case generator for the given problem, we need to generate:
+
+1. The number of devices \(N\).
+2. The list \(A\) of size \(N\), where each element \(A[i]\) represents the power consumption or supply of the \(i\)-th device.
+3. A list of \(N-1\) unique cables connecting the devices, represented as pairs \((U_i, V_i)\).
+
+Here's a Python function that generates random test cases for the problem:
+
+```python
+import random
+
+def generate_test_case():
+    N = random.randint(1, 5000)  # Number of devices
+    A = [random.choice([-1, 1]) * random.randint(1, 10**9) for _ in range(N)]  # Power supply/consumption for each device
+
+    # Generate a random tree structure
+    edges = []
+    if N > 1:
+        nodes = list(range(1, N + 1))
+        random.shuffle(nodes)
+        for i in range(1, N):
+            U = nodes[i]
+            V = nodes[random.randint(0, i - 1)]
+            edges.append((U, V))
+
+    # Formatting the output
+    test_case = f"{N}\n"
+    test_case += ' '.join(map(str, A)) + '\n'
+    for (U, V) in edges:
+        test_case += f"{U} {V}\n"
+
+    return test_case
+
+# Example usage
+print(generate_test_case())
+```
+
+This function does the following:
+1. It generates a random number \(N\) within the given constraints.
+2. It generates a list \(A\) of size \(N\) where each element is a random non-zero integer between \(-10^9\) and \(10^9\).
+3. It generates \(N-1\) edges ensuring they form a valid tree structure by connecting nodes in a way that each node is connected to some previous node, ensuring all nodes are connected.
+
+You can call `generate_test_case()` to get a new test case each time. This function ensures the constraints of the problem are met and generates valid random test cases for the problem.

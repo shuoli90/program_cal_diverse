@@ -1,0 +1,26 @@
+Sure! To write a test case generator for this problem, we'll follow these steps:
+1. Generate a random length for the string \( S \) within the given constraints.
+2. Generate a random string \( S \) consisting of characters 'a', 'b', and 'c'.
+3. Return the generated string.
+
+Here's the Python code to do this:
+
+```python
+import random
+
+def tcgen():
+    # Generate a random length for the string S
+    length = random.randint(2, 2 * 10**5)
+    
+    # Generate a random string S consisting of characters 'a', 'b', and 'c'
+    S = ''.join(random.choice('abc') for _ in range(length))
+    
+    return S
+
+# Example usage to generate a test case
+if __name__ == "__main__":
+    test_string = tcgen()
+    print(test_string)
+```
+
+This code will generate a random test case that meets the constraints of the problem statement. The length of the string \( S \) will be between 2 and 200,000, and the string itself will be composed of the characters 'a', 'b', and 'c'.

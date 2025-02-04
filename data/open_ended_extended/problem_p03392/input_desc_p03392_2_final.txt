@@ -1,0 +1,19 @@
+An integer N (2 ≤ N ≤ 2 × 10^5), representing the length of a string.
+A string S of length N, consisting of characters {'a', 'b', 'c'}.
+
+### Example Input:
+
+```
+5
+abbac
+```
+
+### Function Signature:
+Write a function f(N, S) that takes in the input.
+```python
+def f(N: int, S: str):
+    ''' 
+    N: an integer 
+    S: a string
+    '''
+```

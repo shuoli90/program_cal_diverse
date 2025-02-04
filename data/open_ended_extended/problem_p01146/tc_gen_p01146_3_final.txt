@@ -1,0 +1,74 @@
+Sure, I can help you write a test case generator for the "Princess in Danger" problem. Here is a Python script to generate random test cases for this problem:
+
+```python
+import random
+
+def generate_test_case():
+    # Generate random values for N, M, L, K, A, H
+    N = random.randint(2, 100)
+    M = random.randint(1, 100)
+    L = random.randint(0, N-2)
+    K = random.randint(1, (N*(N-1))//2) # Maximum number of roads is N*(N-1)/2
+    A = random.randint(0, N-1)
+    H = random.randint(0, N-1)
+    
+    # Ensure A and H are different
+    while H == A:
+        H = random.randint(0, N-1)
+    
+    # Generate the cities with freezing facilities
+    freezing_facilities = random.sample([i for i in range(N) if i != A and i != H], L)
+    
+    # Generate the roads with random travel times
+    roads = set()
+    while len(roads) < K:
+        X = random.randint(0, N-1)
+        Y = random.randint(0, N-1)
+        if X != Y and (X, Y) not in roads and (Y, X) not in roads:
+            T = random.randint(1, 100)
+            roads.add((X, Y, T))
+    
+    # Convert roads set to list for easier handling
+    roads = list(roads)
+    
+    return N, M, L, K, A, H, freezing_facilities, roads
+
+def print_test_case(N, M, L, K, A, H, freezing_facilities, roads):
+    print(f"{N} {M} {L} {K} {A} {H}")
+    if freezing_facilities:
+        print(" ".join(map(str, freezing_facilities)))
+    for X, Y, T in roads:
+        print(f"{X} {Y} {T}")
+
+def main():
+    num_cases = random.randint(1, 10) # Generate between 1 and 10 test cases
+    for _ in range(num_cases):
+        test_case = generate_test_case()
+        print_test_case(*test_case)
+        print() # Print an empty line between test cases
+    print("0 0 0 0 0 0") # End of input
+
+if __name__ == "__main__":
+    main()
+```
+
+### Explanation
+1. **Random Value Generation**:
+   - `N`: Number of cities (2 to 100).
+   - `M`: Time limit for re-freezing (1 to 100).
+   - `L`: Number of cities with freezing facilities (0 to N-2).
+   - `K`: Number of roads (1 to N*(N-1)/2), ensuring there are at least one road.
+   - `A`: Capital city (0 to N-1).
+   - `H`: Hospital city (0 to N-1), ensuring it's different from `A`.
+
+2. **Freezing Facilities**:
+   - A list of `L` cities with freezing facilities, excluding `A` and `H`.
+
+3. **Roads**:
+   - Generate `K` unique roads with random travel times (1 to 100). Ensures no duplicate roads and no road connecting a city to itself.
+
+4. **Output**:
+   - Print the test cases in the specified format.
+   - Print a terminating line "0 0 0 0 0 0" to indicate the end of input.
+
+This script will generate test cases that fit the problem constraints and can be used to test the solution effectively.

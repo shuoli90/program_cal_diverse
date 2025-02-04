@@ -1,0 +1,55 @@
+Sure! Here is a test case generator for the "Set Difference" problem:
+
+```python
+import random
+
+def generate_unique_sorted_list(size, max_value):
+    # Generate a sorted list of unique elements
+    unique_elements = set()
+    while len(unique_elements) < size:
+        unique_elements.add(random.randint(0, max_value))
+    return sorted(unique_elements)
+
+def tcgen():
+    # Constraints
+    MAX_N = 200000
+    MAX_M = 200000
+    MAX_VAL = 10**9
+
+    # Random sizes for the sets A and B
+    n = random.randint(1, MAX_N)
+    m = random.randint(1, MAX_M)
+
+    # Generate sorted lists with unique elements
+    A = generate_unique_sorted_list(n, MAX_VAL)
+    B = generate_unique_sorted_list(m, MAX_VAL)
+
+    return n, A, m, B
+
+# Example usage
+if __name__ == "__main__":
+    n, A, m, B = tcgen()
+    print(n)
+    print(" ".join(map(str, A)))
+    print(m)
+    print(" ".join(map(str, B)))
+```
+
+### Explanation:
+
+1. **Function `generate_unique_sorted_list(size, max_value)`**:
+    - This function generates a sorted list of unique elements.
+    - It creates a set of unique random integers until the set reaches the desired size.
+    - The set is then converted to a sorted list and returned.
+
+2. **Function `tcgen()`**:
+    - It defines the upper limits for the constraints.
+    - It randomly selects the sizes `n` and `m` for sets `A` and `B` within the given constraints.
+    - It calls `generate_unique_sorted_list` to create the sorted lists `A` and `B` with unique elements.
+    - Finally, it returns `n`, `A`, `m`, and `B`.
+
+3. **Example usage**:
+    - The script can be run to generate a test case.
+    - It will print the sizes `n` and `m`, followed by the elements of sets `A` and `B`.
+
+This generator ensures that the sets `A` and `B` are in ascending order, contain unique elements, and respect the given constraints.

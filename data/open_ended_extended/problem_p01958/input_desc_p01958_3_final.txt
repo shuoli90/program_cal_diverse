@@ -1,0 +1,16 @@
+An integer M (1 ≤ M ≤ 10^9), representing the start of an interval.
+An integer N such that (M ≤ N ≤ 10^9), representing the end of an interval. You can assume that (0 ≤ N - M < 1,000,000).
+
+### Example Input:
+
+```
+1 9
+```
+
+### Function Signature:
+Write a function f(M, N) that takes in the input.
+def f(M: int, N: int):
+    '''
+    M: an integer
+    N: an integer
+    '''

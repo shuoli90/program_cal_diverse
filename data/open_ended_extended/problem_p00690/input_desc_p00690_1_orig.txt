@@ -1,0 +1,40 @@
+An integer ns (1 ≤ ns ≤ 10), representing some quantity.
+An integer nl (1 ≤ nl ≤ 20), representing some quantity.
+nl sets of three integers si1, si2, di, where:
+- si1 and si2 are integers representing some identifiers (1 ≤ si1, si2 ≤ ns).
+- di is an integer (di ≥ 1), representing some quantity.
+
+The input is terminated by a line containing two zeros.
+
+### Example Input:
+
+```
+6 5
+1 3 10
+2 3 12
+3 4 2
+4 5 13
+4 6 11
+10 10
+1 2 11
+2 3 25
+2 5 81
+2 6 82
+4 5 58
+5 9 68
+6 7 80
+6 9 67
+8 9 44
+9 10 21
+0 0
+```
+
+### Function Signature:
+Write a function f(inputs) that takes in the input.
+def f(inputs: List[Tuple[int, int, List[Tuple[int, int, int]]]]):
+    '''
+    inputs: a list of tuples, where each tuple contains:
+        - An integer ns
+        - An integer nl
+        - A list of nl tuples, where each tuple contains three integers si1, si2, di
+    '''

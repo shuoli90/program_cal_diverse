@@ -1,0 +1,25 @@
+Sure! I can create a test case generator for the given problem statement. Below is the test case generator for the problem:
+
+```python
+import random
+
+def tcgen():
+    # Constraints
+    N = random.randint(1, 1000)
+    M = random.randint(1, 1000)
+    K = random.randint(0, N * M)
+    
+    return N, M, K
+
+# Example usage:
+for _ in range(5):  # Generate 5 test cases
+    N, M, K = tcgen()
+    print(f"N = {N}, M = {M}, K = {K}")
+```
+
+This Python function `tcgen()` generates random test cases according to the constraints specified in the problem statement. Here's how it works:
+- `N` is the number of rows, randomly chosen from 1 to 1000.
+- `M` is the number of columns, randomly chosen from 1 to 1000.
+- `K` is the number of black squares desired, randomly chosen from 0 to `N * M`.
+
+This generator will help you create a variety of test cases to validate the solution to your problem.

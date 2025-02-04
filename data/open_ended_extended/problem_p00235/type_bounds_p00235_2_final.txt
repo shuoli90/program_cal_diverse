@@ -1,0 +1,3 @@
+Types: N: int, a: List[int], b: List[int], t: List[int]
+Ranges: 2 ≤ N ≤ 20, 1 ≤ ai, bi ≤ N, 1 ≤ ti ≤ 500
+Addtl Info: Number of datasets does not exceed 100

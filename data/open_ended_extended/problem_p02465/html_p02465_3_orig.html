@@ -1,0 +1,166 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p02465 - Generation 3</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p02465 - Generation 3</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>Set Difference
+  Find the difference of two sets $A = \{a_0, a_1, ..., a_{n-1}\}$ and $B = \{b_0, b_1, ..., b_{m-1}\}$,  $A - B$.
+Input
+  The input is given in the following format.
+$n$
+$a_0 \; a_1 \; ... \; a_{n-1}$
+$m$
+$b_0 \; b_1 \; ... \; b_{m-1}$
+  Elements in $A$ and $B$ are given in ascending order. There are no duplicate elements in each set.
+Output
+  Print elements in the difference in ascending order. Print an element in a line.
+ 
+Constraints
+$1 \leq n, m \leq 200,000$
+$0 \leq a_0 < a_1 < ... < a_{n-1} \leq 10^9$
+$0 \leq b_0 < b_1 < ... < b_{m-1} \leq 10^9$
+Sample Input 1
+5
+1 2 3 5 8
+2
+2 5
+Sample Output 1
+1
+3
+8
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An integer n (1 ≤ n ≤ 200,000), representing some quantity or size.
+A list of integers a of size n, where each integer is between 0 and 10^9 and the list is in ascending order with no duplicates.
+An integer m (1 ≤ m ≤ 200,000), representing some quantity or size.
+A list of integers b of size m, where each integer is between 0 and 10^9 and the list is in ascending order with no duplicates.
+
+### Example Input:
+
+```
+5
+1 2 3 5 8
+2
+2 5
+```
+
+### Function Signature:
+Write a function f(n, a, m, b) that takes in the input. 
+```python
+def f(n: int, a: List[int], m: int, b: List[int]):
+    ''' 
+    n: an integer 
+    a: a list of integers
+    m: an integer
+    b: a list of integers
+    '''
+```</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Sure, I can help you write a test case generator for the "Set Difference" problem. Here is the Python code for generating the test cases:
+
+```python
+import random
+
+def generate_sorted_unique_list(size, max_value):
+    """Generates a sorted list of unique integers."""
+    return sorted(random.sample(range(max_value + 1), size))
+
+def tcgen():
+    # Define the constraints
+    n = random.randint(1, 200000)
+    m = random.randint(1, 200000)
+    
+    # Generate two sorted unique lists
+    A = generate_sorted_unique_list(n, 10**9)
+    B = generate_sorted_unique_list(m, 10**9)
+    
+    return n, A, m, B
+
+# Example of using the test case generator
+if __name__ == "__main__":
+    n, A, m, B = tcgen()
+    print(n)
+    print(' '.join(map(str, A)))
+    print(m)
+    print(' '.join(map(str, B)))
+```
+
+### Explanation
+
+1. **generate_sorted_unique_list(size, max_value)**:
+   - This function generates a sorted list of unique integers. The `random.sample` function is used to generate a list of unique integers, and then the list is sorted.
+
+2. **tcgen()**:
+   - Randomly generates the sizes `n` and `m` for the sets `A` and `B` within the given constraints.
+   - Uses the `generate_sorted_unique_list` function to generate the sorted lists `A` and `B`.
+
+3. **Main Section**:
+   - This part runs the test case generator and prints the generated test case in the required format.
+
+This generator will help you create valid test cases for the "Set Difference" problem. You can adjust the print statements or store the generated data as needed for your testing framework.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    n = int(fh.readline().strip())
+    A = list(map(int, fh.readline().strip().split()))
+    m = int(fh.readline().strip())
+    B = list(map(int, fh.readline().strip().split()))
+    return n, A, m, B</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

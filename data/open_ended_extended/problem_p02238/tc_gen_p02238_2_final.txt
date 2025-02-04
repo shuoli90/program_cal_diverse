@@ -1,0 +1,56 @@
+Sure, let's write a test case generator for the Depth First Search (DFS) problem. The generator will create random graphs with the properties specified in the problem statement.
+
+Here is the Python code for the test case generator:
+
+```python
+import random
+
+def tcgen():
+    # Number of vertices
+    n = random.randint(1, 100)
+    
+    # Create an adjacency list for the graph
+    adjacency_list = {}
+    for i in range(1, n + 1):
+        # Number of edges from vertex i
+        k = random.randint(0, n - 1)
+        
+        # Create a list of unique vertices that this vertex connects to
+        if k == 0:
+            adjacency_list[i] = []
+        else:
+            # Ensuring unique vertices in the adjacency list
+            edges = random.sample(range(1, n + 1), k)
+            if i in edges:
+                edges.remove(i)
+                remaining_vertices = [x for x in range(1, n + 1) if x != i and x not in edges]
+                if remaining_vertices:
+                    edges.append(random.choice(remaining_vertices))
+                else:
+                    k -= 1
+            adjacency_list[i] = sorted(edges)
+    
+    # Format the input as specified in the problem statement
+    inputs = []
+    inputs.append(str(n))
+    for u in range(1, n + 1):
+        adj_vertices = adjacency_list[u]
+        line = f"{u} {len(adj_vertices)} " + " ".join(map(str, adj_vertices))
+        inputs.append(line)
+    
+    return "\n".join(inputs)
+
+# Example of generating a test case
+print(tcgen())
+```
+
+### Explanation:
+
+1. **Number of Vertices:** We generate a random number between 1 and 100 to represent the number of vertices.
+2. **Adjacency List Creation:**
+   - For each vertex \( i \), we generate a random number \( k \) which represents the number of edges from vertex \( i \).
+   - We ensure the edges are unique and do not include the vertex itself.
+   - The adjacency list for each vertex is sorted to meet the requirement of having IDs in ascending order.
+3. **Formatting the Input:** The adjacency list is formatted according to the problem's input specifications.
+
+You can call the `tcgen()` function to generate test cases for the DFS problem. The generated test cases will be strings containing the input in the required format.

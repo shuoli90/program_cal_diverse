@@ -1,0 +1,26 @@
+An integer H (1 ≤ H ≤ 12), representing some quantity or size.
+An integer W (1 ≤ W ≤ 12), representing some quantity or size.
+A matrix of size H × W consisting of integers, where each integer is either 0 or 1.
+
+### Example Input:
+```
+4 4
+1 0 0 0
+0 0 1 0
+0 1 0 0
+1 0 0 1
+```
+
+### Function Signature:
+Write a function f(inputs) that takes in the input.
+```python
+from typing import List, Tuple
+
+def f(inputs: List[Tuple[int, int, List[List[int]]]]):
+    ''' 
+    inputs: a list of tuples, each containing:
+        - an integer
+        - an integer
+        - a list of lists of integers
+    '''
+```

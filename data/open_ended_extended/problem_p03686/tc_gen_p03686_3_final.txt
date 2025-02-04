@@ -1,0 +1,49 @@
+Sure, I can help you write a test case generator for the given problem statement. Here's a Python function that generates test cases based on the constraints provided:
+
+```python
+import random
+
+def tcgen():
+    # Number of people and chairs
+    N = random.randint(1, 2 * 10**5)
+    M = random.randint(1, 2 * 10**5)
+    
+    # Generate L and R values for each person
+    LR = []
+    for _ in range(N):
+        L = random.randint(0, M)
+        R = random.randint(L + 1, M + 1)
+        LR.append((L, R))
+    
+    return N, M, LR
+
+def format_input(N, M, LR):
+    input_str = f"{N} {M}\n"
+    for L, R in LR:
+        input_str += f"{L} {R}\n"
+    return input_str.strip()
+
+# Example usage
+if __name__ == "__main__":
+    N, M, LR = tcgen()
+    test_case = format_input(N, M, LR)
+    print(test_case)
+```
+
+This script will generate random test cases based on the constraints given in the problem statement. Here's a breakdown of the code:
+
+1. **tcgen function**:
+   - Randomly generates `N`, the number of people, and `M`, the number of chairs, within the specified constraints.
+   - For each person, it generates random values for `L` and `R` such that `0 ≤ L < R ≤ M + 1`.
+   - Collects all these `(L, R)` pairs in the list `LR`.
+
+2. **format_input function**:
+   - Takes the generated values (`N`, `M`, and `LR`) and formats them into the input format expected by the problem.
+   - Returns the formatted string.
+
+3. **Example usage**:
+   - Calls the `tcgen` function to generate a test case.
+   - Formats the generated test case using `format_input`.
+   - Prints the test case.
+
+You can run the script multiple times to generate different test cases, or you can modify it to generate a specific number of test cases and write them to files for further testing.

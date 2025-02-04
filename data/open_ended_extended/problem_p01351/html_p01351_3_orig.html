@@ -1,0 +1,164 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p01351 - Generation 3</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p01351 - Generation 3</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>Problem C: Usagitobi
+There is a board of m × n squares. The square in the i-th row and j-th column is represented as (i, j) (0 ≤ i < m, 0 ≤ j < n).
+When the rabbit is at (x, y), it can jump to ((x + a) mod m, (y + b) mod n) or ((x + c) mod m, (y + d) mod n).
+Now, the rabbit is at (0, 0). Assuming that it cannot go back to a square it has jumped to before, how many times can the rabbit jump at most?
+Input
+The input is given on a single line and consists of six integers m, n, a, b, c, and d separated by a space. 1 ≤ m, n, a, b, c, d ≤ 100,000.
+Output
+Output the maximum number of times the rabbit can jump on a single line.
+Sample Input 1
+6 6 2 2 2 4
+Sample Output 1
+8
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>Canonicalized Input Description:
+
+Six integers m, n, a, b, c, and d, each between 1 and 100,000 inclusive.
+
+### Example Input:
+
+```
+6 6 2 2 2 4
+```
+
+### Function Signature:
+Write a function f(m, n, a, b, c, d) that takes in the input.
+```python
+def f(m: int, n: int, a: int, b: int, c: int, d: int):
+    '''
+    m: an integer
+    n: an integer
+    a: an integer
+    b: an integer
+    c: an integer
+    d: an integer
+    '''
+```</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Sure, I can create a test case generator for the given problem "Usagitobi". The generator will create random values for the grid size and the jump parameters while ensuring they fall within the specified constraints.
+
+Here's the test case generator for the "Usagitobi" problem:
+
+```python
+import random
+
+def tcgen_usagitobi():
+    # Define the constraints
+    min_val = 1
+    max_val = 100000
+    
+    # Generate random values for m, n, a, b, c, d within the constraints
+    m = random.randint(min_val, max_val)
+    n = random.randint(min_val, max_val)
+    a = random.randint(min_val, max_val)
+    b = random.randint(min_val, max_val)
+    c = random.randint(min_val, max_val)
+    d = random.randint(min_val, max_val)
+    
+    # Return the generated test case
+    return m, n, a, b, c, d
+
+# Example of generating a random test case
+test_case = tcgen_usagitobi()
+print(test_case)
+```
+
+This function `tcgen_usagitobi` will generate a random test case, ensuring all the values are within the valid range. You can call this function multiple times to generate different test cases for your competitive programming problem.
+
+If you need to generate a large number of test cases or save them to a file for further use, you can extend the script as follows:
+
+```python
+def generate_multiple_test_cases(num_cases):
+    test_cases = [tcgen_usagitobi() for _ in range(num_cases)]
+    return test_cases
+
+# Generate 10 random test cases
+num_cases = 10
+test_cases = generate_multiple_test_cases(num_cases)
+
+# Print the test cases
+for case in test_cases:
+    print(case)
+
+# Optionally, save the test cases to a file
+with open('test_cases.txt', 'w') as f:
+    for case in test_cases:
+        f.write(' '.join(map(str, case)) + '\n')
+```
+
+This script will generate 10 random test cases and print them out. Additionally, it writes the test cases to a file named `test_cases.txt`, with each test case on a new line.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    m, n, a, b, c, d = map(int, fh.readline().strip().split())
+    return m, n, a, b, c, d
+
+# if __name__ == "__main__":
+#     input_path = sys.argv[1]
+#     with open(input_path, 'r') as fh: 
+#         m, n, a, b, c, d = extract_arguments(fh)
+#         f(m, n, a, b, c, d)</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

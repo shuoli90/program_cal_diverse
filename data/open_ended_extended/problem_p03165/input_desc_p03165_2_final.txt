@@ -1,0 +1,25 @@
+An integer N (1 ≤ N ≤ 3000), representing the length of the first string.
+An integer M (1 ≤ M ≤ 3000), representing the length of the second string.
+A string S of length N, consisting of lowercase English letters.
+A string T of length M, consisting of lowercase English letters.
+
+### Example Input:
+
+```
+5
+5
+axyb
+abyxb
+```
+
+### Function Signature:
+Write a function f(N, M, S, T) that takes in the input.
+```python
+def f(N: int, M: int, S: str, T: str):
+    '''
+    N: an integer
+    M: an integer
+    S: a string
+    T: a string
+    '''
+```

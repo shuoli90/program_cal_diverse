@@ -1,0 +1,3 @@
+Types: N: int, Q: int, ci: List[int], qi: List[int]  
+Ranges: 2 ≤ N ≤ 300000, 2 ≤ Q ≤ 100000, 1 ≤ ci ≤ 300000, 1 ≤ qi ≤ 300000  
+Addtl Info: None

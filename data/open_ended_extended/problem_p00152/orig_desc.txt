@@ -1,0 +1,44 @@
+Bowling
+We have decided to go bowling as a class recreation. Create a program that inputs the throwing information for each participant and outputs the performance information in order of highest score. In the case of a tie, output in order of student ID number. However, the number of participants should be between 3 and 40, and each person is assumed to have thrown one game.
+Bowling is a sport in which a player rolls a ball towards ten pins arranged in an equilateral triangle with the top pointing towards them and tries to knock them all down. If all the pins are knocked down on the first throw, it is called a strike, and the player advances to the next frame with only that throw. If it is not a strike, the player leaves the remaining pins and throws a second time. If all the pins are knocked down on the second throw, it is called a spare, and the player advances to the next frame after the second throw.
+One game consists of 10 frames. For the first through ninth frames, two throws are allowed per frame. At the beginning of each frame, all 10 pins are standing. In the tenth frame, if a strike or a spare is made, three throws are allowed. Otherwise, two throws are allowed, and the game ends.
+Example scores 1
+Example scores 2 (with a perfect score of 300)
+Scoring Method
+ In frames where there is no spare or strike, the score for that frame is the number of pins knocked down in two throws. (e.g., the fourth and eighth frames in Example 1)
+ If you get a spare, you add ten points to the number of pins knocked down, and then add the number of pins knocked down on the next throw to the score for that frame. (e.g., the relationship between the first and second frames in Example 1) In the first frame of Example 1, 20 points are scored by adding the 10 pins (points) knocked down in the second frame's first throw to the 10 points for the first throw. The same calculation method applies to the third frame.
+ If you get a strike, you add ten points to the number of pins knocked down, and then add the number of pins knocked down in the next two throws to the score for that frame. (e.g., the relationship between the second and third frames in Example 1) Of course, there may be a strike in the two subsequent throws. (e.g., the relationship between the fifth, sixth, and seventh frames in Example 1)
+ In the tenth frame only, if you get a spare or strike, the total number of pins knocked down in three throws is added to the score for the tenth frame.
+ The total score for each frame is the sum of the scores for each frame, and the highest score is 300 points.
+Input
+The input consists of multiple datasets. The end of the input is indicated by a line containing a single zero.
+Each dataset is given in the following format.
+m
+score1
+score2
+:
+scorem
+The first line contains the number of participants m (3 ≤ m ≤ 40), followed by m lines containing the participant information for person i. Each participant information is given in the following format, one line at a time.
+id s1 s2 ... sn
+The student ID number id (0 ≤ id ≤ 9999) is first, followed by the number of pins knocked down in the jth throw, sj (0 ≤ sj ≤ 10). The total number of throws, n, is between 12 and 21, and the number of pins required for scoring is given exactly.
+Output
+For each input dataset, output the student ID number and score in order of highest score. If there is a tie, output in order of student ID number. Output the student ID number and score on one line, separated by a single space.
+Sample Input
+3
+1010 6 3 10 7 1 0 7 9 1 10 6 2 4 3 9 1 9 0
+1200 5 3 9 1 7 1 0 0 8 1 10 10 4 3 9 1 8 2 9
+1101 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3
+4
+3321 8 2 10 9 1 7 0 10 10 10 0 8 10 10 10 10
+3332 5 0 10 9 1 4 1 9 0 10 10 7 1 5 2 8 1
+3335 10 10 10 10 10 10 10 10 10 10 10 10
+3340 8 2 7 3 6 4 8 2 8 2 9 1 7 3 6 4 8 2 9 1 7
+0
+Output for the Sample Input
+1200 127
+1010 123
+1101 60
+3335 300
+3321 200
+3340 175
+3332 122

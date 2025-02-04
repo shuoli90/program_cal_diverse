@@ -1,0 +1,29 @@
+    
+An integer sequence of multiple data sets. The end of the input is indicated by two zeros on a line.
+Each dataset consists of 5 lines, each containing two integers.
+For each line, the two integers \(s1\) and \(s2\) (1 ≤ \(s1\), \(s2\) ≤ 10000) are provided.
+The number of datasets is no more than 100.
+
+### Example Input:
+```
+1593 4311
+4321 2155
+1256 6421
+5310 1455
+2152 5421
+1549 3386
+4528 3719
+1234 4321
+3330 3109
+2739 2199
+0 0
+```
+
+### Function Signature:
+Write a function f(inputs) that takes in the input.
+```python
+def f(inputs: List[Tuple[Tuple[int, int], Tuple[int, int], Tuple[int, int], Tuple[int, int], Tuple[int, int]]]):
+    '''
+    inputs: a list of datasets, where each dataset is a tuple of 5 tuples, and each tuple contains two integers
+    '''
+```

@@ -1,0 +1,43 @@
+An integer W (3 ≤ W ≤ 30) and an integer H (3 ≤ H ≤ 30).
+A list of H strings, each of length W, consisting of characters from the set {'@', '<', 'a' - 'z', 'A' - 'Z', '#', '.'}.
+A line containing two zeros indicates the end of the input, and should not be processed.
+
+### Example Input:
+
+```
+8 3
+########
+#<A.@.a#
+########
+8 3
+########
+#<AaAa@#
+########
+8 4
+########
+#<EeEe@#
+#FG.e#.#
+########
+8 8
+########
+#mmm@ZZ#
+#mAAAbZ#
+#mABBBZ#
+#mABCCd#
+#aABCDD#
+#ZZcCD<#
+########
+0 0
+```
+
+### Function Signature:
+Write a function f(inputs) that takes in the input.
+```python
+def f(inputs: List[Tuple[int, int, List[str]]]):
+    '''
+    inputs: a list of tuples, where each tuple contains:
+        - an integer W
+        - an integer H
+        - a list of H strings, each of length W
+    '''
+```

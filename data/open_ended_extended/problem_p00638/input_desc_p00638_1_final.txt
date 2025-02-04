@@ -1,0 +1,26 @@
+Canonicalized Input Description:
+
+An integer n (0 ≤ n ≤ 25), representing some quantity or size.
+Next n lines each contain two integers: the first integer is between 0 and 10^6, the second integer is between 0 and 10^6.
+The sequence of datasets ends with a case where n = 0.
+
+### Example Input:
+
+```
+3
+2 3
+3 6
+1 2
+3
+2 3
+3 5
+1 2
+0
+```
+
+### Function Signature:
+Write a function f(inputs) that takes in the input.
+def f(inputs: List[Tuple[int, List[Tuple[int, int]]]]):
+    ''' 
+    inputs: a list of tuples
+    '''

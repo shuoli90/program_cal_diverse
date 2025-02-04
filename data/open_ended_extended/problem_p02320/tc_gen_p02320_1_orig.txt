@@ -1,0 +1,38 @@
+Sure! Here is a test case generator for the given Knapsack Problem with Limitations:
+
+```python
+import random
+
+def tcgen():
+    N = random.randint(1, 100)
+    W = random.randint(1, 10000)
+    
+    items = []
+    for _ in range(N):
+        v = random.randint(1, 1000)
+        w = random.randint(1, 1000)
+        m = random.randint(1, 10000)
+        items.append((v, w, m))
+    
+    return (N, W, items)
+
+def format_test_case(N, W, items):
+    test_case = f"{N} {W}\n"
+    for (v, w, m) in items:
+        test_case += f"{v} {w} {m}\n"
+    return test_case
+
+# Example usage
+N, W, items = tcgen()
+test_case = format_test_case(N, W, items)
+print(test_case)
+```
+
+This generator will produce random test cases for the knapsack problem with limitations, adhering to the constraints specified in the problem statement. Here is how it works:
+
+1. It randomly selects the number of items \(N\) between 1 and 100.
+2. It randomly selects the maximum weight \(W\) of the knapsack between 1 and 10000.
+3. For each item, it randomly selects the value \(v\) between 1 and 1000, weight \(w\) between 1 and 1000, and limitation \(m\) between 1 and 10000.
+4. The `format_test_case` function formats the generated test case into the required input format.
+
+You can use the `tcgen` and `format_test_case` functions to generate and format test cases for your problem.

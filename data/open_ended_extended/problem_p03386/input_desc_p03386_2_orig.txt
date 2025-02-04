@@ -1,0 +1,20 @@
+An integer A (1 ≤ A ≤ 10^9).
+An integer B (A ≤ B ≤ 10^9).
+An integer K (1 ≤ K ≤ 100).
+
+### Example Input:
+
+```
+3 8 2
+```
+
+### Function Signature:
+Write a function f(A, B, K) that takes in the input.
+```python
+def f(A: int, B: int, K: int):
+    '''
+    A: an integer
+    B: an integer
+    K: an integer
+    '''
+```

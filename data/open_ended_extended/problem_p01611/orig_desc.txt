@@ -1,0 +1,52 @@
+K-th String
+Problem Statement
+The suffix array SA for a string S of length N is defined as follows by the following procedure that produces a permutation of positive integers not exceeding N. Here, a substring of S from the ith to jth characters is referred to as S[i..j]. The indices are 1-indexed.
+Sort each suffix S[i..N] (i=1,2,...,N) in lexicographic order (ascending order).
+Arrange each sorted suffix's starting position i in order.
+For example, the suffix array SA for S="mississippi" is as follows:
+Given a suffix array SA for a string of length N, find the K-th (1-indexed) lexicographically smallest string that can be obtained from SA. The original string consists of at most A characters, which are numbered in alphabetical order from 'a'.
+Input
+The input is given in the following format. All given integers are integers.
+N A K
+SA_1
+SA_2
+...
+SA_N
+Constraints
+1≦N≦10^5
+1≦A≦26
+1≦K≦10^{18}
+1≦SA_i≦N
+i \neq j implies SA_i \neq SA_j.
+Output
+Output the K-th lexicographically smallest string that can be obtained from SA, as a single line. If the K-th string does not exist, output "Impossible".
+Sample Input 1
+3 4 2
+2
+1
+3
+Output for the Sample Input 1
+bad
+If A=4, then the four strings that can be obtained from SA={2,1,3} are "bac", "bad", "cad", and "cbd". Therefore, the second smallest string in lexicographic order, "bad", is the answer.
+Sample Input 2
+18 26 10275802967
+10
+14
+9
+13
+7
+8
+2
+6
+11
+18
+12
+1
+4
+3
+16
+5
+17
+15
+Output for the Sample Input 2
+ritsumeicampdaytwo

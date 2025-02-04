@@ -1,0 +1,33 @@
+Sure, here is a Python function to generate test cases for the given sandglass problem:
+
+```python
+import random
+
+def tcgen():
+    X = random.randint(1, 10**9)
+    t = random.randint(1, 10**9)
+    return X, t
+
+# Generate a test case
+X, t = tcgen()
+print(f"{X} {t}")
+
+# Example usage: output a test case
+if __name__ == "__main__":
+    for _ in range(5):  # Generate 5 example test cases
+        X, t = tcgen()
+        print(f"{X} {t}")
+```
+
+This function randomly generates values for \(X\) and \(t\) within the specified constraints (1 ≤ \(X\) ≤ 10^9 and 1 ≤ \(t\) ≤ 10^9). The generated values are returned and printed in the required format. You can run this function to generate multiple test cases as needed.
+
+Here's how you can use the function to generate and print multiple test cases:
+
+```python
+if __name__ == "__main__":
+    for _ in range(5):  # Generate 5 example test cases
+        X, t = tcgen()
+        print(f"{X} {t}")
+```
+
+This will generate 5 test cases and print them in the required format, suitable for use in testing the sandglass problem solution.

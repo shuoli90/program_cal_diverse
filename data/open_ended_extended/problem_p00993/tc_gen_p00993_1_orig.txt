@@ -1,0 +1,49 @@
+Sure! Let's write a test case generator for the given problem statement "Problem D: Numbers". We need to generate random values for \( n \) within the given constraints and then construct the output accordingly.
+
+Here's the code for the test case generator:
+
+```python
+import random
+
+def generate_consecutive_numbers(n):
+    # Starting from a random number that ensures we don't exceed 5000 digits in output
+    start = random.randint(1, 10**5)
+    return [start + i for i in range(n)]
+
+def generate_divisors(n):
+    divisors = []
+    numbers = generate_consecutive_numbers(n)
+    
+    for num in numbers:
+        # Generate a divisor other than 1 and the number itself
+        if num == 1:
+            divisors.append(2)  # Since 1 only has itself as a divisor, we output 2 instead
+        else:
+            divisors.append(random.randint(2, num - 1))
+    
+    return numbers, divisors
+
+def tcgen():
+    n = random.randint(1, 1500)
+    numbers, divisors = generate_divisors(n)
+    
+    return n, numbers, divisors
+
+def format_output(n, numbers, divisors):
+    output = [str(numbers[0])]
+    output.extend(map(str, divisors))
+    return "\n".join(output)
+
+# Example usage:
+n, numbers, divisors = tcgen()
+print(n)
+print(format_output(n, numbers, divisors))
+```
+
+### Explanation:
+1. **generate_consecutive_numbers(n)**: Generates `n` consecutive numbers starting from a random integer within a reasonable range.
+2. **generate_divisors(n)**: Generates a list of divisors such that each number in the list, except 1, has at least one divisor other than 1 and itself. We handle the special case for 1 by outputting 2 as its divisor.
+3. **tcgen()**: Generates a random value for \( n \) within the specified range and then uses the helper functions to generate the numbers and their respective divisors.
+4. **format_output(n, numbers, divisors)**: Formats the output in the required way, with the first line being the smallest number in the list, followed by the divisors of each consecutive number.
+
+This should cover the generation of test cases as required by the problem statement.

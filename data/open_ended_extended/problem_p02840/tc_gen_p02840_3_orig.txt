@@ -1,0 +1,43 @@
+To create a test case generator for the problem statement provided, we need to ensure that the generated inputs adhere to the constraints and generate valid sequences. Here's a Python function to generate randomized test cases:
+
+```python
+import random
+
+def tcgen():
+    # Constraints
+    MIN_X_D = -10**8
+    MAX_X_D = 10**8
+    MIN_N = 1
+    MAX_N = 2 * 10**5
+    
+    # Generate random values within the constraints
+    N = random.randint(MIN_N, MAX_N)
+    X = random.randint(MIN_X_D, MAX_X_D)
+    D = random.randint(MIN_X_D, MAX_X_D)
+    
+    return N, X, D
+
+# Example usage:
+for _ in range(5):  # Generate 5 test cases
+    print(tcgen())
+```
+
+This function generates random values for \( N \), \( X \), and \( D \) within the specified constraints. You can call this function multiple times to generate different test cases. The results will be tuples of three values representing \( N \), \( X \), and \( D \), which can be directly used as test cases for the problem.
+
+Here's how it works:
+- \( N \) is randomly generated between 1 and 200,000.
+- \( X \) and \( D \) are randomly generated between -100,000,000 and 100,000,000.
+
+### Example Output
+
+Running the function multiple times might give output like this:
+
+```
+(193045, 58474524, 2148231)
+(36521, -98127463, 47281945)
+(146789, 567234, -98765432)
+(100000, -100000000, 100000000)
+(200000, -12345678, 87654321)
+```
+
+These outputs can be used directly as inputs to the problem statement.

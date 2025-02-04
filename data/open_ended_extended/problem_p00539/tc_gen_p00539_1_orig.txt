@@ -1,0 +1,55 @@
+Sure! To write a test case generator for the "JOI Park" problem, we need to consider the constraints and generate realistic random values for the number of squares (N), the number of roads (M), and the cost factor (C). We also need to generate a valid set of roads, ensuring that the graph remains connected.
+
+Here's the Python code for the test case generator for the "JOI Park" problem:
+
+```python
+import random
+
+def generate_test_case():
+    # Define the range for N and M based on the constraints
+    N = random.randint(2, 100000)
+    M = random.randint(N-1, 200000)  # Ensure at least N-1 roads to keep the graph connected
+    C = random.randint(1, 100000)
+
+    roads = []
+    
+    # Generate a connected graph using a tree structure
+    indices = list(range(1, N + 1))
+    random.shuffle(indices)
+    connected = {indices[0]}
+    remaining = set(indices[1:])
+    
+    while remaining:
+        u = random.choice(list(connected))
+        v = random.choice(list(remaining))
+        if u != v:
+            d = random.randint(1, 10000)
+            roads.append((u, v, d))
+            connected.add(v)
+            remaining.remove(v)
+
+    # Generate additional random roads to reach the desired M count
+    while len(roads) < M:
+        u = random.randint(1, N)
+        v = random.randint(1, N)
+        if u != v:
+            d = random.randint(1, 10000)
+            roads.append((u, v, d))
+
+    # Print the generated test case data
+    print(f"{N} {M} {C}")
+    for u, v, d in roads:
+        print(f"{u} {v} {d}")
+
+# Example usage
+generate_test_case()
+```
+
+### Explanation:
+1. **Number of Squares and Roads**: We pick a random number of squares `N` between 2 and 100,000 and a random number of roads `M` between `N-1` and 200,000.
+2. **Cost Factor**: We randomly select a cost factor `C` between 1 and 100,000.
+3. **Generating a Connected Graph**: To ensure the graph is connected, we first create a tree structure by connecting each new square to an already connected square. This guarantees that all squares are reachable.
+4. **Adding Additional Roads**: If more roads are needed to reach `M`, we randomly add additional roads, ensuring no self-loops (u != v).
+5. **Output Format**: The generated test case is printed in the required format.
+
+This generator ensures that the generated test cases are valid and meet the problem’s constraints.

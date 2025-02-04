@@ -1,0 +1,21 @@
+def extract_arguments(fh):
+    datasets = []
+    while True:
+        n = int(fh.readline().strip())
+        if n == 0:
+            break
+        circles = []
+        for _ in range(n):
+            xi, yi, ri = map(int, fh.readline().strip().split())
+            circles.append((xi, yi, ri))
+        datasets.append((n, circles))
+    return datasets
+
+# Example usage:
+# if __name__ == "__main__":
+#     import sys
+#     input_path = sys.argv[1]
+#     with open(input_path, 'r') as fh:
+#         datasets = extract_arguments(fh)
+#         for dataset in datasets:
+#             f(dataset)

@@ -1,0 +1,3 @@
+Types: N: int, A: List[int], u: List[int], v: List[int]
+Ranges: 1 ≤ N ≤ 3 × 10^5, 0 ≤ A[i] ≤ 10^9, 1 ≤ u[i], v[i] ≤ N, u[i] < v[i]
+Addtl Info: The graph is guaranteed to be a tree. All input is given as integers.

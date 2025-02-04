@@ -1,0 +1,7 @@
+def extract_arguments(fh):
+    N, K = map(int, fh.readline().strip().split())
+    coordinates = []
+    for _ in range(N):
+        x, y = map(int, fh.readline().strip().split())
+        coordinates.append((x, y))
+    return N, K, coordinates

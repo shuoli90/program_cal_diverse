@@ -1,0 +1,26 @@
+Types: 
+- N: int 
+- M: int 
+- W: int 
+- T: int 
+- S: List[str] 
+- V: List[int] 
+- P: List[int] 
+- L: List[int] 
+- X: List[int] 
+- Y: List[int] 
+- R: List[List[str]] 
+- Q: List[List[int]]
+
+Ranges: 
+- 1 ≤ N ≤ 100 
+- 1 ≤ M ≤ 1000 
+- 1 ≤ W ≤ 1000 
+- 1 ≤ T ≤ 10000 
+- 1 ≤ V[i] ≤ 100 
+- 1 ≤ P[i] ≤ 1000 
+- -1000 ≤ X[i] ≤ 1000 
+- -1000 ≤ Y[i] ≤ 1000 
+- 1 ≤ Q[i][j] ≤ 1000
+
+Addtl Info: None

@@ -1,0 +1,41 @@
+Sure, let's write a test case generator for the given problem statement. This generator will create random valid inputs for the problem, ensuring the constraints are respected.
+
+```python
+import random
+import string
+
+def generate_random_string(length, chars):
+    """Generate a random string of given length from the specified character set."""
+    return ''.join(random.choice(chars) for _ in range(length))
+
+def tcgen():
+    # Length of S' and T (1 ≤ |S'|, |T| ≤ 50)
+    len_S_prime = random.randint(1, 50)
+    len_T = random.randint(1, 50)
+
+    # Generate string T consisting of lowercase English letters
+    T = generate_random_string(len_T, string.ascii_lowercase)
+
+    # Generate string S' consisting of lowercase English letters and '?'
+    S_prime = generate_random_string(len_S_prime, string.ascii_lowercase + '?')
+
+    return S_prime, T
+
+# Example usage
+S_prime, T = tcgen()
+print("Generated S':", S_prime)
+print("Generated T:", T)
+```
+
+### Explanation:
+
+1. **`generate_random_string(length, chars)`:** This helper function generates a random string of a specified length using the characters from the given set `chars`.
+   
+2. **`tcgen()` function:**
+   - Randomly determines the length of `S'` and `T` within the constraints.
+   - Generates string `T` consisting of lowercase English letters.
+   - Generates string `S'` consisting of lowercase English letters and '?'. 
+
+3. **Example usage:** Calls the `tcgen` function to generate a test case and prints the generated `S'` and `T`.
+
+This code ensures that the test cases are generated adhering to the constraints provided in the problem statement.

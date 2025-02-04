@@ -1,0 +1,40 @@
+Sure, let's create a test case generator for the given "Flick Input" problem. 
+
+Here's the generator in Python:
+
+```python
+import random
+
+def generate_flick_input():
+    """
+    Generates a random test case for the 'Flick Input' problem.
+    """
+    # Character sets
+    digits = '0123456789'
+    flicks = 'TLURD'
+    
+    # Generate the length of input string (between 2 and 1000)
+    length = random.randint(2, 1000)
+    
+    # Generate the flick input string
+    flick_input = []
+    for _ in range(length // 2):
+        digit = random.choice(digits)
+        flick = random.choice(flicks)
+        flick_input.append(digit)
+        flick_input.append(flick)
+    
+    # Ensure correct length if it's odd
+    if length % 2 == 1:
+        digit = random.choice(digits)
+        flick = random.choice(flicks)
+        flick_input.append(digit + flick)
+    
+    return ''.join(flick_input)
+
+# Example usage
+for _ in range(5):
+    print(generate_flick_input())
+```
+
+This code will generate valid test cases for the "Flick Input" problem by creating a string with the required pattern of alternating digits and flick directions. The length of this string is ensured to be between 2 and 1000 characters.

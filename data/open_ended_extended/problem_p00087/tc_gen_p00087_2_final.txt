@@ -1,0 +1,73 @@
+Sure, I can help you write a test case generator for the given problem statement "Formula for beginners". Let's break down the requirements and generate the test cases accordingly.
+
+### Requirements:
+
+1. Each dataset consists of a formula written in Reverse Polish Notation (RPN).
+2. Each formula is a string of up to 80 characters consisting of integers and operation symbols separated by a single space.
+3. There are no formulas that divide by 0 or a value close to 0.
+4. The number of datasets is no more than 50.
+
+### Operations in RPN:
+- Addition: `+`
+- Subtraction: `-`
+- Multiplication: `*`
+- Division: `/`
+
+### Test Case Generator:
+
+We will generate random formulas in RPN and ensure they are valid and do not perform invalid operations like division by zero.
+
+```python
+import random
+
+def generate_rpn_expression(max_length=80):
+    """Generate a valid RPN expression"""
+    operators = ['+', '-', '*', '/']
+    stack = []
+    expression = []
+    
+    while len(expression) < max_length:
+        if len(stack) < 2 or (random.random() > 0.5 and len(stack) < max_length - len(expression) - 1):
+            # Push a number onto the stack
+            num = random.randint(-10**4, 10**4)
+            stack.append(num)
+            expression.append(str(num))
+        else:
+            # Pop two numbers and push an operator
+            if len(stack) < 2:
+                break
+            b = stack.pop()
+            a = stack.pop()
+            operator = random.choice(operators)
+            if operator == '/' and b == 0:
+                # Prevent division by zero
+                b = random.randint(1, 10**4)
+            result = eval(f"{a} {operator} {b}")
+            stack.append(result)
+            expression.append(operator)
+    
+    return ' '.join(expression)
+
+def tcgen():
+    num_datasets = random.randint(1, 50)
+    test_cases = [generate_rpn_expression() for _ in range(num_datasets)]
+    return test_cases
+
+# Example of generating test cases
+if __name__ == "__main__":
+    test_cases = tcgen()
+    for test_case in test_cases:
+        print(test_case)
+```
+
+### Explanation:
+1. **generate_rpn_expression**: Generates a single valid RPN expression.
+   - It uses a stack to maintain valid intermediate states.
+   - It ensures that we don't perform division by zero.
+   - It keeps the length of the expression within a specified maximum length (default 80 characters).
+
+2. **tcgen**: Generates a list of RPN expressions.
+   - It randomly determines the number of datasets (between 1 and 50).
+   - It generates the required number of valid RPN expressions.
+
+This generator ensures that each test case follows the problem constraints and is ready for use in testing the RPN evaluation program.

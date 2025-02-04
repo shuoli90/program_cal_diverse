@@ -1,0 +1,50 @@
+Sure! Here's a test case generator for the given problem statement:
+
+```python
+import random
+
+def tcgen():
+    # Generate random values for H and W within the given constraints
+    H = random.randint(1, 500)
+    W = random.randint(1, 500)
+    
+    # Generate the grid with random values for a_ij within the given constraints
+    grid = [[random.randint(0, 9) for _ in range(W)] for _ in range(H)]
+    
+    return H, W, grid
+
+def format_test_case(H, W, grid):
+    # Format the test case in the required input format
+    test_case = f"{H} {W}\n"
+    for row in grid:
+        test_case += " ".join(map(str, row)) + "\n"
+    return test_case
+
+# Example usage
+H, W, grid = tcgen()
+test_case = format_test_case(H, W, grid)
+
+print("Generated Test Case:")
+print(test_case)
+```
+
+### Explanation:
+
+- The `tcgen` function generates the dimensions `H` and `W` for the grid, ensuring they fall within the given constraints (1 ≤ H, W ≤ 500).
+- It then generates a grid with random values for `a_{ij}`, where each value falls within the range 0 ≤ `a_{ij}` ≤ 9.
+- The `format_test_case` function formats the generated test case into the required input format for the problem.
+
+### Example Output:
+
+Running the script might produce an output similar to:
+
+```
+Generated Test Case:
+4 4
+2 1 9 0
+7 4 0 3
+6 3 8 7
+5 0 1 2
+```
+
+The exact output will vary each time the script is executed due to the random nature of the generator.

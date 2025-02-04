@@ -1,0 +1,67 @@
+    
+### Problem Statement: Replace ABC
+
+**Description**
+
+You are given a string \(s\) consisting of 'A', 'B', and 'C'.
+Snuke wants to perform the following operation on \(s\) as many times as possible:
+Choose a contiguous substring of \(s\) that reads "ABC" and replace it with "BCA".
+Find the maximum possible number of operations.
+
+**Input**
+
+1. A string \(s\) consisting of characters 'A', 'B', and 'C'.
+
+**Output**
+
+Print the maximum possible number of operations.
+
+**Examples**
+
+_Input_
+```
+ABCABC
+```
+
+_Output_
+```
+3
+```
+
+_Input_
+```
+C
+```
+
+_Output_
+```
+0
+```
+
+_Input_
+```
+ABCACCBABCBCAABCB
+```
+
+_Output_
+```
+6
+```
+
+**Explanation**
+
+In the first example, you can perform the operations three times as follows: `ABCABC → BCAABC → BCABCA → BCBCAA`. This is the maximum result.
+
+In the second example, no "ABC" substring exists, so the number of operations is zero.
+
+In the third example, you can perform the operations six times to reach the maximum result.
+
+**Note**
+
+This problem is designed to test string manipulation and pattern replacement, suitable for intermediate to advanced competitive programmers.
+
+Type Bounds:
+    
+Types: s: str
+Ranges: 1 ≤ |s| ≤ 200000
+Addtl Info: Each character of \(s\) is 'A', 'B', or 'C'.

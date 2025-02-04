@@ -1,0 +1,67 @@
+Sure, here is a test case generator for the "Constellation" problem:
+
+```python
+import random
+
+def tcgen():
+    datasets = []
+    
+    for _ in range(random.randint(1, 5)):  # there will be no more than 5 datasets
+        m = random.randint(1, 200)  # 1 ≤ m ≤ 200
+        constellation = set()
+        
+        while len(constellation) < m:
+            x = random.randint(0, 1000000)
+            y = random.randint(0, 1000000)
+            constellation.add((x, y))
+        
+        constellation = list(constellation)
+        
+        n = random.randint(m, 1000)  # 1 ≤ n ≤ 1000, n should be at least m
+        
+        photo = set()
+        added_constellation = False
+        
+        while len(photo) < n:
+            if not added_constellation and random.random() < 0.5:
+                # Add the constellation by shifting it randomly
+                dx = random.randint(-100000, 100000)
+                dy = random.randint(-100000, 100000)
+                for (x, y) in constellation:
+                    photo.add((x + dx, y + dy))
+                added_constellation = True
+            else:
+                x = random.randint(0, 1000000)
+                y = random.randint(0, 1000000)
+                photo.add((x, y))
+        
+        photo = list(photo)
+        
+        datasets.append((m, constellation, n, photo))
+    
+    return datasets
+
+def format_dataset(dataset):
+    m, constellation, n, photo = dataset
+    result = []
+    result.append(str(m))
+    for x, y in constellation:
+        result.append(f"{x} {y}")
+    result.append(str(n))
+    for x, y in photo:
+        result.append(f"{x} {y}")
+    return "\n".join(result)
+
+# Generate the test cases
+test_cases = tcgen()
+
+# Print the test cases in the required format
+for dataset in test_cases:
+    formatted_dataset = format_dataset(dataset)
+    print(formatted_dataset)
+    print()  # separate datasets with a blank line
+```
+
+This script generates multiple datasets for the "Constellation" problem. Each dataset contains the number of stars in the constellation and their coordinates, followed by the number of stars in the photo and their coordinates. It ensures that all coordinates are unique and within the specified range.
+
+The `format_dataset` function formats a single dataset into the required string format for input. The `tcgen` function generates the datasets and prints them. Each dataset is separated by a blank line for clarity.

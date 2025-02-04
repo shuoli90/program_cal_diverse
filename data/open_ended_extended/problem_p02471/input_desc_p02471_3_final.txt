@@ -1,0 +1,18 @@
+An integer \(X\) (1 ≤ \(X\) ≤ 10^9), representing some positive quantity.
+An integer \(Y\) (1 ≤ \(Y\) ≤ 10^9), representing another positive quantity.
+
+### Example Input:
+
+```
+4 12
+```
+
+### Function Signature:
+Write a function f(X, Y) that takes in the input.
+```python
+def f(X: int, Y: int):
+    ''' 
+    X: a positive integer
+    Y: another positive integer
+    '''
+```

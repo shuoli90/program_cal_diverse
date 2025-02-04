@@ -1,0 +1,5 @@
+Types: N: int, x: List[int], y: List[int]
+
+Ranges: 1 ≤ N ≤ 200, 0 ≤ x[i], y[i] < 10^4
+
+Addtl Info: x[i], y[i] are integers, if i ≠ j, x[i] ≠ x[j] or y[i] ≠ y[j]

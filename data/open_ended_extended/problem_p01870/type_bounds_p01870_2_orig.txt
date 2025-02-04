@@ -1,0 +1,3 @@
+Types: N: int, p_w: List[Tuple[int, int]]
+Ranges: 2 ≤ N ≤ 100000, 0 ≤ p_i ≤ N-1, 1 ≤ w_i ≤ 1000
+Addtl Info: p_w is a list of tuples where each tuple contains two integers \(p_i\) and \(w_i\). All islands can be reached from any other island.

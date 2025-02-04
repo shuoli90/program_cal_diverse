@@ -1,0 +1,9 @@
+def extract_arguments(fh):
+    cases = []
+    while True:
+        N = int(fh.readline().strip())
+        if N == 0:
+            break
+        A = list(map(int, fh.readline().strip().split()))
+        cases.append((N, A))
+    return cases

@@ -1,0 +1,26 @@
+An integer n (1 ≤ n ≤ 3000), representing some quantity.
+n lines follow, each containing two integers x and y (0 ≤ x, y ≤ 5000).
+
+### Example Input:
+
+```
+10
+9 4
+4 3
+1 1
+4 2
+2 4
+5 8
+4 0
+5 3
+0 5
+5 2
+```
+
+### Function Signature:
+Write a function f(n, coordinates) that takes in the input.
+def f(n: int, coordinates: List[Tuple[int, int]]):
+    '''
+    n: an integer
+    coordinates: a list of tuples, each containing two integers
+    '''

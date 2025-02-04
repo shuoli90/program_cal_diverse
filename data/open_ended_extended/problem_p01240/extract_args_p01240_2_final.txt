@@ -1,0 +1,19 @@
+def extract_arguments(fh):
+    N = int(fh.readline().strip())
+    test_cases = []
+    
+    for _ in range(N):
+        W, H = map(int, fh.readline().strip().split())
+        grid = []
+        for _ in range(H):
+            grid.append(list(map(int, fh.readline().strip().split())))
+        test_cases.append((W, H, grid))
+    
+    return test_cases
+
+# if __name__ == "__main__":
+#     input_path = sys.argv[1]
+#     with open(input_path, 'r') as fh: 
+#         test_cases = extract_arguments(fh)
+#         for case in test_cases:
+#             f(case)

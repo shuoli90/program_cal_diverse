@@ -1,0 +1,34 @@
+To generate test cases for Problem F, we need to create random datasets adhering to the constraints specified in the problem statement. Here is a test case generator function for the problem:
+
+```python
+import random
+
+def tcgen():
+    # Generate a random number of datasets
+    num_datasets = random.randint(1, 100)  # Let's decide to generate between 1 and 100 datasets
+    datasets = []
+
+    for _ in range(num_datasets):
+        # Generate a single dataset with random n
+        n = random.randint(1, 100000)
+        datasets.append(n)
+    
+    # Append the terminating dataset
+    datasets.append(0)
+
+    return datasets
+
+# Example usage:
+if __name__ == "__main__":
+    test_cases = tcgen()
+    for case in test_cases:
+        print(case)
+```
+
+### Explanation
+1. **Number of Datasets:** We randomly select the number of datasets to generate (between 1 and 100 datasets in this example).
+2. **Generating Each Dataset:** For each dataset, we generate a random integer \( n \) within the specified constraint \( 1 \leq n \leq 100,000 \).
+3. **Termination:** After generating the datasets, we append a terminating dataset where \( n = 0 \).
+4. **Output:** The function returns a list of datasets including the terminating dataset. In the example usage, we print each dataset.
+
+This function ensures that the generated test cases are within the constraints and include the necessary terminating condition.

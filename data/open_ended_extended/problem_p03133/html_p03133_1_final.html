@@ -1,0 +1,172 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p03133 - Generation 1</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p03133 - Generation 1</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>
+Score : 800 points
+Problem StatementThere is a square grid with N rows and M columns.
+Each square contains an integer: 0 or 1. The square at the i-th row from the top and the j-th column from the left contains a_{ij}.
+Among the 2^{N+M} possible pairs of a subset A of the rows and a subset B of the columns, find the number of the pairs that satisfy the following condition, modulo 998244353:
+The sum of the |A||B| numbers contained in the intersection of the rows belonging to A and the columns belonging to B, is odd.
+Constraints
+1 \leq N,M \leq 300
+0 \leq a_{i,j} \leq 1(1\leq i\leq N,1\leq j\leq M)
+All values in input are integers.
+InputInput is given from Standard Input in the following format:
+N M
+a_{11} ... a_{1M}
+:
+a_{N1} ... a_{NM}
+OutputPrint the number of the pairs of a subset of the rows and a subset of the columns that satisfy the condition, modulo 998244353.
+Sample Input 12 2
+0 1
+1 0
+Sample Output 16
+For example, if A consists of the first row and B consists of both columns, the sum of the numbers contained in the intersection is 0+1=1.
+Sample Input 22 3
+0 0 0
+0 1 0
+Sample Output 28
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An integer N (1 ≤ N ≤ 300), representing some quantity or size.
+An integer M (1 ≤ M ≤ 300), representing some quantity or size.
+A grid of integers of size N x M, where each integer is either 0 or 1.
+
+### Example Input:
+
+```
+2 2
+0 1
+1 0
+```
+
+### Function Signature:
+Write a function f(N, M, grid) that takes in the input.
+```python
+def f(N: int, M: int, grid: List[List[int]]):
+    '''
+    N: an integer
+    M: an integer
+    grid: a list of lists of integers
+    '''
+```</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Sure, I can help you create a test case generator for the given problem statement. Here's a Python function that generates test cases based on the constraints provided:
+
+```python
+import random
+
+def tcgen():
+    N = random.randint(1, 300)
+    M = random.randint(1, 300)
+    
+    # Generate the grid with integers 0 or 1
+    grid = [[random.randint(0, 1) for _ in range(M)] for _ in range(N)]
+    
+    return N, M, grid
+
+# Function to print the generated test case in the required format
+def print_test_case(N, M, grid):
+    print(N, M)
+    for row in grid:
+        print(" ".join(map(str, row)))
+
+# Example usage
+N, M, grid = tcgen()
+print_test_case(N, M, grid)
+```
+
+### Explanation:
+
+1. **N, M Generation**:
+    - `N` and `M` are randomly generated within the given constraints (1 ≤ \(N, M\) ≤ 300).
+
+2. **Grid Generation**:
+    - A 2D list `grid` is created where each element is either 0 or 1. This is done using nested list comprehensions.
+
+3. **Print Function**:
+    - `print_test_case` function prints the generated test case in the required input format.
+
+You can call the `tcgen` function to generate a random test case and then use `print_test_case` to print it in the format expected by the problem statement.
+
+### Example Output
+
+When you run the provided code, it could generate output like:
+
+```
+3 2
+1 0
+0 1
+1 1
+```
+
+This represents a grid with 3 rows and 2 columns, where the grid values are either 0 or 1. You can adjust the random seed if you need reproducible test cases for debugging or other purposes.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    N, M = map(int, fh.readline().strip().split())
+    A = []
+    for _ in range(N):
+        row = list(map(int, fh.readline().strip().split()))
+        A.append(row)
+    return N, M, A</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

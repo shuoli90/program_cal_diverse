@@ -1,0 +1,145 @@
+
+Problem D: Speed
+Do you know Speed? It is one of popular card games, in which two players compete how quick
+they can move their cards to tables.
+To play Speed, two players sit face-to-face first. Each player has a deck and a tableau assigned
+for him, and between them are two tables to make a pile on, one in left and one in right. A
+tableau can afford up to only four cards.
+There are some simple rules to carry on the game:
+ A player is allowed to move a card from his own tableau onto a pile, only when the rank
+   of the moved card is a neighbor of that of the card on top of the pile. For example A and
+   2, 4 and 3 are neighbors. A and K are also neighbors in this game.
+ He is also allowed to draw a card from the deck and put it on a vacant area of the tableau.
+ If both players attempt to move cards on the same table at the same time, only the faster
+   player can put a card on the table. The other player cannot move his card to the pile (as
+   it is no longer a neighbor of the top card), and has to bring it back to his tableau.
+First each player draws four cards from his deck, and places them face on top on the tableau.
+In case he does not have enough cards to fill out the tableau, simply draw as many as possible.
+The game starts by drawing one more card from the deck and placing it on the tables on their
+right simultaneously. If the deck is already empty, he can move an arbitrary card on his tableau
+to the table.
+Then they continue performing their actions according to the rule described above until both
+of them come to a deadend, that is, have no way to move cards. Every time a deadend occurs,
+they start over from each drawing a card (or taking a card from his or her tableau) and placing
+on his or her right table, regardless of its face. The player who has run out of his card first is
+the winner of the game.
+Mr. James A. Games is so addicted in this simple game, and decided to develop robots that
+plays it. He has just completed designing the robots and their program, but is not sure if they
+work well, as the design is so complicated. So he asked you, a friend of his, to write a program
+that simulates the robots.
+The algorithm for the robots is designed as follows:
+A robot draws cards in the order they are dealt.
+    
+ Each robot is always given one or more cards.
+ In the real game of Speed, the players first classify cards by their colors to enable
+        them to easily figure out which player put the card. But this step is skipped in this
+        simulation.
+ The game uses only one card set split into two. In other words, there appears at most
+        one card with the same face in the two decks given to the robots.
+ As a preparation, each robot draws four cards, and puts them to the tableau from right
+  to left.
+    
+ If there are not enough cards in its deck, draw all cards in the deck.
+ After this step has been completed on both robots, they synchronize to each other and
+  start the game by putting the first cards onto the tables in the same moment.
+    
+ If there remains one or more cards in the deck, a robot draws the top one and puts it
+        onto the right table. Otherwise, the robot takes the rightmost card from its tableau.
+ Then two robots continue moving according to the basic rule of the game described above,
+  until neither of them can move cards anymore.
+    
+ When a robot took a card from its tableau, it draws a card (if possible) from the deck
+        to fill the vacant position after the card taken is put onto a table.
+ It takes some amount of time to move cards. When a robot completes putting a card
+        onto a table while another robot is moving to put a card onto the same table, the
+        robot in motion has to give up the action immediately and returns the card to its
+        original position.
+ A robot can start moving to put a card on a pile at the same time when the neighbor
+        is placed on the top of the pile.
+ If two robots try to put cards onto the same table at the same moment, only the
+        robot moving a card to the left can successfully put the card, due to the position
+        settings.
+ When a robot has multiple candidates in its tableau, it prefers the cards which can
+        be placed on the right table to those which cannot. In case there still remain multiple
+        choices, the robot prefers the weaker card.
+ When it comes to a deadend situation, the robots start over from each putting a card to
+  the table, then continue moving again according to the algorithm above.
+ When one of the robots has run out the cards, i.e., moved all dealt cards, the game ends.
+    
+ The robot which has run out the cards wins the game.
+ When both robots run out the cards at the same moment, the robot which moved
+        the stronger card in the last move wins.
+The strength among the cards is determined by their ranks, then by the suits. The ranks are
+strong in the following order: A > K > Q > J > X (10) > 9 > . . . > 3 > 2. The suits are strong
+in the following order: S (Spades) > H (Hearts) > D (Diamonds) > C (Cloves). In other words,
+SA is the strongest and C2 is the weakest.
+The robots require the following amount of time to complete each action:
+ 300 milliseconds to draw a card to the tableau,
+ 500 milliseconds to move a card to the right table,
+ 700 milliseconds to move a card to the left table, and
+ 500 milliseconds to return a card to its original position.
+Cancelling an action always takes the constant time of 500ms, regardless of the progress of
+the action being cancelled. This time is counted from the exact moment when the action is
+interrupted, not the beginning time of the action.
+You may assume that these robots are well-synchronized, i.e., there is no clock skew between
+them.
+For example, suppose Robot A is given the deck “S3 S5 S8 S9 S2” and Robot B is given the deck
+“H7 H3 H4”, then the playing will be like the description below. Note that, in the description,
+“the table A” (resp. “the table B”) denotes the right table for Robot A (resp. Robot B).
+ Robot A draws four cards S3, S5, S8, and S9 to its tableau from right to left. Robot B
+  draws all the three cards H7, H3, and H4.
+ Then the two robots synchronize for the game start. Let this moment be 0ms.
+ At the same moment, Robot A starts moving S2 to the table A from the deck, and Robot
+  B starts moving H7 to the table B from the tableau.
+ At 500ms, the both robots complete their moving cards. Then Robot A starts moving S3
+  to the table A 1(which requires 500ms), and Robot B starts moving H3 also to the table
+  A (which requires 700ms).
+ At 1000ms, Robot A completes putting S3 on the table A. Robot B is interrupted its move
+  and starts returning H3 to the tableau (which requires 500ms). At the same time Robot
+  A starts moving S8 to the table B (which requires 700ms).
+ At 1500ms, Robot B completes returning H3 and starts moving H4 to the table A (which
+  requires 700ms).
+ At 1700ms, Robot A completes putting S8 and starts moving S9 to the table B.
+ At 2200ms, Robot B completes putting H4 and starts moving H3 to the table A.
+ At 2400ms, Robot A completes putting S9 and starts moving S5 to the table A.
+ At 2900ms, The both robots are to complete putting the cards on the table A. Since Robot
+  B is moving the card to the table left to it, Robot B completes putting H3. Robot A is
+  interrupted.
+ Now Robot B has finished moving all the dealt cards, so Robot B wins this game.
+Input
+The input consists of multiple data sets, each of which is described by four lines. The first line
+of each data set contains an integer NA , which specifies the number of cards to be dealt as a
+deck to Robot A. The next line contains a card sequences of length NA . Then the number NB
+and card sequences of length NB for Robot B follows, specified in the same manner.
+In a card sequence, card specifications are separated with one space character between them.
+Each card specification is a string of 2 characters. The first character is one of ‘S’ (spades), ‘H’
+(hearts), ‘D’ (diamonds) or ‘C’ (cloves) and specifies the suit. The second is one of ‘A’, ‘K’, ‘Q’,
+‘J’, ‘X’ (for 10) or a digit between ‘9’ and ‘2’, and specifies the rank. As this game is played with
+only one card set, there is no more than one card of the same face in each data set.
+The end of the input is indicated by a single line containing a zero.
+Output
+For each data set, output the result of a game in one line. Output “A wins.” if Robot A wins,
+or output “B wins.” if Robot B wins. No extra characters are allowed in the output.
+Sample Input
+1
+SA
+1
+C2
+2
+SA HA
+2
+C2 C3
+5
+S3 S5 S8 S9 S2
+3
+H7 H3 H4
+10
+H7 CJ C5 CA C6 S2 D8 DA S6 HK
+10
+C2 D6 D4 H5 DJ CX S8 S9 D3 D5
+0
+Output for the Sample Input
+A wins.
+B wins.
+B wins.
+A wins.

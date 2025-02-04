@@ -1,0 +1,28 @@
+Here is a test case generator for the given problem statement:
+
+```python
+import random
+
+def tcgen():
+    # Constraints
+    H = random.randint(2, 10**9)
+    W = random.randint(2, 10**9)
+    S = random.randint(1, H)
+    T = random.randint(1, W)
+    
+    return H, W, S, T
+
+# Example of generating a test case
+H, W, S, T = tcgen()
+print(H, W, S, T)
+```
+
+Explanation of the test case generator:
+1. **H**: The number of rows in the city. It is randomly chosen between 2 and \(10^9\).
+2. **W**: The number of columns in the city. It is randomly chosen between 2 and \(10^9\).
+3. **S**: The starting row position of Santa. It is randomly chosen between 1 and \(H\).
+4. **T**: The starting column position of Santa. It is randomly chosen between 1 and \(W\).
+
+The generator will provide a set of values for \(H\), \(W\), \(S\), and \(T\) which can be used as a test case for the given problem.
+
+Note: Since \(H\) and \(W\) can be extremely large, running and verifying such large test cases might be impractical for typical competitive programming environments. This generator is provided based on the constraints given, but you might want to use smaller values for practical testing purposes.

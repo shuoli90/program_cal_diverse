@@ -1,0 +1,46 @@
+Sure! Here is a test case generator for the "Cube Surface Puzzle" problem:
+
+```python
+import random
+
+def generate_piece(n):
+    piece = []
+    for _ in range(n):
+        row = ''.join(random.choice(['X', '.']) for _ in range(n))
+        piece.append(row)
+    return piece
+
+def generate_dataset():
+    n = random.choice([3, 5, 7, 9])  # n is odd and in the range 3 ≤ n ≤ 9
+    pieces = []
+    for _ in range(6):
+        piece = generate_piece(n)
+        pieces.extend(piece)
+    return n, pieces
+
+def tcgen():
+    datasets = []
+    num_datasets = random.randint(1, 200)  # At most 200 datasets
+    for _ in range(num_datasets):
+        n, pieces = generate_dataset()
+        datasets.append((n, pieces))
+
+    return datasets
+
+def format_test_cases(datasets):
+    formatted = []
+    for n, pieces in datasets:
+        formatted.append(f"{n}")
+        formatted.extend(pieces)
+    formatted.append("0")  # End of input indicator
+    return "\n".join(formatted)
+
+# Generate test cases
+datasets = tcgen()
+formatted = format_test_cases(datasets)
+print(formatted)  # This will print out the test cases in the required format
+```
+
+This generator will produce up to 200 datasets, each containing a random side length \( n \) (which is odd and between 3 and 9) and six pieces of size \( n \times n \). Each piece is randomly filled with 'X' and '.' characters. The output is formatted according to the problem statement's input specifications.
+
+You can run this script to generate and print the test cases. The `formatted` variable will contain the test cases as required by the problem statement, which you can then use for testing your solution.

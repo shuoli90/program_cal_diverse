@@ -1,0 +1,30 @@
+An integer X (1 ≤ X ≤ 10^9)
+An integer K (1 ≤ K ≤ 10^5)
+A list of K integers representing r, where each integer is between 1 and 1e9, in strictly increasing order
+An integer Q (1 ≤ Q ≤ 10^5)
+Q pairs of integers (t, a) where 0 ≤ t ≤ 1e9 and 0 ≤ a ≤ X, in strictly increasing order of t
+
+### Example Input:
+
+```
+180
+3
+60 120 180
+3
+30 90
+61 1
+180 180
+```
+
+### Function Signature:
+Write a function f(X, K, r, Q, queries) that takes in the input.
+```python
+def f(X: int, K: int, r: List[int], Q: int, queries: List[Tuple[int, int]]):
+    '''
+    X: an integer
+    K: an integer
+    r: a list of integers
+    Q: an integer
+    queries: a list of tuples of integers
+    '''
+```

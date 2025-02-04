@@ -1,0 +1,34 @@
+Sure, I'll write a test case generator for the given problem. This generator will create random values for \( N \), \( A \), \( B \), \( C \), and the lengths of \( N \) bamboos. Here is the implementation:
+
+```python
+import random
+
+def tcgen():
+    # Constraints
+    N = random.randint(3, 8)
+    
+    # Ensure 1 ≤ C < B < A ≤ 1000
+    C = random.randint(1, 333)
+    B = random.randint(C + 1, 666)
+    A = random.randint(B + 1, 1000)
+
+    # Generate lengths of bamboos within the range 1 ≤ l_i ≤ 1000
+    bamboo_lengths = [random.randint(1, 1000) for _ in range(N)]
+
+    # Output the test case
+    print(N, A, B, C)
+    for length in bamboo_lengths:
+        print(length)
+
+# Example usage
+tcgen()
+```
+
+### Explanation
+- **N**: Randomly chosen between 3 and 8 (inclusive) because \( 3 \leq N \leq 8 \).
+- **C**: Randomly chosen between 1 and 333.
+- **B**: Randomly chosen between \( C+1 \) and 666 to ensure \( C < B \).
+- **A**: Randomly chosen between \( B+1 \) and 1000 to ensure \( B < A \).
+- **bamboo_lengths**: List of \( N \) random integers, each between 1 and 1000 (inclusive).
+
+This script ensures that all the constraints are satisfied while generating the test case. You can run the `tcgen()` function to get random test cases for the problem.

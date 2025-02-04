@@ -1,0 +1,6 @@
+def extract_arguments(fh):
+    X, Y, Z, K = map(int, fh.readline().strip().split())
+    A = list(map(int, fh.readline().strip().split()))
+    B = list(map(int, fh.readline().strip().split()))
+    C = list(map(int, fh.readline().strip().split()))
+    return X, Y, Z, K, A, B, C

@@ -1,0 +1,3 @@
+Types: str: str, q: int, commands: List[Union[Tuple[str, int, int], Tuple[str, int, int, str]]]
+Ranges: 1 ≤ len(str) ≤ 1000, 1 ≤ q ≤ 100, 0 ≤ a ≤ b < len(str), for replace command, b - a + 1 = len(p)
+Addtl Info: str consists of lowercase letters

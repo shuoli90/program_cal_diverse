@@ -1,0 +1,180 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p03762 - Generation 1</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p03762 - Generation 1</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>
+Score : 500 points
+Problem StatementOn a two-dimensional plane, there are m lines drawn parallel to the x axis, and n lines drawn parallel to the y axis.
+Among the lines parallel to the x axis, the i-th from the bottom is represented by y = y_i.
+Similarly, among the lines parallel to the y axis, the i-th from the left is represented by x = x_i.
+For every rectangle that is formed by these lines, find its area, and print the total area modulo 10^9+7.
+That is, for every quadruple (i,j,k,l) satisfying 1\leq i < j\leq n and 1\leq k < l\leq m, find the area of the rectangle formed by the lines x=x_i, x=x_j, y=y_k and y=y_l, and print the sum of these areas modulo 10^9+7.
+Constraints
+2 \leq n,m \leq 10^5
+-10^9 \leq x_1 < ... < x_n \leq 10^9
+-10^9 \leq y_1 < ... < y_m \leq 10^9
+x_i and y_i are integers.
+InputInput is given from Standard Input in the following format:
+n m
+x_1 x_2 ... x_n
+y_1 y_2 ... y_m
+OutputPrint the total area of the rectangles, modulo 10^9+7.
+Sample Input 13 3
+1 3 4
+1 3 6
+Sample Output 160
+The following figure illustrates this input:
+The total area of the nine rectangles A, B, ..., I shown in the following figure, is 60.
+Sample Input 26 5
+-790013317 -192321079 95834122 418379342 586260100 802780784
+-253230108 193944314 363756450 712662868 735867677
+Sample Output 2835067060
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An integer n (2 ≤ n ≤ 10^5), representing some quantity or size.
+An integer m (2 ≤ m ≤ 10^5), representing some quantity or size.
+A list of integers x of size n, where each integer is between -10^9 and 10^9, sorted in ascending order.
+A list of integers y of size m, where each integer is between -10^9 and 10^9, sorted in ascending order.
+
+### Example Input:
+
+```
+3 3
+1 3 4
+1 3 6
+```
+
+### Function Signature:
+Write a function f(n, m, x, y) that takes in the input. 
+```python
+def f(n: int, m: int, x: List[int], y: List[int]):
+    ''' 
+    n: an integer 
+    m: an integer 
+    x: a list of integers 
+    y: a list of integers 
+    '''
+```</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Sure, I can help you write a test case generator for this problem. The test case generator will randomly generate values for \( n \), \( m \), and the coordinates for \( x \) and \( y \) within the provided constraints. Here is the code:
+
+```python
+import random
+
+def tcgen():
+    # Constraints
+    MIN_NM = 2
+    MAX_NM = 100000
+    MIN_COORD = -10**9
+    MAX_COORD = 10**9
+    
+    # Generate random n and m within the given constraints
+    n = random.randint(MIN_NM, MAX_NM)
+    m = random.randint(MIN_NM, MAX_NM)
+    
+    # Generate sorted list of unique random integers for x and y within the given constraints
+    x = sorted(random.sample(range(MIN_COORD, MAX_COORD), n))
+    y = sorted(random.sample(range(MIN_COORD, MAX_COORD), m))
+    
+    return n, m, x, y
+
+# Example usage
+if __name__ == "__main__":
+    n, m, x, y = tcgen()
+    print(n, m)
+    print(" ".join(map(str, x)))
+    print(" ".join(map(str, y)))
+```
+
+### Explanation:
+
+1. **Constraints**:
+   - `MIN_NM` and `MAX_NM` define the range for \( n \) and \( m \).
+   - `MIN_COORD` and `MAX_COORD` define the range for the coordinates \( x \) and \( y \).
+
+2. **Generating \( n \) and \( m \)**:
+   - Randomly generate \( n \) and \( m \) within the range [2, 100000].
+
+3. **Generating Coordinates \( x \) and \( y \)**:
+   - Use `random.sample` to generate a sorted list of unique integers for both \( x \) and \( y \) within the specified coordinate range.
+   - Sorting ensures \( x_1 < x_2 < ... < x_n \) and \( y_1 < y_2 < ... < y_m \), which meets the problem constraints.
+
+4. **Return the generated values**:
+   - The function returns four values: \( n \), \( m \), and the lists \( x \) and \( y \).
+
+### Example Usage:
+- You can run the script and it will print out a randomly generated test case which you can use for testing your solution.
+
+This generator adheres to the constraints and ensures that the generated test cases are valid.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    n, m = map(int, fh.readline().strip().split())
+    x = list(map(int, fh.readline().strip().split()))
+    y = list(map(int, fh.readline().strip().split()))
+    return n, m, x, y
+
+# if __name__ == "__main__":
+#     input_path = sys.argv[1]
+#     with open(input_path, 'r') as fh:
+#         n, m, x, y = extract_arguments(fh)
+#     f(n, m, x, y)</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

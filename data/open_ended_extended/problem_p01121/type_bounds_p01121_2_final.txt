@@ -1,0 +1,3 @@
+Types: n: int, xi,j: str
+Ranges: 3 ≤ n ≤ 9 (n is odd), xi,j in {'X', '.'}
+Addtl Info: The input consists of at most 200 datasets. Each line of a piece consists of exactly n characters. The end of the input is indicated by a line containing a zero.

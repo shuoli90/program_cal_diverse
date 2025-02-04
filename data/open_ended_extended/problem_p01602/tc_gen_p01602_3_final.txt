@@ -1,0 +1,38 @@
+Sure! Here’s a test case generator for the given problem statement:
+
+```python
+import random
+
+def tcgen():
+    # Generate n, the number of operations
+    n = random.randint(1, 1000)
+
+    operations = []
+    for _ in range(n):
+        # Randomly choose between '(' and ')'
+        p = random.choice(['(', ')'])
+        # Generate x_i, the number of occurrences (1 ≤ x_i ≤ 10^6)
+        x = random.randint(1, 1000000)
+        operations.append((p, x))
+
+    return n, operations
+
+# Function to print the test case in the required format
+def print_test_case():
+    n, operations = tcgen()
+    print(n)
+    for op in operations:
+        print(op[0], op[1])
+
+# Example of generating and printing a test case
+print_test_case()
+```
+
+### Explanation
+
+1. **Generate `n`**: The number of operations is randomly chosen between 1 and 1000 (inclusive).
+2. **Generate operations**: For each operation, randomly choose between `'('` and `')'`, and generate a random integer `x` between 1 and 1,000,000 (inclusive).
+3. **Store operations**: Each operation is stored as a tuple `(p, x)` where `p` is either `'('` or `')'`, and `x` is the number of occurrences.
+4. **Print the test case**: The function `print_test_case()` prints the generated test case in the required format.
+
+You can use the `print_test_case()` function to generate and output a new test case, which can be helpful for testing purposes.

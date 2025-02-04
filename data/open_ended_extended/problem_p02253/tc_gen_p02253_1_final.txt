@@ -1,0 +1,44 @@
+Sure! Below is a test case generator for the Activity Selection Problem.
+
+```python
+import random
+
+def tcgen():
+    # Number of activities (1 ≤ n ≤ 10^5)
+    n = random.randint(1, 10**5)
+    
+    activities = []
+    for _ in range(n):
+        # Start time (1 ≤ s_i < t_i ≤ 10^9)
+        s_i = random.randint(1, 10**9 - 1)
+        # Finish time (s_i < t_i ≤ 10^9)
+        t_i = random.randint(s_i + 1, 10**9)
+        activities.append((s_i, t_i))
+    
+    # Sorting activities by start time to make it easier to read
+    activities.sort()
+    
+    return n, activities
+
+# To print the generated test case in the required format
+def print_test_case(n, activities):
+    print(n)
+    for s_i, t_i in activities:
+        print(s_i, t_i)
+
+# Example usage
+n, activities = tcgen()
+print_test_case(n, activities)
+```
+
+### Explanation:
+1. **Number of Activities (`n`)**: A random integer between 1 and 100,000 is chosen to represent the number of activities.
+2. **Activity Start and Finish Times**:
+   - For each activity, a start time `s_i` is randomly chosen between 1 and 10^9 - 1.
+   - The finish time `t_i` is then chosen to be a random integer between `s_i + 1` and 10^9 to ensure that `s_i < t_i`.
+
+### Usage:
+- The `tcgen` function generates the random test case.
+- The `print_test_case` function prints the generated test case in the required format.
+
+You can run this script to generate and print a random test case for the Activity Selection Problem.

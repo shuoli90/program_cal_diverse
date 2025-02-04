@@ -1,0 +1,13 @@
+def extract_arguments(fh):
+    n = int(fh.readline().strip())
+    activities = []
+    for _ in range(n):
+        s, t = map(int, fh.readline().strip().split())
+        activities.append((s, t))
+    return n, activities
+
+# if __name__ == "__main__":
+#     input_path = sys.argv[1]
+#     with open(input_path, 'r') as fh: 
+#     n, activities = extract_arguments(fh)
+#     f(n, activities)

@@ -1,0 +1,20 @@
+def extract_arguments(fh):
+    datasets = []
+    while True:
+        dimensions = fh.readline().strip()
+        if dimensions == "0 0":
+            break
+        H, W = map(int, dimensions.split())
+        grid = [fh.readline().strip() for _ in range(H)]
+        n = int(fh.readline().strip())
+        chars = fh.readline().strip().split()
+        datasets.append((H, W, grid, n, chars))
+    return datasets
+
+# if __name__ == "__main__":
+#     input_path = sys.argv[1]
+#     with open(input_path, 'r') as fh: 
+#         datasets = extract_arguments(fh)
+#         for dataset in datasets:
+#             H, W, grid, n, chars = dataset
+#             f(H, W, grid, n, chars)

@@ -1,0 +1,41 @@
+
+Score : 600 points
+Problem StatementYou are given an integer sequence of length N, a = {a_1, a_2, …, a_N}, and an integer K.
+a has N(N+1)/2 non-empty contiguous subsequences, {a_l, a_{l+1}, …, a_r} (1 ≤ l ≤ r ≤ N). Among them, how many have an arithmetic mean that is greater than or equal to K?
+Constraints
+All input values are integers.
+1 ≤ N ≤ 2 \times 10^5
+1 ≤ K ≤ 10^9
+1 ≤ a_i ≤ 10^9
+InputInput is given from Standard Input in the following format:
+N K
+a_1
+a_2
+:
+a_N
+OutputPrint the number of the non-empty contiguous subsequences with an arithmetic mean that is greater than or equal to K.
+Sample Input 13 6
+7
+5
+7
+Sample Output 15
+All the non-empty contiguous subsequences of a are listed below:
+{a_1} = {7}
+{a_1, a_2} = {7, 5}
+{a_1, a_2, a_3} = {7, 5, 7}
+{a_2} = {5}
+{a_2, a_3} = {5, 7}
+{a_3} = {7}
+Their means are 7, 6, 19/3, 5, 6 and 7, respectively, and five among them are 6 or greater. Note that {a_1} and {a_3} are indistinguishable by the values of their elements, but we count them individually.
+Sample Input 21 2
+1
+Sample Output 20
+Sample Input 37 26
+10
+20
+30
+40
+30
+20
+10
+Sample Output 313

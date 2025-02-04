@@ -1,0 +1,22 @@
+An integer n (1 ≤ n ≤ 12), representing some quantity or size.
+A list of integers s of size n, where each integer is between 1 and 100.
+Multiple datasets are given, each ending with a line containing a single 0. There are no more than 200 datasets.
+
+### Example Input:
+
+```
+10
+4 5 1 1 4 5 12 3 5 4
+0
+```
+
+### Function Signature:
+Write a function f(inputs) that takes in the input.
+```python
+def f(inputs: List[Tuple[int, List[int]]]):
+    '''
+    inputs: a list of tuples, each containing:
+        - an integer
+        - a list of integers
+    '''
+```

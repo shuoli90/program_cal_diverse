@@ -1,0 +1,155 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p01354 - Generation 2</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p01354 - Generation 2</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>Problem F: The Castle
+After successfully defeating the enemy who was lying in wait, the rabbit was able to lead the hero into the enemy's castle. After freeing the cats who were trapped in the castle's underground dungeon, some of them agreed to help the hero using their own abilities.
+According to the cats, the hero must pass through the first n rooms in order to reach the demon king who is located deep within the castle. However, there is an enemy waiting in each room and they must be defeated one by one in order to proceed. For each of the m cats who have become allies, the success rate for defeating each enemy in each room is known. The hero will send the cats one by one toward the back of the castle. Since each room cannot be passed through until the enemy within it is defeated, if a cat is defeated by an enemy in a certain room, the next cat will have to fight that enemy.
+The dispatched cat will advance until it is defeated by the enemy, but it is possible to determine which enemy defeated the dispatched cat each time, allowing the hero to decide which cat to send next. How can the probability of defeating all the enemies that the cats will face be maximized?
+Input
+The first line of the input contains two integers, m and n, separated by a space. 1 ≤ m, n ≤ 16.
+Following that, m lines are given. Each line contains n real numbers representing the probability that a cat will win against the enemy. The j-th real number on the i+1-th line represents the probability of winning against the enemy in the j-th room. Probabilities are given up to three decimal places.
+Output
+Determine the optimal order of cats such that the probability of defeating all the enemies that the cats will face is maximized, and output that probability. The output may contain an error, but the error should be within 10-9 of the true value.
+Sample Input 1
+2 3
+0.900 0.500 0.100
+0.500 0.500 0.500
+Sample Output 1
+0.372500000000
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>Canonicalized Input Description:
+
+An integer m (1 ≤ m ≤ 16), representing some quantity or size.
+An integer n (1 ≤ n ≤ 16), representing some quantity or size.
+A list of m lists, where each inner list is of size n and contains real numbers between 0.000 and 1.000 (inclusive) with up to three decimal places.
+
+### Example Input:
+
+```
+2 3
+0.900 0.500 0.100
+0.500 0.500 0.500
+```
+
+### Function Signature:
+Write a function f(m, n, probabilities) that takes in the input.
+```python
+def f(m: int, n: int, probabilities: List[List[float]]):
+    '''
+    m: an integer
+    n: an integer
+    probabilities: a list of lists of floats
+    '''
+```</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Sure! Let's start by creating a test case generator for the Problem F: The Castle. This generator will create random test cases based on the given constraints. Here is the Python code for the test case generator:
+
+```python
+import random
+
+def tcgen():
+    # Generate random values for m and n within the given constraints
+    m = random.randint(1, 16)
+    n = random.randint(1, 16)
+    
+    # Generate the probability matrix
+    probabilities = [[round(random.uniform(0.000, 1.000), 3) for _ in range(n)] for _ in range(m)]
+    
+    # Prepare the output in the required format
+    test_case = f"{m} {n}\n"
+    for row in probabilities:
+        test_case += " ".join(f"{prob:.3f}" for prob in row) + "\n"
+    
+    return test_case.strip()
+
+# Example usage:
+print(tcgen())
+```
+
+This function `tcgen` generates random test cases that adhere to the problem constraints. Here's a breakdown of what it does:
+
+1. Randomly selects values for `m` and `n` within the range from 1 to 16.
+2. Creates a 2D list (list of lists) where each inner list represents the probabilities of a cat winning against enemies in each room.
+3. Each probability is a floating-point number between 0.000 and 1.000, rounded to three decimal places.
+4. Formats the test case as a string in the required input format.
+
+You can run the function `tcgen` to generate random test cases and use them to test your solution for the problem.
+
+Example of a generated test case:
+```
+3 4
+0.123 0.456 0.789 0.012
+0.345 0.678 0.901 0.234
+0.567 0.890 0.123 0.456
+```
+
+This output represents a scenario with 3 cats and 4 rooms, along with their respective probabilities of defeating the enemies in each room.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    m, n = map(int, fh.readline().strip().split())
+    probabilities = []
+    for _ in range(m):
+        probabilities.append(list(map(float, fh.readline().strip().split())))
+    return m, n, probabilities</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

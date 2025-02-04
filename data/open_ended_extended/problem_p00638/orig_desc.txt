@@ -1,0 +1,28 @@
+
+Problem B: Old Bridges
+Long long ago, there was a thief. Looking for treasures, he was running about all over the world. One day, he heard a rumor that there were islands that had large amount of treasures, so he decided to head for there.
+Finally he found n islands that had treasures and one island that had nothing. Most of islands had seashore and he can land only on an island which had nothing. He walked around the island and found that there was an old bridge between this island and each of all other n islands.
+He tries to visit all islands one by one and pick all the treasures up. Since he is afraid to be stolen, he visits with bringing all treasures that he has picked up. He is a strong man and can bring all the treasures at a time, but the old bridges will break if he cross it with taking certain or more amount of treasures.
+Please write a program that judges if he can collect all the treasures and can be back to the island where he land on by properly selecting an order of his visit.
+Input
+Input consists of several datasets.
+The first line of each dataset contains an integer n.
+Next n lines represents information of the islands. Each line has two integers, which means the amount of treasures of the island and the maximal amount that he can take when he crosses the bridge to the islands, respectively.
+The end of input is represented by a case with n = 0.
+Output
+For each dataset, if he can collect all the treasures and can be back, print "Yes" Otherwise print "No"
+Constraints
+1  ≤ n ≤ 25
+Sample Input
+3
+2 3
+3 6
+1 2
+3
+2 3
+3 5
+1 2
+0
+Output for the Sample Input
+Yes
+No

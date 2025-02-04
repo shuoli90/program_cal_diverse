@@ -1,0 +1,17 @@
+def extract_arguments(fh):
+    n = int(fh.readline().strip())
+    nodes = []
+    for _ in range(n):
+        node_info = list(map(int, fh.readline().strip().split()))
+        nodes.append(node_info)
+    q = int(fh.readline().strip())
+    queries = []
+    for _ in range(q):
+        query = list(map(int, fh.readline().strip().split()))
+        queries.append(query)
+    return n, nodes, q, queries
+
+# Example usage:
+# with open('input.txt', 'r') as fh:
+#     n, nodes, q, queries = extract_arguments(fh)
+#     print(n, nodes, q, queries)

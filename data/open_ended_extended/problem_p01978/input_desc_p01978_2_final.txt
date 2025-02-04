@@ -1,0 +1,27 @@
+An integer N (2 ≤ N ≤ 10^5), representing some quantity or size.
+An integer M (1 ≤ M ≤ 10^5), representing some quantity or size.
+An integer s (1 ≤ s ≤ N), representing some quantity or size.
+An integer t (1 ≤ t ≤ N), representing some quantity or size.
+M lines of four integers each: a_i, b_i, c_i, d_i (1 ≤ a_i, b_i, c_i ≤ N and 1 ≤ d_i ≤ 10^9), representing some quantities or sizes.
+
+### Example Input:
+
+```
+5 3 1 4
+3 1 2 5
+3 4 2 3
+5 4 2 2
+```
+
+### Function Signature:
+Write a function f(N, M, s, t, edges) that takes in the input.
+```python
+def f(N: int, M: int, s: int, t: int, edges: List[Tuple[int, int, int, int]]):
+    '''
+    N: an integer
+    M: an integer
+    s: an integer
+    t: an integer
+    edges: a list of tuples of four integers
+    '''
+```

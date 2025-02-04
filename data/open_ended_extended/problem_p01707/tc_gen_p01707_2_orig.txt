@@ -1,0 +1,27 @@
+Certainly! Generating test cases for the given problem involves creating random values for \( N \), \( D \), and \( X \) within their specified constraints, and ensuring the end of the input is denoted by "0 0 0". Below is the Python code to generate these test cases:
+
+```python
+import random
+
+def tcgen():
+    num_datasets = random.randint(1, 100)
+
+    datasets = []
+    for _ in range(num_datasets):
+        N = random.randint(1, 2000)
+        D = random.randint(1, 10**12)
+        X = random.randint(1, 2000)
+        datasets.append((N, D, X))
+    
+    datasets.append((0, 0, 0))  # End of input marker
+    
+    return datasets
+
+# Example usage:
+if __name__ == "__main__":
+    test_cases = tcgen()
+    for case in test_cases:
+        print(f"{case[0]} {case[1]} {case[2]}")
+```
+
+This script generates up to 100 test datasets. Each dataset consists of three integers \( N \), \( D \), and \( X \) within the specified ranges. Finally, it appends the end marker "0 0 0" to the list of test cases. When executed, the code prints each dataset in the required format.

@@ -1,0 +1,26 @@
+An integer sequence where each data set consists of 10 integers in pairs (a1, b1), (a2, b2), ..., (a5, b5) with 1 ≤ ai, bi ≤ 10000. The end of the input is indicated by two zeros on a line. The number of data sets is no more than 100.
+
+### Example Input:
+
+```
+1593 4311
+4321 2155
+1256 6421
+5310 1455
+2152 5421
+1549 3386
+4528 3719
+1234 4321
+3330 3109
+2739 2199
+0 0
+```
+
+### Function Signature:
+Write a function `f(inputs)` that takes in the input.
+```python
+def f(inputs: List[Tuple[int, int]]): 
+    ''' 
+    inputs: a list of tuples, where each tuple contains two integers
+    '''
+```

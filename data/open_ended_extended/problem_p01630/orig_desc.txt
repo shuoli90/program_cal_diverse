@@ -1,0 +1,44 @@
+Problem D: 2D is an abbreviation of Decision Diagram
+Problem Statement
+Do you know the data structure called BDD (Binary Decision Diagram)? ZDD, which is derived from BDD, became a hot topic in video-related fields of the combination explosion sister in recent years. This problem is to implement the basic implementation of BDD.
+BDD is a directed acyclic graph (DAG) that represents a logical function. For example, the truth table of Table 1 is represented by the BDD in Figure 1. BDD consists of five types of components: 0 edge (dashed arrow), 1 edge (solid arrow), 0 terminal node (square of 0), 1 terminal node (square of 1), and variable node (circle with a number). The 0-terminal node and 1-terminal node exist one each at the bottom. From each variable node, one 0 edge and one 1 edge are output, respectively, and connected to the next node. Each variable node corresponds to the variable number written on the node, and if the value of the variable is 1, it follows the 1 edge side, and if it is 0, it follows the 0 edge side. Thus, if you follow from the top node, you will get 1 if you reach the 1-terminal node and 0 if you reach the 0-terminal node. For example, when "variable 1 = 1, variable 2 = 0, variable 3 = 1" in the truth table of Table 1 is traced with BDD, it becomes the route of the thick line in Figure 1, and it is found that the result is 1. In this problem, it is assumed that the variable nodes appear in the order of variable 1, variable 2, ..., variable N, one by one, from the upper side of BDD.
+Now, in this problem, you are asked to create a program to compress this simple BDD using reduction rules. The reduction rules are two rules shown in Figure 2. First, the rule of Figure 2 (a) is applied when there is a variable node A, and "the destination of A's 0 edge = the destination of A's 1 edge". In this case, since there is one path to transition to whether the variable value is 0 or 1, this variable node is unnecessary. Therefore, all variable nodes that meet this condition can be deleted. The rule of Figure 2 (b) is applied when there are two variable nodes A and B, and "A's variable number = B's variable number, and the destination of A's 0 edge = the destination of B's 0 edge, and the destination of A's 1 edge = B's 1 edge". In this case, it is found that there are two identical nodes that are redundant, so the two variable nodes can be shared as one variable node.
+When the reduction rules are repeatedly applied until the shape of the BDD does not change, the BDD of Figure 1 changes from Figure 3 (a)->(b), and finally becomes a more compact BDD like Figure 3 (c). It can be seen that the BDD, which originally had 7 variable nodes, has become a BDD with 3 variable nodes.
+Since the truth table representing the logical function is input, output the number of variable nodes of the BDD after applying the reduction rules.
+Input
+Each data set is input in the following format.
+N
+bit_line
+N represents the number of variables in the logical function. bit_line is a string of length 2^N representing the truth table, consisting of '1' and '0'. Each character represents,
+1st bit: Result when variable 1 = 0, variable 2 = 0, ..., variable N-1 = 0, variable N = 0
+2nd bit: Result when variable 1 = 0, variable 2 = 0, ..., variable N-1 = 0, variable N = 1
+3rd bit: Result when variable 1 = 0, variable 2 = 0, ..., variable N-1 = 1, variable N = 0
+4th bit: Result when variable 1 = 0, variable 2 = 0, ..., variable N-1 = 1, variable N = 1
+...
+2^Nth bit: Result when variable 1 = 1, variable 2 = 1, ..., variable N-1 = 1, variable N = 1
+Constraints
+1 <= N <= 10
+Output
+Output the number of variable nodes of the BDD after applying the reduction rules.
+Sample Input 1
+3
+01100110
+Output for the Sample Input 1
+3
+Sample Input 2
+2
+0000
+Output for the Sample Input 2
+0
+The variable node disappears as you repeat sharing and deletion.
+Sample Input 3
+2
+0110
+Output for the Sample Input 3
+3
+The reduction rule cannot be applied once.
+Sample Input 4
+5
+11110101011100110010111100010001
+Output for the Sample Input 4
+12

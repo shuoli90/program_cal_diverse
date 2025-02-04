@@ -1,0 +1,173 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p00265 - Generation 2</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p00265 - Generation 2</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>Modulo Query
+You are given N cards, each containing a different natural number (1 to 300000). When you are asked a question, you should answer the maximum remainder obtained when dividing the number on the card you have by the number I said.
+For example, suppose you have three cards with numbers 9, 3, and 8. If I say "4", find the remainder when you divide 9, 3, and 8 by 4. The remainders are 1, 3, and 0, respectively, but the largest remainder is 3, so the correct answer is 3.
+Now, let's get started. What? It's difficult if there are too many cards? Well, that's true. Then, let's use a computer to find the maximum remainder. Please create a program that finds the largest remainder among the remainders obtained by dividing the numbers on the cards by the number asked. Note that questions can be asked multiple times, but the same number will not be asked twice.
+Input
+The input consists of a single data set in the following format:
+N Q
+c1 c2 ... cN
+q1
+q2
+:
+qQ
+The first line contains the number of cards N (2 ≤ N ≤ 300000) and the number of questions Q (2 ≤ Q ≤ 100000) separated by a single space. The second line contains the numbers ci (1 ≤ ci ≤ 300000) written on the cards separated by a single space. The next Q lines contain the numbers qi (1 ≤ qi ≤ 300000) asked as questions.
+Output
+Output the maximum remainder for each question on a separate line.
+Sample Input
+3 3
+9 3 8
+4
+6
+5
+Sample Output
+3
+3
+4
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An integer N (2 ≤ N ≤ 300000) and an integer Q (2 ≤ Q ≤ 100000), representing some quantities.
+A list of integers c of size N, where each integer is between 1 and 300000.
+A list of integers q of size Q, where each integer is between 1 and 300000.
+
+### Example Input:
+```
+3 3
+9 3 8
+4
+6
+5
+```
+
+### Function Signature:
+Write a function f(N, Q, c, q) that takes in the input.
+```python
+def f(N: int, Q: int, c: List[int], q: List[int]):
+    '''
+    N: an integer
+    Q: an integer
+    c: a list of integers
+    q: a list of integers
+    '''
+```</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Sure! Here's the test case generator for the "Modulo Query" problem:
+
+```python
+import random
+
+def tcgen():
+    # Generating the number of cards N and the number of questions Q
+    N = random.randint(2, 300000)
+    Q = random.randint(2, 100000)
+    
+    # Generating the list of card numbers c1, c2, ..., cN
+    cards = [random.randint(1, 300000) for _ in range(N)]
+    
+    # Generating the list of questions q1, q2, ..., qQ
+    questions = []
+    while len(questions) < Q:
+        q = random.randint(1, 300000)
+        if q not in questions:
+            questions.append(q)
+    
+    # Formatting the input
+    input_data = f"{N} {Q}\n" + ' '.join(map(str, cards)) + '\n' + '\n'.join(map(str, questions))
+    
+    return input_data
+
+# Example usage
+print(tcgen())
+```
+
+### Explanation
+
+1. **Generating N and Q**: 
+    - `N` is generated randomly between 2 and 300000.
+    - `Q` is generated randomly between 2 and 100000.
+
+2. **Generating the list of card numbers**:
+    - A list of `N` integers is generated, each integer between 1 and 300000.
+
+3. **Generating the list of questions**:
+    - A list of `Q` unique integers is generated, each integer between 1 and 300000. The uniqueness is ensured by checking if the generated question is already in the list.
+
+4. **Formatting the input**:
+    - The input is formatted to match the problem statement requirements, with `N` and `Q` on the first line, the card numbers on the second line, and each question on a new line.
+
+You can use this function to generate different test cases for the "Modulo Query" problem.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    N, Q = map(int, fh.readline().strip().split())
+    cards = list(map(int, fh.readline().strip().split()))
+    questions = [int(fh.readline().strip()) for _ in range(Q)]
+    return N, Q, cards, questions
+
+# if __name__ == "__main__":
+#     input_path = sys.argv[1]
+#     with open(input_path, 'r') as fh: 
+#     N, Q, cards, questions = extract_arguments(fh)
+#     f(N, Q, cards, questions)</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

@@ -1,0 +1,23 @@
+Canonicalized Input Description:
+
+An integer T (1 ≤ T ≤ 1024), representing the number of test cases.
+Each test case is an integer X (0 ≤ X ≤ 99999), representing a number up to 5 digits.
+
+### Example Input:
+
+```
+2
+2006
+1111
+```
+
+### Function Signature:
+
+Write a function f(T, test_cases) that takes in the input.
+```python
+def f(T: int, test_cases: List[int]):
+    '''
+    T: an integer
+    test_cases: a list of integers
+    '''
+```

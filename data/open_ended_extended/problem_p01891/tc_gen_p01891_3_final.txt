@@ -1,0 +1,44 @@
+Sure! Below is the test case generator for the given problem "A: Cabbage":
+
+```python
+import random
+
+def tcgen():
+    # Define the constraints
+    N = random.randint(1, 1000)  # 1 <= N <= 1000
+    M = random.randint(0, N)  # 0 <= M <= N
+    A = random.randint(1, 1000)  # 1 <= A <= 1000
+    B = random.randint(A, 1000)  # A <= B <= 1000
+    D = [random.randint(1, 1000) for _ in range(N)]  # List of N elements, each 1 <= D[i] <= 1000
+    
+    return N, M, A, B, D
+
+def format_tc(N, M, A, B, D):
+    input_data = f"{N} {M} {A} {B}\n" + " ".join(map(str, D))
+    return input_data
+
+# Generate a test case and format it
+N, M, A, B, D = tcgen()
+test_case = format_tc(N, M, A, B, D)
+print(test_case)
+```
+
+This generator follows the constraints provided in the problem statement. It randomly generates values for \(N\), \(M\), \(A\), \(B\), and the list \(D\) within the specified ranges. The `format_tc` function formats the output to match the expected input format of the problem.
+
+### Explanation of the Generator
+- **N**: Number of leaves.
+- **M**: Minimum number of leaves that should remain for cooking.
+- **A**: Threshold for initial discard based on dirtiness.
+- **B**: Threshold for reconsidering the discard based on dirtiness.
+- **D**: List of dirtiness values for each leaf.
+
+### Example Output
+
+Running the provided script might output something like:
+
+```
+623 217 195 453
+234 576 123 789 456 234 876 234 345 ...
+```
+
+This output can directly be used as an input for your problem to test various scenarios.

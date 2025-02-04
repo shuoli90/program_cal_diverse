@@ -1,0 +1,73 @@
+Sure, I can help you write a test case generator for the given problem statement about bowling scores. The generator will create random test cases that adhere to the constraints and structure specified in the problem statement.
+
+Here's the implementation of the test case generator:
+
+```python
+import random
+
+def generate_single_throw():
+    """Generate a random number of pins knocked down in a single throw, between 0 and 10."""
+    return random.randint(0, 10)
+
+def generate_frame():
+    """Generate a frame with two throws, ensuring the total does not exceed 10 unless it's a strike."""
+    first_throw = generate_single_throw()
+    if first_throw == 10:  # Strike
+        return [10]
+    second_throw = random.randint(0, 10 - first_throw)
+    return [first_throw, second_throw]
+
+def generate_last_frame():
+    """Generate the last (10th) frame, which can have up to three throws."""
+    first_throw = generate_single_throw()
+    if first_throw == 10:  # Strike
+        second_throw = generate_single_throw()
+        if second_throw == 10:
+            third_throw = generate_single_throw()
+        else:
+            third_throw = random.randint(0, 10 - second_throw)
+        return [10, second_throw, third_throw]
+    else:
+        second_throw = random.randint(0, 10 - first_throw)
+        if first_throw + second_throw == 10:  # Spare
+            third_throw = generate_single_throw()
+            return [first_throw, second_throw, third_throw]
+        return [first_throw, second_throw]
+
+def generate_game():
+    """Generate a full game of 10 frames."""
+    game = []
+    for _ in range(9):
+        game.extend(generate_frame())
+    game.extend(generate_last_frame())
+    return game
+
+def tcgen():
+    test_cases = []
+    while True:
+        m = random.randint(3, 40)  # Number of participants
+        participants = []
+        for _ in range(m):
+            participant_id = random.randint(0, 9999)
+            game = generate_game()
+            participants.append(f'{participant_id} ' + ' '.join(map(str, game)))
+
+        test_cases.append(f"{m}\n" + "\n".join(participants))
+        if random.random() < 0.2:  # Randomly decide when to stop adding datasets
+            break
+
+    test_cases.append("0")  # End of input
+    return "\n".join(test_cases)
+
+# Example usage:
+print(tcgen())
+```
+
+### Explanation
+1. **`generate_single_throw`**: Generates a random number of pins knocked down in a single throw.
+2. **`generate_frame`**: Generates a normal frame with two throws. If the first throw is a strike (10 pins), only one throw is included.
+3. **`generate_last_frame`**: Generates the 10th frame, which can have up to three throws if the first throw is a strike or the first two throws make a spare.
+4. **`generate_game`**: Generates a full game of 10 frames.
+5. **`tcgen`**: Generates multiple datasets, each with a random number of participants (between 3 and 40). For each participant, it generates a random game and assigns a random participant ID. The loop terminates randomly to simulate multiple datasets, and a "0" is appended at the end to signal the end of input.
+
+This generator will create test cases that fit the given problem description, ensuring a variety of possible game scenarios. You can run the `tcgen` function to generate a new set of test cases each time.

@@ -1,0 +1,44 @@
+Sure, let's create a test case generator for the given problem statement. The generator will create random grids of coins and will output them in the required format. Here is the Python code for the test case generator:
+
+```python
+import random
+
+def tcgen():
+    # Generate random values for H and W within the given constraints
+    H = random.randint(1, 500)
+    W = random.randint(1, 500)
+    
+    # Generate the grid with random coin values
+    grid = [[random.randint(0, 9) for _ in range(W)] for _ in range(H)]
+    
+    return H, W, grid
+
+def print_test_case(H, W, grid):
+    print(H, W)
+    for row in grid:
+        print(' '.join(map(str, row)))
+
+# Example usage:
+H, W, grid = tcgen()
+print_test_case(H, W, grid)
+```
+
+### Explanation
+
+1. **Grid Dimensions**: The dimensions `H` (number of rows) and `W` (number of columns) are randomly generated between 1 and 500.
+2. **Grid Values**: Each cell in the grid contains a random number of coins between 0 and 9, inclusive.
+3. **Printing**: The function `print_test_case` is used to print the generated test case in the required format.
+
+### Example Generated Test Case
+
+Here is an example of what the output might look like:
+
+```
+4 3
+2 5 3
+0 4 1
+9 8 7
+2 3 5
+```
+
+You can use this generator to create multiple test cases for your problem, ensuring a diverse set of inputs to thoroughly test your solution.

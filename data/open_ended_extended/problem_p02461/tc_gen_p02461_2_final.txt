@@ -1,0 +1,74 @@
+Certainly! To generate test cases for the "Map: Range Search" problem, we will simulate a sequence of operations on a dictionary \( M \). Below is the Python code for a test case generator:
+
+```python
+import random
+import string
+
+def random_string(length):
+    return ''.join(random.choice(string.ascii_lowercase) for _ in range(length))
+
+def tcgen():
+    q = random.randint(1, 200000)
+
+    queries = []
+    keys = set()
+
+    for _ in range(q):
+        operation = random.randint(0, 3)
+        if operation == 0:  # insert operation
+            key = random_string(random.randint(1, 20))
+            x = random.randint(1, 1000000000)
+            queries.append(f"0 {key} {x}")
+            keys.add(key)
+        elif operation == 1:  # get operation
+            if keys:
+                key = random.choice(list(keys))
+            else:
+                key = random_string(random.randint(1, 20))
+            queries.append(f"1 {key}")
+        elif operation == 2:  # delete operation
+            if keys:
+                key = random.choice(list(keys))
+                keys.remove(key)
+            else:
+                key = random_string(random.randint(1, 20))
+            queries.append(f"2 {key}")
+        else:  # dump operation
+            if keys:
+                L = random.choice(list(keys))
+                R = random.choice(list(keys))
+                if L > R:
+                    L, R = R, L
+            else:
+                L = random_string(random.randint(1, 20))
+                R = random_string(random.randint(1, 20))
+                if L > R:
+                    L, R = R, L
+            queries.append(f"3 {L} {R}")
+
+    return q, queries
+
+# Example usage
+q, queries = tcgen()
+print(q)
+for query in queries:
+    print(query)
+```
+
+### Explanation:
+
+1. **random_string(length)**:
+   - Generates a random string of lowercase letters of the given length.
+
+2. **tcgen()**:
+   - Randomly generates a number of queries \( q \) within the constraints.
+   - Iterates \( q \) times to create random queries:
+     - **Insert Operation (0)**: Generates a random key and a random value \( x \), then adds it to the queries list and to the set of keys.
+     - **Get Operation (1)**: Randomly chooses an existing key (if any) or creates a new random key, then adds the query to the list.
+     - **Delete Operation (2)**: Randomly chooses an existing key (if any), removes it from the set of keys, and adds the query to the list.
+     - **Dump Operation (3)**: Randomly chooses two existing keys (if any) for the range or generates two new random keys, ensuring \( L \leq R \), then adds the query to the list.
+
+3. **Example usage**:
+   - Demonstrates how to use the `tcgen` function to generate a test case, printing the number of queries and each query.
+
+This test case generator ensures the creation of valid and varied test cases to thoroughly test the "Map: Range Search" problem.

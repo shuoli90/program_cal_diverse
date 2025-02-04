@@ -1,0 +1,88 @@
+Sure, I can help you write a test case generator for the "Quest of Merchant" problem. To get started, let's outline the input and what needs to be generated:
+
+### Problem Statement: Quest of Merchant
+
+**Parameters:**
+1. \( N \) - Number of towns.
+2. \( M \) - Number of different products.
+3. \( W \) - Maximum weight Rabbit can carry.
+4. \( T \) - Total time Rabbit can spend.
+
+**Town Information:**
+- Each town \( i \) has:
+  - \( L_i \) - Number of different products sold in the town.
+  - \( X_i \) - X-coordinate of the town.
+  - \( Y_i \) - Y-coordinate of the town.
+
+**Product Information:**
+- Each product \( j \) has:
+  - \( S_j \) - Name of the product.
+  - \( V_j \) - Weight per unit of the product.
+  - \( P_j \) - Selling price per unit of the product.
+
+**Product Prices in Towns:**
+- For each town \( i \), product prices:
+  - \( R_{i,k} \) - Name of the product.
+  - \( Q_{i,k} \) - Price of the product in town \( i \).
+
+### Test Case Generator
+
+Here is a Python function to generate random test cases for this problem:
+
+```python
+import random
+import string
+
+def generate_random_name(length=5):
+    return ''.join(random.choices(string.ascii_uppercase, k=length))
+
+def tcgen():
+    # Generate random values for N, M, W, T
+    N = random.randint(1, 100)  # Number of towns
+    M = random.randint(1, 50)   # Number of products
+    W = random.randint(1, 1000) # Maximum weight Rabbit can carry
+    T = random.randint(1, 1000) # Total time Rabbit can spend
+
+    # Generate product information
+    products = []
+    for _ in range(M):
+        S = generate_random_name()
+        V = random.randint(1, 100)
+        P = random.randint(1, 1000)
+        products.append((S, V, P))
+
+    # Generate town information
+    towns = []
+    for _ in range(N):
+        L = random.randint(1, M)  # Max number of products in a town should not exceed M
+        X = random.randint(-100, 100)
+        Y = random.randint(-100, 100)
+        product_prices = []
+        for _ in range(L):
+            R = random.choice(products)[0]
+            Q = random.randint(1, 1000)
+            product_prices.append((R, Q))
+        towns.append((L, X, Y, product_prices))
+
+    # Print the test case
+    print(N, M, W, T)
+    for S, V, P in products:
+        print(S, V, P)
+    for L, X, Y, product_prices in towns:
+        print(L, X, Y)
+        for R, Q in product_prices:
+            print(R, Q)
+
+# Example usage
+tcgen()
+```
+
+### Explanation:
+1. **`generate_random_name` function:** Generates random names for products of a specified length (default is 5).
+2. **`tcgen` function:** 
+   - Randomly generates the number of towns (`N`), number of products (`M`), maximum weight (`W`), and total time (`T`).
+   - Generates product information which includes a random name, weight, and selling price.
+   - Generates town information which includes coordinates and the list of product prices in each town.
+   - Prints the generated test case in the required format.
+
+You can run the `tcgen()` function to generate and print a random test case for the "Quest of Merchant" problem. Adjust the ranges and limits as necessary to ensure the generated test cases are within the problem constraints.

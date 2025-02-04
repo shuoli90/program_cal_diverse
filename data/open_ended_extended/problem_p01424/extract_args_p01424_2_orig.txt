@@ -1,0 +1,12 @@
+def extract_arguments(fh):
+    N, M = map(int, fh.readline().strip().split())
+    words = [fh.readline().strip() for _ in range(N)]
+    pairs = [tuple(map(int, fh.readline().strip().split())) for _ in range(M)]
+    return N, M, words, pairs
+
+# Example usage:
+# if __name__ == "__main__":
+#     input_path = sys.argv[1]
+#     with open(input_path, 'r') as fh: 
+#         N, M, words, pairs = extract_arguments(fh)
+#         print(N, M, words, pairs)

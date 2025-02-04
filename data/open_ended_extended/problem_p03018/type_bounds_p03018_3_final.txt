@@ -1,0 +1,3 @@
+Types: s: str
+Ranges: 1 ≤ |s| ≤ 200000
+Addtl Info: Each character of s is 'A', 'B', or 'C'

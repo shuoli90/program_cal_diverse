@@ -1,0 +1,13 @@
+def extract_arguments(fh):
+    inputs = []
+    while True:
+        header = fh.readline().strip()
+        if header == "0 0":
+            break
+        L, H = map(int, header.split())
+        hints = []
+        for _ in range(H):
+            try_hit_blow = tuple(fh.readline().strip().split())
+            hints.append(try_hit_blow)
+        inputs.append((L, H, hints))
+    return inputs

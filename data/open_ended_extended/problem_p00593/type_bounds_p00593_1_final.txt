@@ -1,0 +1,3 @@
+Types: N: int
+Ranges: 0 < N < 10
+Addtl Info: Input ends with a line containing a single zero

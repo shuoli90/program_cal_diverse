@@ -1,0 +1,16 @@
+An integer X (1 ≤ X ≤ 10^18).
+An integer Y (X ≤ Y ≤ 10^18).
+
+### Example Input:
+
+```
+3 20
+```
+
+### Function Signature:
+Write a function f(X, Y) that takes in the input.
+def f(X: int, Y: int):
+    ''' 
+    X: an integer 
+    Y: an integer
+    '''

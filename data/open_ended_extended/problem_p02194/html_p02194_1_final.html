@@ -1,0 +1,147 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p02194 - Generation 1</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p02194 - Generation 1</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>Zero AND Subsets
+Given a multiset of non-negative integers a_1, a_2, ..., a_N.
+How many non-empty subsets of this multiset have a bitwise AND value of 0?
+Output the answer modulo 10^9+7.
+Input
+N
+a_1 a_2...a_N
+Output
+Output the answer modulo 10^9+7.
+Constraints
+1 \leq N \leq 10^5 
+0 \leq a_i \leq 2^{20}-1
+Input Example
+6
+8 6 9 1 2 1
+Output Example
+51
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>Canonicalized Input Description:
+
+An integer N (1 ≤ N ≤ 10^5), representing some quantity or size.
+A list of integers A of size N, where each integer is between 0 and 2^20 - 1.
+
+### Example Input:
+
+```
+6
+8 6 9 1 2 1
+```
+
+### Function Signature:
+Write a function f(N, A) that takes in the input.
+```python
+def f(N: int, A: List[int]):
+    '''
+    N: an integer
+    A: a list of integers
+    '''
+```</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Sure, I can help you write a test case generator for the "Zero AND Subsets" problem. The generator will produce random inputs that adhere to the constraints provided in the problem statement. Here is a Python function for generating such test cases:
+
+```python
+import random
+
+def tcgen():
+    N = random.randint(1, 10**5)
+    A = [random.randint(0, 2**20 - 1) for _ in range(N)]
+    
+    return N, A
+
+# Example usage:
+N, A = tcgen()
+print(N)
+print(' '.join(map(str, A)))
+```
+
+### Explanation:
+
+1. **N Generation**: 
+   - `N` is chosen randomly between 1 and \(10^5\), inclusive, as specified in the problem constraints.
+   
+2. **A Generation**:
+   - The list `A` of size `N` is generated where each element is a random integer between 0 and \(2^{20} - 1\) (inclusive), also as per the problem constraints.
+   
+### Example Output:
+Running the `tcgen` function might produce an output like this:
+```
+5
+542 12345 678 9 1024
+```
+
+This represents:
+- **N = 5**
+- **A = [542, 12345, 678, 9, 1024]**
+
+You can run the function multiple times to generate different test cases for your problem. This function ensures that all generated test cases adhere to the provided constraints.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    N = int(fh.readline().strip())
+    A = list(map(int, fh.readline().strip().split()))
+    return N, A</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

@@ -1,0 +1,15 @@
+def extract_arguments(fh):
+    t = int(fh.readline().strip())
+    datasets = []
+    for _ in range(t):
+        n = int(fh.readline().strip())
+        heights = list(map(int, fh.readline().strip().split()))
+        datasets.append((n, heights))
+    return datasets
+
+# if __name__ == "__main__":
+#     input_path = sys.argv[1]
+#     with open(input_path, 'r') as fh:
+#         datasets = extract_arguments(fh)
+#         for n, heights in datasets:
+#             f(n, heights)

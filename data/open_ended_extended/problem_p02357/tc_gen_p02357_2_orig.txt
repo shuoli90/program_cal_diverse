@@ -1,0 +1,31 @@
+Sure! Below is the test case generator for the given problem statement "Sliding Minimum Element":
+
+```python
+import random
+
+def tcgen():
+    # Generate N such that 1 <= N <= 10^6
+    N = random.randint(1, 10**6)
+    
+    # Generate L such that 1 <= L <= N (if N is 1, L must be 1)
+    L = random.randint(1, N)
+    
+    # Generate array A of size N with elements between 1 and 10^9
+    A = [random.randint(1, 10**9) for _ in range(N)]
+    
+    return N, L, A
+
+# Example usage
+N, L, A = tcgen()
+print(N, L)
+print(' '.join(map(str, A)))
+```
+
+### Explanation
+- **N**: Randomly generated integer between 1 and \(10^6\).
+- **L**: Randomly generated integer between 1 and \(N\).
+- **A**: List of \(N\) integers, each between 1 and \(10^9\).
+
+The function `tcgen()` generates a random test case for the problem which can be used for testing solutions. The values for \(N\), \(L\), and the list \(A\) are printed in the format specified by the problem statement. 
+
+This test case generator adheres to the constraints of the problem and ensures that the size of the sub-array \(L\) is always less than or equal to \(N\).

@@ -1,0 +1,19 @@
+Canonicalized Input Description:
+
+Two strings S and T consisting of lowercase English letters.
+1 ≤ |S| = |T| ≤ 2 × 10^5.
+
+### Example Input:
+
+```
+azzel
+apple
+```
+
+### Function Signature:
+Write a function f(S, T) that takes in the input.
+def f(S: str, T: str):
+    '''
+    S: a string
+    T: a string
+    '''

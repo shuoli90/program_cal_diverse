@@ -1,0 +1,33 @@
+Certainly! To generate test cases for this problem, where you need to sort a permutation of integers using the specified operation, we will create a function that generates a random permutation of integers from 1 to \(N\) and outputs this permutation along with its length \(N\).
+
+Here is the test case generator for this problem:
+
+```python
+import random
+
+def tcgen():
+    # Define the constraints
+    N = random.randint(1, 2 * 10**5)  # N is a random integer between 1 and 200,000
+    
+    # Generate a random permutation of integers from 1 to N
+    P = list(range(1, N + 1))
+    random.shuffle(P)
+    
+    return N, P
+
+# Example of how to use the test case generator
+N, P = tcgen()
+print(N)
+for num in P:
+    print(num)
+```
+
+**Explanation:**
+
+1. **N generation:** We generate \(N\) as a random integer between 1 and 200,000, adhering to the constraints provided.
+   
+2. **Permutation generation:** We create a list `P` that contains integers from 1 to \(N\) in ascending order and then shuffle it to create a random permutation.
+
+3. **Return values:** The function returns the length \(N\) and the permutation `P`.
+
+This generator ensures that each generated test case is valid according to the problem constraints and simulates the complexity that may be encountered in actual competitive programming scenarios.

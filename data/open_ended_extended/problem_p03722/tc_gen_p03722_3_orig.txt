@@ -1,0 +1,45 @@
+Sure, let's write a test case generator for the given problem statement. The generator will create random values for \(N\), \(M\), and the edges with their weights, ensuring the constraints are met.
+
+Here's the Python code to generate the test cases:
+
+```python
+import random
+
+def generate_test_case():
+    # Constraints
+    N = random.randint(2, 1000)
+    max_edges = min(N * (N - 1), 2000)
+    M = random.randint(1, max_edges)
+    
+    edges = set()
+    while len(edges) < M:
+        a = random.randint(1, N)
+        b = random.randint(1, N)
+        if a != b:
+            c = random.randint(-10**9, 10**9)
+            edges.add((a, b, c))
+    
+    edges = list(edges)
+    random.shuffle(edges)
+
+    return N, M, edges
+
+def print_test_case():
+    N, M, edges = generate_test_case()
+    print(N, M)
+    for a, b, c in edges:
+        print(a, b, c)
+
+# Uncomment the following line to generate and print a test case
+# print_test_case()
+```
+
+### Explanation:
+1. **N** is chosen randomly between 2 and 1000.
+2. **M** is chosen randomly between 1 and `min(N*(N-1), 2000)`.
+3. We create a set of edges to ensure all edges are unique and adhere to the constraints.
+4. For each edge, we ensure \(a \neq b\) and the weight \(c\) is between \(-10^9\) and \(10^9\).
+5. We shuffle the edges to ensure randomness in their order.
+6. Finally, we print \(N\), \(M\), and the list of edges.
+
+This generator ensures that all constraints are respected, and it produces diverse and realistic test cases for the problem.

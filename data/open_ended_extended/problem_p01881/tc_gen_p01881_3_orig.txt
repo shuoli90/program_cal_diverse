@@ -1,0 +1,84 @@
+Sure! Below is a Python function to generate test cases for the "Help the Princess!" problem. The function `tcgen()` randomly generates the grid dimensions, the grid itself, and ensures the placement of the princess, soldiers, and the escape hatch according to the problem's constraints.
+
+```python
+import random
+
+def tcgen():
+    H = random.randint(2, 200)
+    W = random.randint(2, 200)
+    
+    grid = [['.' for _ in range(W)] for _ in range(H)]
+    
+    # Place the princess '@'
+    princess_x = random.randint(0, H-1)
+    princess_y = random.randint(0, W-1)
+    grid[princess_x][princess_y] = '@'
+    
+    # Place the escape hatch '%'
+    while True:
+        hatch_x = random.randint(0, H-1)
+        hatch_y = random.randint(0, W-1)
+        if grid[hatch_x][hatch_y] == '.':
+            grid[hatch_x][hatch_y] = '%'
+            break
+    
+    # Place soldiers '$'
+    num_soldiers = random.randint(0, H*W - 2)
+    for _ in range(num_soldiers):
+        while True:
+            soldier_x = random.randint(0, H-1)
+            soldier_y = random.randint(0, W-1)
+            if grid[soldier_x][soldier_y] == '.':
+                grid[soldier_x][soldier_y] = '$'
+                break
+    
+    # Place walls '#'
+    num_walls = random.randint(0, H*W - num_soldiers - 2)
+    for _ in range(num_walls):
+        while True:
+            wall_x = random.randint(0, H-1)
+            wall_y = random.randint(0, W-1)
+            if grid[wall_x][wall_y] == '.':
+                grid[wall_x][wall_y] = '#'
+                break
+    
+    # Ensure the palace is connected and the princess can reach the hatch if no soldiers exist
+    # This is simplistic and does not guarantee a valid path, but one can use more sophisticated graph algorithms
+    
+    grid_str = [''.join(row) for row in grid]
+    
+    return H, W, grid_str
+
+def print_test_case(H, W, grid_str):
+    print(H, W)
+    for row in grid_str:
+        print(row)
+
+# Example usage
+H, W, grid_str = tcgen()
+print_test_case(H, W, grid_str)
+```
+
+### Explanation:
+1. **Grid Dimensions**:
+   - Randomly generate the height `H` and width `W` of the grid within the given constraints.
+
+2. **Initial Empty Grid**:
+   - Create an empty grid of size `HxW` filled with '.' representing empty cells.
+
+3. **Place the Princess '@'**:
+   - Randomly choose a position in the grid for the princess and mark it with '@'.
+
+4. **Place the Escape Hatch '%'**:
+   - Randomly choose a position for the escape hatch ensuring it does not overlap with the princess.
+
+5. **Place Soldiers '$'**:
+   - Randomly place soldiers in the grid ensuring they occupy empty cells.
+
+6. **Place Walls '#'**:
+   - Randomly place walls in the grid ensuring they occupy empty cells.
+
+7. **Output**:
+   - The function returns the dimensions of the grid and the grid itself as a list of strings.
+
+This generator ensures that all conditions of the problem statement are met. Note that while it ensures correct placement of characters, it does not guarantee a valid solution path. More sophisticated algorithms like BFS/DFS can be used to ensure path validity in a real-world scenario.

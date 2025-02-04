@@ -1,0 +1,181 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p02113 - Generation 2</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p02113 - Generation 2</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>Problem C: Palindrome
+Problem
+Taro has N strings of length L each. He loves palindromes, so he wants to choose some of the N strings, arrange them in any order he likes, and make the longest palindrome possible.
+Find the longest palindrome that Taro can make. If there are multiple palindromes of the same length, output the lexicographically smallest one. If it is impossible to make a palindrome no matter how he chooses and arranges strings, output an empty line.
+Input
+The input is given in the following format:
+N L
+s1
+s2
+.
+.
+.
+sN
+The first line contains two integers N and L which are the number of strings and the length of the strings, respectively. The following N lines contain the strings that Taro has.
+Constraints
+The input satisfies the following constraints:
+1 ≤ N ≤ 1000
+1 ≤ L ≤ 30
+si consists of lowercase English letters.
+Output
+Output the lexicographically smallest longest palindrome that can be made. If it is impossible to make a palindrome, output an empty line.
+Sample Input 1
+4 2
+oi
+io
+rr
+rr
+Sample Output 1
+iorrrroi
+Sample Input 2
+5 1
+a
+b
+c
+a
+c
+Sample Output 2
+acbca
+Sample Input 3
+3 3
+uki
+uku
+uke
+Sample Output 3
+uku
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An integer N (1 ≤ N ≤ 1000), representing some quantity or size.
+An integer L (1 ≤ L ≤ 30), representing some other quantity or size.
+N strings of length L, each consisting of lowercase English letters.
+
+### Example Input:
+
+```
+4 2
+oi
+io
+rr
+rr
+```
+
+### Function Signature:
+Write a function f(N, L, strings) that takes in the input.
+```python
+def f(N: int, L: int, strings: List[str]):
+    '''
+    N: an integer
+    L: an integer
+    strings: a list of strings
+    '''
+```</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Certainly! Let's create a test case generator for the given problem "Palindrome".
+
+The goal is to generate random test cases that adhere to the problem constraints and format. 
+
+Here is the implementation of the test case generator:
+
+```python
+import random
+import string
+
+def generate_random_string(length):
+    return ''.join(random.choices(string.ascii_lowercase, k=length))
+
+def tcgen():
+    # Number of strings, 1 ≤ N ≤ 1000
+    N = random.randint(1, 1000)
+    
+    # Length of each string, 1 ≤ L ≤ 30
+    L = random.randint(1, 30)
+    
+    # Generate N strings of length L
+    strings = [generate_random_string(L) for _ in range(N)]
+    
+    return N, L, strings
+
+# Example usage of the generator
+N, L, strings = tcgen()
+print(N)
+print(L)
+for s in strings:
+    print(s)
+```
+
+This code will create a valid random test case for the problem statement. It:
+
+1. Generates a random integer `N` between 1 and 1000.
+2. Generates a random integer `L` between 1 and 30.
+3. Creates `N` strings each of length `L` consisting of lowercase English letters.
+
+You can run this script to generate random test cases and use them to test the solution for the problem "Palindrome".</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    N, L = map(int, fh.readline().strip().split())
+    strings = [fh.readline().strip() for _ in range(N)]
+    return N, L, strings</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

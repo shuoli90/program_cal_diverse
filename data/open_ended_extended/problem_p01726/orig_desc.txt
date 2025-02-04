@@ -1,0 +1,32 @@
+Iku is unfortunate in that the important string T he had was rewritten to a different string T' by a virus. It is known that the virus rewrote one character of T to a different character. That is, T and T' differ by exactly one character. Iku has prepared a document S where T is believed to appear. As a preparation for restoring T, he wants to determine the number of substrings of S that may match T by differing by only one character.
+Given strings T' and S, find the number of substrings of S of length |T'| that differ by only one character from T'.
+Input
+The input is given in the following format.
+S
+T'
+The first line contains S.
+The second line contains T'.
+S and T' consist only of upper- and lowercase letters.
+Constraints
+Each variable in the input satisfies the following constraints.
+1 ≤ |S| ≤ 300,000
+1 ≤ |T'| ≤ |S|
+Output
+Output the number of substrings that satisfy the condition in a single line.
+Sample Input 1
+abcbcdbc
+abc
+Output for the Sample Input 1
+2
+cbc starting from the 3rd character of S and dbc starting from the 6th character of S satisfy the condition.
+Sample Input 2
+aaaaaa
+aaaaaa
+Output for the Sample Input 2
+0
+Do not count the string that is a complete match.
+Sample Input 3
+baaaaaaaa
+b
+Output for the Sample Input 3
+8

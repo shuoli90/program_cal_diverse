@@ -1,0 +1,29 @@
+Sure! Below is a test case generator for the given "Circle" problem statement:
+
+```python
+import random
+import math
+
+def tcgen():
+    # Generate a random radius r between 0 (exclusive) and 10000 (exclusive)
+    r = random.uniform(0.00001, 9999.99999)
+    
+    # Calculate the area and circumference of the circle
+    area = math.pi * r * r
+    circumference = 2 * math.pi * r
+    
+    # Format the output to ensure precision up to 10^-5
+    area = format(area, '.6f')
+    circumference = format(circumference, '.6f')
+    
+    return r, area, circumference
+
+# Example usage:
+r, area, circumference = tcgen()
+print(f"Radius: {r}")
+print(f"Expected Output: {area} {circumference}")
+```
+
+This function generates a random radius `r` within the specified constraints, calculates the area and circumference of the circle, and formats the results to ensure that they do not contain an absolute error greater than \(10^{-5}\). The generated test cases can be used for testing solutions to the problem.
+
+To generate multiple test cases or to integrate this into a larger testing framework, you can call `tcgen()` multiple times and collect the results.

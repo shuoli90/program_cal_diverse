@@ -1,0 +1,61 @@
+Sure, let's create a test case generator for the "Run Length Encoding" problem.
+
+### Explanation of the Test Case Generator:
+
+1. **Number of Strings (`num_strings`)**: We'll randomly determine the number of strings, ensuring it stays within the specified limit (1 to 50).
+2. **String Length (`string_length`)**: Each string will also be randomly determined, ensuring it stays within the limit (1 to 100 characters).
+3. **String Generation**: We'll generate strings that follow the encoding rules. This involves creating sequences of characters, potentially followed by sequences like `@nX` where `n` is a digit from 1 to 9 and `X` is any character.
+4. **Output the Strings**: The generator will print strings that mimic the input format specified.
+
+Here's the Python code for the test case generator:
+
+```python
+import random
+import string
+
+def generate_encoded_char():
+    """ Generate a single encoded character sequence. """
+    char = random.choice(string.ascii_letters + string.digits + string.punctuation.replace("@", ""))
+    if random.random() < 0.5:  # 50% chance to add encoding
+        count = random.randint(1, 9)
+        return f"@{count}{char}"
+    else:
+        return char
+
+def generate_encoded_string(length):
+    """ Generate an encoded string of given length. """
+    encoded_string = []
+    while len(''.join(encoded_string)) < length:
+        encoded_char = generate_encoded_char()
+        if len(''.join(encoded_string)) + len(encoded_char) <= length:
+            encoded_string.append(encoded_char)
+        else:
+            break  # Prevent overflow
+    return ''.join(encoded_string)
+
+def tcgen():
+    num_strings = random.randint(1, 50)
+    test_cases = []
+    
+    for _ in range(num_strings):
+        string_length = random.randint(1, 100)
+        encoded_string = generate_encoded_string(string_length)
+        test_cases.append(encoded_string)
+    
+    return test_cases
+
+# Example usage
+test_cases = tcgen()
+for case in test_cases:
+    print(case)
+```
+
+### Explanation of the Code:
+
+1. **`generate_encoded_char` Function**: This function generates a single character or an encoded sequence. It randomly decides whether to generate an encoded sequence or just a single character.
+2. **`generate_encoded_string` Function**: This function generates an encoded string of a given length by repeatedly calling `generate_encoded_char` and ensuring the total length of the string does not exceed the specified length.
+3. **`tcgen` Function**: This function generates the required number of strings (between 1 and 50) and each string's length (between 1 and 100). It ensures that every string follows the specified encoding rules.
+
+The `print(case)` at the end is for demonstration purposes, and you can remove or adjust it based on your needs (e.g., writing to a file or returning the test cases from a function).
+
+This generator should help you create a variety of test cases for the "Run Length Encoding" problem to thoroughly test your solution.

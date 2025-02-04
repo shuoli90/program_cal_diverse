@@ -1,0 +1,37 @@
+Certainly! Below is the Python function to generate test cases for the given problem statement "Largest Rectangle":
+
+```python
+import random
+
+def tcgen():
+    H = random.randint(1, 1400)
+    W = random.randint(1, 1400)
+    
+    matrix = []
+    
+    for _ in range(H):
+        row = [random.randint(0, 1) for _ in range(W)]
+        matrix.append(row)
+    
+    return H, W, matrix
+
+# Example usage
+if __name__ == "__main__":
+    H, W, matrix = tcgen()
+    print(H, W)
+    for row in matrix:
+        print(" ".join(map(str, row)))
+```
+
+### Explanation:
+1. **Height (H) and Width (W)**: 
+   - These are generated randomly within the constraints of 1 ≤ H, W ≤ 1400.
+
+2. **Matrix (H × W)**:
+   - Each element of the matrix is randomly chosen to be either 0 or 1 using `random.randint(0, 1)`.
+   - The matrix is built by appending each generated row to the `matrix` list.
+
+### Example Execution:
+- When you run the function, it will generate random dimensions for the matrix and fill it with random 0s and 1s, and print it in the required format.
+
+You can integrate this test case generator into your competitive programming environment to generate various test cases for the problem statement "Largest Rectangle".

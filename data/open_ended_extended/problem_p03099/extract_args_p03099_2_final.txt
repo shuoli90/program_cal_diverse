@@ -1,0 +1,16 @@
+def extract_arguments(fh):
+    N = int(fh.readline().strip())
+    jewels = []
+    for _ in range(N):
+        x, y, v = map(int, fh.readline().strip().split())
+        jewels.append((x, y, v))
+    
+    M = int(fh.readline().strip())
+    conditions = []
+    for _ in range(M):
+        t, a, b = fh.readline().strip().split()
+        a = int(a)
+        b = int(b)
+        conditions.append((t, a, b))
+        
+    return N, jewels, M, conditions

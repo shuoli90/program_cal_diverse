@@ -1,0 +1,3 @@
+Types: N: int, S: List[int], Q: int, queries: List[Tuple[int, int, int]]
+Ranges: 2 ≤ N ≤ 500,000, -100,000,000 ≤ S[j] ≤ 100,000,000, 1 ≤ Q ≤ 100,000, 1 ≤ l ≤ r ≤ N, -1,000 ≤ x ≤ 1,000
+Addtl Info: N is even

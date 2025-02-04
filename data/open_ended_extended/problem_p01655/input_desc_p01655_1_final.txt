@@ -1,0 +1,37 @@
+An integer l (1 ≤ l ≤ 100,000) and an integer d (0 ≤ d ≤ 5,000).
+Three strings of length l consisting of only lower and upper case alphabets.
+The input ends with a line containing two zeros, which should not be processed.
+
+### Example Input:
+
+```
+3 1
+ACM
+IBM
+ICM
+5 2
+iwzwz
+iziwi
+zwizi
+1 0
+A
+B
+C
+10 5
+jLRNlNyGWx
+yyLnlyyGDA
+yLRnvyyGDA
+0 0
+```
+
+### Function Signature:
+Write a function f(inputs) that takes in a list of tuples as input.
+def f(inputs: List[Tuple[int, int, str, str, str]]):
+    '''
+    inputs: a list of tuples, where each tuple contains:
+        - an integer
+        - an integer
+        - a string
+        - a string
+        - a string
+    '''

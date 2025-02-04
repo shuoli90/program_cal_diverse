@@ -1,0 +1,207 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p00118 - Generation 3</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p00118 - Generation 3</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>Land Distribution
+  Mr. Tanaka has passed away and left a field of HW acres that is divided into HxW squares in the orchard. The orchard has three types of plants: apples, oysters, and oranges, and each square contains one of them. Mr. Tanaka left the inheritance instruction as follows:
+Distribute the land as much as possible to the relatives, but if two adjacent trees are the same, the border of the land is not determined, and they are treated as one plot of land.
+  For example, a 3x10 orchard ('リ' represents apples, 'カ' represents oysters, and 'ミ' represents oranges) is shown in the following figure.
+Adjust the boundary by removing the same species of planted trees, resulting in the following figure.
+  Therefore, it can be divided into 10 plots, corresponding to at most 10 people.
+The distribution must be completed before the border between each plot is no longer visible due to snow (i.e., before winter). The objective of completing the distribution task is to determine how many relatives can be assigned land based on the orchard map.
+Write a program that reads the orchard map and outputs the number of relatives who will receive land.
+Input
+Multiple data sets will be provided; the input ends with 0 0. Each data set starts with a line containing H and W. Separate them by a single space. The next H lines contain H × W characters. The string shall only contain the following characters: whitespace, "@" representing an apple, "#" representing an oyster, "*" representing an orange.
+No more than 20 datasets will be provided.
+Output
+For each test dataset, output the number of relatives who will receive land in one line.
+Sample Input
+10 10
+####
+#####@@
+@#
+@@@@@#*#*
+@##***@@@*
+#****#*@**
+##@*#@@*##
+*@@@@*@@@#
+***#@*@##*
+*@@@*@@##@
+*@*#*@##**
+@****#@@#@ 
+0 0
+"""
+Sample Output
+33</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An integer H (0 ≤ H ≤ 100) and an integer W (0 ≤ W ≤ 100), representing some dimensions. Each dataset contains H lines of W characters, where each character is one of {' ', '@', '#', '*'}. The input ends with a line "0 0". No more than 20 datasets will be provided.
+
+### Example Input:
+
+```
+10 10
+####
+#####@@
+@#
+@@@@@#*#*
+@##***@@@*
+#****#*@**
+##@*#@@*##
+*@@@@*@@@#
+***#@*@##*
+*@@@*@@##@
+*@*#*@##**
+@****#@@#@
+0 0
+```
+
+### Function Signature:
+Write a function f(inputs) that takes in the input.
+
+```python
+def f(inputs: List[Tuple[int, int, List[str]]]):
+    '''
+    inputs: a list of tuples, where each tuple contains:
+            - an integer H
+            - an integer W
+            - a list of H strings, each of length W
+    '''
+```</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Sure, here is a test case generator for the "Land Distribution" problem statement:
+
+```python
+import random
+
+def generate_orchard_map(H, W):
+    symbols = ["@", "#", "*"]
+    return ["".join(random.choice(symbols) for _ in range(W)) for _ in range(H)]
+
+def tcgen():
+    datasets = []
+    
+    # Generate a random number of datasets (up to 20)
+    num_datasets = random.randint(1, 20)
+    
+    for _ in range(num_datasets):
+        # Randomly choose values for H and W within the constraints
+        H = random.randint(1, 100)
+        W = random.randint(1, 100)
+        
+        # Generate the orchard map
+        orchard_map = generate_orchard_map(H, W)
+        
+        # Append the dataset to our list
+        datasets.append((H, W, orchard_map))
+    
+    # Add the terminating dataset (0 0)
+    datasets.append((0, 0, []))
+    
+    return datasets
+
+def print_test_case(datasets):
+    for H, W, orchard_map in datasets:
+        print(f"{H} {W}")
+        for row in orchard_map:
+            print(row)
+        
+# Generate and print test cases
+datasets = tcgen()
+print_test_case(datasets)
+```
+
+### Explanation:
+1. **generate_orchard_map(H, W)**:
+   - This function generates an `H x W` orchard map filled with random symbols representing apples ('@'), oysters ('#'), and oranges ('*').
+
+2. **tcgen()**:
+   - It starts by creating an empty list `datasets` to store multiple datasets.
+   - It then generates a random number of datasets (between 1 and 20).
+   - For each dataset, it randomly chooses values for `H` (height) and `W` (width) within the range [1, 100].
+   - It generates the orchard map for each dataset using the `generate_orchard_map` function.
+   - After generating the required datasets, it appends the terminating dataset (0, 0) to the list.
+   - Finally, it returns the list of datasets.
+
+3. **print_test_case(datasets)**:
+   - This function takes the generated datasets and prints them in the required format.
+   - It iterates over each dataset, prints the dimensions `H` and `W`, and then prints each row of the orchard map.
+
+The `tcgen()` function can be adjusted to generate larger or smaller maps by altering the ranges of `H` and `W`. The `print_test_case()` function ensures that the test cases are printed in the correct format as required by the problem statement.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    datasets = []
+    while True:
+        H, W = map(int, fh.readline().strip().split())
+        if H == 0 and W == 0:
+            break
+        orchard = [fh.readline().strip() for _ in range(H)]
+        datasets.append((H, W, orchard))
+    return datasets
+
+# if __name__ == "__main__":
+#     input_path = sys.argv[1]
+#     with open(input_path, 'r') as fh: 
+#     datasets = extract_arguments(fh)
+#     for dataset in datasets:
+#         H, W, orchard = dataset
+#         f(H, W, orchard)</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

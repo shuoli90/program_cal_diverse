@@ -1,0 +1,33 @@
+Spaceship UAZ Advance
+Stellar calendar 2005.11.5. You are the captain of the UAZ Advance spacecraft and are about to engage in combat with an enemy spacecraft. Fortunately, the enemy spacecraft is still stationary and has not yet noticed us. Also, the coordinates of the enemy's spaceship are already known, and the "Feather Cannon," which emits a powerful straight-line beam, is ready to fire. All that remains is to give the order to fire.
+However, there is a problem. An energy barrier installed by the enemy exists in space. The barrier is in the shape of a triangle and reflects the "Feather Cannon" beam. Also, if the beam hits the barrier, the enemy will notice us and escape. If we cannot determine that the beam will hit its target in advance, we cannot issue the firing order.
+Therefore, please create a program that inputs the coordinates of the UAZ Advance spacecraft, the enemy, and the barrier in space coordinates (3D coordinates x, y, and z) and outputs "HIT" if the beam hits the enemy while avoiding the barrier, and "MISS" if the beam hits the barrier. If the enemy is inside the barrier, output "MISS."
+Note that only those barriers that appear as triangles from the UAZ Advance spacecraft are targeted, and those that appear as flattened lines are not included. Also, the barrier is effective even on the boundary that includes the vertices of the triangle and reflects the beam.
+Input
+The format of the input data is as follows:
+The first line contains the coordinates of the UAZ Advance spacecraft (x, y, z) (integers, separated by a single space).
+The second line contains the coordinates of the enemy (x, y, z) (integers, separated by a single space).
+The third line contains the coordinates of vertex 1 of the barrier (x, y, z) (integers, separated by a single space).
+The fourth line contains the coordinates of vertex 2 of the barrier (x, y, z) (integers, separated by a single space).
+The fifth line contains the coordinates of vertex 3 of the barrier (x, y, z) (integers, separated by a single space).
+Output
+Output either "HIT" or "MISS" on a single line.
+Constraints
+-100 ≤ x, y, z ≤ 100
+The UAZ Advance spacecraft and the enemy will never be in the same position.
+Sample Input 1
+-10 0 0
+10 0 0
+0 10 0
+0 10 10
+0 0 10
+Output for the Sample Input 1
+HIT
+Sample Input 2
+-10 6 6
+10 6 6
+0 10 0
+0 10 10
+0 0 10
+Output for the Sample Input 2
+MISS

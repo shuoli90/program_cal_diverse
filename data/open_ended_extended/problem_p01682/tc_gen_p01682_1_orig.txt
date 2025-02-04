@@ -1,0 +1,48 @@
+Certainly! To create a test case generator for the problem statement involving the Shipura language, we need to generate valid Shipura expressions according to the provided BNF syntax. Here is a Python implementation of a test case generator:
+
+```python
+import random
+
+def generate_number():
+    return str(random.randint(0, 1_000_000_000))
+
+def generate_expr(max_depth=10):
+    if max_depth == 0:
+        return generate_number()
+    
+    term_or_expr = random.choice(['term', 'expr'])
+    
+    if term_or_expr == 'term':
+        return generate_term(max_depth)
+    else:
+        return generate_expr(max_depth - 1) + ' >> ' + generate_term(max_depth - 1)
+
+def generate_term(max_depth):
+    term_type = random.choice(['number', 'S_expr'])
+    
+    if term_type == 'number':
+        return generate_number()
+    else:
+        return 'S < ' + generate_expr(max_depth - 1) + ' >'
+
+def tcgen(num_cases=100):
+    cases = []
+    for _ in range(num_cases):
+        expr = generate_expr()
+        cases.append(expr)
+    cases.append('#')  # End of input indicator
+    return cases
+
+# Example usage:
+test_cases = tcgen()
+for case in test_cases:
+    print(case)
+```
+
+### Explanation:
+1. **generate_number**: This function is responsible for generating a valid number in the range [0, 1,000,000,000].
+2. **generate_expr**: This function generates an expression (`expr`) that could either be a single `term` or a combination of expressions and terms connected by the `>>` operator. The `max_depth` parameter ensures that recursion does not go infinitely deep, which helps in maintaining reasonable expression lengths.
+3. **generate_term**: This function generates a `term` which can either be a `number` or an `S<expr>`. The type of term is chosen randomly.
+4. **tcgen**: This function generates a specified number of test cases (`num_cases`) and appends a '#' to signify the end of the input sequence.
+
+You can adjust the `max_depth` parameter to control the complexity of the generated expressions. The generator outputs the expressions in the required format, ensuring valid syntax according to the provided BNF rules.

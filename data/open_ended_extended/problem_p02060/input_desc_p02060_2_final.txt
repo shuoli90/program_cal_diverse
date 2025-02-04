@@ -1,0 +1,20 @@
+An integer N (1 ≤ N ≤ 100), representing some quantity or size.
+A list of 4 integers P, where each integer (1 ≤ P[i] ≤ 100) represents certain values.
+A list of 4 integers T, where each integer (1 ≤ T[i] ≤ 100) represents certain values.
+
+### Example Input:
+
+```
+10
+1 2 3 4
+1 2 4 8
+```
+
+### Function Signature:
+Write a function f(N, P, T) that takes in the input. 
+def f(N: int, P: List[int], T: List[int]): 
+    ''' 
+    N: an integer 
+    P: a list of 4 integers
+    T: a list of 4 integers
+    '''

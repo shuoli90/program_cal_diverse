@@ -1,0 +1,13 @@
+def extract_arguments(fh):
+    datasets = []
+    while True:
+        line = fh.readline().strip()
+        if line == '0':
+            break
+        L = float(line)
+        n1 = int(fh.readline().strip())
+        polygon1 = [tuple(map(int, fh.readline().strip().split())) for _ in range(n1)]
+        n2 = int(fh.readline().strip())
+        polygon2 = [tuple(map(int, fh.readline().strip().split())) for _ in range(n2)]
+        datasets.append((L, polygon1, polygon2))
+    return datasets

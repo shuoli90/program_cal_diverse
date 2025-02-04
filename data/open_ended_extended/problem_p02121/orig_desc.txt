@@ -1,0 +1,46 @@
+Problem K: Chinol Choco
+Problem
+Chinol Choco is a chocolate company that has decided to build n new stores.
+Each store manager is asked to provide two candidate locations to build a store, and the company will choose one of the locations for each store.
+Chinol Choco sells m types of chocolate, each produced in a separate factory.
+All stores sell all types of chocolate.
+The company owns only one truck to transport chocolate, and the truck can carry chocolate for only one store at a time.
+Therefore, when the truck moves from one store to another, it must visit all factories.
+Find the maximum distance between two stores when the stores are arranged so that the maximum distance between two stores when moving from one store to another is minimized.
+Multiple stores and factories can be located at the same location.
+Input
+The input is given in the following format.
+n m
+a0 b0 c0 d0
+...
+an−1 bn−1 cn−1 dn−1
+x0 y0
+...
+xm−1 ym−1
+All input is given as integers.
+The first line contains two integers n and m, the number of Chinol Choco stores and the number of chocolate factories, respectively.
+For each of the next n lines, two candidate coordinates (ai,bi) and (ci,di) for building the store are given, separated by a space.
+The next m lines give the coordinates (xi,yi) of the factories, separated by a space.
+Constraints
+The input satisfies the following conditions.
+2 ≤ n ≤ 200
+1 ≤ m ≤ 15
+0 ≤ ai,bi,ci,di,xi,yi ≤ 1000
+Output
+Output the maximum distance between two stores when the stores are arranged so that the maximum distance between two stores when moving from one store to another is minimized.
+The output should not differ from the correct answer by more than 10−6.
+Sample Input 1
+2 1
+0 0 5 5
+3 3 6 6
+2 2
+Sample Output 1
+4.2426406871
+Sample Input 2
+2 2
+0 0 6 0
+7 0 3 0
+4 0
+5 0
+Sample Output 2
+3.0000000000

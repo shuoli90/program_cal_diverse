@@ -1,0 +1,200 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p03740 - Generation 2</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p03740 - Generation 2</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>
+Score : 500 points
+Problem StatementAlice and Brown loves games. Today, they will play the following game.
+In this game, there are two piles initially consisting of X and Y stones, respectively.
+Alice and Bob alternately perform the following operation, starting from Alice:
+Take 2i stones from one of the piles. Then, throw away i of them, and put the remaining i in the other pile. Here, the integer i (1≤i) can be freely chosen as long as there is a sufficient number of stones in the pile.
+The player who becomes unable to perform the operation, loses the game.
+Given X and Y, determine the winner of the game, assuming that both players play optimally.
+Constraints
+0 ≤ X, Y ≤ 10^{18}
+InputInput is given from Standard Input in the following format:
+X Y
+OutputPrint the winner: either Alice or Brown.
+Sample Input 12 1
+Sample Output 1Brown
+Alice can do nothing but taking two stones from the pile containing two stones. As a result, the piles consist of zero and two stones, respectively. Then, Brown will take the two stones, and the piles will consist of one and zero stones, respectively. Alice will be unable to perform the operation anymore, which means Brown's victory.
+Sample Input 25 0
+Sample Output 2Alice
+Sample Input 30 0
+Sample Output 3Brown
+Sample Input 44 8
+Sample Output 4Alice
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An integer X (0 ≤ X ≤ 10^18), representing some quantity.
+An integer Y (0 ≤ Y ≤ 10^18), representing some quantity.
+
+### Example Input:
+
+```
+2 1
+```
+
+### Function Signature:
+Write a function f(X, Y) that takes in the input. 
+def f(X: int, Y: int): 
+    ''' 
+    X: an integer 
+    Y: an integer
+    '''</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Sure! Below is a test case generator for the given problem statement of Alice and Brown's game involving two piles of stones.
+
+### Problem Statement
+
+**Alice and Brown loves games. Today, they will play the following game.**
+
+In this game, there are two piles initially consisting of \(X\) and \(Y\) stones, respectively.
+
+Alice and Bob alternately perform the following operation, starting from Alice:
+
+- Take \(2i\) stones from one of the piles.
+- Throw away \(i\) of them, and put the remaining \(i\) in the other pile. Here, the integer \(i\) (\(1 \leq i\)) can be freely chosen as long as there is a sufficient number of stones in the pile.
+
+The player who becomes unable to perform the operation, loses the game.
+
+Given \(X\) and \(Y\), determine the winner of the game, assuming that both players play optimally.
+
+**Constraints**
+
+- \(0 \leq X, Y \leq 10^{18}\)
+
+**Input**
+
+Input is given from Standard Input in the following format:
+```
+X Y
+```
+
+**Output**
+
+Print the winner: either `Alice` or `Brown`.
+
+**Examples**
+
+_Input 1_
+```
+12 1
+```
+_Output 1_
+```
+Brown
+```
+
+_Input 2_
+```
+25 0
+```
+_Output 2_
+```
+Alice
+```
+
+_Input 3_
+```
+30 0
+```
+_Output 3_
+```
+Brown
+```
+
+_Input 4_
+```
+44 8
+```
+_Output 4_
+```
+Alice
+```
+
+### Test Case Generator
+
+Here is the test case generator in Python:
+
+```python
+import random
+
+def tcgen():
+    # Generate X and Y such that 0 ≤ X, Y ≤ 10^18
+    X = random.randint(0, 10**18)
+    Y = random.randint(0, 10**18)
+    
+    return X, Y
+
+# Example of generating a test case
+if __name__ == "__main__":
+    X, Y = tcgen()
+    print(X, Y)
+```
+
+This code will generate random values for \(X\) and \(Y\) within the specified constraints and print them out. Each run of the script will produce different values for \(X\) and \(Y\).</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    X, Y = map(int, fh.readline().strip().split())
+    return X, Y</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

@@ -1,0 +1,3 @@
+Types: N: int, M: int, obstacles: List[Tuple[int, int]]
+Ranges: 2 ≤ N ≤ 10^6, 0 ≤ M ≤ 50, 1 ≤ Xi, Yi ≤ N
+Addtl Info: i ≠ j implies (Xi, Yi) ≠ (Xj, Yj), (Xi, Yi) ≠ (1, 1), (Xi, Yi) ≠ (N, N)

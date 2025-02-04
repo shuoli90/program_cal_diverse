@@ -1,0 +1,207 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p00221 - Generation 1</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p00221 - Generation 1</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>FizzBuzz
+There is a game that uses numbers called "Fizz Buzz". This game is played by multiple players who count up numbers from 1 in turn, and each player says only one number that the previous player said. At that time, if it is divisible by 3, say "Fizz", if it is divisible by 5, say "Buzz", and if it is divisible by both, say "FizzBuzz" instead of the number. For example, the first 16 statements are as follows.
+    1, 2, Fizz, 4, Buzz, Fizz, 7, 8, Fizz, Buzz, 11, Fizz, 13, 14, FizzBuzz, 16, ...
+  Taro decided to play "Fizz Buzz" with his friends. Taro and his friends decided on the following rule. 
+  "The person who made a mistake drops out. The next person starts from the number after the wrong number. That is, if you say 1, 2, 3, you made a mistake with 3, so you start with 4 next." 
+They play the game according to this rule, but because they are not used to the game, they may not notice their mistakes and cannot make a fair judgment. So you decided to create a program that outputs the remaining players at the end of the designated number of statements so that Taro and his friends can enjoy this game.
+  Create a program that takes the number of players and the number of statements made during the game as input, and outputs the number of remaining players in order of smallest to largest number. However, each player is assigned a number from 1, and statements are made starting from the first player in order, and when all statements are finished, the first player will speak again. If the player whose turn it is has already dropped out, the next player will speak. Also, this program must ignore any statements made after a single player remains.
+Input
+A sequence of multiple datasets is given as input. The end of the input is indicated by two zeros.
+Each dataset is given in the following format.
+m n
+s1
+s2
+:
+sn
+The first line gives the number of players m (2 ≤ m ≤ 1000) and the number of statements n (1 ≤ n ≤ 10000).
+The following n lines give the i-th statement s1. si is an integer, Fizz, Buzz, or FizzBuzz, a string indicating them (up to 8 characters).
+There are no more than 50 datasets in the input.
+Output
+For each dataset, output the numbers of the remaining players in order from smallest to largest after the specified number of statements has been input.
+Sample Input
+5 7
+1
+2
+Fizz
+4
+Buzz
+6
+7
+3 5
+1
+2
+3
+4
+5
+0 0
+Output for the Sample Input
+2 3 4 5
+1
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An integer m (2 ≤ m ≤ 1000), representing some quantity or size.
+An integer n (1 ≤ n ≤ 10000), representing some quantity or size.
+A list of strings s of size n, where each string is an integer "1", "2", ..., or one of the strings "Fizz", "Buzz", "FizzBuzz".
+
+### Example Input:
+
+```
+5 7
+1
+2
+Fizz
+4
+Buzz
+6
+7
+```
+
+### Function Signature:
+Write a function f(m, n, s) that takes in the input.
+```python
+def f(m: int, n: int, s: List[str]):
+    '''
+    m: an integer
+    n: an integer
+    s: a list of strings
+    '''
+```</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Sure, I can help you create a test case generator for the FizzBuzz problem described. Here is the Python function that generates test cases for this problem:
+
+```python
+import random
+
+def generate_fizzbuzz_statement(number):
+    if number % 3 == 0 and number % 5 == 0:
+        return "FizzBuzz"
+    elif number % 3 == 0:
+        return "Fizz"
+    elif number % 5 == 0:
+        return "Buzz"
+    else:
+        return str(number)
+
+def tcgen():
+    datasets = []
+    num_datasets = random.randint(1, 50)  # number of datasets
+
+    for _ in range(num_datasets):
+        m = random.randint(2, 1000)  # number of players
+        n = random.randint(1, 10000)  # number of statements
+
+        statements = [generate_fizzbuzz_statement(random.randint(1, 100)) for _ in range(n)]
+        datasets.append((m, n, statements))
+
+    return datasets
+
+# Example usage:
+for dataset in tcgen():
+    m, n, statements = dataset
+    print(f'{m} {n}')
+    for statement in statements:
+        print(statement)
+    print('')  # Print a blank line between datasets
+```
+
+### Explanation:
+
+1. **generate_fizzbuzz_statement:** 
+   This helper function generates a single FizzBuzz statement based on a given number. It checks if the number is divisible by 3 and 5, only 3, or only 5, and returns the appropriate string.
+
+2. **tcgen:**
+   - First, the number of datasets is randomly chosen (between 1 and 50).
+   - For each dataset:
+     - Randomly select the number of players `m` (between 2 and 1000).
+     - Randomly select the number of statements `n` (between 1 and 10000).
+     - Generate `n` statements using the `generate_fizzbuzz_statement` function, with each statement generated from a random number between 1 and 100.
+   - Append each dataset as a tuple `(m, n, statements)` to the `datasets` list.
+   - Return the list of datasets.
+
+3. **Example usage:**
+   The example usage demonstrates how to use the `tcgen` function to generate and print test cases for the given problem. Each dataset is printed in the required format.
+
+This will generate multiple datasets with random players and statements according to the problem's constraints, giving a variety of test scenarios to evaluate the correctness and robustness of your FizzBuzz game implementation.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    datasets = []
+    while True:
+        m, n = map(int, fh.readline().strip().split())
+        if m == 0 and n == 0:
+            break
+        statements = []
+        for _ in range(n):
+            statements.append(fh.readline().strip())
+        datasets.append((m, n, statements))
+    return datasets
+
+# if __name__ == "__main__":
+#     input_path = sys.argv[1]
+#     with open(input_path, 'r') as fh:
+#         datasets = extract_arguments(fh)
+#         for m, n, statements in datasets:
+#             f(m, n, statements)</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

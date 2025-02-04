@@ -1,0 +1,54 @@
+Certainly! Below is a test case generator for the competitive programming problem "3D Printing".
+
+```python
+import random
+
+def generate_single_dataset():
+    n = random.randint(1, 2000)
+    k = random.randint(1, n)
+    s = random.randint(3, 100)
+    
+    positions = []
+    for _ in range(n):
+        xi = random.randint(-4 * 10**7, 4 * 10**7)
+        yi = random.randint(-4 * 10**7, 4 * 10**7)
+        zi = random.randint(-4 * 10**7, 4 * 10**7)
+        positions.append((xi, yi, zi))
+    
+    return n, k, s, positions
+
+def generate_multiple_datasets(num_datasets):
+    datasets = []
+    for _ in range(num_datasets):
+        datasets.append(generate_single_dataset())
+    return datasets
+
+def format_datasets(datasets):
+    formatted_data = []
+    for dataset in datasets:
+        n, k, s, positions = dataset
+        formatted_data.append(f"{n} {k} {s}")
+        for pos in positions:
+            formatted_data.append(f"{pos[0]} {pos[1]} {pos[2]}")
+    formatted_data.append("0 0 0")
+    return "\n".join(formatted_data)
+
+def tcgen(num_datasets=100):
+    datasets = generate_multiple_datasets(num_datasets)
+    return format_datasets(datasets)
+
+# Example usage:
+test_cases = tcgen()
+print(test_cases)
+```
+
+### Explanation:
+1. **`generate_single_dataset`**: This function generates a single dataset. It randomly selects values for `n`, `k`, and `s` within the specified ranges. It then generates `n` positions, each with `xi`, `yi`, and `zi` coordinates randomly chosen within the specified range.
+
+2. **`generate_multiple_datasets`**: This function generates the specified number of datasets by calling `generate_single_dataset` the required number of times.
+
+3. **`format_datasets`**: This function formats the generated datasets into the required input format for the problem. It appends "0 0 0" at the end to indicate the end of input.
+
+4. **`tcgen`**: This function generates the specified number of datasets (default is 100) and returns them as a formatted string.
+
+This test case generator will produce random test cases that comply with the problem's requirements and constraints.

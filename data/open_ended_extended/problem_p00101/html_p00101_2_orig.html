@@ -1,0 +1,168 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p00101 - Generation 2</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p00101 - Generation 2</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>
+Aizu PR
+An English booklet has been created for publicizing Aizu to the world.
+When you read it carefully, you found a misnomer (an error in writing) on the last name of Masayuki Hoshina, the lord of the Aizu domain. The booklet says "Hoshino" not "Hoshina".
+Your task is to write a program which replace all the words "Hoshino" with "Hoshina". You can assume that the number of characters in a text is less than or equal to 1000.
+Input
+The input consists of several datasets. There will be the number of datasets n in the first line. There will be n lines. A line consisting of english texts will be given for each dataset.
+Output
+For each dataset, print the converted texts in a line.
+Sample Input
+3
+Hoshino
+Hashino
+Masayuki Hoshino was the grandson of Ieyasu Tokugawa.
+Output for the Sample Input
+Hoshina
+Hashino
+Masayuki Hoshina was the grandson of Ieyasu Tokugawa.
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An integer n (1 ≤ n ≤ 1000), representing the number of datasets.
+A list of n strings, each string's length is between 1 and 1000 characters.
+
+### Example Input:
+
+```
+3
+Hoshino
+Hashino
+Masayuki Hoshino was the grandson of Ieyasu Tokugawa.
+```
+
+### Function Signature:
+Write a function f(n, datasets) that takes in the input.
+def f(n: int, datasets: List[str]):
+    ''' 
+    n: an integer 
+    datasets: a list of strings 
+    '''</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Sure! Let's write a test case generator for the given problem statement. The generator will produce multiple datasets, each containing a line of text that may include the word "Hoshino", which needs to be replaced with "Hoshina".
+
+Here's the test case generator code for the given problem:
+
+```python
+import random
+import string
+
+def generate_random_text(length):
+    """Generates a random string of the specified length."""
+    parts = []
+    while length > 0:
+        word_length = random.randint(1, min(10, length))
+        word = ''.join(random.choices(string.ascii_letters + ' ', k=word_length))
+        parts.append(word)
+        length -= word_length
+    return ''.join(parts).strip()
+
+def tcgen():
+    # Number of datasets
+    n = random.randint(1, 10)
+    
+    datasets = []
+    for _ in range(n):
+        # Decide if "Hoshino" should be included in the text
+        include_hoshino = random.choice([True, False])
+        
+        if include_hoshino:
+            length = random.randint(1, 1000 - len("Hoshino"))
+            position = random.randint(0, length)
+            text = generate_random_text(position) + "Hoshino" + generate_random_text(length - position)
+        else:
+            length = random.randint(1, 1000)
+            text = generate_random_text(length)
+        
+        datasets.append(text)
+    
+    return n, datasets
+
+# Example usage
+if __name__ == "__main__":
+    n, datasets = tcgen()
+    print(n)
+    for text in datasets:
+        print(text)
+```
+
+### Explanation:
+
+- `generate_random_text(length)`: This helper function generates a random string of the specified length using letters and spaces. It breaks the text into words of random lengths to simulate more realistic sentences.
+- `tcgen()`: This function generates the test cases:
+  - It first selects a random number `n` (1 to 10) representing the number of datasets.
+  - For each dataset, it decides randomly whether to include the word "Hoshino".
+  - If "Hoshino" is included, it constructs a string of random text with "Hoshino" inserted at a random position.
+  - If "Hoshino" is not included, it generates a random text of up to 1000 characters.
+  - The generated text is appended to the list of datasets.
+- Finally, it returns the number of datasets and the list of datasets.
+
+You can run this script to generate test cases for the problem statement. The output will be the number of datasets followed by the text for each dataset. Use these test cases to test your solution to the problem.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    n = int(fh.readline().strip())
+    datasets = [fh.readline().strip() for _ in range(n)]
+    return n, datasets</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

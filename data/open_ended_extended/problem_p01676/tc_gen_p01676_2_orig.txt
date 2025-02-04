@@ -1,0 +1,59 @@
+Certainly! To create a test case generator for the problem "Tree Reconstruction", we need to generate random directed graphs that satisfy all the given constraints, including the flow conservation law and the strong connectivity for each component. Here's a test case generator in Python:
+
+```python
+import random
+
+def generate_strongly_connected_component(N):
+    edges = []
+    nodes = list(range(1, N + 1))
+    random.shuffle(nodes)
+    
+    # Create a simple cycle to ensure strong connectivity
+    for i in range(N):
+        edges.append((nodes[i], nodes[(i + 1) % N]))
+    
+    # Add some additional random edges to make the graph more complex
+    additional_edges = random.randint(0, 3 * N)
+    for _ in range(additional_edges):
+        u, v = random.sample(nodes, 2)
+        if u != v and (u, v) not in edges and (v, u) not in edges:
+            edges.append((u, v))
+    
+    return edges
+
+def tcgen():
+    N = random.randint(1, 500)
+    # Generate number of edges M, while ensuring no self-loops and no multi-edges
+    edges = generate_strongly_connected_component(N)
+    
+    # Ensure M does not exceed the limit
+    M = len(edges)
+    assert M <= 3000, "Number of edges exceeds the maximum limit"
+    
+    return N, M, edges
+
+def main():
+    test_cases = random.randint(1, 10)  # Generate between 1 and 10 test cases
+    for _ in range(test_cases):
+        N, M, edges = tcgen()
+        print(N, M)
+        for s, t in edges:
+            print(s, t)
+
+if __name__ == "__main__":
+    main()
+```
+
+### Explanation:
+1. **generate_strongly_connected_component(N):** This function generates a strongly connected component with `N` nodes. It starts by creating a cycle to ensure the strong connectivity and then adds some additional random edges.
+2. **tcgen():** This function generates a random test case by:
+   - Randomly selecting the number of nodes `N` between 1 and 500.
+   - Generating the edges for the graph ensuring that the graph is strongly connected and adheres to the problem constraints.
+3. **main():** This function handles the generation of multiple test cases and prints them in the required format.
+
+### Notes:
+- The generated graph is guaranteed to be strongly connected due to the initial cycle.
+- The check to ensure `M <= 3000` ensures that the number of edges doesn't exceed the limit.
+- The additional edges added after creating the cycle ensure that the graph isn't trivially simple while still respecting the constraints.
+
+You can adjust the number of test cases generated and the complexity of the additional edges as needed. This generator should give you a good starting point for creating valid and diverse test cases for the problem.

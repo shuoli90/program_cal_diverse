@@ -1,0 +1,55 @@
+Sure, I can help you write a test case generator for the "Tsuruga Castle" problem. We'll generate random test cases based on the given constraints. The generator will create a sequence of datasets, each dataset containing a random number of visitors along with their ages, and will terminate with a zero.
+
+Here's the code for the test case generator:
+
+```python
+import random
+
+def tcgen():
+    datasets = []
+    
+    # Number of datasets to generate
+    num_datasets = random.randint(1, 10)
+    
+    for _ in range(num_datasets):
+        # Number of visitors n (1 ≤ n ≤ 1000000)
+        n = random.randint(1, 1000000)
+        
+        # List of ages ai (0 ≤ ai ≤ 120)
+        ages = [random.randint(0, 120) for _ in range(n)]
+        
+        datasets.append((n, ages))
+    
+    return datasets
+
+# Function to format the test case as a string
+def format_test_case(datasets):
+    result = []
+    
+    for n, ages in datasets:
+        result.append(f"{n}")
+        result.extend(map(str, ages))
+    
+    result.append("0")
+    
+    return "\n".join(result)
+
+# Example usage
+datasets = tcgen()
+formatted_test_case = format_test_case(datasets)
+print(formatted_test_case)
+```
+
+### Explanation:
+
+1. **`tcgen` Function**: This function generates a list of datasets. Each dataset consists of:
+   - A random number of visitors `n`.
+   - A list of `n` ages, with each age being a random integer between 0 and 120.
+
+2. **`format_test_case` Function**: This function formats the generated datasets into the required input format:
+   - It converts each dataset into a string where the first line is the number of visitors followed by each visitor's age on a new line.
+   - It appends '0' at the end to indicate the end of input.
+
+3. **Example Usage**: The example usage demonstrates how to generate and format test cases. The formatted test case is printed out, which can be used as input for the problem.
+
+By running the generated code, you will get random test cases in the required format. This will help in testing the solution for the "Tsuruga Castle" problem.

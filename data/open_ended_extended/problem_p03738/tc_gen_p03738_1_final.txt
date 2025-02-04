@@ -1,0 +1,35 @@
+Certainly! Here is a test case generator for the problem where you are given two positive integers \(A\) and \(B\) and you need to compare their magnitudes:
+
+```python
+import random
+
+def generate_large_number():
+    # Generates a random large number with digits between 1 and 100
+    length = random.randint(1, 100)
+    # Ensure the number does not start with zero
+    number = str(random.randint(1, 9))
+    number += ''.join(random.choices('0123456789', k=length-1))
+    return number
+
+def tcgen():
+    A = generate_large_number()
+    B = generate_large_number()
+    
+    return A, B
+
+# Example usage
+A, B = tcgen()
+print(A)
+print(B)
+```
+
+This function will generate two random large numbers \(A\) and \(B\) with lengths between 1 and 100 digits, ensuring they do not start with a zero. 
+
+Example output when running the generator:
+
+```
+573829374828392938475
+283948293847293847
+```
+
+You can use the generated values to test the comparison logic in your competitive programming solution.

@@ -1,0 +1,30 @@
+To write a test case generator for the given problem statement, we'll need to generate valid inputs according to the constraints and format specified. Here is a Python function that generates test cases:
+
+```python
+import random
+
+def tcgen():
+    # Constraints
+    N = random.randint(1, 10**6)
+    M = random.randint(1, 10**6)
+    K = random.randint(1, 10**6)
+    
+    # Generate binary strings S and T of lengths N and M respectively with initial character '1'
+    S = '1' + ''.join(random.choice(['0', '1']) for _ in range(N - 1))
+    T = '1' + ''.join(random.choice(['0', '1']) for _ in range(M - 1))
+    
+    return N, M, K, S, T
+
+# Function to format the test case as a string
+def format_test_case(N, M, K, S, T):
+    return f"{N} {M} {K}\n{S}\n{T}"
+
+# Example usage
+N, M, K, S, T = tcgen()
+test_case = format_test_case(N, M, K, S, T)
+print(test_case)
+```
+
+This function `tcgen` generates random values for `N`, `M`, and `K` within the given constraints. It then creates binary strings `S` and `T` of lengths `N` and `M` respectively, ensuring that the first character of both strings is '1'. The `format_test_case` function formats the generated test case into the required input format.
+
+Note that generating very large test cases (close to the upper limits of the constraints) may not be practical for quick testing due to the high computational load and memory usage involved. For such cases, you may want to ensure that the system running the test case generator has sufficient resources.

@@ -1,0 +1,35 @@
+Sure! Below is the Python code for generating test cases for the given problem statement:
+
+```python
+import random
+
+def tcgen():
+    # Generate a random value for N within the given range
+    N = random.randint(1, 100)
+    
+    # Generate random values for A and B such that they follow the constraints
+    A = random.randint(0, N)
+    B = random.randint(0, N)
+    
+    return N, A, B
+
+# Example usage:
+for _ in range(5):  # Generate 5 test cases
+    N, A, B = tcgen()
+    print(f"{N} {A} {B}")
+```
+
+This `tcgen` function generates random values for \(N\), \(A\), and \(B\) according to the constraints given in the problem statement:
+
+- \(N\) is chosen within the range \(1 \leq N \leq 100\).
+- \(A\) and \(B\) are chosen within the range \(0 \leq A \leq N\) and \(0 \leq B \leq N\), respectively.
+
+Here's how you can use the test case generator to produce multiple test cases:
+
+```python
+for _ in range(5):  # Generate 5 test cases
+    N, A, B = tcgen()
+    print(f"{N} {A} {B}")
+```
+
+This script will print 5 randomly generated test cases for the survey problem. Each line of the output will have three integers representing \(N\), \(A\), and \(B\). You can adjust the number of iterations to generate more or fewer test cases as needed.

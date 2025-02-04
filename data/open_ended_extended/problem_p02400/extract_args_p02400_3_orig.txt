@@ -1,0 +1,3 @@
+def extract_arguments(fh):
+    r = float(fh.readline().strip())
+    return r

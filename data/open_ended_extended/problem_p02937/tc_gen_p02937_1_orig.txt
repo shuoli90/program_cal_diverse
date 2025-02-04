@@ -1,0 +1,30 @@
+Sure! Below is a test case generator for the given problem statement:
+
+```python
+import random
+import string
+
+def tcgen():
+    # Generate random length for s and t
+    len_s = random.randint(1, 10**5)
+    len_t = random.randint(1, 10**5)
+    
+    # Generate random string s and t of respective lengths
+    s = ''.join(random.choices(string.ascii_lowercase, k=len_s))
+    t = ''.join(random.choices(string.ascii_lowercase, k=len_t))
+    
+    return s, t
+
+# Example usage:
+if __name__ == "__main__":
+    s, t = tcgen()
+    print(s)
+    print(t)
+```
+
+### Explanation
+- `len_s` and `len_t` are the lengths of the strings `s` and `t`, respectively, randomly chosen within the given constraints.
+- `s` and `t` are generated as random sequences of lowercase English letters of lengths `len_s` and `len_t` respectively.
+- The function returns the generated strings `s` and `t`.
+
+You can run the script and it will print two random strings that can be used as input for the problem. This generator ensures that the constraints are met and provides a diverse set of inputs for thorough testing.

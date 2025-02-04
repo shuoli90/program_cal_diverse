@@ -1,0 +1,3 @@
+Types: N: int, M: int, a: List[int], b: List[int], c: List[int]
+Ranges: 2 ≤ N ≤ 1000, 1 ≤ M ≤ min(N(N-1), 2000), 1 ≤ a[i], b[i] ≤ N (1 ≤ i ≤ M), -10^9 ≤ c[i] ≤ 10^9 (1 ≤ i ≤ M)
+Addtl Info: a_i≠b_i (1≤i≤M), a_i≠a_j or b_i≠b_j (1≤i<j≤M), a_i, b_i, c_i are integers, there exists a path from vertex 1 to vertex N

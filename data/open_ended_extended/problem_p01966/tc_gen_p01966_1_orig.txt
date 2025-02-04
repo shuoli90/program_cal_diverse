@@ -1,0 +1,48 @@
+Sure! Below is a test case generator for the "Conveyor Belt" problem described in the problem statement.
+
+```python
+import random
+
+def tcgen():
+    # Generate values for N and Q
+    N = random.randint(2, 10**5)
+    Q = random.randint(1, 10**5)
+    
+    # Initialize the list to hold the requests
+    requests = []
+    
+    for _ in range(Q):
+        # Generate values for a, b, and p
+        a = random.randint(1, N - 1)
+        b = random.randint(a + 1, N)
+        p = random.randint(1, 10**9)
+        
+        # Append the request to the list
+        requests.append((a, b, p))
+    
+    # Return N, Q, and the list of requests
+    return N, Q, requests
+
+# Example usage:
+N, Q, requests = tcgen()
+print(N, Q)
+for req in requests:
+    print(req[0], req[1], req[2])
+```
+
+### Explanation:
+
+1. **Generate `N` and `Q`:**
+   - `N` is the number of positions the conveyor belt goes through and is randomly chosen between 2 and \(10^5\).
+   - `Q` is the number of delivery requests and is randomly chosen between 1 and \(10^5\).
+
+2. **Generate each request:**
+   - For each request, generate `a`, `b`, and `p`:
+     - `a` is the start position and is randomly chosen between 1 and \(N-1\).
+     - `b` is the goal position and is randomly chosen between `a+1` and `N`.
+     - `p` is the number of products to deliver and is randomly chosen between 1 and \(10^9\).
+
+3. **Store and return the generated values:**
+   - The function returns `N`, `Q`, and a list of tuples where each tuple represents a request in the form `(a, b, p)`.
+
+This generator can be used to create a variety of test cases to help in verifying the correctness and performance of your solution to the problem.

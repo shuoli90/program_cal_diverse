@@ -1,0 +1,3 @@
+Types: S: str
+Ranges: 2 ≤ len(S) ≤ 10^5, S[0] = 'R', S[-1] = 'L', all characters of S in {'L', 'R'}
+Addtl Info: None

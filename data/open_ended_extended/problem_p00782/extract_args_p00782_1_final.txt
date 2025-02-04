@@ -1,0 +1,18 @@
+def extract_arguments(fh):
+    inputs = []
+    while True:
+        n = int(fh.readline().strip())
+        if n == 0:
+            break
+        antennas = []
+        for _ in range(n):
+            x, y, r = map(float, fh.readline().strip().split())
+            antennas.append((x, y, r))
+        inputs.append(antennas)
+    return inputs
+
+# if __name__ == "__main__":
+#     input_path = sys.argv[1]
+#     with open(input_path, 'r') as fh: 
+#     inputs = extract_arguments(fh)
+#     f(inputs)

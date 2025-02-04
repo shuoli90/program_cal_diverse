@@ -1,0 +1,21 @@
+Divisor
+Problem
+Given a natural number N less than or equal to 12, find the smallest natural number whose number of divisors is exactly N.
+Input
+A single natural number N is given on one line.
+Constraints
+1 ≤ N ≤ 12
+Output
+Output the smallest natural number whose number of divisors is exactly N on one line.
+Sample Input 1
+1
+Sample Output 1
+1
+Sample Input 2
+2
+Sample Output 2
+2
+Sample Input 3
+3
+Sample Output 3
+4

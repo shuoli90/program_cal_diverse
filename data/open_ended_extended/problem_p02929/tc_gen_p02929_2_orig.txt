@@ -1,0 +1,37 @@
+Sure! Below is a Python function to generate test cases for the given problem statement.
+
+```python
+import random
+
+def generate_test_case():
+    # Set the constraints
+    N = random.randint(1, 10**5)
+    S = ''.join(random.choice(['B', 'W']) for _ in range(2 * N))
+    
+    return N, S
+
+# Example usage
+if __name__ == "__main__":
+    N, S = generate_test_case()
+    print(N)
+    print(S)
+```
+
+### Explanation
+1. **N Generation**:
+    - `N` is randomly chosen between 1 and \(10^5\).
+
+2. **String S Generation**:
+    - `S` is generated as a string of length `2N` where each character is randomly chosen to be either 'B' (black) or 'W' (white).
+
+### Example Output
+When you run the function, it will provide an output like:
+```
+74820
+BWBWBWWBBWB...WWBWBWBW
+```
+
+This satisfies the constraints given in the problem statement.
+
+### Note
+Given the large possible values for `N`, running this in an environment with limited resources could take significant memory and time. For testing purposes, you may want to start with smaller values of `N` and verify the correctness of your solution incrementally with larger inputs.

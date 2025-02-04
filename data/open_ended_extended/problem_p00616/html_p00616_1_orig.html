@@ -1,0 +1,198 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p00616 - Generation 1</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p00616 - Generation 1</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>Problem B: Cubes Without Holes
+There is a cube which consists of n × n × n small cubes. Small cubes have marks on their surfaces. An example where n = 4 is shown in the following figure.
+Then, holes are made in the cube by piercing from the marked surface to the opposite surface horizontally or vertically, as shown in the figure (right) above.
+Your task is to create a program that reads n and the position of the marks, and counts the number of small cubes without holes.
+Input
+The input consists of multiple datasets. Each dataset is given in the following format:
+n h
+c1 a1 b1
+c2 a2 b2
+   .
+   .
+   .
+ch ah bh
+h is an integer that indicates the number of marks. Following h lines specify the positions of the marks. To specify the position of the marks, we use the coordinate system shown in the figure below. (x, y, z) = (1, 1, 1) indicates the small cube at the lower left rear, and (x, y, z) = (n, n, n) indicates the small cube at the upper right front.
+ci is a string that indicates the plane on which the i-th mark is placed. ci is either "xy", "xz", or "yz", which respectively indicate that the i-th mark is on the xy-plane, xz-plane, or yz-plane.
+ai and bi indicate the coordinates on the plane indicated by ci. When the plane is xy-plane, xz-plane, or yz-plane, ai and bi respectively indicate the coordinates of the plane (x, y), (x, z), or (y, z). For example, in the figure above, the values of ci, ai, and bi for marks A, B, and C are "xy 4 4", "xz 1 2", and "yz 2 3", respectively.
+When both n and h are 0, it indicates the end of the input.
+It can be assumed that n ≤ 500 and h ≤ 200.
+Output
+For each dataset, output the number of small cubes without holes in one line.
+Sample Input
+4 3
+xy 4 4
+xz 1 2
+yz 2 3
+4 5
+xy 1 1
+xy 3 3
+xz 3 3
+yz 2 1
+yz 3 3
+0 0
+Output for the Sample Input
+52
+46
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An integer n (0 ≤ n ≤ 500), representing some dimension or size.
+An integer h (0 ≤ h ≤ 200), representing some quantity.
+A list of h tuples (ci, ai, bi), where:
+- ci is a string from the set {"xy", "xz", "yz"}.
+- ai and bi are integers (1 ≤ ai, bi ≤ n).
+
+### Example Input:
+
+```
+4 3
+xy 4 4
+xz 1 2
+yz 2 3
+```
+
+### Function Signature:
+Write a function f(inputs) that takes in the input.
+```python
+from typing import List, Tuple
+
+def f(inputs: List[Tuple[int, int, List[Tuple[str, int, int]]]]):
+    '''
+    inputs: a list of tuples where each tuple contains two integers and a list of tuples
+    '''
+```</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Certainly! Given the problem description for "Cubes Without Holes," we need to generate test cases that include the size of the cube (`n`), the number of marks (`h`), and the positions of these marks on specific planes. Below is a Python function that generates these test cases:
+
+```python
+import random
+
+def generate_plane_mark(n):
+    plane = random.choice(['xy', 'xz', 'yz'])
+    if plane == 'xy':
+        a = random.randint(1, n)
+        b = random.randint(1, n)
+    elif plane == 'xz':
+        a = random.randint(1, n)
+        b = random.randint(1, n)
+    else:  # 'yz'
+        a = random.randint(1, n)
+        b = random.randint(1, n)
+    return f"{plane} {a} {b}"
+
+def tcgen():
+    datasets = []
+    while True:
+        n = random.randint(1, 500)
+        h = random.randint(1, 200)
+        marks = [generate_plane_mark(n) for _ in range(h)]
+        datasets.append((n, h, marks))
+        if random.random() < 0.1:  # Randomly decide to end the input
+            break
+    datasets.append((0, 0, []))
+    return datasets
+
+# To output the generated test cases in the required format:
+def print_test_cases(test_cases):
+    for n, h, marks in test_cases:
+        print(f"{n} {h}")
+        for mark in marks:
+            print(mark)
+
+# Generate test cases
+test_cases = tcgen()
+
+# Print the test cases
+print_test_cases(test_cases)
+```
+
+This code includes:
+1. `generate_plane_mark(n)`: A helper function that generates a random mark based on the size of the cube `n`.
+2. `tcgen()`: The main test case generator which creates multiple datasets until it randomly decides to end (with a 10% chance on each iteration).
+3. `print_test_cases(test_cases)`: A helper function to print the generated test cases in the required format.
+
+You can run this code to generate and print a series of test cases for the "Cubes Without Holes" problem. Each dataset will contain randomly generated values for `n`, `h`, and the marks on the cube.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    datasets = []
+    while True:
+        n, h = map(int, fh.readline().strip().split())
+        if n == 0 and h == 0:
+            break
+        marks = []
+        for _ in range(h):
+            mark = fh.readline().strip().split()
+            ci = mark[0]
+            ai, bi = int(mark[1]), int(mark[2])
+            marks.append((ci, ai, bi))
+        datasets.append((n, h, marks))
+    return datasets
+
+# if __name__ == "__main__":
+#     input_path = sys.argv[1]
+#     with open(input_path, 'r') as fh: 
+#         datasets = extract_arguments(fh)
+#         f(datasets)</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

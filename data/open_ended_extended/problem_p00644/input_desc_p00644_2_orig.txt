@@ -1,0 +1,37 @@
+An integer n (3 ≤ n ≤ 100), representing the number of nodes in a graph.
+An integer m, representing the number of edges in the graph.
+An integer p, representing the number of special nodes.
+m lines follow with three integers each, representing two nodes and the weight of an edge connecting them. (0 < weight < 10000)
+p lines follow with an integer each, representing a special node.
+Input terminates when n = m = p = 0.
+
+### Example Input:
+
+```
+3 2 1
+0 1 2
+1 2 3
+1
+4 5 2
+0 1 1
+0 2 1
+1 2 1
+1 3 1
+2 3 1
+1
+2
+0 0 0
+```
+
+### Function Signature:
+
+Write a function f(inputs) that takes in the input. 
+def f(inputs: List[Tuple[int, int, int, List[Tuple[int, int, int]], List[int]]]):
+    ''' 
+    inputs: a list of tuples, where each tuple contains:
+        - an integer
+        - an integer
+        - an integer
+        - a list of tuples, each containing three integers
+        - a list of integers
+    '''

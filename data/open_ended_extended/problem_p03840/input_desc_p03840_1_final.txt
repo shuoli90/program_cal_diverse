@@ -1,0 +1,22 @@
+An integer a_I (0 ≤ a_I ≤ 10^9).
+An integer a_O (0 ≤ a_O ≤ 10^9).
+An integer a_T (0 ≤ a_T ≤ 10^9).
+An integer a_J (0 ≤ a_J ≤ 10^9).
+An integer a_L (0 ≤ a_L ≤ 10^9).
+An integer a_S (0 ≤ a_S ≤ 10^9).
+An integer a_Z (0 ≤ a_Z ≤ 10^9).
+
+### Example Input:
+
+```
+12 1 1 0 0 0 0
+```
+
+### Function Signature:
+Write a function f(inputs) that takes in the input.
+```python
+def f(inputs: Tuple[int, int, int, int, int, int, int]):
+    '''
+    inputs: a tuple of seven integers
+    '''
+```

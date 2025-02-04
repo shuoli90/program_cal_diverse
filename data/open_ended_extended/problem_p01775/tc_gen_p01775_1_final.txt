@@ -1,0 +1,70 @@
+Certainly! Here is a test case generator for the given problem statement "D: Rescue a Postal Worker":
+
+```python
+import random
+
+def generate_graph(n, m):
+    edges = set()
+    while len(edges) < m:
+        x = random.randint(1, n)
+        y = random.randint(1, n)
+        if x != y:
+            w = random.randint(1, 1000)
+            edge = (x, y, w) if x < y else (y, x, w)
+            edges.add(edge)
+    return list(edges)
+
+def tcgen():
+    # Number of vertices in the graph (n)
+    n = random.randint(3, 1000)
+    # Number of edges in the graph (m)
+    m = random.randint(1, 2000)
+    # Number of dropped mail (k)
+    k = random.randint(1, 6)
+    # Starting vertex (p)
+    p = random.randint(1, n)
+    
+    # Generate the edges of the graph
+    edges = generate_graph(n, m)
+    
+    # Generate the dropped mail and their destinations
+    mails = []
+    mail_vertices = set()
+    for _ in range(k):
+        s = random.randint(1, n)
+        t = random.randint(1, n)
+        while s == p or t == p or s in mail_vertices:
+            s = random.randint(1, n)
+            t = random.randint(1, n)
+        mail_vertices.add(s)
+        mails.append((s, t))
+    
+    test_case = f"{n} {m} {k} {p}\n"
+    for x, y, w in edges:
+        test_case += f"{x} {y} {w}\n"
+    for s, t in mails:
+        test_case += f"{s} {t}\n"
+    
+    return test_case
+
+# Example usage:
+if __name__ == "__main__":
+    print(tcgen())
+```
+
+### Explanation:
+
+1. **Graph Generation:**
+   - `generate_graph`: A helper function to generate unique edges in the graph. It ensures that no self-loops or duplicate edges exist.
+   - We ensure the edges are unique by using a set and only adding the edge if it doesn't already exist in the set.
+
+2. **Main Function (`tcgen`):**
+   - Randomly selects the number of vertices (`n`), edges (`m`), dropped mail (`k`), and the starting vertex (`p`).
+   - Calls `generate_graph` to get a list of edges.
+   - Generates dropped mail locations and their destinations ensuring they are not at the starting vertex and there are no duplicates in the mail vertices.
+   - Constructs the test case string in the required format.
+
+3. **Output:**
+   - The test case is returned as a formatted string ready to be used for input in the problem.
+
+You can run this script to generate random test cases that adhere to the problem's constraints.

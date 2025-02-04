@@ -1,0 +1,41 @@
+Related Products
+On internet shopping sites, when users are viewing a product page, the site will display several other products that were purchased together with the product currently being viewed, by other users in the past. This is done in order to increase sales, by presenting products that are thought to be highly relevant to the user.
+A similar approach can be seen in supermarkets, where items that are often purchased together are placed close to each other (e.g., bread and jam). Your job is to write a program to help arrange products in a store. Given a criterion number and information about products that were purchased together, you want to find pairs of products that were purchased together at least the criterion number of times.
+When given information about products that were purchased together and a criterion number, create a program that outputs pairs of products that were purchased together at least the criterion number of times.
+Input
+The input is given in the following format.
+N F
+info1
+info2
+:
+infoN
+The first line contains two integers N (1 ≤ N ≤ 100) and F (1 ≤ F ≤ 100), where N is the number of pieces of information about products purchased together and F is the criterion number. The next N lines contain information about products that were purchased together. Information about products purchased together, infoi, is given in the following format.
+M item1 item2 ...  itemM
+Here, M (1 ≤ M ≤ 10) indicates how many products are included in this information. itemj denotes the name of the purchased product and is a string of 1 to 30 lowercase English letters. No two items in infoi are the same.
+Output
+On the first line, output the number of pairs of products that were purchased together at least F times. From the second line onwards, output all the pairs. If there are no pairs of products, do not output anything from the second line onwards.
+The output order is as follows: sort the pairs of product names in dictionary order (i.e., the order of words in an English-Japanese dictionary) and then sort the pairs of product combinations as follows:
+ Compare the first product names and prioritize the one that comes first in dictionary order.
+ If the first product names are the same, compare the second product names and prioritize the one that comes first in dictionary order.
+Product names are separated by one space, and product combinations are separated by a line break.
+Sample Input 1
+5 2
+3 bread milk banana
+2 milk cornflakes
+3 potato bread milk
+4 cornflakes bread milk butter
+2 potato bread
+Sample Output 1
+3
+bread milk
+bread potato
+cornflakes milk
+Sample Input 2
+5 5
+3 bread milk banana
+2 milk cornflakes
+3 potato bread milk
+4 cornflakes bread milk butter
+2 potato bread
+Sample Output 2
+0

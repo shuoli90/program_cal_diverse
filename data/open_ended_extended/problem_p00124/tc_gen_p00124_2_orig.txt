@@ -1,0 +1,54 @@
+Sure, here's a test case generator for the "League Standings Score Sheet" problem:
+
+```python
+import random
+import string
+
+def generate_team_name():
+    length = random.randint(1, 20)
+    return ''.join(random.choices(string.ascii_uppercase + string.ascii_lowercase, k=length))
+
+def generate_team_record():
+    w = random.randint(0, 9)
+    l = random.randint(0, 9)
+    d = random.randint(0, 9)
+    return w, l, d
+
+def generate_data_set():
+    n = random.randint(1, 10)
+    teams = []
+    for _ in range(n):
+        name = generate_team_name()
+        w, l, d = generate_team_record()
+        teams.append((name, w, l, d))
+    return n, teams
+
+def tcgen():
+    data_sets = []
+    num_data_sets = random.randint(1, 50)
+    for _ in range(num_data_sets):
+        n, teams = generate_data_set()
+        data_sets.append((n, teams))
+    data_sets.append((0, []))  # Termination condition
+    return data_sets
+
+# Example usage:
+for data_set in tcgen():
+    n, teams = data_set
+    if n == 0:
+        print(0)
+    else:
+        print(n)
+        for team in teams:
+            print(f"{team[0]} {team[1]} {team[2]} {team[3]}")
+        print()  # Blank line between data sets
+```
+
+### Explanation:
+
+1. **generate_team_name()**: Generates a random team name of up to 20 characters.
+2. **generate_team_record()**: Generates a random win, loss, and draw record.
+3. **generate_data_set()**: Generates one dataset containing a random number of teams (between 1 and 10) and their respective records.
+4. **tcgen()**: Generates multiple data sets and appends a termination dataset with `n = 0` to signify the end of input.
+
+You can run `tcgen()` to generate multiple test cases and print them in the format specified by the problem statement. The termination condition `0` ensures the input ends properly.

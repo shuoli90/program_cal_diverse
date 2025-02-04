@@ -1,0 +1,22 @@
+An integer N (2 ≤ N ≤ 2 × 10^5), representing some quantity or size.  
+A list of N tuples (A_i, B_i), where each tuple contains two integers:
+- A_i (1 ≤ A_i ≤ 10^9), representing a starting value.
+- B_i (A_i ≤ B_i ≤ 10^9), representing an ending value.
+
+### Example Input:
+
+```
+2
+1 2
+2 3
+```
+
+### Function Signature:
+Write a function f(N, ranges) that takes in the input.
+```python
+def f(N: int, ranges: List[Tuple[int, int]]):
+    '''
+    N: an integer
+    ranges: a list of tuples, where each tuple contains two integers (A_i, B_i)
+    '''
+```

@@ -1,0 +1,148 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p03738 - Generation 1</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p03738 - Generation 1</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>
+Score : 200 points
+Problem StatementYou are given two positive integers A and B. Compare the magnitudes of these numbers.
+Constraints
+1 ≤ A, B ≤ 10^{100}
+Neither A nor B begins with a 0.
+InputInput is given from Standard Input in the following format:
+A
+B
+OutputPrint GREATER if A>B, LESS if A<B and EQUAL if A=B.
+Sample Input 136
+24
+Sample Output 1GREATER
+Since 36>24, print GREATER.
+Sample Input 2850
+3777
+Sample Output 2LESS
+Sample Input 39720246
+22516266
+Sample Output 3LESS
+Sample Input 4123456789012345678901234567890
+234567890123456789012345678901
+Sample Output 4LESS
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An integer A (1 ≤ A < 10^101) without leading zeros.
+An integer B (1 ≤ B < 10^101) without leading zeros.
+
+### Example Input:
+
+```
+36
+24
+```
+
+### Function Signature:
+Write a function f(inputs) that takes in the input.
+```python
+def f(inputs: List[Tuple[str, str]]):
+    ''' 
+    inputs: a list of tuples, where each tuple contains two strings representing integers
+    '''
+```</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Certainly! Here is a test case generator for the problem where you are given two positive integers \(A\) and \(B\) and you need to compare their magnitudes:
+
+```python
+import random
+
+def generate_large_number():
+    # Generates a random large number with digits between 1 and 100
+    length = random.randint(1, 100)
+    # Ensure the number does not start with zero
+    number = str(random.randint(1, 9))
+    number += ''.join(random.choices('0123456789', k=length-1))
+    return number
+
+def tcgen():
+    A = generate_large_number()
+    B = generate_large_number()
+    
+    return A, B
+
+# Example usage
+A, B = tcgen()
+print(A)
+print(B)
+```
+
+This function will generate two random large numbers \(A\) and \(B\) with lengths between 1 and 100 digits, ensuring they do not start with a zero. 
+
+Example output when running the generator:
+
+```
+573829374828392938475
+283948293847293847
+```
+
+You can use the generated values to test the comparison logic in your competitive programming solution.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    A = fh.readline().strip()
+    B = fh.readline().strip()
+    return A, B</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

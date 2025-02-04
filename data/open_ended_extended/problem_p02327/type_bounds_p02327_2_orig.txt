@@ -1,0 +1,3 @@
+Types: H: int, W: int, matrix: List[List[int]]
+Ranges: 1 ≤ H, W ≤ 1,400, ci,j in {0, 1}
+Addtl Info: None

@@ -1,0 +1,13 @@
+def extract_arguments(fh):
+    H, W = map(int, fh.readline().strip().split())
+    a = []
+    for _ in range(H):
+        row = list(map(int, fh.readline().strip().split()))
+        a.append(row)
+    return H, W, a
+
+# if __name__ == "__main__":
+#     input_path = sys.argv[1]
+#     with open(input_path, 'r') as fh: 
+#     H, W, a = extract_arguments(fh)
+#     f(H, W, a)

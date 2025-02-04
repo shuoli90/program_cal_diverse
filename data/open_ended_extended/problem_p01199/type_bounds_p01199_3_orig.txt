@@ -1,0 +1,5 @@
+Types: N: int, M: int, L: int, A: List[int], B: List[int], D: List[int], P: List[int], K: List[int]
+
+Ranges: 1 ≤ N ≤ 100, M ≥ 0, 1 ≤ L ≤ 10000, 1 ≤ A[i] < B[i] ≤ N, 1 ≤ D[i] ≤ 10000, 0 ≤ P[i] ≤ 10^6, 0 ≤ K[i] ≤ 10^6
+
+Addtl Info: None

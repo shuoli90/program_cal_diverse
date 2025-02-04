@@ -1,0 +1,22 @@
+Canonicalized Input Description:
+
+An integer N (1 ≤ N ≤ 2000), representing some quantity or size.
+An integer T (1 ≤ T ≤ 2000), representing some quantity or size.
+A string S of length N, consisting of characters 'R' and 'B' only.
+
+### Example Input:
+
+```
+6 1
+RBRBRB
+```
+
+### Function Signature:
+Write a function f(inputs) that takes in a list of tuples as input.
+def f(inputs: List[Tuple[int, int, str]]):
+    '''
+    inputs: a list of tuples, where each tuple contains:
+        N: an integer
+        T: an integer
+        S: a string
+    '''

@@ -1,0 +1,69 @@
+Sure, let's write a test case generator for the provided competitive programming problem statement about the graph and minimum spanning tree.
+
+To generate test cases, we need to consider the constraints and the requirements mentioned:
+
+- \(2 \leq N \leq 20\)
+- \(N-1 \leq M \leq N(N-1)/2\)
+- The subgraph consisting of Vertex 1,2,\ldots,N and Edge 1,2,\ldots,N-1 must be a spanning tree.
+- The graph is simple, connected, and undirected without self-loops or multiple edges.
+
+Here's the Python code for generating test cases based on the above constraints:
+
+```python
+import random
+
+def generate_spanning_tree(N):
+    """ Generate a spanning tree with N vertices. """
+    edges = []
+    for i in range(2, N + 1):
+        u = i
+        v = random.randint(1, i - 1)
+        edges.append((u, v))
+    return edges
+
+def generate_additional_edges(N, M, current_edges):
+    """ Generate additional edges to ensure the graph has M edges in total. """
+    all_possible_edges = [(i, j) for i in range(1, N + 1) for j in range(i + 1, N + 1)]
+    existing_edges_set = set(current_edges)
+    remaining_edges = [edge for edge in all_possible_edges if edge not in existing_edges_set]
+    
+    additional_edges_needed = M - (N - 1)
+    additional_edges = random.sample(remaining_edges, additional_edges_needed)
+    
+    return additional_edges
+
+def tcgen():
+    # Step 1: Randomly choose N
+    N = random.randint(2, 20)
+    
+    # Step 2: Randomly choose M such that N-1 <= M <= N(N-1)/2
+    min_edges = N - 1
+    max_edges = (N * (N - 1)) // 2
+    M = random.randint(min_edges, max_edges)
+    
+    # Step 3: Generate a spanning tree
+    spanning_tree_edges = generate_spanning_tree(N)
+    
+    # Step 4: Generate additional edges to reach a total of M edges
+    additional_edges = generate_additional_edges(N, M, spanning_tree_edges)
+    
+    # Combine all edges
+    all_edges = spanning_tree_edges + additional_edges
+    
+    # Formatting output
+    result = [f"{N} {M}"]
+    for edge in all_edges:
+        result.append(f"{edge[0]} {edge[1]}")
+        
+    return "\n".join(result)
+
+# Generate a test case and print it
+print(tcgen())
+```
+
+Explanation:
+1. **generate_spanning_tree(N)**: Generates a spanning tree with \(N\) vertices ensuring that there are \(N-1\) edges.
+2. **generate_additional_edges(N, M, current_edges)**: Generates additional edges to ensure the total number of edges is \(M\). It avoids duplicate and self-loops.
+3. **tcgen()**: The main function that combines the above steps to generate a complete test case.
+
+This generator ensures that the graph is always connected and adheres to the constraints mentioned in the problem statement.

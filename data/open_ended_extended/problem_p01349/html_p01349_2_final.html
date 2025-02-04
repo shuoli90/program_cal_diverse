@@ -1,0 +1,183 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p01349 - Generation 2</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p01349 - Generation 2</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>Problem A: Ennichi
+A rabbit who came to a shrine's festival found a game booth where the prize was a carrot cake. The rules for this game are as follows:
+There is a rectangular field with h rows and w columns, and at most one block is placed in each square. Each block is colored with one of the uppercase letters ('A' - 'Z'). When n or more blocks of the same color are aligned vertically or horizontally, they disappear.
+Participants can choose two adjacent squares horizontally and swap their states. When a block falls because of swapping, disappearing, or falling, the block falls one square down. When n or more blocks of the same color are aligned again, they disappear. However, the blocks do not disappear while falling, and all the blocks disappear at the same time when all the blocks have finished falling.
+If all the blocks on the field disappear in one operation, the game is successful, and the rabbit can get the cake. The rabbit wants to get the cake by paying the participation fee only once, and does not want to participate if it is impossible. Given the initial state of the field at the start of the game, determine whether the rabbit should participate in the game.
+Input
+The first line of the input contains three integers h, w, and n separated by spaces.
+2 ≤ h, w, n ≤ 30.
+The next h lines give the state of the field from top to bottom. Uppercase letters represent blocks, and periods represent empty squares. The state of the field given does not contain n or more blocks of the same color aligned vertically or horizontally and there is no block in the state that will fall. There is at least one block.
+Output
+If the rabbit should participate in the game, print "YES". Otherwise, print "NO".
+Sample Input 1
+4 6 3
+......
+...Y..
+...Y..
+RRYRYY
+Sample Output 2
+YES
+Sample Input 1
+4 6 3
+......
+...Y..
+...Y..
+RRYRY.
+Sample Output 2
+NO
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An integer h (2 ≤ h ≤ 30), an integer w (2 ≤ w ≤ 30), and an integer n (2 ≤ n ≤ 30).
+A list of h strings, each containing exactly w characters, where each character is either an uppercase letter ('A'-'Z') or a period ('.').
+
+### Example Input:
+
+```
+4 6 3
+......
+...Y..
+...Y..
+RRYRY.
+```
+
+### Function Signature:
+Write a function f(h, w, n, field) that takes in the input.
+def f(h: int, w: int, n: int, field: List[str]):
+    '''
+    h: an integer
+    w: an integer
+    n: an integer
+    field: a list of strings
+    '''</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Sure, here is a test case generator for the given problem "Ennichi":
+
+```python
+import random
+import string
+
+def generate_field(h, w, n):
+    field = [['.' for _ in range(w)] for _ in range(h)]
+    
+    # Randomly place blocks
+    num_blocks = random.randint(1, h * w)  # Ensure there's at least one block
+    blocks = random.choices(string.ascii_uppercase, k=num_blocks)
+    
+    for block in blocks:
+        while True:
+            r, c = random.randint(0, h-1), random.randint(0, w-1)
+            if field[r][c] == '.':
+                field[r][c] = block
+                break
+
+    # Ensure no n or more blocks of the same color are aligned initially
+    def is_valid_field():
+        # Check rows
+        for row in field:
+            if any(row[i] == row[i+1] == row[i+2] == row[i+3] == row[i+n-1] for i in range(w - n + 1)):
+                return False
+        # Check columns
+        for c in range(w):
+            for r in range(h - n + 1):
+                if all(field[r+i][c] == field[r][c] and field[r][c] != '.' for i in range(n)):
+                    return False
+        return True
+    
+    while not is_valid_field():
+        for r in range(h):
+            for c in range(w):
+                field[r][c] = '.'
+        for block in blocks:
+            while True:
+                r, c = random.randint(0, h-1), random.randint(0, w-1)
+                if field[r][c] == '.':
+                    field[r][c] = block
+                    break
+    
+    return field
+
+def tcgen():
+    h = random.randint(2, 30)
+    w = random.randint(2, 30)
+    n = random.randint(2, 30)
+
+    field = generate_field(h, w, n)
+    
+    field_str = '\n'.join(''.join(row) for row in field)
+    
+    return f"{h} {w} {n}\n{field_str}"
+
+# Example of generating a test case
+print(tcgen())
+```
+
+This generator creates a random valid field configuration for the game according to the given constraints. It ensures that there are no initial alignments of `n` or more blocks of the same color vertically or horizontally, and it also guarantees that there is at least one block on the field. The function `tcgen` returns a formatted string with the generated test case, ready to be used as input for the problem.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    h, w, n = map(int, fh.readline().strip().split())
+    field = [fh.readline().strip() for _ in range(h)]
+    return h, w, n, field</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

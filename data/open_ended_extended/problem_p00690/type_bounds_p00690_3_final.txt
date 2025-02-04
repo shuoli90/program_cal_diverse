@@ -1,0 +1,3 @@
+Types: ns: int, nl: int, si_1: int, si_2: int, di: int
+
+Ranges: 1 ≤ ns ≤ 10, 1 ≤ nl ≤ 20, 1 ≤ si_1, si_2 ≤ ns, di ≥ 1

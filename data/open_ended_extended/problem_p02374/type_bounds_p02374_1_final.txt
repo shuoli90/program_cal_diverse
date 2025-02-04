@@ -1,0 +1,5 @@
+Types: n: int, ki: int, c: List[int], q: int, query: List[Tuple[int, int, int]]
+
+Ranges: 2 ≤ n ≤ 100000, 1 ≤ ki ≤ n-1, 1 ≤ c[j] < c[j+1] ≤ n-1, 2 ≤ q ≤ 200000, 0 ≤ query[i][0] ≤ 1, 1 ≤ query[i][1] ≤ n-1, 1 ≤ query[i][2] ≤ 10000
+
+Addtl Info: None

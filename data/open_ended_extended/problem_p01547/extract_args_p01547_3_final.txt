@@ -1,0 +1,25 @@
+def extract_arguments(fh):
+    polygons = []
+    number_of_polygons = int(fh.readline().strip())
+    
+    for _ in range(number_of_polygons):
+        vertices = []
+        num_vertices = int(fh.readline().strip())
+        for _ in range(num_vertices):
+            x, y = map(int, fh.readline().strip().split())
+            vertices.append((x, y))
+        polygons.append(vertices)
+    
+    occurrences = []
+    number_of_occurrences = int(fh.readline().strip())
+    for _ in range(number_of_occurrences):
+        ox, oy, fx, fy = map(int, fh.readline().strip().split())
+        occurrences.append((ox, oy, fx, fy))
+    
+    return polygons, occurrences
+
+# if __name__ == "__main__":
+#     input_path = sys.argv[1]
+#     with open(input_path, 'r') as fh: 
+#         polygons, occurrences = extract_arguments(fh)
+#         # Call the function f(polygons, occurrences) here

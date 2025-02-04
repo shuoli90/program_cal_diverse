@@ -1,0 +1,19 @@
+An integer N (2 ≤ N ≤ 500,000), representing some quantity or size.
+An integer K (1 ≤ K ≤ N-1), representing some threshold or limit.
+A list of integers P of size N, representing a permutation of integers from 1 to N.
+
+### Example Input:
+
+```
+4 2
+4 2 3 1
+```
+
+### Function Signature:
+Write a function f(N, K, P) that takes in the input.
+def f(N: int, K: int, P: List[int]): 
+    ''' 
+    N: an integer 
+    K: an integer
+    P: a list of integers
+    '''

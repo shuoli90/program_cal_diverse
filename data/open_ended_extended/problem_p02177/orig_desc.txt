@@ -1,0 +1,58 @@
+C: Equivalent Propositions
+Problem
+    There are $N$ propositions, each of which is named 1, 2, ..., $N$. 
+    Also, information about propositions is given in $M$ pieces. The $i$-th information is given in the form of "$a_i$ $b_i$", which means that if $a_i$ is true, then $b_i$ is also true. ("If" is the logical implication and the transitive property holds.)
+    Output all propositions that are equivalent to each proposition $i$ in ascending order.
+    Proposition $i$ is always equivalent to proposition $i$.
+    Proposition $X$ and proposition $Y$ are equivalent if and only if "If $X$, then $Y$" and "If $Y$, then $X$" are both true.
+Constraints
+All input values are integers.
+$2 \leq N \leq 300$
+$1 \leq M \leq N(N-1)$
+$a_i \neq b_i$
+$1 \leq a_i, b_i \leq N$
+Input Format
+ The input is given in the following format. 
+    $N\ M$
+    $a_1\ b_1$
+    $a_2\ b_2$
+    $\vdots$
+    $a_M\ b_M$
+Output
+     On the $i$-th line, output all propositions that are equivalent to proposition $i$ in ascending order, separated by a space. Also, output a newline at the end of each line.
+Sample
+Sample Input 1
+5 2
+1 2
+2 1
+Sample Output 1
+1 2
+1 2
+3
+4
+5
+Sample Input 2
+3 3
+1 2
+2 3
+3 1
+Sample Output 2
+1 2 3
+1 2 3
+1 2 3
+Sample Input 3
+6 7
+1 2
+1 3
+2 6
+3 4
+4 5
+5 3
+6 2
+Sample Output 3
+1
+2 6
+3 4 5
+3 4 5
+3 4 5
+2 6

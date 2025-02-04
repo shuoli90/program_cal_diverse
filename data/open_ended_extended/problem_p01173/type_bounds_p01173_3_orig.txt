@@ -1,0 +1,3 @@
+Types: n: int, vw: int, vc: int, x: List[int], y: List[int]  
+Ranges: n ≤ 1,000, 1 ≤ vw, vc ≤ 10, -10,000 ≤ x[i], y[i] ≤ 10,000  
+Addtl Info: xi < xj for all i < j, input terminated by n = 0

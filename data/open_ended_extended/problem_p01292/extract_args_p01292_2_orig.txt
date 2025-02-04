@@ -1,0 +1,36 @@
+def extract_arguments(fh):
+    datasets = []
+    while True:
+        line = fh.readline().strip()
+        if line == "0 0":
+            break
+        Time, R = map(int, line.split())
+        
+        L = int(fh.readline().strip())
+        mary_moves = []
+        for _ in range(L):
+            x, y, t = map(int, fh.readline().strip().split())
+            mary_moves.append((x, y, t))
+        
+        M = int(fh.readline().strip())
+        george_moves = []
+        for _ in range(M):
+            x, y, t = map(int, fh.readline().strip().split())
+            george_moves.append((x, y, t))
+        
+        N = int(fh.readline().strip())
+        obstacles = []
+        for _ in range(N):
+            sx, sy, tx, ty = map(int, fh.readline().strip().split())
+            obstacles.append((sx, sy, tx, ty))
+        
+        datasets.append((Time, R, mary_moves, george_moves, obstacles))
+    
+    return datasets
+
+# if __name__ == "__main__":
+#     input_path = sys.argv[1]
+#     with open(input_path, 'r') as fh: 
+#     datasets = extract_arguments(fh)
+#     for dataset in datasets:
+#         f(*dataset)

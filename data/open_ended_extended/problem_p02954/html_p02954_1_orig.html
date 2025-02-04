@@ -1,0 +1,132 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p02954 - Generation 1</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p02954 - Generation 1</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>
+Score : 400 points
+Problem StatementGiven is a string S consisting of L and R.
+Let N be the length of S. There are N squares arranged from left to right, and the i-th character of S from the left is written on the i-th square from the left.
+The character written on the leftmost square is always R, and the character written on the rightmost square is always L.
+Initially, one child is standing on each square.
+Each child will perform the move below 10^{100} times:
+Move one square in the direction specified by the character written in the square on which the child is standing. L denotes left, and R denotes right.
+Find the number of children standing on each square after the children performed the moves.
+Constraints
+S is a string of length between 2 and 10^5 (inclusive).
+Each character of S is L or R.
+The first and last characters of S are R and L, respectively.
+InputInput is given from Standard Input in the following format:
+S
+OutputPrint the number of children standing on each square after the children performed the moves, in order from left to right.
+Sample Input 1RRLRL
+Sample Output 10 1 2 1 1
+After each child performed one move, the number of children standing on each square is 0, 2, 1, 1, 1 from left to right.
+After each child performed two moves, the number of children standing on each square is 0, 1, 2, 1, 1 from left to right.
+After each child performed 10^{100} moves, the number of children standing on each square is 0, 1, 2, 1, 1 from left to right.
+Sample Input 2RRLLLLRLRRLL
+Sample Output 20 3 3 0 0 0 1 1 0 2 2 0
+Sample Input 3RRRLLRLLRRRLLLLL
+Sample Output 30 0 3 2 0 2 1 0 0 0 4 4 0 0 0 0
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An integer N (2 ≤ N ≤ 10^5), representing some quantity or size.
+A string S of length N, where each character is 'L' or 'R', and the first character is 'R' and the last character is 'L'.
+
+### Example Input:
+
+```
+5
+RRLRL
+```
+
+### Function Signature:
+Write a function f(S: str) that takes in the input.
+```python
+def f(S: str):
+    '''
+    S: a string
+    '''
+```</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Sure! Below is a Python test case generator for the given problem statement:
+
+```python
+import random
+
+def generate_test_case():
+    length = random.randint(2, 10**5)
+    # First and last characters should be 'R' and 'L' respectively
+    S = 'R' + ''.join(random.choice('LR') for _ in range(length - 2)) + 'L'
+    return S
+
+# Example usage
+if __name__ == "__main__":
+    test_case = generate_test_case()
+    print(test_case)
+```
+
+This generator will create a random string `S` of length between 2 and 10^5, where the first character is 'R' and the last character is 'L', and all other characters in between are randomly chosen from 'L' and 'R'.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    S = fh.readline().strip()
+    return S</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

@@ -1,0 +1,33 @@
+An integer N (1 ≤ N ≤ 100,000), representing some quantity or size.
+N strings, each consisting of lowercase alphabet characters. Each string is unique.
+An integer Q (1 ≤ Q ≤ 100,000), representing some quantity or size.
+Q pairs, each consisting of an integer k (1 ≤ k ≤ N) and a permutation of the lowercase alphabet characters.
+
+### Example Input:
+
+```
+5
+aa
+abbaa
+abbba
+aaab
+aaaaaba
+5
+1 abcdefghijklmnopqrstuvwxyz
+2 bacdefghijklmnopqrstuvwxyz
+3 abcdefghijklmnopqrstuvwxyz
+4 bacdefghijklmnopqrstuvwxyz
+5 abcdefghijklmnopqrstuvwxyz
+```
+
+### Function Signature:
+Write a function f(N, strings, Q, queries) that takes in the input.
+```
+def f(N: int, strings: List[str], Q: int, queries: List[Tuple[int, str]]):
+    '''
+    N: an integer
+    strings: a list of strings
+    Q: an integer
+    queries: a list of tuples, each containing an integer and a string
+    '''
+```

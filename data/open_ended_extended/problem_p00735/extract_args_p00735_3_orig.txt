@@ -1,0 +1,14 @@
+def extract_arguments(fh):
+    numbers = []
+    while True:
+        line = fh.readline().strip()
+        if line == '1':
+            break
+        numbers.append(int(line))
+    return numbers
+
+# if __name__ == "__main__":
+#     input_path = sys.argv[1]
+#     with open(input_path, 'r') as fh: 
+#     numbers = extract_arguments(fh)
+#     # Process the numbers as needed

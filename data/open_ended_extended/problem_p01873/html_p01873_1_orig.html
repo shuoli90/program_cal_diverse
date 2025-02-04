@@ -1,0 +1,150 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p01873 - Generation 1</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p01873 - Generation 1</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>B: Periodic Sequence
+Problem
+Dr. Period, who serves as a professor at H University, researches the property called the "period" that is said to lurk in everything. As a basic period generally known, a period lurking in a sequence could be considered. That is, if the length N sequence S = S_1, S_2, ... , S_N satisfies the following property, it is a fact that it has a period t (t \≤ N).
+For 1 \≤ i \≤ N − t, S_i=S_{i+t}.
+Now, Dr. Period is focusing on sequences that can be described more simply using periods. For example, if a length N sequence has a period t (\≤ N), and it can be written as N=kt using an integer k, the sequence can be described as a length t sequence S_1, ... , S_t that is a concatenation of k continuous ones. Dr. Period has decided to call such a sequence a k-part.
+Dr. Period is interested in the largest k-part. Therefore, you, as an assistant, have been asked to create a program that takes a sequence as input and outputs the largest k when it is a k-part. Create a program that accurately responds to Dr. Period's request.
+Input Format
+N
+S_1 ... S_N
+The first line contains an integer N, which represents the length of the sequence. The second line contains integers S_i (1 \≤ i \≤ N) that represent each element of the length N sequence, separated by spaces. The input satisfies 1 \≤ N \≤ 200,000 and 1 \≤ S_i \≤ 100,000 (1 \≤ i \≤ N).
+Output Format
+For the given sequence, output the maximum value of k when it is a k-part on one line.
+Sample Input 1
+6
+1 2 3 1 2 3
+Sample Output 1
+2
+Sample Input 2
+12
+1 2 1 2 1 2 1 2 1 2 1 2
+Sample Output 2
+6
+Sample Input 3
+6
+1 2 3 4 5 6
+Sample Output 3
+1</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An integer N (1 ≤ N ≤ 200,000), representing some quantity or size.
+A list of integers S of size N, where each integer is between 1 and 100,000.
+
+### Example Input:
+
+```
+6
+1 2 3 1 2 3
+```
+
+### Function Signature:
+Write a function f(N, S) that takes in the input.
+def f(N: int, S: List[int]): 
+    ''' 
+    N: an integer 
+    S: a list of integers 
+    '''</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Sure, I can write a test case generator for the "Periodic Sequence" problem. Here is a Python function that generates random test cases for the problem:
+
+```python
+import random
+
+def tcgen():
+    # Generate the length of the sequence N
+    N = random.randint(1, 200000)
+
+    # Generate the sequence S with elements ranging from 1 to 100000
+    S = [random.randint(1, 100000) for _ in range(N)]
+    
+    return N, S
+
+# Example of usage
+if __name__ == "__main__":
+    N, S = tcgen()
+    print(N)
+    print(' '.join(map(str, S)))
+```
+
+### Explanation
+
+1. **N Generation**: A random integer `N` is generated within the range of 1 to 200,000, which represents the length of the sequence.
+2. **S Generation**: A list `S` of length `N` is generated with each element being a random integer between 1 and 100,000, representing the sequence elements.
+
+### Example Output
+
+When you run the `tcgen` function, it will output a random test case. For instance:
+```
+13245
+12345 6789 1011 1213 1415 ... (continues for 13245 numbers)
+```
+
+You can use this function to generate multiple test cases for testing the algorithm that solves the "Periodic Sequence" problem. This will help ensure that the algorithm performs well on a wide range of inputs, including edge cases.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    N = int(fh.readline().strip())
+    S = list(map(int, fh.readline().strip().split()))
+    return N, S</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

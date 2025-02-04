@@ -1,0 +1,22 @@
+def extract_arguments(fh):
+    data_sets = []
+    while True:
+        line = fh.readline().strip()
+        if line == "0 0 0 0 0 0":
+            break
+        N, M, L, K, A, H = map(int, line.split())
+        freezing_facilities = list(map(int, fh.readline().strip().split()))
+        roads = []
+        for _ in range(K):
+            X, Y, T = map(int, fh.readline().strip().split())
+            roads.append((X, Y, T))
+        data_sets.append((N, M, L, K, A, H, freezing_facilities, roads))
+    return data_sets
+
+# Example usage:
+# if __name__ == "__main__":
+#     input_path = sys.argv[1]
+#     with open(input_path, 'r') as fh:
+#         data_sets = extract_arguments(fh)
+#         for data in data_sets:
+#             print(data)

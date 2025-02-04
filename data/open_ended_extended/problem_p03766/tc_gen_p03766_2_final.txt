@@ -1,0 +1,28 @@
+Certainly! Here's a test case generator for the given problem statement:
+
+```python
+import random
+
+def tcgen():
+    # Randomly generate N within the constraints 1 ≤ n ≤ 10^6
+    N = random.randint(1, 10**6)
+    
+    return N
+
+# Example of using the test case generator
+if __name__ == "__main__":
+    # Generate a test case
+    N = tcgen()
+    
+    # Print the test case in the required format
+    print(N)
+```
+
+This generator will produce a single integer \( N \) in the range from 1 to \( 10^6 \), which is the input according to the problem statement. You can run this generator to produce random test cases for your competitive programming problem. 
+
+For instance, running the generator might yield an output like:
+```
+857321
+```
+
+This output represents a test case where \( n = 857321 \).

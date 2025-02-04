@@ -1,0 +1,36 @@
+To generate test cases for the Convex Hull problem, you need to ensure that the points are distinct and within the specified range. Here’s a Python function that generates test cases compliant with the given problem statement:
+
+```python
+import random
+
+def tcgen():
+    # Number of points, constrained between 3 and 100000
+    n = random.randint(3, 100000)
+    
+    # Ensure uniqueness of points by using a set initially
+    points_set = set()
+    
+    while len(points_set) < n:
+        x = random.randint(-10000, 10000)
+        y = random.randint(-10000, 10000)
+        points_set.add((x, y))
+    
+    # Convert the set to a list for easier manipulation
+    points_list = list(points_set)
+    
+    return n, points_list
+
+# Example of generating a test case and printing it
+n, points = tcgen()
+print(n)
+for point in points:
+    print(point[0], point[1])
+```
+
+### Explanation:
+1. **Number of Points (`n`)**: Randomly generate an integer between 3 and 100,000.
+2. **Generating Points**: Use a set to ensure all points are unique. Randomly generate `x` and `y` coordinates within the range of -10,000 to 10,000.
+3. **Ensure Uniqueness**: Add points to a set until the desired number of unique points (`n`) is achieved.
+4. **Convert to List**: Convert the set of points to a list for easier handling and output.
+
+This code ensures that all constraints are met, including uniqueness of points and specified ranges. The generated test cases can be used to test the convex hull algorithm comprehensively.

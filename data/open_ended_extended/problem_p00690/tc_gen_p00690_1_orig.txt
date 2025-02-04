@@ -1,0 +1,64 @@
+Sure, I can help you write a test case generator for the given problem. Here is the Python code for generating random test cases for the "A Long Ride on a Railway" problem:
+
+```python
+import random
+
+def generate_single_graph():
+    # Number of stations (1 <= ns <= 10)
+    ns = random.randint(1, 10)
+    
+    # Number of direct routes (1 <= nl <= 20)
+    nl = random.randint(1, 20)
+    
+    edges = set()
+    
+    while len(edges) < nl:
+        s1 = random.randint(1, ns)
+        s2 = random.randint(1, ns)
+        
+        # Ensure that s1 != s2 and there's no duplicate route
+        if s1 != s2:
+            if (s1, s2) not in edges and (s2, s1) not in edges:
+                distance = random.randint(1, 100)  # Random distance (di >= 1)
+                edges.add((s1, s2, distance))
+    
+    edges = list(edges)
+    
+    return ns, nl, edges
+
+def tcgen(num_graphs=5):
+    graphs = []
+    for _ in range(num_graphs):
+        ns, nl, edges = generate_single_graph()
+        graphs.append((ns, nl, edges))
+    
+    # Add the terminating "0 0" at the end
+    graphs.append((0, 0, []))
+    
+    return graphs
+
+def format_graphs(graphs):
+    formatted_graphs = ""
+    for ns, nl, edges in graphs:
+        formatted_graphs += f"{ns} {nl}\n"
+        for s1, s2, d in edges:
+            formatted_graphs += f"{s1} {s2} {d}\n"
+    return formatted_graphs.strip()
+
+# Example usage
+random.seed(42)  # For reproducibility
+graphs = tcgen()
+print(format_graphs(graphs))
+```
+
+Explanation:
+
+1. **generate_single_graph**: This function generates a single graph. It determines the number of stations (`ns`) and direct routes (`nl`). It then generates a set of random edges ensuring no duplicates and that each station is different in an edge.
+
+2. **tcgen**: This function generates multiple graphs and appends a "0 0" at the end to indicate the termination of input, as specified in the problem statement.
+
+3. **format_graphs**: This function formats the generated graphs into a string that mimics the required input format.
+
+4. **Example usage**: The example usage demonstrates how to generate and print test cases. The random seed is set to ensure reproducibility of the test cases.
+
+You can modify the `num_graphs` parameter in the `tcgen` function call to generate a different number of graphs for testing purposes.

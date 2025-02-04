@@ -1,0 +1,37 @@
+Sure! Here is the test case generator for the "Oil Company" problem. It will generate random test cases based on the given constraints.
+
+```python
+import random
+
+def generate_test_case():
+    W = random.randint(1, 20)
+    H = random.randint(1, 20)
+    grid = [[random.randint(0, 9999) for _ in range(W)] for _ in range(H)]
+    return W, H, grid
+
+def format_test_case(W, H, grid):
+    formatted_grid = '\n'.join(' '.join(map(str, row)) for row in grid)
+    return f"{W} {H}\n{formatted_grid}"
+
+def tcgen():
+    N = random.randint(1, 10)
+    test_cases = []
+    
+    for _ in range(N):
+        W, H, grid = generate_test_case()
+        test_cases.append(format_test_case(W, H, grid))
+    
+    return f"{N}\n" + "\n".join(test_cases)
+
+# Example usage
+random.seed(42)  # To make the random generation reproducible for this example
+print(tcgen())
+```
+
+This code will generate random test cases for the "Oil Company" problem. Here's a breakdown of what it does:
+
+1. **generate_test_case**: This function creates a random grid size \(W \times H\) with oil reserves values between 0 and 9999.
+2. **format_test_case**: This function formats the generated test case in the required input format.
+3. **tcgen**: This function generates a random number of test cases \(N\) (up to 10 for simplicity) and combines all the formatted test cases into a single string representing the input.
+
+The example usage at the end seeds the random number generator for reproducibility and prints the generated test case. You can remove the seed or change it to get different random test cases.

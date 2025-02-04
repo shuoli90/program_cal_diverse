@@ -1,0 +1,18 @@
+def extract_arguments(fh):
+    inputs = []
+    while True:
+        line = fh.readline().strip()
+        if line == '0 0':
+            break
+        n, m = map(int, line.split())
+        passengers = [fh.readline().strip() for _ in range(m)]
+        inputs.append((n, m, passengers))
+    return inputs
+
+# Example usage:
+# if __name__ == "__main__":
+#     input_path = sys.argv[1]
+#     with open(input_path, 'r') as fh: 
+#         inputs = extract_arguments(fh)
+#         for n, m, passengers in inputs:
+#             f(n, m, passengers)

@@ -1,0 +1,4 @@
+def extract_arguments(fh):
+    n, q = map(int, fh.readline().strip().split())
+    queries = [fh.readline().strip() for _ in range(q)]
+    return n, q, queries

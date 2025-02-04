@@ -1,0 +1,34 @@
+An integer P (1 ≤ P ≤ 5), representing the number of polygons.
+For each polygon:
+  An integer V (3 ≤ V ≤ 5), representing the number of vertices.
+  A list of tuples of size V, where each tuple consists of two integers (x, y) representing the coordinates of a vertex.
+An integer D (1 ≤ D ≤ 100), representing the number of data points.
+For each data point:
+  Two tuples, each consisting of two integers (x, y), representing coordinates.
+
+### Example Input:
+
+```
+2
+4
+0 4
+1 1
+3 1
+4 4
+3
+6 0
+10 0
+8 7
+1
+2 3 9 1
+```
+
+### Function Signature:
+Write a function f(P, polygons, D, data_points) that takes in the input. 
+def f(P: int, polygons: List[Tuple[int, List[Tuple[int, int]]]], D: int, data_points: List[Tuple[Tuple[int, int], Tuple[int, int]]]):
+    '''
+    P: an integer
+    polygons: a list of tuples, where each tuple contains an integer and a list of tuples of integers
+    D: an integer
+    data_points: a list of tuples, where each tuple contains two tuples of integers
+    '''

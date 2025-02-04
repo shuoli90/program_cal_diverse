@@ -1,0 +1,46 @@
+Certainly! Below is the test case generator for the given problem statement:
+
+```python
+import random
+
+def tcgen():
+    N = random.randint(1, 100)
+    K = random.randint(1, N)
+    return N, K
+
+# Example usage:
+if __name__ == "__main__":
+    for _ in range(10):  # Generate 10 test cases as an example
+        N, K = tcgen()
+        print(f"{N} {K}")
+```
+
+### Explanation
+
+- **N**: The number of balls is chosen randomly between 1 and 100 inclusive.
+- **K**: The number of persons is chosen randomly between 1 and \(N\) inclusive.
+  
+This setup ensures that the constraints \(1 \leq K \leq N \leq 100\) are satisfied.
+
+### How to Use
+
+To use this test case generator, simply run the script. Each call to `tcgen()` will generate a new test case with values for \(N\) and \(K\) that can be used to test the solution for the given problem statement.
+
+### Sample Output
+
+Here is how the output might look when generating 10 test cases:
+
+```
+67 35
+32 20
+100 78
+45 12
+12 5
+90 53
+1 1
+25 10
+88 88
+50 30
+```
+
+Each pair of numbers represents a test case with \(N\) balls and \(K\) persons.

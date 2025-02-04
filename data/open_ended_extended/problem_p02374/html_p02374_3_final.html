@@ -1,0 +1,274 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p02374 - Generation 3</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p02374 - Generation 3</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>Range Query on a Tree
+Write a program which manipulates a weighted rooted tree $T$ with the following operations:
+$add(v,w)$: add $w$ to the edge which connects node $v$ and its parent
+$getSum(u)$: report the sum of weights of all edges from the root to node $u$
+  The given tree $T$ consists of $n$ nodes and every node has a unique ID from $0$ to $n-1$ respectively where ID of the root is $0$.
+  Note that all weights are initialized to zero.
+Input
+  The input is given in the following format.
+$n$
+$node_0$
+$node_1$
+$node_2$
+$:$
+$node_{n-1}$
+$q$
+$query_1$
+$query_2$
+$:$
+$query_{q}$
+  The first line of the input includes an integer $n$, the number of nodes in the tree.
+  In the next $n$ lines,the information of node $i$ is given in the following format:
+ki c1 c2 ... ck
+  $k_i$ is the number of children of node $i$, and $c_1$ $c_2$ ... $c_{k_i}$ are node IDs of 1st, ... $k$th child of node $i$.
+  In the next line, the number of queries $q$ is given. In the next $q$ lines, $i$th query is given in the following format:
+0 v w
+or
+1 u
+  The first integer represents the type of queries.'0' denotes $add(v, w)$ and '1' denotes $getSum(u)$.
+Constraints
+All the inputs are given in integers
+$ 2 \leq n \leq 100000 $
+$ c_j < c_{j+1} $   $( 1 \leq j \leq k-1 )$
+$ 2 \leq q \leq 200000 $
+$ 1 \leq u,v \leq n-1 $
+$ 1 \leq w \leq 10000 $
+Output
+  For each $getSum$ query, print the sum in a line.
+Sample Input 1
+6
+2 1 2
+2 3 5
+0
+0
+0
+1 4
+7
+1 1
+0 3 10
+1 2
+0 4 20
+1 3
+0 5 40
+1 4
+Sample Output 1
+0
+0
+10
+60
+Sample Input 2
+4
+1 1
+1 2
+1 3
+0
+6
+0 3 1000
+0 2 1000
+0 1 1000
+1 1
+1 2
+1 3
+Sample Output 2
+1000
+2000
+3000
+Sample Input 3
+2
+1 1
+0
+4
+0 1 1
+1 1
+0 1 1
+1 1
+Sample Output 3
+1
+2
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>Canonicalized Input Description:
+
+An integer n (2 ≤ n ≤ 100000), representing some quantity or size.
+A list of n elements, where each element is a list starting with an integer k_i (0 ≤ k_i < n) followed by k_i integers, each representing an ID (0 ≤ ID < n).
+An integer q (2 ≤ q ≤ 200000), representing some quantity or size.
+A list of q elements, where each element is either:
+- a list [0, v, w] with integers v (1 ≤ v ≤ n-1) and w (1 ≤ w ≤ 10000)
+- or a list [1, u] with an integer u (1 ≤ u ≤ n-1)
+
+### Example Input:
+
+```
+6
+2 1 2
+2 3 5
+0
+0
+0
+1 4
+7
+1 1
+0 3 10
+1 2
+0 4 20
+1 3
+0 5 40
+1 4
+```
+
+### Function Signature:
+Write a function f(n, node_info, q, queries) that takes in the input.
+def f(n: int, node_info: List[List[int]], q: int, queries: List[List[int]]):
+    '''
+    n: an integer
+    node_info: a list of lists of integers
+    q: an integer
+    queries: a list of lists of integers
+    '''</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Sure, I can help you create a test case generator for the "Range Query on a Tree" problem. Below is a Python function that generates test cases according to the problem statement:
+
+```python
+import random
+
+def generate_tree(n):
+    tree = []
+    for i in range(n):
+        if i == 0:
+            k = random.randint(1, n-1)  # root must have at least one child
+        else:
+            k = random.randint(0, max(0, n-1-i))
+        children = random.sample(range(i + 1, n), k)
+        tree.append(f"{k} " + " ".join(map(str, sorted(children))))
+    return tree
+
+def generate_queries(q, n):
+    queries = []
+    for _ in range(q):
+        query_type = random.randint(0, 1)
+        if query_type == 0:
+            v = random.randint(1, n-1)
+            w = random.randint(1, 10000)
+            queries.append(f"0 {v} {w}")
+        else:
+            u = random.randint(1, n-1)
+            queries.append(f"1 {u}")
+    return queries
+
+def tcgen():
+    n = random.randint(2, 100000)
+    tree = generate_tree(n)
+    
+    q = random.randint(2, 200000)
+    queries = generate_queries(q, n)
+    
+    test_case = [str(n)] + tree + [str(q)] + queries
+    return "\n".join(test_case)
+
+# Example Usage
+print(tcgen())
+```
+
+### Explanation:
+
+1. **generate_tree(n)**:
+   - Generates the tree structure.
+   - Each node has a random number of children `k` (where 0 ≤ k ≤ n-1).
+   - For each node, it selects `k` unique random children while ensuring that children IDs are greater than the current node ID to maintain a valid tree structure.
+
+2. **generate_queries(q, n)**:
+   - Generates a list of `q` queries.
+   - Each query is randomly selected to be either `add(v, w)` or `getSum(u)`.
+   - For `add` queries (`0 v w`), it randomly selects a node ID `v` and a weight `w`.
+   - For `getSum` queries (`1 u`), it randomly selects a node ID `u`.
+
+3. **tcgen()**:
+   - Combines the tree and queries into a single test case formatted as a string.
+
+### Note:
+- Given the constraints, generating extremely large test cases can be resource-intensive. Ensure your environment can handle the random generation for large values of `n` and `q`.
+- This generator ensures that the constraints and requirements specified in the problem statement are respected.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    n = int(fh.readline().strip())
+    nodes = []
+    for _ in range(n):
+        node_info = list(map(int, fh.readline().strip().split()))
+        nodes.append(node_info)
+    q = int(fh.readline().strip())
+    queries = []
+    for _ in range(q):
+        query = list(map(int, fh.readline().strip().split()))
+        queries.append(query)
+    return n, nodes, q, queries
+
+# Example usage:
+# if __name__ == "__main__":
+#     input_path = sys.argv[1]
+#     with open(input_path, 'r') as fh: 
+#     n, nodes, q, queries = extract_arguments(fh)
+#     f(n, nodes, q, queries)</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

@@ -1,0 +1,52 @@
+Sure, I can create a test case generator for the given problem "Usagitobi". The generator will create random values for the grid size and the jump parameters while ensuring they fall within the specified constraints.
+
+Here's the test case generator for the "Usagitobi" problem:
+
+```python
+import random
+
+def tcgen_usagitobi():
+    # Define the constraints
+    min_val = 1
+    max_val = 100000
+    
+    # Generate random values for m, n, a, b, c, d within the constraints
+    m = random.randint(min_val, max_val)
+    n = random.randint(min_val, max_val)
+    a = random.randint(min_val, max_val)
+    b = random.randint(min_val, max_val)
+    c = random.randint(min_val, max_val)
+    d = random.randint(min_val, max_val)
+    
+    # Return the generated test case
+    return m, n, a, b, c, d
+
+# Example of generating a random test case
+test_case = tcgen_usagitobi()
+print(test_case)
+```
+
+This function `tcgen_usagitobi` will generate a random test case, ensuring all the values are within the valid range. You can call this function multiple times to generate different test cases for your competitive programming problem.
+
+If you need to generate a large number of test cases or save them to a file for further use, you can extend the script as follows:
+
+```python
+def generate_multiple_test_cases(num_cases):
+    test_cases = [tcgen_usagitobi() for _ in range(num_cases)]
+    return test_cases
+
+# Generate 10 random test cases
+num_cases = 10
+test_cases = generate_multiple_test_cases(num_cases)
+
+# Print the test cases
+for case in test_cases:
+    print(case)
+
+# Optionally, save the test cases to a file
+with open('test_cases.txt', 'w') as f:
+    for case in test_cases:
+        f.write(' '.join(map(str, case)) + '\n')
+```
+
+This script will generate 10 random test cases and print them out. Additionally, it writes the test cases to a file named `test_cases.txt`, with each test case on a new line.

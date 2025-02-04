@@ -1,0 +1,59 @@
+Sure! Here's a test case generator for the "Princess in Danger" problem:
+
+```python
+import random
+
+def generate_test_case():
+    # Generate values for N, M, L, K, A, H
+    N = random.randint(2, 100)
+    M = random.randint(1, 100)
+    L = random.randint(0, N - 2)
+    K = random.randint(1, N * (N - 1) // 2)
+    A = random.randint(0, N - 1)
+    H = random.randint(0, N - 1)
+    
+    # Ensure A and H are different
+    while A == H:
+        H = random.randint(0, N - 1)
+    
+    # Generate cities with freezing facilities
+    freezing_facilities = random.sample([i for i in range(N) if i != A and i != H], L)
+    
+    # Generate K roads with random times and no duplicate roads
+    roads = set()
+    while len(roads) < K:
+        X = random.randint(0, N - 1)
+        Y = random.randint(0, N - 1)
+        T = random.randint(1, 100)
+        if X != Y and (X, Y) not in roads and (Y, X) not in roads:
+            roads.add((X, Y, T))
+    
+    # Format output as required by the problem statement
+    test_case = f"{N} {M} {L} {K} {A} {H}\n"
+    if L > 0:
+        test_case += " ".join(map(str, freezing_facilities)) + "\n"
+    for (X, Y, T) in roads:
+        test_case += f"{X} {Y} {T}\n"
+    
+    return test_case
+
+# Generate multiple test cases
+def generate_multiple_test_cases(num_cases=5):
+    test_cases = [generate_test_case() for _ in range(num_cases)]
+    return "\n".join(test_cases) + "0 0 0 0 0 0\n"
+
+# Example usage
+if __name__ == "__main__":
+    print(generate_multiple_test_cases(5))
+```
+
+This generator creates multiple test cases for the "Princess in Danger" problem. It ensures no duplicate roads, and that the capital (A) and the hospital (H) are different cities. The final output ends with the termination line "0 0 0 0 0 0".
+
+Here's how the generator works:
+1. Randomly generate values for `N`, `M`, `L`, `K`, `A`, and `H`.
+2. Ensure that the capital `A` and the hospital `H` are different cities.
+3. Generate a list of cities that have freezing facilities, excluding `A` and `H`.
+4. Generate up to `K` unique roads with random travel times between cities.
+5. Format the generated values into the required input format for the problem statement.
+
+You can adjust the number of test cases by changing the `num_cases` parameter in the `generate_multiple_test_cases` function.

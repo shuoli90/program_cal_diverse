@@ -1,0 +1,51 @@
+Problem
+Two players are playing a game. The rules of the game are explained below.
+There is an $N × N$ square board, and each square has a number $X_{i,j}$ ($1 \leq i,j \leq N$) written on it. The first player and the second player take turns stacking points. At the beginning, the first player has $F$ points, and the second player has $0$ points.
+The $t$-th turn ($1 \leq t \leq 2N$) indicates the player's action.
+If, from now on, the player loses no matter what hand he or she chooses, he or she declares defeat immediately and the game ends.
+The player chooses a number $Y_t$ from $1,2,...,N$ that he or she has not chosen before.
+    
+When it is the first player's turn (i.e., $t$ is odd and $t>1$), the first player gets $X_{Y_{t}, Y_{t-1}}$ points. If $t=1$, the first player's score does not change.
+When it is the second player's turn (i.e., $t$ is even), the second player gets $X_{Y_{t-1}, Y_{t}}$ points.
+When $t=2N$, determine the winner and end the game. The winner is the player with the most points, and if the points are the same, it is a draw.
+End the turn and pass the turn to the opponent.
+The first and second players choose a move based on the following criteria.
+When there is a move that results in a win, choose that move. If there are multiple moves that result in a win, choose the move that will end the game in the shortest number of turns.
+When there is no move that results in a win, choose a move that results in a draw.
+When there are no moves that result in a win or a draw, choose a move that will end the game in the longest number of turns.
+When the first and second players choose a move based on these criteria, determine the result of the game and the number of turns it will take to end the game.
+Input
+The input is in the following format. All given numbers are integers.
+N F
+X_{1,1} X_{1,2} ... X_{1,N}
+X_{2,1} X_{2,2} ... X_{2,N}
+...
+X_{N,1} X_{N,2} ... X_{N,N}
+Constraints
+$1 \leq N \leq 8$
+$-10^5 \leq F \leq 10^5$
+$-10^5 \leq X_{i,j} \leq 10^5$
+Output
+If the first player wins, output "First". If the second player wins, output "Second". If it is a draw, output "Draw" on the first line. Output the number of turns it takes to end the game on the second line.
+Sample Input 1
+2 0
+1 3
+1 1
+Output for the Sample Input 1
+Second
+3
+Sample Input 2
+2 100
+0 0
+0 0
+Output for the Sample Input 2
+First
+2
+Sample Input 3
+2 5
+3 4
+7 6
+Output for the Sample Input 3
+Draw
+4
+If both players play optimally, $(Y_1,Y_2,Y_3,Y_4) = (1,2,2,1)$, and both players will score 11 points, resulting in a draw.

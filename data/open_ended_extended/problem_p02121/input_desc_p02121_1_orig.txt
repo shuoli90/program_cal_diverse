@@ -1,0 +1,25 @@
+An integer n (2 ≤ n ≤ 200), representing some quantity.
+An integer m (1 ≤ m ≤ 15), representing some other quantity.
+A list of 4-tuples of integers (a_i, b_i, c_i, d_i) of size n, where each integer is between 0 and 1000.
+A list of pairs of integers (x_i, y_i) of size m, where each integer is between 0 and 1000.
+
+### Example Input:
+
+```
+2 1
+0 0 5 5
+3 3 6 6
+2 2
+```
+
+### Function Signature:
+Write a function f(n, m, locations, factories) that takes in the input.
+```python
+def f(n: int, m: int, locations: List[Tuple[int, int, int, int]], factories: List[Tuple[int, int]]):
+    '''
+    n: an integer
+    m: an integer
+    locations: a list of 4-tuples of integers
+    factories: a list of pairs of integers
+    '''
+```

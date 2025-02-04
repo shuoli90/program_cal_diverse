@@ -1,0 +1,25 @@
+An integer n (0 ≤ n ≤ 500), representing some dimension or size.
+An integer h (0 ≤ h ≤ 200), representing some quantity.
+A list of h tuples (ci, ai, bi), where:
+- ci is a string from the set {"xy", "xz", "yz"}.
+- ai and bi are integers (1 ≤ ai, bi ≤ n).
+
+### Example Input:
+
+```
+4 3
+xy 4 4
+xz 1 2
+yz 2 3
+```
+
+### Function Signature:
+Write a function f(inputs) that takes in the input.
+```python
+from typing import List, Tuple
+
+def f(inputs: List[Tuple[int, int, List[Tuple[str, int, int]]]]):
+    '''
+    inputs: a list of tuples where each tuple contains two integers and a list of tuples
+    '''
+```

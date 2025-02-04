@@ -1,0 +1,49 @@
+Sure, I can help you create a test case generator for the given problem statement "F: Absum". Here is the code for the test case generator:
+
+```python
+import random
+
+def tcgen():
+    # Generate a random value for N within the given constraints
+    N = random.randint(2, 10**5)
+    
+    # Generate a random value for M within the given constraints
+    M = random.randint(0, N)
+    
+    # Generate the array A with N elements, each between 0 and 10^5
+    A = [random.randint(0, 10**5) for _ in range(N)]
+    
+    return N, M, A
+
+# Example usage
+if __name__ == "__main__":
+    N, M, A = tcgen()
+    print(N, M)
+    print(' '.join(map(str, A)))
+```
+
+### Explanation of the Generator
+
+1. **N Generation**: 
+   - The number of elements \( N \) is randomly selected from the range [2, \( 10^5 \)].
+   
+2. **M Generation**:
+   - The number of operations \( M \) is randomly selected from the range [0, \( N \)].
+   
+3. **Array A Generation**:
+   - The elements of the array \( A \) are randomly selected integers from the range [0, \( 10^5 \)].
+
+### Example Output
+Running the `tcgen` function will give you a random test case:
+
+```
+5 3
+98237 12345 67890 54321 98765
+```
+
+This output means:
+- \( N = 5 \)
+- \( M = 3 \)
+- \( A = [98237, 12345, 67890, 54321, 98765] \)
+
+You can use this generator to create multiple test cases for your problem.

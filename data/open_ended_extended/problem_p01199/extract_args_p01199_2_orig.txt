@@ -1,0 +1,15 @@
+def extract_arguments(fh):
+    test_cases = []
+    while True:
+        line = fh.readline().strip()
+        if not line:
+            break
+        N, M, L = map(int, line.split())
+        pipelines = []
+        for _ in range(M):
+            Ai, Bi, Di = map(int, fh.readline().strip().split())
+            pipelines.append((Ai, Bi, Di))
+        P = list(map(int, fh.readline().strip().split()))
+        K = list(map(int, fh.readline().strip().split()))
+        test_cases.append((N, M, L, pipelines, P, K))
+    return test_cases

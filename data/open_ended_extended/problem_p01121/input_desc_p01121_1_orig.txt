@@ -1,0 +1,50 @@
+An integer \( n \) (3 ≤ \( n \) ≤ 9, \( n \) is odd), representing some dimension or length.
+A list of 6 * \( n \) strings, each string of length \( n \), containing either 'X' or '.'.
+
+### Example Input:
+
+```
+5
+..XX.
+.XXX.
+XXXXX
+XXXXX
+X....
+....X
+XXXXX
+.XXX.
+.XXX.
+.....
+..XXX
+XXXX.
+.XXXX
+.XXXX
+...X.
+...X.
+.XXXX
+XXXX.
+XXXX.
+.X.X.
+XXX.X
+.XXXX
+XXXXX
+.XXXX
+.XXXX
+XX...
+.XXXX
+XXXXX
+XXXXX
+XX...
+0
+```
+
+### Function Signature:
+Write a function `f(n, pieces)` that takes in the input.
+
+```python
+def f(n: int, pieces: List[str]):
+    '''
+    n: an integer
+    pieces: a list of strings
+    '''
+```

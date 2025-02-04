@@ -1,0 +1,20 @@
+def extract_arguments(fh):
+    datasets = []
+    while True:
+        N = int(fh.readline().strip())
+        if N == 0:
+            break
+        buildings = []
+        for _ in range(N):
+            x11, y11, x12, y12 = map(int, fh.readline().strip().split())
+            buildings.append((x11, y11, x12, y12))
+        Ax, Ay, Bx, By = map(int, fh.readline().strip().split())
+        datasets.append((N, buildings, (Ax, Ay, Bx, By)))
+    return datasets
+
+# if __name__ == "__main__":
+#     input_path = sys.argv[1]
+#     with open(input_path, 'r') as fh: 
+#     datasets = extract_arguments(fh)
+#     for dataset in datasets:
+#         f(dataset)

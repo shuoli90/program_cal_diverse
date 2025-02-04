@@ -1,0 +1,18 @@
+Sure! Below is a Python test case generator for the given problem statement:
+
+```python
+import random
+
+def generate_test_case():
+    length = random.randint(2, 10**5)
+    # First and last characters should be 'R' and 'L' respectively
+    S = 'R' + ''.join(random.choice('LR') for _ in range(length - 2)) + 'L'
+    return S
+
+# Example usage
+if __name__ == "__main__":
+    test_case = generate_test_case()
+    print(test_case)
+```
+
+This generator will create a random string `S` of length between 2 and 10^5, where the first character is 'R' and the last character is 'L', and all other characters in between are randomly chosen from 'L' and 'R'.

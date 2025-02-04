@@ -1,0 +1,204 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p01599 - Generation 1</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p01599 - Generation 1</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>
+Problem I: Train King
+Roland has been given a mission of dangerous material transfer by Train
+King. The material is stored in the station A and subject to being transferred
+to the station B. He will bring it by direct trains between A and B, one (or
+zero) unit per ride.
+Your task is to write a program to find out the most optimal way of his
+bringing. Your program will receive the timetable of trains on the mission day
+and should report how many units of material can be transferred at the end. Be
+aware that there can be trains which can go to the past time or the same time
+which train leaved the station.
+Each train consists of one or more cars. Roland is disallowed to ride the
+same car of the same train multiple times. This restriction avoids time paradox.
+He is still allowed to get on a different car, though. You can assume he can
+change trains instantly.
+Input
+The first line contains two integers NAB and NBA
+(0 <= NAB, 0 <= NBA and NAB
++ NBA <= 50). NAB denotes the number
+of trains from A to B; NBA denotes the number from B to A.
+The next NAB lines describe the information about
+trains from A to B. Each line gives the information of one train with three
+integers Ci, Di and Ai
+(1 <= Ci <= 10, 0 <= Di, Ai
+< 86400) : the number of cars, the departure time, and the arrival time.
+The next NBA lines describe the information about
+trains from B to A. The information is given in the same format.
+Output
+Print the maximum amount, in units, of dangerous material that can be
+transferred.
+Sample Input 1
+1 1
+10 100 0
+10 100 0
+Output for the Sample Input 1
+10
+Sample Input 2
+5 5
+10 0 100
+10 200 300
+10 400 500
+10 600 700
+10 800 900
+10 100 200
+10 300 400
+10 500 600
+10 700 800
+10 900 1000
+Output for the Sample Input 2
+5</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An integer NAB (0 ≤ NAB ≤ 50), representing a count.
+An integer NBA (0 ≤ NBA ≤ 50), representing a count.
+A list of NAB tuples, where each tuple contains three integers Ci (1 ≤ Ci ≤ 10), Di (0 ≤ Di < 86400), and Ai (0 ≤ Ai < 86400).
+A list of NBA tuples, where each tuple contains three integers Ci (1 ≤ Ci ≤ 10), Di (0 ≤ Di < 86400), and Ai (0 ≤ Ai < 86400).
+
+### Example Input:
+
+```
+1 1
+10 100 0
+10 100 0
+```
+
+### Function Signature:
+Write a function f(NAB, NBA, AB_info, BA_info) that takes in the input.
+```python
+def f(NAB: int, NBA: int, AB_info: List[Tuple[int, int, int]], BA_info: List[Tuple[int, int, int]]):
+    '''
+    NAB: an integer
+    NBA: an integer
+    AB_info: a list of tuples, each containing three integers
+    BA_info: a list of tuples, each containing three integers
+    '''
+```</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Here's a test case generator for the "Train King" problem:
+
+```python
+import random
+
+def tcgen():
+    # Generate NAB and NBA such that their sum is at most 50
+    NAB = random.randint(0, 50)
+    NBA = random.randint(0, 50 - NAB)
+    
+    # Generate train details for A to B trains
+    trains_AB = []
+    for _ in range(NAB):
+        Ci = random.randint(1, 10)  # number of cars
+        Di = random.randint(0, 86399)  # departure time
+        Ai = random.randint(0, 86399)  # arrival time
+        trains_AB.append((Ci, Di, Ai))
+    
+    # Generate train details for B to A trains
+    trains_BA = []
+    for _ in range(NBA):
+        Ci = random.randint(1, 10)  # number of cars
+        Di = random.randint(0, 86399)  # departure time
+        Ai = random.randint(0, 86399)  # arrival time
+        trains_BA.append((Ci, Di, Ai))
+    
+    return NAB, NBA, trains_AB, trains_BA
+
+# Print a generated test case to verify
+NAB, NBA, trains_AB, trains_BA = tcgen()
+print(NAB, NBA)
+for train in trains_AB:
+    print(*train)
+for train in trains_BA:
+    print(*train)
+```
+
+### Explanation:
+
+1. **NAB and NBA Generation:**
+   - We generate `NAB` (number of trains from A to B) and `NBA` (number of trains from B to A) such that their sum is at most 50.
+
+2. **Train Details Generation:**
+   - For each train, we generate:
+     - `Ci`: Number of cars in the train (between 1 and 10).
+     - `Di`: Departure time (between 0 and 86399 seconds).
+     - `Ai`: Arrival time (between 0 and 86399 seconds).
+
+3. **Output:**
+   - The generated values are printed in the required format.
+
+You can use this test case generator to create various test cases to validate your solution for the "Train King" problem.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    NAB, NBA = map(int, fh.readline().strip().split())
+    trains_AB = []
+    for _ in range(NAB):
+        Ci, Di, Ai = map(int, fh.readline().strip().split())
+        trains_AB.append((Ci, Di, Ai))
+    trains_BA = []
+    for _ in range(NBA):
+        Ci, Di, Ai = map(int, fh.readline().strip().split())
+        trains_BA.append((Ci, Di, Ai))
+    return NAB, NBA, trains_AB, trains_BA</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

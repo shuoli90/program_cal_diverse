@@ -1,0 +1,3 @@
+Types: Q: int, A: List[int], M: List[int]
+Ranges: 1 ≤ Q ≤ 100, 0 ≤ A[i] ≤ 10^9 (1 ≤ i ≤ Q), 1 ≤ M[i] ≤ 10^9 (1 ≤ i ≤ Q)
+Addtl Info: None

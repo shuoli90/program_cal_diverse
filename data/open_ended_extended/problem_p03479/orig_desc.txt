@@ -1,0 +1,20 @@
+
+Score : 300 points
+Problem StatementAs a token of his gratitude, Takahashi has decided to give his mother an integer sequence.
+The sequence A needs to satisfy the conditions below:
+A consists of integers between X and Y (inclusive).
+For each 1\leq i \leq |A|-1, A_{i+1} is a multiple of A_i and strictly greater than A_i.
+Find the maximum possible length of the sequence.
+Constraints
+1 \leq X \leq Y \leq 10^{18}
+All input values are integers.
+InputInput is given from Standard Input in the following format:
+X Y
+OutputPrint the maximum possible length of the sequence.
+Sample Input 13 20
+Sample Output 13
+The sequence 3,6,18 satisfies the conditions.
+Sample Input 225 100
+Sample Output 23
+Sample Input 3314159265 358979323846264338
+Sample Output 331

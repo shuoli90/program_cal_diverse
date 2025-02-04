@@ -1,0 +1,60 @@
+Sure, I can help you write a test case generator for the problem "Young, Poor and Busy". This generator will create random test cases based on the specifications provided. Below is a Python script that generates such test cases:
+
+```python
+import random
+import string
+
+def random_city():
+    # Generate a random city name with up to 16 alphabetical characters
+    return ''.join(random.choices(string.ascii_uppercase + string.ascii_lowercase, k=random.randint(1, 16)))
+
+def random_time():
+    # Generate a random time in HH:MM format
+    hour = random.randint(0, 23)
+    minute = random.randint(0, 59)
+    return f"{hour:02d}:{minute:02d}"
+
+def is_valid_time(start, end):
+    # Ensure the end time is strictly after start time
+    start_hour, start_minute = map(int, start.split(':'))
+    end_hour, end_minute = map(int, end.split(':'))
+    return (end_hour > start_hour) or (end_hour == start_hour and end_minute > start_minute)
+
+def generate_connection():
+    start_city = random_city()
+    start_time = random_time()
+    arrival_city = random_city()
+    while True:
+        arrival_time = random_time()
+        if is_valid_time(start_time, arrival_time):
+            break
+    price = random.randint(1, 10000)
+    return f"{start_city} {start_time} {arrival_city} {arrival_time} {price}"
+
+def tcgen():
+    num_datasets = random.randint(1, 10)
+    datasets = []
+
+    for _ in range(num_datasets):
+        num_connections = random.randint(1, 2000)
+        connections = [generate_connection() for _ in range(num_connections)]
+        datasets.append(f"{num_connections}\n" + "\n".join(connections))
+    
+    test_case = "\n".join(datasets) + "\n0"
+    return test_case
+
+# Example usage:
+print(tcgen())
+```
+
+### Explanation:
+1. **random_city()**: Generates a random city name of up to 16 characters.
+2. **random_time()**: Generates a random time in HH:MM format.
+3. **is_valid_time(start, end)**: Checks if the end time is strictly after the start time.
+4. **generate_connection()**: Generates a random connection with valid times and price.
+5. **tcgen()**: Generates multiple datasets with a random number of connections for each dataset.
+
+### Sample Output:
+The script will generate a test case with a sequence of datasets, each containing a number of connections in the specified format. The last line will be a zero to indicate the end of input.
+
+This generator creates realistic and valid test cases for the problem, ensuring you can test your solution against a variety of scenarios.

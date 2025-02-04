@@ -1,0 +1,49 @@
+Sure, I can help you with that. Here is a test case generator for the given problem statement "School of Killifish".
+
+```python
+import random
+
+def tcgen():
+    # Generate values for r, c, and q
+    r = random.randint(1, 1000)  # since r * c ≤ 10^6, taking a reasonable upper limit for r
+    c = random.randint(1, 1000)
+    while r * c > 10**6:
+        r = random.randint(1, 1000)
+        c = random.randint(1, 1000)
+    
+    q = random.randint(1, min(10000, 10**6 // (r * c)))
+    
+    # Generate the grid
+    grid = [[random.randint(0, 2**31 - 1) for _ in range(c)] for _ in range(r)]
+    
+    # Generate the queries
+    queries = []
+    for _ in range(q):
+        r1 = random.randint(0, r - 1)
+        r2 = random.randint(r1, r - 1)
+        c1 = random.randint(0, c - 1)
+        c2 = random.randint(c1, c - 1)
+        queries.append((r1, c1, r2, c2))
+    
+    return r, c, q, grid, queries
+
+def format_input(r, c, q, grid, queries):
+    # Format the input in the specified format
+    input_data = f"{r} {c} {q}\n"
+    for row in grid:
+        input_data += " ".join(map(str, row)) + "\n"
+    for query in queries:
+        input_data += " ".join(map(str, query)) + "\n"
+    
+    return input_data
+
+# Example usage
+if __name__ == "__main__":
+    r, c, q, grid, queries = tcgen()
+    input_data = format_input(r, c, q, grid, queries)
+    print(input_data)
+```
+
+This script will generate a random test case for the "School of Killifish" problem. The `tcgen` function creates a grid of random dangerousness values and a list of queries to find the minimum dangerousness value within specified subgrids. The `format_input` function then formats these values into a string that represents the input format described in the problem statement.
+
+Adjust the parameters and ranges as necessary to ensure the generated test cases are within the problem's constraints.

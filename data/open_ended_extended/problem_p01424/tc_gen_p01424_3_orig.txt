@@ -1,0 +1,44 @@
+Certainly! Here is a Python function that generates random test cases for the "Palindrome Generator" problem statement:
+
+```python
+import random
+import string
+
+def generate_random_word():
+    word_length = random.randint(1, 10)
+    return ''.join(random.choices(string.ascii_lowercase, k=word_length))
+
+def tcgen_palindrome_generator():
+    # Generate N and M
+    N = random.randint(1, 100)
+    M = random.randint(0, 1000)
+    
+    # Generate N words
+    words = [generate_random_word() for _ in range(N)]
+    
+    # Generate M ordered pairs
+    pairs = [(random.randint(1, N), random.randint(1, N)) for _ in range(M)]
+    
+    return N, M, words, pairs
+
+# Convert the generated test case to the desired input format
+def format_test_case(N, M, words, pairs):
+    test_case = f"{N} {M}\n"
+    test_case += "\n".join(words) + "\n"
+    test_case += "\n".join(f"{x} {y}" for x, y in pairs)
+    return test_case
+
+# Example usage:
+N, M, words, pairs = tcgen_palindrome_generator()
+formatted_test_case = format_test_case(N, M, words, pairs)
+print(formatted_test_case)
+```
+
+This script generates a random test case for the "Palindrome Generator" problem. The test case includes:
+
+1. An integer \( N \) representing the number of words in the dictionary.
+2. An integer \( M \) representing the number of ordered pairs of words.
+3. A list of \( N \) words, each consisting of 1 to 10 lowercase letters.
+4. A list of \( M \) ordered pairs, each pair consists of two integers representing the indices of the words in the dictionary.
+
+You can run this script to generate different test cases for the problem. The `format_test_case` function formats the generated test case into the required input format.

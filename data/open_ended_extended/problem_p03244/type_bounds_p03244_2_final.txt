@@ -1,0 +1,3 @@
+Types: n: int, v: List[int]
+Ranges: 2 ≤ n ≤ 10^5, 1 ≤ v[i] ≤ 10^5
+Addtl Info: n is even, v[i] is an integer

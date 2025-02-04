@@ -1,0 +1,14 @@
+def extract_arguments(fh):
+    datasets = []
+    while True:
+        line = fh.readline().strip()
+        if line == '0000':
+            break
+        datasets.append(int(line))
+    return datasets
+
+# if __name__ == "__main__":
+#     input_path = sys.argv[1]
+#     with open(input_path, 'r') as fh: 
+#     inputs = extract_arguments(fh)
+#     f(inputs)

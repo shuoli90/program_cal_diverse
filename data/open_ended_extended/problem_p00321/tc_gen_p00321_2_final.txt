@@ -1,0 +1,59 @@
+Sure, I can help you write a test case generator for the given problem statement "Related Products". Here's a Python function that generates random test cases according to the specified constraints:
+
+```python
+import random
+import string
+
+def generate_random_product_name():
+    length = random.randint(1, 30)
+    return ''.join(random.choices(string.ascii_lowercase, k=length))
+
+def tcgen():
+    N = random.randint(1, 100)
+    F = random.randint(1, 100)
+    
+    info = []
+    for _ in range(N):
+        M = random.randint(1, 10)
+        items = set()
+        while len(items) < M:
+            items.add(generate_random_product_name())
+        info.append(f"{M} " + " ".join(items))
+    
+    return N, F, info
+
+# Function to print the test case in the required format
+def print_test_case():
+    N, F, info = tcgen()
+    print(N, F)
+    for line in info:
+        print(line)
+
+# Example of generating and printing a test case
+print_test_case()
+```
+
+### Explanation:
+
+1. **Function `generate_random_product_name`**:
+    - This generates a random product name of length between 1 and 30 using lowercase English letters.
+
+2. **Function `tcgen`**:
+    - This generates random values for \( N \) (number of pieces of information) and \( F \) (criterion number).
+    - It iterates \( N \) times to generate \( N \) pieces of product-purchase information.
+    - Each piece of information consists of a random number \( M \) (number of products) and \( M \) unique product names.
+
+3. **Function `print_test_case`**:
+    - This generates a test case using `tcgen` and prints it in the required format.
+
+### Example Output:
+Running the `print_test_case` function may produce an output like this:
+```
+75 42
+3 xkzvdfqonogxtj uuhuggcmrmlok azffp
+4 kfmqjnyg rzdvuzsoaztsnhvmsn yxwglfczfvcyzpgxht ahlyah
+2 akzrvp ryxp
+...
+```
+
+This function can be used to generate multiple test cases for testing the solution to the "Related Products" problem.

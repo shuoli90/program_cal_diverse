@@ -1,0 +1,27 @@
+Problem A: Special Chat
+Problem
+The popular video sharing site "ZouTube" is currently in the midst of a unprecedented "virtual ZouTuber" boom. Among them, the one that has recently attracted the most attention is the junior virtual ZouTuber "Aizumari Mu (aka: Azurimu)".
+As a big fan of Azurimu, you plan to send her a "Special Chat" during her live stream today.
+"Special Chat" is a function provided by ZouTube that allows viewers to give points to the streamer. For each Special Chat, viewers can consume either $500$, $1000$, $5000$, or $10000$ points, and give the same amount of points to the streamer.
+Given the total amount of points you currently have, find the maximum number of points you can give to Azurimu by consuming your points. You can perform Special Chat as many times as you like as long as the number of points you consume does not exceed the number of points you have.
+Input
+The input is given in the following format:
+$P$
+An integer $P$ is given on a single line, which represents the total amount of points you currently have.
+Constraints
+The input satisfies the following conditions:
+$1 \le P \le 10^5$
+Output
+Output the maximum number of points you can give to Azurimu on a single line.
+Sample Input 1
+5700
+Sample Output 1
+5500
+Sample Input 2
+1333
+Sample Output 2
+1000
+Sample Input 3
+100000
+Sample Output 3
+100000

@@ -1,0 +1,209 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p01699 - Generation 1</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p01699 - Generation 1</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>Elevator Hall Number
+JAG (Japanese Alumni Group) is a mysterious organization located in a high-rise building somewhere in Tokyo. The building has $N$ elevators, and the $i$-th elevator stops at each floor from $low_i$ to $high_i$ ($1 \le i \le N$).
+X, a new member of JAG, has arrived at the elevator hall of the building to visit the headquarters. While waiting for the elevator after pressing the button, X noticed that the display showing the current floor of the elevator is a little different. When the $i$-th elevator is on the $a_i$-th floor, the display shows a single number obtained by concatenating $a_1,a_2,\dots,a_N$ in order without leading zeros or spaces. For example, if $N=3$ and the elevators are on the 10th, 2nd, and 11th floors, then "10211" is displayed.
+X is curious about how many possible numbers can be displayed on the screen. Your task is to create a program that calculates this.
+Input:
+The input consists of multiple datasets. Each dataset has the following format:
+  $N$
+  $low_1$ $high_1$
+  $\dots$
+  $low_N$ $high_N$
+The first line of each dataset contains an integer $N$ ($2 \leq N \leq 6$) that represents the number of elevators. The $i$-th of the following $N$ lines contains two integers $low_i$ and $high_i$ ($1 \leq low_i \leq high_i \leq 99$), which represent the range of floors that the $i$-th elevator can reach.
+The input ends with a line containing a single zero.
+Output:
+For each dataset, output the number of possible numbers that can be displayed on the screen in a single line.
+Sample Input:
+2
+1 11
+1 11
+3
+10 10
+2 2
+11 11
+4
+89 91
+1 12
+1 12
+89 91
+5
+1 8
+2 76
+10 19
+6 16
+33 42
+6
+10 59
+20 69
+30 79
+40 89
+50 99
+50 99
+0
+Sample Output:
+120
+1
+1278
+659520
+15625000000
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An integer N (2 ≤ N ≤ 6), representing some quantity or size.
+N pairs of integers (low_i, high_i) (1 ≤ low_i ≤ high_i ≤ 99).
+
+### Example Input:
+
+```
+2
+1 11
+1 11
+```
+
+### Function Signature:
+Write a function f(inputs) that takes in the input.
+def f(inputs: List[Tuple[int, int]]):
+    '''
+    inputs: a list of tuples, each containing two integers
+    '''</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Certainly! Here is a test case generator for the given problem statement "Elevator Hall Number":
+
+```python
+import random
+
+def tcgen():
+    # Number of datasets to generate
+    num_datasets = random.randint(1, 10)
+    datasets = []
+    
+    for _ in range(num_datasets):
+        N = random.randint(2, 6)  # Number of elevators
+        ranges = []
+        
+        for _ in range(N):
+            low = random.randint(1, 99)
+            high = random.randint(low, 99)
+            ranges.append((low, high))
+        
+        datasets.append((N, ranges))
+    
+    # Append a single zero line to indicate end of input
+    datasets.append(0)
+    
+    return datasets
+
+def format_datasets(datasets):
+    formatted = []
+    for dataset in datasets:
+        if dataset == 0:
+            formatted.append("0")
+        else:
+            N, ranges = dataset
+            formatted.append(str(N))
+            for low, high in ranges:
+                formatted.append(f"{low} {high}")
+    return "\n".join(formatted)
+
+# Example usage
+datasets = tcgen()
+formatted_input = format_datasets(datasets)
+print(formatted_input)
+```
+
+This generator creates a random number of datasets according to the constraints provided in the problem statement. Each dataset contains a random number of elevators (between 2 and 6) and for each elevator, a random range of floors is specified. Finally, a zero is appended to indicate the end of input.
+
+**Example output of the test case generator:**
+
+```
+3
+1 20
+10 30
+5 15
+2
+1 1
+50 99
+4
+10 20
+5 10
+1 5
+90 99
+0
+```
+
+This generator ensures that the ranges are valid and that the number of elevators and their respective floor ranges are within the specified constraints. The output is formatted to match the expected input format for the problem.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    datasets = []
+    while True:
+        N = int(fh.readline().strip())
+        if N == 0:
+            break
+        ranges = []
+        for _ in range(N):
+            low, high = map(int, fh.readline().strip().split())
+            ranges.append((low, high))
+        datasets.append((N, ranges))
+    return datasets</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

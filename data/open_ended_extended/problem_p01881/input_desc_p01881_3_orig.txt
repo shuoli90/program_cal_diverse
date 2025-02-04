@@ -1,0 +1,20 @@
+An integer H (2 ≤ H ≤ 200), representing some dimension.
+An integer W (2 ≤ W ≤ 200), representing some dimension.
+A list of H strings, each of length W, consisting of characters from the set {'@', '$', '%', '.', '#'}. The list represents a grid of cells.
+
+### Example Input:
+
+```
+2 4
+%.@$
+..$$
+```
+
+### Function Signature:
+Write a function f(H, W, grid) that takes in the input. 
+def f(H: int, W: int, grid: List[str]): 
+    ''' 
+    H: an integer 
+    W: an integer 
+    grid: a list of strings 
+    '''

@@ -1,0 +1,43 @@
+Certainly! Based on the problem statement for "How many ways?", I will create a test case generator that produces multiple datasets and terminates with the end symbols (0, 0). The function will ensure that each dataset adheres to the constraints provided.
+
+Here's the test case generator:
+
+```python
+import random
+
+def generate_test_cases(num_cases):
+    test_cases = []
+    
+    for _ in range(num_cases):
+        n = random.randint(3, 100)
+        x = random.randint(0, 300)
+        
+        # Ensure we are not generating the terminating case until the end
+        if (n, x) != (0, 0):
+            test_cases.append((n, x))
+    
+    # Adding the terminating case (0, 0)
+    test_cases.append((0, 0))
+    
+    return test_cases
+
+# Example usage:
+num_cases = 5  # Number of non-terminating test cases to generate
+test_cases = generate_test_cases(num_cases)
+for tc in test_cases:
+    print(f"{tc[0]} {tc[1]}")
+```
+
+This function `generate_test_cases` takes an argument `num_cases` to specify the number of non-terminating test cases to generate. It generates random values for `n` and `x` within the specified constraints, ensuring that the terminating case `(0, 0)` is only added once at the end. Each test case is printed in the format expected by the problem.
+
+Sample output might look like this:
+```
+45 127
+10 28
+100 250
+3 5
+78 195
+0 0
+```
+
+You can adjust the `num_cases` variable to generate more or fewer test cases as needed.

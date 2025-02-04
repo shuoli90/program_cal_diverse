@@ -1,0 +1,70 @@
+Certainly! Below is the implementation of a test case generator for the provided problem statement "DAG Trio".
+
+```python
+import random
+
+def generate_graph(N, M):
+    edges = set()
+    while len(edges) < M:
+        a = random.randint(1, N)
+        b = random.randint(1, N)
+        if a != b:
+            edge = (a, b)
+            reverse_edge = (b, a)
+            if edge not in edges and reverse_edge not in edges:
+                edges.add(edge)
+    return list(edges)
+
+def is_connected(graph, N):
+    from collections import defaultdict, deque
+    
+    adjacency_list = defaultdict(list)
+    for a, b in graph:
+        adjacency_list[a].append(b)
+        adjacency_list[b].append(a)
+    
+    visited = set()
+    queue = deque([1])
+    visited.add(1)
+    
+    while queue:
+        node = queue.popleft()
+        for neighbor in adjacency_list[node]:
+            if neighbor not in visited:
+                visited.add(neighbor)
+                queue.append(neighbor)
+    
+    return len(visited) == N
+
+def tcgen():
+    N = random.randint(3, 500)
+    M = random.randint(max(3, N - 1), 30000)
+    
+    while True:
+        graph = generate_graph(N, M)
+        if is_connected(graph, N):
+            break
+    
+    return N, M, graph
+
+# Generate a test case
+N, M, graph = tcgen()
+
+print(N, M)
+for a, b in graph:
+    print(a, b)
+```
+
+### Explanation:
+
+1. **generate_graph(N, M)**: Generates a random graph with N vertices and M edges. It ensures that there are no self-loops and no multiple edges between any two vertices.
+   
+2. **is_connected(graph, N)**: Checks if the generated graph is connected by performing BFS (Breadth-First Search).
+
+3. **tcgen()**: Generates the number of vertices \(N\) and edges \(M\) within the given constraints, then repeatedly generates and checks random graphs until a connected one is found.
+
+4. **print(N, M)**: Prints the number of vertices and edges.
+   
+5. **for a, b in graph**: Prints each edge of the graph.
+
+This generator ensures that the generated graph adheres to the constraints and is connected, as required by the problem statement.

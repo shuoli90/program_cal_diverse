@@ -1,0 +1,8 @@
+def extract_arguments(fh):
+    inputs = []
+    while True:
+        N = int(fh.readline().strip())
+        if N == 0:
+            break
+        inputs.append((N,))
+    return inputs

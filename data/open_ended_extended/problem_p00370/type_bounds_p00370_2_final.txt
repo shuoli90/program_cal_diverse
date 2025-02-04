@@ -1,0 +1,5 @@
+Types: x_s: int, y_s: int, x_g: int, y_g: int, N: int, x_i: List[int], y_i: List[int]
+
+Ranges: 0 ≤ x_s, y_s, x_g, y_g ≤ 10^4, 3 ≤ N ≤ 100, 0 ≤ x_i, y_i ≤ 10^4 
+
+Addtl Info: Start and end points of the expedition are not within the area enclosed by the polygon nor on boundaries. Start and end points of the expedition are not identical, i.e., x_s ≠ x_g or y_s ≠ y_g. No duplicate coordinates are given, i.e., if i ≠ j then x_i ≠ x_j or y_i ≠ y_j. The area enclosed by the polygon has a positive value. Any three coordinates that define an area are not aligned on a line.

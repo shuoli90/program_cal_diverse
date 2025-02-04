@@ -1,0 +1,48 @@
+Sure, let's write a test case generator for the given problem statement. The generator will create random valid inputs based on the constraints provided.
+
+```python
+import random
+
+def tcgen():
+    # Generate N, M, and Q
+    N = random.randint(2, 10)
+    M = random.randint(1, 10)
+    Q = random.randint(1, 50)
+
+    # Generate Q quadruples of (a_i, b_i, c_i, d_i)
+    quadruples = []
+    for _ in range(Q):
+        a_i = random.randint(1, N - 1)
+        b_i = random.randint(a_i + 1, N)
+        c_i = random.randint(0, M - 1)
+        d_i = random.randint(1, 10**5)
+        quadruples.append((a_i, b_i, c_i, d_i))
+    
+    # Return generated values in the required format
+    return N, M, Q, quadruples
+
+def format_test_case(N, M, Q, quadruples):
+    formatted = f"{N} {M} {Q}\n"
+    formatted += "\n".join(f"{a} {b} {c} {d}" for a, b, c, d in quadruples)
+    return formatted
+
+# Generate a test case
+N, M, Q, quadruples = tcgen()
+test_case = format_test_case(N, M, Q, quadruples)
+print(test_case)
+```
+
+### Explanation:
+
+1. **`tcgen` function:**
+   - Generates random integers for `N`, `M`, and `Q` within specified constraints.
+   - Creates a list of `Q` quadruples `(a_i, b_i, c_i, d_i)` with each value satisfying the given problem constraints.
+
+2. **`format_test_case` function:**
+   - Formats the generated test case according to the input format required by the problem statement.
+
+3. **Generating and printing a test case:**
+   - We call `tcgen` to get a random test case.
+   - We then use `format_test_case` to format it and print it.
+
+This generator ensures that all the constraints are adhered to, and it produces a variety of test cases for robust testing of your solution.

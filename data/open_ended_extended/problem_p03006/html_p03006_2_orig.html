@@ -1,0 +1,163 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p03006 - Generation 2</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p03006 - Generation 2</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>
+Score : 300 points
+Problem StatementThere are N balls in a two-dimensional plane. The i-th ball is at coordinates (x_i, y_i).
+We will collect all of these balls, by choosing two integers p and q such that p \neq 0 or q \neq 0 and then repeating the following operation:
+Choose a ball remaining in the plane and collect it. Let (a, b) be the coordinates of this ball. If we collected a ball at coordinates (a - p, b - q) in the previous operation, the cost of this operation is 0. Otherwise, including when this is the first time to do this operation, the cost of this operation is 1.
+Find the minimum total cost required to collect all the balls when we optimally choose p and q.
+Constraints
+1 \leq N \leq 50
+|x_i|, |y_i| \leq 10^9
+If i \neq j, x_i \neq x_j or y_i \neq y_j.
+All values in input are integers.
+InputInput is given from Standard Input in the following format:
+N
+x_1 y_1
+:
+x_N y_N
+OutputPrint the minimum total cost required to collect all the balls.
+Sample Input 12
+1 1
+2 2
+Sample Output 11
+If we choose p = 1, q = 1, we can collect all the balls at a cost of 1 by collecting them in the order (1, 1), (2, 2).
+Sample Input 23
+1 4
+4 6
+7 8
+Sample Output 21
+If we choose p = -3, q = -2, we can collect all the balls at a cost of 1 by collecting them in the order (7, 8), (4, 6), (1, 4).
+Sample Input 34
+1 1
+1 2
+2 1
+2 2
+Sample Output 32
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An integer N (1 ≤ N ≤ 50), representing some quantity or size.  
+A list of N pairs of integers (x, y), where each integer x and y is between -1e9 and 1e9, and for all pairs (i ≠ j), either x_i ≠ x_j or y_i ≠ y_j.  
+
+### Example Input:
+
+```
+2
+1 1
+2 2
+```
+
+### Function Signature:
+Write a function f(N, coordinates) that takes in the input. 
+```python
+def f(N: int, coordinates: List[Tuple[int, int]]):
+    '''
+    N: an integer 
+    coordinates: a list of tuples, where each tuple contains two integers
+    '''
+```</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Sure, here is a test case generator for the given problem:
+
+```python
+import random
+
+def generate_coordinates(N):
+    coordinates = set()
+    while len(coordinates) < N:
+        x = random.randint(-10**9, 10**9)
+        y = random.randint(-10**9, 10**9)
+        coordinates.add((x, y))
+    return list(coordinates)
+
+def tcgen():
+    N = random.randint(1, 50)
+    coordinates = generate_coordinates(N)
+    
+    return N, coordinates
+
+# Example usage
+if __name__ == "__main__":
+    N, coordinates = tcgen()
+    print(N)
+    for x, y in coordinates:
+        print(x, y)
+```
+
+### Explanation:
+
+- **generate_coordinates(N)**: This function generates a set of \(N\) unique coordinate pairs \((x, y)\) where \(|x|\) and \(|y|\) are within the range \([-10^9, 10^9]\).
+- **tcgen()**: This function generates a random integer \(N\) within the range \([1, 50]\) and then calls `generate_coordinates(N)` to get the unique coordinates.
+- **Example usage**: In the example usage section, the `tcgen` function is called, and the generated number of balls \(N\) and their coordinates are printed in the required format.
+
+You can run this code to generate random test cases for the given problem statement.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    N = int(fh.readline().strip())
+    coordinates = []
+    for _ in range(N):
+        x, y = map(int, fh.readline().strip().split())
+        coordinates.append((x, y))
+    return N, coordinates</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

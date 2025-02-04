@@ -1,0 +1,21 @@
+def extract_arguments(fh):
+    datasets = []
+    while True:
+        first_line = fh.readline().strip()
+        if first_line == "0 0":
+            break
+        Time, R = map(int, first_line.split())
+        L = int(fh.readline().strip())
+        mary_moves = []
+        for _ in range(L):
+            mary_moves.append(tuple(map(int, fh.readline().strip().split())))
+        M = int(fh.readline().strip())
+        george_moves = []
+        for _ in range(M):
+            george_moves.append(tuple(map(int, fh.readline().strip().split())))
+        N = int(fh.readline().strip())
+        obstacles = []
+        for _ in range(N):
+            obstacles.append(tuple(map(int, fh.readline().strip().split())))
+        datasets.append((Time, R, mary_moves, george_moves, obstacles))
+    return datasets

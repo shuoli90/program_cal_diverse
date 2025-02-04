@@ -1,0 +1,21 @@
+An integer N (3 ≤ N ≤ 2047), representing some dimension. N is odd.
+A list of N strings where each string is of length N, and each character in the string is either 'o' or 'x'.
+
+### Example Input:
+
+```
+5
+oxooo
+oxooo
+oxooo
+xxxxx
+oxooo
+```
+
+### Function Signature:
+Write a function f(N, grid) that takes in the input.
+def f(N: int, grid: List[str]):
+    '''
+    N: an integer
+    grid: a list of strings
+    '''

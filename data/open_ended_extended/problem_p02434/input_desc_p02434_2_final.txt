@@ -1,0 +1,36 @@
+An integer \(n\) (1 ≤ \(n\) ≤ 1,000), representing some quantity or size.
+An integer \(q\) (1 ≤ \(q\) ≤ 500,000), representing some quantity or size.
+A list of \(q\) queries, where each query is either:
+- '0 t x' with integers \(t\) (0 ≤ \(t\) < \(n\)) and \(x\) (-1,000,000,000 ≤ \(x\) ≤ 1,000,000,000)
+- '1 t' with an integer \(t\) (0 ≤ \(t\) < \(n\))
+- '2 t' with an integer \(t\) (0 ≤ \(t\) < \(n\))
+
+### Example Input:
+
+```
+3 13
+0 0 1
+0 0 2
+0 0 3
+0 1 -1
+0 2 4
+0 2 5
+1 0
+1 1
+1 2
+2 1
+1 0
+1 1
+1 2
+```
+
+### Function Signature:
+Write a function f(n, q, queries) that takes in the input.
+```python
+def f(n: int, q: int, queries: List[str]):
+    '''
+    n: an integer
+    q: an integer
+    queries: a list of strings
+    '''
+```

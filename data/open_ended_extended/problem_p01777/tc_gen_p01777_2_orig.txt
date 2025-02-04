@@ -1,0 +1,43 @@
+Certainly! Here's a test case generator for the given problem statement "Disordered Data Detection":
+
+```python
+import random
+
+def tcgen():
+    # Length of the sequence
+    D = random.randint(1, 100000)
+    
+    # Generating the sequence X
+    X = [random.randint(-10**8, 10**8) for _ in range(D)]
+    
+    # Number of queries
+    Q = random.randint(1, 100000)
+    
+    queries = []
+    for _ in range(Q):
+        l = random.randint(1, D)
+        r = random.randint(l, D)  # ensuring l <= r
+        e = random.randint(0, 10**8)
+        queries.append((l, r, e))
+    
+    return D, X, Q, queries
+
+# Example usage:
+D, X, Q, queries = tcgen()
+
+# Printing the generated test case
+print(D)
+print(' '.join(map(str, X)))
+print(Q)
+for q in queries:
+    print(q[0], q[1], q[2])
+```
+
+This test case generator randomly creates the input data for the problem:
+
+1. It generates a random length `D` for the sequence within the allowed range [1, 100000].
+2. It creates a sequence `X` of length `D` where each element is an integer in the range [-10^8, 10^8].
+3. It generates a random number of queries `Q` within the allowed range [1, 100000].
+4. For each query, it generates random values for `l`, `r`, and `e` ensuring `1 ≤ l ≤ r ≤ D` and `0 ≤ e ≤ 10^8`.
+
+You can run this generator to create diverse test cases for the problem.

@@ -1,0 +1,24 @@
+To create a test case generator for the problem "Ebi-chan and Integer Sequences," we need to generate values for \( n \) and \( m \) within their specified constraints. Here's a Python function that generates random test cases for this problem:
+
+```python
+import random
+
+def tcgen():
+    # Generate n in the range from 1 to 10^15
+    n = random.randint(1, 10**15)
+    
+    # Generate m in the range from 0 to 10^15
+    m = random.randint(0, 10**15)
+    
+    return n, m
+
+# Example usage:
+n, m = tcgen()
+print(n, m)
+```
+
+This function generates a random integer \( n \) between 1 and \( 10^{15} \) and a random integer \( m \) between 0 and \( 10^{15} \). These values will be used as inputs for the problem statement.
+
+To ensure the function works correctly, you can run the example usage which will print one set of generated test inputs to verify their correctness.
+
+Please note that this test case generator can generate very large values, so ensure your environment can handle such large integers before running it.

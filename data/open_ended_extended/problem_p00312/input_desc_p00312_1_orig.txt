@@ -1,0 +1,16 @@
+An integer D (1 ≤ D ≤ 10000), representing some quantity.
+An integer L (2 ≤ L ≤ 10000), representing some other quantity.
+
+### Example Input:
+
+```
+10 5
+```
+
+### Function Signature:
+Write a function f(D, L) that takes in the input. 
+def f(D: int, L: int): 
+    ''' 
+    D: an integer 
+    L: an integer
+    '''

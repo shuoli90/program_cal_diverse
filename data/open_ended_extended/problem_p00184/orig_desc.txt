@@ -1,0 +1,60 @@
+Tsuruga Castle
+Tsuruga Castle, which is a symbol of Aizuwakamatsu City, was built by Ujisato Gamou with a fully-fledged castle tower and named it "Tsuruga Castle". From the castle tower, you can enjoy a panoramic view of the Aizu Basin. On a clear day, you can also see Tsuruga Castle from the summit of Iimoriyama, famous for the Byakkotai.
+In order to use it as a reference for future public relations activities in Aizuwakamatsu City, we decided to conduct an age survey of visitors to Tsuruga Castle. Create a program that outputs the number of people in each age group below based on the visitor's age input.
+  Age GroupAge Range
+Under 10  0  ~ 9
+ 10's  10  ~ 19
+ 20's  20  ~ 29
+ 30's  30  ~ 39
+ 40's  40  ~ 49
+ 50's  50  ~ 59
+Over 60 60  ~
+Input
+The input consists of a sequence of multiple datasets. The end of input is indicated by a line containing a single zero.
+Each dataset is given in the following format.
+n
+a1
+a2
+:
+an
+The first line contains the number of visitors n (1 ≤ n ≤ 1000000), followed by n lines describing the age ai (0 ≤ ai ≤ 120) of the i-th visitor.
+Output
+For each dataset, output the number of people in each age group in the following format:
+1st line: Number of people under 10
+2nd line: Number of people in their 10's
+3rd line: Number of people in their 20's
+4th line: Number of people in their 30's
+5th line: Number of people in their 40's
+6th line: Number of people in their 50's
+7th line: Number of people over 60
+Sample Input
+8
+71
+34
+65
+11
+41
+39
+6
+5
+4
+67
+81
+78
+65
+0
+Output for the Sample Input
+2
+1
+0
+2
+1
+0
+2
+0
+0
+0
+0
+0
+0
+4

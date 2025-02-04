@@ -1,0 +1,11 @@
+def extract_arguments(fh):
+    L, Q = map(int, fh.readline().strip().split())
+    S = fh.readline().strip()
+    T = [fh.readline().strip() for _ in range(Q)]
+    return L, Q, S, T
+
+# if __name__ == "__main__":
+#     input_path = sys.argv[1]
+#     with open(input_path, 'r') as fh:
+#         L, Q, S, T = extract_arguments(fh)
+#         f(L, Q, S, T)

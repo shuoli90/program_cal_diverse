@@ -1,0 +1,3 @@
+Types: y1: int, m1: int, d1: int, y2: int, m2: int, d2: int  
+Ranges: any integer value (input will end if any value is negative)  
+Addtl Info: The number of datasets will not exceed 50; date 1 is the same as or earlier than date 2

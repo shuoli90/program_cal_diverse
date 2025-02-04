@@ -1,0 +1,195 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p03263 - Generation 1</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p03263 - Generation 1</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>
+Score : 400 points
+Problem StatementThere is a grid of square cells with H horizontal rows and W vertical columns. The cell at the i-th row and the j-th column will be denoted as Cell (i, j).
+In Cell (i, j), a_{ij} coins are placed.
+You can perform the following operation any number of times:
+Operation: Choose a cell that was not chosen before and contains one or more coins, then move one of those coins to a vertically or horizontally adjacent cell.
+Maximize the number of cells containing an even number of coins.
+Constraints
+All values in input are integers.
+1 \leq H, W \leq 500
+0 \leq a_{ij} \leq 9
+InputInput is given from Standard Input in the following format:
+H W
+a_{11} a_{12} ... a_{1W}
+a_{21} a_{22} ... a_{2W}
+:
+a_{H1} a_{H2} ... a_{HW}
+OutputPrint a sequence of operations that maximizes the number of cells containing an even number of coins, in the following format:
+N
+y_1 x_1 y_1' x_1'
+y_2 x_2 y_2' x_2'
+:
+y_N x_N y_N' x_N'
+That is, in the first line, print an integer N between 0 and H \times W (inclusive), representing the number of operations.
+In the (i+1)-th line (1 \leq i \leq N), print four integers y_i, x_i, y_i' and x_i' (1 \leq y_i, y_i' \leq H and 1 \leq x_i, x_i' \leq W), representing the i-th operation. These four integers represents the operation of moving one of the coins placed in Cell (y_i, x_i) to a vertically or horizontally adjacent cell, (y_i', x_i').
+Note that if the specified operation violates the specification in the problem statement or the output format is invalid, it will result in Wrong Answer.
+Sample Input 12 3
+1 2 3
+0 1 1
+Sample Output 13
+2 2 2 3
+1 1 1 2
+1 3 1 2
+Every cell contains an even number of coins after the following sequence of operations:
+Move the coin in Cell (2, 2) to Cell (2, 3).
+Move the coin in Cell (1, 1) to Cell (1, 2).
+Move one of the coins in Cell (1, 3) to Cell (1, 2).
+Sample Input 23 2
+1 0
+2 1
+1 0
+Sample Output 23
+1 1 1 2
+1 2 2 2
+3 1 3 2
+Sample Input 31 5
+9 9 9 9 9
+Sample Output 32
+1 1 1 2
+1 3 1 4
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An integer H (1 ≤ H ≤ 500), representing some quantity or size.
+An integer W (1 ≤ W ≤ 500), representing some quantity or size.
+A grid of integers of size HxW, where each integer is between 0 and 9.
+
+### Example Input:
+
+```
+2 3
+1 2 3
+0 1 1
+```
+
+### Function Signature:
+Write a function f(H, W, grid) that takes in the input.
+def f(H: int, W: int, grid: List[List[int]]):
+    '''
+    H: an integer
+    W: an integer
+    grid: a list of lists of integers
+    '''</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Sure, let's create a test case generator for the given problem statement. The generator will create random grids of coins and will output them in the required format. Here is the Python code for the test case generator:
+
+```python
+import random
+
+def tcgen():
+    # Generate random values for H and W within the given constraints
+    H = random.randint(1, 500)
+    W = random.randint(1, 500)
+    
+    # Generate the grid with random coin values
+    grid = [[random.randint(0, 9) for _ in range(W)] for _ in range(H)]
+    
+    return H, W, grid
+
+def print_test_case(H, W, grid):
+    print(H, W)
+    for row in grid:
+        print(' '.join(map(str, row)))
+
+# Example usage:
+H, W, grid = tcgen()
+print_test_case(H, W, grid)
+```
+
+### Explanation
+
+1. **Grid Dimensions**: The dimensions `H` (number of rows) and `W` (number of columns) are randomly generated between 1 and 500.
+2. **Grid Values**: Each cell in the grid contains a random number of coins between 0 and 9, inclusive.
+3. **Printing**: The function `print_test_case` is used to print the generated test case in the required format.
+
+### Example Generated Test Case
+
+Here is an example of what the output might look like:
+
+```
+4 3
+2 5 3
+0 4 1
+9 8 7
+2 3 5
+```
+
+You can use this generator to create multiple test cases for your problem, ensuring a diverse set of inputs to thoroughly test your solution.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    H, W = map(int, fh.readline().strip().split())
+    A = []
+    for _ in range(H):
+        row = list(map(int, fh.readline().strip().split()))
+        A.append(row)
+    return H, W, A
+
+# if __name__ == "__main__":
+#     input_path = sys.argv[1]
+#     with open(input_path, 'r') as fh:
+#         H, W, A = extract_arguments(fh)
+#         f(H, W, A)</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

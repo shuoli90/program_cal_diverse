@@ -1,0 +1,30 @@
+Sure, here is a test case generator for the given problem statement:
+
+```python
+import random
+
+def tcgen(): 
+    # Step 1: Generate a random integer N within the given constraints
+    N = random.randint(3, 10)
+    
+    # Step 2: Generate a list of N integers, each within the specified range
+    L = [random.randint(1, 100) for _ in range(N)]
+    
+    return N, L
+
+# Example of generating a random test case
+if __name__ == "__main__":
+    N, L = tcgen()
+    print(N)
+    print(' '.join(map(str, L)))
+```
+
+### Explanation:
+
+1. **Step 1**: We generate a random integer \(N\) where \(3 \leq N \leq 10\). This ensures that the number of sides of the polygon is within the specified constraints.
+
+2. **Step 2**: We generate a list \(L\) of \(N\) integers where each integer \(L_i\) is between \(1\) and \(100\). This ensures that the length of each side of the polygon is within the specified range.
+
+3. **Output**: The function returns \(N\) and the list \(L\). When executed, it prints \(N\) and the list \(L\) as space-separated integers.
+
+This generator will produce random valid test cases for the problem statement.

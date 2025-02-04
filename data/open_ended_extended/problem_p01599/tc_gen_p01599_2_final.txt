@@ -1,0 +1,49 @@
+Certainly! Below is a test case generator for the given problem "Train King".
+
+```python
+import random
+
+def generate_train_info(n):
+    """ Generate train info for n trains """
+    train_info = []
+    for _ in range(n):
+        Ci = random.randint(1, 10)
+        Di = random.randint(0, 86399)
+        Ai = random.randint(0, 86399)
+        train_info.append((Ci, Di, Ai))
+    return train_info
+
+def tcgen():
+    # Randomly determine the number of trains from A to B and from B to A
+    NAB = random.randint(0, 50)
+    NBA = random.randint(0, 50 - NAB)  # Ensuring the total number of trains does not exceed 50
+
+    # Generate train information for NAB trains from A to B
+    trains_AB = generate_train_info(NAB)
+
+    # Generate train information for NBA trains from B to A
+    trains_BA = generate_train_info(NBA)
+
+    return NAB, NBA, trains_AB, trains_BA
+
+# Example usage
+if __name__ == "__main__":
+    NAB, NBA, trains_AB, trains_BA = tcgen()
+    
+    # Print the test case in the required format
+    print(NAB, NBA)
+    for train in trains_AB:
+        print(*train)
+    for train in trains_BA:
+        print(*train)
+```
+
+This script will generate random test cases for the "Train King" problem. It ensures that the total number of trains (NAB + NBA) does not exceed 50, and it generates valid train information according to the given constraints.
+
+Here’s what the script does:
+
+1. Randomly determines the number of trains from A to B (`NAB`) and from B to A (`NBA`) such that the total does not exceed 50.
+2. Generates train information for `NAB` trains from A to B and `NBA` trains from B to A.
+3. Outputs the test case in the required format.
+
+Feel free to run the script to generate sample test cases for your problem.

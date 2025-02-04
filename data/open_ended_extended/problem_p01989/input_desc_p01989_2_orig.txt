@@ -1,0 +1,15 @@
+An integer string \(S\), where the length of \(S\) is between 4 and 12 inclusive.
+The string \(S\) consists only of digits.
+
+### Example Input:
+
+```
+123456789
+```
+
+### Function Signature:
+Write a function f(S) that takes in the input.
+def f(S: str):
+    '''
+    S: an integer string
+    '''

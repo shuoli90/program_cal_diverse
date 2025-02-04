@@ -1,0 +1,206 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p00150 - Generation 2</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p00150 - Generation 2</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>
+Twin Prime
+Prime numbers are widely applied for cryptographic and communication technology.
+A twin prime is a prime number that differs from another prime number by 2.
+For example, (5, 7) and (11, 13) are twin prime pairs.
+In this problem, we call the greater number of a twin prime "size of the twin prime."
+Your task is to create a program which reads an integer n and prints a twin prime which has the maximum size among twin primes less than or equals to n
+You may assume that 5 ≤ n ≤ 10000.
+Input
+The input is a sequence of datasets. The end of the input is indicated by a line containing one zero. Each dataset is formatted as follows:
+n (integer)
+Output
+For each dataset, print the twin prime p and q (p < q). p and q should be separated by a single space.
+Sample Input
+12
+100
+200
+300
+0
+Output for the Sample Input
+5 7
+71 73
+197 199
+281 283
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An integer n (5 ≤ n ≤ 10000).
+
+The end of the input is indicated by a line containing one zero.
+
+### Example Input:
+
+```
+12
+100
+200
+300
+0
+```
+
+### Function Signature:
+Write a function f(inputs) that takes in the input.
+```python
+def f(inputs: List[int]):
+    ''' 
+    inputs: a list of integers 
+    '''
+```</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>To write a test case generator for the "Twin Prime" problem, we need to generate multiple datasets of integers within the specified range (5 ≤ n ≤ 10000) and ensure the end of the input is marked by a zero.
+
+Here is the Python code for the test case generator:
+
+```python
+import random
+
+def is_prime(num):
+    if num <= 1:
+        return False
+    if num <= 3:
+        return True
+    if num % 2 == 0 or num % 3 == 0:
+        return False
+    i = 5
+    while i * i <= num:
+        if num % i == 0 or num % (i + 2) == 0:
+            return False
+        i += 6
+    return True
+
+def generate_twin_primes_up_to(n):
+    primes = []
+    twin_primes = []
+    for num in range(2, n+1):
+        if is_prime(num):
+            primes.append(num)
+            if num - 2 in primes:
+                twin_primes.append((num - 2, num))
+    return twin_primes
+
+def find_max_twin_prime(n):
+    twin_primes = generate_twin_primes_up_to(n)
+    if twin_primes:
+        return twin_primes[-1]
+    return None
+
+def tcgen(num_cases=5):
+    test_cases = []
+    for _ in range(num_cases):
+        n = random.randint(5, 10000)
+        test_cases.append(n)
+    test_cases.append(0)  # Adding the end of input indicator
+    
+    # Generate expected outputs for the test cases
+    expected_outputs = []
+    for n in test_cases:
+        if n == 0:
+            break
+        max_twin_prime = find_max_twin_prime(n)
+        if max_twin_prime:
+            expected_outputs.append(f"{max_twin_prime[0]} {max_twin_prime[1]}")
+        else:
+            expected_outputs.append("")  # No twin prime found (shouldn't happen within given range)
+
+    return test_cases, expected_outputs
+
+# Example usage:
+test_cases, expected_outputs = tcgen()
+print("Test Cases:")
+for case in test_cases:
+    print(case)
+print("\nExpected Outputs:")
+for output in expected_outputs:
+    print(output)
+```
+
+### Explanation:
+
+1. **Prime Checking (`is_prime`)**: This function checks if a number is prime using a standard efficient approach.
+
+2. **Twin Prime Generation (`generate_twin_primes_up_to`)**: This function generates all twin primes up to a given number `n`.
+
+3. **Find Maximum Twin Prime (`find_max_twin_prime`)**: This function finds the maximum twin prime pair up to a given number `n`.
+
+4. **Test Case Generator (`tcgen`)**: This function generates a specified number of test cases within the range 5 to 10000. It appends a zero to indicate the end of input. It also computes the expected output for each test case.
+
+The `tcgen` function can be used to generate multiple test cases and their expected outputs, which can be used to test the solution for the "Twin Prime" problem.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    inputs = []
+    while True:
+        n = int(fh.readline().strip())
+        if n == 0:
+            break
+        inputs.append(n)
+    return inputs
+
+# if __name__ == "__main__":
+#     input_path = sys.argv[1]
+#     with open(input_path, 'r') as fh:
+#         inputs = extract_arguments(fh)
+#         f(inputs)</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

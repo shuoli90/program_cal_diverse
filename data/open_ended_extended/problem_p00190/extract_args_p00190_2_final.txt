@@ -1,0 +1,20 @@
+def extract_arguments(fh):
+    datasets = []
+    while True:
+        p1 = int(fh.readline().strip())
+        if p1 == -1:
+            break
+        p2 = list(map(int, fh.readline().strip().split()))
+        p3 = list(map(int, fh.readline().strip().split()))
+        p4 = list(map(int, fh.readline().strip().split()))
+        p5 = list(map(int, fh.readline().strip().split()))
+        p6 = int(fh.readline().strip())
+        dataset = (p1, p2, p3, p4, p5, p6)
+        datasets.append(dataset)
+    return datasets
+
+# Example usage:
+# with open('input.txt', 'r') as fh:
+#     inputs = extract_arguments(fh)
+#     for dataset in inputs:
+#         print(dataset)

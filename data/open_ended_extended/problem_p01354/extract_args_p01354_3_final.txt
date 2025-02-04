@@ -1,0 +1,7 @@
+def extract_arguments(fh):
+    m, n = map(int, fh.readline().strip().split())
+    probabilities = []
+    for _ in range(m):
+        probs = list(map(float, fh.readline().strip().split()))
+        probabilities.append(probs)
+    return m, n, probabilities

@@ -1,0 +1,43 @@
+Sure, I can create a test case generator for the given problem statement "Marathon Match". Below is the Python function `tcgen` that generates random test cases for this problem:
+
+```python
+import random
+
+def tcgen():
+    # Generate N: number of runners
+    N = random.randint(1, 100)
+    
+    # Generate M: number of resting places
+    M = random.randint(0, 50)
+    
+    # Generate L: distance of the marathon
+    L = random.randint(1, 100000)
+    
+    # Generate the parameters for each runner
+    runners = []
+    for _ in range(N):
+        P_i = random.randint(0, 100)  # Probability to take a break
+        T_i = random.randint(0, 100)  # Time of resting
+        V_i = random.randint(0, 100)  # Speed
+        runners.append((P_i, T_i, V_i))
+    
+    return N, M, L, runners
+
+# Function to print the generated test case in the required format
+def print_test_case():
+    N, M, L, runners = tcgen()
+    print(f"{N} {M} {L}")
+    for runner in runners:
+        print(f"{runner[0]} {runner[1]} {runner[2]}")
+
+# Example usage
+print_test_case()
+```
+
+### Explanation:
+- **N**: Random integer between 1 and 100 representing the number of runners.
+- **M**: Random integer between 0 and 50 representing the number of resting places.
+- **L**: Random integer between 1 and 100,000 representing the distance of the marathon.
+- **P_i, T_i, V_i**: For each runner, generate random integers for probability of taking a break, time of resting, and running speed, respectively. All these values are chosen within their specified limits.
+
+The `print_test_case` function formats the generated test case into the required input format and prints it. You can call this function to generate and print a new test case each time.

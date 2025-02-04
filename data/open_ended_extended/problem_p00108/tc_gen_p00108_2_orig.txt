@@ -1,0 +1,51 @@
+Sure! Here's the test case generator for the given problem statement "Frequency of appearance operation". The test case generator will create random test cases adhering to the constraints specified in the problem statement.
+
+```python
+import random
+
+def generate_test_case():
+    n = random.randint(1, 12)
+
+    s = [random.randint(1, 100) for _ in range(n)]
+    
+    return n, s
+
+def tcgen():
+    test_cases = []
+    num_datasets = random.randint(1, 200)  # Maximum 200 datasets
+
+    for _ in range(num_datasets):
+        n, s = generate_test_case()
+        test_cases.append((n, s))
+    
+    test_cases.append((0, []))  # End with 0 as per the input format
+
+    return test_cases
+
+# Example Usage:
+if __name__ == "__main__":
+    test_cases = tcgen()
+    for n, s in test_cases:
+        if n == 0:
+            print(n)
+        else:
+            print(n)
+            print(' '.join(map(str, s)))
+```
+
+This script generates a set of test cases for the problem "Frequency of appearance operation". The function `generate_test_case()` creates a random sequence of length `n` with values between 1 and 100. The function `tcgen()` then collects up to 200 such datasets and appends a terminating dataset with `n = 0`.
+
+You can run this script to generate random test cases in the format specified by the problem statement. Here is how the script works:
+
+1. `generate_test_case()` method:
+   - Randomly selects the length of the sequence `n` between 1 and 12.
+   - Generates a list `s` of `n` random integers between 1 and 100.
+
+2. `tcgen()` method:
+   - Randomly decides the number of datasets (up to 200).
+   - Calls `generate_test_case()` to create each dataset and appends it to the list of test cases.
+   - Adds the terminating dataset `(0, [])`.
+
+3. The script prints the generated test cases in the required format.
+
+Feel free to adjust the random seed or extend the script to save the test cases to a file if needed.

@@ -1,0 +1,49 @@
+ Flick Input 
+ A: Flick Input 
+2D-kun, a college student who loves 2D, also known as "2D" bought a smartphone to replace the Galapagos mobile phone that he had been using for years. When 2D-kun operated a smartphone for the first time, he noticed that the method of character input was a little different from that of the old mobile phone. The smartphone used a method called "flick input", which takes advantage of the ability to touch and flick the screen. Flick input is a character input method shown below.
+In flick input, input is performed using ten buttons, 0-9, as shown in Figure A (a) (Note that "#" and "*" have been omitted this time). Each button is assigned one character from the "A-row" to the "Wa-row", as shown in the figure.
+Figure A: Smartphone button details
+One button can be operated in the manner shown in Figure A (b). That is,
+ If you just "touch" the button, the corresponding "A-row" character will be output.
+ If you "flick to the left", the "I-row" will be output.
+ If you "flick upwards", the "U-row" will be output.
+ If you "flick to the right", the "E-row" will be output.
+ If you "flick down", the "O-row" will be output.
+This is how flick input works for all buttons, as shown in Figure A (c). Note that to output "n", you must flick button 0 upward.
+Your task is to find the string of characters that will be output by the operation represented by the string of characters representing the flick input.
+ Input 
+A string representing the flick input operation is given on one line (2 to 1,000 characters in length). This string consists of a combination of '0'-'9' digits representing the button to be operated, and five types of characters 'T', 'L', 'U', 'R', and 'D' representing the flick direction.
+The characters representing the flick directions have the following meanings.
+ 'T': just touch
+ 'L': flick to the left
+ 'U': flick upwards
+ 'R': flick to the right
+ 'D': flick downwards
+For example, "2D" represents the operation of "flicking button 2 downward", so "ko" can be output.
+The string given starts with a single digit and ends with a character representing the flick direction. Furthermore, it is guaranteed that no flick is made towards a place where there is no character (there is no input such as "8L" in Figure A (c)).
+ Output 
+Output a string representing the result of the flick input operation in Roman letters. 
+For the consonants in Roman letters,
+ ka-row: 'k'
+ sa-row: 's'
+ ta-row: 't'
+ na-row: 'n'
+ ha-row: 'h'
+ ma-row: 'm'
+ ya-row: 'y'
+ ra-row: 'r'
+ wa-row: 'w'
+should be used. The Roman letters representing one hiragana character consist of a set of consonants and vowels ('a', 'i', 'u', 'e', 'o') and are output in two characters. "Shi" and "fu" violate this condition and are therefore incorrect. However, for the "A-row" characters, only one vowel should be output, and "n" should be output twice as "nn".
+Output a newline character at the end of the string.
+ Sample Input 1 
+5R2D
+ Sample Output 1 
+neko
+ Sample Input 2 
+8U9U6U0T
+ Sample Output 2 
+yuruhuwa
+ Sample Input 3 
+9L4U7R1L2D0U4R3U4D
+ Sample Output 3 
+ritumeikonntesuto

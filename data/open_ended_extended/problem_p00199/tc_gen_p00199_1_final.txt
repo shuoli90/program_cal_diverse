@@ -1,0 +1,62 @@
+To generate test cases for the problem "The Chair on Which Difficult People Sit," we will need to ensure the generated cases adhere to the constraints and the behavior described in the problem statement. Here is a Python script to generate such test cases:
+
+```python
+import random
+
+def generate_test_case():
+    # Number of chairs (n) and number of passengers (m)
+    n = random.randint(1, 100)
+    m = random.randint(1, n)
+    
+    # Nationalities of people sitting
+    nationalities = ['A', 'B', 'C', 'D']
+    people = [random.choice(nationalities) for _ in range(m)]
+    
+    return n, m, people
+
+def tcgen():
+    test_cases = []
+    
+    # Generate a random number of test cases
+    num_test_cases = random.randint(1, 10)
+    
+    for _ in range(num_test_cases):
+        n, m, people = generate_test_case()
+        test_cases.append((n, m, people))
+        
+    # Indicate the end of input
+    test_cases.append((0, 0, []))
+    
+    return test_cases
+
+def format_test_cases(test_cases):
+    formatted_cases = []
+    for n, m, people in test_cases:
+        case = f"{n} {m}\n"
+        case += "\n".join(people)
+        formatted_cases.append(case)
+    return "\n".join(formatted_cases)
+
+if __name__ == "__main__":
+    test_cases = tcgen()
+    formatted_test_cases = format_test_cases(test_cases)
+    print(formatted_test_cases)
+```
+
+### Explanation
+
+1. **generate_test_case()**: This function generates a single test case.
+   - Randomly selects the number of chairs (`n`) between 1 and 100.
+   - Randomly selects the number of passengers (`m`) such that `m <= n`.
+   - Generates a list of passengers' nationalities, randomly chosen from ['A', 'B', 'C', 'D'].
+
+2. **tcgen()**: This function uses `generate_test_case()` to create a list of test cases.
+   - Generates a random number of test cases between 1 and 10.
+   - Appends (0, 0, []) at the end to indicate the end of input as specified.
+
+3. **format_test_cases()**: This function formats the test cases into the required input format.
+   - Joins the number of chairs and passengers with the nationalities list.
+
+4. **main block**: Generates and prints formatted test cases.
+
+With the above code, you can generate multiple test cases that can be used for the problem "The Chair on Which Difficult People Sit," ensuring a variety of input scenarios for thorough testing.

@@ -1,0 +1,65 @@
+Sure! Let's create a test case generator for the given problem "Kobuta Nuki Kitsuneko".
+
+Here's a Python function to generate random test cases based on the constraints and requirements mentioned in the problem statement:
+
+```python
+import random
+import string
+
+def generate_word():
+    # Generate a random word with a length between 1 and 32
+    length = random.randint(1, 32)
+    return ''.join(random.choices(string.ascii_lowercase, k=length))
+
+def generate_dataset():
+    n = random.randint(2, 10000)
+    words = [generate_word() for _ in range(n)]
+    return n, words
+
+def tcgen():
+    datasets = []
+    
+    for _ in range(50):
+        n, words = generate_dataset()
+        datasets.append((n, words))
+    
+    return datasets
+
+# Generate the test cases
+test_cases = tcgen()
+
+# Example usage
+for n, words in test_cases:
+    print(n)
+    for word in words:
+        print(word)
+    print("0")  # End of this dataset
+```
+
+### Explanation:
+
+1. **`generate_word()`**:
+   - This function generates a random word with a length between 1 and 32 using lowercase English letters.
+
+2. **`generate_dataset()`**:
+   - This function generates a single dataset by first picking a random number `n` (the number of words) between 2 and 10000.
+   - It then generates `n` random words using the `generate_word()` function.
+
+3. **`tcgen()`**:
+   - This function generates up to 50 datasets as specified in the problem statement.
+   - Each dataset consists of an integer `n` followed by `n` words.
+   - The end of each dataset is marked by a `0`, indicating the end of input.
+
+### Example Output:
+The output will be in the format:
+```
+n
+word1
+word2
+:
+wordn
+0
+```
+Where each dataset is separated by a `0` indicating the end of the current dataset. The example code prints all datasets, and you can redirect these outputs to a file or use them as required.
+
+Feel free to modify the code to suit your specific needs or constraints!

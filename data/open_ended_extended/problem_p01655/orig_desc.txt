@@ -1,0 +1,46 @@
+
+Problem Statement
+You bought 3 ancient scrolls from a magician. These scrolls have a long string, and the lengths of the strings are the same. He said that these scrolls are copies of the key string to enter a dungeon with a secret treasure.
+However, he also said, they were copied so many times by hand, so the string will contain some errors, though the length seems correct. 
+Your job is to recover the original string from these strings. When finding the original string, you decided to use the following assumption. 
+  The copied string will contain at most d errors. In other words, the Hamming distance of the original string and the copied string is at most d. 
+  If there exist many candidates, the lexicographically minimum string is the original string.
+Can you find the orignal string?
+Input
+The input contains a series of datasets.
+Each dataset has the following format:
+l d
+str_1
+str_2
+str_3
+The first line contains two integers l (1 \leq l \leq 100,000) and d (0 \leq d \leq 5,000.)
+l describes the length of 3 given strings and d describes acceptable maximal Hamming distance.
+The following 3 lines have given strings, whose lengths are l.
+These 3 strings consist of only lower and upper case alphabets.
+The input ends with a line containing two zeros, which should not be processed. 
+Output
+Print the lexicographically minimum satisfying the condition in a line.
+If there do not exist such strings, print -1.
+Sample Input
+3 1
+ACM
+IBM
+ICM
+5 2
+iwzwz
+iziwi
+zwizi
+1 0
+A
+B
+C
+10 5
+jLRNlNyGWx
+yyLnlyyGDA
+yLRnvyyGDA
+0 0
+Output for the Sample Input
+ICM
+iwiwi
+-1
+AARAlNyGDA

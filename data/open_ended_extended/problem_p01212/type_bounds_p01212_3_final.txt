@@ -1,0 +1,3 @@
+Types: W: int, H: int, grid: List[List[str]]
+Ranges: 3 ≤ W, H ≤ 30, grid[i][j] in {'@', '<', 'a'-'z', 'A'-'Z', '#', '.'}
+Addtl Info: grid is W × H, one '@' cell, one '<' cell, up to 8 distinct uppercase labels, up to 8 distinct lowercase labels, surrounded by wall cells ('#')

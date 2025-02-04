@@ -1,0 +1,5 @@
+Types: H: int, W: int, a: List[List[int]]
+
+Ranges: 1 ≤ H ≤ 500, 1 ≤ W ≤ 500, 0 ≤ a_{ij} ≤ 9
+
+Addtl Info: None

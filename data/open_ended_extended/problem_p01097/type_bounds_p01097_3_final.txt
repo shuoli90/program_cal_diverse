@@ -1,0 +1,3 @@
+Types: n: int, k: int, s: int, xi: int, yi: int, zi: int
+Ranges: 1 ≤ k ≤ n ≤ 2000, 3 ≤ s ≤ 100, -4×10^7 ≤ xi, yi, zi ≤ 4×10^7
+Addtl Info: Number of datasets is at most 100, End of input indicated by line containing "0 0 0"

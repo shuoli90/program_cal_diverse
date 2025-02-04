@@ -1,0 +1,23 @@
+An integer N (1 ≤ N ≤ 3000), representing the length of a string s.
+A string s of length N, consisting of lowercase English letters.
+An integer M (1 ≤ M ≤ 3000), representing the length of a string t.
+A string t of length M, consisting of lowercase English letters.
+
+### Example Input:
+
+```
+5
+axyb
+5
+abyxb
+```
+
+### Function Signature:
+Write a function f(N, s, M, t) that takes in the input.
+def f(N: int, s: str, M: int, t: str):
+    '''
+    N: an integer
+    s: a string
+    M: an integer
+    t: a string
+    '''

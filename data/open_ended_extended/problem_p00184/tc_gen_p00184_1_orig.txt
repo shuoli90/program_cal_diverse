@@ -1,0 +1,40 @@
+Certainly! Here's a test case generator for the "Tsuruga Castle" problem statement:
+
+```python
+import random
+
+def tcgen():
+    # Generate a random number of datasets
+    num_datasets = random.randint(1, 5)  # You can adjust the number of datasets as needed
+
+    datasets = []
+    for _ in range(num_datasets):
+        # Generate a random number of visitors n
+        n = random.randint(1, 1000000)
+        
+        # Generate a list of ages for n visitors
+        ages = [random.randint(0, 120) for _ in range(n)]
+        
+        # Append the dataset
+        datasets.append((n, ages))
+    
+    return datasets
+
+# Example usage:
+test_cases = tcgen()
+for dataset in test_cases:
+    n, ages = dataset
+    print(n)
+    for age in ages:
+        print(age)
+print(0) # End of input indicator
+```
+
+Here's how the test case generator works:
+- It first decides the number of datasets it will generate.
+- For each dataset:
+  - It generates a random number of visitors `n` within the specified limit.
+  - It generates a list of `n` random ages, each between 0 and 120.
+- Finally, it prints the datasets in the required format and adds a line containing a single zero at the end to indicate the end of input.
+
+You can run this generator to produce test cases for the problem. Adjust the number of datasets (`num_datasets`) and the range of visitors (`n`) as needed to create more diverse test cases for testing.

@@ -1,0 +1,58 @@
+Sure! Here is a test case generator function for the given problem statement:
+
+```python
+import random
+import string
+
+def generate_name(length):
+    return ''.join(random.choices(string.ascii_letters, k=length))
+
+def tcgen():
+    N = random.randint(1, 50000)
+    members = [(generate_name(random.randint(1, 20)), random.randint(0, 100000)) for _ in range(N)]
+    
+    M = random.randint(1, 20000)
+    changes = []
+    existing_members = set(name for name, _ in members)
+    
+    for _ in range(M):
+        if existing_members and random.choice([True, False]):
+            # Outgoing member
+            name = random.choice(list(existing_members))
+            change = f"- {name}"
+            existing_members.remove(name)
+        else:
+            # Incoming member
+            name = generate_name(random.randint(1, 20))
+            while name in existing_members:
+                name = generate_name(random.randint(1, 20))
+            motivation = random.randint(0, 100000)
+            change = f"+ {name} {motivation}"
+            existing_members.add(name)
+        
+        changes.append(change)
+    
+    return N, members, M, changes
+
+def print_test_case(N, members, M, changes):
+    print(N)
+    for name, motivation in members:
+        print(f"{name} {motivation}")
+    print(M)
+    for change in changes:
+        print(change)
+
+if __name__ == "__main__":
+    N, members, M, changes = tcgen()
+    print_test_case(N, members, M, changes)
+```
+
+This function `tcgen` generates a test case with:
+1. A random number of initial members `N` (between 1 and 50,000).
+2. A list of tuples where each tuple contains a member name (randomly generated string of length between 1 and 20) and a motivation level (integer between 0 and 100,000).
+3. A random number of changes `M` (between 1 and 20,000).
+4. A list of changes, where each change is either an incoming member (with a new unique name and a motivation level) or an outgoing member (randomly chosen from the currently existing members).
+
+The `print_test_case` function prints the test case in the specified format.
+
+You can run the script to generate and print a random test case for the problem.

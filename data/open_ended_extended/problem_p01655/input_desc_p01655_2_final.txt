@@ -1,0 +1,41 @@
+An integer l (1 ≤ l ≤ 100,000), representing a length.
+An integer d (0 ≤ d ≤ 5,000), representing a maximum allowable difference.
+Three strings of length l, consisting of only lower and upper case alphabets.
+The input ends with a line containing two zeros, which should not be processed.
+
+### Example Input:
+
+```
+3 1
+ACM
+IBM
+ICM
+5 2
+iwzwz
+iziwi
+zwizi
+1 0
+A
+B
+C
+10 5
+jLRNlNyGWx
+yyLnlyyGDA
+yLRnvyyGDA
+0 0
+```
+
+### Function Signature:
+Write a function f(inputs) that takes in the input as a list of tuples. Each tuple has the form (l, d, str1, str2, str3).
+
+```python
+def f(inputs: List[Tuple[int, int, str, str, str]]):
+    '''
+    inputs: a list of tuples, each containing:
+        - an integer l
+        - an integer d
+        - a string str1
+        - a string str2
+        - a string str3
+    '''
+```

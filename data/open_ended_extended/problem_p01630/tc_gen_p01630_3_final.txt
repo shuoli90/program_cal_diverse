@@ -1,0 +1,50 @@
+Sure! Here's a test case generator for the given problem statement:
+
+```python
+import random
+
+def tcgen():
+    # N is the number of variables in the logical function
+    N = random.randint(1, 10)
+    
+    # bit_line is a string of length 2^N consisting of '1' and '0'
+    bit_line = ''.join(random.choice('01') for _ in range(2 ** N))
+    
+    return N, bit_line
+
+# Example usage:
+if __name__ == "__main__":
+    for _ in range(5):  # Generate 5 test cases
+        N, bit_line = tcgen()
+        print(f"N = {N}")
+        print(f"bit_line = {bit_line}")
+        print()
+```
+
+### Explanation
+
+1. **N**: The number of variables in the logical function. According to the problem constraints, \(1 \leq N \leq 10\).
+2. **bit_line**: A string of length \(2^N\) consisting of '0' or '1'. Each character represents the result for a specific combination of the variables.
+
+### Sample Output
+
+When you run the test case generator, it will produce outputs like:
+
+```
+N = 3
+bit_line = 01100110
+
+N = 2
+bit_line = 1010
+
+N = 5
+bit_line = 11001010101101001101101011001100
+
+N = 4
+bit_line = 1001011001101001
+
+N = 1
+bit_line = 10
+```
+
+This should help in generating random test cases for the given competitive programming problem.

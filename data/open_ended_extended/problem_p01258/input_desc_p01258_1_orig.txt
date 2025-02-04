@@ -1,0 +1,22 @@
+An even integer \(N\) (2 ≤ \(N\) ≤ 1000), representing some quantity or size.
+Multiple datasets, each consisting of one even integer \(N\).
+
+The end of input is indicated by a line that contains a single zero.
+
+### Example Input:
+
+```
+2
+4
+6
+0
+```
+
+### Function Signature:
+Write a function f(inputs) that takes in the input.
+```python
+def f(inputs: List[int]):
+    '''
+    inputs: a list of integers
+    '''
+```

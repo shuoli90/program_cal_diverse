@@ -1,0 +1,25 @@
+An integer h1 (0 ≤ h1 ≤ 100) and an integer h2 (0 ≤ h2 ≤ 100).
+An integer k1 (0 ≤ k1 ≤ 100) and an integer k2 (0 ≤ k2 ≤ 100).
+An integer a (1 ≤ a ≤ 100), an integer b (1 ≤ b ≤ 100), an integer c (0 ≤ c ≤ 100), and an integer d (0 ≤ d ≤ 100).
+
+### Example Input:
+
+```
+5 1
+3 1
+1 2 5 5
+```
+
+### Function Signature:
+Write a function f(h1, h2, k1, k2, a, b, c, d) that takes in the input.
+def f(h1: int, h2: int, k1: int, k2: int, a: int, b: int, c: int, d: int):
+    '''
+    h1: an integer
+    h2: an integer
+    k1: an integer
+    k2: an integer
+    a: an integer
+    b: an integer
+    c: an integer
+    d: an integer
+    '''

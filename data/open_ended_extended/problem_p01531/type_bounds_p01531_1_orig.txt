@@ -1,0 +1,3 @@
+Types: input_str: str
+Ranges: 2 ≤ len(input_str) ≤ 1000, input_str consists of characters '0'-'9' and 'T', 'L', 'U', 'R', 'D'
+Addtl Info: None

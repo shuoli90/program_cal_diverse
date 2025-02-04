@@ -1,0 +1,55 @@
+Sure, I can help you with that. The problem seems to be about finding the minimum "uninity" of a given tree. Let's create a test case generator for this problem.
+
+Here's a Python code snippet for a test case generator:
+
+```python
+import random
+
+def generate_tree_edges(N):
+    # Generate a random tree with N nodes
+    edges = []
+    for i in range(2, N + 1):
+        # Connect each node i with a random node from 1 to i-1 to ensure it's a tree
+        edges.append((i, random.randint(1, i - 1)))
+    return edges
+
+def tcgen():
+    # Randomly choose N within the constraints
+    N = random.randint(2, 10**5)
+    
+    # Generate the tree edges
+    edges = generate_tree_edges(N)
+    
+    # Format the input as a string
+    input_data = f"{N}\n" + "\n".join(f"{a} {b}" for a, b in edges)
+    
+    return input_data
+
+# Example usage:
+print(tcgen())
+```
+
+### Explanation of the Code
+
+1. **`generate_tree_edges(N)` Function**:
+    - This function generates `N-1` edges to form a tree with `N` nodes.
+    - It ensures that the generated edges form a tree by connecting each node `i` to a random node in the range `[1, i-1]`.
+
+2. **`tcgen()` Function**:
+    - It randomly selects a value for `N` within the given constraints (`2 ≤ N ≤ 10^5`).
+    - It generates the tree edges by calling `generate_tree_edges(N)`.
+    - It formats the edges into a string that matches the input format for the problem.
+
+### Example Output
+
+The generated test cases will look something like this:
+
+```
+5
+2 1
+3 2
+4 3
+5 1
+```
+
+Each time you run `tcgen()`, it will produce a different valid test case for the problem, ensuring a variety of scenarios for testing your solution.

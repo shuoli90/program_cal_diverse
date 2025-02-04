@@ -1,0 +1,37 @@
+Sure! To generate test cases for this problem, we need to generate values for \(N\), \(M\), and lists of \(A_i\) and \(B_i\) according to the given constraints:
+
+- \(1 \leq N \leq 10^5\)
+- \(1 \leq M \leq 10^5\)
+- \(1 \leq A_i \leq 10^5\)
+- \(1 \leq B_i \leq 10^4\)
+
+Here's a Python function that generates such test cases:
+
+```python
+import random
+
+def tcgen():
+    N = random.randint(1, 10**5)
+    M = random.randint(1, 10**5)
+    
+    A = [random.randint(1, 10**5) for _ in range(N)]
+    B = [random.randint(1, 10**4) for _ in range(N)]
+    
+    return N, M, list(zip(A, B))
+
+# Example usage:
+N, M, jobs = tcgen()
+print(N, M)
+for job in jobs:
+    print(job[0], job[1])
+```
+
+### Explanation:
+1. **N**: Randomly generate the number of jobs (1 to 100,000).
+2. **M**: Randomly generate the maximum days allowed (1 to 100,000).
+3. **A**: Generate a list of \(N\) integers, each representing the number of days after which a job's reward is received (1 to 100,000).
+4. **B**: Generate a list of \(N\) integers, each representing the reward for completing the job (1 to 10,000).
+
+The function `tcgen()` returns \(N\), \(M\), and a list of tuples where each tuple contains \(A_i\) and \(B_i\). The example usage shows how to print the generated test case in the required format.
+
+This will help in testing various edge cases and typical cases for the given problem.

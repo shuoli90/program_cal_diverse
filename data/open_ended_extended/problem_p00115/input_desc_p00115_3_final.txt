@@ -1,0 +1,28 @@
+Canonicalized Input Description:
+
+Three integers \(x, y, z\) representing a point in 3D space, where \(-100 \leq x, y, z \leq 100\).
+Three integers \(x, y, z\) representing another point in 3D space, where \(-100 \leq x, y, z \leq 100\).
+Three integers \(x, y, z\) representing the first vertex of a triangle in 3D space, where \(-100 \leq x, y, z \leq 100\).
+Three integers \(x, y, z\) representing the second vertex of a triangle in 3D space, where \(-100 \leq x, y, z \leq 100\).
+Three integers \(x, y, z\) representing the third vertex of a triangle in 3D space, where \(-100 \leq x, y, z \leq 100\).
+
+### Example Input:
+
+```
+-10 0 0
+10 0 0
+0 10 0
+0 10 10
+0 0 10
+```
+
+### Function Signature:
+Write a function f(p1, p2, v1, v2, v3) that takes in the input.
+def f(p1: Tuple[int, int, int], p2: Tuple[int, int, int], v1: Tuple[int, int, int], v2: Tuple[int, int, int], v3: Tuple[int, int, int]): 
+    ''' 
+    p1: a tuple of three integers
+    p2: a tuple of three integers
+    v1: a tuple of three integers
+    v2: a tuple of three integers
+    v3: a tuple of three integers
+    '''

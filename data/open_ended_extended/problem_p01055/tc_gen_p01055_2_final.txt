@@ -1,0 +1,82 @@
+Certainly! It looks like your problem statement got cut off. However, I can help you create a test case generator based on a common scenario in competitive programming involving grids, paths, and bombs.
+
+Here’s a complete problem statement based on what you've provided and a test case generator for it:
+
+### Problem Statement: Bomb Removal
+
+**Description**
+
+There are \( N \) fuse cords and bombs, each with one bomb, on a grid of height \( H \) and width \( W \). Each fuse cord and bomb are placed on a path consisting of \( L_i \) squares, with the \( j \)-th square of the path specified by coordinates \( (px_{ij}, py_{ij}) \). Each bomb is located at the last square of its path \( (px_{iL_i}, py_{iL_i}) \).
+
+**Input**
+
+1. Two integers \( H \) and \( W \) (1 ≤ \( H, W \) ≤ 1000), representing the height and width of the grid.
+2. An integer \( N \) (1 ≤ \( N \) ≤ 100), representing the number of fuse cords.
+3. For each fuse cord:
+   - An integer \( L_i \) (1 ≤ \( L_i \) ≤ 100), representing the length of the path of the \( i \)-th fuse cord.
+   - \( L_i \) pairs of integers \( (px_{ij}, py_{ij}) \) (1 ≤ \( px_{ij} \) ≤ \( H \), 1 ≤ \( py_{ij} \) ≤ \( W \)), representing the coordinates of the path for the \( i \)-th fuse cord.
+
+**Output**
+
+Print the grid after all bombs have been placed.
+
+**Example**
+
+_Input_
+```
+5 5
+2
+3
+1 1 2 2 3 3
+2
+4 1 5 5
+```
+
+_Output_
+```
+B . . . .
+. B . . .
+. . B . .
+. . . . .
+. . . . B
+```
+
+In the example, there are 2 fuse cords with bombs. The first fuse cord has a path of length 3 ending at (3,3), and the second fuse cord has a path of length 2 ending at (5,5). Bombs are placed at these positions on the grid.
+
+### Test Case Generator
+
+Here is a Python function to automatically generate test cases for the problem:
+
+```python
+import random
+
+def generate_path(H, W, L):
+    path = []
+    for _ in range(L):
+        x = random.randint(1, H)
+        y = random.randint(1, W)
+        path.append((x, y))
+    return path
+
+def tcgen():
+    H = random.randint(1, 1000)
+    W = random.randint(1, 1000)
+    N = random.randint(1, 100)
+    
+    test_case = []
+    test_case.append(f"{H} {W}")
+    test_case.append(f"{N}")
+    
+    for _ in range(N):
+        L = random.randint(1, 100)
+        path = generate_path(H, W, L)
+        path_str = ' '.join(f"{x} {y}" for (x, y) in path)
+        test_case.append(f"{L} {path_str}")
+    
+    return '\n'.join(test_case)
+
+# Example usage
+print(tcgen())
+```
+
+This function generates a random grid height and width, a random number of fuse cords, and for each fuse cord, it generates a random path of specified length within the grid. The output is formatted as a string that matches the input specification of the problem.

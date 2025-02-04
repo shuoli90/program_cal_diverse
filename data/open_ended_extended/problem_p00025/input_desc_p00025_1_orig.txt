@@ -1,0 +1,21 @@
+An integer ai (0 ≤ ai ≤ 9) representing a single digit number.
+An integer bi (0 ≤ bi ≤ 9) representing a single digit number.
+The input consists of multiple datasets.
+The number of datasets is less than or equal to 50.
+The input ends with EOF.
+
+### Example Input:
+
+```
+9 1 8 2
+4 1 5 9
+4 6 8 2
+4 6 3 2
+```
+
+### Function Signature:
+Write a function f(inputs) that takes in the input.
+def f(inputs: List[Tuple[List[int], List[int]]]):
+    ''' 
+    inputs: a list of tuples, where each tuple contains two lists of integers
+    '''

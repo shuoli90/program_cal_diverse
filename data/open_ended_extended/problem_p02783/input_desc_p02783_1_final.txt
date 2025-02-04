@@ -1,0 +1,16 @@
+An integer H (1 ≤ H ≤ 10^4), representing some quantity.
+An integer A (1 ≤ A ≤ 10^4), representing some quantity.
+
+### Example Input:
+
+```
+10 4
+```
+
+### Function Signature:
+Write a function f(H, A) that takes in the input. 
+def f(H: int, A: int): 
+    ''' 
+    H: an integer 
+    A: an integer
+    '''

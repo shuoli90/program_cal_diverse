@@ -1,0 +1,18 @@
+def extract_arguments(fh):
+    N = int(fh.readline().strip())
+    members = []
+    for _ in range(N):
+        name, motivation = fh.readline().strip().split()
+        motivation = int(motivation)
+        members.append((name, motivation))
+    
+    M = int(fh.readline().strip())
+    changes = []
+    for _ in range(M):
+        change = fh.readline().strip().split()
+        if change[0] == '+':
+            changes.append((change[0], change[1], int(change[2])))
+        else:
+            changes.append((change[0], change[1]))
+    
+    return N, members, M, changes

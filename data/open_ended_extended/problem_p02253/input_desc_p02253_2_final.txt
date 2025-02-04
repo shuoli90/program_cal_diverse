@@ -1,0 +1,20 @@
+An integer n (1 ≤ n ≤ 10^5), representing some quantity or size.
+A list of tuples of integers (s, t) of size n, where 1 ≤ s < t ≤ 10^9.
+
+### Example Input:
+
+```
+5
+1 2
+3 9
+3 5
+5 9
+6 8
+```
+
+### Function Signature:
+Write a function f(inputs) that takes in the input. 
+def f(inputs: List[Tuple[int, int]]): 
+    ''' 
+    inputs: a list of tuples of integers
+    '''

@@ -1,0 +1,16 @@
+def extract_arguments(fh):
+    datasets = []
+    while True:
+        n = int(fh.readline().strip())
+        if n == 0:
+            break
+        s, t, b = fh.readline().strip().split()
+        datasets.append((n, s, t, b))
+    return datasets
+
+# if __name__ == "__main__":
+#     input_path = sys.argv[1]
+#     with open(input_path, 'r') as fh:
+#         datasets = extract_arguments(fh)
+#         for dataset in datasets:
+#             f(*dataset)

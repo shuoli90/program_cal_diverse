@@ -1,0 +1,37 @@
+Sure, let's create a test case generator based on the new problem statement. The generator will create random test cases within the given constraints.
+
+Here's the test case generator for the problem:
+
+```python
+import random
+
+def tcgen():
+    # Generate a random N within the given constraints
+    N = random.randint(1, 10**5)
+    
+    # Generate a random string S of length 2N with characters 'B' or 'W'
+    S = ''.join(random.choice(['B', 'W']) for _ in range(2 * N))
+    
+    return N, S
+
+# Example usage
+N, S = tcgen()
+print(N)
+print(S)
+```
+
+This function `tcgen` generates a random integer `N` within the range \([1, 10^5]\) and a random string `S` of length `2N` consisting of characters 'B' and 'W'. You can use this function to produce random test cases for the problem.
+
+Here's an example of how you can use this test case generator:
+
+```python
+# Generate a random test case
+N, S = tcgen()
+
+# Display the generated test case
+print(f"Generated Test Case:")
+print(f"N = {N}")
+print(f"S = {S}")
+```
+
+This will print a random value of `N` and a corresponding string `S` as per the constraints. You can then use these values for testing your solution to the problem.

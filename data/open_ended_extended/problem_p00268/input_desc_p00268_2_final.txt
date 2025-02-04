@@ -1,0 +1,28 @@
+An integer C (3 ≤ C ≤ 100), representing some quantity.
+An integer W (3 ≤ W ≤ 300), representing some other quantity.
+A list of C pairs of integers (xi, yi), where each integer xi and yi is between -1000 and 1000.
+A list of W pairs of integers (si, ti), where each integer si and ti is between 1 and C.
+
+### Example Input:
+
+```
+4 4
+0 0
+1 0
+1 1
+0 1
+1 2
+1 4
+2 3
+3 4
+```
+
+### Function Signature:
+Write a function f(C, W, coords, walls) that takes in the input.
+def f(C: int, W: int, coords: List[Tuple[int, int]], walls: List[Tuple[int, int]]):
+    '''
+    C: an integer
+    W: an integer
+    coords: a list of tuples of integers
+    walls: a list of tuples of integers
+    '''

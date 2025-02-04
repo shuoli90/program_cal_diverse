@@ -1,0 +1,3 @@
+Types: n: int
+Ranges: 1 ≤ n ≤ 10^6
+Addtl Info: Output should be the count of sequences modulo 10^9+7

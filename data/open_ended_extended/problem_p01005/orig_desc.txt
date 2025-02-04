@@ -1,0 +1,75 @@
+Problem G: The Humans Braving the Invaders
+Problem
+Currently, Earth is under attack by invaders from space, and only we who are in the base, which is the only surviving humans, are left. There is little military power left to fight against them. Nevertheless, we do not give up here. Completely annihilating the Invader is the last means for humanity to survive. We must fight to the end as representatives of the remaining humanity. The following describes the content of the final operation that will take place now.
+First, since our military power is far too low compared to that of the Invaders, we will take refuge in this base and conduct a siege battle. This base is surrounded by high mountains, and the only way for the Invaders to invade is to pass through the straight road in front of the base. Let's call this road a field. Due to this feature, it is possible to attack the Invaders concentratedly in front. We who are in the base attack the Invaders with two types of weapons. One is a sniper rifle that aims at one Invader. The other is a grenade launcher that can attack a wide range.
+Your job as the only programmer among us humans is to simulate the battle based on the action records of the Invaders and us. The action record is given in query format. Each query consists of one or more integers and is given as follows:
+0
+The Invader appears at a position  L  distance from the base on the field.
+1 d
+All Invaders currently on the field move  d  closer to the base. After this action, Invaders that reach the base will receive damage, and those enemies will disappear from the field. If damage is received, output "damage (number of Invaders that reached the base)" on one line.
+2 k
+If the number of Invaders currently on the field is equal to or greater than  k , attack the  k th Invader from the base with a sniper rifle. The Invader will disappear from the field. Then output "hit" on one line. If the number of Invaders on the field is less than  k , output "miss" on one line.
+3 x r
+Attack a range of  r  with a grenade launcher at a position  x  distance from the base. All Invaders on the field whose distance from the base is within  r  from the point of impact at a distance of  x  from the base will disappear from the field. Then output "bomb (number of Invaders defeated)" on one line. As a supplement, the base will not receive any damage from the grenade launcher.
+4 k
+If the number of Invaders on the field is equal to or greater than  k , output "distance (distance between the  k th Invader closest to the base and the base)" on one line. If the number of Invaders on the field is less than  k , output "distance -1" on one line.
+That's all for the explanation of the operation. All hands, start the operation! ...Good luck.
+Input
+The input consists of multiple data sets. Each data set is represented as follows. The first line gives two integers  Q  and  L  separated by a space. The following  Q  lines give the queries described above. The input ends with two zeros.
+Constraints
+ The input satisfies the following conditions. 
+All values in the input are integers.
+1 ≤ Q ≤ 100000
+1 ≤ L ≤ 109
+1 ≤ d , k ≤ 109
+0 ≤ x ≤ L 
+0 ≤ r ≤ 109
+There are no more than two Invaders at the same position.
+There are no more than three data sets.
+Output
+For each data set, output according to the instruction of the query to be output. Output "end" at the end of each data set. 
+Sample Input
+18 10
+0
+4 1
+1 1
+4 1
+0
+1 1
+0
+2 2
+1 10
+0
+1 1
+0
+1 5
+3 4 0
+3 4 1
+0
+9 10
+4 1
+2 2
+3 5 5
+0
+4 1
+2 2
+3 5 5
+0
+2 1
+0 0
+Sample Output
+distance 10
+distance 9
+hit
+damage 2
+bomb 1
+bomb 2
+end
+distance -1
+miss
+bomb 0
+distance 10
+miss
+bomb 1
+hit
+end

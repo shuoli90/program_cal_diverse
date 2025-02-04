@@ -1,0 +1,227 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p01322 - Generation 3</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p01322 - Generation 3</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>Problem B: Lottery Checker
+You have just finished sorting out your university placement and are in the middle of moving from Komaba to Hongou. As you tidy up your house, you find a large number of lottery tickets that you purchased last year. After checking the exchange deadline, you realize that you must redeem them by tomorrow. However, you have not finished preparing for the move and it would be a hassle to go to the lottery ticket sales office for a small amount of prize money. Therefore, you have decided to investigate how much prize money you can win.
+The lottery consists of an 8-digit number. The winning numbers are also 8 digits long and consist of numbers and '*'. If the number portion of the ticket you have matches the number portion of the winning number, you will receive the corresponding prize money. For example, if you have a ticket with the number "12345678", you will win if the winning number is "*******8" or "****5678", but not if the winning number is "****4678". There may be multiple winning numbers, and each winning number will be paid independently. However, a single lottery ticket will not win more than one winning number. For example, if there are two winning numbers, "*******8" and "****5678", the ticket "12345678" will win both, which is not possible. 
+Your task is to write a program that, given the lottery ticket number you hold and the winning number of the lottery, will output how much prize money you can win.
+Input
+The input is given in the following format.
+n m
+N1 M1
+...
+Nn Mn
+B1
+...
+Bm
+The first line contains two integers: the number of winning numbers n (1 ≤ n ≤ 100) and the number of lottery tickets you have m (1 ≤ m ≤ 1000).
+For the next n lines, each line contains a winning number Ni and the prize money Mi (1 ≤ Mi ≤ 1000000). The prize money is an integer. The format of the winning number is as described in the problem statement.
+For the next m lines, the lottery ticket numbers that you hold are given. 
+Output
+Output the total amount of prize money.
+Notes on Test Cases
+Multiple data sets are given in the input format above. Create a program that outputs in the output format above for each data set.
+The end of the input is indicated by n = 0.
+Sample Input
+3 3
+*******1 100
+******22 1000
+11111112 1000000
+01203291
+02382022
+11111111
+10 10
+****3228 149416
+****3992 198635
+****4286 77783
+****4843 225244
+***49835 231046
+***59393 379996
+*5763748 437345
+*6726222 58054
+*8117882 16375
+*9244339 537727
+77885716
+96726222
+26971031
+66652868
+89599648
+37772338
+64679621
+65479161
+92959393
+57855682
+0 0
+Output for Sample Input
+1200
+438050
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An integer n (1 ≤ n ≤ 100), representing some quantity.
+An integer m (1 ≤ m ≤ 1000), representing some quantity.
+
+A list of n tuples, each containing:
+- A string of length 8, which may include digits and the character '*'.
+- An integer (1 ≤ Mi ≤ 1000000), representing some quantity.
+
+A list of m strings, each of length 8, containing only digits.
+
+### Example Input:
+
+```
+3 3
+*******1 100
+******22 1000
+11111112 1000000
+01203291
+02382022
+11111111
+```
+
+### Function Signature:
+Write a function f(n, m, winning_numbers, tickets) that takes in the input.
+```python
+def f(n: int, m: int, winning_numbers: List[Tuple[str, int]], tickets: List[str]):
+    '''
+    n: an integer
+    m: an integer
+    winning_numbers: a list of tuples containing a string and an integer
+    tickets: a list of strings
+    '''
+```</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Sure, I can help you create a test case generator for the given problem statement "Lottery Checker". Below is the code to generate random test cases for this problem:
+
+```python
+import random
+import string
+
+def generate_winning_number():
+    """ Generates an 8-digit winning number with possible '*' characters. """
+    number = ''.join(random.choice(string.digits + '*') for _ in range(8))
+    # Ensure at least one digit is not '*', so it's a valid matchable pattern
+    if '*' not in number:
+        index = random.randint(0, 7)
+        number = number[:index] + '*' + number[index + 1:]
+    return number
+
+def generate_ticket_number():
+    """ Generates a random 8-digit ticket number. """
+    return ''.join(random.choice(string.digits) for _ in range(8))
+
+def tcgen():
+    n = random.randint(1, 100)  # number of winning numbers
+    m = random.randint(1, 1000)  # number of lottery tickets
+
+    winning_numbers = []
+    for _ in range(n):
+        winning_number = generate_winning_number()
+        prize_money = random.randint(1, 1000000)
+        winning_numbers.append((winning_number, prize_money))
+
+    lottery_tickets = [generate_ticket_number() for _ in range(m)]
+
+    return n, m, winning_numbers, lottery_tickets
+
+# Example usage:
+n, m, winning_numbers, lottery_tickets = tcgen()
+
+# Printing the test case in the specified format
+print(n, m)
+for number, prize in winning_numbers:
+    print(number, prize)
+for ticket in lottery_tickets:
+    print(ticket)
+```
+
+This test case generator produces:
+- `n`: The number of winning numbers (between 1 and 100).
+- `m`: The number of lottery tickets you have (between 1 and 1000).
+- A list of `n` winning numbers, each paired with a prize money amount.
+- A list of `m` lottery tickets.
+
+The winning numbers are generated with a mix of digits and '*' characters, ensuring at least one character is a digit. The lottery tickets are purely 8-digit numbers. The output is formatted as described in the problem statement.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    data_sets = []
+    while True:
+        n, m = map(int, fh.readline().strip().split())
+        if n == 0 and m == 0:
+            break
+        winning_numbers = []
+        for _ in range(n):
+            parts = fh.readline().strip().split()
+            winning_numbers.append((parts[0], int(parts[1])))
+        tickets = []
+        for _ in range(m):
+            tickets.append(fh.readline().strip())
+        data_sets.append((n, m, winning_numbers, tickets))
+    return data_sets
+
+# if __name__ == "__main__":
+#     input_path = sys.argv[1]
+#     with open(input_path, 'r') as fh:
+#         data_sets = extract_arguments(fh)
+#         for data in data_sets:
+#             print(data)</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

@@ -1,0 +1,46 @@
+Sure! Here's a Python function to generate random test cases for the "Settler" problem. This function will ensure that the constraints provided in the problem statement are respected.
+
+```python
+import random
+
+def tcgen():
+    # Generate N and K
+    N = random.randint(2, 6000)
+    K = random.randint(2, N)
+    
+    # Generate coordinates for N vacant lots
+    # xi mod 2 = floor(yi / 2) mod 2
+    vacant_lots = []
+    for _ in range(N):
+        while True:
+            xi = random.randint(1, 1000000)
+            yi = random.randint(1, 1000000)
+            if xi % 2 == (yi // 2) % 2:
+                vacant_lots.append((xi, yi))
+                break
+    
+    # Prepare the input format
+    input_data = f"{N} {K}\n"
+    for xi, yi in vacant_lots:
+        input_data += f"{xi} {yi}\n"
+    
+    return input_data
+
+# Example of generating a test case
+print(tcgen())
+```
+
+### Explanation:
+
+1. **N and K Generation**:
+   - We generate `N` randomly between 2 and 6000.
+   - We generate `K` randomly between 2 and `N`.
+   
+2. **Coordinates Generation**:
+   - For each vacant lot, generate random coordinates `(xi, yi)` within the specified range.
+   - Ensure the constraint `xi % 2 == (yi // 2) % 2` is met before adding the coordinates to the list.
+   
+3. **Formatting the Output**:
+   - The function constructs the input in the required format, starting with `N` and `K`, followed by the coordinates of the vacant lots.
+
+This function ensures all generated test cases adhere to the constraints provided in the problem statement. You can call the `tcgen()` function to generate different test cases for your testing purposes.

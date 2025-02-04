@@ -1,0 +1,33 @@
+Sure, I can help you create a test case generator for the given problem statement. Here's a Python function that generates random test cases based on the provided constraints:
+
+```python
+import random
+
+def generate_test_case():
+    # Step 1: Generate a random value for N within the constraints
+    N = random.randint(1, 5000)
+    
+    # Step 2: Generate a random string s of length between 1 and N consisting of '0's and '1's
+    length_of_s = random.randint(1, N)
+    s = ''.join(random.choice(['0', '1']) for _ in range(length_of_s))
+    
+    return N, s
+
+# Example usage:
+if __name__ == "__main__":
+    # Generate a test case
+    N, s = generate_test_case()
+    
+    # Print the test case in the required format
+    print(N)
+    print(s)
+```
+
+This function `generate_test_case` will create random test cases that adhere to the problem's constraints. Here's a breakdown of the function:
+
+1. **N Generation**: It generates a random integer `N` between 1 and 5000.
+2. **String Generation**: It generates a random string `s` of a random length between 1 and `N`, consisting of characters '0' and '1'.
+
+You can call this function multiple times to generate different test cases and print them in the required format for testing your solution.
+
+Remember to use this generator responsibly, especially when generating large test cases, as it can produce a significant amount of data.

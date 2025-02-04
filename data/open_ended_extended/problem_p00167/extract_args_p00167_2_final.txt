@@ -1,0 +1,9 @@
+def extract_arguments(fh):
+    datasets = []
+    while True:
+        n = int(fh.readline().strip())
+        if n == 0:
+            break
+        a = [int(fh.readline().strip()) for _ in range(n)]
+        datasets.append((n, a))
+    return datasets

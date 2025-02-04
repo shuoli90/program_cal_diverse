@@ -1,0 +1,5 @@
+def extract_arguments(fh):
+    lines = fh.readlines()
+    N, M = map(int, lines[0].strip().split())
+    coordinates = [tuple(map(int, line.strip().split())) for line in lines[1:]]
+    return N, M, coordinates

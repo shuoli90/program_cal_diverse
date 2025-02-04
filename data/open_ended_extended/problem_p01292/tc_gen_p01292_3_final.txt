@@ -1,0 +1,84 @@
+Sure! Below is a Python function to generate test cases for the described problem "Secret Operation".
+
+```python
+import random
+
+def generate_coordinates():
+    return random.randint(-10000, 10000), random.randint(-10000, 10000)
+
+def tcgen():
+    datasets = []
+    
+    while True:
+        # Time (0 ≤ Time ≤ 100)
+        Time = random.randint(0, 100)
+        # R (0 < R < 30000)
+        R = random.randint(1, 29999)
+
+        # Number of moves for Mary (2 ≤ L ≤ 20)
+        L = random.randint(2, 20)
+        Mary_moves = []
+        MaryT = [0] + sorted(random.sample(range(1, Time), L - 1)) + [Time]
+        for i in range(L):
+            MaryX, MaryY = generate_coordinates()
+            Mary_moves.append((MaryX, MaryY, MaryT[i]))
+
+        # Number of moves for George (2 ≤ M ≤ 20)
+        M = random.randint(2, 20)
+        George_moves = []
+        GeorgeT = [0] + sorted(random.sample(range(1, Time), M - 1)) + [Time]
+        for i in range(M):
+            GeorgeX, GeorgeY = generate_coordinates()
+            George_moves.append((GeorgeX, GeorgeY, GeorgeT[i]))
+
+        # Number of obstacles (0 ≤ N ≤ 20)
+        N = random.randint(0, 20)
+        obstacles = []
+        for _ in range(N):
+            BlockSX, BlockSY = generate_coordinates()
+            BlockTX, BlockTY = generate_coordinates()
+            obstacles.append((BlockSX, BlockSY, BlockTX, BlockTY))
+
+        # Add generated data to the dataset
+        dataset = {
+            "Time": Time,
+            "R": R,
+            "Mary_moves": Mary_moves,
+            "George_moves": George_moves,
+            "obstacles": obstacles
+        }
+        datasets.append(dataset)
+
+        # Randomly decide whether to stop generating more datasets
+        if random.choice([True, False]):
+            break
+
+    return datasets
+
+# Example usage
+test_cases = tcgen()
+
+# Printing the generated test cases in the format described
+for tc in test_cases:
+    print(f'{tc["Time"]} {tc["R"]}')
+    print(len(tc["Mary_moves"]))
+    for move in tc["Mary_moves"]:
+        print(f'{move[0]} {move[1]} {move[2]}')
+    print(len(tc["George_moves"]))
+    for move in tc["George_moves"]:
+        print(f'{move[0]} {move[1]} {move[2]}')
+    print(len(tc["obstacles"]))
+    for obstacle in tc["obstacles"]:
+        print(f'{obstacle[0]} {obstacle[1]} {obstacle[2]} {obstacle[3]}')
+    print('0 0')
+```
+
+This function generates test cases for the "Secret Operation" problem. It creates random values for each parameter defined in the problem statement, ensuring they adhere to the constraints given:
+
+- `Time` ranges from 0 to 100.
+- `R` ranges from 1 to 29999.
+- Mary's and George's paths consist of random movements with valid constraints.
+- Obstacles are randomly generated with valid coordinates.
+- The function produces multiple datasets and randomly decides when to stop generating more.
+
+The generated data is printed in the specified input format. Each dataset is followed by the "0 0" line to signify the end of the datasets.

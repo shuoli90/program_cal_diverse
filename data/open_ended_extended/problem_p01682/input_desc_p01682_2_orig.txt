@@ -1,0 +1,24 @@
+Canonicalized Input Description:
+
+A sequence of strings, each string representing a valid expression according to a specific syntax.
+The number of strings is at most 100.
+Each string is no longer than 2,000,000 characters.
+The sequence ends with a single '#' character.
+
+### Example Input:
+
+```
+S< S< 12 >> 2 > >
+123 >> 1 >> 1
+1000000000   >>129
+S<S<S<S<S<2>>>>>
+S  <S< S<2013    >>> 11 >>> 10 >
+#
+```
+
+### Function Signature:
+Write a function f(inputs) that takes in the input.
+def f(inputs: List[str]):
+    '''
+    inputs: a list of strings
+    '''

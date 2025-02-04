@@ -1,0 +1,56 @@
+Sure, here's a test case generator for the problem "Settler":
+
+```python
+import random
+
+def tcgen():
+    # Constraints
+    MIN_N = 2
+    MAX_N = 6000
+    MIN_K = 2
+    MAX_COORD = 1000000
+    
+    # Randomly generate valid values for N and K
+    N = random.randint(MIN_N, MAX_N)
+    K = random.randint(MIN_K, N)
+    
+    # Generate N unique vacant lots with valid coordinates
+    vacant_lots = set()
+    while len(vacant_lots) < N:
+        x = random.randint(1, MAX_COORD)
+        y = random.randint(1, MAX_COORD)
+        
+        # Ensure x mod 2 = floor(y / 2) mod 2
+        if x % 2 == (y // 2) % 2:
+            vacant_lots.add((x, y))
+    
+    vacant_lots = list(vacant_lots)
+    
+    return N, K, vacant_lots
+
+def main():
+    N, K, vacant_lots = tcgen()
+    
+    print(N, K)
+    for x, y in vacant_lots:
+        print(x, y)
+        
+if __name__ == "__main__":
+    main()
+```
+
+### Explanation:
+1. **Generating N and K:**
+   - `N` is generated randomly between 2 and 6000.
+   - `K` is generated randomly between 2 and `N`.
+
+2. **Generating Vacant Lots:**
+   - A set `vacant_lots` is used to ensure uniqueness.
+   - The coordinates `(x, y)` are generated with the condition `x % 2 == (y // 2) % 2`.
+   - Coordinates are added to the set until it contains `N` distinct pairs.
+
+3. **Printing Output:**
+   - The values of `N` and `K` are printed.
+   - Each coordinate pair `(x, y)` in `vacant_lots` is printed on a new line.
+
+This generator ensures that all the constraints of the problem are satisfied, creating valid test cases for the "Settler" problem.

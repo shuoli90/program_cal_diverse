@@ -1,0 +1,3 @@
+Types: n: int, node: List[List[int]], q: int, queries: List[Tuple[int, int, Optional[int]]]
+Ranges: 2 ≤ n ≤ 100000, 2 ≤ q ≤ 200000, 1 ≤ u, v ≤ n-1, 1 ≤ w ≤ 10000
+Addtl Info: c_j < c_{j+1} (1 ≤ j ≤ k_i-1)

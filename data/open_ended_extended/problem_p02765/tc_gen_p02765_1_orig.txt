@@ -1,0 +1,48 @@
+Sure, I can help with that. Here is a Python function that generates test cases for the described problem:
+
+```python
+import random
+
+def tcgen():
+    # Generate N within the range [1, 100]
+    N = random.randint(1, 100)
+    
+    # Generate R within the range [0, 4111]
+    R = random.randint(0, 4111)
+    
+    return N, R
+
+# Example of generating a test case
+N, R = tcgen()
+print(N, R)
+```
+
+This function will generate test cases where:
+- `N` is the number of contests Takahashi has participated in, which is a random integer between 1 and 100.
+- `R` is the Displayed Rating, which is a random integer between 0 and 4111.
+
+Let's briefly recap the logic needed to solve the problem given the constraints and problem statement:
+
+If `N >= 10`, the Inner Rating is equal to the Displayed Rating `R`.
+If `N < 10`, the Inner Rating is `R + 100 * (10 - N)`.
+
+Here's how you can use the generated test cases to solve the problem:
+
+```python
+def find_inner_rating(N, R):
+    if N >= 10:
+        return R
+    else:
+        return R + 100 * (10 - N)
+
+# Example usage with generated test case
+N, R = tcgen()
+print("Generated test case:")
+print(f"N = {N}, R = {R}")
+
+inner_rating = find_inner_rating(N, R)
+print("Computed Inner Rating:")
+print(inner_rating)
+```
+
+This script will generate a random test case and compute the Inner Rating based on the given logic. The function `find_inner_rating` implements the logic to find the Inner Rating based on the number of contests participated in.

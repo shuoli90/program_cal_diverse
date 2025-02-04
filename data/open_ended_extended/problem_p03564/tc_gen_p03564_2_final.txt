@@ -1,0 +1,18 @@
+Sure, I can help you with generating test cases for the given problem statement. Below is the test case generator in Python:
+
+```python
+import random
+
+def tcgen():
+    N = random.randint(1, 10)
+    K = random.randint(1, 10)
+    
+    return N, K
+
+# Example usage:
+for _ in range(5):  # Generate 5 random test cases
+    N, K = tcgen()
+    print(f"Input: {N} {K}")
+```
+
+This generator will create random values for `N` and `K` within the constraints specified in the problem statement (1 ≤ N, K ≤ 10). Each test case will be a tuple containing the values of `N` and `K`.

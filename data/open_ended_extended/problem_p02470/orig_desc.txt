@@ -1,0 +1,16 @@
+
+Euler's Phi Function
+For given integer n, count the totatives of n, that is, the positive integers less than or equal to n that are relatively prime to n.
+Input
+n
+An integer n (1 ≤ n ≤ 1000000000).
+Output
+The number of totatives in a line.
+Sample Input 1
+6
+Sample Output 1
+2
+Sample Input 2
+1000000
+Sample Output 2
+400000

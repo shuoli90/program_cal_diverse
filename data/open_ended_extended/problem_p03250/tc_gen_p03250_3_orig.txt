@@ -1,0 +1,26 @@
+Sure! To create a test case generator for this problem, we need to generate three integers \( A, B, \) and \( C \) each between 1 and 9. Here is a Python function that accomplishes this:
+
+```python
+import random
+
+def tcgen():
+    # Generate three integers between 1 and 9 inclusive
+    A = random.randint(1, 9)
+    B = random.randint(1, 9)
+    C = random.randint(1, 9)
+    
+    return A, B, C
+
+# Example usage:
+for _ in range(5):
+    print(tcgen())
+```
+
+This function will create different test cases every time it is called. Each test case contains three integers between 1 and 9 inclusive, suitable for the problem constraints.
+
+Here is a breakdown of the process:
+
+1. **Generate three random integers**: Each integer \( A, B, \) and \( C \) is generated within the range of 1 to 9.
+2. **Return the generated integers**: The function `tcgen()` returns these integers as a tuple.
+
+You can use the `print(tcgen())` to see the generated test cases. Each call to `tcgen()` will produce a new set of integers which you can then use as inputs to test your problem solution.

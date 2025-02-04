@@ -1,0 +1,38 @@
+Sure, I can help you write a test case generator for the given problem statement. The generator will create random inputs that adhere to the constraints and format specified in the problem. Here's the Python code for the test case generator:
+
+```python
+import random
+
+def tcgen():
+    # Number of operations
+    n = random.randint(1, 1000)
+    
+    operations = []
+    for _ in range(n):
+        p_i = random.choice(['(', ')'])
+        x_i = random.randint(1, 10**6)
+        operations.append((p_i, x_i))
+    
+    return n, operations
+
+def format_test_case(n, operations):
+    test_case = f"{n}\n"
+    for p_i, x_i in operations:
+        test_case += f"{p_i} {x_i}\n"
+    return test_case
+
+# Generating a test case
+n, operations = tcgen()
+test_case = format_test_case(n, operations)
+print(test_case)
+```
+
+This code defines two functions:
+
+1. `tcgen()`: Generates the number of operations `n` and a list of tuples representing the operations. Each tuple consists of a character `p_i` (either '(' or ')') and an integer `x_i` (number of occurrences).
+
+2. `format_test_case(n, operations)`: Formats the generated test case into the required input format as a multi-line string.
+
+You can run this code to generate and print a random test case for the problem. The output will adhere to the input constraints and format specified in the problem statement.
+
+Let me know if you need any further assistance!

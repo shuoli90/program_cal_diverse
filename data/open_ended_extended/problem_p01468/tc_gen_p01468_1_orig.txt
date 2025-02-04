@@ -1,0 +1,60 @@
+Sure, I can help you create a test case generator for the given problem. Below is a Python function that generates random test cases according to the problem constraints:
+
+```python
+import random
+
+def generate_random_point():
+    """Generate a random point within the given constraints."""
+    return (random.randint(0, 100), random.randint(0, 100))
+
+def generate_random_line_segment():
+    """Generate a random line segment ensuring the endpoints are distinct."""
+    while True:
+        p1 = generate_random_point()
+        p2 = generate_random_point()
+        if p1 != p2:
+            return p1, p2
+
+def tcgen():
+    """Generate a test case for the line segment distance problem."""
+    N = random.randint(2, 10**5)  # Number of line segments
+
+    segments = []
+    for _ in range(N):
+        (x1, y1), (x2, y2) = generate_random_line_segment()
+        segments.append((x1, y1, x2, y2))
+
+    return N, segments
+
+def format_test_case(N, segments):
+    """Format the test case in the required input format."""
+    result = [str(N)]
+    for (x1, y1, x2, y2) in segments:
+        result.append(f"{x1} {y1} {x2} {y2}")
+    return "\n".join(result)
+
+# Example usage
+N, segments = tcgen()
+formatted_test_case = format_test_case(N, segments)
+print(formatted_test_case)
+```
+
+### Explanation:
+
+1. **generate_random_point**: Generates a random point \((x, y)\) within the range [0, 100].
+2. **generate_random_line_segment**: Generates a random line segment with two distinct endpoints.
+3. **tcgen**: Generates a random test case with \(N\) line segments.
+4. **format_test_case**: Formats the generated test case into the required input format.
+
+### Example Output:
+Running this code will produce output similar to this (the actual values will be random):
+
+```
+4
+2 0 2 25
+0 30 15 20
+16 20 5 15
+23 0 23 30
+```
+
+This approach ensures that all generated test cases comply with the given constraints and are formatted correctly for use in competitive programming challenges.

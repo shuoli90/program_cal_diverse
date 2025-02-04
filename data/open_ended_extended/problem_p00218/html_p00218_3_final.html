@@ -1,0 +1,199 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p00218 - Generation 3</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p00218 - Generation 3</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>Class Assignment
+At Aizu Juku, students take a proficiency test when they enter the cram school and are divided into classes. The test covers three subjects: math, English, and Japanese, and the students are divided into classes A, B, and C. Class A has the highest level, followed by B and C in order.
+The classification is based on the following table.
+               Conditions             Class
+There is a 100 point subject.                     A 
+The average score for math and English is 90 points or higher.                A 
+The average score for all three subjects is 80 points or higher.                  A
+The average score for all three subjects is 70 points or higher.                B
+The average score for all three subjects is 50 points or higher and the score for math or English is 80 points or higher.   B
+Does not meet the above conditions.                       C
+If a student meets multiple conditions, they will be assigned to the higher level class.
+Write a program that takes as input the number of students n (1 ≤ n ≤ 10000), the math scores pmi (0 ≤ pmi ≤ 100), the English scores pei (0 ≤ pei ≤ 100), and the Japanese scores pji (0 ≤ pji ≤ 100) for each student, and outputs the class (in uppercase letters) of each student.
+Input
+The input consists of multiple datasets. The end of the input is indicated by a single line with a zero.
+Each dataset is given in the following format.
+n
+pm1 pe1 pj1
+pm2 pe2 pj2
+:
+pmn pen pjn
+All input is given as integers. There are no more than 1000 datasets.
+Output
+For each input dataset, output the class of each student in order.
+Sample Input
+4
+100 70 20
+98 86 55
+80 34 36
+65 79 65
+2
+99 81 20
+66 72 90
+0
+Output for the Sample Input
+A
+A
+B
+C
+A
+B
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An integer n (1 ≤ n ≤ 10000), representing some quantity or size.
+A list of tuples of integers (pm, pe, pj) of size n, where each integer is between 0 and 100.
+
+### Example Input:
+
+```
+4
+100 70 20
+98 86 55
+80 34 36
+65 79 65
+2
+99 81 20
+66 72 90
+0
+```
+
+### Function Signature:
+Write a function f(inputs) that takes in the input.
+```python
+def f(inputs: List[Tuple[int, int, int]]):
+    '''
+    inputs: a list of tuples, where each tuple consists of three integers
+    '''
+```</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Sure, I can write a test case generator for the "Class Assignment" problem statement. Below is the Python code for generating test cases:
+
+```python
+import random
+
+def generate_single_dataset():
+    n = random.randint(1, 10000)
+    
+    students = []
+    for _ in range(n):
+        pm = random.randint(0, 100)
+        pe = random.randint(0, 100)
+        pj = random.randint(0, 100)
+        students.append((pm, pe, pj))
+    
+    return n, students
+
+def tcgen():
+    datasets = []
+    num_datasets = random.randint(1, 1000)
+    
+    for _ in range(num_datasets):
+        n, students = generate_single_dataset()
+        datasets.append((n, students))
+    
+    # Add the end of input marker
+    datasets.append((0, []))
+    
+    return datasets
+
+def format_test_case(datasets):
+    formatted_case = ""
+    for n, students in datasets:
+        formatted_case += f"{n}\n"
+        for pm, pe, pj in students:
+            formatted_case += f"{pm} {pe} {pj}\n"
+    return formatted_case
+
+# Example usage
+test_cases = tcgen()
+formatted_test_case = format_test_case(test_cases)
+print(formatted_test_case)
+```
+
+### Explanation:
+1. **generate_single_dataset**: This function generates a single dataset by randomly choosing the number of students (`n`) and then generating their scores for math (`pm`), English (`pe`), and Japanese (`pj`).
+
+2. **tcgen**: This function generates multiple datasets (up to 1000). Each dataset is generated using the `generate_single_dataset` function. Finally, it adds a `(0, [])` tuple to signal the end of input.
+
+3. **format_test_case**: This function takes the list of datasets and formats it as a string that matches the input format specified in the problem statement.
+
+4. The example usage shows how to generate and print a test case in the required input format.
+
+You can run this script to generate random test cases for the "Class Assignment" problem.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    datasets = []
+    while True:
+        n = int(fh.readline().strip())
+        if n == 0:
+            break
+        students = []
+        for _ in range(n):
+            scores = list(map(int, fh.readline().strip().split()))
+            students.append(tuple(scores))
+        datasets.append((n, students))
+    return datasets</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

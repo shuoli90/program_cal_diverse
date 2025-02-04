@@ -1,0 +1,14 @@
+An alphanumeric string S of length 4, where each character is either '+' or '-'.
+
+### Example Input:
+
+```
++-++
+```
+
+### Function Signature:
+Write a function f(S) that takes in the input.
+def f(S: str):
+    '''
+    S: a string
+    '''

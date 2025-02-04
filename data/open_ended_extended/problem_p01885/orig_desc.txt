@@ -1,0 +1,69 @@
+
+Escape from the Hell
+One day, Buddha looked into the hell and found an office worker. He did evil, such as enforcing hard work on his subordinates. However, he made only one good in his life. He refused an unreasonable request from his customer to save the lives of his subordinates. Buddha thought that, as the reward of the good, the office worker should have had a chance to escape from the hell. Buddha took a spider silk and put down to the hell.
+The office worker climbed up with the spider silk, however the length of the way $L$ meters was too long to escape one day. He had $N$ energy drinks and drunk one of them each day. The day he drunk the i-th energy drink he could climb $A_i$ meters in the daytime and after that slided down $B_i$ meters in the night. If he could reach at the height greater than or equal to the $L$ meters in the daytime, he could escape without sliding down. After the $N$ days the silk would be cut.
+He realized that other sinners climbed the silk in the night. They climbed $C_i$ meters in the $i$-th night without sliding down in the daytime. If they catched up with the office worker, they should have conflicted and the silk would be cut. Therefore he needed to escape before other sinners catched him. Your task is to write a program computing the best order of energy drink and output the earliest day which he could escape. If he could not escape, your program should output -1.
+Input
+The input consists of a single test case.
+$N$ $L$
+$A_1$ $B_1$
+$A_2$ $B_2$
+...
+$A_N$ $B_N$
+$C_1$
+$C_2$
+...
+$C_N$
+The first line contains two integers $N$ ($1 \leq N \leq 10^5$) and $L$ ($1 \leq L \leq 10^9$), which mean the number of energy drinks and the length of the spider silk respectively. The following $N$ lines show the information of the drinks: the $i$-th of them indicates the $i$-th energy drink, he climbed up $A_i$ ($1 \leq A_i \leq 10^9$) meters and slided down $B_i$ ($1 \leq B_i \leq 10^9$) meters. Next $N$ lines show how far other sinners climbed: the $i$-th of them contains an integer $C_i$ ($1 \leq C_i \leq 10^9$), which means they climbed up $C_i$ meters in the $i$-th day.
+Output
+Print the earliest day which he could escape. If he could not escape, print -1 instead.
+Sample Input 1
+3 9
+6 3
+5 2
+3 1
+2
+2
+2
+Output for the Sample Input 1
+2
+Sample Input 2
+5 20
+3 2
+4 2
+6 3
+8 4
+10 5
+4
+2
+3
+4
+5
+Output for the Sample Input 2
+-1
+Sample Input 3
+5 20
+6 5
+7 3
+10 3
+10 14
+4 7
+2
+5
+3
+9
+2
+Output for the Sample Input 3
+3
+Sample Input 4
+4 12
+8 4
+6 4
+2 1
+2 1
+1
+1
+4
+4
+Output for the Sample Input 4
+-1

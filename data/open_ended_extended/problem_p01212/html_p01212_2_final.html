@@ -1,0 +1,281 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p01212 - Generation 2</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p01212 - Generation 2</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>
+Problem F: Mysterious Dungeons
+The Kingdom of Aqua Canora Mystica is a very affluent and peaceful country, but around the
+kingdom, there are many evil monsters that kill people. So the king gave an order to you to kill
+the master monster.
+You came to the dungeon where the monster lived. The dungeon consists of a grid of square
+cells. You explored the dungeon moving up, down, left and right. You finally found, fought
+against, and killed the monster.
+Now, you are going to get out of the dungeon and return home. However, you found strange
+carpets and big rocks are placed in the dungeon, which were not there until you killed the
+monster. They are caused by the final magic the monster cast just before its death! Every rock
+occupies one whole cell, and you cannot go through that cell. Also, each carpet covers exactly
+one cell. Each rock is labeled by an uppercase letter and each carpet by a lowercase. Some of
+the rocks and carpets may have the same label.
+While going around in the dungeon, you observed the following behaviors. When you enter
+into the cell covered by a carpet, all the rocks labeled with the corresponding letter (e.g., the
+rocks with ‘A’ for the carpets with ‘a’) disappear. After the disappearance, you can enter the
+cells where the rocks disappeared, but if you enter the same carpet cell again or another carpet
+cell with the same label, the rocks revive and prevent your entrance again. After the revival,
+you have to move on the corresponding carpet cell again in order to have those rocks disappear
+again.
+Can you exit from the dungeon? If you can, how quickly can you exit? Your task is to write
+a program that determines whether you can exit the dungeon, and computes the minimum
+required time.
+Input
+The input consists of some data sets.
+Each data set begins with a line containing two integers, W and H (3 ≤ W, H ≤ 30). In each
+of the following H lines, there are W characters, describing the map of the dungeon as W × H
+grid of square cells. Each character is one of the following:
+ ‘@’ denoting your current position,
+ ‘<’ denoting the exit of the dungeon,
+ A lowercase letter denoting a cell covered by a carpet with the label of that letter,
+ An uppercase letter denoting a cell occupied by a rock with the label of that letter,
+ ‘#’ denoting a wall, and
+ ‘.’ denoting an empty cell.
+Every dungeon is surrounded by wall cells (‘#’), and has exactly one ‘@’ cell and one ‘<’ cell.
+There can be up to eight distinct uppercase labels for the rocks and eight distinct lowercase
+labels for the carpets.
+You can move to one of adjacent cells (up, down, left, or right) in one second. You cannot move
+to wall cells or the rock cells.
+A line containing two zeros indicates the end of the input, and should not be processed.
+Output
+For each data set, output the minimum time required to move from the ‘@’ cell to the ‘<’ cell,
+in seconds, in one line. If you cannot exit, output -1.
+Sample Input
+8 3
+########
+#<A.@.a#
+########
+8 3
+########
+#<AaAa@#
+########
+8 4
+########
+#<EeEe@#
+#FG.e#.#
+########
+8 8
+########
+#mmm@ZZ#
+#mAAAbZ#
+#mABBBZ#
+#mABCCd#
+#aABCDD#
+#ZZcCD<#
+########
+0 0
+Output for the Sample Input
+7
+-1
+7
+27
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An integer W (3 ≤ W ≤ 30) and an integer H (3 ≤ H ≤ 30).
+A list of H strings, each of length W, consisting of characters from the set {'@', '<', 'a' - 'z', 'A' - 'Z', '#', '.'}.
+A line containing two zeros indicates the end of the input, and should not be processed.
+
+### Example Input:
+
+```
+8 3
+########
+#<A.@.a#
+########
+8 3
+########
+#<AaAa@#
+########
+8 4
+########
+#<EeEe@#
+#FG.e#.#
+########
+8 8
+########
+#mmm@ZZ#
+#mAAAbZ#
+#mABBBZ#
+#mABCCd#
+#aABCDD#
+#ZZcCD<#
+########
+0 0
+```
+
+### Function Signature:
+Write a function f(inputs) that takes in the input.
+```python
+def f(inputs: List[Tuple[int, int, List[str]]]):
+    '''
+    inputs: a list of tuples, where each tuple contains:
+        - an integer W
+        - an integer H
+        - a list of H strings, each of length W
+    '''
+```</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Sure! Here is the test case generator for the "Mysterious Dungeons" problem:
+
+```python
+import random
+import string
+
+def generate_dungeon(W, H):
+    dungeon = [['#' for _ in range(W)] for _ in range(H)]
+    
+    # Place '@' and '<'
+    start_x, start_y = random.randint(1, H-2), random.randint(1, W-2)
+    while True:
+        exit_x, exit_y = random.randint(1, H-2), random.randint(1, W-2)
+        if (exit_x, exit_y) != (start_x, start_y):
+            break
+    dungeon[start_x][start_y] = '@'
+    dungeon[exit_x][exit_y] = '<'
+    
+    # Place rocks and carpets
+    num_labels = random.randint(1, 8)
+    labels = random.sample(string.ascii_lowercase, num_labels)
+    for label in labels:
+        carpet_x, carpet_y = random.randint(1, H-2), random.randint(1, W-2)
+        while dungeon[carpet_x][carpet_y] != '.':
+            carpet_x, carpet_y = random.randint(1, H-2), random.randint(1, W-2)
+        dungeon[carpet_x][carpet_y] = label
+        
+        rock_x, rock_y = random.randint(1, H-2), random.randint(1, W-2)
+        while dungeon[rock_x][rock_y] != '.':
+            rock_x, rock_y = random.randint(1, H-2), random.randint(1, W-2)
+        dungeon[rock_x][rock_y] = label.upper()
+    
+    # Fill remaining cells with empty spaces '.'
+    for i in range(1, H-1):
+        for j in range(1, W-1):
+            if dungeon[i][j] == '#':
+                dungeon[i][j] = '.'
+    
+    return dungeon
+
+def tcgen():
+    test_cases = []
+    while True:
+        W = random.randint(3, 30)
+        H = random.randint(3, 30)
+        dungeon = generate_dungeon(W, H)
+        
+        test_case = [f"{W} {H}"]
+        test_case.extend([''.join(row) for row in dungeon])
+        test_cases.append('\n'.join(test_case))
+        
+        if random.random() < 0.1:  # Randomly decide to stop generating more test cases
+            break
+    
+    # Add terminating line "0 0"
+    test_cases.append("0 0")
+    
+    return '\n'.join(test_cases)
+
+# Example usage
+print(tcgen())
+```
+
+### Explanation:
+
+1. **generate_dungeon(W, H)**:
+   - This function generates a dungeon grid of size `W x H`.
+   - It places the start position `@` and the exit `<` ensuring they are not in the same cell.
+   - It randomly places carpets (lowercase letters) and corresponding rocks (uppercase letters).
+   - The remaining cells are filled with empty spaces `.`.
+
+2. **tcgen()**:
+   - This function generates multiple test cases until a random stopping condition is met.
+   - Each test case is generated by calling `generate_dungeon(W, H)` with random dimensions.
+   - The test cases are formatted as specified in the problem statement.
+   - Finally, it appends the line `"0 0"` to indicate the end of input.
+
+This generator ensures a variety of test cases, including different dungeon sizes and configurations of carpets and rocks.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    data_sets = []
+    while True:
+        W, H = map(int, fh.readline().strip().split())
+        if W == 0 and H == 0:
+            break
+        grid = []
+        for _ in range(H):
+            grid.append(fh.readline().strip())
+        data_sets.append((W, H, grid))
+    return data_sets
+
+# if __name__ == "__main__":
+#     input_path = sys.argv[1]
+#     with open(input_path, 'r') as fh:
+#         data_sets = extract_arguments(fh)
+#         for data in data_sets:
+#             W, H, grid = data
+#             f(W, H, grid)</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

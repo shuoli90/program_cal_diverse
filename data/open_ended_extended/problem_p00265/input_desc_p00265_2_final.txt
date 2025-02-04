@@ -1,0 +1,24 @@
+An integer N (2 ≤ N ≤ 300000) and an integer Q (2 ≤ Q ≤ 100000), representing some quantities.
+A list of integers c of size N, where each integer is between 1 and 300000.
+A list of integers q of size Q, where each integer is between 1 and 300000.
+
+### Example Input:
+```
+3 3
+9 3 8
+4
+6
+5
+```
+
+### Function Signature:
+Write a function f(N, Q, c, q) that takes in the input.
+```python
+def f(N: int, Q: int, c: List[int], q: List[int]):
+    '''
+    N: an integer
+    Q: an integer
+    c: a list of integers
+    q: a list of integers
+    '''
+```

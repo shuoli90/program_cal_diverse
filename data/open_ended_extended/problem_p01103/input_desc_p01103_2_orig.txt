@@ -1,0 +1,24 @@
+An integer d (3 ≤ d ≤ 10), representing a depth of a grid.
+An integer w (3 ≤ w ≤ 10), representing a width of a grid.
+A 2D list of integers of size d x w, where each integer is between 0 and 9. 
+The input ends with a line containing two zeros separated by a space.
+
+### Example Input:
+
+```
+3 3
+2 3 2
+2 1 2
+2 3 1
+0 0
+```
+
+### Function Signature:
+Write a function f(inputs) that takes in a list of tuples. Each tuple contains (d, w, grid).
+def f(inputs: List[Tuple[int, int, List[List[int]]]]):
+    '''
+    inputs: a list of tuples where each tuple contains:
+        - d: an integer
+        - w: an integer
+        - grid: a 2D list of integers
+    '''

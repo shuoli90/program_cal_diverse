@@ -1,0 +1,206 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p01699 - Generation 2</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p01699 - Generation 2</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>Elevator Hall Number
+JAG (Japanese Alumni Group) is a mysterious organization located in a high-rise building somewhere in Tokyo. The building has $N$ elevators, and the $i$-th elevator stops at each floor from $low_i$ to $high_i$ ($1 \le i \le N$).
+X, a new member of JAG, has arrived at the elevator hall of the building to visit the headquarters. While waiting for the elevator after pressing the button, X noticed that the display showing the current floor of the elevator is a little different. When the $i$-th elevator is on the $a_i$-th floor, the display shows a single number obtained by concatenating $a_1,a_2,\dots,a_N$ in order without leading zeros or spaces. For example, if $N=3$ and the elevators are on the 10th, 2nd, and 11th floors, then "10211" is displayed.
+X is curious about how many possible numbers can be displayed on the screen. Your task is to create a program that calculates this.
+Input:
+The input consists of multiple datasets. Each dataset has the following format:
+  $N$
+  $low_1$ $high_1$
+  $\dots$
+  $low_N$ $high_N$
+The first line of each dataset contains an integer $N$ ($2 \leq N \leq 6$) that represents the number of elevators. The $i$-th of the following $N$ lines contains two integers $low_i$ and $high_i$ ($1 \leq low_i \leq high_i \leq 99$), which represent the range of floors that the $i$-th elevator can reach.
+The input ends with a line containing a single zero.
+Output:
+For each dataset, output the number of possible numbers that can be displayed on the screen in a single line.
+Sample Input:
+2
+1 11
+1 11
+3
+10 10
+2 2
+11 11
+4
+89 91
+1 12
+1 12
+89 91
+5
+1 8
+2 76
+10 19
+6 16
+33 42
+6
+10 59
+20 69
+30 79
+40 89
+50 99
+50 99
+0
+Sample Output:
+120
+1
+1278
+659520
+15625000000
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An integer N (2 ≤ N ≤ 6), representing some quantity or size.
+A list of N pairs of integers (low, high), where each integer is between 1 and 99, inclusive.
+
+### Example Input:
+
+```
+2
+1 11
+1 11
+```
+
+### Function Signature:
+Write a function f(inputs) that takes in the input.
+```python
+def f(inputs: List[Tuple[int, int, int]]):
+    '''
+    inputs: a list of tuples, where each tuple contains 
+            an integer N and a list of N pairs of integers
+    '''
+```</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Sure, I can help you write a test case generator for the "Elevator Hall Number" problem. Below is the Python code for the test case generator:
+
+```python
+import random
+
+def tcgen():
+    # Generate a random number of elevators N (2 ≤ N ≤ 6)
+    N = random.randint(2, 6)
+    
+    # Generate random low and high floor ranges for each elevator
+    ranges = []
+    for _ in range(N):
+        low = random.randint(1, 99)
+        high = random.randint(low, 99)
+        ranges.append((low, high))
+    
+    return N, ranges
+
+def generate_multiple_test_cases(num_cases):
+    test_cases = []
+    for _ in range(num_cases):
+        N, ranges = tcgen()
+        test_case = f"{N}\n"
+        for low, high in ranges:
+            test_case += f"{low} {high}\n"
+        test_cases.append(test_case.strip())
+    return test_cases
+
+def main():
+    num_cases = 5  # You can specify the number of test cases you want to generate
+    test_cases = generate_multiple_test_cases(num_cases)
+    for test_case in test_cases:
+        print(test_case)
+        print()  # Print a blank line between test cases
+
+if __name__ == "__main__":
+    main()
+```
+
+Explanation:
+1. **`tcgen` Function**: This function generates a single test case.
+    - It randomly selects the number of elevators \(N\) within the range [2, 6].
+    - For each elevator, it generates a random floor range with `low` and `high` values such that \(1 \leq \text{low} \leq \text{high} \leq 99\).
+
+2. **`generate_multiple_test_cases` Function**: This function generates multiple test cases.
+    - It calls `tcgen` multiple times to create the specified number of test cases.
+    - It formats each test case as a string and stores them in a list.
+
+3. **`main` Function**: This function controls the overall execution.
+    - It sets the number of test cases to generate.
+    - It prints each test case, followed by a blank line for separation.
+
+To use the generator, simply run the `main` function. You can adjust the `num_cases` variable to generate the desired number of test cases.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    inputs = []
+    while True:
+        N = int(fh.readline().strip())
+        if N == 0:
+            break
+        ranges = []
+        for _ in range(N):
+            low, high = map(int, fh.readline().strip().split())
+            ranges.append((low, high))
+        inputs.append((N, ranges))
+    return inputs
+
+# Example usage:
+# with open('input.txt', 'r') as fh:
+#     inputs = extract_arguments(fh)
+#     for input_tuple in inputs:
+#         f(input_tuple)</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

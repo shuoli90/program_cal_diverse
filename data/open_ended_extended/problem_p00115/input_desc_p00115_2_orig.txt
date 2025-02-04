@@ -1,0 +1,22 @@
+An integer tuple (x, y, z) where -100 ≤ x, y, z ≤ 100, representing some 3D coordinates.
+Another integer tuple (x, y, z) where -100 ≤ x, y, z ≤ 100, representing another set of 3D coordinates.
+A third integer tuple (x, y, z) where -100 ≤ x, y, z ≤ 100, representing yet another set of 3D coordinates.
+A fourth integer tuple (x, y, z) where -100 ≤ x, y, z ≤ 100, representing another set of 3D coordinates.
+A fifth integer tuple (x, y, z) where -100 ≤ x, y, z ≤ 100, representing another set of 3D coordinates.
+
+### Example Input:
+
+```
+-10 0 0
+10 0 0
+0 10 0
+0 10 10
+0 0 10
+```
+
+### Function Signature:
+Write a function f(inputs) that takes in the input.
+def f(inputs: List[Tuple[int, int, int]]):
+    ''' 
+    inputs: a list of tuples, each containing three integers 
+    '''

@@ -1,0 +1,43 @@
+Sure, here is a test case generator for the given problem statement:
+
+```python
+import random
+
+def generate_test_case():
+    # Number of answerers (N)
+    N = random.randint(2, 10000)
+
+    # Number of questions except the last one (M)
+    M = random.randint(1, 1000)
+
+    # List to store the scores and participants for each question
+    questions = []
+
+    # Generate questions
+    for i in range(M):
+        Si = random.randint(1, 100)  # score for the i-th question
+        k = random.randint(1, N)  # number of participants who can answer the question
+        participants = sorted(random.sample(range(1, N+1), k))  # list of participants who can answer the question
+        questions.append((Si, k, participants))
+
+    # Generate the input string
+    input_data = f"{N} {M}\n"
+    for Si, k, participants in questions:
+        input_data += f"{Si} {k} " + " ".join(map(str, participants)) + "\n"
+    
+    # Add the end of input indicator
+    input_data += "0 0\n"
+
+    return input_data
+
+# Generate a test case
+test_case = generate_test_case()
+print(test_case)
+```
+
+This generator creates a random test case for the given problem. Here's how it works:
+- It generates a random number of participants `N` and a random number of questions `M` (excluding the last one).
+- For each of the `M` questions, it generates a random score `Si` between 1 and 100, a random number of participants `k` who can answer the question, and a sorted list of `k` unique participants.
+- It then formats these values into the required input format and adds the end-of-input indicator (`0 0`).
+
+You can run this script to generate random test cases for the problem statement.

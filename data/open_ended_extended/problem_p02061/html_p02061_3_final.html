@@ -1,0 +1,154 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p02061 - Generation 3</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p02061 - Generation 3</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>B: Twice of oneself
+Problem
+You are given Q queries. For each query, you are given a positive integer N, and you need to find the number of positive integers M that satisfy the following two conditions:
+2 \leq M \leq N
+The sum of the proper divisors of M (i.e. the divisors of M other than M itself) is at least twice as large as M.
+Input Format
+The input is given in the following format:
+Q
+N_1
+N_2
+:
+N_Q
+The first line contains the number of queries, Q.
+The following N lines contain one positive integer N per query.
+Constraints
+1 \leq Q \leq 10^5
+2 \leq N_i \leq 10^5 (1 \leq i \leq Q)
+Output Format
+For each given N, output the number of positive integers M that satisfy the above two conditions, separated by a newline.
+Sample Input
+3
+43
+9
+24
+Sample Output
+11
+0
+5
+For N=24, the five possible values of M are 12, 16, 18, 20, and 24.
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>Canonicalized Input Description:
+
+An integer Q (1 ≤ Q ≤ 10^5), representing some quantity or size.
+Q positive integers, where each integer is between 2 and 10^5.
+
+### Example Input:
+
+```
+3
+43
+9
+24
+```
+
+### Function Signature:
+Write a function f(inputs) that takes in the input.
+```python
+def f(inputs: List[int]):
+    ''' 
+    inputs: a list of integers 
+    '''
+```</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Sure! Here is a test case generator for the problem "Twice of oneself".
+
+```python
+import random
+
+def tcgen():
+    Q = random.randint(1, 10**5)
+    
+    # Generate Q integers N, each in the range [2, 10^5]
+    N_list = [random.randint(2, 10**5) for _ in range(Q)]
+    
+    return Q, N_list
+
+# Example usage:
+Q, N_list = tcgen()
+print(Q)
+for N in N_list:
+    print(N)
+```
+
+This function generates a random number of queries \( Q \) within the constraints and then generates \( Q \) integers \( N \), each within the specified range. You can use this function to produce input test cases for your problem.
+
+For example, this might output:
+```
+3
+43
+9
+24
+```
+
+Which corresponds to the sample input provided in the problem statement.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    Q = int(fh.readline().strip())
+    queries = [int(fh.readline().strip()) for _ in range(Q)]
+    return Q, queries</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

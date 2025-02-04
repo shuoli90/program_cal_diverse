@@ -1,0 +1,67 @@
+Certainly! Here's a test case generator for the given problem "Indian Puzzle":
+
+```python
+import random
+
+def generate_grid(H, W):
+    grid = []
+    elements = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '+', '-', '*', '/', '=']
+    
+    for _ in range(H):
+        row = []
+        for _ in range(W):
+            cell = random.choice(elements + ['.', '#'])
+            row.append(cell)
+        grid.append(''.join(row))
+    
+    return grid
+
+def generate_elements(n):
+    elements = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '+', '-', '*', '/']
+    return [random.choice(elements) for _ in range(n)]
+
+def tcgen():
+    test_cases = []
+    
+    while True:
+        H = random.randint(1, 10)
+        W = random.randint(1, 10)
+        grid = generate_grid(H, W)
+        
+        n = random.randint(1, 10)
+        elements = generate_elements(n)
+        
+        test_cases.append((H, W, grid, n, elements))
+        
+        # Randomly decide whether to end input
+        if random.choice([True, False]):
+            break
+    
+    test_cases.append((0, 0, [], 0, []))  # End of input indicator
+    
+    return test_cases
+
+def print_test_cases(test_cases):
+    for H, W, grid, n, elements in test_cases:
+        print(f"{H} {W}")
+        if H > 0 and W > 0:
+            for row in grid:
+                print(row)
+            print(n)
+            print(" ".join(elements))
+
+# Generate and print the test cases
+test_cases = tcgen()
+print_test_cases(test_cases)
+```
+
+### Explanations:
+1. **generate_grid(H, W)**: This function generates a grid of size HxW. Each cell can be a number (0-9), operator ('+', '-', '*', '/', '='), a blank ('.'), or a black cell ('#').
+
+2. **generate_elements(n)**: This function generates a list of n elements, where each element is a number (0-9) or an operator ('+', '-', '*', '/').
+
+3. **tcgen()**: This function generates a list of test cases. Each test case is a tuple containing the grid dimensions (H, W), the grid itself, the number of additional elements (n), and the list of additional elements. It continues generating test cases until a random decision to stop. It includes the end-of-input indicator (0, 0).
+
+4. **print_test_cases(test_cases)**: This function prints the generated test cases in the required format.
+
+You can adjust the randomness and constraints to ensure the generated test cases are diverse and valid for the problem.

@@ -1,0 +1,76 @@
+Sure, I can help you create a test case generator for the "Convenience Store" problem. Here's a structured approach to generate test cases for the given problem:
+
+### Problem Statement Recap
+You need to determine the maximum number of blocks that can be covered by a new convenience store given the existing stores and the city map divided into hexagonal blocks.
+
+### Input Format
+1. The map dimensions, \( m \) (number of rows) and \( n \) (number of columns).
+2. The number of existing stores \( k \).
+3. The coordinates \( (x_i, y_i) \) of each existing store.
+4. The number of candidate locations \( c \).
+5. The coordinates \( (cx_j, cy_j) \) of each candidate location.
+
+### Output Format
+The maximum number of blocks that can be covered by a new convenience store from the candidate locations.
+
+### Test Case Generator
+To generate test cases, we need to follow these steps:
+1. Randomly generate the dimensions of the map \( m \) and \( n \).
+2. Randomly generate the number of existing stores \( k \) and their coordinates.
+3. Randomly generate the number of candidate locations \( c \) and their coordinates.
+
+Here’s a Python implementation for the test case generator:
+
+```python
+import random
+
+def generate_test_case():
+    # Map dimensions
+    m = random.randint(1, 20)  # Assuming a smaller range for practical test case generation
+    n = random.randint(1, 20)  # Assuming a smaller range for practical test case generation
+
+    # Number of existing stores
+    k = random.randint(0, m * n // 2)  # At most half the blocks can have stores
+
+    # Generate coordinates for existing stores
+    existing_stores = set()
+    while len(existing_stores) < k:
+        x = random.randint(1, m)
+        y = random.randint(1, n)
+        existing_stores.add((x, y))
+    existing_stores = list(existing_stores)
+
+    # Number of candidate locations
+    c = random.randint(1, m * n - k)  # Ensuring at least one candidate location
+
+    # Generate coordinates for candidate locations
+    candidate_locations = set()
+    while len(candidate_locations) < c:
+        x = random.randint(1, m)
+        y = random.randint(1, n)
+        if (x, y) not in existing_stores:
+            candidate_locations.add((x, y))
+    candidate_locations = list(candidate_locations)
+
+    # Format the test case
+    test_case = f"{m} {n}\n{k}\n"
+    for store in existing_stores:
+        test_case += f"{store[0]} {store[1]}\n"
+    test_case += f"{c}\n"
+    for candidate in candidate_locations:
+        test_case += f"{candidate[0]} {candidate[1]}\n"
+    
+    return test_case.strip()
+
+# Example usage
+print(generate_test_case())
+```
+
+### Explanation
+1. **Map Dimensions \( m \) and \( n \)**: These are randomly chosen within a reasonable range (1 to 20) to ensure the test cases are manageable.
+2. **Number of Existing Stores \( k \)**: The number of stores is randomly chosen to be at most half the number of blocks to ensure diversity in test cases.
+3. **Coordinates for Existing Stores**: The coordinates are generated randomly but are unique to avoid placing multiple stores in the same block.
+4. **Number of Candidate Locations \( c \)**: We ensure there is at least one candidate location and that they are not placed where there is already an existing store.
+5. **Coordinates for Candidate Locations**: These are generated in a similar fashion to existing stores but ensuring they do not overlap with existing store coordinates.
+
+This generator should create diverse and valid test cases for the convenience store problem. You can adjust the ranges and constraints based on the specific requirements and limits of the problem.

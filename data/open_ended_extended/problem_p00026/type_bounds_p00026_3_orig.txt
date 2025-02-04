@@ -1,0 +1,5 @@
+Types: xi: int, yi: int, si: int, Output: int, int
+
+Ranges: 0 ≤ xi < 10, 0 ≤ yi < 10, 1 ≤ si ≤ 3, number of drops ≤ 50
+
+Addtl Info: None

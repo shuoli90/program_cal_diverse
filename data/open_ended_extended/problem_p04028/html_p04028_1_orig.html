@@ -1,0 +1,153 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p04028 - Generation 1</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p04028 - Generation 1</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>
+Score : 800 points
+Problem StatementSig has built his own keyboard. Designed for ultimate simplicity, this keyboard only has 3 keys on it: the 0 key, the 1 key and the backspace key.
+To begin with, he is using a plain text editor with this keyboard. This editor always displays one string (possibly empty). Just after the editor is launched, this string is empty. When each key on the keyboard is pressed, the following changes occur to the string:
+The 0 key: a letter 0 will be inserted to the right of the string.
+The 1 key: a letter 1 will be inserted to the right of the string.
+The backspace key: if the string is empty, nothing happens. Otherwise, the rightmost letter of the string is deleted.
+Sig has launched the editor, and pressed these keys N times in total. As a result, the editor displays a string s. Find the number of such ways to press the keys, modulo 10^9 + 7.
+Constraints
+1 ≦ N ≦ 5000
+1 ≦ |s| ≦ N
+s consists of the letters 0 and 1.
+Partial Score
+400 points will be awarded for passing the test set satisfying 1 ≦ N ≦ 300.
+InputThe input is given from Standard Input in the following format:
+N
+s
+OutputPrint the number of the ways to press the keys N times in total such that the editor displays the string s in the end, modulo 10^9+7.
+Sample Input 13
+0
+Sample Output 15
+We will denote the backspace key by B. The following 5 ways to press the keys will cause the editor to display the string 0 in the end: 00B, 01B, 0B0, 1B0, BB0. In the last way, nothing will happen when the backspace key is pressed.
+Sample Input 2300
+1100100
+Sample Output 2519054663
+Sample Input 35000
+01000001011101000100001101101111011001000110010101110010000
+Sample Output 3500886057
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>Canonicalized Input Description:
+
+An integer N (1 ≤ N ≤ 5000), representing some quantity or size.
+A string s of length between 1 and N, consisting of the characters '0' and '1'.
+
+### Example Input:
+
+```
+3
+010
+```
+
+### Function Signature:
+Write a function f(N, s) that takes in the input.
+def f(N: int, s: str):
+    '''
+    N: an integer
+    s: a string
+    '''</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Sure, I can help you write a test case generator for the given problem statement. Here's a Python function that generates test cases for this problem:
+
+```python
+import random
+import string
+
+def tcgen():
+    # Generate N, the number of key presses
+    N = random.randint(1, 5000)
+    
+    # Generate s, the resulting string after N key presses
+    # Ensure that the length of s is between 1 and N
+    s_length = random.randint(1, N)
+    s = ''.join(random.choice('01') for _ in range(s_length))
+    
+    return N, s
+
+# Example usage:
+N, s = tcgen()
+print(N)
+print(s)
+```
+
+This function generates a random integer \(N\) within the specified range and a string \(s\) consisting of '0's and '1's, ensuring the length of \(s\) is between 1 and \(N\).
+
+**Explanation:**
+
+1. **N Generation**: The number of key presses \(N\) is randomly selected between 1 and 5000.
+
+2. **String \(s\) Generation**: 
+    - The length of \(s\) is chosen randomly between 1 and \(N\).
+    - The string \(s\) is generated by randomly choosing '0' or '1' for each character in the string.
+
+This function ensures that the generated test case adheres to the problem constraints. You can use this generator to create multiple test cases and validate your solution against them.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    N = int(fh.readline().strip())
+    s = fh.readline().strip()
+    return N, s</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

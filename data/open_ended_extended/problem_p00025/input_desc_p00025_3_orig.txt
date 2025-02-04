@@ -1,0 +1,26 @@
+An integer ai (0 ≤ ai ≤ 9), representing the i-th element in the first sequence.
+An integer bi (0 ≤ bi ≤ 9), representing the i-th element in the second sequence.
+
+The input consists of multiple datasets. Each dataset consists of:
+Four integers ai (0 ≤ ai ≤ 9).
+Four integers bi (0 ≤ bi ≤ 9).
+
+The input ends with EOF. The number of datasets is less than or equal to 50.
+
+### Example Input:
+
+```
+9 1 8 2
+4 1 5 9
+4 6 8 2
+4 6 3 2
+```
+
+### Function Signature:
+Write a function f(inputs) that takes in the input.
+```python
+def f(inputs: List[Tuple[List[int], List[int]]]):
+    '''
+    inputs: a list of tuples, each containing two lists of four integers each
+    '''
+```

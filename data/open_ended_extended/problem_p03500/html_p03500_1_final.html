@@ -1,0 +1,160 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p03500 - Generation 1</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p03500 - Generation 1</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>
+Score : 1200 points
+Problem StatementThere are N non-negative integers written on the blackboard: A_1, ..., A_N.
+Snuke can perform the following two operations at most K times in total in any order:
+Operation A: Replace each integer X on the blackboard with X divided by 2, rounded down to the nearest integer.
+Operation B: Replace each integer X on the blackboard with X minus 1. This operation cannot be performed if one or more 0s are written on the blackboard.
+Find the number of the different possible combinations of integers written on the blackboard after Snuke performs the operations, modulo 1,000,000,007.
+Constraints
+1 \leq N \leq 200
+1 \leq A_i \leq 10^{18}
+1 \leq K \leq 10^{18}
+A_i and K are integers.
+InputInput is given from Standard Input in the following format:
+N K
+A_1 A_2 ... A_N
+OutputPrint the number of the different possible combinations of integers written on the blackboard after Snuke performs the operations, modulo 1,000,000,007.
+Sample Input 12 2
+5 7
+Sample Output 16
+There are six possible combinations of integers on the blackboard: (1, 1), (1, 2), (2, 3), (3, 5), (4, 6) and (5, 7).
+For example, (1, 2) can be obtained by performing Operation A and Operation B in this order.
+Sample Input 23 4
+10 13 22
+Sample Output 220
+Sample Input 31 100
+10
+Sample Output 311
+Sample Input 410 123456789012345678
+228344079825412349 478465001534875275 398048921164061989 329102208281783917 779698519704384319 617456682030809556 561259383338846380 254083246422083141 458181156833851984 502254767369499613
+Sample Output 4164286011
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An integer N (1 ≤ N ≤ 200), representing some quantity or size.
+An integer K (1 ≤ K ≤ 10^18), representing some quantity or size.
+A list of integers A of size N, where each integer is between 1 and 1e18.
+
+### Example Input:
+
+```
+2 2
+5 7
+```
+
+### Function Signature:
+Write a function f(N, K, A) that takes in the input.
+```python
+def f(N: int, K: int, A: List[int]):
+    ''' 
+    N: an integer
+    K: an integer
+    A: a list of integers
+    '''
+```</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Certainly! Here is a test case generator for the provided problem statement:
+
+```python
+import random
+
+def tcgen():
+    # Constraints
+    MAX_N = 200
+    MAX_A = 10**18
+    MAX_K = 10**18
+    
+    # Generate random values within the constraints
+    N = random.randint(1, MAX_N)
+    K = random.randint(1, MAX_K)
+    A = [random.randint(1, MAX_A) for _ in range(N)]
+    
+    return N, K, A
+
+# Printing generated test case for demonstration
+N, K, A = tcgen()
+print(N)
+print(K)
+print(" ".join(map(str, A)))
+```
+
+### Explanation:
+- **N**: The number of integers on the blackboard is chosen randomly between 1 and 200.
+- **K**: The maximum number of operations is chosen randomly between 1 and \(10^{18}\).
+- **A**: The list of integers (each between 1 and \(10^{18}\)) written on the blackboard is generated.
+
+This generator will provide random test cases that adhere to the constraints specified in the problem statement. You can run this script to generate a random test case and then use it for further testing of your solution.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    N, K = map(int, fh.readline().strip().split())
+    A = list(map(int, fh.readline().strip().split()))
+    return N, K, A
+
+# if __name__ == "__main__":
+#     input_path = sys.argv[1]
+#     with open(input_path, 'r') as fh:
+#         N, K, A = extract_arguments(fh)
+#     f(N, K, A)</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

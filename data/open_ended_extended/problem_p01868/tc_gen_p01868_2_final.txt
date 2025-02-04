@@ -1,0 +1,43 @@
+Sure! Below is a test case generator function for the given problem statement "D: Scanner".
+
+```python
+import random
+
+def tcgen():
+    # Generate a random number of pieces of paper N
+    N = random.randint(1, 50)
+    
+    # Generate a list of N random times for scanning each piece of paper
+    T = [random.randint(1, 50) for _ in range(N)]
+    
+    # Print the generated test case
+    return N, T
+
+# Example usage
+N, T = tcgen()
+print(N)
+for t in T:
+    print(t)
+```
+
+This function generates a random test case within the constraints provided in the problem statement. Here is a breakdown of how it works:
+
+1. It generates a random integer \(N\) between 1 and 50, inclusive.
+2. It generates a list of \(N\) random integers, each between 1 and 50, which represent the time taken to scan each piece of paper.
+
+You can call the `tcgen()` function to get a random test case and print it in the required format for input. 
+
+Here is an example output of the function:
+
+```
+7
+3
+45
+23
+12
+29
+7
+15
+```
+
+This output represents a test case with 7 pieces of paper, and the times taken to scan each piece of paper are 3, 45, 23, 12, 29, 7, and 15 seconds respectively.

@@ -1,0 +1,149 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p03820 - Generation 2</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p03820 - Generation 2</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>
+Score : 1200 points
+Problem StatementSnuke has decided to play with N cards and a deque (that is, a double-ended queue).
+Each card shows an integer from 1 through N, and the deque is initially empty.
+Snuke will insert the cards at the beginning or the end of the deque one at a time, in order from 1 to N.
+Then, he will perform the following action N times: take out the card from the beginning or the end of the deque and eat it.
+Afterwards, we will construct an integer sequence by arranging the integers written on the eaten cards, in the order they are eaten. Among the sequences that can be obtained in this way, find the number of the sequences such that the K-th element is 1. Print the answer modulo 10^{9} + 7.
+Constraints
+1 ≦ K ≦ N ≦ 2{,}000
+InputThe input is given from Standard Input in the following format:
+N K
+OutputPrint the answer modulo 10^{9} + 7.
+Sample Input 12 1
+Sample Output 11
+There is one sequence satisfying the condition: 1,2. One possible way to obtain this sequence is the following:
+Insert both cards, 1 and 2, at the end of the deque.
+Eat the card at the beginning of the deque twice.
+Sample Input 217 2
+Sample Output 2262144
+Sample Input 32000 1000
+Sample Output 3674286644
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An integer N (1 ≤ N ≤ 2000), representing some quantity or size.
+An integer K (1 ≤ K ≤ N), representing some other quantity or size.
+
+### Example Input:
+```
+12 1
+```
+
+### Function Signature:
+Write a function f(N, K) that takes in the input.
+def f(N: int, K: int):
+    '''
+    N: an integer
+    K: an integer
+    '''
+</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>To generate test cases for the given problem where Snuke is playing with cards and a deque, you need to ensure that the test cases follow the constraints and input/output format specified in the problem statement. Here is a Python function for generating such test cases:
+
+```python
+import random
+
+def tcgen():
+    # Constraints
+    N = random.randint(1, 2000)
+    K = random.randint(1, N)
+    
+    return N, K
+
+# Example usage:
+for _ in range(5):  # Generate 5 test cases
+    N, K = tcgen()
+    print(f"{N} {K}")
+```
+
+Explanation:
+1. **N** is chosen randomly between 1 and 2000, as specified by the problem constraints.
+2. **K** is chosen randomly between 1 and N, ensuring that K is always a valid position within the sequence of length N.
+
+This function will generate random test cases that adhere to the input constraints given in the problem statement. Below is an example of how you might generate and print multiple test cases using this function:
+
+```python
+for _ in range(5):  # Generate 5 test cases
+    N, K = tcgen()
+    print(f"{N} {K}")
+```
+
+This will output 5 different test cases, each with valid values for N and K. For example:
+
+```
+1420 713
+2000 57
+1893 22
+10 3
+765 423
+```
+
+These test cases can then be used to test the implementation of the solution for the given problem.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    N, K = map(int, fh.readline().strip().split())
+    return N, K</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

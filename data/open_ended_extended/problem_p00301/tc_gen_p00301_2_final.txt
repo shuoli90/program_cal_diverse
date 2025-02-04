@@ -1,0 +1,27 @@
+Certainly! Here's a detailed test case generator for the "Symmetric Ternary" problem:
+
+```python
+import random
+
+def generate_test_case():
+    w = random.randint(1, 100000)
+    return w
+
+# Example usage:
+if __name__ == "__main__":
+    random.seed(42)  # For reproducibility
+    for _ in range(5):  # Generate 5 example test cases
+        test_case = generate_test_case()
+        print(test_case)
+
+```
+
+This function `generate_test_case` generates a random integer `w` within the specified range (1 ≤ w ≤ 100000). You can run this script to generate multiple test cases. 
+
+Here's a breakdown of how it works:
+1. **`random.randint(1, 100000)`**: This will generate a random integer within the given range.
+2. **Example Usage Section**: This part of the code is to illustrate how you can generate multiple test cases. By running the script, you will get 5 different test cases printed out.
+
+You can modify the number of test cases to generate by changing the range in the `for` loop.
+
+If you need to integrate this into a larger test suite or use it in a competitive programming environment, you can adapt the function accordingly.

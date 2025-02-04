@@ -1,0 +1,24 @@
+A: IP Address (Internet Protocol Address)
+Problem
+Given a string of digits, count the number of valid ways to split it into an IPv4 address.
+A split is valid if and only if:
+The string is split into four parts, each containing one to three digits.
+Each part is not empty and represents a number from 0 to 255, inclusive, when interpreted as a decimal number.
+If a part is 0, then it must be a single digit, '0'.
+If a part is not 0, then it must not start with the digit, '0'.
+Input Format
+S
+Constraints
+4 \leq |S| \leq 12
+The string, S, consists only of digits.
+Output Format
+Output the number of valid ways to split the given string into an IPv4 address.
+Sample Input 1
+123456789
+Sample Output 1
+1
+There is only one valid way to split the given string into an IPv4 address: '123.45.67.89'.
+Sample Input 2
+768426
+Sample Output 2
+6

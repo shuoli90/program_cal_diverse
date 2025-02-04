@@ -1,0 +1,186 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p01890 - Generation 1</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p01890 - Generation 1</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>
+Non-redundant Drive
+The people of JAG kingdom hate redundancy. For example, the N cities in JAG kingdom are connected with just $N - 1$ bidirectional roads such that any city is reachable from any city through some roads. Under the condition, the number of paths from a city to another city is exactly one for all pairs of the cities. This is a non-redundant road network :)
+One day, you, a citizen of JAG kingdom, decided to travel as many cities in the kingdom as possible with a car. The car that you will use has an infinitely large tank, but initially the tank is empty. The fuel consumption of your car is 1 liter per 1 km, i.e. it consumes 1 liter of gasoline to move 1 km.
+Each city has exactly one gas station, and you can supply $g_x$ liters of gasoline to your car at the gas station of the city $x$. Of course, you have a choice not to visit some of the gas stations in your travel. But you will not supply gasoline twice or more at the same gas station, because it is redundant. Each road in the kingdom has a distance between two cities: the distance of $i$-th road is $d_i$ km. You will not pass the same city or the same road twice or more, of course, because it is redundant.
+If a quantity of stored gasoline becomes zero, the car cannot move, and hence your travel will end there. But then, you may concern about an initially empty tank. Don't worry. You can start at any gas station of the cities in the kingdom. Furthermore, each road directly connects the gas stations of the its two ends (because the spirit of non-redundancy avoids redundant moves in a city), you therefore can supply gasoline to your car even if your car tank becomes empty just when you arrive the city. 
+Your task is to write a program computing the maximum number of cities so that you can travel under your non-redundancy policy.
+Input
+The input consists of a single test case.
+$N$
+$g_1$ $g_2$ ...  $g_N$
+$a_1$ $b_1$ $d_1$
+$a_2$ $b_2$ $d_2$
+...
+$a_{N-1}$ $b_{N-1}$ $d_{N-1}$
+The first line contains an integer $N$ ($1 \leq N \leq 100,000$), which is the number of cities in JAG kingdom. The second line contains $N$ integers: the $i$-th of them is $g_i$ ($1 \leq g_i \leq 10,000$), the amount of gasoline can be supplied at the gas station of the city $i$. The following $N - 1$ lines give information of roads: the $j$-th line of them contains $a_j$ and $b_j$ , which indicates that the $j$-th road bidirectionally connects the cities $a_j$ and $b_j$ ($1 \leq a_j, b_j \leq N, a_j \ne b_j$) with distance $d_j$ ($1 \leq d_j \leq 10,000$). You can assume that all cities in the kingdom are connected by the roads.
+Output
+Print the maximum number of cities you can travel from any city under the constraint such that you can supply gasoline at most once per a gas station.
+Sample Input 1
+5
+5 8 1 3 5
+1 2 4
+2 3 3
+2 4 3
+1 5 7
+Output for the Sample Input 1
+4
+Sample Input 2
+2
+10 1
+1 2 10
+Output for the Sample Input 2
+2
+Sample Input 3
+5
+1 3 5 1 1
+1 2 5
+2 3 3
+2 4 3
+1 5 5
+Output for the Sample Input 3
+3
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An integer N (1 ≤ N ≤ 100,000), representing some quantity or size.
+A list of N integers G, where each integer is between 1 and 10,000.
+A list of N-1 tuples, where each tuple contains two integers A and B (1 ≤ A, B ≤ N and A ≠ B) and one integer D (1 ≤ D ≤ 10,000).
+
+### Example Input:
+
+```
+5
+5 8 1 3 5
+1 2 4
+2 3 3
+2 4 3
+1 5 7
+```
+
+### Function Signature:
+Write a function f(N, G, roads) that takes in the input.
+def f(N: int, G: List[int], roads: List[Tuple[int, int, int]]):
+    '''
+    N: an integer
+    G: a list of integers
+    roads: a list of tuples with three integers each
+    '''</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Certainly! Here's a test case generator for the "Non-redundant Drive" problem statement:
+
+```python
+import random
+
+def tcgen():
+    # Number of cities
+    N = random.randint(1, 100000)
+    # Gasoline amounts at each city
+    g = [random.randint(1, 10000) for _ in range(N)]
+    # Connections between cities
+    roads = []
+    for i in range(1, N):
+        a = i + 1
+        b = random.randint(1, i)
+        d = random.randint(1, 10000)
+        roads.append((a, b, d))
+    
+    return N, g, roads
+
+def format_test_case(N, g, roads):
+    result = []
+    result.append(f"{N}")
+    result.append(" ".join(map(str, g)))
+    for a, b, d in roads:
+        result.append(f"{a} {b} {d}")
+    return "\n".join(result)
+
+# Example usage
+N, g, roads = tcgen()
+test_case = format_test_case(N, g, roads)
+print(test_case)
+```
+
+This script generates a test case for the problem, ensuring that the generated cities and roads form a valid tree structure (since `N-1` roads are generated). It then formats the test case to match the expected input format of the problem statement. 
+
+Explanation of the generator:
+
+1. **Number of cities (N)**: A random integer between 1 and 100,000 is chosen.
+2. **Gasoline amounts (g)**: For each city, a random integer between 1 and 10,000 is assigned representing the gasoline available at that city's gas station.
+3. **Roads**: To ensure the cities form a tree (connected, acyclic graph), each new city `a` (i.e., `i + 1`) connects to any of the previously added cities `b` (i.e., a random city in the range `[1, i]`). The distance `d` between cities `a` and `b` is a random integer between 1 and 10,000.
+
+The **`format_test_case`** function is used to convert the generated test case into the required string format for the problem statement.
+
+Make sure to adjust the ranges if needed and validate the generated test cases to ensure they fit within the problem constraints.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    N = int(fh.readline().strip())
+    g = list(map(int, fh.readline().strip().split()))
+    roads = []
+    for _ in range(N - 1):
+        a, b, d = map(int, fh.readline().strip().split())
+        roads.append((a, b, d))
+    return N, g, roads</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

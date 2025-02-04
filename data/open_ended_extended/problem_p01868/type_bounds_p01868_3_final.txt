@@ -1,0 +1,3 @@
+Types: N: int, T: List[int]
+Ranges: 1 ≤ N ≤ 50, 1 ≤ T[i] ≤ 50
+Addtl Info: None

@@ -1,0 +1,20 @@
+An integer a (distinct prime number).
+An integer m (> 1).
+An integer b (distinct prime number, different from a).
+An integer n (> 1).
+
+### Example Input:
+
+```
+3 2 2 2
+```
+
+### Function Signature:
+Write a function f(a, m, b, n) that takes in the input.
+def f(a: int, m: int, b: int, n: int):
+    '''
+    a: an integer
+    m: an integer
+    b: an integer
+    n: an integer
+    '''

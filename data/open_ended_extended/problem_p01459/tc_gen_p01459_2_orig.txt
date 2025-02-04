@@ -1,0 +1,51 @@
+Sure! Here is a test case generator for the given problem statement "A Light Road":
+
+```python
+import random
+
+def generate_grid(N, M, A):
+    grid = [['.'] * M for _ in range(N)]
+
+    # Place obstacles randomly
+    num_obstacles = random.randint(0, (N * M) // 3)
+    for _ in range(num_obstacles):
+        x, y = random.randint(0, N - 1), random.randint(0, M - 1)
+        grid[x][y] = '#'
+    
+    # Place the laser generator 'S'
+    while True:
+        sx, sy = random.randint(0, N - 2), random.randint(0, M - 1)
+        if grid[sx][sy] == '.':
+            grid[sx][sy] = 'S'
+            break
+    
+    # Place the evil creature 'G'
+    while True:
+        gx, gy = random.randint(1, N - 1), random.randint(0, M - 1)
+        if grid[gx][gy] == '.':
+            grid[gx][gy] = 'G'
+            break
+    
+    return grid
+
+def tcgen():
+    N = random.randint(2, 100)
+    M = random.randint(2, 100)
+    A = random.randint(0, 10)
+    
+    grid = generate_grid(N, M, A)
+
+    # Convert grid to the required format
+    grid_input = '\n'.join([''.join(row) for row in grid])
+    
+    return f"{N} {M} {A}\n{grid_input}"
+
+# Example usage
+for _ in range(5):
+    print(tcgen())
+    print()
+```
+
+This script generates random test cases for the problem "A Light Road". It ensures that there is exactly one laser generator (`'S'`) and one evil creature (`'G'`) on the grid, and places a random number of obstacles (`'#'`). The number of mirrors (type `P` and type `Q`) is also chosen randomly within the constraint \(0 \leq A \leq 10\). 
+
+Please note that the script does not ensure that the generated test case always has a valid path for the laser to kill the creature. It only ensures the grid is generated according to the constraints given in the problem statement.

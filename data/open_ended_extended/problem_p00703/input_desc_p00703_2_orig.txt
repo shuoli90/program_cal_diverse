@@ -1,0 +1,25 @@
+An integer L (4 ≤ L ≤ 10), representing some quantity or size.
+An integer H (1 ≤ H ≤ 100), representing some count.
+H lines, each containing a string of length L, followed by two integers.
+
+### Example Input:
+
+```
+6 4
+160348 0 4
+913286 2 3
+431289 3 1
+671283 3 3
+```
+
+### Function Signature:
+Write a function f(inputs) that takes in the input.
+def f(inputs: List[Tuple[int, int, List[Tuple[str, int, int]]]]):
+    '''
+    inputs: a list of tuples, where each tuple contains:
+        - an integer L
+        - an integer H
+        - a list of H tuples, each containing:
+            - a string of length L
+            - two integers
+    '''

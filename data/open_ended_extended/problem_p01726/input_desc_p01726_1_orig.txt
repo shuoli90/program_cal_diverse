@@ -1,0 +1,19 @@
+Canonicalized Input Description:
+
+A string S of length between 1 and 300,000, consisting only of upper- and lowercase letters.
+A string T' of length between 1 and |S|, consisting only of upper- and lowercase letters.
+
+### Example Input:
+
+```
+abcbcdbc
+abc
+```
+
+### Function Signature:
+Write a function f(S, T_prime) that takes in the input. 
+def f(S: str, T_prime: str): 
+    ''' 
+    S: a string 
+    T_prime: a string
+    '''

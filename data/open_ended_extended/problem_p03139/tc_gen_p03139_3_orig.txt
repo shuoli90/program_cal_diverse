@@ -1,0 +1,28 @@
+Sure, I can help you write a test case generator for this problem statement. The generator will produce random valid inputs for the given constraints. Here is the code:
+
+```python
+import random
+
+def tcgen():
+    # Generate N in the range [1, 100]
+    N = random.randint(1, 100)
+    
+    # Generate A and B in the range [0, N]
+    A = random.randint(0, N)
+    B = random.randint(0, N)
+    
+    return N, A, B
+
+# Sample usage
+for _ in range(5):  # Generate and print 5 sample test cases
+    N, A, B = tcgen()
+    print(N, A, B)
+```
+
+This generator ensures that the values of \(N\), \(A\), and \(B\) adhere to the constraints given in the problem statement. Here's a brief explanation:
+
+- `N` is a random integer between 1 and 100, inclusive.
+- `A` is a random integer between 0 and \(N\), inclusive.
+- `B` is a random integer between 0 and \(N\), inclusive.
+
+These generated values can be used as input for the problem to test various edge cases and typical cases. Feel free to run the `tcgen` function multiple times to generate multiple test cases.

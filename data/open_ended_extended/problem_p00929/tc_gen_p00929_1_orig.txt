@@ -1,0 +1,54 @@
+Sure! Below is a test case generator for the given problem "There is No Alternative".
+
+The generator creates random values for \(N\), \(M\), and the bridges with their respective costs, adhering to the constraints specified in the problem statement.
+
+```python
+import random
+
+def generate_island_pairs(N, M):
+    pairs = set()
+    while len(pairs) < M:
+        u = random.randint(1, N - 1)
+        v = random.randint(u + 1, N)
+        pairs.add((u, v))
+    return list(pairs)
+
+def tcgen():
+    # Number of islands
+    N = random.randint(3, 500)
+    
+    # Number of bridges
+    M = random.randint(N - 1, min(50000, N * (N - 1) // 2))
+    
+    # Generate unique pairs of islands
+    island_pairs = generate_island_pairs(N, M)
+    
+    bridges = []
+    for u, v in island_pairs:
+        cost = random.randint(1, 10000)
+        bridges.append((u, v, cost))
+    
+    return N, M, bridges
+
+def print_test_case(N, M, bridges):
+    print(f"{N} {M}")
+    for u, v, cost in bridges:
+        print(f"{u} {v} {cost}")
+
+# Example usage:
+N, M, bridges = tcgen()
+print_test_case(N, M, bridges)
+```
+
+### Explanation:
+
+1. **generate_island_pairs(N, M)**: This function generates `M` unique pairs of islands (u, v) such that \( 1 \leq u < v \leq N \). It ensures that no two bridges connect the same pair of islands.
+
+2. **tcgen()**: This function generates:
+   - `N`: A random number of islands between 3 and 500.
+   - `M`: A random number of bridges between \( N-1 \) and the minimum of \( 50000 \) or \( N(N-1)/2 \).
+   - `bridges`: A list of tuples where each tuple contains two islands and the cost to build the bridge between them. The costs are random integers between 1 and 10000.
+
+3. **print_test_case(N, M, bridges)**: This function prints the generated test case in the required format.
+
+The test case generator ensures that the constraints are respected and that the output format matches the problem statement. You can use the `tcgen()` function to generate multiple test cases as needed for thorough testing.

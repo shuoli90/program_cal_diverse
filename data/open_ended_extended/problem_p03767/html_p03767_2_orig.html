@@ -1,0 +1,150 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p03767 - Generation 2</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p03767 - Generation 2</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>
+Score : 300 points
+Problem StatementThere are 3N participants in AtCoder Group Contest.
+The strength of the i-th participant is represented by an integer a_i.
+They will form N teams, each consisting of three participants.
+No participant may belong to multiple teams.
+The strength of a team is defined as the second largest strength among its members.
+For example, a team of participants of strength 1, 5, 2 has a strength 2, and a team of three participants of strength 3, 2, 3 has a strength 3.
+Find the maximum possible sum of the strengths of N teams.
+Constraints
+1 ≤ N ≤ 10^5
+1 ≤ a_i ≤ 10^{9}
+a_i are integers.
+InputInput is given from Standard Input in the following format:
+N
+a_1 a_2 ... a_{3N}
+OutputPrint the answer.
+Sample Input 12
+5 2 8 5 1 5
+Sample Output 110
+The following is one formation of teams that maximizes the sum of the strengths of teams:
+Team 1: consists of the first, fourth and fifth participants.
+Team 2: consists of the second, third and sixth participants.
+Sample Input 210
+1000000000 1000000000 1000000000 1000000000 1000000000 1000000000 1000000000 1000000000 1000000000 1000000000 1000000000 1000000000 1000000000 1000000000 1000000000 1000000000 1000000000 1000000000 1000000000 1000000000 1000000000 1000000000 1000000000 1000000000 1000000000 1000000000 1000000000 1000000000 1000000000 1000000000
+Sample Output 210000000000
+The sum of the strengths can be quite large.
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An integer N (1 ≤ N ≤ 10^5), representing some quantity.
+A list of integers A of size 3N, where each integer is between 1 and 10^9.
+
+### Example Input:
+```
+2
+5 2 8 5 1 5
+```
+
+### Function Signature:
+Write a function f(N, A) that takes in the input. 
+```python
+def f(N: int, A: List[int]):
+    ''' 
+    N: an integer 
+    A: a list of integers
+    '''
+```</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Sure, here is the test case generator for the provided competitive programming problem:
+
+```python
+import random
+
+def tcgen():
+    # Define the range for N
+    N = random.randint(1, 10**5)
+    
+    # Generate the list of strengths for 3N participants
+    a = [random.randint(1, 10**9) for _ in range(3 * N)]
+    
+    return N, a
+
+# Function to print the generated test case in the required format
+def print_test_case():
+    N, a = tcgen()
+    print(N)
+    print(" ".join(map(str, a)))
+
+# Generate and print a test case
+print_test_case()
+```
+
+### Explanation:
+1. **Random Input Generation**:
+   - The number of teams \( N \) is randomly generated within the range `[1, 10^5]`.
+   - For \( 3N \) participants, their strengths \( a_i \) are generated randomly within the range `[1, 10^9]`.
+
+2. **Output Formatting**:
+   - The function `print_test_case()` prints the generated values in the specified format: first the integer \( N \), followed by the list of strengths.
+
+By running the `print_test_case()` function, you can generate a test case in the required format for this competitive programming problem.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    N = int(fh.readline().strip())
+    A = list(map(int, fh.readline().strip().split()))
+    return N, A</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

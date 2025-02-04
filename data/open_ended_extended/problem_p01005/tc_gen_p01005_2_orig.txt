@@ -1,0 +1,68 @@
+Certainly! Here's a test case generator for the given problem "The Humans Braving the Invaders":
+
+```python
+import random
+
+def generate_query(L):
+    query_type = random.randint(0, 4)
+    if query_type == 0:
+        return "0"
+    elif query_type == 1:
+        d = random.randint(1, 10**9)
+        return f"1 {d}"
+    elif query_type == 2:
+        k = random.randint(1, 10**9)
+        return f"2 {k}"
+    elif query_type == 3:
+        x = random.randint(0, L)
+        r = random.randint(0, 10**9)
+        return f"3 {x} {r}"
+    elif query_type == 4:
+        k = random.randint(1, 10**9)
+        return f"4 {k}"
+
+def tcgen():
+    datasets = []
+    
+    num_datasets = random.randint(1, 3)
+    for _ in range(num_datasets):
+        Q = random.randint(1, 100000)
+        L = random.randint(1, 10**9)
+        
+        queries = []
+        for _ in range(Q):
+            queries.append(generate_query(L))
+        
+        datasets.append((Q, L, queries))
+    
+    return datasets
+
+def format_dataset(dataset):
+    Q, L, queries = dataset
+    result = [f"{Q} {L}"] + queries
+    return "\n".join(result)
+
+def main():
+    random.seed(42)  # For reproducibility
+    test_cases = tcgen()
+    for dataset in test_cases:
+        print(format_dataset(dataset))
+        print("end")
+    print("0 0")
+
+if __name__ == "__main__":
+    main()
+```
+
+### Explanation:
+
+1. **generate_query(L)**: Generates a single query based on the problem constraints.
+2. **tcgen()**: Generates multiple datasets, each with its own set of queries.
+3. **format_dataset(dataset)**: Formats a dataset into the required input format for the problem.
+4. **main()**: Generates the test cases, prints them, and adds the required "end" and "0 0" at the end.
+
+### Usage:
+
+When you run the `main()` function, it will generate random test cases for the problem and print them out in the required format. It ensures that the constraints are respected for each query and dataset.
+
+Note that I've added a seed for random to make the test case generation reproducible. You can remove or modify the seed for different results each time you run the generator.

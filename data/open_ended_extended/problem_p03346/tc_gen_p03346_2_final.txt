@@ -1,0 +1,28 @@
+Sure! Here is a test case generator for the given problem statement:
+
+```python
+import random
+
+def tcgen():
+    # Constraints
+    N = random.randint(1, 2 * 10**5)
+    
+    # Generate a permutation of the integers from 1 to N
+    P = list(range(1, N+1))
+    random.shuffle(P)
+    
+    return N, P
+
+# Example usage:
+N, P = tcgen()
+print(N)
+for p in P:
+    print(p)
+```
+
+This generator creates a random test case by:
+1. Randomly choosing a value \( N \) within the constraint \( 1 \leq N \leq 2 \times 10^5 \).
+2. Generating a permutation of the integers from 1 to \( N \).
+3. Shuffling the permutation to ensure it's in a random order.
+
+You can run this generator to create different test cases for the given problem. Make sure to handle large input sizes within the constraints when using this in a competitive programming environment.

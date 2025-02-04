@@ -1,0 +1,35 @@
+An integer m (2 ≤ m ≤ 1000), representing some quantity or size.
+An integer n (1 ≤ n ≤ 10000), representing some quantity or size.
+A list of n items, where each item is either an integer (1 ≤ item ≤ 10000) or a string from the set {'Fizz', 'Buzz', 'FizzBuzz'}.
+There are no more than 50 such sets of inputs.
+
+### Example Input:
+```
+5 7
+1
+2
+Fizz
+4
+Buzz
+6
+7
+3 5
+1
+2
+3
+4
+5
+0 0
+```
+
+### Function Signature:
+Write a function f(inputs) that takes in the input.
+```python
+def f(inputs: List[Tuple[int, int, List[Union[int, str]]]]):
+    '''
+    inputs: a list of tuples, where each tuple contains:
+        - an integer
+        - an integer
+        - a list of integers and strings
+    '''
+```

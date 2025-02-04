@@ -1,0 +1,50 @@
+To generate test cases for the given problem statement, we need to ensure that the generated inputs adhere to the constraint that exactly one of the three integers is different from the other two. Here is a Python function to generate such test cases:
+
+```python
+import random
+
+def tcgen():
+    # Generate two identical integers within the range [-100, 100]
+    same_value = random.randint(-100, 100)
+    
+    # Generate a different integer within the range [-100, 100] ensuring it's not the same as 'same_value'
+    different_value = random.randint(-100, 100)
+    while different_value == same_value:
+        different_value = random.randint(-100, 100)
+    
+    # Randomly decide the position of the different value among A, B, and C
+    positions = ['A', 'B', 'C']
+    different_position = random.choice(positions)
+    
+    if different_position == 'A':
+        A, B, C = different_value, same_value, same_value
+    elif different_position == 'B':
+        A, B, C = same_value, different_value, same_value
+    else: # different_position == 'C'
+        A, B, C = same_value, same_value, different_value
+    
+    return A, B, C
+
+# Example usage:
+for _ in range(5):
+    print(tcgen())
+```
+
+### Explanation:
+1. **Generate Identical Values**: We first generate a random integer `same_value` which will be repeated twice in the tuple.
+2. **Generate a Different Value**: We then generate another integer `different_value` ensuring that it is different from `same_value`.
+3. **Randomize Position**: We randomly select one of the three positions (A, B, or C) to place the `different_value`, and the other two positions will hold `same_value`.
+4. **Return**: The function returns the tuple (A, B, C) where two values are the same and one is different.
+
+This function ensures that the generated test cases always adhere to the constraints provided in the problem statement. 
+
+### Example Outputs:
+```
+(-4, -4, 5)
+(100, 100, -78)
+(7, -53, -53)
+(-12, -12, 34)
+(50, -100, -100)
+```
+
+In each of these test cases, two values are identical, and one is different, which meets the problem's requirements.

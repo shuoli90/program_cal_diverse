@@ -1,0 +1,6 @@
+def extract_arguments(fh):
+    H, W = map(int, fh.readline().strip().split())
+    A, B, C = map(int, fh.readline().strip().split())
+    N = int(fh.readline().strip())
+    players = [tuple(map(int, fh.readline().strip().split())) for _ in range(N)]
+    return H, W, A, B, C, N, players

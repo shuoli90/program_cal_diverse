@@ -1,0 +1,66 @@
+Sure, I can help you write a test case generator for the given problem statement. Here's how you can do it in Python:
+
+```python
+import random
+
+def tcgen():
+    # Generate a random N within the given constraint
+    N = random.randint(1, 1000)
+    
+    # Initialize variables to keep track of the total number of red and blue balls
+    total_red_balls = 0
+    total_blue_balls = 0
+    
+    # Create lists to store the operations for red and blue balls
+    red_operations = []
+    blue_operations = []
+    
+    # Generate red ball operations
+    for _ in range(N):
+        RX = random.randint(0, 10**9)
+        RY = random.randint(0, 10**9)
+        RC = random.randint(1, 10)
+        red_operations.append((RX, RY, RC))
+        total_red_balls += RC
+    
+    # Generate blue ball operations, making sure the total number of blue balls equals total number of red balls
+    for _ in range(N):
+        BX = random.randint(0, 10**9)
+        BY = random.randint(0, 10**9)
+        
+        # Ensure the sum of blue balls matches the sum of red balls
+        if _ == N - 1:
+            BC = total_red_balls - total_blue_balls
+        else:
+            BC = random.randint(1, min(10, total_red_balls - total_blue_balls - (N - _ - 1)))
+        
+        blue_operations.append((BX, BY, BC))
+        total_blue_balls += BC
+    
+    # Format the input
+    input_data = f"{N}\n"
+    for op in red_operations:
+        input_data += f"{op[0]} {op[1]} {op[2]}\n"
+    for op in blue_operations:
+        input_data += f"{op[0]} {op[1]} {op[2]}\n"
+    
+    return input_data
+
+# Example usage:
+print(tcgen())
+```
+
+### Explanation:
+1. **N Generation**: We generate a random integer \( N \) between 1 and 1000.
+2. **Red Ball Operations**:
+    - For each operation, generate random coordinates \((RX, RY)\) within the range [0, 10^9].
+    - Generate a random count \( RC \) within the range [1, 10].
+    - Keep track of the total count of red balls.
+3. **Blue Ball Operations**:
+    - Similarly, generate random coordinates \((BX, BY)\) within the range [0, 10^9].
+    - For the count \( BC \), ensure that the sum of all \( BC \) equals the sum of all \( RC \). To achieve this:
+      - For each operation except the last, generate a random count \( BC \) such that the remaining counts can still fulfill the constraint.
+      - For the last operation, set \( BC \) to ensure the sum of \( BC \) matches the sum of \( RC \).
+4. **Formatting**: Combine the generated data into the required input format.
+
+This generator will give you a variety of test cases within the constraints, ensuring the sums of red and blue balls are equal.

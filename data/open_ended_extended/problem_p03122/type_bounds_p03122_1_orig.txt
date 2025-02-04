@@ -1,0 +1,7 @@
+Types: 
+N: int, 
+coordinates: List[Tuple[int, int]]
+
+Ranges: 
+1 ≤ N ≤ 10^4, 
+-10^17 ≤ x_i, y_i ≤ 10^17

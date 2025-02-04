@@ -1,0 +1,35 @@
+Certainly! Let's create a function `tcgen` that generates test cases for the problem "The Chair on Which Difficult People Sit".
+
+The function will:
+1. Randomly determine the number of chairs `n` (1 ≤ n ≤ 100).
+2. Randomly determine the number of passengers `m` (m ≤ n).
+3. Randomly generate `m` characters representing the countries of the passengers, each being 'A', 'B', 'C', or 'D'.
+
+Here's the test case generator:
+
+```python
+import random
+
+def tcgen():
+    n = random.randint(1, 100)  # Number of chairs
+    m = random.randint(0, n)    # Number of passengers, ensuring m ≤ n
+    
+    passengers = [random.choice(['A', 'B', 'C', 'D']) for _ in range(m)]
+    
+    # Format the test case as specified
+    test_case = f"{n} {m}\n"
+    test_case += "\n".join(passengers)
+    
+    return test_case
+
+# Example of generating a test case
+print(tcgen())
+```
+
+Explanation:
+1. The number of chairs `n` is generated randomly between 1 and 100.
+2. The number of passengers `m` is generated randomly between 0 and `n`, ensuring `m` does not exceed `n`.
+3. For each passenger, a character randomly chosen from 'A', 'B', 'C', 'D' represents their country.
+4. The test case is formatted as a string with the number of chairs and passengers on the first line, followed by each passenger on a new line.
+
+You can call the `tcgen()` function to generate and print a test case. Each call will produce a different test case due to the use of random values. If you need multiple test cases, simply call the function multiple times.

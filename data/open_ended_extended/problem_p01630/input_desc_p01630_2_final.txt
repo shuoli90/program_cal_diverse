@@ -1,0 +1,17 @@
+An integer N (1 ≤ N ≤ 10), representing some quantity or size.
+A string bit_line of length 2^N, consisting of characters '0' and '1'.
+
+### Example Input:
+
+```
+3
+01100110
+```
+
+### Function Signature:
+Write a function f(N, bit_line) that takes in the input.
+def f(N: int, bit_line: str):
+    '''
+    N: an integer
+    bit_line: a string
+    '''

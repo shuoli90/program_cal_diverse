@@ -1,0 +1,264 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p00840 - Generation 3</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p00840 - Generation 3</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>
+Problem E: Mobile Computing
+There is a mysterious planet called Yaen, whose space is 2-dimensional. There are many beautiful
+stones on the planet, and the Yaen people love to collect them. They bring the stones back home
+and make nice mobile arts of them to decorate their 2-dimensional living rooms.
+In their 2-dimensional world, a mobile is defined recursively as follows:
+  a stone hung by a string, or
+ a rod of length 1 with two sub-mobiles at both ends; the rod
+  is hung by a string at the center of gravity of sub-mobiles.
+  When the weights of the sub-mobiles are n and m, and their
+  distances from the center of gravity are a and b respectively,
+  the equation n × a = m × b holds.
+For example, if you got three stones with weights 1, 1, and 2, here are some possible mobiles
+and their widths:
+Given the weights of stones and the width of the room, your task is to design the widest possible
+mobile satisfying both of the following conditions.
+ It uses all the stones.
+ Its width is less than the width of the room.
+You should ignore the widths of stones.
+In some cases two sub-mobiles hung from both ends of a rod might
+overlap (see the figure on the below). Such mobiles are acceptable.
+The width of the example is (1/3) + 1 + (1/4).
+Input
+The first line of the input gives the number of datasets. Then the specified number of datasets
+follow. A dataset has the following format.
+      r
+      s
+      w1
+       .
+       .
+       .
+      ws
+r is a decimal fraction representing the width of the room, which satisfies 0 < r < 10. s is the
+number of the stones. You may assume 1 ≤ s ≤ 6. wi is the weight of the i-th stone, which is
+an integer. You may assume 1 ≤ wi ≤ 1000.
+You can assume that no mobiles whose widths are between r - 0.00001 and r + 0.00001 can be made of given stones.
+Output
+For each dataset in the input, one line containing a decimal fraction should be output. The
+decimal fraction should give the width of the widest possible mobile as defined above. An
+output line should not contain extra characters such as spaces.
+In case there is no mobile which satisfies the requirement, answer -1 instead.
+The answer should not have an error greater than 0.00000001. You may output any number of
+digits after the decimal point, provided that the above accuracy condition is satisfied.
+Sample Input
+5
+1.3
+3
+1
+2
+1
+1.4
+3
+1
+2
+1
+2.0
+3
+1
+2
+1
+1.59
+4
+2
+1
+1
+3
+1.7143
+4
+1
+2
+3
+5
+Output for the Sample Input
+-1
+1.3333333333333335
+1.6666666666666667
+1.5833333333333335
+1.7142857142857142
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An integer T (1 ≤ T ≤ 100), representing the number of datasets.
+For each dataset:
+- A decimal fraction r (0 < r < 10).
+- An integer s (1 ≤ s ≤ 6).
+- A list of s integers, each integer wi (1 ≤ wi ≤ 1000).
+
+### Example Input:
+
+```
+5
+1.3
+3
+1
+2
+1
+1.4
+3
+1
+2
+1
+2.0
+3
+1
+2
+1
+1.59
+4
+2
+1
+1
+3
+1.7143
+4
+1
+2
+3
+5
+```
+
+### Function Signature:
+Write a function f(inputs) that takes in the input.
+def f(inputs: List[Tuple[float, int, List[int]]]):
+    '''
+    inputs: a list of tuples, each containing a decimal fraction, an integer, and a list of integers
+    '''</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Sure, I can help you write a test case generator for the problem "Mobile Computing." Here is a Python script that generates random test cases for this problem:
+
+```python
+import random
+
+def generate_test_case():
+    # Number of datasets (randomly chosen between 1 to 5 for simplicity)
+    num_datasets = random.randint(1, 5)
+    
+    test_cases = []
+    
+    for _ in range(num_datasets):
+        # Room width (random float between 0 and 10)
+        r = round(random.uniform(0.00001, 9.99999), 5)  # using 5 decimal places for precision
+        
+        # Number of stones (between 1 and 6)
+        s = random.randint(1, 6)
+        
+        # Weights of the stones (between 1 and 1000)
+        weights = [random.randint(1, 1000) for _ in range(s)]
+        
+        test_cases.append((r, s, weights))
+    
+    return num_datasets, test_cases
+
+def format_test_case(num_datasets, test_cases):
+    result = [str(num_datasets)]
+    for r, s, weights in test_cases:
+        result.append(f"{r}")
+        result.append(f"{s}")
+        result.extend(map(str, weights))
+    return "\n".join(result)
+
+def tcgen():
+    num_datasets, test_cases = generate_test_case()
+    return format_test_case(num_datasets, test_cases)
+
+# Example of generating a test case
+print(tcgen())
+```
+
+### Explanation:
+
+1. **generate_test_case Function**:
+   - Generates the number of datasets (`num_datasets`), which is a random integer between 1 and 5.
+   - For each dataset:
+     - Generates a random room width `r` as a float between 0.00001 and 9.99999, rounded to 5 decimal places.
+     - Generates a random number of stones `s` between 1 and 6.
+     - Generates a list of stone weights, each a random integer between 1 and 1000.
+
+2. **format_test_case Function**:
+   - Formats the generated test cases into the required input format for the problem statement.
+   - Combines all the parts into a single string suitable for competitive programming input.
+
+3. **tcgen Function**:
+   - Calls the above functions to generate and format the test cases, then simply prints the result.
+
+You can run this script to get a random test case each time. It ensures the test cases conform to the constraints specified in the problem statement.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    num_datasets = int(fh.readline().strip())
+    datasets = []
+    for _ in range(num_datasets):
+        r = float(fh.readline().strip())
+        s = int(fh.readline().strip())
+        weights = [int(fh.readline().strip()) for _ in range(s)]
+        datasets.append((r, s, weights))
+    return datasets
+
+# if __name__ == "__main__":
+#     input_path = sys.argv[1]
+#     with open(input_path, 'r') as fh: 
+#     inputs = extract_arguments(fh)
+#     f(inputs)</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

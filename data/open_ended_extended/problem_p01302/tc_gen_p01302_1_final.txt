@@ -1,0 +1,67 @@
+Sure! To generate test cases for the "Cave Explorer" problem, we need to consider the constraints provided in the problem statement. Here’s a Python function that can generate randomized test cases:
+
+```python
+import random
+
+def generate_polygon(n):
+    """Generate a simple polygon with n vertices."""
+    # Start with a random point
+    points = [(random.randint(0, 10000), random.randint(0, 10000))]
+    
+    for _ in range(n - 1):
+        next_point = (points[-1][0] + random.randint(1, 1000), points[-1][1] + random.randint(1, 1000))
+        next_point = (min(next_point[0], 10000), min(next_point[1], 10000))  # Ensure points are within bounds
+        points.append(next_point)
+    
+    # Ensure the polygon is simple by returning points in counterclockwise order
+    points = sorted(points, key=lambda point: (point[0], point[1]))
+    
+    return points
+
+def tcgen():
+    datasets = []
+    while True:
+        n = random.randint(3, 100)
+
+        vx = random.randint(-10000, 10000)
+        vy = random.randint(-10000, 10000)
+        while vx == 0 and vy == 0:
+            vx = random.randint(-10000, 10000)
+            vy = random.randint(-10000, 10000)
+        
+        vertices = generate_polygon(n)
+
+        dataset = f"{n}\n{vx} {vy}\n"
+        for (x, y) in vertices:
+            dataset += f"{x} {y}\n"
+        
+        datasets.append(dataset)
+        
+        # Randomly decide to stop adding more datasets
+        if random.choice([True, False]):
+            break
+    
+    datasets.append("0\n")
+    return "\n".join(datasets)
+
+# Example usage to generate a test case
+print(tcgen())
+```
+
+### Explanation
+
+1. **generate_polygon(n)**:
+   - Generates a simple polygon with `n` vertices. The vertices are generated in a way that ensures the polygon is simple and in counterclockwise order.
+
+2. **tcgen()**:
+   - Generates multiple datasets.
+   - For each dataset:
+     - Randomly determines the number of vertices `n`.
+     - Randomly generates the direction vector `(vx, vy)` ensuring it's non-zero.
+     - Generates a list of vertices for the polygon.
+   - Each dataset is formatted as a string and added to the list of datasets.
+   - Randomly decides whether to stop adding more datasets to simulate multiple datasets in one test case.
+   - Appends a termination line `"0\n"`.
+
+### Sample Output
+The function prints out a generated test case, which can be used directly in a competitive programming environment for testing the "Cave Explorer" problem.

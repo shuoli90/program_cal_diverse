@@ -1,0 +1,3 @@
+Types: n: int, vx: int, vy: int, x: List[int], y: List[int]
+Ranges: 3 ≤ n ≤ 100, -10000 ≤ vx, vy ≤ 10000, 0 ≤ xi, yi ≤ 10000, vx^2 + vy^2 > 0
+Addtl Info: The input is terminated by a line with a zero. This should not be processed. The polygon is always simple, given in counterclockwise order.

@@ -1,0 +1,3 @@
+Types: N: int, K: int, A: List[int], B: List[int]
+Ranges: 2 ≤ N ≤ 2000, 1 ≤ K ≤ N-1, 1 ≤ A_i ≤ N, 1 ≤ B_i ≤ N
+Addtl Info: The graph defined by A_i and B_i is a tree.

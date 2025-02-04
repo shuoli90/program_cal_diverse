@@ -1,0 +1,141 @@
+
+3D Printing
+We are designing an installation art piece consisting of 
+a number of cubes with 3D printing technology for submitting one to
+Installation art Contest with Printed Cubes (ICPC).
+At this time, we are trying to model a piece consisting of exactly k cubes 
+of the same size facing the same direction.
+First, using a CAD system, 
+we prepare n (n ≥ k) positions as candidates
+in the 3D space where cubes can be placed.
+When cubes would be placed at all the candidate positions, 
+the following three conditions are satisfied.
+Each cube may overlap zero, one or two other cubes, but not three or more.
+When a cube overlap two other cubes, those two cubes do not overlap.
+Two non-overlapping cubes do not touch at their surfaces, edges or corners.
+Second, choosing appropriate k different positions from n candidates
+and placing cubes there, 
+we obtain a connected polyhedron as a union of the k cubes. 
+When we use a 3D printer,
+we usually print only the thin surface of a 3D object.
+In order to save the amount of filament material for the 3D printer, 
+we want to find the polyhedron with the minimal surface area.
+Your job is to find the polyhedron with the minimal surface area
+consisting of k connected
+cubes placed at k selected positions among n given ones. 
+Figure E1. A polyhedron formed with connected identical cubes.
+Input
+The input consists of multiple datasets. 
+The number of datasets is at most 100.
+Each dataset is in the following format.
+n k s
+x1 y1 z1
+... 
+xn yn zn
+In the first line of a dataset,
+n is the number of the candidate positions,
+k is the number of the cubes to form the connected polyhedron,
+and s is the edge length of cubes. 
+n, k and s are integers separated by a space. 
+The following n lines specify the n candidate positions.
+In the i-th line, there are three integers 
+xi,
+yi and 
+zi
+that specify the coordinates of a position,  
+where the corner of the cube with the smallest coordinate values
+may be placed.
+Edges of the cubes are to be aligned with either of three axes.
+All the values of coordinates are integers separated by a space.
+The three conditions on the candidate positions mentioned above are satisfied.
+The parameters satisfy the following conditions:
+1 ≤ k ≤ n ≤ 2000, 3 ≤ s ≤ 100,  and
+-4×107 ≤ xi, yi, zi ≤ 4×107. 
+The end of the input is indicated by a line containing three zeros
+separated by a space.
+Output
+For each dataset, output a single line containing one integer
+indicating the surface area of the connected polyhedron with 
+the minimal surface area.
+When no k cubes form a connected polyhedron, output -1.
+Sample Input
+1 1 100
+100 100 100
+6 4 10
+100 100 100
+106 102 102
+112 110 104
+104 116 102
+100 114 104
+92 107 100
+10 4 10
+-100 101 100
+-108 102 120
+-116 103 100
+-124 100 100
+-132 99 100
+-92 98 100
+-84 100 140
+-76 103 100
+-68 102 100
+-60 101 100
+10 4 10
+100 100 100
+108 101 100
+116 102 100
+124 100 100
+132 102 100
+200 100 103
+192 100 102
+184 100 101
+176 100 100
+168 100 103
+4 4 10
+100 100 100
+108 94 100
+116 100 100
+108 106 100
+23 6 10
+100 100 100
+96 109 100
+100 118 100
+109 126 100
+118 126 100
+127 118 98
+127 109 104
+127 100 97
+118 91 102
+109 91 100
+111 102 100
+111 102 109
+111 102 118
+111 102 91
+111 102 82
+111 114 96
+111 114 105
+102 114 114
+93 114 114
+84 114 105
+84 114 96
+93 114 87
+102 114 87
+10 3 10
+100 100 100
+116 116 102
+132 132 104
+148 148 106
+164 164 108
+108 108 108
+124 124 106
+140 140 104
+156 156 102
+172 172 100
+0 0 0
+Output for the Sample Input
+60000
+1856
+-1
+1632
+1856
+2796
+1640

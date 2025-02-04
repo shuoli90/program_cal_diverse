@@ -1,0 +1,21 @@
+An integer N (1 ≤ N ≤ 2 × 10^5), representing some quantity or size.
+An integer X (-10^8 ≤ X ≤ 10^8), representing some initial value.
+An integer D (-10^8 ≤ D ≤ 10^8), representing some difference value.
+
+### Example Input:
+
+```
+3
+100
+14
+20
+```
+
+### Function Signature:
+Write a function f(N, X, D) that takes in the input. 
+def f(N: int, X: int, D: int): 
+    ''' 
+    N: an integer 
+    X: an integer 
+    D: an integer 
+    '''

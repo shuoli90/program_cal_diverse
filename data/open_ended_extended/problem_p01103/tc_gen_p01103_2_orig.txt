@@ -1,0 +1,44 @@
+Sure, I can write a test case generator for the given problem statement "A Garden with Ponds". The generator will create multiple datasets where each dataset will have a grid with random elevations. Here is the Python code for generating the test cases:
+
+```python
+import random
+
+def generate_test_case():
+    d = random.randint(3, 10)
+    w = random.randint(3, 10)
+    
+    elevation_grid = []
+    for _ in range(d):
+        row = [random.randint(0, 9) for _ in range(w)]
+        elevation_grid.append(row)
+    
+    return d, w, elevation_grid
+
+def tcgen(num_cases):
+    cases = []
+    for _ in range(num_cases):
+        d, w, elevation_grid = generate_test_case()
+        cases.append((d, w, elevation_grid))
+    
+    return cases
+
+def print_cases(cases):
+    for case in cases:
+        d, w, elevation_grid = case
+        print(f"{d} {w}")
+        for row in elevation_grid:
+            print(" ".join(map(str, row)))
+    print("0 0")
+
+# Generate 10 test cases
+test_cases = tcgen(10)
+print_cases(test_cases)
+```
+
+This code snippet does the following:
+
+1. **generate_test_case()**: Generates a single test case by selecting random values for `d` and `w` (ranging from 3 to 10). It then constructs a grid of size `d`x`w` with random elevation values between 0 and 9.
+2. **tcgen(num_cases)**: Generates the specified number of test cases by calling `generate_test_case()` and appending each result to a list.
+3. **print_cases(cases)**: Prints all the test cases in the specified format, and adds the terminating line "0 0" at the end.
+
+This approach ensures that each test case is randomly generated, adhering to the constraints provided in the problem statement.

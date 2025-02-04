@@ -1,0 +1,69 @@
+Sure, I can help you write a test case generator for the "We don't wanna work!" problem. Here is a Python function that generates test cases for this problem:
+
+```python
+import random
+import string
+
+def generate_name():
+    length = random.randint(1, 20)
+    return ''.join(random.choices(string.ascii_letters, k=length))
+
+def tcgen():
+    N = random.randint(1, 50000)
+    
+    initial_members = []
+    for _ in range(N):
+        name = generate_name()
+        motivation = random.randint(0, 100000)
+        initial_members.append((name, motivation))
+    
+    M = random.randint(1, 20000)
+    
+    changes = []
+    current_members = set(name for name, _ in initial_members)
+    for _ in range(M):
+        if random.choice([True, False]) and current_members:
+            name = random.choice(list(current_members))
+            changes.append(f"- {name}")
+            current_members.remove(name)
+        else:
+            name = generate_name()
+            while name in current_members:
+                name = generate_name()
+            motivation = random.randint(0, 100000)
+            changes.append(f"+ {name} {motivation}")
+            current_members.add(name)
+    
+    return N, initial_members, M, changes
+
+def print_test_case(N, initial_members, M, changes):
+    print(N)
+    for name, motivation in initial_members:
+        print(f"{name} {motivation}")
+    print(M)
+    for change in changes:
+        print(change)
+
+# Example usage
+N, initial_members, M, changes = tcgen()
+print_test_case(N, initial_members, M, changes)
+```
+
+### Explanation
+1. **Function `generate_name`**:
+   - Generates a random name of length between 1 and 20 characters using upper and lowercase English letters.
+
+2. **Function `tcgen`**:
+   - Generates the number of initial members \(N\) and initializes an empty list for initial members.
+   - For each initial member, it generates a name and a motivation level, then adds them to the list.
+   - Generates the number of changes \(M\) and initializes an empty set for current members (to keep track of members currently in ACM).
+   - For each change, it randomly decides whether to add a new member or remove an existing one (if there are any current members). When adding, it ensures no duplicate names.
+
+3. **Function `print_test_case`**:
+   - Helper function to print out the generated test case in the required format.
+
+### Usage
+- Run the `tcgen` function to generate a test case.
+- Use the `print_test_case` function to print the generated test case in the format required by the problem.
+
+This will give you a variety of test cases with diverse inputs, helping you thoroughly test your solution to the problem.

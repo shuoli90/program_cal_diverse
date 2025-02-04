@@ -1,0 +1,32 @@
+Sure! Here is a test case generator for the given problem statement about the 2xN grid and collecting the maximum number of candies:
+
+```python
+import random
+
+def generate_test_case():
+    N = random.randint(1, 100)
+    
+    A = [[random.randint(1, 100) for _ in range(N)] for _ in range(2)]
+    
+    return N, A
+
+def format_test_case(N, A):
+    input_str = f"{N}\n"
+    input_str += " ".join(map(str, A[0])) + "\n"
+    input_str += " ".join(map(str, A[1]))
+    
+    return input_str
+
+# Example usage
+N, A = generate_test_case()
+test_case = format_test_case(N, A)
+print(test_case)
+```
+
+This generator function `generate_test_case` will create random test cases within the constraints given in the problem statement. The function `format_test_case` formats the generated test case into the required input format for the problem. 
+
+Each test case consists of:
+1. An integer \(N\), representing the number of columns.
+2. Two lists of integers of size \(N\), representing the number of candies in each cell of the 2xN grid.
+
+You can call the `generate_test_case` function to generate a random test case and then format it using the `format_test_case` function to get a string that can be used to test your solution.

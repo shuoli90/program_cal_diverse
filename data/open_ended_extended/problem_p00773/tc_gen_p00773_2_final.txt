@@ -1,0 +1,34 @@
+Sure! The following is a test case generator for the given problem statement "Tax Rate Changed":
+
+```python
+import random
+
+def tcgen():
+    # Generate x (VAT rate before change): 0 < x < 100
+    x = random.randint(1, 99)
+    
+    # Generate y (VAT rate after change): 0 < y < 100 and y != x
+    y = random.randint(1, 99)
+    while y == x:
+        y = random.randint(1, 99)
+    
+    # Generate s (sum of after-tax prices): 10 < s < 1000
+    s = random.randint(11, 999)
+    
+    return x, y, s
+
+# Generate a specified number of test cases
+num_test_cases = 10  # Change this number to generate more or fewer test cases
+test_cases = [tcgen() for _ in range(num_test_cases)]
+
+# Print out the test cases
+for case in test_cases:
+    print(f"{case[0]} {case[1]} {case[2]}")
+    
+# Append the end marker
+print("0 0 0")
+```
+
+This script generates random test cases based on the constraints specified in the problem statement. Each test case consists of three integers \(x\), \(y\), and \(s\), which represent the VAT rate before the change, the VAT rate after the change, and the sum of after-tax prices of two items before the VAT rate change, respectively.
+
+The script also ensures that \(x\) and \(y\) are different, and it prints the end marker "0 0 0" at the end of the generated test cases. You can adjust the `num_test_cases` variable to generate the desired number of test cases.

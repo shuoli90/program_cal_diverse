@@ -1,0 +1,65 @@
+Sure! Here is a test case generator for the problem "Frisbee Dogs":
+
+```python
+import random
+
+def random_real_number(low, high, precision=6):
+    return round(random.uniform(low, high), precision)
+
+def tcgen():
+    datasets = []
+    while True:
+        # Generate random values for N and M within their respective constraints
+        N = random.randint(1, 10)
+        M = random.randint(1, 1000)
+        
+        # Create the list of dogs with their positions and speeds
+        dogs = []
+        for _ in range(N):
+            Dix = random_real_number(-1000, 1000)
+            Diy = random_real_number(-1000, 1000)
+            Vi = random_real_number(1, 100)
+            dogs.append((Dix, Diy, Vi))
+
+        # Create the list of Frisbees with their launch positions and velocities
+        frisbees = []
+        for _ in range(M):
+            FPix = random_real_number(-1000, 1000)
+            FPin = random_real_number(-1000, 1000)
+            FVix = random_real_number(-25, 25)
+            FViy = random_real_number(-25, 25)
+            frisbees.append((FPix, FPin, FVix, FViy))
+
+        dataset = (N, M, dogs, frisbees)
+        datasets.append(dataset)
+
+        # Randomly decide to stop or continue adding datasets
+        if random.choice([True, False]):
+            break
+        
+    # Add the end marker
+    datasets.append((0, 0, [], []))
+    return datasets
+
+# Convert the datasets into the required input format
+def format_datasets(datasets):
+    formatted = []
+    for dataset in datasets:
+        N, M, dogs, frisbees = dataset
+        formatted.append(f"{N} {M}")
+        for Dix, Diy, Vi in dogs:
+            formatted.append(f"{Dix} {Diy} {Vi}")
+        for FPix, FPin, FVix, FViy in frisbees:
+            formatted.append(f"{FPix} {FPin} {FVix} {FViy}")
+    return "\n".join(formatted)
+
+# Example usage
+random.seed(0)  # For reproducibility
+datasets = tcgen()
+formatted_input = format_datasets(datasets)
+print(formatted_input)
+```
+
+This code generates random test case datasets for the problem "Frisbee Dogs". The `tcgen` function generates multiple datasets until it randomly decides to stop. Each dataset contains random numbers of dogs and Frisbees within the given constraints, along with their respective positions and velocities. The `format_datasets` function formats these datasets into the required input format for the problem. The example usage at the end shows how to generate and print the formatted test cases.
+
+You can run this code to generate random test cases for the problem statement. Adjust the random seed or modify the constraints as needed to get different test cases.

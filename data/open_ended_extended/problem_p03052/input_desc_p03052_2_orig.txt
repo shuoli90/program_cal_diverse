@@ -1,0 +1,26 @@
+Canonicalized Input Description:
+
+An integer N (2 ≤ N ≤ 20), representing some quantity or size.
+An integer M (N-1 ≤ M ≤ N(N-1)/2), representing some quantity or size.
+A list of M tuples, where each tuple contains two integers (1 ≤ a, b ≤ N), representing relationships between entities.
+
+### Example Input:
+
+```
+3 3
+1 2
+2 3
+1 3
+```
+
+### Function Signature:
+
+Write a function f(N, M, edges) that takes in the input.
+```python
+def f(N: int, M: int, edges: List[Tuple[int, int]]):
+    '''
+    N: an integer
+    M: an integer
+    edges: a list of tuples with two integers each
+    '''
+```

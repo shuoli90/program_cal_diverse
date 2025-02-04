@@ -1,0 +1,5 @@
+Types: w: int
+
+Ranges: 1 ≤ w ≤ 100000
+
+Addtl Info: None

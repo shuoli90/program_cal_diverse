@@ -1,0 +1,28 @@
+Certainly! Below is a test case generator for the "Sum of Decimal Digits" problem statement.
+
+```python
+import random
+
+def tcgen():
+    datasets = []
+    num_datasets = random.randint(1, 100)
+
+    for _ in range(num_datasets):
+        a = random.randint(1, 1000)
+        b = random.randint(1, 10000)
+        n = random.randint(1, 100)
+        datasets.append((a, b, n))
+    
+    return datasets
+
+# Example usage:
+random.seed(0)  # Optional: for reproducibility
+test_datasets = tcgen()
+
+for dataset in test_datasets:
+    print(f"{dataset[0]} {dataset[1]} {dataset[2]}")
+```
+
+This generator creates a random number of datasets (between 1 and 100). For each dataset, it generates three integers \(a\), \(b\), and \(n\) within the specified ranges. Each dataset is stored as a tuple in the list `datasets`. Finally, the generator returns the list of datasets.
+
+You can use the example usage provided to print the generated test cases. Note that the `random.seed(0)` line is optional and can be used to ensure reproducibility of the generated test cases for debugging or testing purposes.

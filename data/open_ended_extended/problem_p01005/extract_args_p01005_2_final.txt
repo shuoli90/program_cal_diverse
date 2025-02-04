@@ -1,0 +1,21 @@
+def extract_arguments(fh):
+    data_sets = []
+    while True:
+        first_line = fh.readline().strip()
+        if first_line == "0 0":
+            break
+        Q, L = map(int, first_line.split())
+        queries = []
+        for _ in range(Q):
+            query = list(map(int, fh.readline().strip().split()))
+            queries.append(query)
+        data_sets.append((Q, L, queries))
+    return data_sets
+
+# if __name__ == "__main__":
+#     input_path = sys.argv[1]
+#     with open(input_path, 'r') as fh:
+#         data_sets = extract_arguments(fh)
+#         for data_set in data_sets:
+#             Q, L, queries = data_set
+#             f(Q, L, queries)

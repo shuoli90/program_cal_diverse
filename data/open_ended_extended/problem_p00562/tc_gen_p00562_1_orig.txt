@@ -1,0 +1,54 @@
+Sure! Here's a test case generator for the "Soccer" problem statement. This generator will create random test cases within the constraints specified in the problem.
+
+```python
+import random
+
+def tcgen():
+    # Generate random H and W within the given constraints
+    H = random.randint(1, 500)
+    W = random.randint(1, 500)
+    
+    # Generate A, B, C within the given constraints
+    A = random.randint(0, 1_000_000_000)
+    B = random.randint(0, 1_000_000_000)
+    C = random.randint(0, 1_000_000_000)
+    
+    # Generate N within the given constraints
+    N = random.randint(2, 100_000)
+    
+    # Generate unique starting positions for N players within the field boundaries
+    players = set()
+    while len(players) < N:
+        Si = random.randint(0, H)
+        Ti = random.randint(0, W)
+        players.add((Si, Ti))
+    players = list(players)
+    
+    # Ensure the first and last players are at different positions
+    if players[0] == players[-1]:
+        players[-1] = (random.randint(0, H), random.randint(0, W))
+        while players[-1] == players[0]:
+            players[-1] = (random.randint(0, H), random.randint(0, W))
+    
+    # Convert player positions to the required format
+    player_positions = "\n".join(f"{Si} {Ti}" for Si, Ti in players)
+    
+    # Generate the complete input string
+    input_data = f"{H} {W}\n{A} {B} {C}\n{N}\n{player_positions}"
+    
+    return input_data
+
+# Example usage
+for _ in range(3):
+    print(tcgen())
+    print()
+```
+
+This function generates:
+1. Random values for `H`, `W`, `A`, `B`, and `C` within their respective constraints.
+2. A random number of players `N` between 2 and 100,000.
+3. Random unique positions `(Si, Ti)` for each player within the field boundaries.
+4. Ensures that the first player and the last player are at different positions.
+5. Formats the generated test case as a string to match the input format of the problem.
+
+You can run this function to generate different test cases for the problem and print them for verification.

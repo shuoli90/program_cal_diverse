@@ -1,0 +1,17 @@
+    
+An integer a (1 ≤ a ≤ 10^9), representing some quantity.
+An integer b (1 ≤ b ≤ 10^9), representing some quantity.
+
+### Example Input:
+
+```
+4 12
+```
+
+### Function Signature:
+Write a function f(a, b) that takes in the input.
+def f(a: int, b: int):
+    ''' 
+    a: an integer 
+    b: an integer
+    '''

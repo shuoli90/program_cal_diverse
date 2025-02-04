@@ -1,0 +1,22 @@
+An integer \(N\) (2 ≤ \(N\) < 300000), representing some positive quantity.
+A sequence of integers, each greater than 1 and less than 300000, terminated by a single digit 1.
+
+### Example Input:
+
+```
+205920
+262144
+262200
+279936
+299998
+1
+```
+
+### Function Signature:
+Write a function f(inputs) that takes in the input. 
+```
+def f(inputs: List[int]):
+    ''' 
+    inputs: a list of integers 
+    '''
+```

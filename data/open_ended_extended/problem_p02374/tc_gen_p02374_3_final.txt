@@ -1,0 +1,62 @@
+Sure, I can help you create a test case generator for the "Range Query on a Tree" problem. Below is a Python function that generates test cases according to the problem statement:
+
+```python
+import random
+
+def generate_tree(n):
+    tree = []
+    for i in range(n):
+        if i == 0:
+            k = random.randint(1, n-1)  # root must have at least one child
+        else:
+            k = random.randint(0, max(0, n-1-i))
+        children = random.sample(range(i + 1, n), k)
+        tree.append(f"{k} " + " ".join(map(str, sorted(children))))
+    return tree
+
+def generate_queries(q, n):
+    queries = []
+    for _ in range(q):
+        query_type = random.randint(0, 1)
+        if query_type == 0:
+            v = random.randint(1, n-1)
+            w = random.randint(1, 10000)
+            queries.append(f"0 {v} {w}")
+        else:
+            u = random.randint(1, n-1)
+            queries.append(f"1 {u}")
+    return queries
+
+def tcgen():
+    n = random.randint(2, 100000)
+    tree = generate_tree(n)
+    
+    q = random.randint(2, 200000)
+    queries = generate_queries(q, n)
+    
+    test_case = [str(n)] + tree + [str(q)] + queries
+    return "\n".join(test_case)
+
+# Example Usage
+print(tcgen())
+```
+
+### Explanation:
+
+1. **generate_tree(n)**:
+   - Generates the tree structure.
+   - Each node has a random number of children `k` (where 0 ≤ k ≤ n-1).
+   - For each node, it selects `k` unique random children while ensuring that children IDs are greater than the current node ID to maintain a valid tree structure.
+
+2. **generate_queries(q, n)**:
+   - Generates a list of `q` queries.
+   - Each query is randomly selected to be either `add(v, w)` or `getSum(u)`.
+   - For `add` queries (`0 v w`), it randomly selects a node ID `v` and a weight `w`.
+   - For `getSum` queries (`1 u`), it randomly selects a node ID `u`.
+
+3. **tcgen()**:
+   - Combines the tree and queries into a single test case formatted as a string.
+
+### Note:
+- Given the constraints, generating extremely large test cases can be resource-intensive. Ensure your environment can handle the random generation for large values of `n` and `q`.
+- This generator ensures that the constraints and requirements specified in the problem statement are respected.

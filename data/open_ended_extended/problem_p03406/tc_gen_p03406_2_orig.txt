@@ -1,0 +1,41 @@
+Sure! Here is the test case generator for the provided problem statement:
+
+```python
+import random
+
+def tcgen():
+    # Generate N: 1 <= N <= 16
+    N = random.randint(1, 16)
+    
+    # Generate M: 0 <= M <= 16
+    M = random.randint(0, 16)
+    
+    # Generate A array: each A_i is distinct, sorted and within the range [2, 2^N]
+    A = sorted(random.sample(range(2, 2**N + 1), M))
+    
+    return N, M, A
+
+# Example usage:
+if __name__ == "__main__":
+    # Generate a single test case
+    N, M, A = tcgen()
+    print("N:", N)
+    print("M:", M)
+    print("A:", A)
+
+    # You can generate multiple test cases by looping
+    for _ in range(10):
+        N, M, A = tcgen()
+        print("Generated Test Case:")
+        print("N:", N)
+        print("M:", M)
+        print("A:", A)
+```
+
+This generator ensures that the constraints are met:
+
+1. \(N\) is between 1 and 16.
+2. \(M\) is between 0 and 16.
+3. The elements in array \(A\) are distinct, sorted, and within the range \([2, 2^N]\).
+
+You can run the above code to generate test cases for the problem.

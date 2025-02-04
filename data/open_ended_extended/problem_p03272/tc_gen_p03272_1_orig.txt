@@ -1,0 +1,94 @@
+Certainly! Let's first understand the problem and then create a test case generator for it.
+
+### Problem Statement: Train Car Position
+
+**Description**
+
+You have an N-car train. Given an integer \(i\), you need to find the value of \(j\) such that the \(i\)-th car from the front is the \(j\)-th car from the back.
+
+**Constraints**
+
+- \(1 \leq N \leq 100\)
+- \(1 \leq i \leq N\)
+
+**Input**
+
+Input is given from Standard Input in the following format:
+```
+N i
+```
+
+**Output**
+
+Print the value of \(j\).
+
+### Examples
+
+**Example 1:**
+
+_Input:_
+```
+4 2
+```
+
+_Output:_
+```
+3
+```
+
+*Explanation:* The second car from the front in a 4-car train is the third car from the back.
+
+**Example 2:**
+
+_Input:_
+```
+1 1
+```
+
+_Output:_
+```
+1
+```
+
+*Explanation:* The first car from the front in a 1-car train is also the first car from the back.
+
+**Example 3:**
+
+_Input:_
+```
+15 11
+```
+
+_Output:_
+```
+5
+```
+
+*Explanation:* The 11th car from the front in a 15-car train is the 5th car from the back.
+
+### Test Case Generator
+
+The test case generator will create random values for \(N\) and \(i\) within the given constraints.
+
+```python
+import random
+
+def tcgen():
+    # Generate a random integer N (1 ≤ N ≤ 100)
+    N = random.randint(1, 100)
+    # Generate a random integer i (1 ≤ i ≤ N)
+    i = random.randint(1, N)
+    
+    return N, i
+
+# Example usage:
+if __name__ == "__main__":
+    for _ in range(5):  # Generate 5 test cases
+        N, i = tcgen()
+        print(f"Input: {N} {i}")
+        # Calculate the expected output for verification
+        j = N - i + 1
+        print(f"Output: {j}")
+```
+
+This script will generate random test cases for the problem and also calculate the expected output for each test case. The expected output is computed using the formula \(j = N - i + 1\), which finds the position of the \(i\)-th car from the front when viewed from the back.

@@ -1,0 +1,32 @@
+Sure, here is a test case generator for the given problem statement:
+
+```python
+import random
+
+def tcgen():
+    N = random.randint(1, 2 * 10**5)
+    
+    A = [random.randint(1, 10**6) for _ in range(N)]
+    
+    return N, A
+
+# Generate a test case and print it in the required format
+N, A = tcgen()
+print(N)
+print(" ".join(map(str, A)))
+```
+
+### Explanation of the Test Case Generator
+
+1. **N Generation**: 
+    - We generate a random integer \( N \) in the range \([1, 2 \times 10^5]\). This ensures that the size of the array adheres to the problem constraints.
+
+2. **A Generation**:
+    - We generate a list \( A \) of size \( N \) with each element being a random integer in the range \([1, 10^6]\). This ensures that each element in the array adheres to the problem constraints.
+
+3. **Output**:
+    - The generated test case is printed in the required format: 
+        - First, the integer \( N \) is printed.
+        - Then, the list \( A \) is printed as space-separated integers.
+
+This generator will help create numerous test cases to validate the solution of the problem.

@@ -1,0 +1,63 @@
+Sure, let's write a test case generator for the problem statement "What are the popular stalls?" outlined above. The generator will produce multiple datasets, each consisting of sales data for five stores (A, B, C, D, E) for both morning and afternoon sessions.
+
+Here's the generator in Python:
+
+```python
+import random
+
+def generate_test_case():
+    datasets = []
+    num_datasets = random.randint(1, 100)
+    
+    for _ in range(num_datasets):
+        dataset = []
+        for _ in range(5):
+            morning_sales = random.randint(1, 10000)
+            afternoon_sales = random.randint(1, 10000)
+            dataset.append((morning_sales, afternoon_sales))
+        datasets.append(dataset)
+    
+    return datasets
+
+def print_test_case(datasets):
+    for dataset in datasets:
+        for sales in dataset:
+            print(f"{sales[0]} {sales[1]}")
+    print("0 0")
+
+# Example usage
+datasets = generate_test_case()
+print_test_case(datasets)
+```
+
+### Explanation:
+
+1. **`generate_test_case` Function**:
+    - Generates a random number of datasets (between 1 and 100).
+    - For each dataset, it generates sales data for the five stores (A, B, C, D, E).
+    - Each store has a random number of sales in the morning session and a random number of sales in the afternoon session (both between 1 and 10000).
+
+2. **`print_test_case` Function**:
+    - Iterates over each dataset and prints the sales data in the required format.
+    - It ends the test case with "0 0" to signify the end of input.
+
+### Sample Output:
+Here is a possible output from running the test case generator:
+
+```
+4927 7658
+2765 3945
+9527 1843
+2841 5941
+8374 2618
+1717 8354
+6458 9651
+3926 4957
+7392 1429
+4968 2731
+0 0
+```
+
+Each block of lines represents a dataset, and the "0 0" line signifies the end of the input. This output can be fed directly into a program designed to solve the "What are the popular stalls?" problem.
+
+Feel free to modify the generator to fit any specific requirements or constraints for your testing needs.

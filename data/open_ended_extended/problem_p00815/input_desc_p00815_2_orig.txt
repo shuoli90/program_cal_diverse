@@ -1,0 +1,23 @@
+An integer n (1 ≤ n < 100), representing the number of records.
+For each record:
+- A sequence of integers terminated by a zero. Each number is delimited by a space or a newline.
+- Each integer in the sequence can be a positive number or a negative number.
+- The total length of each sequence is less than 1000 characters.
+
+### Example Input:
+
+```
+2
+3 3 3 3 -3 3 2 -5 3 2 -5 -3 0
+3 5 4 -2 4 -3 -2 -2 -1 0
+```
+
+### Function Signature:
+Write a function f(n, records) that takes in the input.
+```python
+def f(n: int, records: List[List[int]]):
+    '''
+    n: an integer
+    records: a list of lists of integers
+    '''
+```

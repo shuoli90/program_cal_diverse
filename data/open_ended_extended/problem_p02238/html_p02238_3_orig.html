@@ -1,0 +1,203 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p02238 - Generation 3</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p02238 - Generation 3</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>
+Depth First Search
+  Depth-first search (DFS) follows the strategy to search ”deeper” in the graph whenever possible. In DFS, edges are recursively explored out of the most recently discovered vertex $v$ that still has unexplored edges leaving it. When all of $v$'s edges have been explored, the search ”backtracks” to explore edges leaving the vertex from which $v$ was discovered.
+  This process continues until all the vertices that are reachable from the original source vertex have been discovered. If any undiscovered vertices remain, then one of them is selected as a new source and the search is repeated from that source.
+  DFS timestamps each vertex as follows:
+$d[v]$ records when $v$ is first discovered.
+$f[v]$ records when the search finishes examining $v$’s adjacency list.
+  Write a program which reads a directed graph $G = (V, E)$ and demonstrates DFS on the graph based on the following rules:
+$G$ is given in an adjacency-list. Vertices are identified by IDs $1, 2,... n$ respectively.
+IDs in the adjacency list are arranged in ascending order.
+The program should report the discover time and the finish time for each vertex.
+When there are several candidates to visit during DFS, the algorithm should select the vertex with the smallest ID.
+The timestamp starts with 1.
+Input
+  In the first line, an integer $n$ denoting the number of vertices of $G$ is given. In the next $n$ lines, adjacency lists of $u$ are given in the following format:
+$u$ $k$ $v_1$ $v_2$ ... $v_k$
+$u$ is ID of the vertex and $k$ denotes its degree. $v_i$ are IDs of vertices adjacent to $u$.
+Output
+  For each vertex, print $id$, $d$ and $f$ separated by a space character in a line. $id$ is ID of the vertex, $d$ and $f$ is the discover time and the finish time respectively. Print in order of vertex IDs.
+Constraints
+$1 \leq n \leq 100$
+Sample Input 1
+4
+1 1 2
+2 1 4
+3 0
+4 1 3
+Sample Output 1
+1 1 8
+2 2 7
+3 4 5
+4 3 6
+Sample Input 2
+6
+1 2 2 3
+2 2 3 4
+3 1 5
+4 1 6
+5 1 6
+6 0
+Sample Output 2
+1 1 12
+2 2 11
+3 3 8
+4 9 10
+5 4 7
+6 5 6
+  This is example for Sample Input 2 (discover/finish)
+Reference
+Introduction to Algorithms, Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, and Clifford Stein. The MIT Press.
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An integer n (1 ≤ n ≤ 100), representing some quantity or size.
+Next n lines contain:
+  An integer u (1 ≤ u ≤ n), representing some identifier.
+  An integer k (0 ≤ k ≤ n - 1), representing some degree.
+  Followed by k integers, each integer v (1 ≤ v ≤ n), representing some identifiers.
+
+### Example Input:
+
+```
+4
+1 1 2
+2 1 4
+3 0
+4 1 3
+```
+
+### Function Signature:
+Write a function f(inputs) that takes in the input.
+```python
+def f(inputs: List[Tuple[int, int, List[int]]]):
+    '''
+    inputs: a list of tuples, each containing an integer, an integer, and a list of integers
+    '''
+```</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Here's a Python function to generate test cases for the DFS problem described:
+
+```python
+import random
+
+def generate_adjacency_list(n):
+    adjacency_list = []
+    for u in range(1, n + 1):
+        k = random.randint(0, n - 1)  # Degree of vertex u
+        if k == 0:
+            adjacency_list.append((u, 0, []))
+        else:
+            neighbors = sorted(random.sample(range(1, n + 1), k))
+            adjacency_list.append((u, k, neighbors))
+    return adjacency_list
+
+def dfs_tcgen():
+    n = random.randint(1, 100)  # Number of vertices
+    adjacency_list = generate_adjacency_list(n)
+    
+    input_str = f"{n}\n"
+    for u, k, neighbors in adjacency_list:
+        input_str += f"{u} {k} {' '.join(map(str, neighbors))}\n"
+    
+    return input_str
+
+# Example of generating a test case
+print(dfs_tcgen())
+```
+
+### Explanation:
+1. **`generate_adjacency_list(n)`**:
+    - This helper function generates an adjacency list for a graph with `n` vertices.
+    - Each vertex `u` has a degree `k` which is a random integer between `0` and `n-1`.
+    - If `k == 0`, it means vertex `u` has no neighbors.
+    - Otherwise, `k` neighbors are randomly selected from the range `[1, n]` and are sorted to ensure they are in ascending order.
+
+2. **`dfs_tcgen()`**:
+    - Generates a random number `n` representing the number of vertices.
+    - Calls `generate_adjacency_list(n)` to generate the adjacency list for these vertices.
+    - Constructs the input string for the DFS problem based on the adjacency list.
+    - The input string is then returned, which can be used for testing.
+
+This function should provide a wide variety of test cases to check the correctness and efficiency of a DFS implementation.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    n = int(fh.readline().strip())
+    adjacency_list = []
+    for _ in range(n):
+        line = list(map(int, fh.readline().strip().split()))
+        u = line[0]
+        k = line[1]
+        v_list = line[2:]
+        adjacency_list.append((u, k, v_list))
+    return n, adjacency_list
+
+# Sample usage
+# if __name__ == "__main__":
+#     input_path = sys.argv[1]
+#     with open(input_path, 'r') as fh: 
+#         n, adjacency_list = extract_arguments(fh)
+#         print(n, adjacency_list)</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

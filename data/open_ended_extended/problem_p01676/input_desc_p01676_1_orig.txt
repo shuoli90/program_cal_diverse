@@ -1,0 +1,32 @@
+An integer N (1 ≤ N ≤ 500), representing some quantity.
+An integer M (0 ≤ M ≤ 3000), representing another quantity.
+M pairs of integers (s_i, t_i) where each integer in the pair is between 1 and N.
+
+### Example Input:
+
+```
+9 13
+1 2
+1 3
+2 9
+3 4
+3 5
+3 6
+4 9
+5 7
+6 7
+6 8
+7 9
+8 9
+9 1
+```
+
+### Function Signature:
+Write a function f(inputs) that takes in the input.
+def f(inputs: List[Tuple[int, int, List[Tuple[int, int]]]]):
+    '''
+    inputs: a list of tuples, where each tuple contains:
+        - an integer
+        - another integer
+        - a list of pairs of integers
+    '''

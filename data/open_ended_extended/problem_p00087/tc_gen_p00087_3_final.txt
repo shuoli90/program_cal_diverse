@@ -1,0 +1,71 @@
+Certainly! To generate test cases for the given problem, we need to create multiple datasets of formulas written in Reverse Polish Notation (RPN). Each dataset should consist of a single line that contains integers and operations separated by spaces.
+
+Here is a Python function to generate such test cases:
+
+```python
+import random
+
+def generate_rpn_expression(max_length=80):
+    operators = ['+', '-', '*', '/']
+    expression = []
+    num_count = 0
+    op_count = 0
+
+    while len(' '.join(expression)) < max_length - 2:
+        if num_count < 2:
+            # We need at least two numbers before we can use an operator
+            num = random.randint(-100, 100)
+            expression.append(str(num))
+            num_count += 1
+        else:
+            # Randomly decide whether to add a number or an operator
+            if random.random() < 0.5 and num_count - op_count > 1:
+                # Add an operator
+                expression.append(random.choice(operators))
+                op_count += 1
+            else:
+                # Add a number
+                num = random.randint(-100, 100)
+                expression.append(str(num))
+                num_count += 1
+                
+    # Ensure we end with a valid RPN expression
+    while num_count - op_count > 1:
+        expression.append(random.choice(operators))
+        op_count += 1
+
+    return ' '.join(expression)
+
+def tcgen():
+    num_datasets = random.randint(1, 50)
+    datasets = [generate_rpn_expression() for _ in range(num_datasets)]
+    return datasets
+
+# Example usage
+for dataset in tcgen():
+    print(dataset)
+```
+
+### Explanation:
+1. **generate_rpn_expression**: This function generates a single RPN expression with a maximum length of 80 characters.
+    - **operators**: List of possible operators.
+    - **expression**: The list that will be converted to a string representing the RPN expression.
+    - **num_count**: Counter for the numbers added to the expression.
+    - **op_count**: Counter for the operators added to the expression.
+    - It alternates between adding numbers and operators to ensure that the expression remains valid.
+    - It ensures that the final expression ends with operators such that it is a valid RPN expression.
+
+2. **tcgen**: This function generates multiple datasets.
+    - **num_datasets**: Randomly decides the number of datasets (between 1 and 50).
+    - **datasets**: List of RPN expressions generated using the **generate_rpn_expression** function.
+
+### Example Output:
+Running the function would generate outputs similar to the following:
+```
+10 2 12 - /
+3 4 - 7 2 3 * + *
+-1 -2 3 + +
+...
+```
+
+Each line represents a formula in RPN which can be used to test the program handling RPN calculations.

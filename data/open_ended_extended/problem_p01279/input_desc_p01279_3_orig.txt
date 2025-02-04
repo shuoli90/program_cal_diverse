@@ -1,0 +1,30 @@
+An integer N (1 ≤ N ≤ 100), representing some quantity or size.
+An integer M (1 ≤ M ≤ 100), representing some quantity or size.
+N tuples, each containing three integers (0 ≤ xi, yi ≤ 10000; 1 ≤ vi ≤ 100), representing coordinates and a speed.
+M tuples, each containing two integers (0 ≤ x'j, y'j ≤ 10000), representing coordinates.
+
+### Example Input:
+
+```
+2 2
+10 20 1
+0 10 1
+0 10
+10 0
+0 0
+```
+
+### Function Signature:
+Write a function f(inputs) that takes in the list of tuples as input.
+
+```python
+from typing import List, Tuple
+
+def f(inputs: List[Tuple[int, List[Tuple[int, int, int]], List[Tuple[int, int]]]]):
+    '''
+    inputs: a list of tuples, where each tuple contains:
+        - an integer N
+        - a list of N tuples each containing three integers
+        - a list of M tuples each containing two integers
+    '''
+```

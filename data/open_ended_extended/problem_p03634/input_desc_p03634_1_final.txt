@@ -1,0 +1,32 @@
+An integer N (3 ≤ N ≤ 10^5), representing some quantity or size.
+A list of N-1 tuples, each containing three integers (a_i, b_i, c_i), where 1 ≤ a_i, b_i ≤ N and 1 ≤ c_i ≤ 10^9.
+An integer Q (1 ≤ Q ≤ 10^5).
+An integer K (1 ≤ K ≤ N).
+A list of Q tuples, each containing two integers (x_j, y_j), where 1 ≤ x_j, y_j ≤ N and x_j ≠ y_j, x_j ≠ K, y_j ≠ K.
+
+### Example Input:
+
+```
+5
+1 2 1
+1 3 1
+2 4 1
+3 5 1
+3 1
+2 4
+2 3
+4 5
+```
+
+### Function Signature:
+Write a function f(N, edges, Q, K, queries) that takes in the input.
+```python
+def f(N: int, edges: List[Tuple[int, int, int]], Q: int, K: int, queries: List[Tuple[int, int]]):
+    '''
+    N: an integer
+    edges: a list of tuples, each containing three integers
+    Q: an integer
+    K: an integer
+    queries: a list of tuples, each containing two integers
+    '''
+```

@@ -1,0 +1,44 @@
+Certainly! Below is a test case generator for the given problem statement regarding the valid splits of a string into an IPv4 address:
+
+```python
+import random
+
+def generate_ip_string():
+    length = random.randint(4, 12)
+    ip_string = ''.join(random.choice('0123456789') for _ in range(length))
+    return ip_string
+
+def tcgen():
+    S = generate_ip_string()
+    return S
+
+# Example usage:
+for _ in range(5):
+    print(tcgen())
+```
+
+### Explanation
+
+1. **Function `generate_ip_string`**:
+    - This function generates a random string of digits with a length between 4 and 12. This range is chosen to ensure that the generated string meets the problem's constraints.
+
+2. **Function `tcgen`**:
+    - This function calls `generate_ip_string` to get a random valid input string and returns it.
+
+### Output Format
+
+The function `tcgen` generates and returns a single string `S` which can be used as an input test case for the problem.
+
+### Example Usage
+
+Running the `tcgen` function will generate different strings of digits that can serve as test cases for the problem. Here's a sample output from running the generator multiple times:
+
+```
+'579283'
+'1029384756'
+'456789'
+'1234'
+'9876543210'
+```
+
+These generated strings can then be used to test the solution to the problem by counting the number of ways each can be split into a valid IPv4 address.

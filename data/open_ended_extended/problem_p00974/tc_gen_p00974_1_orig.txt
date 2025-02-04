@@ -1,0 +1,29 @@
+Certainly! Here's a test case generator for the problem "What Goes Up Must Come Down":
+
+```python
+import random
+
+def tcgen():
+    # Define the range for n
+    n = random.randint(1, 100000)
+    
+    # Generate a list of n integers with values between 1 and 100000
+    a = [random.randint(1, 100000) for _ in range(n)]
+    
+    return n, a
+
+# Function to print the generated test case
+def print_test_case():
+    n, a = tcgen()
+    print(n)
+    print(" ".join(map(str, a)))
+
+# Example usage
+print_test_case()
+```
+
+This generator produces a random test case within the constraints specified in the problem statement. Each execution of `print_test_case()` will print a new test case with:
+- An integer \( n \) representing the number of cards.
+- A list of \( n \) random integers between 1 and 100000 representing the numbers on the cards.
+
+You can run `print_test_case()` multiple times to generate different test cases. If you need specific test cases to test edge cases or other conditions, you can manually set values for `n` and `a` in the `tcgen` function.

@@ -1,0 +1,191 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p01040 - Generation 3</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p01040 - Generation 3</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>Problem D: Friday the 13th
+Problem
+The "Ritsumeikan University Programming Camp" is held again this year. I'm looking forward to this camp, which is held every year. However, I couldn't resist my desires and spent a lot of money before the camp, so I ran out of money. Therefore, I decided to use the cheapest "Seishun 18 ticket" to travel to Minami-Kusatsu, the nearest station to Ritsumeikan University. This ticket is cheap, but requires many transfers and takes a whole day to travel, so it is very tiring. I realized that the day I was going to travel was Friday the 13th after leaving Aizuwakamatsu Station. I was forced to ride the train for 12 hours while feeling anxious.
+Today is the second day of the camp, March 15, 2015, Sunday. Although nothing special happened on the 13th, and I arrived at Minami-Kusatsu, I didn't want to experience such anxiety again. Therefore, as the judge of the second day of the camp, I decided to give a problem that asks for the number of Friday the 13ths that exist within a specified period and have the participants write a program to solve it.
+The definition of a leap year is as follows.
+A year that is divisible by 4 is a leap year.
+However, a year that is divisible by 100 is not a leap year.
+However, a year that is divisible by 400 is a leap year.
+Input
+Six integers Y1, M1, D1, Y2, M2, D2 separated by a space are given in one line.
+Constraints
+The input satisfies the following constraints.
+1 ≤ Y1 ≤ Y2 ≤ 1018
+1 ≤ Mi ≤ 12
+1 ≤ Di ≤ 31 (Mi = 1, 3, 5, 7, 8, 10, 12)
+1 ≤ Di ≤ 30 (Mi = 4, 6, 9, 11)
+1 ≤ Di ≤ 28 (Mi = 2 and Yi is not a leap year)
+1 ≤ Di ≤ 29 (Mi = 2 and Yi is a leap year)
+Y1, M1, D1 is a date that is at least 0 days before Y2, M2, D2
+Output
+Output the number of Friday the 13ths that exist between Y1, M1, D1 and Y2, M2, D2 on one line.
+Sample Input1
+2015 3 13 2015 3 13
+Sample Output1
+1
+Sample Input2
+2015 2 14 2015 3 15
+Sample Output2
+1
+Sample Input3
+1234 5 6 789012345678901234 5 6
+Sample Output3
+1357101234567708000
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An integer Y1 (1 ≤ Y1 ≤ 10^18).
+An integer M1 (1 ≤ M1 ≤ 12).
+An integer D1 (1 ≤ D1 ≤ 31).
+An integer Y2 (1 ≤ Y2 ≤ 10^18).
+An integer M2 (1 ≤ M2 ≤ 12).
+An integer D2 (1 ≤ D2 ≤ 31).
+The date (Y1, M1, D1) is at least 0 days before the date (Y2, M2, D2).
+If M1 or M2 is 2 and not a leap year, 1 ≤ D1, D2 ≤ 28.
+If M1 or M2 is 2 and a leap year, 1 ≤ D1, D2 ≤ 29.
+If M1 or M2 is one of {4, 6, 9, 11}, 1 ≤ D1, D2 ≤ 30.
+If M1 or M2 is one of {1, 3, 5, 7, 8, 10, 12}, 1 ≤ D1, D2 ≤ 31.
+
+### Example Input:
+
+```
+2015 3 13 2015 3 13
+```
+
+### Function Signature:
+Write a function f(Y1, M1, D1, Y2, M2, D2) that takes in the input.
+def f(Y1: int, M1: int, D1: int, Y2: int, M2: int, D2: int):
+    '''
+    Y1: an integer
+    M1: an integer
+    D1: an integer
+    Y2: an integer
+    M2: an integer
+    D2: an integer
+    '''</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>To generate test cases for the "Friday the 13th" problem, we need to consider the constraints on the dates and ensure that the generated dates are valid. Here’s a Python code snippet that generates random test cases for this problem:
+
+```python
+import random
+from datetime import datetime, timedelta
+
+def is_leap_year(year):
+    # Check if a year is a leap year
+    return (year % 4 == 0 and year % 100 != 0) or (year % 400 == 0)
+
+def random_date_within_range(start_year, end_year):
+    # Generate a random date within a given range of years
+    year = random.randint(start_year, end_year)
+    month = random.randint(1, 12)
+    
+    if month in {1, 3, 5, 7, 8, 10, 12}:
+        day = random.randint(1, 31)
+    elif month in {4, 6, 9, 11}:
+        day = random.randint(1, 30)
+    elif month == 2:
+        if is_leap_year(year):
+            day = random.randint(1, 29)
+        else:
+            day = random.randint(1, 28)
+    
+    return year, month, day
+
+def tcgen():
+    # Define the range for years
+    start_year = 1
+    end_year = 1018
+    
+    # Generate two random dates
+    Y1, M1, D1 = random_date_within_range(start_year, end_year)
+    Y2, M2, D2 = random_date_within_range(Y1, end_year)
+    
+    # Ensure Y2, M2, D2 is not before Y1, M1, D1
+    start_date = datetime(Y1, M1, D1)
+    end_date = datetime(Y2, M2, D2)
+    
+    if start_date > end_date:
+        start_date, end_date = end_date, start_date
+    
+    Y1, M1, D1 = start_date.year, start_date.month, start_date.day
+    Y2, M2, D2 = end_date.year, end_date.month, end_date.day
+    
+    return f"{Y1} {M1} {D1} {Y2} {M2} {D2}"
+
+# Example of generating a test case
+print(tcgen())
+```
+
+### Explanation
+1. **Leap Year Function**: `is_leap_year(year)` checks whether a given year is a leap year.
+2. **Random Date Generator**: `random_date_within_range(start_year, end_year)` generates a random date within the specified range of years, ensuring the day is valid for the month and year.
+3. **Test Case Generator**: `tcgen()` generates two random dates, ensuring the second date is not before the first date. It then outputs the dates in the required format.
+
+This test case generator covers the constraints given in the problem statement and ensures that the generated dates are valid.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    Y1, M1, D1, Y2, M2, D2 = map(int, fh.readline().strip().split())
+    return Y1, M1, D1, Y2, M2, D2</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

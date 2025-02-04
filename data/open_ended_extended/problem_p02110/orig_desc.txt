@@ -1,0 +1,49 @@
+Problem M: Settler
+Problem
+  There are N vacant lots on a two-dimensional plane, and each is assigned a number from 1 to N. Since all the vacant lots are very small, they can be considered as points. The ith vacant lot exists at (xi,yi).
+  Taro decided to select exactly K of these N vacant lots and build buildings on these vacant lots. However, he thought that it would not be interesting to build multiple buildings in too close proximity, so he decided to select vacant lots so that the Euclidean distance between any two vacant lots is always 2 or more.
+  Create a program that outputs the combinations of vacant lots that Taro chooses. If there are multiple possible combinations, output the minimum one in lexicographic order. If, however, no matter how K vacant lots are selected, the Euclidean distance between any two vacant lots becomes less than 2, output -1 instead.
+Input
+Input is given in the following format:
+N K
+x1 y1
+x2 y2
+...
+xN yN
+Constraints
+Input satisfies the following conditions:
+All input is integers.
+2 ≤ K ≤ N ≤ 6,000
+1 ≤ xi , yi ≤ 1,000,000    ( 1 ≤ i ≤ N )
+ xi mod 2 = floor ( yi ÷ 2 ) mod 2 ( 1 ≤ i ≤ N )
+    (where floor ( yi ÷ 2 ) is the value obtained by dividing yi by 2 and truncating the decimal places.)
+There are no multiple vacant lots at the same coordinate.
+Output
+Output the numbers of the vacant lots that Taro selects in ascending order, one per line.
+Sample Input 1
+3 2
+2 1
+1 2
+1 3
+Sample Output 1
+1
+3
+Sample Input 2
+4 3
+2 1
+1 2
+1 3
+2 4
+Sample Output 2
+-1
+Sample Input 3
+5 3
+5 7
+5 6
+6 8
+20 20
+4 8
+Sample Output 3
+2
+3
+4

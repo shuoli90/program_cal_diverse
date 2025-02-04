@@ -1,0 +1,3 @@
+Types: N: int, A: List[List[str]]
+Ranges: 3 ≤ N ≤ 2047, A[i][j] in {'o', 'x'}
+Addtl Info: N is odd

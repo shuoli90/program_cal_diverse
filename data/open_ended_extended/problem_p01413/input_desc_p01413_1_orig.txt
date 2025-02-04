@@ -1,0 +1,32 @@
+An integer N (1 ≤ N ≤ 100), an integer M (1 ≤ M ≤ 100), an integer W (1 ≤ W ≤ 1000), and an integer T (1 ≤ T ≤ 10000).
+A list of M tuples, where each tuple contains a string Si (1 ≤ |Si| ≤ 100), an integer Vi (1 ≤ Vi ≤ 100), and an integer Pi (1 ≤ Pi ≤ 1000).
+A list of N tuples, where each tuple contains an integer Li (1 ≤ Li ≤ 100), an integer Xi (-1000 ≤ Xi ≤ 1000), and an integer Yi (-1000 ≤ Yi ≤ 1000).
+For each tuple in the list of N tuples, there is a list of Li tuples, where each tuple contains a string Ri,j (1 ≤ |Ri,j| ≤ 100) and an integer Qi,j (1 ≤ Qi,j ≤ 1000).
+
+### Example Input:
+
+```
+2 3 50 100
+apple 2 30
+banana 5 60
+cherry 1 10
+1 5 5
+item1 100
+2 -5 -5
+item2 200
+item3 300
+```
+
+### Function Signature:
+Write a function f(N, M, W, T, items, towns) that takes in the input:
+```
+def f(N: int, M: int, W: int, T: int, items: List[Tuple[str, int, int]], towns: List[Tuple[int, int, int, List[Tuple[str, int]]]]):
+    '''
+    N: an integer
+    M: an integer
+    W: an integer
+    T: an integer
+    items: a list of tuples, each containing a string and two integers
+    towns: a list of tuples, each containing two integers, an integer, and a list of tuples containing a string and an integer
+    '''
+```

@@ -1,0 +1,25 @@
+Sure, I can help you write a test case generator for the given problem statement. Here is the Python function that will generate random test cases for the problem:
+
+```python
+import random
+
+def tcgen():
+    # Define constraints
+    N = random.randint(1, 3000)
+    X = random.randint(1, 2 * N)
+    
+    return N, X
+
+# Function to print the generated test case in the required format
+def print_test_case():
+    N, X = tcgen()
+    print(f"{N} {X}")
+
+# Example usage
+if __name__ == "__main__":
+    print_test_case()
+```
+
+This function `tcgen` generates a random value for \( N \) within the range [1, 3000] and a random value for \( X \) within the range [1, 2*N], which satisfies the given constraints. The `print_test_case` function prints the generated test case in the expected input format. 
+
+You can call `print_test_case` to generate and print a new test case each time you run the script.

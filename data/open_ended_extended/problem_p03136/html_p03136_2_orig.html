@@ -1,0 +1,143 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p03136 - Generation 2</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p03136 - Generation 2</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>
+Score : 200 points
+Problem StatementDetermine if an N-sided polygon (not necessarily convex) with sides of length L_1, L_2, ..., L_N can be drawn in a two-dimensional plane.
+You can use the following theorem:
+Theorem: an N-sided polygon satisfying the condition can be drawn if and only if the longest side is strictly shorter than the sum of the lengths of the other N-1 sides.
+Constraints
+All values in input are integers.
+3 \leq N \leq 10
+1 \leq L_i \leq 100
+InputInput is given from Standard Input in the following format:
+N
+L_1 L_2 ... L_N
+OutputIf an N-sided polygon satisfying the condition can be drawn, print Yes; otherwise, print No.
+Sample Input 14
+3 8 5 1
+Sample Output 1Yes
+Since 8 < 9 = 3 + 5 + 1, it follows from the theorem that such a polygon can be drawn on a plane.
+Sample Input 24
+3 8 4 1
+Sample Output 2No
+Since 8 \geq 8 = 3 + 4 + 1, it follows from the theorem that such a polygon cannot be drawn on a plane.
+Sample Input 310
+1 8 10 5 8 12 34 100 11 3
+Sample Output 3No
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An integer N (3 ≤ N ≤ 10), representing some quantity or size.
+A list of integers L of size N, where each integer is between 1 and 100.
+
+### Example Input:
+
+```
+4
+3 8 5 1
+```
+
+### Function Signature:
+Write a function f(N, L) that takes in the input.
+def f(N: int, L: List[int]):
+    '''
+    N: an integer
+    L: a list of integers
+    '''</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Sure, here is a test case generator for the given problem statement:
+
+```python
+import random
+
+def tcgen(): 
+    # Step 1: Generate a random integer N within the given constraints
+    N = random.randint(3, 10)
+    
+    # Step 2: Generate a list of N integers, each within the specified range
+    L = [random.randint(1, 100) for _ in range(N)]
+    
+    return N, L
+
+# Example of generating a random test case
+if __name__ == "__main__":
+    N, L = tcgen()
+    print(N)
+    print(' '.join(map(str, L)))
+```
+
+### Explanation:
+
+1. **Step 1**: We generate a random integer \(N\) where \(3 \leq N \leq 10\). This ensures that the number of sides of the polygon is within the specified constraints.
+
+2. **Step 2**: We generate a list \(L\) of \(N\) integers where each integer \(L_i\) is between \(1\) and \(100\). This ensures that the length of each side of the polygon is within the specified range.
+
+3. **Output**: The function returns \(N\) and the list \(L\). When executed, it prints \(N\) and the list \(L\) as space-separated integers.
+
+This generator will produce random valid test cases for the problem statement.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    N = int(fh.readline().strip())
+    L = list(map(int, fh.readline().strip().split()))
+    return N, L</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

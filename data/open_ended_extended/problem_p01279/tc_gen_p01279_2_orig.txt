@@ -1,0 +1,63 @@
+Sure, I can help you with writing a test case generator for the given problem "Defend the Bases". Below is the test case generator in Python:
+
+```python
+import random
+
+def generate_test_case():
+    # Generates a single test case
+    N = random.randint(1, 100)
+    M = random.randint(1, 100)
+    
+    troops = []
+    for _ in range(N):
+        x = random.randint(0, 10000)
+        y = random.randint(0, 10000)
+        v = random.randint(1, 100)
+        troops.append((x, y, v))
+    
+    bases = []
+    for _ in range(M):
+        x_prime = random.randint(0, 10000)
+        y_prime = random.randint(0, 10000)
+        bases.append((x_prime, y_prime))
+    
+    return N, M, troops, bases
+
+def tcgen():
+    test_cases = []
+    
+    # Decide the number of datasets
+    num_datasets = random.randint(1, 10)
+    
+    for _ in range(num_datasets):
+        test_cases.append(generate_test_case())
+    
+    # Append the ending line with zeros
+    test_cases.append((0, 0, [], []))
+    
+    return test_cases
+
+def print_test_cases(test_cases):
+    for case in test_cases:
+        if case[0] == 0 and case[1] == 0:
+            print("0 0")
+            continue
+        
+        N, M, troops, bases = case
+        print(f"{N} {M}")
+        for troop in troops:
+            print(f"{troop[0]} {troop[1]} {troop[2]}")
+        for base in bases:
+            print(f"{base[0]} {base[1]}")
+
+# Example usage
+test_cases = tcgen()
+print_test_cases(test_cases)
+```
+
+Explanation:
+1. **generate_test_case()**: Generates a single test case with random values for N (number of troops) and M (number of bases). It also generates random coordinates and speeds for the troops and random coordinates for the bases.
+2. **tcgen()**: Generates multiple datasets as described in the problem statement. The number of datasets is chosen randomly between 1 and 10. It adds a special ending line "0 0" which signifies the end of input.
+3. **print_test_cases()**: Prints the test cases in the format required by the problem statement.
+
+You can run the `print_test_cases(tcgen())` function to generate and print random test cases in the correct format.

@@ -1,0 +1,35 @@
+Certainly! Below is a Python function `tcgen` that generates test cases for the provided competitive programming problem.
+
+```python
+import random
+
+def tcgen():
+    # Setting the constraints
+    N = random.randint(1, 200)
+    
+    A = [random.randint(1, 10**18) for _ in range(N)]
+    
+    K = random.randint(1, 10**18)
+    
+    return N, K, A
+
+# Example usage:
+N, K, A = tcgen()
+print(N)
+print(K)
+print(" ".join(map(str, A)))
+```
+
+### Explanation:
+- **N**: This is set to a random integer between 1 and 200 inclusive, which is the constraint for the number of integers written on the blackboard.
+- **A**: This is a list of integers where each element is a random integer between 1 and \(10^{18}\), adhering to the constraints for the integers on the blackboard.
+- **K**: This is set to a random integer between 1 and \(10^{18}\), following the constraint for the maximum number of operations.
+
+### How to use:
+1. Call the `tcgen` function to generate a test case.
+2. The function will print:
+   - The number of integers \(N\) on the blackboard.
+   - The number of operations \(K\).
+   - The list \(A\) of \(N\) integers.
+
+You can use the printed values as input for the problem to test your solution or any other use case you need.

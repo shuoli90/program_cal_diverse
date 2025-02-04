@@ -1,0 +1,154 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p00324 - Generation 3</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p00324 - Generation 3</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>Complete Equality Bilateral Trade
+The country of Aizu in cyberspace is engaged in information trade with the country of Wakamatsu. The two countries are achieving economic development by exchanging useful data with each other. Both countries, which have a national policy of philanthropy, equality, and above all, the old Aizu phrase "What cannot be done should not be done," conduct regular surveys of trade conditions.
+In the survey, a table is given that calculates the value obtained by subtracting the outflow from the inflow of data from Aizu country in byte units every 1 nanosecond. From this table, find the longest interval whose total sum is zero. The longer this interval, the more equality is maintained.
+Given a table that records the trade conditions, write a program to find the length of the longest interval whose sum is zero.
+Input
+The input is given in the following format.
+N
+d1
+d2
+:
+dN
+The number of values in the table N (1 ≤ N ≤ 200000) is given on the first line. The following N lines give the integer values di (-109 ≤ di ≤ 109) written in the i-th line of the table.
+Output
+Output the length of the longest interval whose sum is zero obtained from the table on a single line. If there is no such interval, output "0" on a single line.
+Sample Input 1
+5
+18
+102
+-155
+53
+32
+Sample Output 1
+3
+In the first example, the sum of the values from the second to the fourth rows becomes zero, so the longest interval becomes three.
+Sample Input 2
+4
+1
+1
+-1
+-1
+Sample Output 2
+4
+In the second example, the sum of the second and third rows becomes zero, but the sum of the first to fourth rows also becomes zero, so the longest interval becomes four.</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>Canonicalized Input Description:
+
+An integer N (1 ≤ N ≤ 200000), representing some quantity or size.
+A list of N integers, where each integer is between -10^9 and 10^9.
+
+### Example Input:
+
+```
+5
+18
+102
+-155
+53
+32
+```
+
+### Function Signature:
+Write a function f(N, A) that takes in the input.
+```python
+def f(N: int, A: List[int]):
+    ''' 
+    N: an integer 
+    A: a list of integers
+    '''
+```</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Sure, I can write a test case generator for the "Complete Equality Bilateral Trade" problem. Here is the test case generator:
+
+```python
+import random
+
+def tcgen():
+    N = random.randint(1, 200000)  # Number of values in the table
+    d = [random.randint(-10**9, 10**9) for _ in range(N)]  # Generating random integers within the specified range
+    
+    return N, d
+
+# Example of using the test case generator
+if __name__ == "__main__":
+    N, d = tcgen()
+    print(N)
+    for value in d:
+        print(value)
+```
+
+To use this generator, you simply run the script, and it will print a randomly generated test case according to the constraints provided in the problem statement. Here's an explanation of each part:
+
+- `N = random.randint(1, 200000)`: This line generates a random integer `N` which is the number of entries in the table.
+- `d = [random.randint(-10**9, 10**9) for _ in range(N)]`: This line generates a list `d` containing `N` random integers, each in the range from `-10^9` to `10^9`.
+
+When you run this script, you'll get an output that you can use as an input for your problem-solving function. The output format will be as specified in the problem statement. Each test case will be different due to the random generation.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    N = int(fh.readline().strip())
+    D = [int(fh.readline().strip()) for _ in range(N)]
+    return N, D</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

@@ -1,0 +1,48 @@
+Sure, I can help you write a test case generator for the "Lottery Checker" problem. Here is the generator function that produces random test cases based on the given problem constraints:
+
+```python
+import random
+import string
+
+def generate_random_ticket():
+    return ''.join(random.choices(string.digits, k=8))
+
+def generate_random_winning_number():
+    num_stars = random.randint(0, 8)
+    num_digits = 8 - num_stars
+    winning_number = ''.join(random.choices(['*'] * num_stars + list(string.digits), k=8))
+    return winning_number
+
+def tcgen():
+    n = random.randint(1, 100)
+    m = random.randint(1, 1000)
+    
+    winning_numbers = []
+    for _ in range(n):
+        winning_number = generate_random_winning_number()
+        prize_money = random.randint(1, 1000000)
+        winning_numbers.append((winning_number, prize_money))
+    
+    tickets = [generate_random_ticket() for _ in range(m)]
+    
+    return (n, m, winning_numbers, tickets)
+
+# Example usage
+tc = tcgen()
+print(tc)
+```
+
+This function generates random test cases with the following steps:
+
+1. Randomly determine the number of winning numbers `n` (between 1 and 100).
+2. Randomly determine the number of lottery tickets `m` (between 1 and 1000).
+3. Generate `n` winning numbers, each of which is a mix of digits and '*' characters. Prize money for each winning number is randomly set between 1 and 1,000,000.
+4. Generate `m` lottery ticket numbers, each of which is a sequence of 8 digits.
+
+The output of this function will be a tuple containing:
+- The number of winning numbers `n`.
+- The number of lottery tickets `m`.
+- A list of tuples, where each tuple contains a winning number and its corresponding prize money.
+- A list of lottery ticket numbers.
+
+You can then use this generated data to test your lottery checker program.

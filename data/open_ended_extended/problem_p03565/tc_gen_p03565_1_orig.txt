@@ -1,0 +1,38 @@
+Sure! Here's a test case generator for the problem statement you provided. This generator will create random valid inputs for the problem, ensuring that the constraints are respected.
+
+```python
+import random
+import string
+
+def tcgen():
+    # Generate random lengths for S' and T
+    len_S = random.randint(1, 50)
+    len_T = random.randint(1, min(50, len_S))
+    
+    # Generate a random string T consisting of lowercase English letters
+    T = ''.join(random.choice(string.ascii_lowercase) for _ in range(len_T))
+    
+    # Generate a random string S' with lowercase letters and '?'
+    S_prime = []
+    for _ in range(len_S):
+        if random.random() < 0.3:  # 30% chance of being a '?'
+            S_prime.append('?')
+        else:
+            S_prime.append(random.choice(string.ascii_lowercase))
+    S_prime = ''.join(S_prime)
+    
+    return S_prime, T
+
+# Example of generating a test case
+S_prime, T = tcgen()
+print("S' =", S_prime)
+print("T =", T)
+```
+
+This function generates:
+- A random length `len_S` for the string `S'`.
+- A random length `len_T` for the string `T` such that `len_T <= len_S`.
+- A random string `T` of length `len_T` consisting of lowercase English letters.
+- A random string `S'` of length `len_S` consisting of lowercase English letters and the character '?'.
+
+The function prints an example generated test case. You can call this function multiple times to generate different test cases for your problem.

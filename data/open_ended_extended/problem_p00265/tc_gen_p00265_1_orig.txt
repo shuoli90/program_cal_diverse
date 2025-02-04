@@ -1,0 +1,60 @@
+Sure! Here is a test case generator for the problem statement "Modulo Query":
+
+```python
+import random
+
+def tcgen():
+    # Generate N and Q within the specified limits
+    N = random.randint(2, 300000)
+    Q = random.randint(2, 100000)
+    
+    # Generate N unique card numbers each between 1 and 300000
+    cards = random.sample(range(1, 300001), N)
+    
+    # Generate Q questions, each between 1 and 300000
+    questions = [random.randint(1, 300000) for _ in range(Q)]
+    
+    return N, Q, cards, questions
+
+# Example usage of the test case generator
+if __name__ == "__main__":
+    N, Q, cards, questions = tcgen()
+
+    # Print the generated test case
+    print(N, Q)
+    print(" ".join(map(str, cards)))
+    for q in questions:
+        print(q)
+```
+
+### Explanation:
+1. **N and Q Generation**:
+   - `N` is chosen randomly between 2 and 300000.
+   - `Q` is chosen randomly between 2 and 100000.
+
+2. **Cards Generation**:
+   - `cards` is a list of `N` unique integers between 1 and 300000. We use `random.sample` to ensure all numbers are unique.
+
+3. **Questions Generation**:
+   - `questions` is a list of `Q` integers, each randomly chosen between 1 and 300000.
+
+### Example Output:
+Running the generator might produce an output like:
+
+```
+5 3
+105 204 305 102 509
+4
+7
+3
+```
+
+This will give you a test case where:
+- `N = 5` (number of cards)
+- `Q = 3` (number of questions)
+- The cards have numbers `[105, 204, 305, 102, 509]`
+- The questions are `4`, `7`, and `3`
+
+### Note:
+- You can run the provided code multiple times to generate new test cases as needed.
+- The generator ensures that the constraints given in the problem statement are respected.

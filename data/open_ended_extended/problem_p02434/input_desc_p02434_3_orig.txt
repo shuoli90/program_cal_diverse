@@ -1,0 +1,36 @@
+An integer \( n \) (1 ≤ \( n \) ≤ 1000), representing some quantity or size.
+An integer \( q \) (1 ≤ \( q \) ≤ 500,000), also representing some quantity or size.
+A list of \( q \) queries, where each query is one of the following formats:
+- "0 t x" where \( t \) is an integer (0 ≤ \( t \) < \( n \)) and \( x \) is an integer (-1,000,000,000 ≤ \( x \) ≤ 1,000,000,000).
+- "1 t" where \( t \) is an integer (0 ≤ \( t \) < \( n \)).
+- "2 t" where \( t \) is an integer (0 ≤ \( t \) < \( n \)).
+
+### Example Input:
+
+```
+3 13
+0 0 1
+0 0 2
+0 0 3
+0 1 -1
+0 2 4
+0 2 5
+1 0
+1 1
+1 2
+2 1
+1 0
+1 1
+1 2
+```
+
+### Function Signature:
+Write a function `f(n, q, queries)` that takes in the input.
+```python
+def f(n: int, q: int, queries: List[Tuple[int, int, Optional[int]]]):
+    '''
+    n: an integer
+    q: an integer
+    queries: a list of tuples, where each tuple represents a query
+    '''
+```

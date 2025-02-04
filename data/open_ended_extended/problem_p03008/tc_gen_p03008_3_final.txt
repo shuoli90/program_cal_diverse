@@ -1,0 +1,36 @@
+Sure! To generate test cases for the given problem, we need to create a function that will randomly generate values for \(N\) (number of acorns), and the trading values for exchanges \(A\) and \(B\) (\(g_A\), \(s_A\), \(b_A\), \(g_B\), \(s_B\), and \(b_B\)) within the given constraints.
+
+Here's the test case generator for the problem:
+
+```python
+import random
+
+def tcgen():
+    # Generate a random number of acorns N
+    N = random.randint(1, 5000)
+    
+    # Generate random values for g_A, s_A, b_A within the given constraints
+    g_A = random.randint(1, 5000)
+    s_A = random.randint(1, 5000)
+    b_A = random.randint(1, 5000)
+    
+    # Generate random values for g_B, s_B, b_B within the given constraints
+    g_B = random.randint(1, 5000)
+    s_B = random.randint(1, 5000)
+    b_B = random.randint(1, 5000)
+    
+    return N, (g_A, s_A, b_A), (g_B, s_B, b_B)
+
+# Example usage
+for _ in range(5):
+    N, (g_A, s_A, b_A), (g_B, s_B, b_B) = tcgen()
+    print(f"Input:\n{N}\n{g_A} {s_A} {b_A}\n{g_B} {s_B} {b_B}\n")
+```
+
+This function `tcgen` will generate test cases as specified. Each call to `tcgen` will produce:
+
+1. A random integer \(N\) representing the number of acorns Chokudai starts with.
+2. Three random integers \(g_A\), \(s_A\), and \(b_A\) representing the number of acorns needed to gain 1 gram of gold, silver, and bronze respectively at Exchange A.
+3. Three random integers \(g_B\), \(s_B\), and \(b_B\) representing the number of acorns needed to gain 1 gram of gold, silver, and bronze respectively at Exchange B.
+
+The constraints ensure that \(N\) is between 1 and 5000, and each of \(g_A\), \(s_A\), \(b_A\), \(g_B\), \(s_B\), and \(b_B\) is between 1 and 5000. The example usage at the end demonstrates how to generate and print 5 test cases.

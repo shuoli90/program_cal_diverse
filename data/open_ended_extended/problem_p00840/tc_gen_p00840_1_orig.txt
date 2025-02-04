@@ -1,0 +1,45 @@
+Sure! Here is a Python test case generator for the given problem statement "Mobile Computing":
+
+```python
+import random
+
+def tcgen():
+    # Generate a random number of datasets (1 ≤ D ≤ 100)
+    D = random.randint(1, 100)
+    
+    datasets = []
+    
+    for _ in range(D):
+        # Generate a random width of the room, r (0 < r < 10)
+        r = round(random.uniform(0.00001, 9.99999), 8)
+        
+        # Generate a random number of stones, s (1 ≤ s ≤ 6)
+        s = random.randint(1, 6)
+        
+        # Generate random weights for the stones, 1 ≤ wi ≤ 1000
+        weights = [random.randint(1, 1000) for _ in range(s)]
+        
+        datasets.append((r, s, weights))
+    
+    return D, datasets
+
+# Example usage
+if __name__ == "__main__":
+    D, datasets = tcgen()
+    print(D)
+    for r, s, weights in datasets:
+        print(r)
+        print(s)
+        for weight in weights:
+            print(weight)
+```
+
+Explanation:
+1. **Number of Datasets**: We generate a random integer \(D\) between 1 and 100, inclusive, representing the number of datasets.
+2. **Width of the Room \(r\)**: For each dataset, we generate a random decimal number \(r\) (0 < \(r\) < 10) with up to 8 decimal places.
+3. **Number of Stones \(s\)**: For each dataset, a random integer \(s\) between 1 and 6, inclusive, representing the number of stones.
+4. **Weights of Stones**: For the given number of stones \(s\), we generate a list of \(s\) random integers between 1 and 1000, inclusive, representing the weights of the stones.
+
+The `tcgen` function returns the number of datasets and a list of datasets, where each dataset is a tuple containing the width of the room, the number of stones, and the list of weights for the stones.
+
+The example usage at the bottom prints the generated test cases in the format specified by the problem statement.

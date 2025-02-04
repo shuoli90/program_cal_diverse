@@ -1,0 +1,135 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p03392 - Generation 2</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p03392 - Generation 2</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>
+Score : 700 points
+Problem StatementYou are given a string S consisting of a,b and c. Find the number of strings that can be possibly obtained by repeatedly performing the following operation zero or more times, modulo 998244353:
+Choose an integer i such that 1\leq i\leq |S|-1 and the i-th and (i+1)-th characters in S are different. Replace each of the i-th and (i+1)-th characters in S with the character that differs from both of them (among a, b and c).
+Constraints
+2 \leq |S| \leq 2 × 10^5
+S consists of a, b and c.
+InputInput is given from Standard Input in the following format:
+S
+OutputPrint the number of strings that can be possibly obtained by repeatedly performing the operation, modulo 998244353.
+Sample Input 1abc
+Sample Output 13
+abc, aaa and ccc can be obtained.
+Sample Input 2abbac
+Sample Output 265
+Sample Input 3babacabac
+Sample Output 36310
+Sample Input 4ababacbcacbacacbcbbcbbacbaccacbacbacba
+Sample Output 4148010497
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An integer N (2 ≤ N ≤ 2 × 10^5), representing the length of a string.
+A string S of length N, consisting of characters {'a', 'b', 'c'}.
+
+### Example Input:
+
+```
+5
+abbac
+```
+
+### Function Signature:
+Write a function f(N, S) that takes in the input.
+```python
+def f(N: int, S: str):
+    ''' 
+    N: an integer 
+    S: a string
+    '''
+```</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Sure! To write a test case generator for this problem, we'll follow these steps:
+1. Generate a random length for the string \( S \) within the given constraints.
+2. Generate a random string \( S \) consisting of characters 'a', 'b', and 'c'.
+3. Return the generated string.
+
+Here's the Python code to do this:
+
+```python
+import random
+
+def tcgen():
+    # Generate a random length for the string S
+    length = random.randint(2, 2 * 10**5)
+    
+    # Generate a random string S consisting of characters 'a', 'b', and 'c'
+    S = ''.join(random.choice('abc') for _ in range(length))
+    
+    return S
+
+# Example usage to generate a test case
+if __name__ == "__main__":
+    test_string = tcgen()
+    print(test_string)
+```
+
+This code will generate a random test case that meets the constraints of the problem statement. The length of the string \( S \) will be between 2 and 200,000, and the string itself will be composed of the characters 'a', 'b', and 'c'.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    S = fh.readline().strip()
+    return (S,)</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

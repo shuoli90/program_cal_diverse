@@ -1,0 +1,3 @@
+Types: C: int, W: int, xi: List[int], yi: List[int], si: List[int], ti: List[int]  
+Ranges: 3 ≤ C ≤ 100, 3 ≤ W ≤ 300, -1000 ≤ xi ≤ 1000, -1000 ≤ yi ≤ 1000, 1 ≤ si ≤ C, 1 ≤ ti ≤ C  
+Addtl Info: No two pillars occupy the same position. No two different walls overlap or cross at a location other than a pillar. A single pillar supports two or more walls. The length of the wall is greater than zero. The pillar is only located at the ends of the wall. The wall separates different rooms or rooms and the outside. Any two different pillars can be reached by following the walls. The number of datasets does not exceed 50.

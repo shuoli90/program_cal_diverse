@@ -1,0 +1,56 @@
+Sure, I can help you with a test case generator for the "Alice and Bob" problem. Let's write a Python function that generates random test cases based on the given constraints.
+
+Here is the test case generator:
+
+```python
+import random
+
+def generate_building():
+    x1 = random.randint(-10000, 10000)
+    y1 = random.randint(-10000, 10000)
+    x2 = random.randint(x1 + 1, 10001)  # Ensure x2 > x1
+    y2 = random.randint(y1 + 1, 10001)  # Ensure y2 > y1
+    return (x1, y1, x2, y2)
+
+def tcgen():
+    datasets = []
+    while True:
+        N = random.randint(1, 30)  # Number of buildings
+        buildings = [generate_building() for _ in range(N)]
+        
+        Ax = random.randint(-10000, 10000)
+        Ay = random.randint(-10000, 10000)
+        Bx = random.randint(-10000, 10000)
+        By = random.randint(-10000, 10000)
+        
+        dataset = {
+            'N': N,
+            'buildings': buildings,
+            'Alice': (Ax, Ay),
+            'Bob': (Bx, By)
+        }
+        datasets.append(dataset)
+        
+        # Randomly decide whether to stop
+        if random.random() < 0.1:
+            break
+    
+    return datasets
+
+# Example usage
+datasets = tcgen()
+for dataset in datasets:
+    print(dataset['N'])
+    for building in dataset['buildings']:
+        print(f"{building[0]} {building[1]} {building[2]} {building[3]}")
+    print(f"{dataset['Alice'][0]} {dataset['Alice'][1]} {dataset['Bob'][0]} {dataset['Bob'][1]}")
+print(0)
+```
+
+This function generates multiple datasets until it randomly decides to stop (with a 10% chance to stop after each dataset). Each dataset contains:
+
+1. An integer \(N\) (1 ≤ \(N\) ≤ 30), representing the number of buildings.
+2. Coordinates for each building in the form of four integers: \(x1, y1, x2, y2\), ensuring that \(x2 > x1\) and \(y2 > y1\).
+3. Coordinates for Alice (\(Ax, Ay\)) and Bob (\(Bx, By\)) chosen randomly within the defined range.
+
+The output ends with a single zero as required by the problem statement.

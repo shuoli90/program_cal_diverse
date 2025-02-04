@@ -1,0 +1,3 @@
+Types: N: int, K: int, a: List[int]
+Ranges: 1 ≤ N ≤ 100, 1 ≤ K ≤ 10^5, 1 ≤ a_1 < a_2 < ... < a_N ≤ K
+Addtl Info: None

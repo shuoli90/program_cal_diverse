@@ -1,0 +1,25 @@
+def extract_arguments(fh):
+    datasets = []
+    while True:
+        N, M = map(int, fh.readline().strip().split())
+        if N == 0 and M == 0:
+            break
+        dogs = []
+        for _ in range(N):
+            Dix, Diy, Vi = map(float, fh.readline().strip().split())
+            dogs.append((Dix, Diy, Vi))
+        frisbees = []
+        for _ in range(M):
+            FPix, FPin, FVix, FViy = map(float, fh.readline().strip().split())
+            frisbees.append((FPix, FPin, FVix, FViy))
+        datasets.append((N, M, dogs, frisbees))
+    return datasets
+
+# Example usage:
+# with open('input.txt', 'r') as fh:
+#     datasets = extract_arguments(fh)
+#     for dataset in datasets:
+#         N, M, dogs, frisbees = dataset
+#         print("N:", N, "M:", M)
+#         print("Dogs:", dogs)
+#         print("Frisbees:", frisbees)

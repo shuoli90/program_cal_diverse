@@ -1,0 +1,39 @@
+Sure, here's a test case generator for the given problem statement:
+
+```python
+import random
+
+def generate_query(n):
+    # Randomly choose the type of query
+    query_type = random.randint(0, 2)
+    t = random.randint(0, n-1)
+    
+    if query_type == 0:
+        x = random.randint(-10**9, 10**9)
+        return f"0 {t} {x}"
+    elif query_type == 1:
+        return f"1 {t}"
+    else:
+        return f"2 {t}"
+
+def tcgen():
+    n = random.randint(1, 1000)
+    q = random.randint(1, 500000)
+    
+    queries = [generate_query(n) for _ in range(q)]
+    
+    return n, q, queries
+
+def print_test_case(n, q, queries):
+    print(f"{n} {q}")
+    for query in queries:
+        print(query)
+
+# Example usage
+n, q, queries = tcgen()
+print_test_case(n, q, queries)
+```
+
+This code defines a function `tcgen()` that generates a random test case for the problem. The function `generate_query(n)` generates a single query for one of the three possible operations (pushBack, dump, clear) based on the constraints provided. The `tcgen()` function then generates `n` and `q`, and a list of `q` queries. The `print_test_case(n, q, queries)` function is used to print the generated test case in the required format.
+
+You can call `tcgen()` to generate a test case and `print_test_case(n, q, queries)` to print it out. This should help you test various scenarios for your problem effectively.

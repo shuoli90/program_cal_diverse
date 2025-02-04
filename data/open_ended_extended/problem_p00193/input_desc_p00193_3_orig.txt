@@ -1,0 +1,36 @@
+Canonicalized Input Description:
+
+An integer M (1 ≤ M ≤ 100), representing some quantity or size.
+An integer N (1 ≤ N ≤ 100), representing some quantity or size.
+A list of tuples containing two integers, each tuple representing a coordinate (x, y) with 1 ≤ x ≤ M and 1 ≤ y ≤ N.
+A list of tuples containing two integers, each tuple representing a coordinate (x, y) with 1 ≤ x ≤ M and 1 ≤ y ≤ N.
+
+### Example Input:
+
+```
+6
+6
+1 1
+1 2
+1 3
+2 1
+2 2
+2 3
+4 4
+5 5
+6 6
+1 3
+5 3
+```
+
+### Function Signature:
+Write a function f(M, N, existing_store_coordinates, candidate_coordinates) that takes in the input.
+```python
+def f(M: int, N: int, existing_store_coordinates: List[Tuple[int, int]], candidate_coordinates: List[Tuple[int, int]]):
+    '''
+    M: an integer
+    N: an integer
+    existing_store_coordinates: a list of tuples, each containing two integers
+    candidate_coordinates: a list of tuples, each containing two integers
+    '''
+```

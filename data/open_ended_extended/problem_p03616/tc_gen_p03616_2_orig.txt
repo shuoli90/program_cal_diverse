@@ -1,0 +1,82 @@
+Certainly! Let's create a test case generator for the given sandglass problem:
+
+### Problem Statement: Sandglass
+
+**Description**
+
+We have a sandglass consisting of two bulbs, bulb A and bulb B. These bulbs contain some amount of sand. When we put the sandglass, either bulb A or B lies on top of the other and becomes the upper bulb. The other bulb becomes the lower bulb. The sand drops from the upper bulb to the lower bulb at a rate of 1 gram per second. When the upper bulb no longer contains any sand, nothing happens.
+
+Initially at time 0, bulb A is the upper bulb and contains `a` grams of sand; bulb B contains `X-a` grams of sand (for a total of `X` grams). We will turn over the sandglass at time `r_1, r_2, ..., r_K`. Assume that this is an instantaneous action and takes no time. Here, time `t` refers to the time `t` seconds after time 0.
+
+You are given `Q` queries. Each query is in the form of `(t_i, a_i)`. For each query, assume that `a = a_i` and find the amount of sand that would be contained in bulb A at time `t_i`.
+
+**Constraints**
+
+- \(1 \leq X \leq 10^9\)
+- \(1 \leq K \leq 10^5\)
+- \(1 \leq r_1 < r_2 < ... < r_K \leq 10^9\)
+- \(1 \leq Q \leq 10^5\)
+- \(0 \leq t_1 < t_2 < ... < t_Q \leq 10^9\)
+- \(0 \leq a_i \leq X\) (1 ≤ i ≤ Q)
+
+**Input**
+
+The input is given from Standard Input in the following format:
+
+```
+X
+K
+r_1 r_2 ... r_K
+Q
+t_1 a_1
+t_2 a_2
+:
+t_Q a_Q
+```
+
+**Output**
+
+For each query, print the answer in its own line.
+
+### Test Case Generator
+
+Here is a Python function to generate test cases for the given problem:
+
+```python
+import random
+
+def generate_test_case():
+    # Generate X
+    X = random.randint(1, 10**9)
+    
+    # Generate K and the list of r_i
+    K = random.randint(1, 10**5)
+    r = sorted(random.sample(range(1, 10**9+1), K))
+    
+    # Generate Q and the list of (t_i, a_i) pairs
+    Q = random.randint(1, 10**5)
+    t = sorted(random.sample(range(0, 10**9+1), Q))
+    a = [random.randint(0, X) for _ in range(Q)]
+    
+    # Generate the output format
+    test_case = f"{X}\n"
+    test_case += f"{K}\n"
+    test_case += " ".join(map(str, r)) + "\n"
+    test_case += f"{Q}\n"
+    for t_i, a_i in zip(t, a):
+        test_case += f"{t_i} {a_i}\n"
+    
+    return test_case
+
+# Example of generating a test case
+print(generate_test_case())
+```
+
+### Explanation
+
+1. **Generate X:** A random integer between 1 and \(10^9\).
+2. **Generate K:** A random integer between 1 and \(10^5\), and a list of `K` sorted unique integers for `r_i`.
+3. **Generate Q:** A random integer between 1 and \(10^5\), and generate `Q` sorted unique integers for `t_i` and random integers between `0` and `X` for `a_i`.
+4. **Format the Output:** Combine all generated values into the required input format.
+
+This test case generator will help you create a variety of test cases to thoroughly test the sandglass problem solution.

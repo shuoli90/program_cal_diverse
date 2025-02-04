@@ -1,0 +1,52 @@
+ Princess in Danger 
+A tomboyish and brave princess from a poor country was supposed to marry another country for political marriage. However, while on her way to the country she was going to marry, she was attacked by a villain who tried to kill her, causing her to be seriously injured and transported to a nearby hospital. However, the villain used a special poison to make sure the princess was dead. Therefore, to save the princess, it was necessary to urgently transport a special medicine and frozen blood from her relatives from the home country. 
+The blood is transported in a frozen state, but to keep it fresh, it must be refrozen at a blood freezing facility within a maximum of M minutes from the previous freezing. However, there are only a few places where freezing facilities are installed. 
+Blood is safe for M minutes from sufficient freezing. If the remaining time to avoid refreezing is S minutes and transported for T minutes without freezing, the remaining time that does not require refreezing becomes S - T minutes. The remaining time that does not require refreezing will recover up to a maximum of M minutes by refreezing. The time required to refreeze the blood depends on how much it is frozen. For every 1 minute the blood is frozen at the freezing facility, the remaining time that does not need to be refrozen recovers by 1 minute. 
+At the time of departure from the capital of the home country, the remaining time for the blood not to be refrozen is M minutes. 
+As a servant of the princess, your mission is to calculate the shortest route from the capital of the home country to the hospital where the princess was transported, to transport the blood while keeping it fresh. So, your mission is to find the shortest time from the capital of the home country to the hospital. 
+Input
+The input consists of multiple data sets. The first line of each data set contains six non-negative integers N (2 ≦ N ≦ 100), M (1 ≦ M ≦ 100), L (0 ≦ L ≦ N - 2), K, A (0 ≦ A ＜ N), and H (0 ≦ H ＜ N). These represent the number of cities, the time limit for re-freezing, the number of cities with freezing facilities, the number of roads directly connecting cities, the number of the capital of the home country, and the number of the city where the hospital where the princess was transported is located, respectively. The capital of the home country and the hospital where the princess was transported are different cities. It is assumed that each city is assigned a number from 0 to N-1. The next line contains L non-negative integers separated by a single space, which represent the number of the city with a freezing facility. Note that the capital of the home country and the hospital where the princess was transported are not included in this list, but it is considered that there is a freezing facility. In the next K lines, information on roads connecting cities is given. The i-th line contains three non-negative integers X, Y, and T separated by a single space, indicating that there is a road directly connecting the city X and the city Y, and it takes T time to travel. Note that this road is bi-directional. Also, there is at most one road directly connecting city X and city Y. 
+The input ends with N=M=L=K=A=H= 0, which is not included in the data set. 
+Output
+For each data set, output the shortest time it takes to deliver the blood while keeping it fresh. If it cannot be delivered, output "Help!". 
+Sample Input
+2 1 0 1 0 1
+0 1 2
+3 1 1 2 0 1
+2
+0 2 1
+1 2 1
+3 2 1 2 0 1
+2
+0 2 1
+1 2 1
+4 4 1 4 1 3
+2
+0 1 2
+1 2 4
+0 2 1
+3 0 3
+5 3 2 6 0 3
+1 2
+2 1 2
+1 0 1
+3 4 1
+2 4 1
+4 1 2
+2 0 2
+5 4 2 6 0 3
+1 2
+4 2 4
+2 1 2
+4 3 1
+0 1 5
+1 4 2
+2 0 3
+0 0 0 0 0 0
+Output for the Sample Input
+Help!
+3
+2
+10
+5
+12

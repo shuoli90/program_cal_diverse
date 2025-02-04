@@ -1,0 +1,7 @@
+def extract_arguments(fh):
+    n = int(fh.readline().strip())
+    warehouses = []
+    for _ in range(n):
+        s, d, v = map(int, fh.readline().strip().split())
+        warehouses.append((s, d, v))
+    return n, warehouses

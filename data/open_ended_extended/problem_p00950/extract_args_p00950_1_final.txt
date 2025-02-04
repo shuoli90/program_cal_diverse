@@ -1,0 +1,3 @@
+def extract_arguments(fh):
+    equation = fh.readline().strip()
+    return equation

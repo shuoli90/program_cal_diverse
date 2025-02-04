@@ -1,0 +1,202 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p01240 - Generation 2</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p01240 - Generation 2</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>
+Problem G: Oil Company
+Irving & Cohen Petroleum Corporation has decided to develop a new oil field in an area. A preliminary survey
+has been done and they created a detailed grid map of the area which indicates the reserve of oil.
+They are now planning to construct mining plants on several grid blocks according this map, but they decided
+not to place any two plants on adjacent positions to avoid spreading of fire in case of blaze. Two blocks are
+considered to be adjacent when they have a common edge. You are one of the programmers working for the
+company and your task is to write a program which calculates the maximum amount of oil they can mine, given
+the map of the reserve.
+Input
+The first line of the input specifies N, the number of test cases. Then N test cases follow, each of which looks
+like the following:
+       W H
+       r1,1 r2,1 . . . rW,1
+       ...
+       r1,H r2,H . . . rW,H
+The first line of a test case contains two integers W and H (1 ≤ W, H ≤ 20). They specifies the dimension of
+the area. The next H lines, each of which contains W integers, represent the map of the area. Each integer rx,y
+(0 ≤ rx,y < 10000) indicates the oil reserve at the grid block (x, y).
+Output
+For each test case, output the case number (starting from 1) and the maximum possible amount of mining in a
+line. Refer to the sample output section about the format.
+Sample Input
+2
+2 2
+2 3
+3 5
+3 2
+4 1 1
+2 1 4
+Output for the Sample Input
+Case 1: 7
+Case 2: 8
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An integer N (1 ≤ N ≤ 100), representing the number of test cases.
+For each test case:
+- Two integers W and H (1 ≤ W, H ≤ 20), representing dimensions of a grid.
+- H lines, each containing W integers, where each integer is between 0 and 9999.
+
+### Example Input:
+
+```
+2
+2 2
+2 3
+3 5
+3 2
+4 1 1
+2 1 4
+```
+
+### Function Signature:
+Write a function f(inputs) that takes in the input.
+```python
+def f(inputs: List[Tuple[int, List[List[int]]]]):
+    '''
+    inputs: a list of tuples, where each tuple contains:
+        - an integer
+        - a list of lists of integers
+    '''
+```</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Sure! Below is the test case generator for the given problem "Problem G: Oil Company".
+
+```python
+import random
+
+def tcgen():
+    # Number of test cases
+    N = random.randint(1, 10)
+    test_cases = []
+    
+    for _ in range(N):
+        W = random.randint(1, 20)
+        H = random.randint(1, 20)
+        
+        # Generate the grid map with random oil reserves
+        grid = [[random.randint(0, 9999) for _ in range(W)] for _ in range(H)]
+        
+        test_cases.append((W, H, grid))
+    
+    return N, test_cases
+
+# Generate a sample test case
+N, test_cases = tcgen()
+
+# Print the generated test case
+print(N)
+for i, (W, H, grid) in enumerate(test_cases):
+    print(W, H)
+    for row in grid:
+        print(' '.join(map(str, row)))
+```
+
+Here is an explanation of the code:
+
+1. **Importing the `random` module**: This is used to generate random numbers.
+
+2. **Define the `tcgen()` function**: This function generates random test cases for the problem.
+
+    - **Generate `N`**: The number of test cases. It's a random integer between 1 and 10.
+    
+    - **Loop for each test case**:
+        - **Generate `W` and `H`**: Random integers between 1 and 20, representing the width and height of the grid.
+        - **Generate the grid map**: A list of lists where each integer is a random number between 0 and 9999.
+        
+    - **Store each generated test case** in a list called `test_cases`.
+    
+3. **Return `N` and `test_cases`**: The function returns the number of test cases and the list of test cases.
+
+4. **Generate a sample test case**: Call the `tcgen()` function to generate a sample test case.
+
+5. **Print the generated test case**: Print the number of test cases and the details of each test case in the required format.
+
+You can run the above script to generate random test cases for the problem "Problem G: Oil Company". Each time you run the script, it will produce different test cases due to the randomness.
+
+Feel free to adjust the ranges and limits according to your specific needs or constraints.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    N = int(fh.readline().strip())
+    test_cases = []
+    
+    for _ in range(N):
+        W, H = map(int, fh.readline().strip().split())
+        grid = []
+        for _ in range(H):
+            grid.append(list(map(int, fh.readline().strip().split())))
+        test_cases.append((W, H, grid))
+    
+    return test_cases
+
+# if __name__ == "__main__":
+#     input_path = sys.argv[1]
+#     with open(input_path, 'r') as fh: 
+#         test_cases = extract_arguments(fh)
+#         for case in test_cases:
+#             f(case)</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

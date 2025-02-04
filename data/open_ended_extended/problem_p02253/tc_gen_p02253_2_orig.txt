@@ -1,0 +1,33 @@
+Sure! Below is a test case generator for the Activity Selection Problem as described in your problem statement.
+
+```python
+import random
+
+def tcgen():
+    # Generate a random number of activities
+    n = random.randint(1, 10**5)
+    
+    activities = []
+    
+    for _ in range(n):
+        # Generate random start and finish times such that 1 <= s_i < t_i <= 10^9
+        s = random.randint(1, 10**9 - 1)
+        t = random.randint(s + 1, 10**9)
+        
+        activities.append((s, t))
+    
+    # Sort activities by start time for more realistic test cases (optional)
+    activities.sort()
+
+    # Format the output
+    output = f"{n}\n" + "\n".join(f"{s} {t}" for s, t in activities)
+
+    return output
+
+# Example usage
+print(tcgen())
+```
+
+This generator creates a random number of activities `n` within the specified range, and for each activity, it generates random start and finish times that satisfy the constraint `1 ≤ s_i < t_i ≤ 10^9`. The activities are optionally sorted by start time to create more realistic scenarios. The output is formatted as specified in the problem statement.
+
+You can run this generator multiple times to create various test cases for the Activity Selection Problem.

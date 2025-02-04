@@ -1,0 +1,47 @@
+Sure, I can help you create a test case generator for the given problem statement on Goldbach's Conjecture. Here’s a Python function that generates test cases for this problem:
+
+```python
+import random
+
+def is_prime(n):
+    if n <= 1:
+        return False
+    if n <= 3:
+        return True
+    if n % 2 == 0 or n % 3 == 0:
+        return False
+    i = 5
+    while i * i <= n:
+        if n % i == 0 or n % (i + 2) == 0:
+            return False
+        i += 6
+    return True
+
+def generate_even_number():
+    return random.choice([i for i in range(4, 215, 2)])
+
+def generate_test_case():
+    num_cases = random.randint(1, 10)  # Generate between 1 and 10 cases
+    test_cases = [generate_even_number() for _ in range(num_cases)]
+    test_cases.append(0)  # Indicate the end of input with 0
+    return test_cases
+
+def main():
+    test_cases = generate_test_case()
+    for case in test_cases:
+        print(case)
+
+if __name__ == "__main__":
+    main()
+```
+
+### Explanation:
+
+1. **`is_prime(n)`**: A helper function to check if a number `n` is prime.
+2. **`generate_even_number()`**: This function generates a random even number between 4 and 214.
+3. **`generate_test_case()`**: This function generates a list of random even numbers (test cases) and appends `0` at the end to indicate the end of input.
+4. **`main()`**: This function prints out the generated test cases.
+
+This will generate random test cases for the problem where each line is an even number between 4 and 214, and the sequence is terminated by `0`.
+
+You can run this script to generate different sets of test cases for your problem.

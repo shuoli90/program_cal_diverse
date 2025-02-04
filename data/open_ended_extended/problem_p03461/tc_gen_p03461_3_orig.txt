@@ -1,0 +1,38 @@
+Certainly! Let's break down the requirements for the test case generator for the given problem. Here's the plan:
+
+1. **Number of vertices \(N\) and edges \(M\)**: The problem mentions that \(N \leq 300\), and there should be no self-loops or multiple edges.
+2. **Edge weights/labels**: Each edge can have a weight between 0 and 100 or a label 'X' or 'Y'.
+3. **Shortest paths \(d_{x,y}\)**: These are given for any pairs of values \(x\) and \(y\) such that \(1 \leq x \leq A\) and \(1 \leq y \leq B\). The values of \(d_{x,y}\) are between 1 and 100.
+
+The generator will randomly create valid input values for \(A\), \(B\), and the matrix \(d\). Here’s the code for the test case generator:
+
+```python
+import random
+
+def tcgen():
+    # Randomly choose A and B within the constraints
+    A = random.randint(1, 10)
+    B = random.randint(1, 10)
+    
+    # Generate the d matrix with values between 1 and 100
+    d = [[random.randint(1, 100) for _ in range(B)] for _ in range(A)]
+    
+    # Convert the matrix to the required input format
+    d_flat = '\n'.join(' '.join(map(str, row)) for row in d)
+    
+    # Assemble the input
+    input_str = f"{A} {B}\n{d_flat}"
+    
+    return input_str
+
+# Example usage:
+print(tcgen())
+```
+
+### Explanation
+- **Randomly choose \(A\) and \(B\)**: Both \(A\) and \(B\) are chosen randomly between 1 and 10.
+- **Generate the \(d\) matrix**: The matrix \(d\) of size \(A \times B\) is filled with random integers between 1 and 100.
+- **Format the matrix for input**: The matrix is converted to a string format suitable for the input, where each row is space-separated and rows are newline-separated.
+- **Return the input string**: The formatted string is returned.
+
+This generator will create various test cases for the problem, ensuring diverse and comprehensive coverage of the possible input space.

@@ -1,0 +1,31 @@
+What are the popular stalls?
+In Aizu-Wakamatsu City, there is a first market called "Tokaichi" on January 10th every year. This Tokaichi has a history of about 600 years and is the largest first market in the Aizu region. It is also well known that "Okiai Ko-boshi", a familiar good luck item in the Aizu region, is sold. Okiai Ko-boshi is a doll with a center of gravity at the bottom that is about 3 cm in size, and its name comes from the fact that it stands up immediately even if it falls. In each household, one more than the family must be purchased and offered to the household shrine. This one has the meaning of "increasing the family" or "carrying the burden of misfortune".
+The Tokaichi Executive Committee has decided to investigate the store with the highest sales of Okiai Ko-boshi for the next Tokaichi. The number of stores this year is five (A, B, C, D, E: lowercase letters), and the number of items sold has been reported to the Tokaichi Executive Committee separately for the morning and afternoon sessions.
+Create a program that takes information for each store as input and outputs the name and number of the store with the highest sales for the day.
+Input
+The input consists of a sequence of multiple data sets. The end of the input is indicated by two zeros on a line.
+Each dataset is given in the following format.
+s1A s2A
+s1B s2B
+s1C s2C
+s1D s2D
+s1E s2E
+For the i-th line, the morning sales s1i and the afternoon sales s2i (1 ≤ s1i, s2i ≤ 10000) for stores A, B, C, D, and E are given. It is assumed that there are no stores that sell the same number of items for the day.
+The number of datasets is no more than 100.
+Output
+For each dataset, output the name and number of the store with the highest sales for the day on one line.
+Sample Input
+1593 4311
+4321 2155
+1256 6421
+5310 1455
+2152 5421
+1549 3386
+4528 3719
+1234 4321
+3330 3109
+2739 2199
+0 0
+Output for the Sample Input
+C 7677
+B 8247

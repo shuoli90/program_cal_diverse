@@ -1,0 +1,32 @@
+Sure, I can help you with that. Here's a test case generator for the given problem statement "SolveMe":
+
+```python
+import random
+
+def tcgen():
+    N = random.randint(1, 1000)
+    X = random.randint(0, 10**18)
+    Y = random.randint(0, 10**18)
+    Z = random.randint(0, 10**18)
+    
+    return N, X, Y, Z
+
+# Example usage:
+N, X, Y, Z = tcgen()
+print(f"{N} {X} {Y} {Z}")
+```
+
+This function generates random test cases within the specified constraints:
+
+- \(N\) is a random integer between 1 and 1000 inclusive.
+- \(X\), \(Y\), and \(Z\) are random integers between 0 and \(10^{18}\) inclusive.
+
+The `tcgen` function returns these values as a tuple, which you can use to test your solution to the "SolveMe" problem. Here is an example of how you could use the generated values:
+
+```python
+# Example usage:
+N, X, Y, Z = tcgen()
+print(f"Generated Test Case: N={N}, X={X}, Y={Y}, Z={Z}")
+```
+
+By running this code multiple times, you will get different test cases that you can use for your competitive programming problem.

@@ -1,0 +1,139 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p03129 - Generation 3</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p03129 - Generation 3</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>
+Score : 100 points
+Problem StatementDetermine if we can choose K different integers between 1 and N (inclusive) so that no two of them differ by 1.
+Constraints
+1\leq N,K\leq 100
+N and K are integers.
+InputInput is given from Standard Input in the following format:
+N K
+OutputIf we can choose K integers as above, print YES; otherwise, print NO.
+Sample Input 13 2
+Sample Output 1YES
+We can choose 1 and 3.
+Sample Input 25 5
+Sample Output 2NO
+Sample Input 331 10
+Sample Output 3YES
+Sample Input 410 90
+Sample Output 4NO
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>Canonicalized Input Description:
+
+Two integers, N and K, where 1 ≤ N, K ≤ 100.
+
+### Example Input:
+
+```
+13 2
+```
+
+### Function Signature:
+Write a function f(N, K) that takes in the input.
+def f(N: int, K: int):
+    ''' 
+    N: an integer
+    K: an integer
+    '''</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>To generate test cases for the given problem statement, we need to ensure that the inputs adhere to the constraints provided and cover different edge cases for the values of \(N\) and \(K\). Here's a test case generator:
+
+```python
+import random
+
+def tcgen():
+    N = random.randint(1, 100)
+    K = random.randint(1, N)  # K should be at most N to make the problem feasible
+    return N, K
+
+# Example usage
+if __name__ == "__main__":
+    for _ in range(5):  # Generate 5 test cases to demonstrate the function
+        N, K = tcgen()
+        print(f"Test case: N = {N}, K = {K}")
+```
+
+This generator function will randomly select values for \(N\) and \(K\) within the given constraints.
+
+### Usage Explanation
+- `random.randint(1, 100)` generates a random integer between 1 and 100 for \(N\).
+- `random.randint(1, N)` ensures that \(K\) is always less than or equal to \(N\).
+
+### Example Output
+```
+Test case: N = 57, K = 23
+Test case: N = 88, K = 65
+Test case: N = 44, K = 35
+Test case: N = 12, K = 7
+Test case: N = 99, K = 99
+```
+
+This ensures a variety of test cases covering different scenarios, from minimal values to maximum edge cases for both \(N\) and \(K\).</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    N, K = map(int, fh.readline().strip().split())
+    return N, K</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

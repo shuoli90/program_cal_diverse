@@ -1,0 +1,32 @@
+Sure! Here's a Python function that generates test cases for the given problem statement about eating cookies.
+
+```python
+import random
+
+def tcgen():
+    datasets = []
+    
+    # Number of datasets
+    num_datasets = random.randint(1, 100)
+    
+    for _ in range(num_datasets):
+        N = random.randint(1, 2000)
+        D = random.randint(1, 10**12)
+        X = random.randint(1, 2000)
+        datasets.append((N, D, X))
+    
+    # Append the ending line
+    datasets.append((0, 0, 0))
+    
+    return datasets
+
+# Example usage
+if __name__ == "__main__":
+    test_cases = tcgen()
+    for tc in test_cases:
+        print(f"{tc[0]} {tc[1]} {tc[2]}")
+```
+
+This function generates a random number of datasets (up to 100), and for each dataset, it generates random values for \(N\), \(D\), and \(X\) within the specified ranges. It also ensures to append the terminating line `(0, 0, 0)` at the end.
+
+You can run this function to generate the test cases and print them to verify the output. Each test case is a tuple of three integers, representing \(N\), \(D\), and \(X\).

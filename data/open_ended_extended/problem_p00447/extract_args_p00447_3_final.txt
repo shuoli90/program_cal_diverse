@@ -1,0 +1,19 @@
+def extract_arguments(fh):
+    datasets = []
+    while True:
+        m = int(fh.readline().strip())
+        if m == 0:
+            break
+        constellation = [tuple(map(int, fh.readline().strip().split())) for _ in range(m)]
+        n = int(fh.readline().strip())
+        photo = [tuple(map(int, fh.readline().strip().split())) for _ in range(n)]
+        datasets.append((constellation, photo))
+    return datasets
+
+# Example usage
+# if __name__ == "__main__":
+#     input_path = sys.argv[1]
+#     with open(input_path, 'r') as fh: 
+#         datasets = extract_arguments(fh)
+#         for constellation, photo in datasets:
+#             f(constellation, photo)

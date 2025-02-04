@@ -1,0 +1,18 @@
+def extract_arguments(fh):
+    inputs = []
+    while True:
+        n, k, s = map(int, fh.readline().strip().split())
+        if n == 0 and k == 0 and s == 0:
+            break
+        positions = []
+        for _ in range(n):
+            x, y, z = map(int, fh.readline().strip().split())
+            positions.append((x, y, z))
+        inputs.append((n, k, s, positions))
+    return inputs
+
+# Example usage
+# with open('input.txt', 'r') as fh:
+#     inputs = extract_arguments(fh)
+#     for dataset in inputs:
+#         print(dataset)

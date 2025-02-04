@@ -1,0 +1,25 @@
+Canonicalized Input Description:
+
+An integer N (1 ≤ N ≤ 1000), representing some quantity or size.
+A list of N strings, where each string is of length between 1 and 100, consisting of numbers and uppercase letters.
+
+### Example Input:
+
+```
+5
+E869120
+TMJN
+E869120
+TAISA
+YNYMXIAOLONGBAO
+```
+
+### Function Signature:
+Write a function f(N, A) that takes in the input.
+```python
+def f(N: int, A: List[str]):
+    '''
+    N: an integer
+    A: a list of strings
+    '''
+```

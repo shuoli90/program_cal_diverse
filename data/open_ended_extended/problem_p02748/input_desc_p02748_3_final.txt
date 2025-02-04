@@ -1,0 +1,27 @@
+An integer A (1 ≤ A ≤ 10^5), representing some quantity or size.
+An integer B (1 ≤ B ≤ 10^5), representing some quantity or size.
+An integer M (1 ≤ M ≤ 10^5), representing some quantity or size.
+A list of integers of size A, where each integer is between 1 and 1e5.
+A list of integers of size B, where each integer is between 1 and 1e5.
+A list of M tuples, each containing three integers: an integer between 1 and A, an integer between 1 and B, and an integer between 1 and 1e5.
+
+### Example Input:
+
+```
+3 1 1
+3 3 3
+3
+1 2 1
+```
+
+### Function Signature:
+Write a function f(A, B, M, listA, listB, listM) that takes in the input.
+def f(A: int, B: int, M: int, listA: List[int], listB: List[int], listM: List[Tuple[int, int, int]]):
+    '''
+    A: an integer
+    B: an integer
+    M: an integer
+    listA: a list of integers
+    listB: a list of integers
+    listM: a list of tuples, each containing three integers
+    '''

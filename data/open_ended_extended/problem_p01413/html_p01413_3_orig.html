@@ -1,0 +1,226 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p01413 - Generation 3</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p01413 - Generation 3</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>G: Quest of Merchant
+To achieve good results in ICPC, training is essential. Rabbit wants to win in ICPC, so he decided to train today as well.
+Today's training is to run around the town and trade, to gain the power of business.
+For future training, Rabbit wants to earn as much money as possible.
+In this world, the roads are lined up at equal intervals in the north, south, east, and west directions, making a grid pattern. The only market is located at (0, 0), and the coordinates of x and y are determined for the town (the points corresponding to the intersections correspond to the integer values of the coordinates). Rabbit can only move along the road and takes 1 minute to move between adjacent intersections. There are some towns at the intersections. In trading, he buys goods in the town and sells them at the market to gain the profit of the price difference.
+Rabbit has enough initial capital, so he never runs out of money and cannot buy goods. However, each product has a weight, and Rabbit can only carry goods up to a total weight of W at a time. Therefore, he visits town to purchase goods and returns to the market. Depending on the situation, he may purchase goods in multiple towns before returning to the market.
+Buying goods in town and selling them in the market can be done in an instant. Also, it is possible to purchase an infinite number of goods, and there is no possibility that the goods in the town will be sold out.
+Rabbit has compiled data on the names, weights per unit, and selling prices of each product he wishes to trade this time, as well as the names, x and y coordinates, and selling prices of the products sold in each town. Rabbit is now at the market (0, 0). Using a program, he wants to find out how much he can earn in T minutes.
+Input
+N M W T
+S1 V1 P1
+ ...
+SM VM PM
+L1 X1 Y1
+R1,1 Q1,1
+  ...
+R1,L1 Q1,L1
+ ...
+LN XN YN</sub</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An integer N (1 ≤ N ≤ 10^2), an integer M (1 ≤ M ≤ 10^2), an integer W (1 ≤ W ≤ 10^4), and an integer T (1 ≤ T ≤ 10^4).
+A list of M tuples, each containing a string Si, an integer Vi (1 ≤ Vi ≤ 10^2), and an integer Pi (1 ≤ Pi ≤ 10^4).
+A list of N tuples, each containing an integer Li (0 ≤ Li ≤ 10^2), an integer Xi (-10^2 ≤ Xi ≤ 10^2), and an integer Yi (-10^2 ≤ Yi ≤ 10^2).
+A nested list where each sublist corresponds to a town and contains Li pairs of integers Ri,j (1 ≤ Ri,j ≤ 10^3) and Qi,j (1 ≤ Qi,j ≤ 10^4).
+
+### Example Input:
+```
+2 3 10 15
+apple 2 100
+banana 3 150
+cherry 1 200
+2 1 1
+10 300
+20 400
+1 -2 -3
+5 500
+15 600
+```
+
+### Function Signature:
+Write a function f(N, M, W, T, products, towns) that takes in the input.
+```python
+def f(N: int, M: int, W: int, T: int, products: List[Tuple[str, int, int]], towns: List[Tuple[int, int, int, List[Tuple[int, int]]]]):
+    '''
+    N: an integer
+    M: an integer
+    W: an integer
+    T: an integer
+    products: a list of tuples, each containing a string and two integers
+    towns: a list of tuples, each containing two integers, another integer, and a list of integer pairs
+    '''
+```</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Sure! Let's break down the requirements for the problem and then create a test case generator. Here's the breakdown of the input:
+
+1. **N**: Number of towns (1 ≤ N ≤ 50).
+2. **M**: Number of product types (1 ≤ M ≤ 50).
+3. **W**: Maximum weight Rabbit can carry (1 ≤ W ≤ 10^3).
+4. **T**: Total time Rabbit has (1 ≤ T ≤ 10^4).
+
+For each product type:
+- **Si**: Name of the product (a string).
+- **Vi**: Weight per unit of the product (1 ≤ Vi ≤ 10^3).
+- **Pi**: Selling price per unit of the product (1 ≤ Pi ≤ 10^4).
+
+For each town:
+- **Li**: Number of product types sold in the town (1 ≤ Li ≤ M).
+- **Xi**: x-coordinate of the town (|Xi| ≤ 10^3).
+- **Yi**: y-coordinate of the town (|Yi| ≤ 10^3).
+
+For each product type in a town:
+- **Rij**: Index of the product type (1 ≤ Rij ≤ M).
+- **Qij**: Selling price in the town (1 ≤ Qij ≤ 10^4).
+
+Here's a Python function to generate test cases based on these constraints:
+
+```python
+import random
+import string
+
+def random_string(length=5):
+    letters = string.ascii_lowercase
+    return ''.join(random.choice(letters) for _ in range(length))
+
+def tcgen():
+    N = random.randint(1, 50)
+    M = random.randint(1, 50)
+    W = random.randint(1, 1000)
+    T = random.randint(1, 10000)
+    
+    products = []
+    for _ in range(M):
+        Si = random_string()
+        Vi = random.randint(1, 1000)
+        Pi = random.randint(1, 10000)
+        products.append((Si, Vi, Pi))
+    
+    towns = []
+    for _ in range(N):
+        Li = random.randint(1, M)
+        Xi = random.randint(-1000, 1000)
+        Yi = random.randint(-1000, 1000)
+        town_products = []
+        for _ in range(Li):
+            Rij = random.randint(1, M)
+            Qij = random.randint(1, 10000)
+            town_products.append((Rij, Qij))
+        towns.append((Li, Xi, Yi, town_products))
+    
+    # Output the test case
+    output = f"{N} {M} {W} {T}\n"
+    for Si, Vi, Pi in products:
+        output += f"{Si} {Vi} {Pi}\n"
+    for Li, Xi, Yi, town_products in towns:
+        output += f"{Li} {Xi} {Yi}\n"
+        for Rij, Qij in town_products:
+            output += f"{Rij} {Qij}\n"
+    return output
+
+# Example usage
+test_case = tcgen()
+print(test_case)
+```
+
+### Explanation:
+1. **random_string(length=5)**: Generates a random string of lowercase letters of length 5, used for product names.
+2. **tcgen()**:
+   - Randomly determines the number of towns \( N \) and product types \( M \), as well as \( W \) and \( T \).
+   - Generates random products with names, weights, and selling prices.
+   - For each town, generates random coordinates and then lists the products sold there with their respective selling prices.
+   - Constructs the output string in the required format.
+
+You can call this function to generate a test case as shown in the example usage. This output can be used directly in a competitive programming environment to test the solution to the problem.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    N, M, W, T = map(int, fh.readline().strip().split())
+    products = []
+    for _ in range(M):
+        S, V, P = fh.readline().strip().split()
+        V = int(V)
+        P = int(P)
+        products.append((S, V, P))
+    towns = []
+    for _ in range(N):
+        L, X, Y = fh.readline().strip().split()
+        L = int(L)
+        X = int(X)
+        Y = int(Y)
+        town_data = (L, int(X), int(Y))
+        trades = []
+        for _ in range(L):
+            R, Q = fh.readline().strip().split()
+            Q = int(Q)
+            trades.append((R, Q))
+        towns.append((town_data, trades))
+    return N, M, W, T, products, towns
+
+# Example usage
+# if __name__ == "__main__":
+#     input_path = sys.argv[1]
+#     with open(input_path, 'r') as fh:
+#         N, M, W, T, products, towns = extract_arguments(fh)</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

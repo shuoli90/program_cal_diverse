@@ -1,0 +1,186 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p02320 - Generation 1</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p02320 - Generation 1</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>
+Knapsack Problem with Limitations
+You have N items that you want to put them into a knapsack. Item i has value vi, weight wi and limitation mi.
+You want to find a subset of items to put such that:
+The total value of the items is as large as possible.
+The items have combined weight at most W, that is capacity of the knapsack.
+You can select at most mi items for ith item.
+Find the maximum total value of items in the knapsack.
+Input
+N W
+v1 w1 m1
+v2 w2 m2
+:
+vN wN mN
+The first line consists of the integers N and W. In the following N lines, the value, weight and limitation of the i-th item are given.
+Output
+Print the maximum total values of the items in a line.
+Constraints
+ 1 ≤ N ≤ 100
+ 1 ≤ vi ≤ 1,000
+ 1 ≤ wi ≤ 1,000
+ 1 ≤ mi ≤ 10,000
+ 1 ≤ W ≤ 10,000
+Sample Input 1
+4 8
+4 3 2
+2 1 1
+1 2 4
+3 2 2
+Sample Output 1
+12
+Sample Input 2
+2 100
+1 1 100
+2 1 50
+Sample Output 2
+150
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An integer N (1 ≤ N ≤ 100), representing some quantity or size.
+An integer W (1 ≤ W ≤ 10,000), representing some capacity.
+A list of tuples of form (vi, wi, mi) of size N, where each tuple contains:
+  - an integer vi (1 ≤ vi ≤ 1,000)
+  - an integer wi (1 ≤ wi ≤ 1,000)
+  - an integer mi (1 ≤ mi ≤ 10,000)
+
+### Example Input:
+
+```
+4 8
+4 3 2
+2 1 1
+1 2 4
+3 2 2
+```
+
+### Function Signature:
+Write a function f(N, W, items) that takes in the input.
+```python
+def f(N: int, W: int, items: List[Tuple[int, int, int]]):
+    '''
+    N: an integer
+    W: an integer
+    items: a list of tuples, where each tuple contains three integers
+    '''
+```</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Sure! Here is a test case generator for the given Knapsack Problem with Limitations:
+
+```python
+import random
+
+def tcgen():
+    N = random.randint(1, 100)
+    W = random.randint(1, 10000)
+    
+    items = []
+    for _ in range(N):
+        v = random.randint(1, 1000)
+        w = random.randint(1, 1000)
+        m = random.randint(1, 10000)
+        items.append((v, w, m))
+    
+    return (N, W, items)
+
+def format_test_case(N, W, items):
+    test_case = f"{N} {W}\n"
+    for (v, w, m) in items:
+        test_case += f"{v} {w} {m}\n"
+    return test_case
+
+# Example usage
+N, W, items = tcgen()
+test_case = format_test_case(N, W, items)
+print(test_case)
+```
+
+This generator will produce random test cases for the knapsack problem with limitations, adhering to the constraints specified in the problem statement. Here is how it works:
+
+1. It randomly selects the number of items \(N\) between 1 and 100.
+2. It randomly selects the maximum weight \(W\) of the knapsack between 1 and 10000.
+3. For each item, it randomly selects the value \(v\) between 1 and 1000, weight \(w\) between 1 and 1000, and limitation \(m\) between 1 and 10000.
+4. The `format_test_case` function formats the generated test case into the required input format.
+
+You can use the `tcgen` and `format_test_case` functions to generate and format test cases for your problem.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    # Read the first line for N and W
+    N, W = map(int, fh.readline().strip().split())
+    # Initialize the list to hold the tuples (value, weight, limit) for each item
+    items = []
+    # Read the next N lines for the items
+    for _ in range(N):
+        v, w, m = map(int, fh.readline().strip().split())
+        items.append((v, w, m))
+    return N, W, items
+
+# if __name__ == "__main__":
+#     input_path = sys.argv[1]
+#     with open(input_path, 'r') as fh:
+#         N, W, items = extract_arguments(fh)
+#         f(N, W, items)</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

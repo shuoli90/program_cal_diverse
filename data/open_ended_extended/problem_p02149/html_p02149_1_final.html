@@ -1,0 +1,166 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p02149 - Generation 1</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p02149 - Generation 1</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>Problem A: Lunch
+Problem
+One day, Kawabayashi-kun is trying to have his lunch at the school cafeteria.
+There are three types of daily lunch menus: A, B, and C, at the cafeteria.
+Kawabayashi-kun is a big eater, and he wants to eat all three types of daily lunch menus, one each.
+However, he wants to minimize the sum of calories he consumes, so he decides to give up one of the lunch menus and have two different ones.
+Given the calories of A, B, and C lunch menus for a certain day, please find out which lunch menu he will give up.
+Input
+The input is given in the following format.
+$a$ $b$ $c$
+Three integers $a$, $b$, and $c$ are given separated by a space. They represent the calories of A, B, and C lunch menus for a certain day, respectively.
+Constraints
+The input satisfies the following conditions.
+$1 \leq a, b, c \leq 5000 $
+$a \neq b, b \neq c, c \neq a$
+Output
+Print the name of the lunch menu that Kawabayashi-kun gives up on a single line.
+If he gives up A, print "A".
+If he gives up B, print "B".
+If he gives up C, print "C".
+Sample Input 1
+1000 900 850
+Sample Output 1
+A
+Sample Input 2
+1000 800 1200
+Sample Output 2
+C
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>Canonicalized Input Description:
+
+Three integers \(a\), \(b\), and \(c\) (1 ≤ \(a, b, c\) ≤ 5000) where \(a \neq b\), \(b \neq c\), \(c \neq a\).
+
+### Example Input:
+
+```
+1000 900 850
+```
+
+### Function Signature:
+Write a function `f(a, b, c)` that takes in the input.
+```python
+def f(a: int, b: int, c: int):
+    ''' 
+    a: an integer
+    b: an integer
+    c: an integer
+    '''
+```</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Certainly! Here is the test case generator for the problem "Lunch":
+
+```python
+import random
+
+def tcgen():
+    # Generate three unique calorie values between 1 and 5000
+    a = random.randint(1, 5000)
+    b = random.randint(1, 5000)
+    c = random.randint(1, 5000)
+    
+    # Ensure all three values are unique
+    while b == a:
+        b = random.randint(1, 5000)
+    while c == a or c == b:
+        c = random.randint(1, 5000)
+    
+    return a, b, c
+
+# Example of using the generator
+a, b, c = tcgen()
+print(f"{a} {b} {c}")
+```
+
+This code generates three unique integers \(a\), \(b\), and \(c\) between 1 and 5000, ensuring they are all different, which satisfies the problem constraints.
+
+You can use this function to generate random test cases. Here is an example of how to use the generator and derive the output based on the problem statement:
+
+```python
+def determine_menu_to_give_up(a, b, c):
+    # Find the maximum value
+    max_calories = max(a, b, c)
+    
+    # Determine which menu to give up
+    if max_calories == a:
+        return "A"
+    if max_calories == b:
+        return "B"
+    return "C"
+
+# Using the generated test case
+a, b, c = tcgen()
+print(f"Input: {a} {b} {c}")
+print(f"Output: {determine_menu_to_give_up(a, b, c)}")
+```
+
+The function `determine_menu_to_give_up` calculates which menu Kawabayashi-kun should give up by finding the maximum calorie count and returning the corresponding menu label.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    a, b, c = map(int, fh.readline().strip().split())
+    return a, b, c</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

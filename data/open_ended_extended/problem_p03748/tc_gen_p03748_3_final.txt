@@ -1,0 +1,33 @@
+Sure! Here is a test case generator for the given problem statement:
+
+```python
+import random
+
+def tcgen():
+    # Constraints
+    N = random.randint(1, 3000)
+    M = random.randint(1, 3000)
+    
+    return N, M
+
+def main():
+    N, M = tcgen()
+    print(N, M)
+
+# To generate and print a single test case
+if __name__ == "__main__":
+    main()
+```
+
+This Python function `tcgen()` will generate random values for \(N\) and \(M\) within their respective constraints. The `main()` function will print out a single test case.
+
+### Usage
+
+1. Save this code in a file, for example, `generate_test_case.py`.
+2. Run the script to generate a random test case:
+   ```bash
+   python generate_test_case.py
+   ```
+3. Each execution of the script will output a different random test case within the provided constraints.
+
+You can modify this script to generate multiple test cases by calling `tcgen()` in a loop if needed.

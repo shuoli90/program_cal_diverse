@@ -1,0 +1,147 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p03272 - Generation 2</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p03272 - Generation 2</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>
+Score : 100 points
+Problem StatementThere is an N-car train.
+You are given an integer i. Find the value of j such that the following statement is true: "the i-th car from the front of the train is the j-th car from the back."
+Constraints
+1 \leq N \leq 100
+1 \leq i \leq N
+InputInput is given from Standard Input in the following format:
+N i
+OutputPrint the answer.
+Sample Input 14 2
+Sample Output 13
+The second car from the front of a 4-car train is the third car from the back.
+Sample Input 21 1
+Sample Output 21
+Sample Input 315 11
+Sample Output 35
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>Canonicalized Input Description:
+
+An integer N (1 ≤ N ≤ 100), representing some quantity or size.
+An integer i (1 ≤ i ≤ N), representing some position or index.
+
+### Example Input:
+
+```
+14 2
+```
+
+### Function Signature:
+Write a function f(N, i) that takes in the input.
+def f(N: int, i: int):
+    '''
+    N: an integer
+    i: an integer
+    '''
+</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Sure! Let's create a test case generator for the given problem statement. Here is the code:
+
+```python
+import random
+
+def tcgen():
+    N = random.randint(1, 100)
+    i = random.randint(1, N)
+    return N, i
+
+# Example of generating a test case
+if __name__ == "__main__":
+    N, i = tcgen()
+    print(f"{N} {i}")
+```
+
+This generator will create a random test case with values for \(N\) and \(i\) within the specified constraints.
+
+To understand how the test case is generated:
+
+1. **N** is generated randomly between 1 and 100.
+2. **i** is generated randomly between 1 and \(N\).
+
+These values are then printed out in the format expected by the problem statement. To test the generator, you can run the script, and it will output a random test case each time.
+
+Let's walk through a few generated examples to ensure clarity:
+
+1. If the generator outputs `4 2`, this means:
+   - \(N = 4\), which indicates there are 4 cars in the train.
+   - \(i = 2\), which means we need to find the position of the 2nd car from the front when counting from the back.
+
+   The solution can be calculated as \(j = N - i + 1\). In this case, \(j = 4 - 2 + 1 = 3\).
+
+2. If the generator outputs `15 11`, this means:
+   - \(N = 15\), which indicates there are 15 cars in the train.
+   - \(i = 11\), which means we need to find the position of the 11th car from the front when counting from the back.
+
+   The solution can be calculated as \(j = N - i + 1\). In this case, \(j = 15 - 11 + 1 = 5\).
+
+This generator provides a valid and random set of inputs each time it is called, ensuring thorough testing coverage for the problem.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    N, i = map(int, fh.readline().strip().split())
+    return N, i</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

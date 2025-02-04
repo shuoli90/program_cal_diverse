@@ -1,0 +1,78 @@
+Sure! To generate test cases for the problem "Princess in Danger", we need to generate multiple datasets which include the number of cities, the freezing time limit, the number of cities with freezing facilities, the number of roads, the capital city, the hospital city, the list of cities with freezing facilities, and the roads between cities.
+
+Here's a Python function to generate these test cases:
+
+```python
+import random
+
+def generate_test_case():
+    # Upper bounds for the constraints
+    N = random.randint(2, 100)
+    M = random.randint(1, 100)
+    L = random.randint(0, N - 2)
+    K = random.randint(1, N * (N - 1) // 2)  # K can be at most the number of edges in a complete graph
+    A = random.randint(0, N - 1)
+    H = random.randint(0, N - 1)
+    
+    # Ensure capital and hospital are different
+    while H == A:
+        H = random.randint(0, N - 1)
+
+    # Generating cities with freezing facilities
+    freezing_cities = random.sample([i for i in range(N) if i != A and i != H], L)
+
+    # Generating roads
+    roads = []
+    added_edges = set()
+    for _ in range(K):
+        while True:
+            X = random.randint(0, N - 1)
+            Y = random.randint(0, N - 1)
+            T = random.randint(1, 100)
+            # Ensure no self-loop and no duplicate edges
+            if X != Y and (X, Y) not in added_edges and (Y, X) not in added_edges:
+                roads.append((X, Y, T))
+                added_edges.add((X, Y))
+                break
+
+    return N, M, L, K, A, H, freezing_cities, roads
+
+def print_test_case(N, M, L, K, A, H, freezing_cities, roads):
+    print(f"{N} {M} {L} {K} {A} {H}")
+    if L > 0:
+        print(' '.join(map(str, freezing_cities)))
+    for road in roads:
+        print(f"{road[0]} {road[1]} {road[2]}")
+
+def tcgen():
+    test_cases = []
+    for _ in range(5):  # Generate 5 test cases
+        test_case = generate_test_case()
+        test_cases.append(test_case)
+    return test_cases
+
+# Example usage
+if __name__ == "__main__":
+    test_cases = tcgen()
+    for test_case in test_cases:
+        print_test_case(*test_case)
+        print()
+
+    # Print the termination condition
+    print("0 0 0 0 0 0")
+```
+
+### Explanation:
+1. **generate_test_case()**: This function generates a single test case:
+   - Randomly selects the number of cities `N`, the freezing time limit `M`, the number of freezing facilities `L`, the number of roads `K`, the capital city `A`, and the hospital city `H`.
+   - Ensures that `A` and `H` are different.
+   - Generates a list of cities with freezing facilities, ensuring that `A` and `H` are not included.
+   - Generates `K` roads between cities while avoiding self-loops and duplicate edges.
+
+2. **print_test_case()**: This function prints a single test case in the required format.
+
+3. **tcgen()**: This function generates multiple test cases.
+
+4. **Main block**: Generates and prints 5 test cases and then prints the termination condition (`0 0 0 0 0 0`).
+
+This script will help you generate and print multiple test cases for the "Princess in Danger" problem.

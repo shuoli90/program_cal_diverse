@@ -1,0 +1,37 @@
+Sure! Below is a test case generator for the given problem statement. This generator will produce random inputs according to the constraints provided:
+
+```python
+import random
+
+def generate_test_case():
+    # Define constraints
+    MIN_N = 2
+    MAX_N = 10**6
+    MOD = 10**9 + 7
+    
+    # Randomly determine the size of N
+    N = random.randint(MIN_N, MAX_N)
+    
+    return N
+
+# Example usage of the test case generator
+if __name__ == "__main__":
+    print(generate_test_case())
+```
+
+This generator will create a random test case for the problem where \(N\) is a random integer between 2 and \(10^6\). The generated test case can then be used to test implementations of the problem.
+
+For more complex testing, especially to test edge cases, you might want to include specific values for \(N\) such as the minimum (2) and maximum (\(10^6\)) values:
+
+```python
+def generate_edge_cases():
+    edge_cases = [2, 10**6]
+    return edge_cases
+
+# Example usage of the edge case generator
+if __name__ == "__main__":
+    for case in generate_edge_cases():
+        print(case)
+```
+
+This will output edge cases of the problem, ensuring that your implementation can handle the smallest and largest inputs as specified by the constraints.

@@ -1,0 +1,49 @@
+Certainly! Here’s a Python function to generate test cases for the "Snake Escaping" problem:
+
+```python
+import random
+
+def tcgen():
+    L = random.randint(1, 20)
+    Q = random.randint(1, 10**6)
+    
+    # Generate the string S of length 2^L with characters from '0' to '9'
+    S_length = 2**L
+    S = ''.join(random.choice('0123456789') for _ in range(S_length))
+    
+    # Generate Q complaint strings of length L with characters '0', '1', and '?'
+    complaints = []
+    for _ in range(Q):
+        complaint = ''.join(random.choice('01?') for _ in range(L))
+        complaints.append(complaint)
+    
+    return L, Q, S, complaints
+
+def print_test_case():
+    L, Q, S, complaints = tcgen()
+    
+    print(L, Q)
+    print(S)
+    for complaint in complaints:
+        print(complaint)
+
+# Example of generating and printing a test case
+print_test_case()
+```
+
+### Explanation
+
+1. **Generate `L` and `Q`**:
+   - `L` is randomly chosen between 1 and 20.
+   - `Q` is randomly chosen between 1 and 1,000,000.
+
+2. **Generate the string `S`**:
+   - The length of `S` is `2^L`, and each character is a random digit between '0' and '9'.
+
+3. **Generate the complaints**:
+   - Each complaint string `T_d` is of length `L` and consists of characters '0', '1', and '?'.
+
+4. **Print the generated test case**:
+   - The function `print_test_case()` calls `tcgen()` to generate the test case and prints it in the required format.
+
+This function provides a way to generate diverse and large test cases for the problem, ensuring good coverage for different scenarios specified by the constraints.

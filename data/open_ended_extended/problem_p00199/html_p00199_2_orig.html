@@ -1,0 +1,192 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p00199 - Generation 2</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p00199 - Generation 2</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>The Chair on Which Difficult People Sit
+In the neutral city of Aizu in the center of four countries, there is a platform for the transcontinental train Bandai-go. Rows of chairs for passengers waiting for the Bandai-go are provided on the platform, and anyone who enters the platform can use the chairs freely.
+The Bandai-go is cheap, fast, and comfortable, so it is always crowded with users from the surrounding four countries. Today is the opening day, and I'm thinking of doing something special for the people sitting on the platform. For this purpose, we need to know where the people who passed through the gate are sitting. Taking into account the difficult personalities of the people from the four countries, please create a program that simulates how the chairs are filled. The people who passed through the gate sit in a row on the chairs one after another. The people from the four countries have decided personality and seating arrangements for each country. The seating arrangements are as follows for each person.
+Personality of Person from Country A
+   A person from country A just wants to sit. They look at the empty chairs from the left end and sit on the first available chair.
+Personality of Person from Country B
+ People from country B do not like people from country A. They sit in the empty chair from the right end, except next to people from country A. However, if there is no other choice than to sit next to someone from country A, they will endure it and sit in the empty chair from the left end.
+    
+Personality of Person from Country C
+ 
+   People from country C want to sit next to someone. They look at the person sitting from the left and try to sit next to the person sitting on the far left. However, if that seat is taken, they will try to sit next to the person on the left. If that seat is also taken, they will try to sit next to the next person with the same condition. If no chair is taken, they will sit in the middle (if the number of chairs is odd, it is the center chair ((n+1)/2), and if it is even, it is the chair in the middle of n/2+1).
+    
+Personality of Person from Country D
+   People from country D do not want to sit next to anyone. They try to sit in the chair where the distance from the nearest person is the farthest. If there are multiple seats with the same condition or if they have no choice but to sit next to someone, they will sit in the leftmost chair among those. If no one is sitting in the chair, they will sit in the leftmost chair.
+   
+    
+Input the information of the passengers who are trying to get on the Bandai-go, and create a program that outputs how they are sitting on the chairs. The nationality of the person sitting from the left is output. However, if the seat is empty, please output "#" (hash) instead.
+Input
+Multiple sets of data sets are given as input. The end of the input is indicated by two consecutive zeros.
+Each data set is given in the following format.
+n m
+a1
+a2
+:
+am
+The number of chairs n (1 ≤ n ≤ 100) and the number of passengers m (m ≤ n) are given on the first line. The following m lines give the information of the i-th person, ai, in one character. 'A' represents a person from country</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An integer n (1 ≤ n ≤ 100), representing some quantity or size.
+An integer m (m ≤ n), representing another quantity or size.
+A list of m characters, where each character is one of {'A', 'B', 'C', 'D'}.
+
+### Example Input:
+
+```
+5 3
+A
+B
+C
+```
+
+### Function Signature:
+Write a function f(n, m, A) that takes in the input. 
+def f(n: int, m: int, A: List[str]): 
+    ''' 
+    n: an integer 
+    m: an integer
+    A: a list of characters
+    '''</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Sure, I can help you create a test case generator for the problem statement you've provided. Let's break down the input format and generate random test cases accordingly.
+
+### Problem Breakdown
+
+1. **Number of Chairs (n)**
+   - \(1 \leq n \leq 100\)
+
+2. **Number of Passengers (m)**
+   - \(m \leq n\)
+
+3. **Information of the passengers (ai)**
+   - Each passenger is represented by a single character from {'A', 'B', 'C', 'D'}.
+
+### Test Case Generator
+
+We'll be generating multiple sets of inputs until we get an input of `0 0`, which indicates the end of the input.
+
+Here is the Python code for the test case generator:
+
+```python
+import random
+
+def generate_test_case():
+    # Number of chairs (1 ≤ n ≤ 100)
+    n = random.randint(1, 100)
+    
+    # Number of passengers (m ≤ n)
+    m = random.randint(1, n)
+    
+    # Passenger list (m characters from {'A', 'B', 'C', 'D'})
+    passengers = [random.choice(['A', 'B', 'C', 'D']) for _ in range(m)]
+    
+    return n, m, passengers
+
+def generate_multiple_test_cases(num_cases=10):
+    test_cases = []
+    for _ in range(num_cases):
+        n, m, passengers = generate_test_case()
+        test_cases.append((n, m, passengers))
+    
+    return test_cases
+
+def print_test_cases(test_cases):
+    for n, m, passengers in test_cases:
+        print(f"{n} {m}")
+        for passenger in passengers:
+            print(passenger)
+    print("0 0")
+
+# Generate and print 10 test cases
+test_cases = generate_multiple_test_cases(10)
+print_test_cases(test_cases)
+```
+
+### Explanation
+
+1. **generate_test_case**:
+   - Randomly generates the number of chairs `n` (between 1 and 100).
+   - Randomly generates the number of passengers `m` (between 1 and `n`).
+   - Creates a list of `m` passengers, each represented by a character from {'A', 'B', 'C', 'D'}.
+
+2. **generate_multiple_test_cases**:
+   - Calls `generate_test_case` multiple times (default 10) to generate multiple sets of test cases.
+
+3. **print_test_cases**:
+   - Prints each test case in the required format.
+   - Ends the input with `0 0`.
+
+You can run the script to generate multiple test cases for the problem. Adjust the number of test cases by changing the `num_cases` parameter in `generate_multiple_test_cases` function if needed.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    inputs = []
+    while True:
+        n, m = map(int, fh.readline().strip().split())
+        if n == 0 and m == 0:
+            break
+        a = [fh.readline().strip() for _ in range(m)]
+        inputs.append((n, m, a))
+    return inputs</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

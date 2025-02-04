@@ -1,0 +1,3 @@
+Types: N: int, M: int, A: List[int]
+Ranges: 1 ≤ N ≤ 16, 0 ≤ M ≤ 16, 2 ≤ A[i] ≤ 2^N (1 ≤ i ≤ M), A[i] < A[i + 1] (1 ≤ i < M)
+Addtl Info: None

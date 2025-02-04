@@ -1,0 +1,78 @@
+To write a test case generator for the "Twin Prime" problem, we need to generate multiple datasets of integers within the specified range (5 ≤ n ≤ 10000) and ensure the end of the input is marked by a zero.
+
+Here is the Python code for the test case generator:
+
+```python
+import random
+
+def is_prime(num):
+    if num <= 1:
+        return False
+    if num <= 3:
+        return True
+    if num % 2 == 0 or num % 3 == 0:
+        return False
+    i = 5
+    while i * i <= num:
+        if num % i == 0 or num % (i + 2) == 0:
+            return False
+        i += 6
+    return True
+
+def generate_twin_primes_up_to(n):
+    primes = []
+    twin_primes = []
+    for num in range(2, n+1):
+        if is_prime(num):
+            primes.append(num)
+            if num - 2 in primes:
+                twin_primes.append((num - 2, num))
+    return twin_primes
+
+def find_max_twin_prime(n):
+    twin_primes = generate_twin_primes_up_to(n)
+    if twin_primes:
+        return twin_primes[-1]
+    return None
+
+def tcgen(num_cases=5):
+    test_cases = []
+    for _ in range(num_cases):
+        n = random.randint(5, 10000)
+        test_cases.append(n)
+    test_cases.append(0)  # Adding the end of input indicator
+    
+    # Generate expected outputs for the test cases
+    expected_outputs = []
+    for n in test_cases:
+        if n == 0:
+            break
+        max_twin_prime = find_max_twin_prime(n)
+        if max_twin_prime:
+            expected_outputs.append(f"{max_twin_prime[0]} {max_twin_prime[1]}")
+        else:
+            expected_outputs.append("")  # No twin prime found (shouldn't happen within given range)
+
+    return test_cases, expected_outputs
+
+# Example usage:
+test_cases, expected_outputs = tcgen()
+print("Test Cases:")
+for case in test_cases:
+    print(case)
+print("\nExpected Outputs:")
+for output in expected_outputs:
+    print(output)
+```
+
+### Explanation:
+
+1. **Prime Checking (`is_prime`)**: This function checks if a number is prime using a standard efficient approach.
+
+2. **Twin Prime Generation (`generate_twin_primes_up_to`)**: This function generates all twin primes up to a given number `n`.
+
+3. **Find Maximum Twin Prime (`find_max_twin_prime`)**: This function finds the maximum twin prime pair up to a given number `n`.
+
+4. **Test Case Generator (`tcgen`)**: This function generates a specified number of test cases within the range 5 to 10000. It appends a zero to indicate the end of input. It also computes the expected output for each test case.
+
+The `tcgen` function can be used to generate multiple test cases and their expected outputs, which can be used to test the solution for the "Twin Prime" problem.

@@ -1,0 +1,152 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p01958 - Generation 3</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p01958 - Generation 3</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>
+Prime-Factor Prime
+  A positive integer is called a "prime-factor prime" when the number of its prime factors is prime. For example, $12$ is a prime-factor prime because the number of prime factors of $12 = 2 \times 2 \times 3$ is $3$, which is prime. On the other hand, $210$ is not a prime-factor prime because the number of prime factors of $210 = 2 \times 3 \times 5 \times 7$ is $4$, which is a composite number.
+In this problem, you are given an integer interval $[l, r]$. Your task is to write a program which counts the number of prime-factor prime numbers in the interval, i.e. the number of prime-factor prime numbers between $l$ and $r$, inclusive.
+Input
+  The input consists of a single test case formatted as follows.
+$l$ $r$
+A line contains two integers $l$ and $r$ ($1 \leq l \leq r \leq 10^9$), which presents an integer interval $[l, r]$. You can assume that $0 \leq r-l < 1,000,000$.
+Output
+Print the number of prime-factor prime numbers in $[l,r]$.
+Sample Input 1
+1 9
+Output for Sample Input 1
+4
+Sample Input 2
+10 20
+Output for Sample Input 2
+6
+Sample Input 3
+575 57577
+Output for Sample Input 3
+36172
+Sample Input 4
+180 180
+Output for Sample Input 4
+1
+Sample Input 5
+9900001 10000000
+Output for Sample Input 5
+60997
+Sample Input 6
+999000001 1000000000
+Output for Sample Input 6
+592955
+In the first example, there are 4 prime-factor primes in $[l,r]$: $4,6,8,$ and $9$.
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An integer M (1 ≤ M ≤ 10^9), representing the start of an interval.
+An integer N such that (M ≤ N ≤ 10^9), representing the end of an interval. You can assume that (0 ≤ N - M < 1,000,000).
+
+### Example Input:
+
+```
+1 9
+```
+
+### Function Signature:
+Write a function f(M, N) that takes in the input.
+def f(M: int, N: int):
+    '''
+    M: an integer
+    N: an integer
+    '''</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>To create a test case generator for the "Prime-Factor Prime" problem, we need to generate valid intervals \([l, r]\) within the specified constraints. Here’s a Python function that generates such test cases:
+
+```python
+import random
+
+def tcgen():
+    # Generate l and r such that 1 ≤ l ≤ r ≤ 10^9
+    # Also ensure that 0 ≤ r - l < 1,000,000
+    l = random.randint(1, 10**9 - 1)
+    max_r = min(l + 999999, 10**9)
+    r = random.randint(l, max_r)
+    
+    return l, r
+
+# Example usage
+for _ in range(5):
+    l, r = tcgen()
+    print(f"{l} {r}")
+```
+
+This function ensures that the generated values for \(l\) and \(r\) meet the problem constraints:
+1. \(1 ≤ l ≤ r ≤ 10^9\)
+2. \(0 ≤ r - l < 1,000,000\)
+
+### Explanation:
+1. We first choose a random integer \(l\) within the range \([1, 10^9 - 1]\).
+2. We then set the upper limit for \(r\) as the minimum of \(l + 999999\) and \(10^9\) to satisfy the constraint \(0 ≤ r - l < 1,000,000\).
+3. Finally, we choose \(r\) as a random integer within the range \([l, max\_r]\).
+
+This keeps the interval within the allowed limits while ensuring variability in the test cases. You can use this function to generate multiple test cases for your competitive programming needs.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    l, r = map(int, fh.readline().strip().split())
+    return l, r</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

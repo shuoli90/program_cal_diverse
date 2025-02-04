@@ -1,0 +1,18 @@
+Canonicalized Input Description:
+
+An integer N (1 ≤ N ≤ 100), representing a quantity or size.
+An integer i (1 ≤ i ≤ N), representing an index or position.
+
+### Example Input:
+
+```
+4 2
+```
+
+### Function Signature:
+Write a function f(N, i) that takes in the input.
+def f(N: int, i: int):
+    '''
+    N: an integer
+    i: an integer
+    '''

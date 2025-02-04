@@ -1,0 +1,28 @@
+Certainly! Here's a test case generator for the "Frog's Straight Path Home" problem:
+
+```python
+import random
+
+def tcgen():
+    D = random.randint(1, 10000)
+    L = random.randint(2, 10000)
+    return D, L
+
+# Example of generating a test case
+for _ in range(5):
+    print(tcgen())
+```
+
+This script generates random test cases for the given problem. It will produce pairs of integers \( D \) and \( L \) within the specified ranges.
+
+Here are some example outputs from running the generator:
+
+```
+(523, 7463)
+(9614, 4321)
+(10000, 2)
+(1, 10000)
+(3457, 7890)
+```
+
+You can use these pairs \( (D, L) \) as inputs for your program to test its correctness and performance.

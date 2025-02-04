@@ -1,0 +1,49 @@
+Sure! Here is a test case generator for the given problem statement:
+
+```python
+import random
+
+def generate_test_case():
+    N = random.randint(2, 10)
+    M = random.randint(1, 10)
+    Q = random.randint(1, 50)
+    
+    queries = []
+    for _ in range(Q):
+        # Since 1 <= a_i < b_i <= N, we generate a_i and b_i such that a_i < b_i
+        a_i = random.randint(1, N-1)
+        b_i = random.randint(a_i + 1, N)
+        
+        c_i = random.randint(0, M - 1)
+        d_i = random.randint(1, 10**5)
+        
+        queries.append((a_i, b_i, c_i, d_i))
+    
+    return N, M, Q, queries
+
+def format_test_case(N, M, Q, queries):
+    test_case = f"{N} {M} {Q}\n"
+    for a_i, b_i, c_i, d_i in queries:
+        test_case += f"{a_i} {b_i} {c_i} {d_i}\n"
+    return test_case
+
+# Example usage:
+N, M, Q, queries = generate_test_case()
+test_case = format_test_case(N, M, Q, queries)
+print(test_case)
+```
+
+### Explanation:
+
+- **N**: The number of integers in the sequence \(A\). It's randomly chosen between 2 and 10.
+- **M**: The maximum value for the integers in the sequence \(A\). It's randomly chosen between 1 and 10.
+- **Q**: The number of queries. It's randomly chosen between 1 and 50.
+- **Queries**: For each query, \(a_i\) and \(b_i\) are chosen such that \(1 \leq a_i < b_i \leq N\). 
+  - \(a_i\): Randomly chosen from 1 to \(N-1\) to ensure \(a_i < b_i\).
+  - \(b_i\): Randomly chosen from \(a_i + 1\) to \(N\).
+  - \(c_i\): Randomly chosen from 0 to \(M-1\).
+  - \(d_i\): Randomly chosen from 1 to \(10^5\).
+
+The `generate_test_case` function generates the random values, and `format_test_case` function formats these values into the required input format.
+
+You can run this script multiple times to generate different test cases for your competitive programming problem.

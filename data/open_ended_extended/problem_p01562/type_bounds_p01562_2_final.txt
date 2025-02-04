@@ -1,0 +1,3 @@
+Types: N: int, Xi: int, Yi: int
+Ranges: 2 ≤ N ≤ 100, -10^5 ≤ Xi, Yi ≤ 10^5
+Addtl Info: 1 ≤ i ≤ N, (Xj, Yj) ≠ (Xj+1, Yj+1), 1 ≤ j ≤ N-1

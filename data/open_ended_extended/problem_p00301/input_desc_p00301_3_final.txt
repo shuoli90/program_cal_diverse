@@ -1,0 +1,16 @@
+Canonicalized Input Description:
+
+An integer \(X\) (1 ≤ \(X\) ≤ 100000), representing some quantity.
+
+### Example Input:
+
+```
+25
+```
+
+### Function Signature:
+Write a function f(X) that takes in the input. 
+def f(X: int): 
+    ''' 
+    X: an integer
+    '''

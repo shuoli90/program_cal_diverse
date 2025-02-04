@@ -1,0 +1,14 @@
+An input string consisting of digits ('0'-'9') and characters ('T', 'L', 'U', 'R', 'D'), with a length between 2 and 1000 characters.
+
+### Example Input:
+
+```
+5R2D
+```
+
+### Function Signature:
+Write a function f(input_str) that takes in the input.
+def f(input_str: str):
+    '''
+    input_str: a string
+    '''

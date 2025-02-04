@@ -1,0 +1,35 @@
+Sure, let's create a test case generator for the given problem statement. The given problem involves generating a number of piles with a specified number of stones in each pile. Here's a Python function to generate random test cases for this problem:
+
+```python
+import random
+
+def tcgen():
+    # Generate a random number of piles within the constraint
+    N = random.randint(2, 300)
+    
+    # Generate a list of N pile sizes where each pile has a random number of stones within the constraint
+    A = [random.randint(1, 10**12) for _ in range(N)]
+    
+    return N, A
+
+# Example of generating a test case
+N, A = tcgen()
+print(N)
+print(" ".join(map(str, A)))
+```
+
+This function generates a random number of piles \(N\) (between 2 and 300), and for each pile, it assigns a random number of stones \(A[i]\) (between 1 and \(10^{12}\)). 
+
+You can use this function to produce random test cases for your problem. Each time you call `tcgen()`, it will produce a new, random test case that adheres to the given constraints, ensuring a variety of test cases to validate your solution.
+
+Here's an example of how to use the generated test cases:
+
+```python
+# Example usage of the generated test case
+N, A = tcgen()
+print("Generated Test Case:")
+print(f"N: {N}")
+print(f"A: {A}")
+```
+
+This will print out the generated values for \(N\) and \(A\), which you can then use to test your solution to the problem.

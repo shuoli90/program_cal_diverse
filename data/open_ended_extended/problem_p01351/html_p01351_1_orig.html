@@ -1,0 +1,130 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p01351 - Generation 1</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p01351 - Generation 1</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>Problem C: Usagitobi
+There is a board of m × n squares. The square in the i-th row and j-th column is represented as (i, j) (0 ≤ i < m, 0 ≤ j < n).
+When the rabbit is at (x, y), it can jump to ((x + a) mod m, (y + b) mod n) or ((x + c) mod m, (y + d) mod n).
+Now, the rabbit is at (0, 0). Assuming that it cannot go back to a square it has jumped to before, how many times can the rabbit jump at most?
+Input
+The input is given on a single line and consists of six integers m, n, a, b, c, and d separated by a space. 1 ≤ m, n, a, b, c, d ≤ 100,000.
+Output
+Output the maximum number of times the rabbit can jump on a single line.
+Sample Input 1
+6 6 2 2 2 4
+Sample Output 1
+8
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An integer m (1 ≤ m ≤ 100,000), representing some quantity or size.
+An integer n (1 ≤ n ≤ 100,000), representing some quantity or size.
+An integer a (1 ≤ a ≤ 100,000), representing some quantity or size.
+An integer b (1 ≤ b ≤ 100,000), representing some quantity or size.
+An integer c (1 ≤ c ≤ 100,000), representing some quantity or size.
+An integer d (1 ≤ d ≤ 100,000), representing some quantity or size.
+
+### Example Input:
+
+```
+6 6 2 2 2 4
+```
+
+### Function Signature:
+Write a function f(inputs) that takes in the input.
+```python
+def f(inputs: Tuple[int, int, int, int, int, int]):
+    '''
+    inputs: a tuple of six integers
+    '''</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Sure! Given the problem statement for "Problem C: Usagitobi," we need to create a test case generator that will generate inputs consisting of six integers \(m, n, a, b, c, d\), each ranging between 1 and 100,000.
+
+Here is the test case generator function for the problem:
+
+```python
+import random
+
+def tcgen():
+    # Generate random values for m, n, a, b, c, and d within the specified range
+    m = random.randint(1, 100000)
+    n = random.randint(1, 100000)
+    a = random.randint(1, 100000)
+    b = random.randint(1, 100000)
+    c = random.randint(1, 100000)
+    d = random.randint(1, 100000)
+    
+    # Return the generated test case as a tuple
+    return m, n, a, b, c, d
+
+# Example usage:
+for _ in range(5):  # Generate 5 test cases
+    print(tcgen())
+```
+
+This function generates random values for \(m\), \(n\), \(a\), \(b\), \(c\), and \(d\) within the range of 1 to 100,000, as specified in the problem statement. Each invocation of `tcgen` will produce a new set of values that can be used as input for testing the solution to the problem.
+
+You can run this function multiple times to generate a variety of test cases for thorough testing of your "Usagitobi" problem solution.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    m, n, a, b, c, d = map(int, fh.readline().strip().split())
+    return m, n, a, b, c, d</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

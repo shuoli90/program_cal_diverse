@@ -1,0 +1,39 @@
+Sure, here is a test case generator for the given problem statement:
+
+```python
+import random
+
+def tcgen():
+    # Constants
+    MAX_N = 2000
+    MODULO = 10**9 + 7
+    
+    # Randomly generate N and K
+    N = random.randint(1, MAX_N)
+    K = random.randint(1, N)
+    
+    return N, K
+
+# Example usage
+if __name__ == "__main__":
+    for _ in range(5):  # Generate 5 test cases for demonstration
+        print(tcgen())
+```
+
+### Explanation:
+
+1. **Constants**:
+   - `MAX_N = 2000`: The maximum value for \( N \), as per the problem constraints.
+   - `MODULO = 10^9 + 7`: The modulo value used for the output, though it's not directly used in generating test cases, it's useful for any further calculations.
+
+2. **Generating Random Values**:
+   - `N`: Randomly generated between 1 and 2000.
+   - `K`: Randomly generated between 1 and \( N \).
+
+3. **Returning the Test Case**:
+   - The function returns a tuple `(N, K)`.
+
+4. **Example Usage**:
+   - The example usage demonstrates how to generate and print 5 test cases.
+
+This generator will produce random test cases within the specified constraints, allowing you to test the robustness and performance of your solution.

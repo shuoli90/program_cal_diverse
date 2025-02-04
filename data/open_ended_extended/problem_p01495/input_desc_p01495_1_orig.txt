@@ -1,0 +1,22 @@
+Canonicalized Input Description:
+
+An integer N (1 ≤ N ≤ 1,000), representing some quantity or size.
+An integer X (0 ≤ X ≤ 1e18).
+An integer Y (0 ≤ Y ≤ 1e18).
+An integer Z (0 ≤ Z ≤ 1e18).
+
+### Example Input:
+
+```
+3 1 0 1
+```
+
+### Function Signature:
+Write a function f(N, X, Y, Z) that takes in the input.
+def f(N: int, X: int, Y: int, Z: int):
+    '''
+    N: an integer
+    X: an integer
+    Y: an integer
+    Z: an integer
+    '''

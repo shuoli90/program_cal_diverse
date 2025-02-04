@@ -1,0 +1,26 @@
+An integer N (1 ≤ N ≤ 100), representing the number of cases.
+For each test case:
+- Two integers W and H (1 ≤ W, H ≤ 20), specifying dimensions.
+- H lines each containing W integers, where each integer is between 0 and 9999.
+
+### Example Input:
+
+```
+2
+2 2
+2 3
+3 5
+3 2
+4 1 1
+2 1 4
+```
+
+### Function Signature:
+
+def f(N: int, cases: List[Tuple[int, int, List[List[int]]]]):
+    '''
+    N: an integer
+    cases: a list of tuples, each containing:
+        - two integers (W, H)
+        - a list of lists of integers representing the grid
+    '''

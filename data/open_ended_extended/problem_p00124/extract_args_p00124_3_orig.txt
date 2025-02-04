@@ -1,0 +1,14 @@
+def extract_arguments(fh):
+    inputs = []
+    while True:
+        n = int(fh.readline().strip())
+        if n == 0:
+            break
+        teams = []
+        for _ in range(n):
+            line = fh.readline().strip().split()
+            name = line[0]
+            w, l, d = map(int, line[1:])
+            teams.append((name, w, l, d))
+        inputs.append(teams)
+    return inputs

@@ -1,0 +1,56 @@
+Sure, here is a test case generator for the given problem statement:
+
+```python
+import random
+
+def generate_valid_distance_matrix(N):
+    """
+    Generates a valid shortest distance matrix for a fully connected undirected graph with N nodes.
+    """
+    A = [[0] * N for _ in range(N)]
+
+    # Generate a random distance matrix for the upper triangle
+    for i in range(N):
+        for j in range(i + 1, N):
+            A[i][j] = random.randint(1, 10**9)
+            A[j][i] = A[i][j] # Symmetric matrix
+
+    return A
+
+def generate_invalid_distance_matrix(N):
+    """
+    Generates an invalid shortest distance matrix for testing.
+    """
+    A = generate_valid_distance_matrix(N)
+    
+    # Introduce an inconsistency
+    i, j = random.sample(range(N), 2)
+    A[i][j] += random.randint(1, 10) # Make sure A[i][j] is not the sum of shortest paths
+
+    return A
+
+def tcgen():
+    N = random.randint(1, 300)
+    
+    if random.random() > 0.5:
+        A = generate_valid_distance_matrix(N)
+    else:
+        A = generate_invalid_distance_matrix(N)
+    
+    return N, A
+
+# Example of generating test cases
+N, A = tcgen()
+print(N)
+for row in A:
+    print(' '.join(map(str, row)))
+```
+
+### Explanation:
+1. **generate_valid_distance_matrix(N)**: This function creates a valid distance matrix for a fully connected undirected graph with `N` nodes. The distances are random integers between 1 and 10^9. It ensures that the matrix is symmetric and that the diagonal elements are zero.
+
+2. **generate_invalid_distance_matrix(N)**: This function first generates a valid distance matrix and then introduces an inconsistency by modifying a randomly selected element to ensure it does not represent the shortest path.
+
+3. **tcgen()**: This function randomly decides whether to generate a valid or invalid distance matrix and returns it along with the size `N`.
+
+The generated test cases can be used to evaluate both the correctness and robustness of your algorithm for detecting valid and invalid road networks.

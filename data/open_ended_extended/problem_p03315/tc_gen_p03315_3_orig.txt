@@ -1,0 +1,26 @@
+Sure, here's a test case generator for the problem described:
+
+```python
+import random
+
+def tcgen():
+    # Generate a string of length 4 consisting of '+' or '-'
+    S = ''.join(random.choice(['+', '-']) for _ in range(4))
+    return S
+
+# Example usage:
+for _ in range(5):
+    print(tcgen())
+```
+
+This test case generator produces a random string of four '+' or '-' characters, which can be used to simulate different inputs for the problem. Below are a few sample outputs from running the generator:
+
+```
+-+-+
++--+
+++--
+++++
+--++
+```
+
+You can use these generated test cases to test the implementation of the solution for the given problem.

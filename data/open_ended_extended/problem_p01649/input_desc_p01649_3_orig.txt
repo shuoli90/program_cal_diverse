@@ -1,0 +1,27 @@
+An integer n (2 ≤ n ≤ 11), representing some quantity.
+Five integers w, h, r, v_x, v_y where (4 ≤ w, h ≤ 1000), (1 ≤ r ≤ 100), (-10000 ≤ v_x, v_y ≤ 10000 and (v_x, v_y) ≠ (0, 0)).
+A list of n tuples of two integers each (x_i, y_i) where (r < x_i < w - r, r < y_i < h - r).
+The end of the input is indicated by a line containing a single zero.
+
+### Example Input:
+
+```
+3
+26 16 1 8 4
+10 6
+9 2
+9 10
+0
+```
+
+### Function Signature:
+Write a function f(inputs) that takes in the input.
+```python
+def f(inputs: List[Tuple[int, int, int, int, int, int, List[Tuple[int, int]]]]):
+    '''
+    inputs: a list of tuples where each tuple contains:
+      - an integer
+      - five integers
+      - a list of tuples of two integers each
+    '''
+```

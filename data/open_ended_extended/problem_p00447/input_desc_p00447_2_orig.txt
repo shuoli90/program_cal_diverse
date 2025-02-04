@@ -1,0 +1,54 @@
+An integer m (1 ≤ m ≤ 200), followed by m lines each containing two integers representing coordinates (0 ≤ x, y ≤ 1000000). Followed by an integer n (1 ≤ n ≤ 1000), followed by n lines each containing two integers representing coordinates (0 ≤ x, y ≤ 1000000). The input ends when m is 0. There will be no more than 5 datasets.
+
+### Example Input:
+
+```
+5
+8 5
+6 4
+4 3
+7 10
+0 10
+10
+10 5
+2 7
+9 7
+8 10
+10 2
+1 2
+8 1
+6 7
+6 0
+0 9
+5
+904207 809784
+845370 244806
+499091 59863
+638406 182509
+435076 362268
+10
+757559 866424
+114810 239537
+519926 989458
+461089 424480
+674361 448440
+81851 150384
+459107 795405
+299682 6700
+254125 362183
+50795 541942
+0
+```
+
+### Function Signature:
+Write a function f(datasets) that takes in the input.
+```python
+def f(datasets: List[Tuple[int, List[Tuple[int, int]], int, List[Tuple[int, int]]]]):
+    '''
+    datasets: a list of tuples where each tuple contains:
+        - an integer
+        - a list of tuples of integers
+        - an integer
+        - a list of tuples of integers
+    '''
+```

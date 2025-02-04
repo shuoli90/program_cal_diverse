@@ -1,0 +1,73 @@
+
+Problem F: Mysterious Dungeons
+The Kingdom of Aqua Canora Mystica is a very affluent and peaceful country, but around the
+kingdom, there are many evil monsters that kill people. So the king gave an order to you to kill
+the master monster.
+You came to the dungeon where the monster lived. The dungeon consists of a grid of square
+cells. You explored the dungeon moving up, down, left and right. You finally found, fought
+against, and killed the monster.
+Now, you are going to get out of the dungeon and return home. However, you found strange
+carpets and big rocks are placed in the dungeon, which were not there until you killed the
+monster. They are caused by the final magic the monster cast just before its death! Every rock
+occupies one whole cell, and you cannot go through that cell. Also, each carpet covers exactly
+one cell. Each rock is labeled by an uppercase letter and each carpet by a lowercase. Some of
+the rocks and carpets may have the same label.
+While going around in the dungeon, you observed the following behaviors. When you enter
+into the cell covered by a carpet, all the rocks labeled with the corresponding letter (e.g., the
+rocks with ‘A’ for the carpets with ‘a’) disappear. After the disappearance, you can enter the
+cells where the rocks disappeared, but if you enter the same carpet cell again or another carpet
+cell with the same label, the rocks revive and prevent your entrance again. After the revival,
+you have to move on the corresponding carpet cell again in order to have those rocks disappear
+again.
+Can you exit from the dungeon? If you can, how quickly can you exit? Your task is to write
+a program that determines whether you can exit the dungeon, and computes the minimum
+required time.
+Input
+The input consists of some data sets.
+Each data set begins with a line containing two integers, W and H (3 ≤ W, H ≤ 30). In each
+of the following H lines, there are W characters, describing the map of the dungeon as W × H
+grid of square cells. Each character is one of the following:
+ ‘@’ denoting your current position,
+ ‘<’ denoting the exit of the dungeon,
+ A lowercase letter denoting a cell covered by a carpet with the label of that letter,
+ An uppercase letter denoting a cell occupied by a rock with the label of that letter,
+ ‘#’ denoting a wall, and
+ ‘.’ denoting an empty cell.
+Every dungeon is surrounded by wall cells (‘#’), and has exactly one ‘@’ cell and one ‘<’ cell.
+There can be up to eight distinct uppercase labels for the rocks and eight distinct lowercase
+labels for the carpets.
+You can move to one of adjacent cells (up, down, left, or right) in one second. You cannot move
+to wall cells or the rock cells.
+A line containing two zeros indicates the end of the input, and should not be processed.
+Output
+For each data set, output the minimum time required to move from the ‘@’ cell to the ‘<’ cell,
+in seconds, in one line. If you cannot exit, output -1.
+Sample Input
+8 3
+########
+#<A.@.a#
+########
+8 3
+########
+#<AaAa@#
+########
+8 4
+########
+#<EeEe@#
+#FG.e#.#
+########
+8 8
+########
+#mmm@ZZ#
+#mAAAbZ#
+#mABBBZ#
+#mABCCd#
+#aABCDD#
+#ZZcCD<#
+########
+0 0
+Output for the Sample Input
+7
+-1
+7
+27

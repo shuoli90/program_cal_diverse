@@ -1,0 +1,76 @@
+Sure, I can help you create a test case generator for the "Friday the 13th" problem. Below is a Python function that will generate test cases while adhering to the given constraints:
+
+```python
+import random
+import datetime
+
+def is_valid_date(year, month, day):
+    try:
+        datetime.date(year, month, day)
+        return True
+    except ValueError:
+        return False
+
+def generate_date_range():
+    # Generate start date
+    Y1 = random.randint(1, 2022) # Keeping the upper bound reasonable for testing purposes
+    M1 = random.randint(1, 12)
+    
+    if M1 in {1, 3, 5, 7, 8, 10, 12}:
+        D1 = random.randint(1, 31)
+    elif M1 in {4, 6, 9, 11}:
+        D1 = random.randint(1, 30)
+    elif M1 == 2:
+        if (Y1 % 4 == 0 and Y1 % 100 != 0) or (Y1 % 400 == 0):
+            D1 = random.randint(1, 29)
+        else:
+            D1 = random.randint(1, 28)
+    
+    start_date = datetime.date(Y1, M1, D1)
+    
+    # Generate end date
+    max_year = random.randint(Y1, 2022)
+    Y2 = random.randint(Y1, max_year)
+    M2 = random.randint(1, 12)
+    
+    if M2 in {1, 3, 5, 7, 8, 10, 12}:
+        D2 = random.randint(1, 31)
+    elif M2 in {4, 6, 9, 11}:
+        D2 = random.randint(1, 30)
+    elif M2 == 2:
+        if (Y2 % 4 == 0 and Y2 % 100 != 0) or (Y2 % 400 == 0):
+            D2 = random.randint(1, 29)
+        else:
+            D2 = random.randint(1, 28)
+    
+    end_date = datetime.date(Y2, M2, D2)
+    
+    # Ensure the end date is not before the start date
+    if start_date > end_date:
+        start_date, end_date = end_date, start_date
+    
+    return start_date.year, start_date.month, start_date.day, end_date.year, end_date.month, end_date.day
+
+def tcgen(num_cases=10):
+    test_cases = []
+    for _ in range(num_cases):
+        Y1, M1, D1, Y2, M2, D2 = generate_date_range()
+        test_cases.append(f"{Y1} {M1} {D1} {Y2} {M2} {D2}")
+    return test_cases
+
+# Example usage of the test case generator
+for test_case in tcgen():
+    print(test_case)
+```
+
+### Explanation:
+1. **is_valid_date Function**: This helper function checks if a given date is valid. It uses the `datetime.date` constructor to verify the date.
+  
+2. **generate_date_range Function**: This function generates a valid start date and a valid end date while ensuring that the end date is not before the start date.
+   - **Selecting Y1, M1, D1**: Randomly selects a year (`Y1`), month (`M1`), and day (`D1`) while considering the number of days in each month and checking for leap years.
+   - **Selecting Y2, M2, D2**: Similarly selects a valid end year (`Y2`), month (`M2`), and day (`D2`).
+   - Ensures that the end date is not before the start date. If it is, it swaps the start and end dates.
+
+3. **tcgen Function**: This function generates multiple test cases by calling `generate_date_range` multiple times. The number of test cases can be specified by the `num_cases` parameter.
+
+This generator will create a variety of valid date ranges for the problem, ensuring comprehensive test coverage.

@@ -1,0 +1,31 @@
+Canonicalized Input Description:
+
+An integer N (1 ≤ N ≤ 10^3), representing some quantity or size.
+An integer H (1 ≤ H ≤ 10^3), representing some dimension or height.
+An integer W (1 ≤ W ≤ 10^3), representing some dimension or width.
+A list of N integers L, where each integer represents a size (1 ≤ L[i] ≤ 10^3).
+A list of N lists of tuples of integers (pxij, pyij), where each tuple represents coordinates (0 ≤ pxij < W, 0 ≤ pyij < H).
+
+### Example Input:
+
+```
+2
+5
+5
+3 4
+[(0, 1), (1, 2), (2, 3)]
+[(1, 1), (2, 2), (3, 3), (4, 4)]
+```
+
+### Function Signature:
+Write a function f(N, H, W, L, paths) that takes in the input.
+```python
+def f(N: int, H: int, W: int, L: List[int], paths: List[List[Tuple[int, int]]]): 
+    ''' 
+    N: an integer
+    H: an integer
+    W: an integer
+    L: a list of integers
+    paths: a list of lists of tuples of integers
+    '''
+```

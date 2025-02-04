@@ -1,0 +1,25 @@
+An integer N (2 ≤ N ≤ 2000), representing some quantity or size.
+An integer K (1 ≤ K ≤ N-1).
+A list of tuples, each containing two integers (A_i, B_i) where (1 ≤ A_i ≤ N and 1 ≤ B_i ≤ N), representing pairs of connections.
+
+### Example Input:
+
+```
+6 2
+1 2
+3 2
+4 2
+1 6
+5 6
+```
+
+### Function Signature:
+Write a function f(N, K, edges) that takes in the input.
+```python
+def f(N: int, K: int, edges: List[Tuple[int, int]]):
+    '''
+    N: an integer
+    K: an integer
+    edges: a list of tuples, each containing two integers
+    '''
+```

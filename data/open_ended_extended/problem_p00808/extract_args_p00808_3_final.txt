@@ -1,0 +1,12 @@
+def extract_arguments(fh):
+    data_sets = []
+    while True:
+        num_connections = int(fh.readline().strip())
+        if num_connections == 0:
+            break
+        connections = []
+        for _ in range(num_connections):
+            start_city, start_time, arrival_city, arrival_time, price = fh.readline().strip().split()
+            connections.append((start_city, start_time, arrival_city, arrival_time, int(price)))
+        data_sets.append(connections)
+    return data_sets

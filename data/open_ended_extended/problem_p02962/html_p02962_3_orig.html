@@ -1,0 +1,160 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p02962 - Generation 3</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p02962 - Generation 3</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>
+Score : 600 points
+Problem StatementGiven are two strings s and t consisting of lowercase English letters. Determine if the number of non-negative integers i satisfying the following condition is finite, and find the maximum value of such i if the number is finite.
+There exists a non-negative integer j such that the concatenation of i copies of t is a substring of the concatenation of j copies of s.
+Notes
+A string a is a substring of another string b if and only if there exists an integer x (0 \leq x \leq |b| - |a|) such that, for any y (1 \leq y \leq |a|), a_y = b_{x+y} holds.
+We assume that the concatenation of zero copies of any string is the empty string. From the definition above, the empty string is a substring of any string. Thus, for any two strings s and t, i = 0 satisfies the condition in the problem statement.
+Constraints
+1 \leq |s| \leq 5 \times 10^5
+1 \leq |t| \leq 5 \times 10^5
+s and t consist of lowercase English letters.
+InputInput is given from Standard Input in the following format:
+s
+t
+OutputIf the number of non-negative integers i satisfying the following condition is finite, print the maximum value of such i; if the number is infinite, print -1.
+Sample Input 1abcabab
+ab
+Sample Output 13
+The concatenation of three copies of t, ababab, is a substring of the concatenation of two copies of s, abcabababcabab, so i = 3 satisfies the condition.
+On the other hand, the concatenation of four copies of t, abababab, is not a substring of the concatenation of any number of copies of s, so i = 4 does not satisfy the condition.
+Similarly, any integer greater than 4 does not satisfy the condition, either. Thus, the number of non-negative integers i satisfying the condition is finite, and the maximum value of such i is 3.
+Sample Input 2aa
+aaaaaaa
+Sample Output 2-1
+For any non-negative integer i, the concatenation of i copies of t is a substring of the concatenation of 4i copies of s. Thus, there are infinitely many non-negative integers i that satisfy the condition.
+Sample Input 3aba
+baaab
+Sample Output 30
+As stated in Notes, i = 0 always satisfies the condition.
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>Canonicalized Input Description: 
+
+A string s consisting of lowercase English letters with length between 1 and 500,000.
+A string t consisting of lowercase English letters with length between 1 and 500,000.
+
+### Example Input:
+
+```
+abcabab
+ab
+```
+
+### Function Signature:
+Write a function f(s, t) that takes in the input.
+```python
+def f(s: str, t: str):
+    '''
+    s: a string
+    t: a string
+    '''
+```</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Sure, here is the test case generator for the given problem statement:
+
+```python
+import random
+import string
+
+def generate_string(length):
+    return ''.join(random.choices(string.ascii_lowercase, k=length))
+
+def tcgen():
+    # Generate length of strings s and t within the given constraints
+    len_s = random.randint(1, 5 * 10**5)
+    len_t = random.randint(1, 5 * 10**5)
+    
+    # Generate random strings s and t of the generated lengths
+    s = generate_string(len_s)
+    t = generate_string(len_t)
+    
+    return s, t
+
+# Example usage
+if __name__ == "__main__":
+    s, t = tcgen()
+    print(s)
+    print(t)
+```
+
+### Explanation
+
+1. **generate_string(length):** This helper function generates a random string of a given length using lowercase English letters.
+
+2. **tcgen():** The main function that generates test cases.
+    - It first generates random lengths for strings `s` and `t` within the given constraints (1 to 5 * 10^5).
+    - It then generates random strings `s` and `t` of the given lengths.
+    - It returns the generated strings `s` and `t`.
+
+### Usage
+The script includes an example usage of the `tcgen` function, which prints out a pair of randomly generated strings that can be used as test cases for the problem. This ensures that the test cases adhere to the constraints specified in the problem statement.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    s = fh.readline().strip()
+    t = fh.readline().strip()
+    return s, t</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

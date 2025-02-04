@@ -1,0 +1,22 @@
+An integer N (1 ≤ N ≤ 200), representing some quantity or size.
+N pairs of integers (x_i, y_i) where 0 ≤ x_i, y_i < 10^4 and for all distinct i, j, x_i ≠ x_j or y_i ≠ y_j.
+
+### Example Input:
+
+```
+4
+0 0
+0 1
+1 0
+1 1
+```
+
+### Function Signature:
+Write a function f(N, coordinates) that takes in the input. 
+```python
+def f(N: int, coordinates: List[Tuple[int, int]]):
+    ''' 
+    N: an integer 
+    coordinates: a list of tuples, each containing two integers
+    '''
+```

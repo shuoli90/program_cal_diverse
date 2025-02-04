@@ -1,0 +1,152 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p02626 - Generation 1</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p02626 - Generation 1</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>
+Score : 600 points
+Problem StatementThere are N piles of stones. The i-th pile has A_i stones.
+Aoki and Takahashi are about to use them to play the following game:
+Starting with Aoki, the two players alternately do the following operation:
+Operation: Choose one pile of stones, and remove one or more stones from it.
+When a player is unable to do the operation, he loses, and the other player wins.
+When the two players play optimally, there are two possibilities in this game: the player who moves first always wins, or the player who moves second always wins, only depending on the initial number of stones in each pile.
+In such a situation, Takahashi, the second player to act, is trying to guarantee his win by moving at least zero and at most (A_1 - 1) stones from the 1-st pile to the 2-nd pile before the game begins.
+If this is possible, print the minimum number of stones to move to guarantee his victory; otherwise, print -1 instead.
+Constraints
+2 \leq N \leq 300
+1 \leq A_i \leq 10^{12}
+InputInput is given from Standard Input in the following format:
+N
+A_1 \ldots A_N
+OutputPrint the minimum number of stones to move to guarantee Takahashi's win; otherwise, print -1 instead.
+Sample Input 12
+5 3
+Sample Output 11
+Without moving stones, if Aoki first removes 2 stones from the 1-st pile, Takahashi cannot win in any way.
+If Takahashi moves 1 stone from the 1-st pile to the 2-nd before the game begins so that both piles have 4 stones, Takahashi can always win by properly choosing his actions.
+Sample Input 22
+3 5
+Sample Output 2-1
+It is not allowed to move stones from the 2-nd pile to the 1-st.
+Sample Input 33
+1 1 2
+Sample Output 3-1
+It is not allowed to move all stones from the 1-st pile.
+Sample Input 48
+10 9 8 7 6 5 4 3
+Sample Output 43
+Sample Input 53
+4294967297 8589934593 12884901890
+Sample Output 51
+Watch out for overflows.
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An integer N (2 ≤ N ≤ 300), representing some quantity or size.
+A list of integers A of size N, where each integer is between 1 and 1e12.
+
+### Example Input:
+
+```
+3
+1 1 2
+```
+
+### Function Signature:
+Write a function f(N, A) that takes in the input.
+def f(N: int, A: List[int]):
+    '''
+    N: an integer
+    A: a list of integers
+    '''</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Certainly! Here is a test case generator for the described problem statement:
+
+```python
+import random
+
+def tcgen():
+    # Generate a random N within the given constraints
+    N = random.randint(2, 300)
+    
+    # Generate a list A of size N with each element in the range [1, 10^12]
+    A = [random.randint(1, 10**12) for _ in range(N)]
+    
+    return N, A
+
+# Example usage
+for _ in range(5):
+    N, A = tcgen()
+    print(N)
+    print(" ".join(map(str, A)))
+```
+
+### Explanation:
+1. **N**: The number of piles is randomly chosen to be between 2 and 300.
+2. **A**: Each element in the list of piles is randomly chosen from 1 to \(10^{12}\).
+
+This script will generate a valid random test case each time it is called, adhering to the problem's constraints. You can run this generator multiple times to create different test cases for extensive testing.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    N = int(fh.readline().strip())
+    A = list(map(int, fh.readline().strip().split()))
+    return N, A</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

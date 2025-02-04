@@ -1,0 +1,35 @@
+Sure! Below is a test case generator for the problem statement "Class Assignment":
+
+```python
+import random
+
+def tcgen():
+    # Generate a random number of datasets (1 to 1000)
+    num_datasets = random.randint(1, 1000)
+    datasets = []
+
+    for _ in range(num_datasets):
+        # Generate a random number of students (1 to 10000)
+        n = random.randint(1, 10000)
+        datasets.append(f"{n}")
+        
+        for _ in range(n):
+            # Generate scores for math, English, and Japanese (0 to 100)
+            pm = random.randint(0, 100)
+            pe = random.randint(0, 100)
+            pj = random.randint(0, 100)
+            datasets.append(f"{pm} {pe} {pj}")
+
+    # Append the ending zero line
+    datasets.append("0")
+    
+    # Join all the datasets with newline characters
+    return "\n".join(datasets)
+
+# Example usage: print a generated test case
+print(tcgen())
+```
+
+This generator function creates a random number of datasets (between 1 and 1000). Each dataset contains a random number of students (between 1 and 10000). For each student, it generates random scores for math, English, and Japanese (each between 0 and 100). It then formats the datasets into strings and joins them with newline characters, appending a single '0' at the end to indicate the end of input.
+
+Let me know if you need any further assistance!

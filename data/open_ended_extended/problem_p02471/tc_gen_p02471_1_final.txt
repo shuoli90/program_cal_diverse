@@ -1,0 +1,38 @@
+Sure, I can help you with that. Below is a test case generator for the problem statement involving the Extended Euclid Algorithm.
+
+```python
+import random
+
+def gcd(a, b):
+    while b:
+        a, b = b, a % b
+    return a
+
+def tcgen():
+    # Generating two positive integers a and b
+    a = random.randint(1, 10**9)
+    b = random.randint(1, 10**9)
+    
+    # Ensuring a <= b for sample output consistency
+    if a > b:
+        a, b = b, a
+
+    return f"{a} {b}"
+
+# Example usage
+for _ in range(5):  # Generate 5 test cases
+    print(tcgen())
+```
+
+### Explanation:
+1. **Importing random module**: To generate random integers.
+2. **GCD Function**: This is a helper function to compute the greatest common divisor. It is not directly used in the test case generation but can be useful for debugging or verifying test cases.
+3. **tcgen Function**: This is the main test case generator.
+    - It generates two random integers `a` and `b` in the range `[1, 10^9]`.
+    - It ensures that `a` is less than or equal to `b` for consistency in sample outputs.
+    - It returns the test case in the string format as required by the problem statement.
+
+### Example Usage:
+To generate multiple test cases, you can call `tcgen()` multiple times, as shown in the example usage. You can change the number of iterations based on how many test cases you need. 
+
+This generator ensures you have diverse test cases while respecting the given constraints of the problem.

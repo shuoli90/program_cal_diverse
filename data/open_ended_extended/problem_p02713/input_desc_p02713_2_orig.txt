@@ -1,0 +1,16 @@
+An integer K (1 ≤ K ≤ 200).
+
+### Example Input:
+
+```
+12
+```
+
+### Function Signature:
+Write a function f(K) that takes in the input. 
+```python
+def f(K: int):
+    ''' 
+    K: an integer
+    '''
+```

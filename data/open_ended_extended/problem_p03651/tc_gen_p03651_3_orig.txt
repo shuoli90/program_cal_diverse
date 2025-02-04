@@ -1,0 +1,25 @@
+Sure, here is a test case generator for the given problem statement:
+
+```python
+import random
+
+def tcgen():
+    N = random.randint(1, 10**5)
+    A = [random.randint(1, 10**9) for _ in range(N)]
+    K = random.randint(1, 10**9)
+    return N, K, A
+
+# Example usage
+if __name__ == "__main__":
+    N, K, A = tcgen()
+    print(N, K)
+    print(' '.join(map(str, A)))
+```
+
+This generator produces random test cases within the constraints given in the problem statement. Here's what each part does:
+
+- `N = random.randint(1, 10**5)`: Generates a random integer `N` between 1 and 100,000, representing the number of balls in the box.
+- `A = [random.randint(1, 10**9) for _ in range(N)]`: Creates a list `A` of size `N`, where each element is a random integer between 1 and 1,000,000,000, representing the integers written on the balls.
+- `K = random.randint(1, 10**9)`: Generates a random integer `K` between 1 and 1,000,000,000, representing the target integer we want to achieve.
+
+The generated test case is then printed in the required format. Note that this generator does not guarantee whether the output will be "POSSIBLE" or "IMPOSSIBLE", it just creates random valid inputs.

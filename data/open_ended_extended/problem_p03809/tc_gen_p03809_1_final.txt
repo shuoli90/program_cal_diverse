@@ -1,0 +1,50 @@
+Sure, here is a test case generator for the provided problem statement involving trees and stone removal:
+
+```python
+import random
+
+def generate_tree(N):
+    edges = []
+    if N == 2:
+        return [(1, 2)]
+    available_nodes = list(range(2, N + 1))
+    random.shuffle(available_nodes)
+    connected_nodes = [1]
+    while available_nodes:
+        u = random.choice(connected_nodes)
+        v = available_nodes.pop()
+        edges.append((u, v))
+        connected_nodes.append(v)
+    return edges
+
+def tcgen():
+    N = random.randint(2, 10**5)
+    A = [random.randint(0, 10**9) for _ in range(N)]
+    edges = generate_tree(N)
+    
+    return N, A, edges
+
+# To generate and print a test case
+if __name__ == "__main__":
+    N, A, edges = tcgen()
+    print(N)
+    print(' '.join(map(str, A)))
+    for a, b in edges:
+        print(a, b)
+```
+
+### Explanation:
+
+1. **generate_tree(N)**: This function generates a tree with `N` nodes. It starts by connecting node 1 to other nodes one by one, ensuring that the resulting graph is a tree. It returns a list of edges.
+
+2. **tcgen()**: This function generates a test case. It:
+   - Randomly selects `N` within the given constraints (2 ≤ N ≤ 10^5).
+   - Generates an array `A` of size `N`, with each element being a random integer between 0 and 10^9.
+   - Uses the `generate_tree` function to generate the edges of the tree.
+   - Returns `N`, `A`, and the list of edges.
+
+### Usage:
+
+- To generate and print a test case, run the script. It will output the number of vertices, the array of stones, and the edges of the tree.
+
+This test case generator ensures the constraints and properties of the problem are met. The tree generation ensures that there are `N-1` edges and that the graph is connected and acyclic, as required.

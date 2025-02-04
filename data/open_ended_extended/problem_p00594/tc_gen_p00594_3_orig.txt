@@ -1,0 +1,51 @@
+Sure, I can help you create a test case generator for the given problem statement "What Color Is The Universe?". Below is the Python code that generates test cases:
+
+```python
+import random
+
+def tcgen():
+    # Generate a random size for the array |A| (1 ≤ |A| < 1,000,000)
+    N = random.randint(1, 10**6)
+    
+    # Generate the array A with random integers (each integer is less than 2^31)
+    A = [random.randint(0, (2**31) - 1) for _ in range(N)]
+    
+    return N, A
+
+def generate_test_cases(num_cases=5):
+    test_cases = []
+    for _ in range(num_cases):
+        N, A = tcgen()
+        test_cases.append((N, A))
+    return test_cases
+
+def format_test_cases(test_cases):
+    formatted_cases = []
+    for N, A in test_cases:
+        formatted_case = f"{N}\n" + " ".join(map(str, A))
+        formatted_cases.append(formatted_case)
+    formatted_cases.append("0")  # End of input
+    return "\n\n".join(formatted_cases)
+
+# Generate and format test cases
+test_cases = generate_test_cases()
+formatted_test_cases = format_test_cases(test_cases)
+
+print(formatted_test_cases)
+```
+
+### Explanation:
+
+1. **`tcgen()` function:** Generates a single test case.
+   - It creates a random size `N` for the array `A` such that \(1 \leq N < 1,000,000\).
+   - It populates the array `A` with `N` random integers, each ranging from `0` to \(2^{31} - 1\).
+
+2. **`generate_test_cases(num_cases=5)` function:** Generates multiple test cases.
+   - It creates a list of test cases by calling `tcgen()` a specified number of times (default is 5).
+
+3. **`format_test_cases(test_cases)` function:** Formats the test cases into the required input format.
+   - It formats each test case into a string as required, and appends a "0" at the end to signify the end of input.
+
+4. **Printing the formatted test cases:** Concatenates all test cases into a single string and prints them to simulate the input format expected by the problem.
+
+You can adjust the `num_cases` parameter in the `generate_test_cases` function call to generate more or fewer test cases as needed.

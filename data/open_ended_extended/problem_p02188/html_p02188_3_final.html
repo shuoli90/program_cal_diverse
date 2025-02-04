@@ -1,0 +1,202 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p02188 - Generation 3</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p02188 - Generation 3</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>G: Restricted DFS
+Problem
+Given an undirected tree G with N vertices and N-1 edges, without self-loops or multiple edges. Each vertex is labeled with a non-negative integer A_i, and the vertices are numbered from 1 to N. The edges are also numbered from 1 to N-1, and the ith edge connects vertices u_i and v_i.
+Consider performing depth-first search (DFS) on this tree, starting from the root r and following the pseudocode below.
+// [input]
+// G: The graph to be searched by DFS
+// A: Non-negative integers assigned to each vertex
+// v: The vertex to start DFS from
+// step: An integer that records the number of steps taken
+// [output]
+// One of the following two values:
+// - SUCCESS: DFS returns to vertex v without stopping in the middle
+// - FAILURE: DFS stops in the middle
+function dfs(G, A, v, step)
+    if (A[v] is 0) then
+        return FAILURE
+    A[v] ← A[v] - 1
+    step ← step + 1
+    Sort the children of v in ascending order of their vertex numbers
+    // c is visited in ascending order of vertex numbers
+    for each (child c of v) do
+        if (dfs(G, A, c, step) is FAILURE) then
+            return FAILURE
+        if (A[v] is 0) then
+            return FAILURE
+        A[v] ← A[v] - 1
+        step ← step + 1
+    return SUCCESS
+That is, given G and A, execute
+dfs(G, A, r, 0)
+We want to find the number of steps taken by this DFS when each vertex is taken as the root.
+Input
+N
+A_1 ... A_N
+u_1 v_1
+...
+u_{N-1} v_{N-1}
+ The first line contains the number of vertices N of the graph.
+ The second line contains N integers. The ith integer A_i represents the value on the ith vertex.
+ The next N-1 lines contain information about the edges of the graph. Each line contains two integers u_i and v_i, indicating that there is an undirected edge between vertex u_i and vertex v_i.
+Constraints
+ 1 \leq N \leq 3 \times 10^5
+ 0 \leq A_i \leq 10^9
+ 1 \leq u_i < v_i \leq N
+ The graph given is guaranteed to be a tree.
+ All input is given as integers.
+Output
+Output N lines. The ith line should contain the number of steps taken in the DFS when vertex i is used as the root.
+Sample Input 1
+3
+1 2 3
+1 2
+1 3
+Sample Output 1
+2
+3
+3
+ When vertex 1 is used as the root</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An integer N (1 ≤ N ≤ 3 × 10^5), representing some quantity or size.
+A list of N non-negative integers, where each integer is between 0 and 1e9.
+N-1 pairs of integers, each pair representing a connection between two entities, where each integer in the pair is between 1 and N.
+
+### Example Input:
+
+```
+3
+1 2 3
+1 2
+1 3
+```
+
+### Function Signature:
+Write a function f(N, A, edges) that takes in the input.
+def f(N: int, A: List[int], edges: List[Tuple[int, int]]):
+    ''' 
+    N: an integer 
+    A: a list of integers
+    edges: a list of tuples
+    '''</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Sure, I can write a test case generator for the "Restricted DFS" problem. Here is the code for the test case generator:
+
+```python
+import random
+
+def generate_tree(N):
+    edges = []
+    for i in range(2, N + 1):
+        u = random.randint(1, i - 1)
+        v = i
+        edges.append((u, v))
+    return edges
+
+def tcgen():
+    # Generate N
+    N = random.randint(1, 3 * 10**5)
+    
+    # Generate A
+    A = [random.randint(0, 10**9) for _ in range(N)]
+    
+    # Generate tree edges
+    edges = generate_tree(N)
+    
+    return N, A, edges
+
+def print_test_case(N, A, edges):
+    print(N)
+    print(' '.join(map(str, A)))
+    for u, v in edges:
+        print(u, v)
+
+# Example usage:
+N, A, edges = tcgen()
+print_test_case(N, A, edges)
+```
+
+Explanation:
+1. **generate_tree(N)**: This function generates a simple tree with \( N \) vertices. It ensures that each vertex is connected in a valid tree structure by connecting each new vertex to one of the previous vertices.
+2. **tcgen()**: This function generates the test case by first generating a random \( N \) (number of vertices) within the specified limits. It then generates the list \( A \) of size \( N \) with random integers between 0 and \( 10^9 \). Finally, it generates the edges of the tree using the `generate_tree` function.
+3. **print_test_case(N, A, edges)**: This function prints the generated test case in the required format.
+
+This generator will create random test cases for the problem, ensuring that all constraints are met. You can run the example usage part to generate and print a test case.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    N = int(fh.readline().strip())
+    A = list(map(int, fh.readline().strip().split()))
+    edges = []
+    for _ in range(N - 1):
+        u, v = map(int, fh.readline().strip().split())
+        edges.append((u, v))
+    return N, A, edges
+
+# if __name__ == "__main__":
+#     input_path = sys.argv[1]
+#     with open(input_path, 'r') as fh:
+#         N, A, edges = extract_arguments(fh)
+#         f(N, A, edges)</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

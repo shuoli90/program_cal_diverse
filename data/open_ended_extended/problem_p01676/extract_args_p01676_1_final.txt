@@ -1,0 +1,13 @@
+def extract_arguments(fh):
+    test_cases = []
+    while True:
+        line = fh.readline().strip()
+        if not line:
+            break
+        N, M = map(int, line.split())
+        edges = []
+        for _ in range(M):
+            s, t = map(int, fh.readline().strip().split())
+            edges.append((s, t))
+        test_cases.append((N, M, edges))
+    return test_cases

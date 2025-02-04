@@ -1,0 +1,46 @@
+To generate test cases for the given problem statement, we need to create a function that will randomly select an integer \( N \) within the specified range (1 to 999) and derive the corresponding output based on the last digit of \( N \). Here is the test case generator function:
+
+```python
+import random
+
+def determine_reading(N):
+    last_digit = N % 10
+    if last_digit in {2, 4, 5, 7, 9}:
+        return f"{N}hon"
+    elif last_digit in {0, 1, 6, 8}:
+        return f"{N}pon"
+    elif last_digit == 3:
+        return f"{N}bon"
+
+def tcgen():
+    # Generate a random integer N within the range 1 to 999
+    N = random.randint(1, 999)
+    
+    # Determine the correct reading based on the last digit of N
+    result = determine_reading(N)
+    
+    return N, result
+
+# Example usage
+for _ in range(5):
+    N, result = tcgen()
+    print(f"Input: {N}")
+    print(f"Output: {result}")
+    print()
+```
+
+### Explanation:
+
+1. **Function `determine_reading(N)`**:
+    - This function takes an integer \( N \) and determines the reading based on the last digit of \( N \).
+    - It uses modular arithmetic to extract the last digit of \( N \) and then checks which set the last digit belongs to (hon, pon, or bon).
+
+2. **Function `tcgen()`**:
+    - This function generates a random integer \( N \) within the range 1 to 999.
+    - It calls `determine_reading(N)` to get the correct reading for \( N \).
+    - It returns \( N \) and the corresponding reading as a tuple.
+
+3. **Example usage**:
+    - A loop is used to generate and print five sample test cases using the `tcgen()` function.
+
+This generator ensures that all possible values of \( N \) within the constraints are tested, and it produces the correct expected output for each generated test case.

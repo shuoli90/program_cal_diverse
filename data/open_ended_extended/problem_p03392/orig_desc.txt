@@ -1,0 +1,19 @@
+
+Score : 700 points
+Problem StatementYou are given a string S consisting of a,b and c. Find the number of strings that can be possibly obtained by repeatedly performing the following operation zero or more times, modulo 998244353:
+Choose an integer i such that 1\leq i\leq |S|-1 and the i-th and (i+1)-th characters in S are different. Replace each of the i-th and (i+1)-th characters in S with the character that differs from both of them (among a, b and c).
+Constraints
+2 \leq |S| \leq 2 × 10^5
+S consists of a, b and c.
+InputInput is given from Standard Input in the following format:
+S
+OutputPrint the number of strings that can be possibly obtained by repeatedly performing the operation, modulo 998244353.
+Sample Input 1abc
+Sample Output 13
+abc, aaa and ccc can be obtained.
+Sample Input 2abbac
+Sample Output 265
+Sample Input 3babacabac
+Sample Output 36310
+Sample Input 4ababacbcacbacacbcbbcbbacbaccacbacbacba
+Sample Output 4148010497

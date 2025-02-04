@@ -1,0 +1,51 @@
+Sure! Below is a test case generator for the "Elevator Hall Number" problem described in your prompt. This generator will create random valid inputs based on the constraints provided.
+
+```python
+import random
+
+def tcgen():
+    # Generate a random number of elevators, N
+    N = random.randint(2, 6)
+    
+    # Generate ranges for each elevator
+    floors = []
+    for _ in range(N):
+        low = random.randint(1, 99)
+        high = random.randint(low, 99)  # Ensure high is at least as large as low
+        floors.append((low, high))
+    
+    return N, floors
+
+def generate_test_cases(num_cases):
+    test_cases = []
+    for _ in range(num_cases):
+        N, floors = tcgen()
+        test_case = f"{N}\n"
+        for low, high in floors:
+            test_case += f"{low} {high}\n"
+        test_cases.append(test_case.strip())
+    
+    # End the input with a zero line
+    test_cases.append("0")
+    
+    return test_cases
+
+# Example usage:
+num_cases = 5
+test_cases = generate_test_cases(num_cases)
+for test_case in test_cases:
+    print(test_case)
+    print()
+```
+
+### Explanation:
+
+1. **tcgen Function**: This function generates a single test case for the problem:
+   - `N` is randomly chosen between 2 and 6.
+   - For each elevator, `low` is randomly chosen between 1 and 99, and `high` is chosen between `low` and 99 to ensure the constraint `low ≤ high`.
+
+2. **generate_test_cases Function**: This function generates a specified number of test cases and formats them according to the problem's input requirements. After generating the specified number of test cases, it adds a final line with a single zero to indicate the end of inputs.
+
+3. **Example Usage**: The `generate_test_cases` function is called with `num_cases` set to 5, and the generated test cases are printed.
+
+You can modify `num_cases` to generate as many test cases as you need. Each test case is generated randomly while respecting the constraints specified in the problem statement.

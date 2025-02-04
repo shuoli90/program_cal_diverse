@@ -1,0 +1,44 @@
+Creating a test case generator for the "K-th String" problem involves generating random values for \( N \), \( A \), \( K \), and a permutation of suffix array indices. Below is a Python function to generate test cases for this problem:
+
+```python
+import random
+
+def tcgen():
+    # Generate N within the given constraints
+    N = random.randint(1, 10**5)
+    
+    # Generate A within the given constraints
+    A = random.randint(1, 26)
+    
+    # Generate K within the given constraints
+    K = random.randint(1, 10**18)
+    
+    # Generate a permutation of numbers from 1 to N for the suffix array
+    SA = random.sample(range(1, N + 1), N)
+    
+    # Print the generated test case
+    print(N, A, K)
+    for sa in SA:
+        print(sa)
+
+# Example usage
+tcgen()
+```
+
+### Explanation:
+1. **Generating \( N \)**: 
+   - \( N \) is an integer between 1 and \( 10^5 \). The function `random.randint(1, 10**5)` is used to generate this random value.
+
+2. **Generating \( A \)**: 
+   - \( A \) is an integer between 1 and 26. The function `random.randint(1, 26)` is used to generate this random value.
+
+3. **Generating \( K \)**: 
+   - \( K \) is a very large integer between 1 and \( 10^{18} \). The function `random.randint(1, 10**18)` is used to generate this random value.
+
+4. **Generating Suffix Array (SA)**:
+   - The suffix array is a permutation of numbers from 1 to \( N \). The function `random.sample(range(1, N + 1), N)` generates a random permutation of these numbers.
+
+5. **Printing the Test Case**:
+   - The generated values are printed in the required format.
+
+You can use this generator function to create multiple test cases for testing purposes. Adjust the function if you need to generate test cases with specific properties or constraints.

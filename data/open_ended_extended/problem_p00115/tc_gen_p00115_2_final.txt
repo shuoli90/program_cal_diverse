@@ -1,0 +1,45 @@
+Creating a test case generator for the problem "Spaceship UAZ Advance" involves generating random coordinates for the spacecraft, enemy, and the vertices of the barrier. Here’s a Python function to generate such test cases:
+
+```python
+import random
+
+def generate_coordinate():
+    return random.randint(-100, 100), random.randint(-100, 100), random.randint(-100, 100)
+
+def tcgen():
+    # Generate coordinates for the UAZ Advance spacecraft
+    uaz_advance = generate_coordinate()
+    
+    # Ensure enemy spacecraft is not in the same position as UAZ Advance
+    while True:
+        enemy = generate_coordinate()
+        if enemy != uaz_advance:
+            break
+    
+    # Generate coordinates for the vertices of the barrier
+    vertex1 = generate_coordinate()
+    vertex2 = generate_coordinate()
+    vertex3 = generate_coordinate()
+    
+    # Construct the input in the required format
+    input_data = [
+        f"{uaz_advance[0]} {uaz_advance[1]} {uaz_advance[2]}",
+        f"{enemy[0]} {enemy[1]} {enemy[2]}",
+        f"{vertex1[0]} {vertex1[1]} {vertex1[2]}",
+        f"{vertex2[0]} {vertex2[1]} {vertex2[2]}",
+        f"{vertex3[0]} {vertex3[1]} {vertex3[2]}"
+    ]
+    
+    return '\n'.join(input_data)
+
+# Example usage:
+print(tcgen())
+```
+
+This function works as follows:
+
+1. It generates random coordinates within the specified range (-100 to 100) for the UAZ Advance spacecraft, enemy, and the vertices of the barrier.
+2. It ensures that the enemy spacecraft is not in the same position as the UAZ Advance spacecraft by using a `while` loop.
+3. It formats each set of coordinates as a string and joins them into the final input format required by the problem statement.
+
+You can run this function to generate random test cases for the problem. Each call to `tcgen()` will produce a new set of coordinates for the spacecraft, enemy, and barrier vertices.

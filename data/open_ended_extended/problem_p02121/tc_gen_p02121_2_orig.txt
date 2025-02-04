@@ -1,0 +1,42 @@
+Sure, here is a test case generator for the "Problem K: Chinol Choco" problem statement:
+
+```python
+import random
+
+def generate_coordinates(num_pairs, coord_range):
+    return [(random.randint(0, coord_range), random.randint(0, coord_range)) for _ in range(num_pairs)]
+
+def tcgen():
+    # Number of stores (n) and number of chocolate factories (m)
+    n = random.randint(2, 200)
+    m = random.randint(1, 15)
+    
+    # Generate candidate coordinates for each store
+    store_candidates = []
+    for _ in range(n):
+        a, b = generate_coordinates(1, 1000)[0]
+        c, d = generate_coordinates(1, 1000)[0]
+        store_candidates.append((a, b, c, d))
+    
+    # Generate coordinates for each factory
+    factory_coordinates = generate_coordinates(m, 1000)
+    
+    # Format the inputs
+    input_data = f"{n} {m}\n"
+    input_data += "\n".join(f"{a} {b} {c} {d}" for (a, b, c, d) in store_candidates) + "\n"
+    input_data += "\n".join(f"{x} {y}" for (x, y) in factory_coordinates) + "\n"
+    
+    return input_data
+
+# Example usage:
+print(tcgen())
+```
+
+This generator creates random test cases for the problem adhering to the constraints provided. It generates:
+
+1. The number of stores \(n\) (2 ≤ \(n\) ≤ 200).
+2. The number of factories \(m\) (1 ≤ \(m\) ≤ 15).
+3. The candidate coordinates \((a_i, b_i)\) and \((c_i, d_i)\) for each store \(i\) (0 ≤ \(a_i\), \(b_i\), \(c_i\), \(d_i\) ≤ 1000).
+4. The coordinates \((x_i, y_i)\) for each factory \(i\) (0 ≤ \(x_i\), \(y_i\) ≤ 1000).
+
+You can run this generator to create multiple test cases for the problem.

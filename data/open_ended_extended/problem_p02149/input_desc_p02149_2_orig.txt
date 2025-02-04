@@ -1,0 +1,18 @@
+Canonicalized Input Description:
+
+Three integers \(a\), \(b\), and \(c\) separated by a space. Each integer is between 1 and 5000, and all three integers are distinct.
+
+### Example Input:
+
+```
+1000 900 850
+```
+
+### Function Signature:
+Write a function f(inputs) that takes in the input.
+```python
+def f(inputs: List[Tuple[int, int, int]]):
+    '''
+    inputs: a list of tuples, each containing three distinct integers
+    '''
+```

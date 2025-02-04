@@ -1,0 +1,3 @@
+Types: s: str, t: str
+Ranges: 1 ≤ |s|, |t| ≤ 3000
+Addtl Info: s and t consist of lowercase English letters

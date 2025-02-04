@@ -1,0 +1,43 @@
+Sure, I can help you write a test case generator for the given problem statement "Twice of oneself." The generator will create random test cases within the specified constraints. Here is the implementation in Python:
+
+```python
+import random
+
+def generate_test_case():
+    Q = random.randint(1, 10**5)  # Number of queries
+    queries = [random.randint(2, 10**5) for _ in range(Q)]
+    return Q, queries
+
+def format_test_case(Q, queries):
+    result = [str(Q)]
+    result.extend(map(str, queries))
+    return '\n'.join(result)
+
+# Example usage to generate and print a test case
+Q, queries = generate_test_case()
+test_case = format_test_case(Q, queries)
+print(test_case)
+```
+
+### Explanation:
+1. **generate_test_case Function:**
+   - **Q**: Randomly generates the number of queries between 1 and \(10^5\).
+   - **queries**: Generates a list of \(Q\) integers, each ranging from 2 to \(10^5\).
+
+2. **format_test_case Function:**
+   - Converts the generated test case into the required input format as a string.
+   - The first line contains the number of queries \(Q\).
+   - The subsequent lines contain the \(Q\) integers.
+
+### Example Output:
+Running the example usage will print a test case, for instance:
+```
+5
+25784
+128
+99999
+2
+45000
+```
+
+This output is consistent with the input format specified in the problem statement. You can use this generator to create multiple test cases for thorough testing of your solution.

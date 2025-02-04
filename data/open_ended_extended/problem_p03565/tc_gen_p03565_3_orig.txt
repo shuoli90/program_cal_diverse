@@ -1,0 +1,50 @@
+Sure, I can help you create a test case generator for the described problem. Here is a Python function that generates random test cases for the problem:
+
+```python
+import random
+import string
+
+def generate_random_string(length, allow_question_marks=False):
+    characters = string.ascii_lowercase
+    if allow_question_marks:
+        characters += '?'
+    return ''.join(random.choice(characters) for _ in range(length))
+
+def tcgen():
+    # Define constraints
+    max_length = 50
+    
+    # Generate random lengths for S' and T
+    len_S = random.randint(1, max_length)
+    len_T = random.randint(1, max_length)
+    
+    # Generate the strings S' and T
+    S_prime = generate_random_string(len_S, allow_question_marks=True)
+    T = generate_random_string(len_T, allow_question_marks=False)
+    
+    return S_prime, T
+
+# Example of generating a test case
+S_prime, T = tcgen()
+print("S':", S_prime)
+print("T:", T)
+```
+
+### Explanation:
+
+- `generate_random_string(length, allow_question_marks=False)`: This helper function creates a random string of a given length. If `allow_question_marks` is `True`, it includes `?` in the possible characters.
+
+- `tcgen()`: This function generates random test cases:
+  - Randomly determines the lengths of `S'` and `T` within the constraints.
+  - Uses the helper function to create `S'` (with possible `?` characters) and `T` (only lowercase letters).
+
+### Output Example:
+
+When you run the `tcgen` function, it will print a randomly generated `S'` and `T`:
+
+```
+S': ??a??bc
+T: xyz
+```
+
+Feel free to adjust the random generation logic to meet specific needs or constraints.

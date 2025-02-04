@@ -1,0 +1,32 @@
+An integer N (1 ≤ N ≤ 10), representing some quantity.
+An integer M (1 ≤ M ≤ 1000), representing some quantity.
+A list of N tuples, each containing three real numbers.
+A list of M tuples, each containing four real numbers.
+The end of the input is indicated by N=0 and M=0.
+
+### Example Input:
+
+```
+2 1
+12 5 3
+0 17 3
+0 0 2 2
+2 3
+2 0 2
+100 100 2
+0 0 -1 0
+-2 -5 0 3
+100 100 1 1
+0 0
+```
+
+### Function Signature:
+Write a function f(inputs) that takes in the input.
+def f(inputs: List[Tuple[int, int, List[Tuple[float, float, float]], List[Tuple[float, float, float, float]]]]):
+    '''
+    inputs: a list of tuples where each tuple consists of:
+    - an integer
+    - an integer
+    - a list of tuples containing three real numbers
+    - a list of tuples containing four real numbers
+    '''

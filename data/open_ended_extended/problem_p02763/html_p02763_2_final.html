@@ -1,0 +1,218 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p02763 - Generation 2</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p02763 - Generation 2</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>
+Score : 500 points
+Problem StatementYou are given a string S of length N consisting of lowercase English letters.
+Process Q queries of the following two types:
+Type 1: change the i_q-th character of S to c_q. (Do nothing if the i_q-th character is already c_q.)
+Type 2: answer the number of different characters occurring in the substring of S between the l_q-th and r_q-th characters (inclusive).
+Constraints
+N, Q, i_q, l_q, and r_q are integers.
+S is a string consisting of lowercase English letters.
+c_q is a lowercase English letter.
+1 \leq N \leq 500000
+1 \leq Q \leq 20000
+|S| = N
+1 \leq i_q \leq N
+1 \leq l_q \leq r_q \leq N
+There is at least one query of type 2 in each testcase.
+InputInput is given from Standard Input in the following format:
+N
+S
+Q
+Query_1
+\vdots
+Query_Q
+Here, Query_i in the 4-th through (Q+3)-th lines is one of the following:
+1 i_q c_q
+2 l_q r_q
+OutputFor each query of type 2, print a line containing the answer.
+Sample Input 17
+abcdbbd
+6
+2 3 6
+1 5 z
+2 1 1
+1 4 a
+1 7 d
+2 1 7
+Sample Output 13
+1
+5
+In the first query, cdbb contains three kinds of letters: b , c , and d, so we print 3.
+In the second query, S is modified to abcdzbd.
+In the third query, a contains one kind of letter: a, so we print 1.
+In the fourth query, S is modified to abcazbd.
+In the fifth query, S does not change and is still abcazbd.
+In the sixth query, abcazbd contains five kinds of letters: a, b, c, d, and z, so we print 5.
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An integer N (1 ≤ N ≤ 500000), representing some quantity or size.
+A string S of length N, consisting of lowercase English letters.
+An integer Q (1 ≤ Q ≤ 20000), representing the number of queries.
+Q queries, where each query is either of the form:
+- "1 i_q c_q": An integer i_q (1 ≤ i_q ≤ N) and a character c_q (a lowercase English letter).
+- "2 l_q r_q": Two integers l_q and r_q (1 ≤ l_q ≤ r_q ≤ N).
+
+### Example Input:
+
+```
+7
+abcdbbd
+6
+2 3 6
+1 5 z
+2 1 1
+1 4 a
+1 7 d
+2 1 7
+```
+
+### Function Signature:
+Write a function f(N, S, Q, queries) that takes in the input.
+```python
+def f(N: int, S: str, Q: int, queries: List[Tuple[int, ...]]):
+    '''
+    N: an integer
+    S: a string
+    Q: an integer
+    queries: a list of tuples, where each tuple is either (1, i_q, c_q) or (2, l_q, r_q)
+    '''
+```</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Certainly! Here is a test case generator for the problem statement provided.
+
+```python
+import random
+import string
+
+def generate_test_case():
+    N = random.randint(1, 500000)
+    S = ''.join(random.choices(string.ascii_lowercase, k=N))
+    Q = random.randint(1, 20000)
+    
+    queries = []
+    type_2_added = False
+
+    for _ in range(Q):
+        query_type = random.randint(1, 2)
+        
+        if query_type == 1:
+            i_q = random.randint(1, N)
+            c_q = random.choice(string.ascii_lowercase)
+            queries.append(f"1 {i_q} {c_q}")
+        else:
+            l_q = random.randint(1, N)
+            r_q = random.randint(l_q, N)
+            queries.append(f"2 {l_q} {r_q}")
+            type_2_added = True
+
+    # Ensure at least one type 2 query is added
+    if not type_2_added:
+        l_q = random.randint(1, N)
+        r_q = random.randint(l_q, N)
+        queries.append(f"2 {l_q} {r_q}")
+
+    return N, S, Q, queries
+
+def print_test_case():
+    N, S, Q, queries = generate_test_case()
+    print(N)
+    print(S)
+    print(Q)
+    for query in queries:
+        print(query)
+
+# Example usage:
+print_test_case()
+```
+
+This generator creates a random valid test case for the given problem. Here’s how it works:
+
+1. **N**: Randomly selects the length of the string \( S \) within the constraints.
+2. **S**: Generates a random string of length \( N \) with lowercase English letters.
+3. **Q**: Randomly selects the number of queries within the constraints.
+4. **Queries**:
+   - Randomly selects the type of query (1 or 2).
+   - For type 1 queries, it picks a random position in the string and a random lowercase letter.
+   - For type 2 queries, it picks a random range within the string.
+   - Ensures at least one type 2 query is included.
+
+The `print_test_case` function formats and prints the generated test case as expected by the problem statement.
+
+You can run the `print_test_case` function to generate and print a new test case each time.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    N = int(fh.readline().strip())
+    S = fh.readline().strip()
+    Q = int(fh.readline().strip())
+    queries = []
+    for _ in range(Q):
+        query = fh.readline().strip().split()
+        if query[0] == '1':
+            queries.append((1, int(query[1]), query[2]))
+        else:
+            queries.append((2, int(query[1]), int(query[2])))
+    return N, S, Q, queries</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

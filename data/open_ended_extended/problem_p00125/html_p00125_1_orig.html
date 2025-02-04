@@ -1,0 +1,172 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p00125 - Generation 1</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p00125 - Generation 1</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>Number of Days
+Write a program that takes two dates as input and outputs the number of days between those two dates. Date 1 (y1, m1, d1) is the same as or earlier than date 2 (y2, m2, d2), and date 1 is included in the count, but date 2 is not. Please calculate taking leap years into consideration. The conditions for leap years are as follows:
+The year is divisible by 4.
+However, years divisible by 100 are not leap years.
+Years divisible by 400 are leap years.
+Input
+Multiple datasets will be given. The format for each dataset is as follows:
+y1 m1 d1 y2 m2 d2
+If any of y1, m1, d1, y2, m2, or d2 is a negative number, the input will end.
+The number of datasets will not exceed 50.
+Output
+For each dataset, output the number of days on one line.
+Sample Input
+2006 9 2 2006 9 3
+2006 9 2 2006 11 11
+2004 1 1 2005 1 1
+2000 1 1 2006 1 1
+2000 1 1 2101 1 1
+-1 -1 -1 -1 -1 -1
+Output for the Sample Input
+1
+70
+366
+2192
+36890
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An integer y1 (any integer including negatives), representing some quantity.
+An integer m1 (any integer including negatives), representing some quantity.
+An integer d1 (any integer including negatives), representing some quantity.
+An integer y2 (any integer including negatives), representing some quantity.
+An integer m2 (any integer including negatives), representing some quantity.
+An integer d2 (any integer including negatives), representing some quantity.
+Multiple sets of these integers will be given, and the input terminates when all values in a set are negative.
+
+### Example Input:
+
+```
+2006 9 2 2006 9 3
+2006 9 2 2006 11 11
+2004 1 1 2005 1 1
+2000 1 1 2006 1 1
+2000 1 1 2101 1 1
+-1 -1 -1 -1 -1 -1
+```
+
+### Function Signature:
+Write a function f(inputs) that takes in the input.
+def f(inputs: List[Tuple[int, int, int, int, int, int]]):
+    '''
+    inputs: a list of tuples, where each tuple contains six integers
+    '''</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Sure! To create a test case generator for the "Number of Days" problem, we need to generate pairs of dates that fit within the problem constraints. Here's a Python function that generates such test cases:
+
+```python
+import random
+from datetime import datetime, timedelta
+
+def random_date(start_year=1, end_year=9999):
+    year = random.randint(start_year, end_year)
+    month = random.randint(1, 12)
+    day = random.randint(1, 28)  # To avoid complexities with month lengths, we'll just use 28 days
+    return year, month, day
+
+def tcgen():
+    test_cases = []
+    for _ in range(random.randint(1, 50)):
+        y1, m1, d1 = random_date(1, 9999)
+        
+        start_date = datetime(y1, m1, d1)
+        delta_days = random.randint(1, 365 * 2000)  # Generate a random number of days up to 2000 years
+        end_date = start_date + timedelta(days=delta_days)
+        
+        y2, m2, d2 = end_date.year, end_date.month, end_date.day
+        
+        test_cases.append((y1, m1, d1, y2, m2, d2))
+        
+    # Adding the end marker
+    test_cases.append((-1, -1, -1, -1, -1, -1))
+    
+    return test_cases
+
+# Example usage:
+if __name__ == "__main__":
+    cases = tcgen()
+    for case in cases:
+        print(" ".join(map(str, case)))
+```
+
+This function `tcgen` generates up to 50 test cases where each test case is a pair of dates. The start date is randomly selected within a reasonable range of years, and the end date is calculated by adding a random number of days to the start date. This ensures that the end date is always after the start date and respects the constraints regarding date boundaries and leap years.
+
+The output of the generator function is a list of tuples, where each tuple represents a pair of dates. The generator also appends a tuple of `(-1, -1, -1, -1, -1, -1)` to indicate the end of input as specified in the problem statement.
+
+You can run the example usage to see the generated test cases. Adjustments can be made to parameters like the maximum range of years or the number of days between dates if needed.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    inputs = []
+    while True:
+        line = fh.readline().strip()
+        if line:
+            y1, m1, d1, y2, m2, d2 = map(int, line.split())
+            if y1 < 0 or m1 < 0 or d1 < 0 or y2 < 0 or m2 < 0 or d2 < 0:
+                break
+            inputs.append((y1, m1, d1, y2, m2, d2))
+        else:
+            break
+    return inputs</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

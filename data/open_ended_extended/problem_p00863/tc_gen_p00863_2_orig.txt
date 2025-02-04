@@ -1,0 +1,55 @@
+Sure! Here's a test case generator for the problem "The Teacher’s Side of Math":
+
+```python
+import random
+
+def is_prime(num):
+    """Check if a number is a prime number."""
+    if num <= 1:
+        return False
+    if num <= 3:
+        return True
+    if num % 2 == 0 or num % 3 == 0:
+        return False
+    i = 5
+    while i * i <= num:
+        if num % i == 0 or num % (i + 2) == 0:
+            return False
+        i += 6
+    return True
+
+def generate_prime(min_val=2, max_val=50):
+    """Generate a random prime number between min_val and max_val."""
+    primes = [num for num in range(min_val, max_val) if is_prime(num)]
+    return random.choice(primes)
+
+def tcgen():
+    test_cases = []
+    for _ in range(random.randint(1, 10)):
+        a = generate_prime()
+        b = generate_prime()
+        while a == b:
+            b = generate_prime()
+        m = random.randint(2, 4)
+        n = random.randint(2, 4)
+        if m * n > 20:
+            n = 20 // m  # Ensure mn ≤ 20
+        test_cases.append(f"{a} {m} {b} {n}")
+    test_cases.append("0 0 0 0")  # End of input
+    return "\n".join(test_cases)
+
+# Example usage:
+print(tcgen())
+```
+
+This generator creates a series of test cases for the problem by:
+- Generating random primes `a` and `b` (ensuring they are distinct).
+- Randomly selecting integers `m` and `n` (ensuring `m` and `n` are both greater than 1 and their product is at most 20).
+- Formatting the test cases as specified, with each test case on a new line, and ending with "0 0 0 0".
+
+Here's a breakdown of the functions:
+1. `is_prime`: Helper function to check if a number is prime.
+2. `generate_prime`: Generates a random prime number within a range.
+3. `tcgen`: Main function to generate the test cases.
+
+You can run the `tcgen` function to get a sample set of test cases for the problem.

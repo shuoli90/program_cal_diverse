@@ -1,0 +1,3 @@
+Types: n: int, k: int, a: int, b: int, x: List[int]  
+Ranges: 1 ≤ k ≤ n ≤ 600, 0 ≤ a ≤ b ≤ 180,000, 0 ≤ x[i] ≤ 300  
+Addtl Info: None  

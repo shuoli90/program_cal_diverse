@@ -1,0 +1,33 @@
+Problem D: One-Time Path
+Problem
+There are N islands and M bridges. 
+Each island is assigned a number from 1 to N.
+Each bridge is assigned a number from 1 to M.
+Gaccho is currently on the first island at time 0. 
+By using the i-th bridge, Gaccho can move unidirectionally from island ai to island bi.
+However, at time 0, all the bridges are submerged underwater because of high tide. 
+The i-th bridge can be crossed when the tide goes out at time ci.
+Once the tide comes in again after time ci, the bridge i will be submerged again, and Gaccho will assume that he can never cross the bridge again.
+Gaccho wants to enjoy the scenery from island 1 to N-1 for as long as possible, but since he has a boat parked on island N, he must reach island N in the end. 
+Also, since he is waiting for his parents on the boat, Gaccho must leave for home as soon as he arrives at island N.
+Since the time Gaccho spends crossing bridges or moving around islands is very short, it can be assumed to be 0. 
+Find the maximum time Gaccho can spend on any of the islands between 1 and N-1. 
+If Gaccho cannot move to island N no matter how he moves, output -1 instead.
+Input
+The input is given in the following format:
+N M
+a1 b1 c1
+a2 b2 c2
+…
+aM bM cM
+The first line contains two integers N and M separated by a space.
+For each of the next M lines, three integers ai, bi, and ci are given separated by a space.
+Constraints
+2 ≤ N ≤ 105
+1 ≤ M ≤ 2 × 105
+1 ≤ ai < N
+1 ≤ bi ≤ N
+1 ≤ ci ≤ 109
+ai ≠ bi
+Output
+If G

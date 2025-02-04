@@ -1,0 +1,23 @@
+An integer N (1 ≤ N ≤ 1000), representing some quantity or size.
+A list of strings S of size N, where each string is between 1 and 100 characters long.
+
+### Example Input:
+
+```
+5
+E869120
+TMJN
+E869120
+TAISA
+YNYMXIAOLONGBAO
+```
+
+### Function Signature:
+Write a function f(N, S) that takes in the input.
+```python
+def f(N: int, S: List[str]):
+    ''' 
+    N: an integer 
+    S: a list of strings 
+    '''
+```

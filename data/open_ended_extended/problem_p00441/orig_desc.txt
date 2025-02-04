@@ -1,0 +1,45 @@
+The Oldest Site
+Problem
+In the past, there was a village where many people lived. People built buildings of various shapes and sizes. However, those buildings are already lost, and only documents and pillars found in the ruins were a clue to the location of the buildings.
+There is a description of the temple in the document. The temple is a square when viewed from above, and there were pillars at the four corners. It is not known which direction the temple was facing. Also, it is not known whether there were pillars on the sides or inside. Archaeologists believed that among the pillars found in the ruins, the one with the largest area that is square must be the temple.
+Given the coordinates of the pillars, write a program that finds the square made up of four pillars with the largest area and outputs its area. Note that the sides of the square are not necessarily parallel to the coordinate axis.
+Example
+In the example of the figure below, there are ten pillars, and the four at coordinates (4, 2), (5, 2), (5, 3), and (4, 3) make a square, and the four at coordinates (1, 1), (4, 0), (5, 3), and (2, 4) also make a square. The latter square has the largest area of 10.
+Input
+The input consists of multiple datasets. Each dataset is given in the following format. The input is terminated by a line containing a single zero.
+The first line contains the number of pillars n found in the ruins.
+From the second line to the n + 1-th line, each of the n lines contains the x and y coordinates of a pillar separated by a space.
+Each pillar appears only once or never.
+n is an integer satisfying 1 ≤ n ≤ 3000, and the x and y coordinates of the pillars are integers between 0 and 5000 inclusive.
+30% of the score is for datasets where 1 ≤   n ≤ 100, and 60% of the score is for datasets where 1 ≤ n ≤ 500.
+There are no more than 10 datasets.
+Output
+For each dataset, output one integer. If there is a square made up of four pillars, output the area of the largest such square, and if there is no such square, output 0.
+Sample Input
+10
+9 4
+4 3
+1 1
+4 2
+2 4
+5 8
+4 0
+5 3
+0 5
+5 2
+10
+9 4
+4 3
+1 1
+4 2
+2 4
+5 8
+4 0
+5 3
+0 5
+5 2
+0
+Sample Output
+10
+10
+The problem statement and test data used in the automated judge are provided by Information-technology Promotion Agency, Japan.

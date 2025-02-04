@@ -1,0 +1,53 @@
+Certainly! Let's break down the test case generator for the given problem statement "B: Mapping".
+
+**Problem Restatement:**
+1. We have two sets $S=\{a_1, ..., a_N\}$ and $T=\{b_1, ..., b_N\}$ where $a_i$ maps to $b_i$.
+2. We need to determine if for any element $x$ in $S$, all mappings $g, h: S \rightarrow S$ that satisfy $g(f(x))=h(f(x))$ also satisfy $g(x)=h(x)$. If not, we provide a counterexample.
+
+**Constraints:**
+- $1 \le N \le 10^5$
+- $1 \le a_i, b_i \le N$
+- $a_i \neq a_j \ (i \neq j)$
+
+Here is a test case generator for the problem:
+
+```python
+import random
+
+def tcgen():
+    N = random.randint(1, 10**5)  # Randomly choose N within the given constraints
+
+    # Generate a permutation of 1 to N for a
+    a = list(range(1, N + 1))
+    random.shuffle(a)
+
+    # Generate a permutation of 1 to N for b
+    b = list(range(1, N + 1))
+    random.shuffle(b)
+
+    return N, a, b
+
+# Example usage
+N, a, b = tcgen()
+print(N)
+print(" ".join(map(str, a)))
+print(" ".join(map(str, b)))
+```
+
+**Explanation:**
+1. We first generate a random number $N$ within the range [1, 100000].
+2. We create a permutation of the list [1, 2, ..., $N$] for $a$ to ensure $a_i \neq a_j$ for all $i \neq j$.
+3. Similarly, we create a permutation of the list [1, 2, ..., $N$] for $b$ to ensure valid mappings.
+
+**Note:**
+- This generator ensures that constraints are satisfied by construction.
+- The output provides two permutations of numbers from 1 to $N$, ensuring that the conditions $1 \le a_i, b_i \le N$ and $a_i \neq a_j$ are met.
+
+**Example Output:**
+```
+5
+3 1 4 2 5
+5 3 1 4 2
+```
+
+This generator will produce inputs that you can use to test the problem statement "B: Mapping". Each run of `tcgen()` will produce a different test case within the problem constraints.

@@ -1,0 +1,17 @@
+An integer \(N\) (1 ≤ \(N\) ≤ 100), representing some quantity.
+An integer \(K\) (1 ≤ \(K\) ≤ \(N\)), representing another quantity.
+
+### Example Input:
+```
+13 2
+```
+
+### Function Signature:
+Write a function f(N, K) that takes in the input.
+```python
+def f(N: int, K: int):
+    '''
+    N: an integer
+    K: an integer
+    '''
+```

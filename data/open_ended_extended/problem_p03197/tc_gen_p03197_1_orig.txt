@@ -1,0 +1,43 @@
+Sure! Let's write a test case generator for the given problem statement about the apple tree. We'll write a function `tcgen` that will generate random test cases within the given constraints.
+
+Here is the generator function:
+
+```python
+import random
+
+def tcgen():
+    # Generate a random N within the range 1 to 10^5
+    N = random.randint(1, 10**5)
+    
+    # Generate a list of N integers, each ranging from 1 to 10^9
+    A = [random.randint(1, 10**9) for _ in range(N)]
+    
+    return N, A
+
+# Example of generating a test case
+N, A = tcgen()
+print(N)
+for a in A:
+    print(a)
+```
+
+### Explanation:
+1. `N = random.randint(1, 10**5)`: This generates a random integer `N` which is the number of colors, within the given constraint \(1 \leq N \leq 10^5\).
+2. `A = [random.randint(1, 10**9) for _ in range(N)]`: This generates a list `A` of size `N`, where each element is a random integer representing the number of apples of a particular color, within the given constraint \(1 \leq a_i \leq 10^9\).
+
+### Example Usage:
+Running the `tcgen` function will generate a random test case. For instance, if the function is run, it might produce the following output:
+```
+5
+987654321
+123456789
+654321
+987654
+12345
+```
+
+This corresponds to an input where:
+- `N` is 5.
+- The number of apples for each color are: 987654321, 123456789, 654321, 987654, and 12345 respectively.
+
+You can use this generator to create multiple test cases to validate your solution to the problem.

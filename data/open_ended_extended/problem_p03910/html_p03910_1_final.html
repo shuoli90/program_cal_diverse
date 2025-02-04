@@ -1,0 +1,156 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p03910 - Generation 1</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p03910 - Generation 1</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>
+Score : 300 points
+Problem StatementThe problem set at CODE FESTIVAL 20XX Finals consists of N problems.
+The score allocated to the i-th (1≦i≦N) problem is i points.
+Takahashi, a contestant, is trying to score exactly N points. For that, he is deciding which problems to solve.
+As problems with higher scores are harder, he wants to minimize the highest score of a problem among the ones solved by him.
+Determine the set of problems that should be solved.
+Constraints
+1≦N≦10^7
+Partial Score
+200 points will be awarded for passing the test set satisfying 1≦N≦1000.
+Additional 100 points will be awarded for passing the test set without additional constraints.
+InputThe input is given from Standard Input in the following format:
+N
+OutputAmong the sets of problems with the total score of N, find a set in which the highest score of a problem is minimum, then print the indices of the problems in the set in any order, one per line.
+If there exists more than one such set, any of them will be accepted.
+Sample Input 14
+Sample Output 11
+3
+Solving only the 4-th problem will also result in the total score of 4 points, but solving the 1-st and 3-rd problems will lower the highest score of a solved problem.
+Sample Input 27
+Sample Output 21
+2
+4
+The set \{3,4\} will also be accepted.
+Sample Input 31
+Sample Output 31
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An integer N (1 ≤ N ≤ 10^7), representing some quantity or size.
+
+### Example Input:
+
+```
+4
+```
+
+### Function Signature:
+Write a function f(N) that takes in the input.
+def f(N: int): 
+    ''' 
+    N: an integer 
+    '''</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Here's a test case generator for the problem statement you provided:
+
+```python
+import random
+
+def generate_test_case():
+    # Generate a random N within the range 1 to 10^7
+    N = random.randint(1, 10**7)
+    
+    return N
+
+# Example usage
+if __name__ == "__main__":
+    for _ in range(5):  # Generate 5 test cases
+        tc = generate_test_case()
+        print(tc)
+```
+
+This function `generate_test_case` will produce a test case for the problem by generating a random integer \( N \) within the given constraints (1 ≤ \( N \) ≤ 10^7).
+
+Since the output is deterministic based on the input \( N \), you can directly use this function to generate your test cases. Here's how you might use this in a test harness:
+
+```python
+def main():
+    # Generate a test case
+    N = generate_test_case()
+    
+    # Print the test case
+    print(N)
+
+# You can call main to generate and print a test case
+if __name__ == "__main__":
+    main()
+```
+
+This will print out the random \( N \) which you can then manually verify or plug into your solution to see the output.
+
+For complex and large-scale testing, you might want to save these test cases to a file or handle them programmatically within your testing framework.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    N = int(fh.readline().strip())
+    return N
+
+# if __name__ == "__main__":
+#     input_path = sys.argv[1]
+#     with open(input_path, 'r') as fh: 
+#         N = extract_arguments(fh)
+#         f(N)</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

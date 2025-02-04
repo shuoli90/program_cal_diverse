@@ -1,0 +1,303 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p01292 - Generation 2</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p01292 - Generation 2</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>
+Problem J: Secret Operation
+Mary Ice is a member of a spy group. She is about to carry out a secret operation with her colleague.
+She has got into a target place just now, but unfortunately the colleague has not reached there yet. She
+needs to hide from her enemy George Water until the colleague comes. Mary may want to make herself
+appear in George’s sight as short as possible, so she will give less chance for George to find her.
+You are requested to write a program that calculates the time Mary is in George’s sight before her colleague arrives, given the information about moves of Mary and George as well as obstacles blocking their
+sight.
+Read the Input section for the details of the situation.
+Input
+The input consists of multiple datasets. Each dataset has the following format:
+Time R
+L
+MaryX1 MaryY1 MaryT1
+MaryX2 MaryY2 MaryT2
+...
+MaryXL MaryYL MaryTL
+M
+GeorgeX1 GeorgeY1 GeorgeT1
+GeorgeX2 GeorgeY2 GeorgeT2
+...
+GeorgeXM GeorgeYM GeorgeTM
+N
+BlockSX1 BlockSY1 BlockTX1 BlockTY1
+BlockSX2 BlockSY2 BlockTX2 BlockTY2
+...
+BlockSXN BlockSYN BlockTXN BlockTYN
+The first line contains two integers. Time (0 ≤ Time ≤ 100) is the time Mary's colleague reaches the
+place. R (0 < R < 30000) is the distance George can see - he has a sight of this distance and of 45
+degrees left and right from the direction he is moving. In other words, Mary is found by him if and only
+if she is within this distance from him and in the direction different by not greater than 45 degrees from
+his moving direction and there is no obstacles between them.
+The description of Mary's move follows. Mary moves from (MaryXi, MaryYi) to (MaryXi+1, MaryYi+1)
+straight and at a constant speed during the time between MaryTi and MaryTi+1, for each 1 ≤ i ≤ L - 1.
+The following constraints apply: 2 ≤ L ≤ 20, MaryT1 = 0 and MaryTL = Time, and MaryTi < MaryTi+1
+for any 1 ≤ i ≤ L - 1.
+The description of George's move is given in the same way with the same constraints, following Mary's.
+In addition, (GeorgeXj, GeorgeYj ) and (GeorgeXj+1, GeorgeYj+1) do not coincide for any 1 ≤ j ≤ M - 1. In other words, George is always moving in some direction.
+Finally, there comes the information of the obstacles. Each obstacle has a rectangular shape occupying
+(BlockSXk, BlockSYk) to (BlockTXk, BlockTYk). No obstacle touches or crosses with another. The number of obstacles ranges from 0 to 20 inclusive.
+All the coordinates are integers not greater than 10000 in their absolute values. You may assume that, if
+the coordinates of Mary's and George's moves would be changed within the distance of 10-6, the solution would be changed by not greater than 10-6.
+The last dataset is followed by a line containing two zeros. This line is not a part of any dataset and should not be processed.
+Output
+For each dataset, print the calculated time in a line. The time may be printed with any number of digits after the decimal
+point, but should be accurate to 10-4 .
+Sample Input
+50 100
+2
+50 50 0
+51 51 50
+2
+0 0 0
+1 1 50
+0
+0 0
+Output for the Sample Input
+50
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An integer Time (0 ≤ Time ≤ 100), representing some time limit.
+An integer R (0 < R < 30000), representing some distance.
+An integer L (2 ≤ L ≤ 20), representing the number of time-stamped coordinates for the first entity.
+L lines follow, each containing three integers: X, Y, and T, representing coordinates and time.
+An integer M (2 ≤ M ≤ 20), representing the number of time-stamped coordinates for the second entity.
+M lines follow, each containing three integers: X, Y, and T, representing coordinates and time.
+An integer N (0 ≤ N ≤ 20), representing the number of rectangular obstacles.
+N lines follow, each containing four integers: SX, SY, TX, and TY, representing the coordinates of the rectangles.
+Two zeros (0 0) indicate the end of input.
+
+### Example Input:
+
+```
+50 100
+2
+50 50 0
+51 51 50
+2
+0 0 0
+1 1 50
+0
+0 0
+```
+
+### Function Signature:
+Write a function f(inputs) that takes in the input.
+```python
+def f(inputs: List[Tuple[int, int, List[Tuple[int, int, int]], int, List[Tuple[int, int, int]], int, List[Tuple[int, int, int, int]]]):
+    '''
+    inputs: a list of tuples containing:
+        - an integer
+        - an integer
+        - a list of tuples, each containing three integers
+        - an integer
+        - a list of tuples, each containing three integers
+        - an integer
+        - a list of tuples, each containing four integers
+    '''
+```</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Sure, here is a test case generator for the "Secret Operation" problem. This generator will create random datasets including the movements of Mary, George, and obstacles.
+
+```python
+import random
+
+def generate_coordinate():
+    return random.randint(-10000, 10000)
+
+def generate_time():
+    return random.randint(0, 100)
+
+def generate_distance():
+    return random.randint(1, 29999)
+
+def generate_movement_sequence(length, total_time):
+    sequence = []
+    current_time = 0
+    for i in range(length):
+        x = generate_coordinate()
+        y = generate_coordinate()
+        if i == length - 1:
+            t = total_time
+        else:
+            t = random.randint(current_time + 1, total_time - (length - i - 1))
+        sequence.append((x, y, t))
+        current_time = t
+    return sequence
+
+def generate_obstacles(num_obstacles):
+    obstacles = []
+    for _ in range(num_obstacles):
+        sx = generate_coordinate()
+        sy = generate_coordinate()
+        tx = generate_coordinate()
+        ty = generate_coordinate()
+        obstacles.append((sx, sy, tx, ty))
+    return obstacles
+
+def tcgen():
+    datasets = []
+    while True:
+        # Generate Time and R
+        Time = generate_time()
+        R = generate_distance()
+        
+        # Generate Mary's movements
+        L = random.randint(2, 20)
+        mary_movements = generate_movement_sequence(L, Time)
+        
+        # Generate George's movements
+        M = random.randint(2, 20)
+        george_movements = generate_movement_sequence(M, Time)
+        
+        # Generate obstacles
+        N = random.randint(0, 20)
+        obstacles = generate_obstacles(N)
+        
+        dataset = (Time, R, mary_movements, george_movements, obstacles)
+        datasets.append(dataset)
+        
+        # Randomly decide to stop adding more datasets
+        if random.choice([True, False]):
+            break
+    
+    return datasets
+
+def format_dataset(dataset):
+    Time, R, mary_movements, george_movements, obstacles = dataset
+    result = []
+    result.append(f"{Time} {R}")
+    result.append(str(len(mary_movements)))
+    for x, y, t in mary_movements:
+        result.append(f"{x} {y} {t}")
+    result.append(str(len(george_movements)))
+    for x, y, t in george_movements:
+        result.append(f"{x} {y} {t}")
+    result.append(str(len(obstacles)))
+    for sx, sy, tx, ty in obstacles:
+        result.append(f"{sx} {sy} {tx} {ty}")
+    return "\n".join(result)
+
+def main():
+    datasets = tcgen()
+    for dataset in datasets:
+        print(format_dataset(dataset))
+        print("0 0")  # End of dataset signal
+
+if __name__ == "__main__":
+    main()
+```
+
+### Explanation:
+1. **generate_coordinate**: Generates a random coordinate within the specified range (-10000 to 10000).
+2. **generate_time**: Generates a random time between 0 and 100.
+3. **generate_distance**: Generates a random distance between 1 and 29999.
+4. **generate_movement_sequence**: Generates a sequence of movements for either Mary or George. Ensures that the times are strictly increasing and that the total time matches the specified value.
+5. **generate_obstacles**: Generates a list of rectangular obstacles, ensuring that no two obstacles touch or cross.
+6. **tcgen**: Generates multiple datasets following the problem constraints.
+7. **format_dataset**: Formats a single dataset into the required input format.
+8. **main**: Generates and prints multiple datasets, including the dataset end signal `0 0`.
+
+This generator will create a variety of test cases to help ensure comprehensive testing of your solution.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    datasets = []
+    while True:
+        line = fh.readline().strip()
+        if line == "0 0":
+            break
+        Time, R = map(int, line.split())
+        
+        L = int(fh.readline().strip())
+        mary_moves = []
+        for _ in range(L):
+            x, y, t = map(int, fh.readline().strip().split())
+            mary_moves.append((x, y, t))
+        
+        M = int(fh.readline().strip())
+        george_moves = []
+        for _ in range(M):
+            x, y, t = map(int, fh.readline().strip().split())
+            george_moves.append((x, y, t))
+        
+        N = int(fh.readline().strip())
+        obstacles = []
+        for _ in range(N):
+            sx, sy, tx, ty = map(int, fh.readline().strip().split())
+            obstacles.append((sx, sy, tx, ty))
+        
+        datasets.append((Time, R, mary_moves, george_moves, obstacles))
+    
+    return datasets
+
+# if __name__ == "__main__":
+#     input_path = sys.argv[1]
+#     with open(input_path, 'r') as fh: 
+#     datasets = extract_arguments(fh)
+#     for dataset in datasets:
+#         f(*dataset)</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

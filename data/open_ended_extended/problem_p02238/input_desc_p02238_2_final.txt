@@ -1,0 +1,29 @@
+An integer n (1 ≤ n ≤ 100), representing some quantity or size.
+n lines follow, each containing:
+An integer u (1 ≤ u ≤ n), representing an ID.
+An integer k (0 ≤ k ≤ n), representing a degree.
+k integers v1, v2, ..., vk (1 ≤ vi ≤ n), representing IDs.
+
+### Example Input:
+
+```
+4
+1 1 2
+2 1 4
+3 0
+4 1 3
+```
+
+### Function Signature:
+Write a function f(inputs) that takes in the input.
+```python
+from typing import List, Tuple
+
+def f(inputs: List[Tuple[int, int, List[int]]]):
+    '''
+    inputs: a list of tuples, where each tuple contains:
+        - an integer
+        - an integer
+        - a list of integers
+    '''
+```

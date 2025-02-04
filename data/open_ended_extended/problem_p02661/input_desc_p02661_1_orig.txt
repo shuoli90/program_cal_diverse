@@ -1,0 +1,17 @@
+An integer N (2 ≤ N ≤ 2 × 10^5), representing some quantity or size.
+A list of tuples (A, B) of size N, where each integer in the tuple satisfies 1 ≤ A ≤ B ≤ 10^9.
+
+### Example Input:
+
+```
+2
+1 2
+2 3
+```
+
+### Function Signature:
+Write a function f(inputs) that takes in the input.
+def f(inputs: List[Tuple[int, int]]): 
+    ''' 
+    inputs: a list of tuples, where each tuple contains two integers
+    '''

@@ -1,0 +1,37 @@
+Sure! Here's a Python function to generate test cases for the given problem statement. This function will create random grids and select random values for H, W, and K within the specified constraints.
+
+```python
+import random
+
+def tcgen():
+    H = random.randint(1, 6)
+    W = random.randint(1, 6)
+    K = random.randint(1, H * W)
+    
+    grid = []
+    for _ in range(H):
+        row = ''.join(random.choice(['.', '#']) for _ in range(W))
+        grid.append(row)
+    
+    return H, W, K, grid
+
+def format_tc(H, W, K, grid):
+    return f"{H} {W} {K}\n" + '\n'.join(grid)
+
+# Example usage
+H, W, K, grid = tcgen()
+print(format_tc(H, W, K, grid))
+```
+
+This function `tcgen` generates random values for the grid dimensions \(H\) and \(W\), as well as the number \(K\) of black squares that should remain. It then constructs a grid of size \(H \times W\) with random '.' and '#' characters. The `format_tc` function formats the generated test case in the required input format for easy use.
+
+Here is a quick example of what the output might look like when running the above code:
+
+```
+3 4 6
+.#.#
+#..#
+##..
+```
+
+You can modify the `tcgen` function to customize the distribution of '.' and '#' if you want a specific kind of grid for testing purposes.

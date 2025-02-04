@@ -1,0 +1,50 @@
+Sure, let's write a test case generator for the "Hit and Blow" problem. The generator will create multiple datasets of inputs where each dataset consists of two sets of four unique numbers between 0 and 9.
+
+Here's the test case generator:
+
+```python
+import random
+
+def generate_unique_numbers():
+    return random.sample(range(10), 4)
+
+def tcgen():
+    num_datasets = random.randint(1, 50)
+    test_cases = []
+    
+    for _ in range(num_datasets):
+        A = generate_unique_numbers()
+        B = generate_unique_numbers()
+        test_cases.append((A, B))
+    
+    return test_cases
+
+# Example usage
+test_cases = tcgen()
+for A, B in test_cases:
+    print(" ".join(map(str, A)))
+    print(" ".join(map(str, B)))
+```
+
+### Explanation:
+
+1. **generate_unique_numbers function**: This utility function uses `random.sample` to generate a list of 4 unique numbers between 0 and 9.
+2. **tcgen function**:
+   - It first randomly determines the number of datasets (from 1 to 50).
+   - For each dataset, it generates two sets of 4 unique numbers using the `generate_unique_numbers` function.
+   - The datasets are stored in the `test_cases` list.
+   - Finally, it returns the list of test cases.
+
+### Example Usage Output:
+
+When you run the generator, it will print the datasets in the required format:
+
+```
+9 1 8 2
+4 1 5 9
+4 6 8 2
+4 6 3 2
+...
+```
+
+Each pair of lines represents one dataset, with the first line being the numbers A imagined and the second line being the numbers B chose. You can run the generator multiple times to get different sets of test cases.

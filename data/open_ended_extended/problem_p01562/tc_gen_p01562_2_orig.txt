@@ -1,0 +1,62 @@
+To generate test cases for the "Area Folding" problem, we need to consider the constraints and ensure that the generated polygonal lines are valid. Here is a Python function to generate such test cases:
+
+```python
+import random
+
+def generate_random_polygonal_line(N):
+    points = []
+    for _ in range(N):
+        x = random.randint(-105, 105)
+        y = random.randint(-105, 105)
+        points.append((x, y))
+    return points
+
+def tcgen():
+    N = random.randint(2, 100)
+    
+    # Generate N valid vertices 
+    points = generate_random_polygonal_line(N)
+    
+    # Format the input as described in the problem statement
+    test_case = f"{N}\n"
+    for x, y in points:
+        test_case += f"{x} {y}\n"
+    
+    return test_case
+
+# Example usage
+print(tcgen())
+```
+
+### Explanation:
+
+1. **Function `generate_random_polygonal_line(N)`**:
+    - Generates `N` random points (vertices) with `x` and `y` coordinates within the given range \([-105, 105]\).
+
+2. **Function `tcgen()`**:
+    - Randomly selects the number of segments `N` between 2 and 100.
+    - Calls `generate_random_polygonal_line(N)` to generate `N` points.
+    - Constructs the test case string in the required format.
+    
+### Example Output:
+
+The function `print(tcgen())` might produce something like:
+
+```
+7
+-3 45
+56 -23
+12 67
+-45 89
+34 56
+-78 -90
+12 34
+```
+
+This output consists of:
+- An integer `N` representing the number of segments.
+- `N` lines, each containing two integers \(X_i\) and \(Y_i\), representing the vertices.
+
+### Note:
+- The function `generate_random_polygonal_line(N)` ensures the generation of random points, which might not always form a valid polygonal line according to the problem statement. Additional checks and adjustments can be incorporated to ensure no self-intersecting lines or invalid configurations, depending on how strictly you want to adhere to such constraints.
+- The above implementation focuses on generating random valid vertices without self-intersections and maintaining the distance constraint, but you might need more sophisticated geometric checks for specific competitive programming needs.

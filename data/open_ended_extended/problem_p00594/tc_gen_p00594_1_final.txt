@@ -1,0 +1,53 @@
+Certainly! Below is the test case generator for the problem "What Color Is The Universe?":
+
+```python
+import random
+
+def tcgen():
+    test_cases = []
+    
+    # Decide the number of test cases
+    num_cases = random.randint(1, 10)  # You can adjust the number of test cases if needed
+
+    for _ in range(num_cases):
+        # Generate the size of array A
+        A_size = random.randint(1, 1000000)
+        
+        # Generate the elements of array A
+        A = [random.randint(1, 2**31 - 1) for _ in range(A_size)]
+        
+        # Append the test case to the list
+        test_cases.append((A_size, A))
+    
+    # Add the terminating line "0"
+    test_cases.append((0, []))
+    
+    return test_cases
+
+# Function to print the test cases in the required format
+def print_test_cases(test_cases):
+    for size, arr in test_cases:
+        if size == 0:
+            print(0)
+        else:
+            print(size)
+            print(" ".join(map(str, arr)))
+
+# Generate and print the test cases
+test_cases = tcgen()
+print_test_cases(test_cases)
+```
+
+### Explanation:
+1. **Test Case Generation**:
+    - The number of test cases is randomly chosen between 1 and 10.
+    - For each test case:
+        - A random size for the array \( A \) is chosen between 1 and 1,000,000.
+        - The elements of the array \( A \) are randomly chosen integers between 1 and \( 2^{31} - 1 \).
+    - After generating the required number of test cases, a terminating line containing `0` is appended to the list of test cases.
+
+2. **Printing Test Cases**:
+    - The function `print_test_cases` iterates over each test case and prints it in the required format.
+    - When it encounters the terminating case `(0, [])`, it prints `0`.
+
+This generator will create a variety of test cases, including the edge case of having no elements in the array and terminating the input sequence correctly.

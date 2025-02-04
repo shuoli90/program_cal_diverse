@@ -1,0 +1,35 @@
+Sure, I can write a test case generator for the "Periodic Sequence" problem. Here is a Python function that generates random test cases for the problem:
+
+```python
+import random
+
+def tcgen():
+    # Generate the length of the sequence N
+    N = random.randint(1, 200000)
+
+    # Generate the sequence S with elements ranging from 1 to 100000
+    S = [random.randint(1, 100000) for _ in range(N)]
+    
+    return N, S
+
+# Example of usage
+if __name__ == "__main__":
+    N, S = tcgen()
+    print(N)
+    print(' '.join(map(str, S)))
+```
+
+### Explanation
+
+1. **N Generation**: A random integer `N` is generated within the range of 1 to 200,000, which represents the length of the sequence.
+2. **S Generation**: A list `S` of length `N` is generated with each element being a random integer between 1 and 100,000, representing the sequence elements.
+
+### Example Output
+
+When you run the `tcgen` function, it will output a random test case. For instance:
+```
+13245
+12345 6789 1011 1213 1415 ... (continues for 13245 numbers)
+```
+
+You can use this function to generate multiple test cases for testing the algorithm that solves the "Periodic Sequence" problem. This will help ensure that the algorithm performs well on a wide range of inputs, including edge cases.

@@ -1,0 +1,43 @@
+Certainly! Below is a test case generator for the given problem statement regarding cakes with number-shaped candles.
+
+```python
+import random
+
+def tcgen():
+    # Constraints
+    MAX_XYZ = 1000
+    MAX_VAL = 10**10
+    
+    # Generate random values for X, Y, Z within the constraints
+    X = random.randint(1, MAX_XYZ)
+    Y = random.randint(1, MAX_XYZ)
+    Z = random.randint(1, MAX_XYZ)
+    
+    # K is bounded by 3000 or X*Y*Z, whichever is smaller
+    K = random.randint(1, min(3000, X * Y * Z))
+    
+    # Generate random deliciousness values for A, B, and C
+    A = [random.randint(1, MAX_VAL) for _ in range(X)]
+    B = [random.randint(1, MAX_VAL) for _ in range(Y)]
+    C = [random.randint(1, MAX_VAL) for _ in range(Z)]
+    
+    return X, Y, Z, K, A, B, C
+
+# Example of generating a test case
+X, Y, Z, K, A, B, C = tcgen()
+print(X, Y, Z, K)
+print(' '.join(map(str, A)))
+print(' '.join(map(str, B)))
+print(' '.join(map(str, C)))
+```
+
+Explanation:
+1. **Constraints**: This generator respects the provided constraints:
+    - \(1 \leq X, Y, Z \leq 1000\)
+    - \(1 \leq K \leq \min(3000, X \times Y \times Z)\)
+    - \(1 \leq A_i, B_i, C_i \leq 10^{10}\)
+2. **Random Values**: Random values are generated for \(X\), \(Y\), and \(Z\) within the range \([1, 1000]\).
+3. **K Calculation**: \(K\) is calculated as a random integer between 1 and the minimum of 3000 or \(X \times Y \times Z\).
+4. **Random Deliciousness Values**: Arrays \(A\), \(B\), and \(C\) are filled with random integers within the range \([1, 10^{10}]\).
+
+You can run the `tcgen` function to generate random test cases and print them in the required format.

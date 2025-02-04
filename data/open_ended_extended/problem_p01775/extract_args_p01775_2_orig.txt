@@ -1,0 +1,17 @@
+def extract_arguments(fh):
+    # Read the first line to get values of n, m, k, p
+    n, m, k, p = map(int, fh.readline().strip().split())
+    
+    # Read the next m lines to get edges information
+    edges = []
+    for _ in range(m):
+        x, y, w = map(int, fh.readline().strip().split())
+        edges.append((x, y, w))
+    
+    # Read the next k lines to get the mail drop and destination information
+    mail_info = []
+    for _ in range(k):
+        s, t = map(int, fh.readline().strip().split())
+        mail_info.append((s, t))
+    
+    return n, m, k, p, edges, mail_info

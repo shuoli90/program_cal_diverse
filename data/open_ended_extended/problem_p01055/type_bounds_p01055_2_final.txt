@@ -1,0 +1,17 @@
+Types:  
+N: int,  
+H: int,  
+W: int,  
+Li: List[int],  
+pxij: List[List[int]],  
+pyij: List[List[int]]
+
+Ranges:  
+1 ≤ N ≤ 100,  
+1 ≤ H, W ≤ 1000,  
+1 ≤ Li[i] ≤ min(H, W),  
+1 ≤ pxij[i][j] ≤ H,  
+1 ≤ pyij[i][j] ≤ W
+
+Addtl Info:  
+- None

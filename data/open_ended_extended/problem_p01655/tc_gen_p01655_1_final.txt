@@ -1,0 +1,52 @@
+Sure, I will provide a test case generator for the described problem statement.
+
+To generate test cases for this problem, we need to generate:
+1. A random length `l` for the strings.
+2. A random acceptable maximum Hamming distance `d`.
+3. Three strings of length `l` consisting of random upper and lower case alphabets.
+
+Here is a Python function that generates test cases according to the given problem statement:
+
+```python
+import random
+import string
+
+def generate_random_string(length):
+    return ''.join(random.choices(string.ascii_letters, k=length))
+
+def tcgen():
+    # Generate random length l (1 ≤ l ≤ 100,000)
+    l = random.randint(1, 100000)
+    
+    # Generate random acceptable maximal Hamming distance d (0 ≤ d ≤ 5,000) 
+    d = random.randint(0, 5000)
+    
+    # Generate 3 strings of length l
+    str_1 = generate_random_string(l)
+    str_2 = generate_random_string(l)
+    str_3 = generate_random_string(l)
+    
+    return (l, d, str_1, str_2, str_3)
+
+
+# Example of generating a test case
+l, d, str_1, str_2, str_3 = tcgen()
+print(f"{l} {d}")
+print(str_1)
+print(str_2)
+print(str_3)
+```
+
+### Explanation:
+- `generate_random_string(length)`: This helper function generates a random string of a specified length consisting of upper and lower case alphabets.
+- `tcgen()`: The main test case generator function:
+  - It first generates a random length `l` between 1 and 100,000.
+  - Then, it generates a random acceptable maximal Hamming distance `d` between 0 and 5,000.
+  - After that, it generates three random strings of length `l`.
+  - Finally, it returns `l`, `d`, `str_1`, `str_2`, and `str_3`.
+
+You can call `tcgen()` to generate test cases and print them in the required format. The above example demonstrates how to generate a test case and print it.
+
+### Note:
+- Ensure that your environment can handle large strings and random operations efficiently, as the maximum length can be quite large.
+- This generator provides random strings and may not always generate strings that are within the acceptable Hamming distance `d`. Additional logic can be added if you need to guarantee that generated strings adhere to specific constraints related to Hamming distances.

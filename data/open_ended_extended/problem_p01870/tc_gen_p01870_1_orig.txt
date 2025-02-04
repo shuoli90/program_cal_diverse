@@ -1,0 +1,71 @@
+Sure, I can help you write a test case generator for this problem. Let's break down the requirements and construct a generator step-by-step:
+
+### Problem Analysis
+- **Input:**
+  1. An integer \(N\) (2 ≤ \(N\) ≤ 100,000), representing the number of islands.
+  2. For each bridge (from 0 to \(N-2\)):
+     - \(p_i\) (0 ≤ \(p_i\) ≤ \(N-1\)): The island to which the \(i+1\)-th island is directly connected.
+     - \(w_i\) (1 ≤ \(w_i\) ≤ 1000): The length of the \(i\)-th bridge.
+
+### Test Case Generator
+The test case generator should:
+1. Randomly choose \(N\) within the specified limits.
+2. Generate \(N-1\) pairs of \(p_i\) and \(w_i\) satisfying the constraints.
+
+We must ensure that all islands can be reached from any other, meaning we need to generate a connected acyclic graph (a tree).
+
+Here’s the Python code for the test case generator:
+
+```python
+import random
+
+def generate_test_case():
+    # Generate a random N within the given range
+    N = random.randint(2, 100000)
+    
+    # Generate the bridges and their lengths
+    bridges = []
+    for i in range(1, N):
+        p_i = random.randint(0, i-1)
+        w_i = random.randint(1, 1000)
+        bridges.append((p_i, w_i))
+    
+    # Format the test case as specified
+    test_input = [str(N)]
+    test_input.extend([f"{p} {w}" for p, w in bridges])
+    
+    return "\n".join(test_input)
+
+# Example of generating a test case and printing it
+if __name__ == "__main__":
+    print(generate_test_case())
+```
+
+### Explanation of the Code
+1. **Randomly Select \(N\):** 
+   ```python
+   N = random.randint(2, 100000)
+   ```
+   This line selects a random integer \(N\) within the given constraints.
+
+2. **Generate Bridges:**
+   ```python
+   for i in range(1, N):
+        p_i = random.randint(0, i-1)
+        w_i = random.randint(1, 1000)
+        bridges.append((p_i, w_i))
+   ```
+   This loop generates \(N-1\) bridges. Each bridge connects the \(i+1\)-th island to some previously generated island \(p_i\) and assigns a random length \(w_i\).
+
+3. **Format Output:**
+   ```python
+   test_input = [str(N)]
+   test_input.extend([f"{p} {w}" for p, w in bridges])
+   return "\n".join(test_input)
+   ```
+   This part formats the generated data into the required input format.
+
+### Example Usage
+You can run this script to generate a test case and print it. This will provide you with the input for the problem, which you can then use to test your solution.
+
+Feel free to modify the script to generate specific types of test cases, such as edge cases or cases that test the boundaries of the constraints.

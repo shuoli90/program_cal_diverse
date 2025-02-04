@@ -1,0 +1,52 @@
+Here's a test case generator for the "Train King" problem:
+
+```python
+import random
+
+def tcgen():
+    # Generate NAB and NBA such that their sum is at most 50
+    NAB = random.randint(0, 50)
+    NBA = random.randint(0, 50 - NAB)
+    
+    # Generate train details for A to B trains
+    trains_AB = []
+    for _ in range(NAB):
+        Ci = random.randint(1, 10)  # number of cars
+        Di = random.randint(0, 86399)  # departure time
+        Ai = random.randint(0, 86399)  # arrival time
+        trains_AB.append((Ci, Di, Ai))
+    
+    # Generate train details for B to A trains
+    trains_BA = []
+    for _ in range(NBA):
+        Ci = random.randint(1, 10)  # number of cars
+        Di = random.randint(0, 86399)  # departure time
+        Ai = random.randint(0, 86399)  # arrival time
+        trains_BA.append((Ci, Di, Ai))
+    
+    return NAB, NBA, trains_AB, trains_BA
+
+# Print a generated test case to verify
+NAB, NBA, trains_AB, trains_BA = tcgen()
+print(NAB, NBA)
+for train in trains_AB:
+    print(*train)
+for train in trains_BA:
+    print(*train)
+```
+
+### Explanation:
+
+1. **NAB and NBA Generation:**
+   - We generate `NAB` (number of trains from A to B) and `NBA` (number of trains from B to A) such that their sum is at most 50.
+
+2. **Train Details Generation:**
+   - For each train, we generate:
+     - `Ci`: Number of cars in the train (between 1 and 10).
+     - `Di`: Departure time (between 0 and 86399 seconds).
+     - `Ai`: Arrival time (between 0 and 86399 seconds).
+
+3. **Output:**
+   - The generated values are printed in the required format.
+
+You can use this test case generator to create various test cases to validate your solution for the "Train King" problem.

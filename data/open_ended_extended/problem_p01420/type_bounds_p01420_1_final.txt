@@ -1,0 +1,3 @@
+Types: N: int, M: int, L: int, P: List[int], T: List[int], V: List[int]
+Ranges: 1 ≤ N ≤ 100, 0 ≤ M ≤ 50, 1 ≤ L ≤ 100,000, 0 ≤ P[i] ≤ 100, 0 ≤ T[i] ≤ 100, 0 ≤ V[i] ≤ 100
+Addtl Info: None

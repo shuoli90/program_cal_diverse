@@ -1,0 +1,183 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p02201 - Generation 2</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p02201 - Generation 2</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>Zaeru Ninja E869120
+E869120-kun is good at creating multiple copies of himself.
+Here, there are $N$ members in the programming research club. However, some of them may be E869120-kun.
+Therefore, you asked all $N$ members for their names. As a result, each member introduced themselves with names $S_1, S_2, S_3, \dots, S_N$.
+How many copies of E869120-kun are there? Assuming that all the members answered honestly with their own names.
+Input
+The input is given in the following format from Standard Input:
+$N$
+$S_1$
+$S_2$
+$S_3$
+$\ldots$
+$S_N$
+Output
+Output the number of copies of E869120-kun. If there are no copies of E869120-kun, output "0".
+Insert a newline character at the end of the output.
+Constraints
+$1 \leq N \leq 1000$
+$1 \leq (\text{length of }S_i) \leq 100$
+$N$ is an integer.
+$S_i$ is a string consisting of numbers and uppercase letters.
+Sample Input 1
+5
+E869120
+TMJN
+E869120
+TAISA
+YNYMXIAOLONGBAO
+Sample Output 1
+2
+E869120-kun created two copies of himself.
+Sample Input 2
+3
+SQUARE1001
+MENCOTTON
+B2563125
+Sample Output 2
+0
+If there are no copies of E869120-kun, output 0.
+Sample Input 3
+6
+E8691200
+E869121
+E869122
+E869123
+E869124
+E869125
+Sample Output 3
+0
+Be careful of the imposters.</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>Canonicalized Input Description:
+
+An integer N (1 ≤ N ≤ 1000), representing some quantity or size.
+A list of N strings, where each string is of length between 1 and 100, consisting of numbers and uppercase letters.
+
+### Example Input:
+
+```
+5
+E869120
+TMJN
+E869120
+TAISA
+YNYMXIAOLONGBAO
+```
+
+### Function Signature:
+Write a function f(N, A) that takes in the input.
+```python
+def f(N: int, A: List[str]):
+    '''
+    N: an integer
+    A: a list of strings
+    '''
+```</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Sure, here's the test case generator for the given problem statement:
+
+```python
+import random
+import string
+
+def tcgen():
+    # Generate a random number of members in the programming research club
+    N = random.randint(1, 1000)
+    
+    # Generate a list of names, where each name is a string of numbers and uppercase letters
+    names = []
+    for _ in range(N):
+        # Randomly decide if this name will be "E869120" or some other name
+        if random.random() < 0.1:  # 10% probability to be "E869120"
+            names.append("E869120")
+        else:
+            # Generate a random name with length between 1 and 100
+            length = random.randint(1, 100)
+            name = ''.join(random.choices(string.ascii_uppercase + string.digits, k=length))
+            names.append(name)
+    
+    return N, names
+
+# Example of how to use the generator
+N, names = tcgen()
+print(N)
+for name in names:
+    print(name)
+```
+
+This generator does the following:
+1. Randomly selects the number of club members \( N \) between 1 and 1000.
+2. For each member, it randomly decides whether to assign the name "E869120" with a 10% probability or to generate a random string of uppercase letters and digits with a length between 1 and 100 characters.
+3. Returns the number of members and the list of names.
+
+You can use this generator to create test cases by calling the `tcgen` function and printing the results, as shown at the end of the script.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    N = int(fh.readline().strip())
+    S = [fh.readline().strip() for _ in range(N)]
+    return N, S</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

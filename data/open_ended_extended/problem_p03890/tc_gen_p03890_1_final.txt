@@ -1,0 +1,28 @@
+Sure! Here's a test case generator for the given problem statement:
+
+```python
+import random
+
+def generate_test_case():
+    # Generate a random value for N
+    N = random.randint(1, 18)
+    
+    # Generate 2^N random integers for the hardness values
+    A = [random.randint(1, 10**9) for _ in range(2**N)]
+    
+    return N, A
+
+def print_test_case(N, A):
+    print(N)
+    for hardness in A:
+        print(hardness)
+
+# Example of generating and printing a test case
+if __name__ == "__main__":
+    N, A = generate_test_case()
+    print_test_case(N, A)
+```
+
+This script generates a test case for the problem statement involving a knockout tournament of stones with given hardness values. The function `generate_test_case` creates a random value for `N` between 1 and 18, and then generates `2^N` random integers for the hardness values, each between 1 and `10^9`. The function `print_test_case` is used to print the generated test case in the required format.
+
+You can run the script to generate and print a test case. This will help you to test your solution by providing various random inputs.

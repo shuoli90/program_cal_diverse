@@ -1,0 +1,28 @@
+An integer N (1 ≤ N ≤ 10^9), representing a target value.
+A string S of length up to 2×10^6 consisting of digits, '+', '*', '(', and ')'.
+The input consists of multiple datasets, each containing:
+- An integer N.
+- A string S.
+
+The end of the input is indicated by a line containing a single zero.
+
+### Example Input:
+
+```
+3
+(1+2)*3+3
+2
+1*1*1+1*1*1
+587
+1*(2*3*4)+5+((6+7*8))*(9)
+0
+```
+
+### Function Signature:
+Write a function f(inputs) that takes in a list of tuples.
+def f(inputs: List[Tuple[int, str]]):
+    '''
+    inputs: a list of tuples where each tuple contains:
+        - an integer
+        - a string
+    '''

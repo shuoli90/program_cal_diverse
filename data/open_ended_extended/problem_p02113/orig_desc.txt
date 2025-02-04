@@ -1,0 +1,45 @@
+Problem C: Palindrome
+Problem
+Taro has N strings of length L each. He loves palindromes, so he wants to choose some of the N strings, arrange them in any order he likes, and make the longest palindrome possible.
+Find the longest palindrome that Taro can make. If there are multiple palindromes of the same length, output the lexicographically smallest one. If it is impossible to make a palindrome no matter how he chooses and arranges strings, output an empty line.
+Input
+The input is given in the following format:
+N L
+s1
+s2
+.
+.
+.
+sN
+The first line contains two integers N and L which are the number of strings and the length of the strings, respectively. The following N lines contain the strings that Taro has.
+Constraints
+The input satisfies the following constraints:
+1 ≤ N ≤ 1000
+1 ≤ L ≤ 30
+si consists of lowercase English letters.
+Output
+Output the lexicographically smallest longest palindrome that can be made. If it is impossible to make a palindrome, output an empty line.
+Sample Input 1
+4 2
+oi
+io
+rr
+rr
+Sample Output 1
+iorrrroi
+Sample Input 2
+5 1
+a
+b
+c
+a
+c
+Sample Output 2
+acbca
+Sample Input 3
+3 3
+uki
+uku
+uke
+Sample Output 3
+uku

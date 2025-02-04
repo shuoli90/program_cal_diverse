@@ -1,0 +1,21 @@
+An integer N (1 ≤ N ≤ 2×10^5), representing some quantity or size.
+A list of N strings, where each string consists of lowercase English letters and has a length between 1 and 10 (inclusive).
+
+### Example Input:
+
+```
+3
+apple
+orange
+apple
+```
+
+### Function Signature:
+Write a function f(N, A) that takes in the input.
+```python
+def f(N: int, A: List[str]):
+    ''' 
+    N: an integer 
+    A: a list of strings
+    '''
+```

@@ -1,0 +1,23 @@
+Canonicalized Input Description: 
+
+An integer N (1 ≤ N ≤ 10^5), representing some quantity or size.
+An integer M (1 ≤ M ≤ 10^5), representing some other quantity or size.
+M pairs of integers (L_i, R_i) where 1 ≤ L_i ≤ R_i ≤ N.
+
+### Example Input:
+
+```
+4 2
+1 3
+2 4
+```
+
+### Function Signature:
+Write a function f(inputs) that takes in the input. 
+def f(inputs: List[Tuple[int, int, List[Tuple[int, int]]]]): 
+    ''' 
+    inputs: a list of tuples, where each tuple contains:
+        - an integer N
+        - an integer M
+        - a list of M tuples, each containing two integers (L_i, R_i)
+    '''

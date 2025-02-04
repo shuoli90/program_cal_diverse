@@ -1,0 +1,23 @@
+An integer n (1 ≤ n ≤ 1,000), representing some quantity or size, followed by two integers vw and vc (1 ≤ vw, vc ≤ 10). 
+Then, n pairs of integers xi and yi (-10,000 ≤ xi, yi ≤ 10,000), where xi < xj for all i < j. 
+The input is terminated by a line containing a single integer 0 which should not be processed.
+
+### Example Input:
+```
+3
+2 1
+0 0
+50 50
+100 0
+0
+```
+
+### Function Signature:
+Write a function f(inputs: List[Tuple[int, int, int, List[Tuple[int, int]]]]) that takes in the input as a list of tuples.
+def f(inputs: List[Tuple[int, int, int, List[Tuple[int, int]]]]): 
+    '''
+    inputs: a list of tuples where each tuple contains:
+        - an integer n
+        - two integers vw and vc
+        - a list of n pairs of integers (xi, yi)
+    '''

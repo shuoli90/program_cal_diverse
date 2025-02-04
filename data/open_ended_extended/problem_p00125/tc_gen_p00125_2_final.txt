@@ -1,0 +1,54 @@
+Certainly! Below is a test case generator for the "Number of Days" problem. The generator will randomly create valid date pairs within a range and will also include the termination condition with negative numbers.
+
+```python
+import random
+from datetime import datetime, timedelta
+
+def random_date(start_year=1900, end_year=2100):
+    year = random.randint(start_year, end_year)
+    month = random.randint(1, 12)
+    
+    # Ensure the day is valid for the month
+    day = random.randint(1, 28)
+    if month in [1, 3, 5, 7, 8, 10, 12]:
+        day = random.randint(1, 31)
+    elif month in [4, 6, 9, 11]:
+        day = random.randint(1, 30)
+    elif month == 2:
+        if (year % 4 == 0 and year % 100 != 0) or (year % 400 == 0):
+            day = random.randint(1, 29)
+        else:
+            day = random.randint(1, 28)
+    
+    return year, month, day
+
+def tcgen():
+    datasets = []
+    
+    for _ in range(random.randint(1, 50)):
+        y1, m1, d1 = random_date()
+        y2, m2, d2 = random_date(y1, y1 + 100)  # Ensure y2 is greater than or equal to y1
+        
+        # Ensure date2 is after or same as date1
+        date1 = datetime(y1, m1, d1)
+        date2 = datetime(y2, m2, d2)
+
+        if date2 < date1:
+            date1, date2 = date2, date1
+            y1, m1, d1 = date1.year, date1.month, date1.day
+            y2, m2, d2 = date2.year, date2.month, date2.day
+        
+        datasets.append((y1, m1, d1, y2, m2, d2))
+    
+    # Include the termination condition
+    datasets.append((-1, -1, -1, -1, -1, -1))
+    
+    return datasets
+
+# Example usage of the test case generator
+test_cases = tcgen()
+for case in test_cases:
+    print(case)
+```
+
+This test case generator creates multiple datasets with valid date pairs, ensuring that the second date is always the same or after the first date. It also includes a termination condition with negative numbers as specified. Each dataset is a tuple `(y1, m1, d1, y2, m2, d2)`, making it easy to use as input for the problem.

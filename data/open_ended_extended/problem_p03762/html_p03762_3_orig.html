@@ -1,0 +1,169 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p03762 - Generation 3</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p03762 - Generation 3</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>
+Score : 500 points
+Problem StatementOn a two-dimensional plane, there are m lines drawn parallel to the x axis, and n lines drawn parallel to the y axis.
+Among the lines parallel to the x axis, the i-th from the bottom is represented by y = y_i.
+Similarly, among the lines parallel to the y axis, the i-th from the left is represented by x = x_i.
+For every rectangle that is formed by these lines, find its area, and print the total area modulo 10^9+7.
+That is, for every quadruple (i,j,k,l) satisfying 1\leq i < j\leq n and 1\leq k < l\leq m, find the area of the rectangle formed by the lines x=x_i, x=x_j, y=y_k and y=y_l, and print the sum of these areas modulo 10^9+7.
+Constraints
+2 \leq n,m \leq 10^5
+-10^9 \leq x_1 < ... < x_n \leq 10^9
+-10^9 \leq y_1 < ... < y_m \leq 10^9
+x_i and y_i are integers.
+InputInput is given from Standard Input in the following format:
+n m
+x_1 x_2 ... x_n
+y_1 y_2 ... y_m
+OutputPrint the total area of the rectangles, modulo 10^9+7.
+Sample Input 13 3
+1 3 4
+1 3 6
+Sample Output 160
+The following figure illustrates this input:
+The total area of the nine rectangles A, B, ..., I shown in the following figure, is 60.
+Sample Input 26 5
+-790013317 -192321079 95834122 418379342 586260100 802780784
+-253230108 193944314 363756450 712662868 735867677
+Sample Output 2835067060
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An integer n (2 ≤ n ≤ 10^5).
+An integer m (2 ≤ m ≤ 10^5).
+A list of n integers x, where each integer is between -10^9 and 10^9, sorted in strictly increasing order.
+A list of m integers y, where each integer is between -10^9 and 10^9, sorted in strictly increasing order.
+
+### Example Input:
+
+```
+3 3
+1 3 4
+1 3 6
+```
+
+### Function Signature:
+Write a function f(n, m, x, y) that takes in the inputs.
+def f(n: int, m: int, x: List[int], y: List[int]):
+    '''
+    n: an integer
+    m: an integer
+    x: a list of integers
+    y: a list of integers
+    '''</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Sure! Here's a test case generator for the given problem statement:
+
+```python
+import random
+
+def generate_sorted_unique_integers(size, lower_bound, upper_bound):
+    # Generate a sorted list of unique integers within the given range
+    numbers = set()
+    while len(numbers) < size:
+        numbers.add(random.randint(lower_bound, upper_bound))
+    return sorted(numbers)
+
+def test_case_generator():
+    # Constraints
+    lower_n = 2
+    upper_n = 10**5
+    lower_m = 2
+    upper_m = 10**5
+    lower_bound = -10**9
+    upper_bound = 10**9
+
+    # Generate n and m within the given constraints
+    n = random.randint(lower_n, upper_n)
+    m = random.randint(lower_m, upper_m)
+
+    # Generate sorted unique x coordinates
+    x_coordinates = generate_sorted_unique_integers(n, lower_bound, upper_bound)
+    
+    # Generate sorted unique y coordinates
+    y_coordinates = generate_sorted_unique_integers(m, lower_bound, upper_bound)
+
+    return n, m, x_coordinates, y_coordinates
+
+# Example usage:
+n, m, x_coordinates, y_coordinates = test_case_generator()
+print(n, m)
+print(' '.join(map(str, x_coordinates)))
+print(' '.join(map(str, y_coordinates)))
+```
+
+This code generates random test cases adhering to the constraints of the problem. Here's what each part does:
+
+1. **generate_sorted_unique_integers**: This function generates a sorted list of unique integers within a specified range.
+2. **test_case_generator**: This function uses the above helper to generate `n` and `m`, as well as sorted unique `x_coordinates` and `y_coordinates`.
+3. **Example usage**: This part demonstrates how to call the test case generator and print the results in the required format.
+
+By running the `test_case_generator` function, you will get random test cases for the problem, ensuring the constraints are respected.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    n, m = map(int, fh.readline().strip().split())
+    x = list(map(int, fh.readline().strip().split()))
+    y = list(map(int, fh.readline().strip().split()))
+    return n, m, x, y</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

@@ -1,0 +1,59 @@
+Sure! Below is a test case generator for the problem statement "Old Bridges" described above:
+
+```python
+import random
+
+def tcgen():
+    datasets = []
+    
+    while True:
+        # Generate a random number of islands n
+        n = random.randint(1, 25)
+        
+        # Generate the treasures and bridge limits for each island
+        islands_info = []
+        for _ in range(n):
+            treasure = random.randint(1, 50)  # Assuming treasure amount can be between 1 and 50 for variability
+            max_bridge_load = random.randint(treasure, 100)  # Ensuring max_bridge_load >= treasure for feasibility
+            islands_info.append((treasure, max_bridge_load))
+        
+        # Add the dataset to the list
+        datasets.append((n, islands_info))
+        
+        # Break loop randomly to simulate multiple datasets, ensuring there is at least one dataset
+        if random.choice([True, False]) and len(datasets) > 1:
+            break
+    
+    # Add the terminating dataset (n=0)
+    datasets.append((0, []))
+    
+    return datasets
+
+# Example usage
+if __name__ == "__main__":
+    datasets = tcgen()
+    for dataset in datasets:
+        n, islands_info = dataset
+        if n == 0:
+            print(n)
+        else:
+            print(n)
+            for treasure, max_bridge_load in islands_info:
+                print(treasure, max_bridge_load)
+```
+
+### Explanation
+1. **Random Dataset Generation**:
+   - A random number of islands `n` (1 ≤ `n` ≤ 25) is generated.
+   - For each island, a random amount of treasures and a maximum bridge load are generated. The maximum bridge load is ensured to be at least as large as the treasure amount to have valid test cases.
+
+2. **Multiple Datasets**:
+   - Multiple datasets are generated until a random choice decides to stop, ensuring there is at least one valid dataset.
+   
+3. **Terminating Dataset**:
+   - Finally, a terminating dataset with `n = 0` is added to signify the end of input.
+
+4. **Output Format**:
+   - The generated datasets are printed in the specified format.
+
+This test case generator ensures a variety of input scenarios which can be used to thoroughly test the solution for the "Old Bridges" problem.

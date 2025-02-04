@@ -1,0 +1,3 @@
+Types: n: int
+Ranges: 1 ≤ n ≤ 30
+Addtl Info: There are no more than 30 datasets; the end of the input is indicated by a single zero line.

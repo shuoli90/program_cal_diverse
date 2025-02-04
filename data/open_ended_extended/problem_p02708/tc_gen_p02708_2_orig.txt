@@ -1,0 +1,36 @@
+To generate test cases for the problem statement you provided, we need to create a function that generates random values for \(N\) and \(K\) within the specified constraints. Here's how we can do it:
+
+```python
+import random
+
+def tcgen():
+    N = random.randint(1, 2 * 10**5)
+    K = random.randint(1, N + 1)
+    return N, K
+
+# Example usage
+for _ in range(5):  # Generate 5 test cases
+    print(tcgen())
+```
+
+This function generates random values for \(N\) and \(K\) within the given constraints:
+- \(1 \leq N \leq 2 \times 10^5\)
+- \(1 \leq K \leq N + 1\)
+
+Let's break down the function:
+1. `N` is chosen randomly between `1` and `2 * 10**5` inclusive.
+2. `K` is chosen randomly between `1` and `N + 1` inclusive.
+
+This will produce valid input pairs for the problem.
+
+Here are a few sample outputs from the generator to illustrate:
+
+```
+(175634, 14792)
+(200000, 192345)
+(123456, 98765)
+(2, 1)
+(199999, 67890)
+```
+
+You can use these generated inputs to test your solution for the problem.

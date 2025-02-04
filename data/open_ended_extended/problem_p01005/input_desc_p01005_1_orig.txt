@@ -1,0 +1,48 @@
+An integer Q (1 ≤ Q ≤ 100000) and an integer L (1 ≤ L ≤ 10^9).
+Followed by Q lines of queries, each containing:
+  - Query type 0: no additional integers.
+  - Query type 1: an integer d (1 ≤ d ≤ 10^9).
+  - Query type 2: an integer k (1 ≤ k ≤ 10^9).
+  - Query type 3: two integers x (0 ≤ x ≤ L) and r (0 ≤ r ≤ 10^9).
+  - Query type 4: an integer k (1 ≤ k ≤ 10^9).
+The input ends with two zeros.
+
+### Example Input:
+
+```
+18 10
+0
+4 1
+1 1
+4 1
+0
+1 1
+0
+2 2
+1 10
+0
+1 1
+0
+1 5
+3 4 0
+3 4 1
+0
+9 10
+4 1
+2 2
+3 5 5
+0
+4 1
+2 2
+3 5 5
+0
+2 1
+0 0
+```
+
+### Function Signature:
+Write a function f(inputs) that takes in the input. 
+def f(inputs: List[Tuple[int, int, List[Tuple[int, ...]]]]):
+    ''' 
+    inputs: a list of tuples, each containing an integer Q, an integer L, and a list of tuples representing queries.
+    '''

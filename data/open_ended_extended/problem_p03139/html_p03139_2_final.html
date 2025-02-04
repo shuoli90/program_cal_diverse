@@ -1,0 +1,171 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p03139 - Generation 2</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p03139 - Generation 2</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>
+Score : 100 points
+Problem StatementWe conducted a survey on newspaper subscriptions.
+More specifically, we asked each of the N respondents the following two questions:
+Question 1: Are you subscribing to Newspaper X?
+Question 2: Are you subscribing to Newspaper Y?
+As the result, A respondents answered "yes" to Question 1, and B respondents answered "yes" to Question 2.
+What are the maximum possible number and the minimum possible number of respondents subscribing to both newspapers X and Y?
+Write a program to answer this question.
+Constraints
+1 \leq N \leq 100
+0 \leq A \leq N
+0 \leq B \leq N
+All values in input are integers.
+InputInput is given from Standard Input in the following format:
+N A B
+OutputPrint the maximum possible number and the minimum possible number of respondents subscribing to both newspapers, in this order, with a space in between.
+Sample Input 110 3 5
+Sample Output 13 0
+In this sample, out of the 10 respondents, 3 answered they are subscribing to Newspaper X, and 5 answered they are subscribing to Newspaper Y.
+Here, the number of respondents subscribing to both newspapers is at most 3 and at least 0.
+Sample Input 210 7 5
+Sample Output 25 2
+In this sample, out of the 10 respondents, 7 answered they are subscribing to Newspaper X, and 5 answered they are subscribing to Newspaper Y.
+Here, the number of respondents subscribing to both newspapers is at most 5 and at least 2.
+Sample Input 3100 100 100
+Sample Output 3100 100
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>Canonicalized Input Description: 
+
+An integer N (1 ≤ N ≤ 100), representing some quantity or size.
+An integer A (0 ≤ A ≤ N), representing some quantity.
+An integer B (0 ≤ B ≤ N), representing some quantity.
+
+### Example Input:
+
+```
+10 3 5
+```
+
+### Function Signature:
+
+Write a function f(N, A, B) that takes in the input.
+```python
+def f(N: int, A: int, B: int):
+    '''
+    N: an integer
+    A: an integer
+    B: an integer
+    '''
+```</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Certainly! Let's start by analyzing the problem to create a test case generator for it.
+
+**Analysis:**
+
+Given:
+1. \(N\) (1 ≤ \(N\) ≤ 100): Total number of respondents.
+2. \(A\) (0 ≤ \(A\) ≤ \(N\)): Number of respondents subscribing to Newspaper X.
+3. \(B\) (0 ≤ \(B\) ≤ \(N\)): Number of respondents subscribing to Newspaper Y.
+
+We need to determine:
+- The maximum possible number of respondents subscribing to both newspapers.
+- The minimum possible number of respondents subscribing to both newspapers.
+
+**Formulas:**
+
+- **Maximum possible number** of respondents subscribing to both newspapers is the smaller of \(A\) and \(B\):
+  \[
+  \text{max\_both} = \min(A, B)
+  \]
+
+- **Minimum possible number** of respondents subscribing to both newspapers is the excess of the total respondents over the sum of unique subscribers:
+  \[
+  \text{min\_both} = \max(0, A + B - N)
+  \]
+
+**Test Case Generator:**
+
+We generate random values for \(N\), \(A\), and \(B\) within the specified constraints and then print them in the required format.
+
+```python
+import random
+
+def tcgen():
+    N = random.randint(1, 100)
+    A = random.randint(0, N)
+    B = random.randint(0, N)
+    
+    return N, A, B
+
+# Example usage
+for _ in range(5):
+    print(tcgen())
+```
+
+**Explanation:**
+
+- `N` is generated within the range 1 to 100.
+- `A` and `B` are generated within the range 0 to \(N\).
+  
+The function `tcgen` will produce a tuple `(N, A, B)` for each call, representing a valid test case according to the problem's constraints. You can run the example usage to see multiple test cases generated by the function.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    N, A, B = map(int, fh.readline().strip().split())
+    return N, A, B</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

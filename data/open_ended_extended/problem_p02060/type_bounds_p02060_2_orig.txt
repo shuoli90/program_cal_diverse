@@ -1,0 +1,3 @@
+Types: N: int, p_A: int, p_B: int, p_C: int, p_D: int, t_A: int, t_B: int, t_C: int, t_D: int  
+Ranges: 1 ≤ N ≤ 100, 1 ≤ p_X ≤ 100, 1 ≤ t_X ≤ 100  
+Addtl Info: All input values are integers.

@@ -1,0 +1,23 @@
+An integer \( N \) (1 ≤ \( N \) ≤ 2 × 10^5), representing some quantity or size.
+An integer \( K \) (1 ≤ \( K \) ≤ 10^9), representing some threshold or parameter.
+A list of \( N \) integers \( A \), where each integer \( A[i] \) (1 ≤ \( A[i] \) ≤ 10^9).
+
+### Example Input:
+
+```
+3 6
+7
+5
+7
+```
+
+### Function Signature:
+Write a function f(N, K, A) that takes in the input.
+```python
+def f(N: int, K: int, A: List[int]):
+    '''
+    N: an integer
+    K: an integer
+    A: a list of integers
+    '''
+```

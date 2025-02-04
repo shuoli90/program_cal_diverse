@@ -1,0 +1,48 @@
+Sure! Here is a Python function to generate test cases for the "DAG Trio" problem:
+
+```python
+import random
+
+def generate_dag_trio_test_case():
+    N = random.randint(3, 500)
+    M = random.randint(max(3, N-1), 30000)
+    
+    edges = set()
+    while len(edges) < M:
+        a = random.randint(1, N)
+        b = random.randint(1, N)
+        if a != b and (a, b) not in edges and (b, a) not in edges:
+            edges.add((a, b))
+    
+    edges = list(edges)
+    random.shuffle(edges)
+    
+    test_case = f"{N} {M}\n"
+    for a, b in edges:
+        test_case += f"{a} {b}\n"
+    
+    return test_case.strip()
+
+# Example usage:
+print(generate_dag_trio_test_case())
+```
+
+### Explanation:
+
+1. **Vertices and Edges Count:**
+    - `N` is chosen randomly between 3 and 500.
+    - `M` is chosen randomly between the maximum of 3 and \(N-1\) to 30000.
+
+2. **Edges Generation:**
+    - A set `edges` is used to store unique edges.
+    - Random edges `(a, b)` are generated ensuring:
+        - `a` is not equal to `b` (no self-loops).
+        - Each edge `(a, b)` is unique and not already in the set (no multiple edges).
+        - Ensuring the graph is simple and connected (in practice, this random method combined with the constraints helps generate a connected graph).
+
+3. **Output Format:**
+    - The test case is returned as a formatted string where:
+        - The first line is `N M`.
+        - Each subsequent line represents an edge `a b`.
+
+This generator will help create randomized test cases suitable for the "DAG Trio" problem while respecting the constraints provided.

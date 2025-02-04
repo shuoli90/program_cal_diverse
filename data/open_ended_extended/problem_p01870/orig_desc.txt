@@ -1,0 +1,47 @@
+F: Relay
+Problem Statement
+There is a village named Biwako consisting of $N$ small islands floating on a lake. There are $N-1$ simple bridges in Biwako village. The islands are numbered from $0$ to $N-1$, and the bridges are numbered from $0$ to $N-2$. The $i$-th bridge connects the $i+1$-th island with the $p_i$-th island directly, and its length is $w_i$. The villagers can move between any two islands through several bridges.
+A relay race is going to be held in Biwako village according to the proposal of a villager. However, since there are no loops in Biwako village, they cannot prepare a track. Therefore, they consider replacing only one bridge to create a loop. Find the maximum length of the loop that can be created by this operation.
+Input
+$N$
+$p_0 \ w_0$
+$\vdots$
+$p_{n-2} \ w_{n-2}$
+Constraints
+$2 \leq N \leq 100000$
+$0 \leq p_i \leq N-1$
+$1 \leq w_i \leq 1000$
+All values are integers.
+All islands can be reached from any other island.
+Output
+Print the answer in one line.
+Sample
+The figure for each sample is as follows.
+Sample Input 1
+5
+0 1
+0 2
+0 3
+0 4
+Sample Output 1
+9
+Sample Input 2
+12
+0 6
+1 1
+0 3
+3 4
+0 2
+5 1
+6 1
+0 2
+8 1
+9 1
+10 2
+Sample Output 2
+19
+Sample Input 3
+2
+0 1
+Sample Output 3
+1

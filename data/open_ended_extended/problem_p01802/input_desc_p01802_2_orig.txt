@@ -1,0 +1,24 @@
+An integer D (1 ≤ D ≤ 100).
+An integer E (1 ≤ E ≤ 100).
+
+The input consists of multiple data sets with up to 100 sets.
+The end of the input is indicated by a line consisting of two zeros separated by a space.
+
+### Example Input:
+
+```
+2 1
+7 5
+7 6
+7 7
+76 5
+8 41
+0 0
+```
+
+### Function Signature:
+Write a function f(inputs) that takes in a list of tuples. 
+def f(inputs: List[Tuple[int, int]]): 
+    ''' 
+    inputs: a list of tuples, where each tuple contains two integers
+    '''

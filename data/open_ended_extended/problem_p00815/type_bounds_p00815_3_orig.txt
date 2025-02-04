@@ -1,0 +1,3 @@
+Types: n: int, records: List[List[int]]
+Ranges: 1 ≤ n < 100, each record is a list of integers terminated by 0, each number in a record is between -99 and 99, each record is less than 1000 characters long, number of rooms < 100, number of doors in each room < 40
+Addtl Info: None

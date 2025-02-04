@@ -1,0 +1,26 @@
+Canonicalized Input Description:
+
+Three integers representing a point in 3D space where each integer is between -100 and 100.
+Three integers representing another point in 3D space where each integer is between -100 and 100.
+Three integers representing a vertex of a triangle in 3D space where each integer is between -100 and 100.
+Three integers representing another vertex of the triangle in 3D space where each integer is between -100 and 100.
+Three integers representing the third vertex of the triangle in 3D space where each integer is between -100 and 100.
+
+### Example Input:
+
+```
+-10 0 0
+10 0 0
+0 10 0
+0 10 10
+0 0 10
+```
+
+### Function Signature:
+Write a function `f(points)` that takes in the input. 
+```python
+def f(points: List[Tuple[int, int, int]]):
+    '''
+    points: a list of tuples, each containing three integers representing coordinates in 3D space
+    '''
+```

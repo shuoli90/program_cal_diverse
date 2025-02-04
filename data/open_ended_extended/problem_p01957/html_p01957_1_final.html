@@ -1,0 +1,187 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p01957 - Generation 1</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p01957 - Generation 1</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>
+Tournament Chart
+  In 21XX, an annual programming contest, Japan Algorithmist GrandPrix (JAG) has become one of the most popular mind sports events.
+  JAG is conducted as a knockout tournament. This year, $N$ contestants will compete in JAG. A tournament chart is represented as a string. '[[a-b]-[c-d]]' is an easy example. In this case, there are 4 contestants named a, b, c, and d, and all matches are described as follows:
+Match 1 is the match between a and b.
+Match 2 is the match between c and d.
+Match 3 is the match between [the winner of match 1] and [the winner of match 2].
+  More precisely, the tournament chart satisfies the following BNF:
+<winner> ::= <person> | "[" <winner> "-" <winner> "]"
+<person> ::= "a" | "b" | "c" | ... | "z"
+  You, the chairperson of JAG, are planning to announce the results of this year's JAG competition. However, you made a mistake and lost the results of all the matches. Fortunately, you found the tournament chart that was printed before all of the matches of the tournament. Of course, it does not contains results at all. Therefore, you asked every contestant for the number of wins in the tournament, and got $N$ pieces of information in the form of "The contestant $a_i$ won $v_i$ times".
+Now, your job is to determine whether all of these replies can be true.
+Input
+  The input consists of a single test case in the format below.
+$S$
+$a_1$ $v_1$
+:
+$a_N$ $v_N$
+$S$ represents the tournament chart. $S$ satisfies the above BNF. The following $N$ lines represent the information of the number of wins. The ($i+1$)-th line consists of a lowercase letter $a_i$ and a non-negative integer $v_i$ ($v_i \leq 26$) separated by a space, and this means that the contestant $a_i$ won $v_i$ times. Note that $N$ ($2 \leq N \leq 26$) means that the number of contestants and it can be identified by string $S$. You can assume that each letter $a_i$ is distinct. It is guaranteed that $S$ contains each $a_i$ exactly once and doesn't contain any other lowercase letters.
+Output
+Print 'Yes' in one line if replies are all valid for the tournament chart. Otherwise, print 'No' in one line.
+Sample Input 1
+[[m-y]-[a-o]]
+o 0
+a 1
+y 2
+m 0
+Output for Sample Input 1
+Yes
+Sample Input 2
+[[r-i]-[m-e]]
+e 0
+r 1
+i 1
+m 2
+Output for Sample Input 2
+No
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An integer N (2 ≤ N ≤ 26), representing some quantity or size.
+A string S encoding a structure involving N unique lowercase letters 'a' to 'z'.
+N lines, each containing a lowercase letter and a non-negative integer (0 ≤ integer ≤ 26), separated by a space.
+
+### Example Input:
+
+```
+[[m-y]-[a-o]]
+o 0
+a 1
+y 2
+m 0
+```
+
+### Function Signature:
+Write a function f(S, inputs) that takes in the input.
+def f(S: str, inputs: List[Tuple[str, int]]):
+    '''
+    S: a string
+    inputs: a list of tuples, each containing a string and an integer
+    '''
+</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Sure, I can help you write a test case generator for the given problem statement "Tournament Chart". Here is a Python function that generates random test cases for this problem:
+
+```python
+import random
+import string
+
+def generate_tournament_chart(contestants):
+    if len(contestants) == 1:
+        return contestants[0]
+    
+    mid = len(contestants) // 2
+    left = generate_tournament_chart(contestants[:mid])
+    right = generate_tournament_chart(contestants[mid:])
+    return f"[{left}-{right}]"
+
+def tcgen():
+    N = random.randint(2, 26)  # Number of contestants
+    contestants = random.sample(string.ascii_lowercase, N)
+    
+    # Generate a valid tournament chart
+    tournament_chart = generate_tournament_chart(contestants)
+    
+    # Generate wins for each contestant
+    contestant_wins = []
+    for contestant in contestants:
+        wins = random.randint(0, 25)
+        contestant_wins.append(f"{contestant} {wins}")
+    
+    return tournament_chart, contestant_wins
+
+def main():
+    tournament_chart, contestant_wins = tcgen()
+    print(tournament_chart)
+    for win in contestant_wins:
+        print(win)
+
+if __name__ == "__main__":
+    main()
+```
+
+### Explanation:
+1. **generate_tournament_chart(contestants)**: This recursive function generates a tournament chart in the required format. It takes a list of contestants and builds the chart by recursively splitting the list into two halves until there's only one contestant left.
+   
+2. **tcgen()**: This function generates:
+   - A random number \( N \) of contestants between 2 and 26.
+   - A list of unique contestants.
+   - A valid tournament chart using the `generate_tournament_chart` function.
+   - Random win values for each contestant between 0 and 25 (inclusive).
+ 
+3. **main()**: This function prints the generated tournament chart and the wins for each contestant in the correct format.
+
+You can run the `main()` function to generate a random test case and print it in the format specified in the problem statement.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    S = fh.readline().strip()
+    N = S.count('-') + 1
+    args = []
+    for _ in range(N):
+        line = fh.readline().strip().split()
+        args.append((line[0], int(line[1])))
+    return S, args</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

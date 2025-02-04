@@ -1,0 +1,10 @@
+def extract_arguments(fh):
+    inputs = []
+    case_number = 1
+    while True:
+        N = int(fh.readline().strip())
+        if N == 0:
+            break
+        inputs.append((case_number, N))
+        case_number += 1
+    return inputs

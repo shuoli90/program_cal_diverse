@@ -1,0 +1,19 @@
+def extract_arguments(fh):
+    datasets = []
+    while True:
+        H, W = map(int, fh.readline().strip().split())
+        if H == 0 and W == 0:
+            break
+        chocolate_bar = [list(map(int, fh.readline().strip().split())) for _ in range(H)]
+        datasets.append((H, W, chocolate_bar))
+    return datasets
+
+# Example usage:
+# if __name__ == "__main__":
+#     import sys
+#     input_path = sys.argv[1]
+#     with open(input_path, 'r') as fh:
+#         datasets = extract_arguments(fh)
+#         for data in datasets:
+#             H, W, chocolate_bar = data
+#             f(H, W, chocolate_bar)

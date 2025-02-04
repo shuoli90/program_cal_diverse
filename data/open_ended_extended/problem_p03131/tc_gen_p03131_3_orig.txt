@@ -1,0 +1,27 @@
+Sure! Let's write a test case generator for the given problem statement. The generator will create random values for \(K\), \(A\), and \(B\) within the specified constraints.
+
+Here is the test case generator:
+
+```python
+import random
+
+def tcgen():
+    K = random.randint(1, 10**9)
+    A = random.randint(1, 10**9)
+    B = random.randint(1, 10**9)
+    
+    return K, A, B
+
+# Example usage:
+K, A, B = tcgen()
+print(K, A, B)
+```
+
+This generator will produce random values for \(K\), \(A\), and \(B\), ensuring they are within the given constraints (1 ≤ \(K, A, B\) ≤ 10^9).
+
+### Explanation:
+1. **K**: The number of operations, randomly chosen between 1 and 10^9.
+2. **A**: The number of biscuits required to exchange for 1 yen, randomly chosen between 1 and 10^9.
+3. **B**: The number of biscuits you get for 1 yen, randomly chosen between 1 and 10^9.
+
+The generator can be used to produce a variety of test cases to thoroughly test the solution for the given problem statement.

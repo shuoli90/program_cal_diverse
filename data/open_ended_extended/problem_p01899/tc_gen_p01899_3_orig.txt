@@ -1,0 +1,49 @@
+Sure, I can help you write a test case generator for the Yamanote-line Game problem. Below is the Python code that generates random test cases based on the problem constraints:
+
+```python
+import random
+
+def tcgen():
+    # Randomly generate N within the constraint 3 ≤ N ≤ 1,000
+    N = random.randint(3, 1000)
+    
+    # Randomly generate d within the constraint 1 ≤ d ≤ 1,000
+    d = random.randint(1, 1000)
+    
+    # Generate the list of rewards p of size N where each p_i is within the constraint 1 ≤ p_i ≤ 1,000
+    p = [random.randint(1, 1000) for _ in range(N)]
+    
+    # Return the generated test case
+    return N, d, p
+
+# Function to format the output in the required way
+def format_test_case(N, d, p):
+    # First line: N and d separated by a space
+    first_line = f"{N} {d}"
+    
+    # Second line: list of rewards separated by spaces
+    second_line = " ".join(map(str, p))
+    
+    # Combine both lines into the final formatted string
+    return f"{first_line}\n{second_line}"
+
+# Example usage
+for _ in range(5):  # Generate 5 test cases for demonstration
+    N, d, p = tcgen()
+    print(format_test_case(N, d, p))
+    print()  # Print a newline for better separation between test cases
+```
+
+### Explanation
+1. **tcgen Function:**
+   - Generates a random integer `N` within the range [3, 1000].
+   - Generates a random integer `d` within the range [1, 1000].
+   - Generates a list `p` of size `N` where each element is a random integer within the range [1, 1000].
+
+2. **format_test_case Function:**
+   - Formats the generated test case into the required input format with `N` and `d` on the first line, and the list of rewards `p` on the second line.
+
+3. **Example usage:**
+   - Demonstrates generating and printing 5 test cases.
+
+This code will help generate diverse test cases for testing the Yamanote-line Game problem effectively.

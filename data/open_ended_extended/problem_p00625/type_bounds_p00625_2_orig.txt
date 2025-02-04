@@ -1,0 +1,21 @@
+Types:  
+- N: int  
+- M: int  
+- Dix: float  
+- Diy: float  
+- Vi: float  
+- FPix: float  
+- FPin: float  
+- FVix: float  
+- FViy: float  
+
+Ranges:  
+- 1 ≤ N ≤ 10  
+- 1 ≤ M ≤ 1000  
+- -1000 ≤ Dix, Diy, FPix, FPin ≤ 1000  
+- 1 ≤ Vi ≤ 100  
+- -25 ≤ FVix, FViy ≤ 25  
+
+Addtl Info:  
+- The end of the input is indicated by N=0 and M=0.  
+- During the simulation, the absolute values of the x and y coordinates of the dogs do not exceed 1e+8.

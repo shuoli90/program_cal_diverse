@@ -1,0 +1,22 @@
+def extract_arguments(fh):
+    data_sets = []
+    while True:
+        n, m = map(int, fh.readline().strip().split())
+        if n == 0 and m == 0:
+            break
+        winning_numbers = []
+        for _ in range(n):
+            parts = fh.readline().strip().split()
+            winning_numbers.append((parts[0], int(parts[1])))
+        tickets = []
+        for _ in range(m):
+            tickets.append(fh.readline().strip())
+        data_sets.append((n, m, winning_numbers, tickets))
+    return data_sets
+
+# if __name__ == "__main__":
+#     input_path = sys.argv[1]
+#     with open(input_path, 'r') as fh:
+#         data_sets = extract_arguments(fh)
+#         for data in data_sets:
+#             print(data)

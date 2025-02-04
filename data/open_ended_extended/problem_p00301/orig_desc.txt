@@ -1,0 +1,28 @@
+Symmetric Ternary
+It is known that if there is one weight of 1 gram, 3 grams, 9 grams, and 27 grams, you can use a balance to measure from 1 gram to 40 grams at 1 gram intervals. For example, if you place the weight you want to measure and a 3-gram weight on one side of the balance, and a 27-gram and a 1-gram weight on the other side, you know that the weight of the object you want to measure is 27-3+1=25 grams. Furthermore, if there is one weight of 1 (= 3 0) gram, 3 1 grams, ..., 3 n-1 grams, and 3 n grams, it is known that you can measure up to (3 n +1-1)/2 grams using a balance. It is also known that there is only one way to place weights so that the balance is balanced.
+You can represent the way weights are placed on the balance by a string by placing the weight you want to measure and the weight on a balance, and indicating with "-" if it is on the same side as the weight of the 3 i grams, "+" if it is on the other side, and "0" if it is not placed on either side, write it in the i-th position from the right end of the string (counting the right end as 0). For example, the example of 25 grams above can be represented as "+0-+".
+Now, given the weight you want to measure, create a program that outputs a string representing how to place the weights so that the balance is balanced. However, it is assumed that there is always one weight of 3 to the power of n grams for any weight.
+(Note: About symmetric ternary)
+The string representing the way weights are placed is called the symmetric ternary of w, which is a number represented by placing powers of 3 and writing characters representing the numbers 1, 0, and -1 for each digit. In the above string, the characters "+", "0", and "-" correspond to the numbers 1, 0, and -1, respectively. For example, the symmetric ternary of "+0-+" representing the way to weigh 25 grams represents the number 1 × 33 + 0 × 32 - 1 × 31 + 1 × 30 = 25.
+Input
+The input is given in the following format:
+w
+w (1 ≤ w ≤ 100000) is an integer representing the weight of the object to be measured.
+Output
+Output a string representing how to place the weights. However, the left end of the string must not be 0.
+Examples
+Example 1
+Input:
+25
+Output:
++0-+
+Example 2
+Input:
+2
+Output:
++-
+Example 3
+Input:
+5
+Output:
++--

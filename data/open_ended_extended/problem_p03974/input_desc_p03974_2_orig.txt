@@ -1,0 +1,33 @@
+An integer N (1 ≤ N ≤ 100000), representing some quantity or size.
+A list of N unique strings, each string containing only lowercase letters. The sum of lengths of all strings is no more than 400000.
+An integer Q (1 ≤ Q ≤ 100000), representing the number of queries.
+Q tuples, each tuple containing an integer and a string of size 26, where the string is a permutation of 'abcdefghijklmnopqrstuvwxyz'.
+
+### Example Input:
+
+```
+5
+aa
+abbaa
+abbba
+aaab
+aaaaaba
+5
+1 abcdefghijklmnopqrstuvwxyz
+2 bacdefghijklmnopqrstuvwxyz
+3 abcdefghijklmnopqrstuvwxyz
+4 bacdefghijklmnopqrstuvwxyz
+5 abcdefghijklmnopqrstuvwxyz
+```
+
+### Function Signature:
+Write a function f(N, strings, Q, queries) that takes in the input.
+```python
+def f(N: int, strings: List[str], Q: int, queries: List[Tuple[int, str]]):
+    ''' 
+    N: an integer 
+    strings: a list of strings
+    Q: an integer
+    queries: a list of tuples, each containing an integer and a string
+    '''
+```

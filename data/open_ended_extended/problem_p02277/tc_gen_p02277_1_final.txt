@@ -1,0 +1,62 @@
+Sure, let's write a test case generator for the "Quick Sort" problem. The generator will create random test cases based on the given constraints. 
+
+Here’s the Python function to generate the test cases:
+
+```python
+import random
+
+def generate_card():
+    """Generate a random card represented by a suit and a number."""
+    suit = random.choice(['S', 'H', 'C', 'D'])
+    number = random.randint(1, 10**9)
+    return f"{suit} {number}"
+
+def tcgen():
+    """Generate a random test case for the Quick Sort problem."""
+    n = random.randint(1, 100000)
+    
+    cards = set()
+    while len(cards) < n:
+        cards.add(generate_card())
+    
+    return n, list(cards)
+
+# Function to format the test case as a string
+def format_test_case(n, cards):
+    result = [str(n)]
+    result.extend(cards)
+    return "\n".join(result)
+
+# Generate a test case
+n, cards = tcgen()
+test_case = format_test_case(n, cards)
+print(test_case)
+```
+
+### Explanation:
+1. **generate_card():**
+   - This function generates a single card consisting of a random suit ('S', 'H', 'C', 'D') and a random number between 1 and \(10^9\).
+
+2. **tcgen():**
+   - This function generates a random number \(n\) between 1 and 100,000.
+   - It creates a set of unique cards by repeatedly calling `generate_card()` until the set size reaches \(n\). This ensures all cards are unique as specified in the problem constraints.
+
+3. **format_test_case():**
+   - This function formats the generated number of cards and the list of cards into the required input format for the problem statement.
+
+### Example Output:
+The output would be a string that can be directly used as input for the problem:
+
+```
+6
+D 123456789
+H 987654321
+C 123456789
+S 987654321
+D 111111111
+C 222222222
+```
+
+This string represents the input format expected by the problem statement, with the first line being the number of cards and each subsequent line representing a card with its suit and number. 
+
+Feel free to integrate this generator into your testing framework or modify it as needed for your specific requirements.

@@ -1,0 +1,51 @@
+Certainly! Below is the test case generator for the given problem statement:
+
+```python
+import random
+
+def tcgen():
+    # Generate a random integer K such that 1 ≤ K ≤ 200
+    K = random.randint(1, 200)
+    
+    return K
+
+# Example usage
+if __name__ == "__main__":
+    # Generate a test case
+    test_case = tcgen()
+    
+    # Print the test case in the required format
+    print(test_case)
+```
+
+This generator produces a random integer \( K \) within the specified range, which is the input for the problem. Each time you run the generator, it will produce a different value of \( K \).
+
+For a complete testing setup, you might also want to include the function to calculate the output based on the generated \( K \). Here is an example implementation for the calculation:
+
+```python
+import math
+
+def calculate_gcd_sum(K):
+    gcd_sum = 0
+    for a in range(1, K + 1):
+        for b in range(1, K + 1):
+            for c in range(1, K + 1):
+                gcd_sum += math.gcd(math.gcd(a, b), c)
+    return gcd_sum
+
+# Example usage
+if __name__ == "__main__":
+    # Generate a test case
+    K = tcgen()
+    
+    # Print the test case in the required format
+    print(f"Input: {K}")
+    
+    # Calculate the output
+    result = calculate_gcd_sum(K)
+    
+    # Print the result
+    print(f"Output: {result}")
+```
+
+This code will generate a random test case, print it, and then calculate and print the expected output based on the problem's requirements. The `calculate_gcd_sum` function computes the sum of the greatest common divisors for all triplets \((a, b, c)\) where \(1 \leq a, b, c \leq K\).

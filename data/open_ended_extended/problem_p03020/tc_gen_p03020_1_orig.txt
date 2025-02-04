@@ -1,0 +1,72 @@
+Sure, I can help you write a test case generator for this problem. This generator will create random values for \(N\), and the coordinates and counts for red and blue balls while ensuring that the total number of red and blue balls are equal.
+
+Here is the Python code for the test case generator:
+
+```python
+import random
+
+def generate_coordinates_and_counts(N):
+    coordinates_and_counts = []
+    total_counts = 0
+
+    for _ in range(N):
+        x = random.randint(0, 10**9)
+        y = random.randint(0, 10**9)
+        c = random.randint(1, 10)
+        coordinates_and_counts.append((x, y, c))
+        total_counts += c
+
+    return coordinates_and_counts, total_counts
+
+def tcgen():
+    # Generate N
+    N = random.randint(1, 1000)
+    
+    # Generate red balls data
+    red_data, red_total = generate_coordinates_and_counts(N)
+    
+    # Generate blue balls data
+    blue_data, blue_total = generate_coordinates_and_counts(N)
+    
+    # Adjust counts to make sure red_total == blue_total
+    while red_total != blue_total:
+        if red_total > blue_total:
+            excess = red_total - blue_total
+            for i in range(N):
+                if red_data[i][2] > 1:
+                    adjust = min(red_data[i][2] - 1, excess)
+                    red_data[i] = (red_data[i][0], red_data[i][1], red_data[i][2] - adjust)
+                    red_total -= adjust
+                    if red_total == blue_total:
+                        break
+        else:
+            excess = blue_total - red_total
+            for i in range(N):
+                if blue_data[i][2] > 1:
+                    adjust = min(blue_data[i][2] - 1, excess)
+                    blue_data[i] = (blue_data[i][0], blue_data[i][1], blue_data[i][2] - adjust)
+                    blue_total -= adjust
+                    if blue_total == red_total:
+                        break
+    
+    # Print the test case
+    print(N)
+    for (rx, ry, rc) in red_data:
+        print(rx, ry, rc)
+    for (bx, by, bc) in blue_data:
+        print(bx, by, bc)
+
+# Example usage:
+tcgen()
+```
+
+This code generates a random integer \(N\) within the given constraints, creates random coordinates and counts for both the red and blue balls, and ensures that the total number of red and blue balls are equal. 
+
+Here's a step-by-step explanation of the test case generator:
+1. **Generate \(N\)**: Randomly choose \(N\) between 1 and 1000.
+2. **Generate Red Balls Data**: Generate \(N\) sets of coordinates and counts for the red balls, ensuring the counts sum up correctly.
+3. **Generate Blue Balls Data**: Generate \(N\) sets of coordinates and counts for the blue balls, ensuring the counts sum up correctly.
+4. **Adjust Counts**: Ensure that the total counts of red and blue balls are equal by adjusting the counts if necessary.
+5. **Print Test Case**: Print \(N\), followed by the red balls' data and the blue balls' data.
+
+You can run this code in your local Python environment to generate test cases for the given problem.

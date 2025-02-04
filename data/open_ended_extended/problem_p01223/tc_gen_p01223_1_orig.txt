@@ -1,0 +1,68 @@
+Certainly! Let's create a test case generator for the "Problem A: Saizou".
+
+### Test Case Generator
+
+We'll need to generate multiple datasets. Each dataset will have:
+1. The number of blocks.
+2. A sequence of heights for these blocks.
+
+Here is the Python code to generate such test cases:
+
+```python
+import random
+
+def tcgen():
+    t = random.randint(1, 100)  # Number of datasets (0 < t ≤ 100)
+    
+    datasets = []
+    for _ in range(t):
+        n = random.randint(2, 100)  # Number of blocks (2 ≤ n ≤ 100)
+        heights = [random.randint(1, 1000) for _ in range(n)]  # Heights of blocks (0 < h ≤ 1000)
+        datasets.append((n, heights))
+    
+    return t, datasets
+
+# Function to print the generated test case in the required format
+def print_test_case(t, datasets):
+    print(t)
+    for n, heights in datasets:
+        print(n)
+        print(' '.join(map(str, heights)))
+
+# Generating a test case
+t, datasets = tcgen()
+print_test_case(t, datasets)
+```
+
+### Explanation
+
+1. **Number of Datasets (`t`)**:
+    - Randomly selects an integer `t` between 1 and 100.
+
+2. **For Each Dataset**:
+    - Randomly selects an integer `n` between 2 and 100.
+    - Generates a list of `n` integers, each between 1 and 1000, representing the heights of the blocks.
+
+3. **Output**:
+    - The function `print_test_case` prints the test case in the required format. Each dataset starts with the number of blocks followed by the heights of the blocks.
+
+### Example Output
+
+Running the test case generator might output something like this:
+
+```
+3
+4
+200 500 300 700
+5
+123 234 345 456 567
+2
+999 1000
+```
+
+In this output, there are 3 datasets:
+1. The first dataset has 4 blocks with heights [200, 500, 300, 700].
+2. The second dataset has 5 blocks with heights [123, 234, 345, 456, 567].
+3. The third dataset has 2 blocks with heights [999, 1000].
+
+This generator will help you create diverse and valid test cases for the problem statement.

@@ -1,0 +1,3 @@
+Types: N: int, W: List[int], S: List[int], V: List[int]  
+Ranges: 1 ≤ N ≤ 10^3, 1 ≤ W[i], S[i] ≤ 10^4, 1 ≤ V[i] ≤ 10^9  
+Addtl Info: None

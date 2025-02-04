@@ -1,0 +1,64 @@
+MinimumCostPath
+There is an NxN square grid.
+(Figure for the case of N=3)
+The cost to move to an adjacent square is 1. However, diagonal movement is not allowed.
+Also, there are M squares with obstacles, and it is not allowed to enter those squares.
+How many ways are there to move from square (1,1) to square (N,N) with the minimum cost?
+Since the answer can be large, output it by taking the MOD of 1000000009 (=109+9).
+Input
+The input is given in the following format:
+N MX1 Y1X2 Y2……XM YM
+Xi, Yi indicate that there is an obstacle at (Xi, Yi).
+Constraints
+2 ≤ N ≤ 106
+ 0 ≤ M ≤ 50
+ 1 ≤ Xi , Yi ≤ N
+ i ≠ j implies (Xi, Yi) ≠ (Xj, Yj)
+ (Xi, Yi) ≠ (1, 1)
+ (Xi, Yi) ≠ (N, N)
+Output
+Output the total number of routes in one line. If there is no route to move from square (1,1) to square (N,N), output 0.
+Sample Input 1
+3 0
+Output for the Sample Input 1
+6
+Corresponds to the following figure.
+Sample Input 2
+3 1
+2 2
+Output for the Sample Input 2
+2
+Corresponds to the following figure.
+Sample Input 3
+5 8
+4 3
+2 1
+4 2
+4 4
+3 4
+2 2
+2 4
+1 4
+Output for the Sample Input 3
+1
+Corresponds to the following figure.
+Sample Input 4
+1000 10
+104 87
+637 366
+393 681
+215 604
+707 876
+943 414
+95 327
+93 415
+663 596
+661 842
+Output for the Sample Input 4
+340340391
+Sample Input 5
+2 2
+1 2
+2 1
+Output for the Sample Input 5
+0

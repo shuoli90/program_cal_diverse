@@ -1,0 +1,7 @@
+def extract_arguments(fh):
+    N, M = map(int, fh.readline().strip().split())
+    preferences = []
+    for _ in range(N):
+        L, R = map(int, fh.readline().strip().split())
+        preferences.append((L, R))
+    return N, M, preferences

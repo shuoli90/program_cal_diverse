@@ -1,0 +1,32 @@
+Sure, I can help you generate test cases for the given problem. The problem seems to involve combinatorial calculations, and the constraints are fairly large. Here's a test case generator:
+
+```python
+import random
+
+def tcgen():
+    # Constraints
+    MAX_N = 3000
+    MAX_M = 3000
+
+    # Randomly generate N and M within their respective ranges
+    N = random.randint(1, MAX_N)
+    M = random.randint(1, MAX_M)
+
+    return N, M
+
+# Generate a test case
+N, M = tcgen()
+print(N, M)
+```
+
+This generator will produce random values for \( N \) and \( M \) within their respective limits, ensuring that the test cases conform to the problem's constraints. You can run this generator multiple times to create multiple test cases for the problem.
+
+Here’s an example of running the generator and printing the output:
+
+```python
+for _ in range(10):  # Generate 10 test cases
+    N, M = tcgen()
+    print(f"{N} {M}")
+```
+
+This will print 10 different test cases, each with random values for \( N \) and \( M \) within the specified ranges.

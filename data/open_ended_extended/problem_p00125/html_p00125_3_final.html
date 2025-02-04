@@ -1,0 +1,197 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p00125 - Generation 3</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p00125 - Generation 3</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>Number of Days
+Write a program that takes two dates as input and outputs the number of days between those two dates. Date 1 (y1, m1, d1) is the same as or earlier than date 2 (y2, m2, d2), and date 1 is included in the count, but date 2 is not. Please calculate taking leap years into consideration. The conditions for leap years are as follows:
+The year is divisible by 4.
+However, years divisible by 100 are not leap years.
+Years divisible by 400 are leap years.
+Input
+Multiple datasets will be given. The format for each dataset is as follows:
+y1 m1 d1 y2 m2 d2
+If any of y1, m1, d1, y2, m2, or d2 is a negative number, the input will end.
+The number of datasets will not exceed 50.
+Output
+For each dataset, output the number of days on one line.
+Sample Input
+2006 9 2 2006 9 3
+2006 9 2 2006 11 11
+2004 1 1 2005 1 1
+2000 1 1 2006 1 1
+2000 1 1 2101 1 1
+-1 -1 -1 -1 -1 -1
+Output for the Sample Input
+1
+70
+366
+2192
+36890
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>Canonicalized Input Description:
+
+A list of tuples, where each tuple contains six integers (a, b, c, d, e, f). Each integer can be negative. The list ends when a tuple containing all negative integers is encountered. The number of tuples does not exceed 50.
+
+### Example Input:
+
+```
+2006 9 2 2006 9 3
+2006 9 2 2006 11 11
+2004 1 1 2005 1 1
+2000 1 1 2006 1 1
+2000 1 1 2101 1 1
+-1 -1 -1 -1 -1 -1
+```
+
+### Function Signature:
+Write a function f(inputs) that takes in the input.
+```python
+def f(inputs: List[Tuple[int, int, int, int, int, int]]):
+    '''
+    inputs: a list of tuples, where each tuple contains six integers
+    '''
+```</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Sure, I can help generate a test case generator for the given problem statement "Number of Days". Below is the Python code for generating test cases:
+
+```python
+import random
+import datetime
+
+def generate_random_date(start_year=1, end_year=9999):
+    year = random.randint(start_year, end_year)
+    month = random.randint(1, 12)
+    # Get the number of days in the given month and year
+    day = random.randint(1, (datetime.date(year if month != 12 else year + 1, month % 12 + 1, 1) - datetime.timedelta(days=1)).day)
+    return year, month, day
+
+def tcgen():
+    num_datasets = random.randint(1, 50)
+    datasets = []
+    
+    for _ in range(num_datasets):
+        y1, m1, d1 = generate_random_date()
+        y2, m2, d2 = generate_random_date(y1, 9999)  # Ensure y2 is not earlier than y1
+        if datetime.date(y1, m1, d1) > datetime.date(y2, m2, d2):
+            y1, m1, d1, y2, m2, d2 = y2, m2, d2, y1, m1, d1  # Swap if the first date is later than the second date
+        datasets.append((y1, m1, d1, y2, m2, d2))
+    
+    # Add the terminating condition
+    datasets.append((-1, -1, -1, -1, -1, -1))
+    
+    return datasets
+
+# Example usage
+test_cases = tcgen()
+for case in test_cases:
+    print(" ".join(map(str, case)))
+```
+
+### Explanation
+
+1. **generate_random_date(start_year, end_year)**:
+    - Generates a random date between the given `start_year` and `end_year`.
+    - Ensures the day is valid based on the month and year.
+
+2. **tcgen()**:
+    - Randomly decides the number of datasets (between 1 and 50).
+    - For each dataset:
+        - Generates two dates `y1, m1, d1` and `y2, m2, d2` such that `y1, m1, d1` is not later than `y2, m2, d2`.
+        - If the generated dates are in the wrong order, they are swapped.
+    - Adds the terminating condition `(-1, -1, -1, -1, -1, -1)` at the end of the datasets.
+    - Returns the list of datasets.
+
+### Sample Output
+
+Below is a possible output from the test case generator:
+
+```
+2023 3 28 2024 4 15
+2022 5 10 2022 8 22
+2000 1 1 2006 1 1
+2010 6 15 2020 12 25
+1995 4 4 2000 1 1
+-1 -1 -1 -1 -1 -1
+```
+
+This generator will help create a variety of test cases for the "Number of Days" problem, ensuring comprehensive testing of different date ranges and leap year considerations.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    inputs = []
+    while True:
+        line = fh.readline().strip()
+        if line:
+            y1, m1, d1, y2, m2, d2 = map(int, line.split())
+            if y1 < 0 or m1 < 0 or d1 < 0 or y2 < 0 or m2 < 0 or d2 < 0:
+                break
+            inputs.append((y1, m1, d1, y2, m2, d2))
+        else:
+            break
+    return inputs
+
+# if __name__ == "__main__":
+#     input_path = sys.argv[1]
+#     with open(input_path, 'r') as fh:
+#         inputs = extract_arguments(fh)
+#         f(inputs)</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

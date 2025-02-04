@@ -1,0 +1,25 @@
+Canonicalized Input Description:
+
+An integer n (3 ≤ n ≤ 100000), representing some quantity or size.
+A list of n tuples, where each tuple consists of two integers (xi, yi) and each integer is between -10000 and 10000.
+
+### Example Input:
+
+```
+7
+2 1
+0 0
+1 2
+2 2
+4 2
+1 3
+3 3
+```
+
+### Function Signature:
+Write a function f(n, points) that takes in the input.
+def f(n: int, points: List[Tuple[int, int]]):
+    ''' 
+    n: an integer 
+    points: a list of n tuples, each containing two integers
+    '''

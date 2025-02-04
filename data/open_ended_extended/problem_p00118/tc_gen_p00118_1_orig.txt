@@ -1,0 +1,68 @@
+Sure, let's create a test case generator for the "Land Distribution" problem. 
+
+To generate the test cases, we need to:
+1. Randomly choose values for \(H\) (height) and \(W\) (width) within the appropriate range.
+2. Generate an orchard map with random characters ('@', '#', '*') and whitespace.
+3. Ensure that the input ends with '0 0'.
+
+Here is a Python function to generate such test cases:
+
+```python
+import random
+
+def generate_orchard_map(H, W):
+    plants = ['@', '#', '*', ' ']
+    orchard = []
+    for _ in range(H):
+        row = ''.join(random.choice(plants) for _ in range(W))
+        orchard.append(row)
+    return orchard
+
+def tcgen():
+    datasets = []
+    max_datasets = 20
+    for _ in range(random.randint(1, max_datasets)):
+        H = random.randint(1, 20)
+        W = random.randint(1, 20)
+        orchard_map = generate_orchard_map(H, W)
+        datasets.append((H, W, orchard_map))
+    
+    # Ensure we end with the '0 0' line
+    datasets.append((0, 0, []))
+    
+    return datasets
+
+# Format the output as required by the problem statement
+def format_test_case(datasets):
+    result = []
+    for H, W, orchard_map in datasets:
+        if H == 0 and W == 0:
+            result.append('0 0')
+        else:
+            result.append(f"{H} {W}")
+            result.extend(orchard_map)
+    return '\n'.join(result)
+
+# Example usage
+datasets = tcgen()
+formatted_test_case = format_test_case(datasets)
+print(formatted_test_case)
+```
+
+### Explanation:
+
+1. **generate_orchard_map(H, W)**:
+   - This function generates an orchard map of size \( H \times W \).
+   - Each cell in the map is randomly chosen from the set of valid characters: '@', '#', '*', ' '.
+
+2. **tcgen()**:
+   - This function generates multiple datasets (up to 20) with random values for \( H \) and \( W \).
+   - For each dataset, it creates an orchard map using the `generate_orchard_map` function.
+   - It ensures that the input ends with the line '0 0' to indicate the termination of input.
+
+3. **format_test_case(datasets)**:
+   - This function formats the generated datasets into a string that matches the expected input format for the problem.
+   - Each dataset is represented by its height and width on a line, followed by the orchard map rows.
+   - The output is joined into a single string with newline characters.
+
+You can run the `tcgen()` function to generate random test cases and then format them using `format_test_case(datasets)` to get the desired input format for testing.

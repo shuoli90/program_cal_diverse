@@ -1,0 +1,29 @@
+### Canonicalized Input Description:
+
+An integer \(N\) (1 ≤ \(N\) ≤ 50), representing some quantity or size.
+A list of \(N\) tuples where each tuple contains:
+- A string \(s_i\) of length between 1 and 100 (inclusive) consisting of lowercase English letters.
+- An integer \(t_i\) (1 ≤ \(t_i\) ≤ 1000).
+A string \(X\) of length between 1 and 100 (inclusive) consisting of lowercase English letters.
+
+### Example Input:
+
+```
+3
+song1 279
+song2 464
+song3 327
+song2
+```
+
+### Function Signature:
+
+Write a function f(N, inputs, X) that takes in the input.
+```python
+def f(N: int, inputs: List[Tuple[str, int]], X: str):
+    '''
+    N: an integer
+    inputs: a list of tuples, each containing a string and an integer
+    X: a string
+    '''
+```

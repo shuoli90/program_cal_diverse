@@ -1,0 +1,24 @@
+An integer H (1 ≤ H ≤ 6), representing some quantity or size.
+An integer W (1 ≤ W ≤ 6), representing some quantity or size.
+An integer K (1 ≤ K ≤ H*W), representing some quantity or size.
+A list of H strings, each of length W, each character is either '.' or '#'.
+
+### Example Input:
+
+```
+2
+3
+2
+..#
+###
+```
+
+### Function Signature:
+Write a function f(H, W, K, grid) that takes in the input. 
+def f(H: int, W: int, K: int, grid: List[str]): 
+    ''' 
+    H: an integer 
+    W: an integer
+    K: an integer
+    grid: a list of strings
+    '''

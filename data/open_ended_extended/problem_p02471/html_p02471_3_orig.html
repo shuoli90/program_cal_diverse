@@ -1,0 +1,142 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p02471 - Generation 3</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p02471 - Generation 3</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>
+Extended Euclid Algorithm
+Given positive integers a and b, find the integer solution (x, y) to ax + by = gcd(a, b), where gcd(a, b) is the greatest common divisor of a and b.
+Input
+a b
+Two positive integers a and b are given separated by a space in a line.
+Output
+Print two integers x and y separated by a space. If there are several pairs of such x and y, print that pair for which |x| + |y| is the minimal (primarily) and x ≤ y (secondarily).
+Constraints
+ 1 ≤ a, b ≤ 109
+Sample Input 1
+4 12
+Sample Output 1
+1 0
+Sample Input 2
+3 8
+Sample Output 2
+3 -1
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An integer \(X\) (1 ≤ \(X\) ≤ 10^9), representing some positive quantity.
+An integer \(Y\) (1 ≤ \(Y\) ≤ 10^9), representing another positive quantity.
+
+### Example Input:
+
+```
+4 12
+```
+
+### Function Signature:
+Write a function f(X, Y) that takes in the input.
+```python
+def f(X: int, Y: int):
+    ''' 
+    X: a positive integer
+    Y: another positive integer
+    '''
+```</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Certainly! Here is a test case generator for the Extended Euclid Algorithm problem:
+
+```python
+import random
+
+def tcgen():
+    # Generate two positive integers a and b within the given constraints
+    a = random.randint(1, 10**9)
+    b = random.randint(1, 10**9)
+    
+    return a, b
+
+# Example of generating a test case
+a, b = tcgen()
+print(f"{a} {b}")
+```
+
+### Explanation:
+
+1. **Generating `a` and `b`**:
+   - We use `random.randint(1, 10**9)` to generate random integers `a` and `b` in the range `[1, 10^9]`.
+
+2. **Returning the Test Case**:
+   - The function returns a tuple of the two generated integers.
+
+3. **Example Usage**:
+   - An example usage is provided to demonstrate how to generate and print a test case.
+
+This generator will provide random pairs of integers `a` and `b` within the given constraints, ready to be used for testing implementations of the Extended Euclid Algorithm problem.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    a, b = map(int, fh.readline().strip().split())
+    return a, b
+
+# if __name__ == "__main__":
+#     input_path = sys.argv[1]
+#     with open(input_path, 'r') as fh: 
+#         a, b = extract_arguments(fh)
+#         f(a, b)</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

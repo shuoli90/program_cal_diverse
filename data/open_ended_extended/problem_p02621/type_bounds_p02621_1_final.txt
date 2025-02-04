@@ -1,0 +1,3 @@
+Types: a: int
+Ranges: 1 ≤ a ≤ 10
+Addtl Info: None

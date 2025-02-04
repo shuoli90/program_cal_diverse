@@ -1,0 +1,67 @@
+Certainly! Here’s a test case generator for the given problem statement:
+
+```python
+import random
+import string
+
+def generate_test_case():
+    # Generate random values for N and Q within their respective constraints.
+    N = random.randint(1, 500000)
+    Q = random.randint(1, 20000)
+    
+    # Generate a random string S of length N consisting of lowercase English letters.
+    S = ''.join(random.choices(string.ascii_lowercase, k=N))
+    
+    # Initialize a list to store the queries
+    queries = []
+    
+    # Ensure at least one query of type 2
+    type2_query = f"2 {random.randint(1, N)} {random.randint(1, N)}"
+    
+    # Correct the order of l_q and r_q if needed
+    l_q, r_q = map(int, type2_query.split()[1:])
+    if l_q > r_q:
+        l_q, r_q = r_q, l_q
+        type2_query = f"2 {l_q} {r_q}"
+    
+    queries.append(type2_query)
+    
+    # Generate the remaining Q-1 queries
+    for _ in range(Q - 1):
+        query_type = random.choice([1, 2])
+        
+        if query_type == 1:
+            i_q = random.randint(1, N)
+            c_q = random.choice(string.ascii_lowercase)
+            queries.append(f"1 {i_q} {c_q}")
+        else:
+            l_q = random.randint(1, N)
+            r_q = random.randint(1, N)
+            if l_q > r_q:
+                l_q, r_q = r_q, l_q
+            queries.append(f"2 {l_q} {r_q}")
+    
+    return N, S, Q, queries
+
+
+# Example of generating a test case
+if __name__ == "__main__":
+    N, S, Q, queries = generate_test_case()
+    
+    print(N)
+    print(S)
+    print(Q)
+    for query in queries:
+        print(query)
+```
+
+### Explanation:
+
+1. **N**: A random integer between 1 and 500,000.
+2. **S**: A random string of lowercase letters of length N.
+3. **Q**: A random integer between 1 and 20,000.
+4. **Queries**: A list of Q queries.
+    - **Type 1 Query**: Generates a query of the form `1 i_q c_q` where `1 <= i_q <= N` and `c_q` is a random lowercase letter.
+    - **Type 2 Query**: Generates a query of the form `2 l_q r_q` where `1 <= l_q <= r_q <= N`. Ensures `l_q` is not greater than `r_q`.
+
+The generator ensures there is at least one query of type 2 by creating it first, and then randomly generating the remaining queries. It also ensures that the ranges in type 2 queries are valid.

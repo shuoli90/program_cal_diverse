@@ -1,0 +1,31 @@
+An integer n (0 ≤ n ≤ 500), representing some quantity or size.  
+An integer h (0 ≤ h ≤ 200), representing the number of subsequent lines.  
+h lines follow, each containing:
+- A string ci from the set {"xy", "xz", "yz"}.
+- Two integers ai and bi, where 1 ≤ ai, bi ≤ n.
+
+### Example Input:
+
+```
+4 3
+xy 4 4
+xz 1 2
+yz 2 3
+```
+
+### Function Signature:
+Write a function f(inputs) that takes in the input.
+```python
+from typing import List, Tuple
+
+def f(inputs: List[Tuple[int, int, List[Tuple[str, int, int]]]]):
+    '''
+    inputs: a list of tuples, where each tuple contains:
+        - an integer n
+        - an integer h
+        - a list of tuples, each containing:
+            - a string ci
+            - an integer ai
+            - an integer bi
+    '''
+```

@@ -1,0 +1,16 @@
+def extract_arguments(fh):
+    first_line = fh.readline().strip().split()
+    N = int(first_line[0])
+    M = int(first_line[1])
+    coordinates = []
+    for _ in range(N):
+        x, y = map(int, fh.readline().strip().split())
+        coordinates.append((x, y))
+    return N, M, coordinates
+
+# Example usage:
+# if __name__ == "__main__":
+#     input_path = sys.argv[1]
+#     with open(input_path, 'r') as fh: 
+#         N, M, coordinates = extract_arguments(fh)
+#         print(N, M, coordinates)

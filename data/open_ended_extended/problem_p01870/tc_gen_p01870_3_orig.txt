@@ -1,0 +1,41 @@
+Sure, I can help you generate a test case generator for the given problem statement. Here is a Python function that generates random test cases for the "F: Relay" problem:
+
+```python
+import random
+
+def tcgen():
+    # Generate a random number of islands N
+    N = random.randint(2, 100000)
+    
+    # List to store pairs (p_i, w_i)
+    bridges = []
+    
+    for i in range(N - 1):
+        p_i = random.randint(0, i)  # ensure 0 <= p_i <= i
+        w_i = random.randint(1, 1000)
+        bridges.append((p_i, w_i))
+    
+    return N, bridges
+
+def format_test_case(N, bridges):
+    test_case_str = f"{N}\n"
+    for p_i, w_i in bridges:
+        test_case_str += f"{p_i} {w_i}\n"
+    return test_case_str
+
+# Example usage
+N, bridges = tcgen()
+test_case_str = format_test_case(N, bridges)
+print(test_case_str)
+```
+
+This script will generate a valid random test case for the "F: Relay" problem. Here’s a breakdown of the generator:
+
+1. **Number of Islands (`N`)**: Randomly choose an integer `N` between 2 and 100,000.
+2. **Bridges (`p_i` and `w_i`)**: 
+    - For each `i` from 0 to `N-2`, randomly select `p_i` such that `0 <= p_i <= i`. This ensures that the structure remains a connected tree.
+    - Randomly select `w_i` between 1 and 1000.
+
+The `format_test_case` function takes the generated test case and formats it into a string that matches the input format expected by the problem.
+
+You can run this script to generate random test cases for testing your solution.

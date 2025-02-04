@@ -1,0 +1,205 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p01223 - Generation 3</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p01223 - Generation 3</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>Problem A:Saizou
+    In a certain country, a TV program called "Saizou" is popular.
+    This program is about participants challenging a field athletics,
+    and if they successfully clear it, they can receive a prize money.
+  
+    The field athletics is made by arranging blocks of different heights in a row,
+    and it is important to figure out how to climb and descend the steps
+    (Figure 1) in order to clear it.
+    Your friend who is going to participate in this program
+    has asked you, a skilled programmer, to write a program to calculate
+    the maximum step to climb and the maximum step to descend
+    when the structure of the field athletics is given.
+  
+Figure 1: An example of the structure of the athletics (the first dataset of the input example).
+Input
+    The first line of the input contains the number of datasets, t
+    (0 < t ≤ 100).
+    This is followed by t datasets.
+  
+    The first line of each dataset is the number of blocks that make up the field athletics, n
+    (2 ≤ n ≤ 100).
+    The second line shows a sequence of integers that represent the height of the blocks
+    from the start to the goal.
+    The first number corresponds to the starting block and the n-th number corresponds to the goal block.
+    These integers are separated by a single space.
+    The height h of each block satisfies 0 < h ≤ 1000.
+  
+Output
+    For each dataset, output the maximum height difference to climb and the maximum height difference to descend,
+    separated by a single space on a single line.
+    If there is no step to climb or to descend, the maximum height difference for that should be 0.
+  
+Sample Input
+5
+5
+10 70 30 50 90
+2
+20 100
+2
+100 30
+3
+50 50 50
+7
+123 45 678 901 234 567 890
+Output for the Sample Input
+60 40
+80 0
+0 70
+0 0
+633 667
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An integer t (0 < t ≤ 100), representing some quantity or size.
+A list of t datasets follows.
+Each dataset consists of:
+1. An integer n (2 ≤ n ≤ 100), representing some quantity or size.
+2. A list of n integers where each integer is between 1 and 1000.
+
+### Example Input:
+
+```
+5
+5
+10 70 30 50 90
+2
+20 100
+2
+100 30
+3
+50 50 50
+7
+123 45 678 901 234 567 890
+```
+
+### Function Signature:
+Write a function f(inputs) that takes in the input.
+def f(inputs: List[Tuple[int, List[int]]]): 
+    ''' 
+    inputs: a list of tuples where each tuple contains: 
+        - an integer 
+        - a list of integers 
+    '''</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Sure! Here's a test case generator for the "Saizou" problem:
+
+```python
+import random
+
+def generate_field_athletics_dataset():
+    # Number of blocks (n)
+    n = random.randint(2, 100)
+    
+    # Heights of the blocks (from 1 to 1000)
+    heights = [random.randint(1, 1000) for _ in range(n)]
+    
+    return n, heights
+
+def saizou_tcgen():
+    # Number of datasets (t)
+    t = random.randint(1, 100)
+    
+    datasets = []
+    for _ in range(t):
+        n, heights = generate_field_athletics_dataset()
+        datasets.append((n, heights))
+    
+    return t, datasets
+
+def print_test_case(t, datasets):
+    print(t)
+    for n, heights in datasets:
+        print(n)
+        print(" ".join(map(str, heights)))
+
+# Generate a test case
+t, datasets = saizou_tcgen()
+print_test_case(t, datasets)
+```
+
+### Explanation:
+- **generate_field_athletics_dataset**: This function generates a single dataset for the problem. It creates a random number of blocks `n` between 2 and 100, and then generates a list of random heights for these blocks where each height is between 1 and 1000.
+- **saizou_tcgen**: This function generates the number of datasets `t` between 1 and 100. For each dataset, it calls `generate_field_athletics_dataset` to create the individual datasets.
+- **print_test_case**: This function prints the test case in the specified format.
+
+To use this generator, simply run the script and it will print out a test case in the proper format. You can modify the random seed for reproducibility if needed.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    t = int(fh.readline().strip())
+    datasets = []
+    for _ in range(t):
+        n = int(fh.readline().strip())
+        heights = list(map(int, fh.readline().strip().split()))
+        datasets.append((n, heights))
+    return datasets
+
+# if __name__ == "__main__":
+#     input_path = sys.argv[1]
+#     with open(input_path, 'r') as fh:
+#         datasets = extract_arguments(fh)
+#         for n, heights in datasets:
+#             f(n, heights)</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

@@ -1,0 +1,3 @@
+Types: ns: int, nl: int, si1: int, si2: int, di: int  
+Ranges: 1 ≤ ns ≤ 10, 1 ≤ nl ≤ 20, 1 ≤ di, si1, si2 ≤ ns  
+Addtl Info: There is at most one direct route between any pair of stations, each station has at most four direct routes leaving from it, the input terminates with two integer 0's.

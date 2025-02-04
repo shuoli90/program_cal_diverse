@@ -1,0 +1,20 @@
+Frog's Straight Path Home
+A frog is trying to get back to its nest. The nest is D centimeters away from the frog, and the frog moves straight towards the nest. The frog can only perform two actions:
+ Big jump (move forward L centimeters)
+ Small jump (move forward 1 centimeter)
+The frog aims to land exactly on the nest without jumping over it.
+Write a program to determine the minimum number of jumps the frog needs to make to reach its nest.
+Input
+The input is given in the following format:
+D L
+The input is given in one line, where D (1 ≤ D ≤ 10000) is the distance to the nest, and L (2 ≤ L ≤ 10000) is the distance the frog can jump with a big jump.
+Output
+Output the minimum number of jumps the frog needs to make in one line.
+Sample Input 1
+10 5
+Sample Output 1
+2
+Sample Input 2
+7 4
+Sample Output 2
+4

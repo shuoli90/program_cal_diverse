@@ -1,0 +1,237 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p00808 - Generation 3</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p00808 - Generation 3</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>
+Problem F: Young, Poor and Busy
+Ken and Keiko are young, poor and busy. Short explanation: they are students, and ridden with part-time jobs. To make things worse, Ken lives in Hakodate and Keiko in Tokyo. They want to meet, but since they have neither time nor money, they have to go back to their respective jobs immediately after, and must be careful about transportation costs. Help them find the most economical meeting point.
+Ken starts from Hakodate, Keiko from Tokyo. They know schedules and fares for all trains, and can choose to meet anywhere including their hometowns, but they cannot leave before 8am and must be back by 6pm in their respective towns. Train changes take no time (one can leave the same minute he/she arrives), but they want to meet for at least 30 minutes in the same city. 
+There can be up to 100 cities and 2000 direct connections, so you should devise an algorithm clever enough for the task. 
+Input
+The input is a sequence of data sets.
+The first line of a data set contains a single integer, the number of connections in the timetable. It is not greater than 2000.
+Connections are given one on a line, in the following format.
+     Start_city HH:MM Arrival_city HH:MM price
+Start_city and Arrival_city are composed of up to 16 alphabetical characters, with only the first one in upper case. Departure and arrival times are given in hours and minutes (two digits each, separated by ":") from 00:00 to 23:59. Arrival time is strictly after departure time. The price for one connection is an integer between 1 and 10000, inclusive. Fields are separated by spaces.
+The end of the input is marked by a line containing a zero. 
+Output
+The output should contain one integer for each data set, the lowest cost possible. This is the total fare of all connections they use.
+If there is no solution to a data set, you should output a zero.
+The solution to each data set should be given in a separate line. 
+Sample Input
+5
+Hakodate 08:15 Morioka 12:30 2500
+Morioka 14:05 Hakodate 17:30 2500
+Morioka 15:30 Hakodate 18:00 3000
+Morioka 14:30 Tokyo 17:50 3000
+Tokyo 08:30 Morioka 13:35 3000
+4
+Hakodate 08:15 Morioka 12:30 2500
+Morioka 14:04 Hakodate 17:30 2500
+Morioka 14:30 Tokyo 17:50 3000
+Tokyo 08:30 Morioka 13:35 3000
+18
+Hakodate 09:55 Akita 10:53 3840
+Hakodate 14:14 Akita 16:09 1920
+Hakodate 18:36 Akita 19:33 3840
+Hakodate 08:00 Morioka 08:53 3550
+Hakodate 22:40 Morioka 23:34 3550
+Akita 14:23 Tokyo 14:53 2010
+Akita 20:36 Tokyo 21:06 2010
+Akita 08:20 Hakodate 09:18 3840
+Akita 13:56 Hakodate 14:54 3840
+Akita 21:37 Hakodate 22:35 3840
+Morioka 09:51 Tokyo 10:31 2660
+Morioka 14:49 Tokyo 15:29 2660
+Morioka 19:42 Tokyo 20:22 2660
+Morioka 15:11 Hakodate 16:04 3550
+Morioka 23:03 Hakodate 23:56 3550
+Tokyo 09:44 Morioka 11:04 1330
+Tokyo 21:54 Morioka 22:34 2660
+Tokyo 11:34 Akita 12:04 2010
+0
+Output for the Sample Input
+11000
+0
+11090
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An integer M (1 ≤ M ≤ 2000), representing the number of connections.
+M lines follow, each containing:
+- A string S1 representing the starting location (1 to 16 alphabetical characters).
+- A time string T1 in the format HH:MM representing the departure time (00:00 to 23:59).
+- A string S2 representing the arrival location (1 to 16 alphabetical characters).
+- A time string T2 in the format HH:MM representing the arrival time (00:00 to 23:59), strictly after the departure time.
+- An integer P (1 ≤ P ≤ 10000), representing the price of the connection.
+The input ends with a line containing a single integer 0 to signal the end of data sets.
+
+### Example Input:
+
+```
+5
+Hakodate 08:15 Morioka 12:30 2500
+Morioka 14:05 Hakodate 17:30 2500
+Morioka 15:30 Hakodate 18:00 3000
+Morioka 14:30 Tokyo 17:50 3000
+Tokyo 08:30 Morioka 13:35 3000
+4
+Hakodate 08:15 Morioka 12:30 2500
+Morioka 14:04 Hakodate 17:30 2500
+Morioka 14:30 Tokyo 17:50 3000
+Tokyo 08:30 Morioka 13:35 3000
+0
+```
+
+### Function Signature:
+Write a function `f(data_sets)` that processes a list of tuples, where each tuple represents a data set.
+```python
+def f(data_sets: List[Tuple[int, List[Tuple[str, str, str, str, int]]]]):
+    '''
+    data_sets: a list of data sets
+               each data set is a tuple containing:
+               - an integer M
+               - a list of M tuples, each containing:
+                 - a string S1
+                 - a time string T1
+                 - a string S2
+                 - a time string T2
+                 - an integer P
+    '''
+```</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>To generate test cases for the "Young, Poor and Busy" problem, we need to create a function that generates random train schedules and fares while adhering to the constraints provided in the problem statement. Here is a test case generator in Python for this problem:
+
+```python
+import random
+import string
+
+def random_time():
+    hour = random.randint(0, 23)
+    minute = random.randint(0, 59)
+    return f"{hour:02}:{minute:02}"
+
+def random_city():
+    length = random.randint(1, 16)
+    return ''.join(random.choices(string.ascii_uppercase + string.ascii_lowercase, k=length)).capitalize()
+
+def generate_schedule(num_connections):
+    schedule = []
+    cities = [random_city() for _ in range(100)]
+    
+    for _ in range(num_connections):
+        start_city = random.choice(cities)
+        arrival_city = random.choice(cities)
+        
+        while arrival_city == start_city:
+            arrival_city = random.choice(cities)
+        
+        start_time = random_time()
+        arrival_time = random_time()
+        
+        # Ensure arrival time is strictly after start time
+        while arrival_time <= start_time:
+            arrival_time = random_time()
+        
+        price = random.randint(1, 10000)
+        schedule.append(f"{start_city} {start_time} {arrival_city} {arrival_time} {price}")
+    
+    return schedule
+
+def tcgen():
+    num_data_sets = random.randint(1, 10)  # Generate up to 10 data sets for variety
+    data_sets = []
+    
+    for _ in range(num_data_sets):
+        num_connections = random.randint(1, 2000)
+        schedule = generate_schedule(num_connections)
+        data_sets.append(f"{num_connections}\n" + "\n".join(schedule))
+    
+    return "\n".join(data_sets) + "\n0"  # End of input marker
+
+# Example of generating a test case and printing it
+print(tcgen())
+```
+
+### Explanation:
+1. **random_time**: Generates a random time in HH:MM format.
+2. **random_city**: Generates a random city name with up to 16 alphabetical characters.
+3. **generate_schedule**: Creates a schedule of connections based on the number of connections required. Ensures that arrival time is strictly after the start time and that the start and arrival cities are different.
+4. **tcgen**: Generates multiple data sets. Each data set contains a random number of connections (up to 2000). The function ends the input with a '0' to signal the end of data sets.
+
+### Usage:
+The `tcgen` function generates a complete set of test cases in the format expected by the problem. The generated test cases can be directly used to test the solution of the given problem.
+
+Feel free to adjust the parameters (such as the number of data sets and connections) to generate a more diverse and comprehensive set of test cases.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    data_sets = []
+    while True:
+        num_connections = int(fh.readline().strip())
+        if num_connections == 0:
+            break
+        connections = []
+        for _ in range(num_connections):
+            start_city, start_time, arrival_city, arrival_time, price = fh.readline().strip().split()
+            connections.append((start_city, start_time, arrival_city, arrival_time, int(price)))
+        data_sets.append(connections)
+    return data_sets</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

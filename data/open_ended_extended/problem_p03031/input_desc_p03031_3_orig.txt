@@ -1,0 +1,24 @@
+
+An integer N (1 ≤ N ≤ 10), representing some quantity or size.
+An integer M (1 ≤ M ≤ 10), representing some quantity or size.
+M lines each containing an integer k_i (1 ≤ k_i ≤ N) followed by k_i integers (1 ≤ s_{ij} ≤ N).
+A list of M integers, where each integer is either 0 or 1.
+
+### Example Input:
+
+```
+2 2
+2 1 2
+1 2
+0 1
+```
+
+### Function Signature:
+Write a function f(N, M, configurations, conditions) that takes in the input.
+def f(N: int, M: int, configurations: List[List[int]], conditions: List[int]):
+    '''
+    N: an integer
+    M: an integer
+    configurations: a list of lists of integers
+    conditions: a list of integers
+    '''

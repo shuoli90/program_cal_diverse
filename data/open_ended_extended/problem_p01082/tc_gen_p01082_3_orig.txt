@@ -1,0 +1,42 @@
+Sure, here is a test case generator for the given problem statement "Escape of Lappin the Phantom Thief":
+
+```python
+import random
+
+def tcgen():
+    # Generate n and m within the specified range
+    n = random.randint(1, 5 * 10**4)
+    m = random.randint(1, 5 * 10**4)
+    
+    # Generate k which is min(10^5, n * m)
+    k = random.randint(1, min(10**5, n * m))
+
+    # Generate k unique coordinates for the robots
+    robots = set()
+    while len(robots) < k:
+        x = random.randint(0, n - 1)
+        y = random.randint(0, m - 1)
+        robots.add((x, y))
+    
+    # Convert the set of robots to a list of coordinates
+    robots = list(robots)
+    
+    # Preparing the input in the required format
+    input_data = f"{n} {m} {k}\n"
+    for robot in robots:
+        input_data += f"{robot[0]} {robot[1]}\n"
+    
+    # Output the input data as a string
+    return input_data
+
+# Example usage to generate a test case
+print(tcgen())
+```
+
+This function generates a test case for the "Escape of Lappin the Phantom Thief" problem by:
+1. Randomly selecting dimensions `n` and `m` for the grid within the specified range.
+2. Randomly determining the number of robots `k` considering the constraints.
+3. Generating `k` unique coordinates for the robots.
+4. Formatting the generated data as required by the problem statement.
+
+You can call this function to generate different test cases. The function ensures that robot coordinates are unique and fit within the bounds of the grid.

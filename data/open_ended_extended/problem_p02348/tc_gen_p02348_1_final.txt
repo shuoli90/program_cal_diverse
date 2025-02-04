@@ -1,0 +1,61 @@
+Certainly! Below is a test case generator for the "Range Update Query (RUQ)" problem statement. This generator will create random but valid test cases within the specified constraints.
+
+```python
+import random
+
+def tcgen():
+    # Define the maximum values based on constraints
+    MAX_N = 100000
+    MAX_Q = 100000
+    MAX_X = 2**31 - 2  # since x < 2^31 - 1
+
+    # Generate n (number of elements in A) and q (number of queries)
+    n = random.randint(1, MAX_N)
+    q = random.randint(1, MAX_Q)
+
+    queries = []
+    for _ in range(q):
+        query_type = random.randint(0, 1)  # Choose between 0 (update) and 1 (find)
+        if query_type == 0:
+            # update(s, t, x)
+            s = random.randint(0, n-1)
+            t = random.randint(s, n-1)
+            x = random.randint(0, MAX_X)
+            queries.append(f"0 {s} {t} {x}")
+        else:
+            # find(i)
+            i = random.randint(0, n-1)
+            queries.append(f"1 {i}")
+
+    # Join all queries into a single string with newline separation
+    query_str = "\n".join(queries)
+    
+    # Return the complete test case as a single string
+    return f"{n} {q}\n{query_str}"
+
+# Example usage:
+random.seed(0)  # For reproducibility
+test_case = tcgen()
+print(test_case)
+```
+
+### Explanation
+
+1. **Generate `n` and `q`:**
+   - `n` is chosen randomly between 1 and 100000.
+   - `q` is chosen randomly between 1 and 100000.
+
+2. **Generate Queries:**
+   - Loop `q` times to generate `q` queries.
+   - For each query, randomly decide whether it is an update query (`0 s t x`) or a find query (`1 i`).
+   - If it's an update query (`0`):
+     - Randomly choose `s` between 0 and `n-1`.
+     - Randomly choose `t` between `s` and `n-1` (ensuring `s <= t`).
+     - Randomly choose `x` between 0 and `2^31-2`.
+   - If it's a find query (`1`):
+     - Randomly choose `i` between 0 and `n-1`.
+
+3. **Format the Output:**
+   - Format the test case into the required string format that can be directly printed or saved to a file.
+
+This generator ensures that all generated test cases are valid according to the problem constraints and provides a sufficient variety of test scenarios.

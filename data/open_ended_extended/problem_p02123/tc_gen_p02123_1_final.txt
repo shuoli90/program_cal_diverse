@@ -1,0 +1,37 @@
+To generate test cases for the problem "Fissure Puzzle Hard," we need to consider the constraints and structure of the input. Here's a Python function to generate random test cases:
+
+```python
+import random
+
+def tcgen():
+    # Generate a random odd N in the range [3, 2047]
+    N = random.choice([i for i in range(3, 2048) if i % 2 != 0])
+    
+    # Generate the N x N grid with 'o' and 'x'
+    A = []
+    for _ in range(N):
+        row = ''.join(random.choice(['o', 'x']) for _ in range(N))
+        A.append(row)
+    
+    return N, A
+
+# Function to print the generated test case
+def print_test_case(N, A):
+    print(N)
+    for row in A:
+        print(row)
+
+# Example usage
+N, A = tcgen()
+print_test_case(N, A)
+```
+
+### Explanation:
+
+1. **N Generation**: We randomly select an odd integer \( N \) within the range [3, 2047]. We ensure the chosen \( N \) is odd by filtering with `if i % 2 != 0`.
+
+2. **Grid Generation**: We generate an \( N \times N \) grid where each cell is randomly either 'o' (white) or 'x' (black). This is done by iterating \( N \) times and for each row, creating a string of length \( N \) with random choices between 'o' and 'x'.
+
+3. **Output Function**: `print_test_case` is a helper function to print the generated test case in the required format.
+
+You can run this script to generate and print random test cases for the problem. Each execution will produce a different valid test case that adheres to the constraints specified in the problem statement.

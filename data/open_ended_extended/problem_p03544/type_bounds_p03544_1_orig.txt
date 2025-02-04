@@ -1,0 +1,5 @@
+Types: N: int
+
+Ranges: 1 ≤ N ≤ 86
+
+Addtl Info: Answer is less than 10^{18}

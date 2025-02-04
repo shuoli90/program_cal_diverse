@@ -1,0 +1,36 @@
+Certainly! Here's a test case generator for the competitive programming problem "Equivalent Propositions":
+
+```python
+import random
+
+def tcgen():
+    N = random.randint(2, 300)
+    M = random.randint(1, min(N * (N - 1), 10000))  # Ensure M is within valid range
+
+    propositions = set()
+    while len(propositions) < M:
+        a = random.randint(1, N)
+        b = random.randint(1, N)
+        if a != b:
+            propositions.add((a, b))
+
+    propositions = list(propositions)
+    
+    return N, M, propositions
+
+# Example usage
+N, M, propositions = tcgen()
+print(N, M)
+for a, b in propositions:
+    print(a, b)
+```
+
+### How the Generator Works:
+1. **N**: Chooses a random integer between 2 and 300, inclusive, to represent the number of propositions.
+2. **M**: Chooses a random integer between 1 and \( \min(N \times (N - 1), 10000) \), inclusive, to ensure that \( M \) does not exceed the constraints.
+3. **Propositions**: Uses a set to generate unique pairs \( (a_i, b_i) \) such that \( a_i \neq b_i \). The set ensures that there are no duplicate pairs. The process continues until we have \( M \) unique pairs.
+
+### Example Usage:
+This generator will produce test cases with the appropriate format. The example at the end demonstrates how to use the generator and print out the generated test case.
+
+You can run this code to generate and print random test cases for the problem.

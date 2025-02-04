@@ -1,0 +1,164 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p03449 - Generation 2</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p03449 - Generation 2</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>
+Score : 300 points
+Problem StatementWe have a 2 \times N grid. We will denote the square at the i-th row and j-th column (1 \leq i \leq 2, 1 \leq j \leq N) as (i, j).
+You are initially in the top-left square, (1, 1).
+You will travel to the bottom-right square, (2, N), by repeatedly moving right or down.
+The square (i, j) contains A_{i, j} candies.
+You will collect all the candies you visit during the travel.
+The top-left and bottom-right squares also contain candies, and you will also collect them.
+At most how many candies can you collect when you choose the best way to travel?
+Constraints
+1 \leq N \leq 100
+1 \leq A_{i, j} \leq 100 (1 \leq i \leq 2, 1 \leq j \leq N)
+InputInput is given from Standard Input in the following format:
+N
+A_{1, 1} A_{1, 2} ... A_{1, N}
+A_{2, 1} A_{2, 2} ... A_{2, N}
+OutputPrint the maximum number of candies that can be collected.
+Sample Input 15
+3 2 2 4 1
+1 2 2 2 1
+Sample Output 114
+The number of collected candies will be maximized when you:
+move right three times, then move down once, then move right once.
+Sample Input 24
+1 1 1 1
+1 1 1 1
+Sample Output 25
+You will always collect the same number of candies, regardless of how you travel.
+Sample Input 37
+3 3 4 5 4 5 3
+5 3 4 4 2 3 2
+Sample Output 329
+Sample Input 41
+2
+3
+Sample Output 45
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An integer N (1 ≤ N ≤ 100), representing some quantity or size.
+A list of N integers, where each integer is between 1 and 100.
+A second list of N integers, where each integer is between 1 and 100.
+
+### Example Input:
+
+```
+5
+3 2 2 4 1
+1 2 2 2 1
+```
+
+### Function Signature:
+Write a function f(N, A1, A2) that takes in the input.
+```python
+def f(N: int, A1: List[int], A2: List[int]):
+    ''' 
+    N: an integer 
+    A1: a list of integers
+    A2: a list of integers
+    '''
+```</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Sure! Here is a test case generator for the given problem statement about the 2xN grid and collecting the maximum number of candies:
+
+```python
+import random
+
+def generate_test_case():
+    N = random.randint(1, 100)
+    
+    A = [[random.randint(1, 100) for _ in range(N)] for _ in range(2)]
+    
+    return N, A
+
+def format_test_case(N, A):
+    input_str = f"{N}\n"
+    input_str += " ".join(map(str, A[0])) + "\n"
+    input_str += " ".join(map(str, A[1]))
+    
+    return input_str
+
+# Example usage
+N, A = generate_test_case()
+test_case = format_test_case(N, A)
+print(test_case)
+```
+
+This generator function `generate_test_case` will create random test cases within the constraints given in the problem statement. The function `format_test_case` formats the generated test case into the required input format for the problem. 
+
+Each test case consists of:
+1. An integer \(N\), representing the number of columns.
+2. Two lists of integers of size \(N\), representing the number of candies in each cell of the 2xN grid.
+
+You can call the `generate_test_case` function to generate a random test case and then format it using the `format_test_case` function to get a string that can be used to test your solution.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    N = int(fh.readline().strip())
+    row1 = list(map(int, fh.readline().strip().split()))
+    row2 = list(map(int, fh.readline().strip().split()))
+    A = [row1, row2]
+    return N, A</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

@@ -1,0 +1,3 @@
+Types: N: int, M: int, Dix: float, Diy: float, Vi: float, FPix: float, FPin: float, FVix: float, FViy: float
+Ranges: 1 ≤ N ≤ 10, 1 ≤ M ≤ 1000, -1000 ≤ Dix, Diy, FPix, FPin ≤ 1000, 1 ≤ Vi ≤ 100, -25 ≤ FVix, FViy ≤ 25
+Addtl Info: N = 0 and M = 0 indicates the end of input, absolute values of x and y coordinates of dogs do not exceed 1e+8 during simulation, no Frisbee is unattainable by any dog, no dog can acquire a Frisbee before t + 1e-6 seconds after it is acquired by another dog.

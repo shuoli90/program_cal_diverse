@@ -1,0 +1,30 @@
+Sure, here is the test case generator for the provided problem statement:
+
+```python
+import random
+
+def generate_test_case():
+    # Step 1: Generate a random N within the given constraints
+    N = random.randint(1, 2000)
+    
+    # Step 2: Generate the array A of size 3N with values between 1 and N (inclusive)
+    A = [random.randint(1, N) for _ in range(3 * N)]
+    
+    return N, A
+
+# Function to print the test case in the required format
+def print_test_case(N, A):
+    print(N)
+    print(' '.join(map(str, A)))
+
+# Generate and print a test case
+N, A = generate_test_case()
+print_test_case(N, A)
+```
+
+### Explanation:
+1. **Step 1:** We start by generating a random integer \( N \) within the range [1, 2000]. This represents the number of different integers that can be on the cards.
+2. **Step 2:** We then create a list \( A \) of size \( 3N \) where each element is a random integer between 1 and \( N \). This simulates the cards.
+3. **Function `print_test_case`:** This function formats and prints the test case as required by the problem statement.
+
+To generate and print a test case, you can run the code block above. It will output \( N \) followed by the sequence \( A \) in the required format.

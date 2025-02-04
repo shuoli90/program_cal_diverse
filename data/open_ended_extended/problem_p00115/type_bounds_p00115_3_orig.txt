@@ -1,0 +1,3 @@
+Types: spaceship_coords: Tuple[int, int, int], enemy_coords: Tuple[int, int, int], barrier_vertex1: Tuple[int, int, int], barrier_vertex2: Tuple[int, int, int], barrier_vertex3: Tuple[int, int, int]  
+Ranges: -100 ≤ x, y, z ≤ 100  
+Addtl Info: The UAZ Advance spacecraft and the enemy will never be in the same position.

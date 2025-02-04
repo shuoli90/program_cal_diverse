@@ -1,0 +1,30 @@
+Sure! Here's a Python function to generate test cases for the given problem statement for "SolveMe":
+
+```python
+import random
+
+def tcgen():
+    # Generate random values for N, X, Y, and Z within the specified constraints
+    N = random.randint(1, 1000)
+    X = random.randint(0, 10**18)
+    Y = random.randint(0, 10**18)
+    Z = random.randint(0, 10**18)
+    
+    return N, X, Y, Z
+
+# Example of generating a test case
+N, X, Y, Z = tcgen()
+print(f"{N} {X} {Y} {Z}")
+```
+
+This function randomly generates the values for \(N\), \(X\), \(Y\), and \(Z\) within their respective constraints. Each time you call `tcgen()`, it will return a new set of input parameters for the problem.
+
+Here is how you might use this function:
+
+```python
+for _ in range(5):  # Generate 5 test cases
+    N, X, Y, Z = tcgen()
+    print(f"Test Case: N={N}, X={X}, Y={Y}, Z={Z}")
+```
+
+You can adjust the loop to generate as many test cases as you need. The generated values will help ensure your solution is robust and can handle a variety of inputs within the specified constraints.

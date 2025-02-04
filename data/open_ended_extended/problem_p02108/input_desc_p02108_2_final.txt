@@ -1,0 +1,28 @@
+Canonicalized Input Description:
+
+An integer n (1 ≤ n ≤ 10^5), representing some quantity.
+An integer m (0 ≤ m ≤ min(n×(n−1), 10^5)), representing some quantity.
+A list of integers c of size n, where each integer is between 0 and 1000.
+m pairs of integers (a, b), where 0 ≤ a, b ≤ n - 1.
+
+### Example Input:
+
+```
+5 5
+1 1 1 1 1
+0 1
+1 2
+2 3
+3 0
+3 4
+```
+
+### Function Signature:
+Write a function f(n, m, c, roads) that takes in the input.
+def f(n: int, m: int, c: List[int], roads: List[Tuple[int, int]]):
+    '''
+    n: an integer
+    m: an integer
+    c: a list of integers
+    roads: a list of tuples of integers
+    '''

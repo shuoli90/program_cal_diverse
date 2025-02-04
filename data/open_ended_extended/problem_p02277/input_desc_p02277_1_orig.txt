@@ -1,0 +1,24 @@
+An integer n (1 ≤ n ≤ 100,000), representing some quantity or size.
+A list of pairs where each pair consists of a character from the set {'S', 'H', 'C', 'D'} and an integer (1 ≤ integer ≤ 10^9).
+
+### Example Input:
+
+```
+6
+D 3
+H 2
+D 1
+S 3
+D 2
+C 1
+```
+
+### Function Signature:
+Write a function f(n, inputs) that takes in the input.
+```python
+def f(n: int, inputs: List[Tuple[str, int]]):
+    '''
+    n: an integer
+    inputs: a list of tuples, each containing a character and an integer
+    '''
+```

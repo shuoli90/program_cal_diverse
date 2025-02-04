@@ -1,0 +1,187 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p00222 - Generation 2</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p00222 - Generation 2</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>Quadruplet Primes
+  A set of four prime numbers arranged in the form (a, a+2, a+6, a+8) is called a quadruplet prime. Among the four prime numbers that make up the quadruplet prime, the largest number is called the size of the quadruplet prime. For example, the smallest quadruplet prime of size 13 is the set (5, 7, 11, 13), and the next largest quadruplet prime of size 19 is the set (11, 13, 17, 19).
+  Write a program that takes an integer n (13 ≤ n ≤ 10,000,000) as input and outputs the size of the largest quadruplet prime whose size is less than or equal to n.
+Input
+  The input consists of multiple datasets. The end of input is indicated by a line containing a single zero.
+For each dataset, a single integer n is given on a line.
+  The number of datasets is no more than 2000.
+Output
+  For each input dataset, output the size of the largest quadruplet prime on a single line.
+Sample Input
+13
+14
+15
+16
+17
+18
+19
+20
+10000
+0
+Output for the Sample Input
+13
+13
+13
+13
+13
+13
+19
+19
+9439
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An integer n (13 ≤ n ≤ 10,000,000).
+
+The input consists of multiple datasets. The end of input is indicated by a line containing a single zero. The number of datasets is no more than 2000.
+
+### Example Input:
+
+```
+13
+14
+15
+16
+17
+18
+19
+20
+10000
+0
+```
+
+### Function Signature:
+Write a function f(inputs) that takes in the input.
+def f(inputs: List[int]):
+    '''
+    inputs: a list of integers
+    '''</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Creating a test case generator for the given "Quadruplet Primes" problem involves generating multiple datasets, as specified, and ensuring that each dataset adheres to the constraints given in the problem statement. Below is the implementation of a test case generator for this problem:
+
+```python
+import random
+import sympy
+
+def generate_quadruplet_primes(limit):
+    quadruplet_primes = []
+    for num in range(5, limit + 1):
+        if sympy.isprime(num) and sympy.isprime(num + 2) and sympy.isprime(num + 6) and sympy.isprime(num + 8):
+            quadruplet_primes.append(num + 8)
+    return quadruplet_primes
+
+def tcgen():
+    # Generate up to 2000 datasets
+    num_datasets = random.randint(1, 2000)
+    
+    # List to store all datasets
+    datasets = []
+
+    # Generate a list of quadruplet primes up to the maximum possible n (10,000,000)
+    quadruplet_primes = generate_quadruplet_primes(10000000)
+
+    for _ in range(num_datasets):
+        n = random.randint(13, 10000000)
+        datasets.append(n)
+    
+    # Add the terminating zero
+    datasets.append(0)
+
+    return datasets, quadruplet_primes
+
+def main():
+    datasets, quadruplet_primes = tcgen()
+    
+    # Print the datasets
+    for data in datasets:
+        print(data)
+
+if __name__ == "__main__":
+    main()
+```
+
+### Explanation:
+1. **Prime Checking with `sympy`**: The `generate_quadruplet_primes` function generates a list of all quadruplet primes up to the specified limit using the `sympy` library to check for primality.
+2. **Dataset Generation**: The `tcgen` function generates a random number of datasets up to 2000. Each dataset is a random integer \( n \) within the range [13, 10,000,000].
+3. **Appending the Terminating Zero**: After generating the datasets, the function appends a zero to indicate the end of input.
+4. **Main Function**: The `main` function calls the test case generator and prints each dataset to simulate reading input datasets.
+
+This will generate realistic input cases that can be used to test the "Quadruplet Primes" problem. The list of quadruplet primes can be used to validate the output by checking the largest quadruplet prime less than or equal to each \( n \).</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    inputs = []
+    while True:
+        n = int(fh.readline().strip())
+        if n == 0:
+            break
+        inputs.append(n)
+    return inputs
+
+# if __name__ == "__main__":
+#     input_path = sys.argv[1]
+#     with open(input_path, 'r') as fh: 
+#     inputs = extract_arguments(fh)
+#     f(inputs)</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

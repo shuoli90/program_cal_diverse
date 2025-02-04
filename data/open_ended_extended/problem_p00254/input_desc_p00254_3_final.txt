@@ -1,0 +1,19 @@
+An integer \(N\) (1 ≤ \(N\) ≤ 9999), representing a four-digit number. If \(N < 1000\), the upper digits are filled with 0s. The number of datasets does not exceed 10,000. Input ends when \(N\) is 0000.
+
+### Example Input:
+
+```
+6174
+2012
+3333
+0000
+```
+
+### Function Signature:
+Write a function f(inputs) that takes in the input.
+```python
+def f(inputs: List[int]):
+    '''
+    inputs: a list of integers
+    '''
+```

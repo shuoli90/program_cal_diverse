@@ -1,0 +1,26 @@
+Canonicalized Input Description:
+
+Multiple datasets. Each dataset consists of three integers, where:
+- The first integer is between 1 and 1000.
+- The second integer is between 1 and 10000.
+- The third integer is between 1 and 100.
+
+There are no more than 100 datasets.
+
+### Example Input:
+
+```
+1 2 3
+2 3 4
+5 4 3
+4 3 2
+```
+
+### Function Signature:
+Write a function `f(inputs)` that takes in the input.
+```python
+def f(inputs: List[Tuple[int, int, int]]):
+    ''' 
+    inputs: a list of tuples, each consisting of three integers
+    '''
+```

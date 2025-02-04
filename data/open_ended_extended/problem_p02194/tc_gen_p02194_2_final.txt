@@ -1,0 +1,26 @@
+Sure! Here's a test case generator for the problem statement "Zero AND Subsets":
+
+```python
+import random
+
+def tcgen():
+    N = random.randint(1, 10**5)
+    
+    A = [random.randint(0, 2**20 - 1) for _ in range(N)]
+    
+    return N, A
+
+# Example usage
+if __name__ == "__main__":
+    for _ in range(5):  # Generate 5 test cases
+        N, A = tcgen()
+        print(N)
+        print(" ".join(map(str, A)))
+```
+
+This generator will create random test cases with the constraints specified:
+
+1. The number of elements \(N\) is between 1 and \(10^5\).
+2. Each element \(a_i\) in the multiset is a non-negative integer between 0 and \(2^{20} - 1\).
+
+You can run this function to generate test cases for the problem "Zero AND Subsets". The output will be a randomly generated value for \(N\) and a list \(A\) of size \(N\) with elements in the specified range.

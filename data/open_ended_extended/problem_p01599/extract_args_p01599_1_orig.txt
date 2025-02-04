@@ -1,0 +1,11 @@
+def extract_arguments(fh):
+    NAB, NBA = map(int, fh.readline().strip().split())
+    trains_AB = []
+    for _ in range(NAB):
+        Ci, Di, Ai = map(int, fh.readline().strip().split())
+        trains_AB.append((Ci, Di, Ai))
+    trains_BA = []
+    for _ in range(NBA):
+        Ci, Di, Ai = map(int, fh.readline().strip().split())
+        trains_BA.append((Ci, Di, Ai))
+    return NAB, NBA, trains_AB, trains_BA

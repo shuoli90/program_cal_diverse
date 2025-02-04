@@ -1,0 +1,18 @@
+An integer n (1 ≤ n ≤ 10,000), representing some length.
+A string s of length n, consisting of digits ('0' to '9') and the letter 'u', ending with 'u'.
+
+### Example Input:
+
+```
+11
+01u12u0123u
+```
+
+### Function Signature:
+Write a function f(inputs) that takes in the input as a list of tuples.
+def f(inputs: List[Tuple[int, str]]):
+    '''
+    inputs: a list of tuples where each tuple contains:
+        - an integer representing the length of the string
+        - a string of that length consisting of digits and the character 'u'
+    '''

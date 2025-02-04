@@ -1,0 +1,31 @@
+Certainly! Here's a Python test case generator for the given competitive programming problem:
+
+```python
+import random
+
+def tcgen():
+    # Length of the string S
+    N = random.randint(2, 10**5)
+    
+    # Generate the string S where first character is 'R' and last character is 'L'
+    S = 'R' + ''.join(random.choice(['L', 'R']) for _ in range(N-2)) + 'L'
+    
+    return S
+
+# Example usage
+if __name__ == "__main__":
+    test_case = tcgen()
+    print(test_case)
+```
+
+### Explanation:
+
+1. **Length of String \( N \)**:
+   - A random length \( N \) is generated between 2 and \( 10^5 \) (inclusive).
+
+2. **String \( S \)**:
+   - The first character of \( S \) is always 'R'.
+   - The last character of \( S \) is always 'L'.
+   - The characters in between are randomly chosen from ['L', 'R'].
+
+This generator ensures that the constraints of the problem are met, and the generated test cases are valid for the given problem statement.

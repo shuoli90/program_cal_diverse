@@ -1,0 +1,64 @@
+Sure, I can help you write a test case generator for the "Friday the 13th" problem. The generator will produce random values for \(Y1\), \(M1\), \(D1\), \(Y2\), \(M2\), and \(D2\) within the given constraints. Here's how we can accomplish this in Python:
+
+```python
+import random
+from datetime import datetime, timedelta
+
+def is_leap_year(year):
+    """Determine if a given year is a leap year."""
+    return (year % 4 == 0 and year % 100 != 0) or (year % 400 == 0)
+
+def generate_random_date(year):
+    """Generate a random valid date within a given year."""
+    month = random.randint(1, 12)
+    
+    # Determine the maximum day for the selected month
+    if month == 2:
+        if is_leap_year(year):
+            day = random.randint(1, 29)
+        else:
+            day = random.randint(1, 28)
+    elif month in {4, 6, 9, 11}:
+        day = random.randint(1, 30)
+    else:
+        day = random.randint(1, 31)
+    
+    return year, month, day
+
+def tcgen():
+    # Randomly choose Y1 and Y2 such that 1 ≤ Y1 ≤ Y2 ≤ 10^18
+    Y1 = random.randint(1, 10**4)  # Using a smaller upper limit for practical reasons
+    Y2 = random.randint(Y1, 10**4)
+    
+    # Generate random valid dates for Y1 and Y2
+    Y1, M1, D1 = generate_random_date(Y1)
+    Y2, M2, D2 = generate_random_date(Y2)
+    
+    # Ensure that the generated date range is valid
+    start_date = datetime(Y1, M1, D1)
+    end_date = datetime(Y2, M2, D2)
+    
+    if start_date > end_date:
+        start_date, end_date = end_date, start_date
+    
+    Y1, M1, D1 = start_date.year, start_date.month, start_date.day
+    Y2, M2, D2 = end_date.year, end_date.month, end_date.day
+    
+    return f"{Y1} {M1} {D1} {Y2} {M2} {D2}"
+
+# Example usage
+print(tcgen())
+```
+
+This script takes into account the constraints given for the dates and ensures that the generated date range is valid. The range for years is limited to a smaller upper limit for practical reasons to avoid extremely large numbers, but you can adjust this as needed.
+
+### Explanation:
+
+1. **Leap Year Calculation**: The `is_leap_year` function determines if a given year is a leap year.
+2. **Random Date Generation**: The `generate_random_date` function generates a random valid date within a given year, considering month-specific days.
+3. **Test Case Generation (`tcgen`)**:
+    - It generates random values for the years \(Y1\) and \(Y2\) ensuring \(Y1 \leq Y2\).
+    - It uses the `generate_random_date` function to generate valid dates for the years.
+    - It ensures the start date is not after the end date by comparing and swapping if necessary.
+
+The `tcgen` function returns a valid test case as a single string, formatted as required by the problem statement.

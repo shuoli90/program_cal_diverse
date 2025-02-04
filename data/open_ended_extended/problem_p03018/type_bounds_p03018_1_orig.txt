@@ -1,0 +1,5 @@
+Types: s: str
+
+Ranges: 1 ≤ |s| ≤ 200000, s[i] ∈ {'A', 'B', 'C'}
+
+Addtl Info: None

@@ -1,0 +1,36 @@
+Sure, I can help you write a test case generator for the given problem statement. Here's how you can generate test cases for this problem:
+
+```python
+import random
+
+def tcgen():
+    # Length of S is fixed at 4
+    length_of_S = 4
+    
+    # Each character in S can be either '+' or '-'
+    S = ''.join(random.choice(['+', '-']) for _ in range(length_of_S))
+    
+    return S
+
+# Example of generating a test case
+print(tcgen())
+```
+
+This function generates a random string `S` of length 4, where each character is either '+' or '-'. This aligns with the constraints provided in the problem statement.
+
+You can run this function multiple times to generate different test cases for the problem. For example:
+
+```python
+for _ in range(5):  # Generate 5 test cases
+    print(tcgen())
+```
+
+This will output something like:
+
+```
++--+
+-++-
+++--
+--++
+-+-+
+```

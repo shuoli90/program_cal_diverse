@@ -1,0 +1,22 @@
+An integer n (0 ≤ n ≤ 15), representing a battery point or similar quantity.
+A character s, representing a room or a similar entity.
+A character t, representing another room distinct from s.
+A character b, representing a junk room or a similar entity, distinct from both s and t.
+
+### Example Input:
+
+```
+1
+E A C
+```
+
+### Function Signature:
+Write a function f(data: List[Tuple[int, str, str, str]]) that takes in the input.
+def f(data: List[Tuple[int, str, str, str]]):
+    '''
+    data: a list of tuples, where each tuple contains:
+        - an integer
+        - a character
+        - a character
+        - a character
+    '''

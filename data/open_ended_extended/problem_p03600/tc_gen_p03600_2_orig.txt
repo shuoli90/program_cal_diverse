@@ -1,0 +1,43 @@
+Certainly! Let's write a test case generator for the provided problem statement.
+
+We'll generate a matrix \( A \) according to the constraints, ensuring that:
+1. \( A_{i, j} = A_{j, i} \) for \( i \neq j \) and \( A_{i, i} = 0 \).
+2. \( 1 \leq A_{i, j} \leq 10^9 \) for \( i \neq j \).
+
+Here's the test case generator in Python:
+
+```python
+import random
+
+def generate_matrix(N):
+    A = [[0]*N for _ in range(N)]
+    for i in range(N):
+        for j in range(i+1, N):
+            distance = random.randint(1, 10**9)
+            A[i][j] = distance
+            A[j][i] = distance
+    return A
+
+def tcgen():
+    N = random.randint(1, 300)
+    A = generate_matrix(N)
+    return N, A
+
+def print_test_case(N, A):
+    print(N)
+    for row in A:
+        print(' '.join(map(str, row)))
+
+# Example usage
+N, A = tcgen()
+print_test_case(N, A)
+```
+
+### Explanation:
+1. **generate_matrix(N)**: This function generates a symmetric matrix \( A \) of size \( N \times N \) with the main diagonal set to 0 and other elements set to random positive integers between 1 and \( 10^9 \).
+2. **tcgen()**: This function generates the size \( N \) of the matrix and the matrix \( A \).
+3. **print_test_case(N, A)**: This function prints the generated test case in the required format.
+
+You can run `tcgen()` to generate a new test case each time and `print_test_case(N, A)` to print the generated test case in the required format.
+
+Feel free to adjust the random seed or add any specific conditions you want to test for.

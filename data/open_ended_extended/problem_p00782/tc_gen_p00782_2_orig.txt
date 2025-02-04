@@ -1,0 +1,52 @@
+Sure! Below is a test case generator for the given problem statement "Mobile Phone Coverage":
+
+```python
+import random
+
+def generate_single_test_case():
+    n = random.randint(2, 100)
+    antennas = []
+    for _ in range(n):
+        x = round(random.uniform(0, 200), 1)
+        y = round(random.uniform(0, 200), 1)
+        r = round(random.uniform(0, 200), 1)
+        antennas.append((x, y, r))
+    
+    return n, antennas
+
+def tcgen():
+    num_cases = random.randint(1, 10)  # Number of test cases to generate
+    test_cases = []
+    
+    for _ in range(num_cases):
+        n, antennas = generate_single_test_case()
+        test_cases.append((n, antennas))
+    
+    # Add the terminating test case
+    test_cases.append((0, []))
+    
+    return test_cases
+
+def format_test_cases(test_cases):
+    formatted_cases = []
+    for case in test_cases:
+        n, antennas = case
+        formatted_case = [str(n)]
+        for antenna in antennas:
+            formatted_case.append(f"{antenna[0]} {antenna[1]} {antenna[2]}")
+        formatted_cases.append("\n".join(formatted_case))
+    
+    return "\n".join(formatted_cases)
+
+if __name__ == "__main__":
+    test_cases = tcgen()
+    formatted_cases = format_test_cases(test_cases)
+    print(formatted_cases)
+```
+
+This will generate multiple test cases for the "Mobile Phone Coverage" problem where each test case consists of:
+1. An integer `n` indicating the number of antennas.
+2. `n` lines each containing three floating-point numbers representing the coordinates `(xi, yi)` and the radius `ri` of an antenna.
+3. The input terminates with `n = 0`.
+
+The `tcgen` function generates a random number of test cases (between 1 and 10) and adds a terminating test case with `n = 0`. The `format_test_cases` function formats these test cases into the required string format for output.

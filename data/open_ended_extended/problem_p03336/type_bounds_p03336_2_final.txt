@@ -1,0 +1,3 @@
+Types: N: int, M: int, K: int, S: str, T: str
+Ranges: 1 ≤ N ≤ 10^6, 1 ≤ M ≤ 10^6, 1 ≤ K ≤ 10^6
+Addtl Info: S and T are binary strings of length N and M, respectively, starting with '1'.

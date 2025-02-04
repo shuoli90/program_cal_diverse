@@ -1,0 +1,61 @@
+Sure! Below is a test case generator for the problem "Alice and Bob," considering the constraints and input format specified in the prompt:
+
+```python
+import random
+
+def generate_building():
+    x1 = random.randint(-10000, 10000)
+    y1 = random.randint(-10000, 10000)
+    x2 = random.randint(x1 + 1, 10000)  # Ensure that x2 > x1
+    y2 = random.randint(y1 + 1, 10000)  # Ensure that y2 > y1
+    return x1, y1, x2, y2
+
+def generate_coordinates():
+    x = random.randint(-10000, 10000)
+    y = random.randint(-10000, 10000)
+    return x, y
+
+def tcgen():
+    datasets = []
+    while True:
+        if random.random() < 0.2:  # End condition to stop adding more datasets
+            break
+        
+        N = random.randint(1, 30)
+        buildings = [generate_building() for _ in range(N)]
+        Ax, Ay = generate_coordinates()
+        Bx, By = generate_coordinates()
+        
+        # Ensure Alice and Bob are not inside any building
+        while any(x1 < Ax < x2 and y1 < Ay < y2 for (x1, y1, x2, y2) in buildings):
+            Ax, Ay = generate_coordinates()
+        
+        while any(x1 < Bx < x2 and y1 < By < y2 for (x1, y1, x2, y2) in buildings):
+            Bx, By = generate_coordinates()
+        
+        dataset = [N] + buildings + [(Ax, Ay, Bx, By)]
+        datasets.append(dataset)
+    
+    return datasets
+
+def print_test_cases(datasets):
+    for dataset in datasets:
+        print(dataset[0])
+        for i in range(1, dataset[0] + 1):
+            print(' '.join(map(str, dataset[i])))
+        print(' '.join(map(str, dataset[-1])))
+
+# Generating test cases
+datasets = tcgen()
+print_test_cases(datasets)
+```
+
+### Explanation:
+1. **generate_building()**: Generates a building with coordinates ensuring that `x2 > x1` and `y2 > y1` to form a valid rectangle.
+2. **generate_coordinates()**: Generates a random coordinate within the range \([-10000, 10000]\).
+3. **tcgen()**: Generates multiple datasets until a random condition ends the loop. For each dataset:
+   - Generates `N` buildings.
+   - Generates coordinates for Alice `(Ax, Ay)` and Bob `(Bx, By)`, ensuring they are not inside any building.
+4. **print_test_cases()**: Prints the generated test cases in the required format.
+
+This generator creates diverse and valid test cases within the specified constraints, making it useful for thoroughly testing the solution to the problem "Alice and Bob."

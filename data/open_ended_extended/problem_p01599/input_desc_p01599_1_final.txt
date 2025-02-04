@@ -1,0 +1,24 @@
+An integer NAB (0 ≤ NAB ≤ 50), representing a count.
+An integer NBA (0 ≤ NBA ≤ 50), representing a count.
+A list of NAB tuples, where each tuple contains three integers Ci (1 ≤ Ci ≤ 10), Di (0 ≤ Di < 86400), and Ai (0 ≤ Ai < 86400).
+A list of NBA tuples, where each tuple contains three integers Ci (1 ≤ Ci ≤ 10), Di (0 ≤ Di < 86400), and Ai (0 ≤ Ai < 86400).
+
+### Example Input:
+
+```
+1 1
+10 100 0
+10 100 0
+```
+
+### Function Signature:
+Write a function f(NAB, NBA, AB_info, BA_info) that takes in the input.
+```python
+def f(NAB: int, NBA: int, AB_info: List[Tuple[int, int, int]], BA_info: List[Tuple[int, int, int]]):
+    '''
+    NAB: an integer
+    NBA: an integer
+    AB_info: a list of tuples, each containing three integers
+    BA_info: a list of tuples, each containing three integers
+    '''
+```

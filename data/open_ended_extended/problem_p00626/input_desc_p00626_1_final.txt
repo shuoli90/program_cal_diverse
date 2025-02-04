@@ -1,0 +1,29 @@
+An integer H (1 ≤ H ≤ 12) and an integer W (1 ≤ W ≤ 12), representing some dimensions.
+A list of H lists, each containing W integers, where each integer is either 0 or 1.
+The end of the input is indicated by a dataset where H = W = 0.
+
+### Example Input:
+
+```
+4 4
+1 0 0 0
+0 0 1 0
+0 1 0 0
+1 0 0 1
+1 1
+1
+2 3
+1 0 0
+0 0 1
+0 0
+0 0
+```
+
+### Function Signature:
+Write a function f(inputs) that takes in the input.
+```python
+def f(inputs: List[Tuple[int, int, List[List[int]]]]):
+    '''
+    inputs: a list of tuples, each containing an integer H, an integer W, and a list of H lists, each containing W integers
+    '''
+```

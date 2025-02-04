@@ -1,0 +1,12 @@
+Types: 
+- n: int
+- coordinates: List[Tuple[int, int]]
+
+Ranges: 
+- 1 ≤ n ≤ 3000
+- 0 ≤ x ≤ 5000
+- 0 ≤ y ≤ 5000
+
+Addtl Info: 
+- No more than 10 datasets
+- Each pillar appears only once or never

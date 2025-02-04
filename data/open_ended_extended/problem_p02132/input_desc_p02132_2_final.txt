@@ -1,0 +1,25 @@
+An integer N (1 ≤ N ≤ 14), representing some quantity.
+An integer M (1 ≤ M ≤ N), representing some quantity.
+N pairs of integers (xi, yi) where each integer is between 0 and 10^5.
+
+### Example Input:
+
+```
+5 2
+0 0
+5 5
+10 10
+100 100
+200 200
+```
+
+### Function Signature:
+Write a function f(N, M, coordinates) that takes in the input.
+```python
+def f(N: int, M: int, coordinates: List[Tuple[int, int]]):
+    '''
+    N: an integer
+    M: an integer
+    coordinates: a list of tuples, each containing two integers
+    '''
+```

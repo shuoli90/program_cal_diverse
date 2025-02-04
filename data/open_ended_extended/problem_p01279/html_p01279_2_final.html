@@ -1,0 +1,215 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p01279 - Generation 2</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p01279 - Generation 2</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>
+Problem G: Defend the Bases
+A country Gizevom is being under a sneak and fierce attack by their foe. They have to deploy one or
+more troops to every base immediately in order to defend their country. Otherwise their foe would take
+all the bases and declare "All your base are belong to us."
+You are asked to write a program that calculates the minimum time required for deployment, given the
+present positions and marching speeds of troops and the positions of the bases.
+Input
+The input consists of multiple datasets. Each dataset has the following format:
+N M
+x1 y1 v1
+x2 y2 v2
+...
+xN yN vN
+x'1 y'1
+x'2 y'2
+...
+x'M y'M
+N is the number of troops (1 ≤ N ≤ 100); M is the number of bases (1 ≤ M ≤ 100); (xi, yi ) denotes the present position of i-th troop; vi is the speed of the i-th troop (1 ≤ vi ≤ 100); (x'j, y'j) is the position of the j-th base.
+All the coordinates are integers between 0 and 10000 inclusive.
+The last dataset is followed by a line containing two zeros. This line is not a part of any dataset and should not be processed.
+Output
+For each dataset, print the minimum required time in a line.
+Sample Input
+2 2
+10 20 1
+0 10 1
+0 10
+10 0
+0 0
+Output for the Sample Input
+14.14213562
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An integer \(N\) (1 ≤ \(N\) ≤ 100), representing some quantity or size.  
+An integer \(M\) (1 ≤ \(M\) ≤ 100), representing some quantity or size.  
+A list of \(N\) tuples, where each tuple contains three integers (x, y, v), with 0 ≤ x, y ≤ 10000 and 1 ≤ v ≤ 100.  
+A list of \(M\) tuples, where each tuple contains two integers (x', y'), with 0 ≤ x', y' ≤ 10000.
+
+### Example Input:
+
+```
+2 2
+10 20 1
+0 10 1
+0 10
+10 0
+0 0
+```
+
+### Function Signature:
+Write a function `f(inputs)` that takes in the input.
+```python
+def f(inputs: List[Tuple[int, int, List[Tuple[int, int, int]], List[Tuple[int, int]]]]):
+    '''
+    inputs: a list of tuples, each containing:
+        - an integer N
+        - an integer M
+        - a list of N tuples (x, y, v)
+        - a list of M tuples (x', y')
+    '''
+```</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Sure, I can help you with writing a test case generator for the given problem "Defend the Bases". Below is the test case generator in Python:
+
+```python
+import random
+
+def generate_test_case():
+    # Generates a single test case
+    N = random.randint(1, 100)
+    M = random.randint(1, 100)
+    
+    troops = []
+    for _ in range(N):
+        x = random.randint(0, 10000)
+        y = random.randint(0, 10000)
+        v = random.randint(1, 100)
+        troops.append((x, y, v))
+    
+    bases = []
+    for _ in range(M):
+        x_prime = random.randint(0, 10000)
+        y_prime = random.randint(0, 10000)
+        bases.append((x_prime, y_prime))
+    
+    return N, M, troops, bases
+
+def tcgen():
+    test_cases = []
+    
+    # Decide the number of datasets
+    num_datasets = random.randint(1, 10)
+    
+    for _ in range(num_datasets):
+        test_cases.append(generate_test_case())
+    
+    # Append the ending line with zeros
+    test_cases.append((0, 0, [], []))
+    
+    return test_cases
+
+def print_test_cases(test_cases):
+    for case in test_cases:
+        if case[0] == 0 and case[1] == 0:
+            print("0 0")
+            continue
+        
+        N, M, troops, bases = case
+        print(f"{N} {M}")
+        for troop in troops:
+            print(f"{troop[0]} {troop[1]} {troop[2]}")
+        for base in bases:
+            print(f"{base[0]} {base[1]}")
+
+# Example usage
+test_cases = tcgen()
+print_test_cases(test_cases)
+```
+
+Explanation:
+1. **generate_test_case()**: Generates a single test case with random values for N (number of troops) and M (number of bases). It also generates random coordinates and speeds for the troops and random coordinates for the bases.
+2. **tcgen()**: Generates multiple datasets as described in the problem statement. The number of datasets is chosen randomly between 1 and 10. It adds a special ending line "0 0" which signifies the end of input.
+3. **print_test_cases()**: Prints the test cases in the format required by the problem statement.
+
+You can run the `print_test_cases(tcgen())` function to generate and print random test cases in the correct format.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    datasets = []
+    while True:
+        line = fh.readline().strip()
+        if line == '0 0':
+            break
+        N, M = map(int, line.split())
+        troops = []
+        bases = []
+        for _ in range(N):
+            x, y, v = map(int, fh.readline().strip().split())
+            troops.append((x, y, v))
+        for _ in range(M):
+            x_prime, y_prime = map(int, fh.readline().strip().split())
+            bases.append((x_prime, y_prime))
+        datasets.append((N, M, troops, bases))
+    return datasets
+
+# if __name__ == "__main__":
+#     input_path = sys.argv[1]
+#     with open(input_path, 'r') as fh:
+#         inputs = extract_arguments(fh)
+#         for input_data in inputs:
+#             f(input_data)</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

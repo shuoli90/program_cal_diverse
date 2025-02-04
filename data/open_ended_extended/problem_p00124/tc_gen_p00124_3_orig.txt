@@ -1,0 +1,50 @@
+Here's a test case generator for the "League Standings Score Sheet" problem. This generator will create multiple data sets as specified, ensuring each data set adheres to the input constraints:
+
+```python
+import random
+import string
+
+def generate_team_name():
+    # Generate a random team name with up to 20 alphabetic characters
+    length = random.randint(1, 20)
+    return ''.join(random.choices(string.ascii_uppercase, k=length))
+
+def generate_team_record():
+    # Generate random wins, losses, and draws (0 ≤ wi, li, di ≤ 9)
+    wins = random.randint(0, 9)
+    losses = random.randint(0, 9)
+    draws = random.randint(0, 9)
+    return wins, losses, draws
+
+def generate_data_set():
+    # Generate a single data set
+    n = random.randint(1, 10)
+    data_set = []
+    for _ in range(n):
+        name = generate_team_name()
+        wins, losses, draws = generate_team_record()
+        data_set.append(f"{name} {wins} {losses} {draws}")
+    return n, data_set
+
+def tcgen():
+    num_data_sets = random.randint(1, 50)
+    test_cases = []
+    
+    for _ in range(num_data_sets):
+        n, data_set = generate_data_set()
+        test_cases.append(f"{n}\n" + "\n".join(data_set))
+    
+    test_cases.append("0")  # Termination line
+    
+    return "\n\n".join(test_cases)
+
+# Example of generating a test case
+print(tcgen())
+```
+
+This script generates random test cases for the given problem. Here's a breakdown of what each part does:
+
+- `generate_team_name()`: Generates a random team name of up to 20 characters.
+- `generate_team_record()`: Generates random values for wins, losses, and draws, each between 0 and 9, inclusive.
+- `generate_data_set()`: Combines the team name and record generation to create a single dataset, including the number of teams.
+- `tcgen()`: Generates multiple datasets (up to 50) and formats them as specified in the problem statement. Each dataset is separated by a blank line, and the input is terminated with a "0".

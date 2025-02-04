@@ -1,0 +1,23 @@
+Canonicalized Input Description:
+
+Two strings S and T, both composed of lowercase alphabets.
+An integer k, where 1 ≤ k ≤ |T|.
+
+### Example Input:
+
+```
+abracadabra
+cadabra
+4
+```
+
+### Function Signature:
+Write a function f(S, T, k) that takes in the input. 
+```python
+def f(S: str, T: str, k: int):
+    ''' 
+    S: a string 
+    T: a string 
+    k: an integer 
+    '''
+```

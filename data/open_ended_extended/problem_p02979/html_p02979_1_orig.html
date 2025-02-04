@@ -1,0 +1,152 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p02979 - Generation 1</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p02979 - Generation 1</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>
+Score : 1600 points
+Problem StatementThere is a blackboard on which all integers from -10^{18} through 10^{18} are written, each of them appearing once. Takahashi will repeat the following sequence of operations any number of times he likes, possibly zero:
+Choose an integer between 1 and N (inclusive) that is written on the blackboard. Let x be the chosen integer, and erase x.
+If x-2 is not written on the blackboard, write x-2 on the blackboard.
+If x+K is not written on the blackboard, write x+K on the blackboard.
+Find the number of possible sets of integers written on the blackboard after some number of operations, modulo M.
+We consider two sets different when there exists an integer contained in only one of the sets.
+Constraints
+1 \leq K\leq N \leq 150
+10^8\leq M\leq 10^9
+N, K, and M are integers.
+InputInput is given from Standard Input in the following format:
+N K M
+OutputPrint the number of possible sets of integers written on the blackboard after some number of operations, modulo M.
+Sample Input 13 1 998244353
+Sample Output 17
+Every set containing all integers less than 1, all integers greater than 3, and at least one of the three integers 1, 2, and 3 satisfies the condition. There are seven such sets.
+Sample Input 26 3 998244353
+Sample Output 261
+Sample Input 39 4 702443618
+Sample Output 3312
+Sample Input 417 7 208992811
+Sample Output 4128832
+Sample Input 5123 45 678901234
+Sample Output 5256109226
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>    
+An integer N (1 ≤ N ≤ 150).
+An integer K (1 ≤ K ≤ N).
+An integer M (10^8 ≤ M ≤ 10^9).
+
+### Example Input:
+
+```
+13 1 998244353
+```
+
+### Function Signature:
+Write a function f(N, K, M) that takes in the input.
+def f(N: int, K: int, M: int):
+    '''
+    N: an integer
+    K: an integer
+    M: an integer
+    '''
+</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Sure, I can help generate test cases for the problem statement. Here is the test case generator in Python:
+
+```python
+import random
+
+def tcgen():
+    N = random.randint(1, 150)
+    K = random.randint(1, N)
+    M = random.randint(10**8, 10**9)
+    return N, K, M
+
+# Example usage:
+for _ in range(5):  # Generate 5 test cases
+    print(tcgen())
+```
+
+This generator will produce test cases in the format specified by the problem statement. For each test case, it will:
+
+1. Generate \(N\) as a random integer between 1 and 150.
+2. Generate \(K\) as a random integer between 1 and \(N\).
+3. Generate \(M\) as a random integer between \(10^8\) and \(10^9\).
+
+Each tuple returned by `tcgen()` will be in the format `(N, K, M)` as expected by the problem's input specification. 
+
+You can run this script to get different test cases for your competitive programming problem. Here are five example outputs for the test cases:
+
+```
+(13, 9, 234567890)
+(108, 57, 987654321)
+(72, 21, 123456789)
+(150, 93, 876543210)
+(6, 2, 345678901)
+```
+
+These outputs can be used directly as inputs for testing the solution to the problem statement.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    N, K, M = map(int, fh.readline().strip().split())
+    return N, K, M</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

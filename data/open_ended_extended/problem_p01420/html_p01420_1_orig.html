@@ -1,0 +1,209 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p01420 - Generation 1</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p01420 - Generation 1</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>
+Marathon Match
+N people run a marathon.
+There are M resting places on the way.
+For each resting place, the i-th runner takes a break with probability P_i percent.
+When the i-th runner takes a break,  he gets rest for T_i time.
+The i-th runner runs at constant speed V_i, and
+the  distance of the marathon is L.
+You are requested to compute the probability  for each runner to win the first place.
+If a runner arrives at the goal with another person at the same time, they are not considered to win the first place.
+Input
+A dataset is given in the following format:
+N M L
+P_1 T_1 V_1
+P_2 T_2 V_2
+...
+P_N T_N V_N
+The first line of a dataset contains three integers N (1 \leq N \leq 100), M (0 \leq M \leq 50) and L (1 \leq L \leq 100,000).
+N is the number of runners.
+M is the number of resting places.
+L is the  distance of the marathon.
+Each of the following N lines contains three integers P_i (0 \leq P_i \leq 100), T_i (0 \leq T_i \leq 100) and V_i (0 \leq V_i \leq 100) describing the i-th runner.
+P_i is the probability to take a break.
+T_i is the time of resting.
+V_i is the speed.
+Output
+For each runner, you should answer the probability of winning.
+The i-th line in the output should be the probability that the i-th runner wins the marathon.
+Each number in the output should not contain an error greater than 10^{-5}.
+Sample Input 1
+2 2 50
+30 50 1
+30 50 2
+Output for the Sample Input 1
+0.28770000
+0.71230000
+Sample Input 2
+2 1 100
+100 100 10
+0 100 1
+Output for the Sample Input 2
+0.00000000
+1.00000000
+Sample Input 3
+3 1 100
+50 1 1
+50 1 1
+50 1 1
+Output for the Sample Input 3
+0.12500000
+0.12500000
+0.12500000
+Sample Input 4
+2 2 50
+30 0 1
+30 50 2
+Output for the Sample Input 4
+0.51000000
+0.49000000
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An integer N (1 ≤ N ≤ 100), representing some quantity.
+An integer M (0 ≤ M ≤ 50), representing some quantity.
+An integer L (1 ≤ L ≤ 100,000), representing some quantity.
+A list of N tuples, each containing three integers (P_i, T_i, V_i), where:
+- 0 ≤ P_i ≤ 100
+- 0 ≤ T_i ≤ 100
+- 0 ≤ V_i ≤ 100
+
+### Example Input:
+
+```
+2 2 50
+30 50 1
+30 50 2
+```
+
+### Function Signature:
+Write a function f(N, M, L, runners) that takes in the input.
+```python
+def f(N: int, M: int, L: int, runners: List[Tuple[int, int, int]]):
+    ''' 
+    N: an integer 
+    M: an integer
+    L: an integer
+    runners: a list of tuples, each containing three integers
+    '''
+```</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>To generate test cases for the "Marathon Match" problem, we will need to create random values for the number of runners \(N\), resting places \(M\), marathon distance \(L\), and the parameters \(P_i\), \(T_i\), and \(V_i\) for each runner. Here's a Python function to generate such test cases:
+
+```python
+import random
+
+def tcgen():
+    # Generating random values for N, M, and L
+    N = random.randint(1, 100)
+    M = random.randint(0, 50)
+    L = random.randint(1, 100000)
+    
+    # Generating random values for each runner's P_i, T_i, and V_i
+    runners = []
+    for _ in range(N):
+        P_i = random.randint(0, 100)
+        T_i = random.randint(0, 100)
+        V_i = random.randint(0, 100)
+        runners.append((P_i, T_i, V_i))
+    
+    return N, M, L, runners
+
+# Example of usage:
+N, M, L, runners = tcgen()
+print(N, M, L)
+for runner in runners:
+    print(runner[0], runner[1], runner[2])
+```
+
+This function will generate random test cases with the following constraints:
+
+- \(N\) (1 ≤ \(N\) ≤ 100): number of runners.
+- \(M\) (0 ≤ \(M\) ≤ 50): number of resting places.
+- \(L\) (1 ≤ \(L\) ≤ 100,000): distance of the marathon.
+- For each runner \(i\):
+  - \(P_i\) (0 ≤ \(P_i\) ≤ 100): probability of taking a break.
+  - \(T_i\) (0 ≤ \(T_i\) ≤ 100): resting time.
+  - \(V_i\) (0 ≤ \(V_i\) ≤ 100): running speed.
+
+The output from the function is in the format required by the problem statement. You can use this generator function to create as many test cases as needed for testing the solution to the problem.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    first_line = fh.readline().strip().split()
+    N = int(first_line[0])
+    M = int(first_line[1])
+    L = int(first_line[2])
+    runners = []
+    for _ in range(N):
+        P, T, V = map(int, fh.readline().strip().split())
+        runners.append((P, T, V))
+    return N, M, L, runners
+
+# if __name__ == "__main__":
+#     input_path = sys.argv[1]
+#     with open(input_path, 'r') as fh: 
+#     N, M, L, runners = extract_arguments(fh)
+#     f(N, M, L, runners)</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

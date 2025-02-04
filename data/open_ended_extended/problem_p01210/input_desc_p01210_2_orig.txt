@@ -1,0 +1,25 @@
+An integer X (0 ≤ X ≤ 100), representing a quantity.
+A sequence of strings S of length X, where each string consists of two characters: one from the set {'S', 'H', 'D', 'C'} and one from the set {'A', 'K', 'Q', 'J', 'X', '9', '8', '7', '6', '5', '4', '3', '2'}.
+Another integer Y (0 ≤ Y ≤ 100), representing another quantity.
+Another sequence of strings T of length Y, with the same properties as S.
+The input terminates with a single line containing a zero.
+
+### Example Input:
+```
+1
+SA
+1
+C2
+0
+```
+
+### Function Signature:
+Write a function f(inputs) that processes the list of tuples.
+def f(inputs: List[Tuple[int, List[str], int, List[str]]]):
+    '''
+    inputs: a list of tuples, where each tuple contains:
+        - an integer
+        - a list of strings
+        - another integer
+        - another list of strings
+    '''

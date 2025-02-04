@@ -1,0 +1,59 @@
+Certainly! Below is a Python function to generate test cases for the "Grey Area" problem. The function will generate random values following the constraints provided in the problem statement.
+
+```python
+import random
+
+def tcgen():
+    test_cases = []
+    
+    while True:
+        # Generate n and w
+        n = random.randint(1, 100)
+        w = random.randint(10, 50)
+        
+        # Generate values v1, v2, ..., vn
+        values = [random.randint(0, 100) for _ in range(n)]
+        
+        test_cases.append((n, w, values))
+        
+        # Randomly decide to stop adding more test cases
+        if random.choice([True, False]):
+            break
+    
+    # Append the end-of-input indicator
+    test_cases.append((0, 0, []))
+    
+    return test_cases
+
+# Example of how to use the test case generator
+def print_test_cases(test_cases):
+    for case in test_cases:
+        n, w, values = case
+        print(f"{n} {w}")
+        for value in values:
+            print(value)
+    print("0 0")
+
+# Generate and print test cases
+test_cases = tcgen()
+print_test_cases(test_cases)
+```
+
+### Explanation:
+1. **Randomly generate `n` and `w`:**
+   - `n` is the number of values and is randomly chosen between 1 and 100.
+   - `w` is the interval width and is randomly chosen between 10 and 50.
+
+2. **Generate `n` random values for the histogram:**
+   - Each value `vi` is randomly chosen between 0 and 100.
+
+3. **Add random stopping condition:**
+   - Randomly decide whether to stop adding more test cases to simulate multiple datasets.
+
+4. **Append the end-of-input indicator:**
+   - The end of input is indicated by a line containing two zeros (`0 0`).
+
+5. **Utility function `print_test_cases`:**
+   - This function prints the test cases generated in the required format.
+
+You can call the `tcgen()` function to generate test cases and use the `print_test_cases` function to print them in the correct format. The generated test cases will follow the constraints and structure as specified in the "Grey Area" problem statement.

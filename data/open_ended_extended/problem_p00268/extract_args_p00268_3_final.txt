@@ -1,0 +1,21 @@
+def extract_arguments(fh):
+    datasets = []
+    while True:
+        first_line = fh.readline().strip()
+        if first_line == "0 0":
+            break
+        C, W = map(int, first_line.split())
+        
+        pillars = []
+        for _ in range(C):
+            x, y = map(int, fh.readline().strip().split())
+            pillars.append((x, y))
+        
+        walls = []
+        for _ in range(W):
+            s, t = map(int, fh.readline().strip().split())
+            walls.append((s, t))
+        
+        datasets.append((C, W, pillars, walls))
+    
+    return datasets

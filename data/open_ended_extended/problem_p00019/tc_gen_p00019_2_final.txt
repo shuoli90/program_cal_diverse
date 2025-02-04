@@ -1,0 +1,52 @@
+Certainly! Here is a test case generator for the given "Factorial" problem statement:
+
+### Problem Statement: Factorial
+
+**Description**
+
+Write a program which reads an integer \(n\) and prints the factorial of \(n\). You can assume that \(n \leq 20\).
+
+**Input**
+
+An integer \(n\) (1 ≤ \(n\) ≤ 20) in a line.
+
+**Output**
+
+Print the factorial of \(n\) in a line.
+
+**Sample Input**
+
+```
+5
+```
+
+**Output for the Sample Input**
+
+```
+120
+```
+
+### Test Case Generator
+
+Here is the test case generator function for the above problem:
+
+```python
+import random
+
+def tcgen():
+    # Generate a random integer n between 1 and 20 (inclusive)
+    n = random.randint(1, 20)
+    
+    return n
+
+# Example usage:
+for _ in range(5):
+    print(tcgen())
+```
+
+### Explanation
+
+- The function `tcgen()` generates a random integer \(n\) within the range \(1 \leq n \leq 20\).
+- This function can be used to generate multiple test cases by calling it multiple times, as shown in the example usage.
+
+You can run the `tcgen()` function to generate random test cases for the "Factorial" problem, ensuring that the value of \(n\) is always within the specified range.

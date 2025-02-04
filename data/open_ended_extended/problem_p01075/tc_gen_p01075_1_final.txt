@@ -1,0 +1,46 @@
+Certainly! Below is a test case generator for the `One-Time Path` problem statement. This generator will create random values adhering to the given constraints.
+
+```python
+import random
+
+def tcgen():
+    # Generate random N and M within the constraints
+    N = random.randint(2, 10**5)
+    M = random.randint(1, 2 * 10**5)
+    
+    bridges = []
+    for _ in range(M):
+        a = random.randint(1, N-1)  # 1 ≤ ai < N
+        b = random.randint(1, N)  # 1 ≤ bi ≤ N
+        while b == a:  # Ensure ai ≠ bi
+            b = random.randint(1, N)
+        c = random.randint(1, 10**9)  # 1 ≤ ci ≤ 10^9
+        bridges.append((a, b, c))
+    
+    return N, M, bridges
+
+def print_test_case():
+    N, M, bridges = tcgen()
+    print(N, M)
+    for a, b, c in bridges:
+        print(a, b, c)
+
+# Example usage:
+print_test_case()
+```
+
+### Explanation:
+
+1. **N and M Generation**:
+    - `N` is chosen randomly between 2 and 100,000.
+    - `M` is chosen randomly between 1 and 200,000.
+
+2. **Bridge Details Generation**:
+    - For each bridge, we generate `a` such that \( 1 \leq a < N \).
+    - We generate `b` such that \( 1 \leq b \leq N \) and ensure that \( a \neq b \) using a while loop.
+    - `c` is generated as a random value between 1 and 1,000,000,000.
+
+3. **Output**:
+    - `print_test_case` prints a generated test case in the required format.
+
+This code can be run to generate multiple test cases for the `One-Time Path` problem, ensuring a variety of inputs within the specified constraints.

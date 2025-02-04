@@ -1,0 +1,71 @@
+Here's a test case generator function for "The Last Line of Defense" problem. This generator will create random valid test cases based on the given constraints.
+
+```python
+import random
+
+def generate_polygon():
+    num_vertices = random.randint(3, 5)
+    vertices = []
+    for _ in range(num_vertices):
+        x = random.randint(-1000, 1000)
+        y = random.randint(-1000, 1000)
+        vertices.append((x, y))
+    return num_vertices, vertices
+
+def generate_occurrence_facility_data():
+    x1 = random.randint(-1000, 1000)
+    y1 = random.randint(-1000, 1000)
+    x2 = random.randint(-1000, 1000)
+    y2 = random.randint(-1000, 1000)
+    return (x1, y1, x2, y2)
+
+def tcgen():
+    num_polygons = random.randint(1, 5)
+    polygons = []
+    
+    for _ in range(num_polygons):
+        num_vertices, vertices = generate_polygon()
+        polygons.append((num_vertices, vertices))
+        
+    num_occ_facility_data = random.randint(1, 100)
+    occ_facility_data = []
+    
+    for _ in range(num_occ_facility_data):
+        occ_facility_data.append(generate_occurrence_facility_data())
+        
+    return num_polygons, polygons, num_occ_facility_data, occ_facility_data
+
+# Example usage
+if __name__ == "__main__":
+    num_polygons, polygons, num_occ_facility_data, occ_facility_data = tcgen()
+    
+    # Print the generated test case
+    print(num_polygons)
+    for num_vertices, vertices in polygons:
+        print(num_vertices)
+        for x, y in vertices:
+            print(x, y)
+    
+    print(num_occ_facility_data)
+    for x1, y1, x2, y2 in occ_facility_data:
+        print(x1, y1, x2, y2)
+```
+
+### Explanation:
+1. **generate_polygon()**:
+   - Randomly generates the number of vertices (between 3 and 5) for a polygon.
+   - Generates vertex coordinates with values between -1000 and 1000.
+   
+2. **generate_occurrence_facility_data()**:
+   - Generates random coordinates for the occurrence and facility points.
+   
+3. **tcgen()**:
+   - Generates the number of polygons (between 1 and 5).
+   - Generates the vertices for each polygon using `generate_polygon`.
+   - Generates the number of occurrence and facility data points (between 1 and 100).
+   - Generates the data points using `generate_occurrence_facility_data`.
+   
+4. **Main Usage**:
+   - Calls `tcgen` to generate a test case and prints it in the required format.
+
+This generator ensures that all generated test cases adhere to the problem constraints and provide diverse scenarios for thorough testing.

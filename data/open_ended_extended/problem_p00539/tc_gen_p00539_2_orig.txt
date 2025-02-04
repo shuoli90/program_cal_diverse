@@ -1,0 +1,49 @@
+Certainly! To generate test cases for the JOI Park problem, we'll need to create a function that outputs random but valid inputs that adhere to the constraints specified. Here's the implementation:
+
+```python
+import random
+
+def tcgen():
+    # Constraints
+    N = random.randint(2, 100000)  # Number of squares
+    M = random.randint(1, 200000)  # Number of roads
+    C = random.randint(1, 10000)   # Cost related to building underground passages
+
+    roads = []
+    for _ in range(M):
+        Ai = random.randint(1, N)
+        Bi = random.randint(1, N)
+        while Bi == Ai:  # Ensure Bi is different from Ai to avoid self-loops
+            Bi = random.randint(1, N)
+        Di = random.randint(1, 1000)  # Length of the road
+        roads.append((Ai, Bi, Di))
+
+    return N, M, C, roads
+
+def format_test_case(N, M, C, roads):
+    test_case = f"{N} {M} {C}\n"
+    for Ai, Bi, Di in roads:
+        test_case += f"{Ai} {Bi} {Di}\n"
+    return test_case
+
+# Example usage
+N, M, C, roads = tcgen()
+print(format_test_case(N, M, C, roads))
+```
+
+### Explanation:
+
+1. **N, M, and C Generation:**
+   - We generate \(N\) randomly between 2 and 100,000.
+   - We generate \(M\) randomly between 1 and 200,000.
+   - The cost \(C\) is randomly generated between 1 and 10,000.
+
+2. **Roads Generation:**
+   - For each road, we randomly choose two different squares \(A_i\) and \(B_i\) between 1 and \(N\).
+   - We ensure that \(A_i \neq B_i\) to avoid self-loops.
+   - The length \(D_i\) of each road is randomly chosen between 1 and 1000.
+
+3. **Formatting:**
+   - The function `format_test_case` converts the generated data into the format required for the problem input.
+
+This generator will create random but valid test cases within the given constraints. You can call the `tcgen` function multiple times to generate different test cases.

@@ -1,0 +1,27 @@
+Sure, here's a test case generator for the given problem statement:
+
+```python
+import random
+
+def tcgen():
+    N = random.randint(2, 10**4)  # Number of flags
+    
+    coordinates = []
+    for _ in range(N):
+        x_i = random.randint(1, 10**9)
+        y_i = random.randint(1, 10**9)
+        coordinates.append((x_i, y_i))
+        
+    return N, coordinates
+
+# Example usage
+if __name__ == "__main__":
+    N, coordinates = tcgen()
+    print(N)
+    for coord in coordinates:
+        print(coord[0], coord[1])
+```
+
+This generator function `tcgen` will create random test cases for the problem of maximizing the minimum distance between flags. It first generates a random integer `N` between 2 and 10,000, and then for each flag, it generates two random coordinates \(x_i\) and \(y_i\) each between 1 and 10^9. The generated test case is returned as a tuple containing `N` and the list of coordinates.
+
+The example usage at the bottom demonstrates how to generate and print one of these test cases. You can run this script to see the output in the required format.

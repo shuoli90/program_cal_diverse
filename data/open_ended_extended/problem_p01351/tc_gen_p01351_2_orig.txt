@@ -1,0 +1,24 @@
+Sure, I can help you write a test case generator for the "Usagitobi" problem. Here's how you can do it:
+
+```python
+import random
+
+def tcgen():
+    # Generate random values for m, n, a, b, c, and d within the given constraints
+    m = random.randint(1, 100000)
+    n = random.randint(1, 100000)
+    a = random.randint(1, 100000)
+    b = random.randint(1, 100000)
+    c = random.randint(1, 100000)
+    d = random.randint(1, 100000)
+    
+    return m, n, a, b, c, d
+
+# Example of how to use the generator and print the result
+for _ in range(5):  # Generate 5 test cases
+    print(tcgen())
+```
+
+This generator will produce random test cases for the "Usagitobi" problem based on the given constraints. Each call to `tcgen()` will generate a new set of values for `m`, `n`, `a`, `b`, `c`, and `d` within the range of 1 to 100,000. 
+
+You can run the loop multiple times to generate and print multiple test cases. Modify the loop count to generate as many test cases as you need.

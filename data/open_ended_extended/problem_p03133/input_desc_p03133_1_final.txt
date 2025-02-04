@@ -1,0 +1,22 @@
+An integer N (1 ≤ N ≤ 300), representing some quantity or size.
+An integer M (1 ≤ M ≤ 300), representing some quantity or size.
+A grid of integers of size N x M, where each integer is either 0 or 1.
+
+### Example Input:
+
+```
+2 2
+0 1
+1 0
+```
+
+### Function Signature:
+Write a function f(N, M, grid) that takes in the input.
+```python
+def f(N: int, M: int, grid: List[List[int]]):
+    '''
+    N: an integer
+    M: an integer
+    grid: a list of lists of integers
+    '''
+```

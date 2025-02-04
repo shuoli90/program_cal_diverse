@@ -1,0 +1,209 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p01559 - Generation 2</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p01559 - Generation 2</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>MinimumCostPath
+There is an NxN square grid.
+(Figure for the case of N=3)
+The cost to move to an adjacent square is 1. However, diagonal movement is not allowed.
+Also, there are M squares with obstacles, and it is not allowed to enter those squares.
+How many ways are there to move from square (1,1) to square (N,N) with the minimum cost?
+Since the answer can be large, output it by taking the MOD of 1000000009 (=109+9).
+Input
+The input is given in the following format:
+N MX1 Y1X2 Y2……XM YM
+Xi, Yi indicate that there is an obstacle at (Xi, Yi).
+Constraints
+2 ≤ N ≤ 106
+ 0 ≤ M ≤ 50
+ 1 ≤ Xi , Yi ≤ N
+ i ≠ j implies (Xi, Yi) ≠ (Xj, Yj)
+ (Xi, Yi) ≠ (1, 1)
+ (Xi, Yi) ≠ (N, N)
+Output
+Output the total number of routes in one line. If there is no route to move from square (1,1) to square (N,N), output 0.
+Sample Input 1
+3 0
+Output for the Sample Input 1
+6
+Corresponds to the following figure.
+Sample Input 2
+3 1
+2 2
+Output for the Sample Input 2
+2
+Corresponds to the following figure.
+Sample Input 3
+5 8
+4 3
+2 1
+4 2
+4 4
+3 4
+2 2
+2 4
+1 4
+Output for the Sample Input 3
+1
+Corresponds to the following figure.
+Sample Input 4
+1000 10
+104 87
+637 366
+393 681
+215 604
+707 876
+943 414
+95 327
+93 415
+663 596
+661 842
+Output for the Sample Input 4
+340340391
+Sample Input 5
+2 2
+1 2
+2 1
+Output for the Sample Input 5
+0
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An integer N (2 ≤ N ≤ 10^6), representing some quantity or size.
+An integer M (0 ≤ M ≤ 50), representing another quantity or size.
+M pairs of integers (Xi, Yi) where 1 ≤ Xi, Yi ≤ N.
+
+### Example Input:
+
+```
+3 1
+2 2
+```
+
+### Function Signature:
+Write a function f(N, M, obstacles) that takes in the input. 
+def f(N: int, M: int, obstacles: List[Tuple[int, int]]): 
+    ''' 
+    N: an integer 
+    M: an integer 
+    obstacles: a list of tuples of two integers
+    '''</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Certainly! Below is the test case generator for the `MinimumCostPath` problem. This generator will create diverse test cases in compliance with the problem's constraints.
+
+```python
+import random
+
+def tcgen():
+    N = random.randint(2, 10**6)
+    M = random.randint(0, 50)
+    
+    obstacles = set()
+    while len(obstacles) < M:
+        x = random.randint(1, N)
+        y = random.randint(1, N)
+        if (x, y) not in obstacles and (x, y) != (1, 1) and (x, y) != (N, N):
+            obstacles.add((x, y))
+    
+    obstacles = list(obstacles)
+    
+    print(N, M)
+    for x, y in obstacles:
+        print(x, y)
+
+# Example usage
+tcgen()
+```
+
+### Explanation:
+1. **Grid Size (N):** The grid size `N` is randomly selected between 2 and \(10^6\).
+2. **Number of Obstacles (M):** The number of obstacles `M` is randomly selected between 0 and 50.
+3. **Obstacles (Xi, Yi):** Obstacles are generated with random positions `(Xi, Yi)`, ensuring no duplicates and avoiding start and end positions `(1,1)` and `(N,N)`.
+
+### Example Run:
+Running the `tcgen()` function will print a valid test case. For example:
+
+```sh
+$ python tcgen_example.py
+```
+
+Output:
+```
+6 4
+2 3
+5 5
+3 2
+1 4
+```
+
+This output indicates a grid of size `6x6` with 4 obstacles placed at coordinates `(2, 3)`, `(5, 5)`, `(3, 2)`, and `(1, 4)`.
+
+This generator ensures that all constraints are respected and provides diverse test cases suitable for evaluating solutions to the given problem.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    import sys
+    input = sys.stdin.read
+    data = input().split()
+    N = int(data[0])
+    M = int(data[1])
+    obstacles = [(int(data[i*2 + 2]), int(data[i*2 + 3])) for i in range(M)]
+    return N, M, obstacles</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

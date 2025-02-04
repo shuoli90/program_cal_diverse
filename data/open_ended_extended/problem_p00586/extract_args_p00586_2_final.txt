@@ -1,0 +1,13 @@
+def extract_arguments(fh):
+    inputs = []
+    for line in fh:
+        A, B = map(int, line.strip().split())
+        inputs.append((A, B))
+    return inputs
+
+# if __name__ == "__main__":
+#     import sys
+#     input_path = sys.argv[1]
+#     with open(input_path, 'r') as fh: 
+#         inputs = extract_arguments(fh)
+#         f(inputs)

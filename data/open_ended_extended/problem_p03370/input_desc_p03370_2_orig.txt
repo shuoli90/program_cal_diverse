@@ -1,0 +1,21 @@
+An integer N (2 ≤ N ≤ 100), representing some quantity or size.
+An integer X (N ≤ X ≤ 10^5).
+A list of integers M of size N, where each integer is between 1 and 1000.
+
+### Example Input:
+
+```
+3 1000
+120
+100
+140
+```
+
+### Function Signature:
+Write a function f(N, X, M) that takes in the input. 
+def f(N: int, X: int, M: List[int]):
+    '''
+    N: an integer
+    X: an integer
+    M: a list of integers
+    '''

@@ -1,0 +1,47 @@
+Sure! Here is a test case generator for the given problem statement:
+
+```python
+import random
+
+def tcgen():
+    # Constraints
+    N = random.randint(2, 20)
+    M = random.randint(N-1, N*(N-1)//2)
+    
+    # Generate a spanning tree for vertices 1 to N
+    edges = []
+    for i in range(2, N+1):
+        edges.append((random.randint(1, i-1), i))
+    
+    # Generate the rest of the edges to ensure we have a connected graph
+    all_possible_edges = [(i, j) for i in range(1, N+1) for j in range(i+1, N+1) if (i, j) not in edges]
+    while len(edges) < M:
+        edge = random.choice(all_possible_edges)
+        if edge not in edges:
+            edges.append(edge)
+            all_possible_edges.remove(edge)
+    
+    random.shuffle(edges)
+    
+    return N, M, edges
+
+def format_tc(N, M, edges):
+    test_case_str = f"{N} {M}\n"
+    for a, b in edges:
+        test_case_str += f"{a} {b}\n"
+    return test_case_str.strip()
+
+# Example usage:
+N, M, edges = tcgen()
+print(format_tc(N, M, edges))
+```
+
+This Python function `tcgen` generates a random test case according to the specified problem constraints:
+
+1. `N` is chosen randomly between 2 and 20.
+2. `M` is chosen randomly between \(N-1\) and \(\frac{N(N-1)}{2}\).
+3. The function first generates a spanning tree by sequentially connecting nodes, ensuring that the first \(N-1\) edges form a tree.
+4. It then adds random edges to ensure the total number of edges is `M` without creating self-loops or duplicate edges.
+5. The `format_tc` function converts the generated data into the required input format.
+
+You can print the test case to see the output and use it for testing your solution.

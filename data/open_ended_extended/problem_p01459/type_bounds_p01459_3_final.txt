@@ -1,0 +1,3 @@
+Types: N: int, M: int, A: int, Grid: List[List[str]]
+Ranges: 2 ≤ N, M ≤ 100, 0 ≤ A ≤ 10
+Addtl Info: Grid contains characters from the set {'#', '.', 'S', 'G'}

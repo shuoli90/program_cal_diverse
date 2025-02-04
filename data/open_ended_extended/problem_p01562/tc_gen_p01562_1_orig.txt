@@ -1,0 +1,48 @@
+Certainly! Here is a test case generator for the given "Area Folding" problem statement:
+
+```python
+import random
+
+def generate_polygonal_points(N):
+    points = []
+    for _ in range(N):
+        X = random.randint(-105, 105)
+        Y = random.randint(-105, 105)
+        points.append((X, Y))
+    return points
+
+def tcgen():
+    N = random.randint(2, 100)
+    points = generate_polygonal_points(N)
+    
+    # Ensure that all points are unique by converting to a set and back to a list
+    while len(set(points)) < N:
+        points = generate_polygonal_points(N)
+    
+    return N, points
+
+def format_test_case(N, points):
+    test_case = f"{N}\n"
+    for point in points:
+        test_case += f"{point[0]} {point[1]}\n"
+    return test_case
+
+# Generate a test case
+N, points = tcgen()
+formatted_test_case = format_test_case(N, points)
+print(formatted_test_case)
+```
+
+### Explanation:
+
+1. **generate_polygonal_points(N)**: This function generates `N` points with random `X` and `Y` coordinates within the specified range (-105 to 105).
+
+2. **tcgen()**: This function generates the complete test case. First, it generates a random integer `N` between 2 and 100 (inclusive). It then generates `N` unique points using the `generate_polygonal_points` function.
+
+3. **format_test_case(N, points)**: This function converts the generated test case into the required format. It combines `N` and the points into a single formatted string.
+
+4. The **while loop** inside `tcgen()** ensures that all the generated points are unique by converting the list of points into a set and back to a list. If duplicates are found (i.e., the length of the set is less than `N`), it regenerates the points.
+
+5. The script finally generates a test case and prints it in the required format.
+
+You can run the above script to generate test cases for the "Area Folding" problem. Each run will produce a different test case within the given constraints.

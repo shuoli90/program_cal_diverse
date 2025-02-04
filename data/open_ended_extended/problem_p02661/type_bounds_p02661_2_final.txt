@@ -1,0 +1,3 @@
+Types: N: int, A: List[int], B: List[int]
+Ranges: 2 ≤ N ≤ 2 × 10^5, 1 ≤ A[i] ≤ B[i] ≤ 10^9
+Addtl Info: All values in input are integers

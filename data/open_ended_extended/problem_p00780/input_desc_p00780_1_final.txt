@@ -1,0 +1,19 @@
+Canonicalized Input Description:
+
+A sequence of integers is given. Each integer is even and lies within the range [4, 214]. The sequence ends with the number 0, which should not be processed as part of the sequence.
+
+### Example Input:
+
+```
+6
+10
+12
+0
+```
+
+### Function Signature:
+Write a function f(inputs) that takes in the input. 
+def f(inputs: List[int]): 
+    ''' 
+    inputs: a list of integers 
+    '''

@@ -1,0 +1,145 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p03825 - Generation 1</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p03825 - Generation 1</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>
+Score : 1600 points
+Problem StatementThere are N zeros and M ones written on a blackboard.
+Starting from this state, we will repeat the following operation: select K of the rational numbers written on the blackboard and erase them, then write a new number on the blackboard that is equal to the arithmetic mean of those K numbers.
+Here, assume that N + M - 1 is divisible by K - 1.
+Then, if we repeat this operation until it is no longer applicable, there will be eventually one rational number left on the blackboard.
+Find the number of the different possible values taken by this rational number, modulo 10^9 + 7.
+Constraints
+1 ≦ N, M ≦ 2000
+2 ≦ K ≦ 2000
+N + M - 1 is divisible by K - 1.
+InputThe input is given from Standard Input in the following format:
+N M K
+OutputPrint the number of the different possible values taken by the rational number that will be eventually left on the blackboard, modulo 10^9 + 7.
+Sample Input 12 2 2
+Sample Output 15
+There are five possible values for the number that will be eventually left on the blackboard: \frac{1}{4}, \frac{3}{8}, \frac{1}{2}, \frac{5}{8} and \frac{3}{4}.
+For example, \frac{3}{8} can be eventually left if we:
+Erase 0 and 1, then write \frac{1}{2}.
+Erase \frac{1}{2} and 1, then write \frac{3}{4}.
+Erase 0 and \frac{3}{4}, then write \frac{3}{8}.
+Sample Input 23 4 3
+Sample Output 29
+Sample Input 3150 150 14
+Sample Output 3937426930
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An integer N (1 ≤ N ≤ 2000), representing some quantity.
+An integer M (1 ≤ M ≤ 2000), representing another quantity.
+An integer K (2 ≤ K ≤ 2000), representing yet another quantity.
+
+### Example Input:
+
+```
+12
+2
+2
+```
+
+### Function Signature:
+Write a function f(N, M, K) that takes in the input.
+def f(N: int, M: int, K: int):
+    ''' 
+    N: an integer 
+    M: an integer 
+    K: an integer 
+    '''</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Sure! Here's a test case generator for the given problem statement about zeros and ones on a blackboard.
+
+```python
+import random
+
+def is_divisible(N, M, K):
+    return (N + M - 1) % (K - 1) == 0
+
+def tcgen():
+    while True:
+        N = random.randint(1, 2000)
+        M = random.randint(1, 2000)
+        K = random.randint(2, 2000)
+        if is_divisible(N, M, K):
+            break
+    
+    return N, M, K
+
+# Generate a test case
+N, M, K = tcgen()
+print(N, M, K)
+```
+
+Explanation:
+1. **Function `is_divisible`**: This helper function checks if \(N + M - 1\) is divisible by \(K - 1\).
+2. **Function `tcgen`**: This is the main test case generator function. It generates random values for \(N\), \(M\), and \(K\) within the given constraints. It ensures that \(N + M - 1\) is divisible by \(K - 1\) by using the `is_divisible` function.
+3. **Generating a test case**: Calls the `tcgen` function to generate a valid test case and prints the values.
+
+You can run this script multiple times to generate different test cases. The generated test cases will always satisfy the constraint \(N + M - 1\) is divisible by \(K - 1\).</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    N, M, K = map(int, fh.readline().strip().split())
+    return N, M, K</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

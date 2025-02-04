@@ -1,0 +1,24 @@
+def extract_arguments(fh):
+    datasets = []
+    while True:
+        m, n = map(int, fh.readline().strip().split())
+        if m == 0 and n == 0:
+            break
+        grid = []
+        for _ in range(m):
+            grid.append(list(map(int, fh.readline().strip().split())))
+        candidates = []
+        while True:
+            candidate = fh.readline().strip()
+            if candidate == "0 0":
+                break
+            candidates.append(tuple(map(int, candidate.split())))
+        datasets.append((m, n, grid, candidates))
+    return datasets
+
+# if __name__ == "__main__":
+#     input_path = sys.argv[1]
+#     with open(input_path, 'r') as fh:
+#         datasets = extract_arguments(fh)
+#         for dataset in datasets:
+#             f(dataset)

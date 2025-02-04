@@ -1,0 +1,49 @@
+Sure, here is a test case generator for the provided problem statement:
+
+```python
+import random
+
+def tcgen():
+    # Generate the number of participants (N) and the number of questions (M)
+    N = random.randint(2, 10000)
+    M = random.randint(1, 1000)
+
+    # Initialize list to hold the test data
+    test_data = []
+
+    # Generate the questions with scores and participants who can answer
+    for _ in range(M):
+        S = random.randint(1, 100)
+        k = random.randint(1, N)
+        c = sorted(random.sample(range(1, N + 1), k))
+        test_data.append((S, k, c))
+
+    return N, M, test_data
+
+def format_test_case(N, M, test_data):
+    formatted_test_case = f"{N} {M}\n"
+    for S, k, c in test_data:
+        formatted_test_case += f"{S} {k} " + " ".join(map(str, c)) + "\n"
+    return formatted_test_case
+
+# Generate a test case
+N, M, test_data = tcgen()
+formatted_test_case = format_test_case(N, M, test_data)
+
+print(formatted_test_case)
+```
+
+### Explanation:
+1. **Generating N and M:**
+   - N is the number of participants, randomly chosen between 2 and 10,000.
+   - M is the number of questions, randomly chosen between 1 and 1,000.
+
+2. **Generating the score and participants for each question:**
+   - For each question, a score `S` is randomly chosen between 1 and 100.
+   - The number of participants `k` who can answer the question is randomly chosen between 1 and N.
+   - A list `c` of `k` distinct participants is created using `random.sample` to ensure no duplicates and sorted to maintain order.
+
+3. **Formatting the test case:**
+   - The `format_test_case` function constructs the input format required for the problem by iterating through the generated test data.
+
+This code will produce a test case in the format required by the problem statement. Each run will generate a different test case due to the use of randomization. You can call `tcgen` multiple times to generate multiple test cases.

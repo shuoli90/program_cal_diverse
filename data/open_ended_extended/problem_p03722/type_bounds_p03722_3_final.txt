@@ -1,0 +1,3 @@
+Types: N: int, M: int, a_i: int, b_i: int, c_i: int  
+Ranges: 2 ≤ N ≤ 1000, 1 ≤ M ≤ min(N(N-1), 2000), 1 ≤ a_i, b_i ≤ N, -10^9 ≤ c_i ≤ 10^9  
+Addtl Info: a_i ≠ b_i, a_i ≠ a_j or b_i ≠ b_j for 1 ≤ i < j ≤ M, there exists a path from vertex 1 to vertex N.

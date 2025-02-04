@@ -1,0 +1,49 @@
+Sure, I can help you write a test case generator for this problem. The generator will need to create a connected graph with \(N\) vertices and \(M\) edges where \(N-1 \leq M \leq N\). Here's a Python function that generates such test cases:
+
+```python
+import random
+
+def tcgen():
+    N = random.randint(2, 10**5)
+    M = random.randint(N-1, N)
+    
+    edges = []
+    # To ensure the graph is connected, we start by building a spanning tree
+    for i in range(2, N+1):
+        edges.append((random.randint(1, i-1), i))
+    
+    # If more edges are needed, we add them randomly
+    additional_edges_needed = M - (N - 1)
+    while additional_edges_needed > 0:
+        u = random.randint(1, N)
+        v = random.randint(1, N)
+        if u != v and (u, v) not in edges and (v, u) not in edges:
+            edges.append((u, v))
+            additional_edges_needed -= 1
+    
+    random.shuffle(edges)
+    
+    return N, M, edges
+
+# Generating a test case
+N, M, edges = tcgen()
+print(N, M)
+for edge in edges:
+    print(edge[0], edge[1])
+```
+
+This function ensures that:
+
+1. \(N\) is a random number between 2 and \(10^5\).
+2. \(M\) is a random number between \(N-1\) and \(N\).
+3. The edges are generated such that the graph is always connected. Initially, a spanning tree is created to ensure connectivity. If more edges are required, they are added randomly while avoiding self-loops and multiple edges.
+
+Here is a step-by-step explanation of the code:
+
+1. The function `tcgen()` generates random values for \(N\) and \(M\).
+2. It initially creates a spanning tree to ensure the graph is connected by connecting each vertex \(i\) (where \(i\) ranges from 2 to \(N\)) to a random previous vertex.
+3. If \(M > N-1\), additional edges are added randomly between any two different vertices until the total number of edges is \(M\).
+4. The edges are then shuffled to avoid any pattern that might bias the test cases.
+5. The function returns \(N\), \(M\), and the list of edges.
+
+With this generator, you can easily create multiple test cases to validate your solution for the given problem.

@@ -1,0 +1,87 @@
+Certainly! Below is a test case generator for the JPEG Compression problem. This generator will create random test cases based on the given constraints and format them as specified.
+
+```python
+import random
+
+def generate_zigzag_matrix(N):
+    if N == 0:
+        return []
+    matrix = [[0] * N for _ in range(N)]
+    i, j = 0, 0
+    direction = 1  # 1 for up-right, -1 for down-left
+    for num in range(1, N * N + 1):
+        matrix[i][j] = num
+        if direction == 1:
+            if j + 1 < N and i - 1 >= 0:
+                i -= 1
+                j += 1
+            elif j + 1 < N:
+                j += 1
+                direction = -1
+            else:
+                i += 1
+                direction = -1
+        else:
+            if i + 1 < N and j - 1 >= 0:
+                i += 1
+                j -= 1
+            elif i + 1 < N:
+                i += 1
+                direction = 1
+            else:
+                j += 1
+                direction = 1
+    return matrix
+
+def tcgen():
+    test_cases = []
+    num_cases = random.randint(1, 10)
+    for _ in range(num_cases):
+        N = random.randint(1, 9)
+        test_cases.append(N)
+    test_cases.append(0)  # End of input signal
+    return test_cases
+
+def format_output(test_cases):
+    results = []
+    case_num = 1
+    for N in test_cases:
+        if N == 0:
+            break
+        matrix = generate_zigzag_matrix(N)
+        result = f"Case {case_num}:"
+        for row in matrix:
+            result += "\n" + " ".join(f"{val:3}" for val in row)
+        results.append(result)
+        case_num += 1
+    return "\n\n".join(results)
+
+# Example usage:
+test_cases = tcgen()
+print("Sample Input")
+for case in test_cases:
+    print(case)
+
+print("\nSample Output")
+print(format_output(test_cases))
+```
+
+### Explanation:
+1. **generate_zigzag_matrix(N)**:
+   - This function generates the zigzag matrix for a given size \(N \times N\).
+   - The traversal starts from the top-left corner and follows the zigzag pattern until the bottom-right corner.
+   
+2. **tcgen()**:
+   - This function generates random test cases. It creates a random number of test cases between 1 and 10, and for each test case, it picks a random \(N\) between 1 and 9 (since \(N\) should be \(0 < N < 10\)).
+   - Adds an additional test case with 0 to signal the end of input.
+   
+3. **format_output(test_cases)**:
+   - This function formats the output as specified in the problem statement.
+   - For each test case, it generates the zigzag matrix and formats it with the specified width.
+   - It prefixes each matrix with "Case x:", where x is the test case number.
+
+### Usage:
+- **Sample Input** is printed first, followed by the generated test cases.
+- **Sample Output** is printed next, showing the formatted matrices for each test case.
+
+You can run this code snippet to generate random test cases and see the corresponding outputs formatted as required.

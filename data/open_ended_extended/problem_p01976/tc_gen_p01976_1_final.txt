@@ -1,0 +1,42 @@
+Sure! Below is a test case generator for the given problem statement "C: Matching."
+
+```python
+import random
+
+def tcgen():
+    # Generate a random value for N within the given range
+    N = random.randint(1, 10**5)
+    
+    # Generate a list of N random integers between 1 and 10^9
+    A = [random.randint(1, 10**9) for _ in range(N)]
+    
+    return N, A
+
+# Example usage:
+N, A = tcgen()
+print(N)
+print(' '.join(map(str, A)))
+```
+
+### Explanation:
+
+1. **N Generation**: We randomly pick an integer `N` such that `1 ≤ N ≤ 10^5`.
+2. **List A Generation**: We generate a list `A` of size `N` where each element is a random integer between `1` and `10^9`.
+3. **Output**: The function returns `N` and the list `A`.
+
+You can execute this generator to create random test cases for this problem. Here's an example of how you might use it:
+
+```python
+N, A = tcgen()
+print(N)
+print(' '.join(map(str, A)))
+```
+
+### Example Output:
+
+```
+8
+123456789 987654321 123456789 987654321 123456789 987654321 123456789 987654321
+```
+
+This would generate the input for the problem. You can then run your solution on this input to validate its correctness.

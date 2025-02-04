@@ -1,0 +1,32 @@
+Certainly! Below is a Python function that generates test cases for the given problem statement "Information Search". This function will create random lengths for the posting lists and populate them with unique, sorted document IDs as required by the problem's constraints.
+
+```python
+import random
+
+def tcgen():
+    # Random lengths for the posting lists within the given constraints
+    n = random.randint(1, 2 * 10**5)
+    m = random.randint(1, 2 * 10**5)
+    
+    # Generate unique and sorted document IDs for list A
+    a = sorted(random.sample(range(1, 10**9), n))
+    
+    # Generate unique and sorted document IDs for list B
+    b = sorted(random.sample(range(1, 10**9), m))
+    
+    return n, m, a, b
+
+# Example of generating a test case and printing it
+n, m, a, b = tcgen()
+print(n, m)
+print(' '.join(map(str, a)))
+print(' '.join(map(str, b)))
+```
+
+### Explanation:
+1. **Lengths of Posting Lists (n and m)**: We generate random integers between 1 and 200,000 for `n` and `m`.
+2. **Document IDs**: Using `random.sample`, we create a unique set of `n` and `m` integers within the range from 1 to \(10^9\) for lists `a` and `b`. This ensures that:
+   - Each list contains unique IDs.
+   - The IDs are sorted in ascending order.
+
+This will generate test cases that conform to the constraints and structure outlined in the problem statement. You can run the `tcgen` function to generate different test cases each time.

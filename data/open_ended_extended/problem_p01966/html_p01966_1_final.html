@@ -1,0 +1,205 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p01966 - Generation 1</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p01966 - Generation 1</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>
+Conveyor Belt
+Awesome Conveyor Machine (ACM) is the most important equipment of a factory of Industrial Conveyor Product Corporation (ICPC). ACM has a long conveyor belt to deliver their products from some points to other points. You are a programmer hired to make efficient schedule plan for product delivery.
+  ACM's conveyor belt goes through $N$ points at equal intervals. The conveyor has plates on each of which at most one product can be put. Initially, there are no plates at any points. The conveyor belt moves by exactly one plate length per unit time; after one second, a plate is at position 1 while there are no plates at the other positions. After further 1 seconds, the plate at position 1 is moved to position 2 and a new plate comes at position 1, and so on. Note that the conveyor has the unlimited number of plates: after $N$ seconds or later, each of the $N$ positions has exactly one plate.
+    A delivery task is represented by positions $a$ and $b$; delivery is accomplished by putting a product on a plate on the belt at $a$, and retrieving it at $b$ after $b - a$ seconds ($a < b$). (Of course, it is necessary that an empty plate exists at the position at the putting time.) In addition, putting and retrieving products must bedone in the following manner:
+  
+When putting and retrieving a product, a plate must be located just at the position. That is, products must be put and retrieved at integer seconds.
+Putting and retrieving at the same position cannot be done at the same time. On the other hand, putting and retrieving at the different positions can be done at the same time.
+    If there are several tasks, the time to finish all the tasks may be reduced by changing schedule when each product is put on the belt. Your job is to write a program minimizing the time to complete all the tasks... wait, wait. When have you started misunderstanding that you can know all the tasks initially? New delivery requests are coming moment by moment, like plates on the conveyor! So you should update your optimal schedule per every new request.
+  
+A request consists of a start point $a$, a goal point $b$, and the number $p$ of products to deliver from $a$ to $b$. Delivery requests will be added $Q$ times. Your (true) job is to write a program such that for each $1 \leq i \leq Q$, minimizing the entire time to complete delivery tasks in requests 1 to $i$.
+Input
+  The input consists of a single test case formatted as follows.
+$N$ $Q$
+$a_1$ $b_1$ $p_1$
+:
+$a_Q$ $b_Q$ $p_Q$
+A first line includes two integers $N$ and $Q$ ($2 \leq N \leq 10^5, 1 \leq Q \leq 10^5$): $N$ is the number of positions the conveyor belt goes through and $Q$ is the number of requests will come. The $i$-th line of the following $Q$ lines consists of three integers $a_i, b_i,$ and $p_i$ ($1 \leq a_i < b_i \leq N, 1 \leq p_i \leq 10^9$), which mean that the $i$-th request requires $p_i$ products to be delivered from position $a_i$ to position $b_i$.
+Output
+In the $i$-th line, print the minimum time to complete all the tasks required by requests $1$ to $i$.
+Sample Input 1
+5 2
+1 4 1
+2 3 1
+Output for Sample Input 1
+4
+4
+Sample Input 2
+5 2
+1 4 1
+2 3 5
+Output for Sample Input 2
+4
+8
+Sample Input 3
+5 2
+1 3 3
+3 5 1
+Output for Sample Input 3
+5
+6
+Sample Input 4
+10 4
+3 5 2
+5 7 5
+8 9 2
+1 7 5
+Output for Sample Input 4
+6
+11
+11
+16
+Regarding the first example, the minimum time to complete only the first request is 4 seconds. All the two requests can be completed within 4 seconds too. See the below figure.
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An integer N (2 ≤ N ≤ 10^5), representing some quantity or size.
+An integer Q (1 ≤ Q ≤ 10^5), representing the number of requests.
+Q lines follow, each consisting of three integers \(a_i\), \(b_i\), and \(p_i\):
+- \(a_i\) (1 ≤ \(a_i\) < \(b_i\) ≤ N), an integer representing a start point.
+- \(b_i\) (1 ≤ \(a_i\) < \(b_i\) ≤ N), an integer representing an end point.
+- \(p_i\) (1 ≤ \(p_i\) ≤ 10^9), an integer representing some quantity.
+
+### Example Input:
+
+```
+5 2
+1 4 1
+2 3 1
+```
+
+### Function Signature:
+Write a function f(N, Q, requests) that takes in the input.
+def f(N: int, Q: int, requests: List[Tuple[int, int, int]]):
+    '''
+    N: an integer
+    Q: an integer
+    requests: a list of tuples, each containing three integers
+    '''</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Sure! Below is a test case generator for the "Conveyor Belt" problem described in the problem statement.
+
+```python
+import random
+
+def tcgen():
+    # Generate values for N and Q
+    N = random.randint(2, 10**5)
+    Q = random.randint(1, 10**5)
+    
+    # Initialize the list to hold the requests
+    requests = []
+    
+    for _ in range(Q):
+        # Generate values for a, b, and p
+        a = random.randint(1, N - 1)
+        b = random.randint(a + 1, N)
+        p = random.randint(1, 10**9)
+        
+        # Append the request to the list
+        requests.append((a, b, p))
+    
+    # Return N, Q, and the list of requests
+    return N, Q, requests
+
+# Example usage:
+N, Q, requests = tcgen()
+print(N, Q)
+for req in requests:
+    print(req[0], req[1], req[2])
+```
+
+### Explanation:
+
+1. **Generate `N` and `Q`:**
+   - `N` is the number of positions the conveyor belt goes through and is randomly chosen between 2 and \(10^5\).
+   - `Q` is the number of delivery requests and is randomly chosen between 1 and \(10^5\).
+
+2. **Generate each request:**
+   - For each request, generate `a`, `b`, and `p`:
+     - `a` is the start position and is randomly chosen between 1 and \(N-1\).
+     - `b` is the goal position and is randomly chosen between `a+1` and `N`.
+     - `p` is the number of products to deliver and is randomly chosen between 1 and \(10^9\).
+
+3. **Store and return the generated values:**
+   - The function returns `N`, `Q`, and a list of tuples where each tuple represents a request in the form `(a, b, p)`.
+
+This generator can be used to create a variety of test cases to help in verifying the correctness and performance of your solution to the problem.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    N, Q = map(int, fh.readline().strip().split())
+    requests = []
+    for _ in range(Q):
+        a, b, p = map(int, fh.readline().strip().split())
+        requests.append((a, b, p))
+    return N, Q, requests
+
+# if __name__ == "__main__":
+#     input_path = sys.argv[1]
+#     with open(input_path, 'r') as fh:
+#         N, Q, requests = extract_arguments(fh)
+#         f(N, Q, requests)</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

@@ -1,0 +1,16 @@
+An integer A (1 ≤ \(A\) ≤ 10^{100}), representing a large number.
+An integer B (1 ≤ \(B\) ≤ 10^{100}), representing another large number.
+
+### Example Input:
+
+```
+36
+24
+```
+
+### Function Signature:
+Write a function f(inputs) that takes in the input.
+def f(inputs: List[Tuple[int, int]]):
+    '''
+    inputs: a list of tuples, each containing two large integers
+    '''

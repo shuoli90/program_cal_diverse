@@ -1,0 +1,43 @@
+Sure! Here's a test case generator for the given problem statement "F: Relay":
+
+```python
+import random
+
+def tcgen():
+    N = random.randint(2, 100000)
+    
+    p = []
+    w = []
+    for i in range(N-1):
+        p_i = random.randint(0, i)
+        w_i = random.randint(1, 1000)
+        p.append(p_i)
+        w.append(w_i)
+    
+    return N, p, w
+
+def print_test_case():
+    N, p, w = tcgen()
+    
+    print(N)
+    for i in range(N-1):
+        print(f"{p[i]} {w[i]}")
+
+print_test_case()
+```
+
+### Explanation
+
+1. **`N = random.randint(2, 100000)`**: This line generates a random integer \( N \) between 2 and 100,000, which is the number of islands.
+
+2. **Generating `p` and `w` arrays**:
+    - **Loop `for i in range(N-1)`**: This loop iterates \( N-1 \) times to generate the `p` and `w` arrays.
+    - **`p_i = random.randint(0, i)`**: This line selects a random parent island for the \( i+1 \)-th island. It ensures that `p_i` is a valid parent island index.
+    - **`w_i = random.randint(1, 1000)`**: This line generates a random bridge length between 1 and 1,000.
+
+3. **`print_test_case` function**:
+    - Calls `tcgen()` to generate a random test case.
+    - Prints the number of islands \( N \).
+    - Prints each \( p_i \) and \( w_i \) in a loop.
+
+This generator will produce random valid inputs for the problem statement, ensuring that the constraints are met. You can run the `print_test_case` function to generate and print a random test case.

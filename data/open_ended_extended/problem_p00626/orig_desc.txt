@@ -1,0 +1,29 @@
+Problem F: Chocolate with Heart Marks
+Taro loves chocolate, and after returning from school, he eats his favorite chocolate bar with heart marks. His recent enjoyment is to eat all the blocks without heart marks while leaving all the heart-shaped blocks until the end. Taro tries to eat as many blocks without heart marks as possible while keeping all the blocks with heart marks connected.
+However, Taro is still young, and even if he tries to eat as described above, some blocks will be left uneaten. Therefore, Taro has asked you to create a program that finds the maximum number of blocks that can be eaten when all the blocks with heart marks remain connected.
+Taro can eat the chocolate bar in any way as long as all blocks with heart marks are connected. If any side of a block is not touching another block, it is considered separated.
+Input
+The input consists of multiple datasets. Each dataset is given in the following format:
+H W
+H × W integers
+H and W are integers that indicate the vertical and horizontal sizes of the chocolate bar, respectively. The H × W integers represent the block information, consisting of '0's that represent blocks without heart marks and '1's that represent blocks with heart marks.
+The end of the input is indicated by a dataset where H = W = 0. Do not output anything for this case.
+1 ≤ H, W ≤ 12, and it is assumed that the number of blocks with heart marks is six or less.
+Output
+For each dataset, output the maximum number of blocks that Taro can eat.
+Sample Input
+4 4
+1 0 0 0
+0 0 1 0
+0 1 0 0
+1 0 0 1
+1 1
+1
+2 3
+1 0 0
+0 0 1
+0 0	 
+Output for the Sample Input
+7
+0
+2

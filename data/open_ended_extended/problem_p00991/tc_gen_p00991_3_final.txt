@@ -1,0 +1,29 @@
+Certainly! For the given problem statement, you'll want to generate test cases that include random values for the grid size and coordinates, ensuring they fit within the specified constraints. Here's a test case generator for the problem "Grid":
+
+```python
+import random
+
+def generate_test_case():
+    # Generate random values for r and c within the specified range
+    r = random.randint(1, 1000)
+    c = random.randint(1, 1000)
+    
+    # Generate random values for the coordinates (a1, a2) and (b1, b2) within the grid
+    a1 = random.randint(0, r-1)
+    a2 = random.randint(0, c-1)
+    b1 = random.randint(0, r-1)
+    b2 = random.randint(0, c-1)
+    
+    return r, c, a1, a2, b1, b2
+
+# Example usage:
+test_case = generate_test_case()
+print(test_case)
+```
+
+### Explanation:
+1. **r and c**: Randomly generated integers between 1 and 1000, inclusive.
+2. **a1 and b1**: Randomly generated integers between 0 and \( r-1 \), inclusive.
+3. **a2 and b2**: Randomly generated integers between 0 and \( c-1 \), inclusive.
+
+This generator ensures that the generated test cases adhere to the constraints specified in the problem statement. You can call `generate_test_case` multiple times to generate multiple test cases. Each call will produce a tuple containing the values for \( r \), \( c \), \( a1 \), \( a2 \), \( b1 \), and \( b2 \).

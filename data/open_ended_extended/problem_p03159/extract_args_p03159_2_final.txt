@@ -1,0 +1,11 @@
+def extract_arguments(fh):
+    N = int(fh.readline().strip())
+    A = list(map(int, fh.readline().strip().split()))
+    cables = [tuple(map(int, fh.readline().strip().split())) for _ in range(N - 1)]
+    return (N, A, cables)
+
+# if __name__ == "__main__":
+#     input_path = sys.argv[1]
+#     with open(input_path, 'r') as fh: 
+#         N, A, cables = extract_arguments(fh)
+#         f(N, A, cables)

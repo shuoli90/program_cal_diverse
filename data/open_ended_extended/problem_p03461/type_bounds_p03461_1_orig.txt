@@ -1,0 +1,3 @@
+Types: A: int, B: int, d: List[List[int]]
+Ranges: 1 ≤ A, B ≤ 10, 1 ≤ d[x][y] ≤ 100 (1 ≤ x ≤ A, 1 ≤ y ≤ B)
+Addtl Info: None

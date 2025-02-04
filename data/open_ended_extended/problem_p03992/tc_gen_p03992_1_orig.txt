@@ -1,0 +1,66 @@
+Certainly! Here's a test case generator for the given problem statement:
+
+### Problem Statement: Insert Space in String
+
+**Description**
+
+Mr. Takahashi always writes "CODE FESTIVAL" as "CODEFESTIVAL", omitting the single space between "CODE" and "FESTIVAL". You are given a string `s` with exactly 12 letters. Your task is to output the string with a single space between the first 4 letters and the last 8 letters.
+
+**Input**
+
+A string `s` consisting of exactly 12 uppercase English letters.
+
+**Output**
+
+Print the string with a single space between the first 4 letters and the last 8 letters in the string `s`.
+
+**Constraints**
+
+- `s` contains exactly 12 uppercase English letters.
+
+**Example**
+
+_Input_
+```
+CODEFESTIVAL
+```
+
+_Output_
+```
+CODE FESTIVAL
+```
+
+_Input_
+```
+POSTGRADUATE
+```
+
+_Output_
+```
+POST GRADUATE
+```
+
+### Test Case Generator Code
+
+Here is a Python script to generate test cases for this problem:
+
+```python
+import random
+import string
+
+def generate_random_string(length):
+    return ''.join(random.choice(string.ascii_uppercase) for _ in range(length))
+
+def tcgen():
+    s = generate_random_string(12)
+    return s
+
+# Example of usage
+for _ in range(5):
+    s = tcgen()
+    print(s)
+```
+
+This script generates a random string `s` of exactly 12 uppercase English letters, which fits the input constraints of the problem. Each time you run the `tcgen` function, it will provide a new valid test case. The example usage shows how to generate and print five test cases. 
+
+You can adapt this script to generate as many test cases as needed for your testing purposes.

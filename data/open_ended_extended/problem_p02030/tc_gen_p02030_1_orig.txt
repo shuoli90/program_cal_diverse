@@ -1,0 +1,49 @@
+Certainly! Below is the test case generator for the given problem statement "Information Search".
+
+```python
+import random
+
+def tcgen():
+    # Define the constraints
+    n = random.randint(1, 2*10**5)
+    m = random.randint(1, 2*10**5)
+    
+    # Generate unique IDs for the first posting list
+    a = sorted(random.sample(range(1, 10**9 + 1), n))
+    
+    # Generate unique IDs for the second posting list
+    b = sorted(random.sample(range(1, 10**9 + 1), m))
+    
+    return n, m, a, b
+
+# Function to format the test case for output
+def format_test_case(n, m, a, b):
+    test_case = f"{n} {m}\n"
+    test_case += " ".join(map(str, a)) + "\n"
+    test_case += " ".join(map(str, b)) + "\n"
+    return test_case
+
+# Generate a test case
+n, m, a, b = tcgen()
+
+# Print the formatted test case
+print(format_test_case(n, m, a, b))
+```
+
+### Explanation:
+1. **Constraints**:
+    - \( n \) and \( m \) are chosen between 1 and 200,000 (both inclusive).
+    - IDs in each list \( a \) and \( b \) are unique and sorted in ascending order.
+    - Each ID is between 1 and \( 10^9 \) (both inclusive).
+
+2. **Random Generation**:
+    - `random.randint(1, 2*10^5)` generates a random integer for the length of each posting list.
+    - `random.sample(range(1, 10^9 + 1), n)` generates `n` unique random IDs from the range 1 to \( 10^9 \).
+
+3. **Formatting**:
+    - The function `format_test_case` formats the generated test case into the required input format:
+      - First line: \( n \) and \( m \).
+      - Second line: \( n \) space-separated integers representing the first posting list.
+      - Third line: \( m \) space-separated integers representing the second posting list.
+
+You can run the above script to generate and print a valid test case for the problem statement "Information Search".

@@ -1,0 +1,181 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p00108 - Generation 1</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p00108 - Generation 1</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>Frequency of appearance operation
+There is a transformation operation for a finite sequence called a frequency of appearance operation. The result of transforming the sequence S = {s1, s2, ..., sn} is a sequence of the same length. If we define the result as C = {c1, c2, ..., cn}, then ci represents the number of times si appears in the sequence S.
+For example, if S = {3, 4, 1, 5, 9, 2, 6, 5, 3}, then C = {2, 1, 1, 2, 1, 1, 1, 2, 2}. Performing a frequency of appearance operation on this sequence C gives us P = {4, 5, 5, 4, 5, 5, 5, 4, 4}. This sequence does not change with frequency of appearance operations. Such a sequence P is called a fixed point of the sequence S. It is known that for any sequence, the fixed point can be obtained by repeating the frequency of appearance operation.
+The example below shows the procedure for the frequency of appearance operation. The first line represents the sequence S, the second line represents the sequence C, and the last line represents the sequence P. We count the number of occurrences and find ci by listing the number of times the first element (s1=2) in the sequence S appears in the same way as the second element (s2=7) with two elements.
+Write a program that takes the length of the sequence n and the sequence S as input and outputs the fixed-point sequence P and the minimum number of frequency of appearance operations required to obtain P.
+Input
+Multiple datasets are given. Each dataset is given in the following format.
+n
+s1 s2 ... sn
+The first line contains an integer n (n ≤ 12) representing the length of the sequence. The second line contains integers si (1 ≤ si ≤ 100) representing the elements of the sequence S separated by spaces.
+The input ends with a line containing a single 0. There are no more than 200 datasets.
+Output
+For each dataset, output the minimum number of times the frequency of appearance operation is performed (an integer) on the first line and the elements p1, p2, ..., pn of the corresponding fixed-point sequence P on the second line, separated by spaces.
+Sample Input
+10
+4 5 1 1 4 5 12 3 5 4
+0
+Output for the Sample Input
+3
+6 6 4 4 6 6 4 4 6 6
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An integer n (1 ≤ n ≤ 12), representing some quantity or size.
+A list of integers s of size n, where each integer is between 1 and 100.
+The input ends with a line containing a single 0.
+There are no more than 200 datasets.
+
+### Example Input:
+
+```
+10
+4 5 1 1 4 5 12 3 5 4
+0
+```
+
+### Function Signature:
+Write a function f(datasets) that takes in the input. 
+def f(datasets: List[Tuple[int, List[int]]]): 
+    ''' 
+    datasets: a list of tuples, each containing an integer and a list of integers
+    '''</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Sure! Let's create a test case generator for the "Frequency of Appearance Operation" problem.
+
+To generate test cases, we need to consider the constraints and structure of the input:
+
+1. **Number of datasets**: Maximum of 200 datasets.
+2. **Length of each sequence `n`**: Each sequence has a length `n` where \(1 \leq n \leq 12\).
+3. **Elements of each sequence `si`**: Each element \(1 \leq si \leq 100\).
+
+Here's a Python function to generate test cases based on these constraints:
+
+```python
+import random
+
+def tcgen():
+    test_cases = []
+    
+    # Number of datasets
+    num_datasets = random.randint(1, 200)
+    
+    for _ in range(num_datasets):
+        # Length of sequence n
+        n = random.randint(1, 12)
+        
+        # Sequence S of length n with elements between 1 and 100
+        S = [random.randint(1, 100) for _ in range(n)]
+        
+        test_cases.append((n, S))
+    
+    return test_cases
+
+# Generate test cases
+test_cases = tcgen()
+
+# Print the test cases in the required format
+for n, S in test_cases:
+    print(n)
+    print(' '.join(map(str, S)))
+print(0)  # End of input indicator
+```
+
+### Explanation:
+1. **Number of datasets**: We randomly decide how many datasets to generate, ranging from 1 to 200.
+2. **Length of sequence `n`**: For each dataset, we randomly choose a length `n` between 1 and 12.
+3. **Elements of sequence `si`**: For each sequence, we generate `n` random integers between 1 and 100.
+4. **Appending to test_cases**: Each dataset is appended to the `test_cases` list.
+5. **Printing**: Finally, the test cases are printed in the required format, ending with a single `0` to indicate the end of input.
+
+### Example Output:
+```
+5
+3 45 67 23 89
+10
+1 1 1 1 1 1 1 1 1 1
+12
+100 99 98 97 96 95 94 93 92 91 90 89
+0
+```
+
+This generator should produce diverse test cases that adhere to the problem constraints, making it a valuable tool for testing the correctness and efficiency of solutions to the "Frequency of Appearance Operation" problem.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    inputs = []
+    while True:
+        n = int(fh.readline().strip())
+        if n == 0:
+            break
+        s = list(map(int, fh.readline().strip().split()))
+        inputs.append((n, s))
+    return inputs
+
+# if __name__ == "__main__":
+#     input_path = sys.argv[1]
+#     with open(input_path, 'r') as fh:
+#         inputs = extract_arguments(fh)
+#         f(inputs)</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

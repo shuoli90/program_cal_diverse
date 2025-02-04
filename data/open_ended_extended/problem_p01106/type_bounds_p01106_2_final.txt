@@ -1,0 +1,5 @@
+Types: n: int, i: int, j: int
+
+Ranges: 1 ≤ n ≤ 60, 1 ≤ i ≤ 2^n, 1 ≤ j ≤ 2^n
+
+Addtl Info: Input ends with "0 0 0". Each dataset consists of three integers. There can be at most 100 datasets.

@@ -1,0 +1,23 @@
+An integer N (1 ≤ N ≤ 5000), representing some quantity.
+Six integers g_A, s_A, b_A, g_B, s_B, b_B, each between 1 and 5000.
+
+### Example Input:
+
+```
+23
+1 1 1
+2 1 1
+```
+
+### Function Signature:
+Write a function f(N, g_A, s_A, b_A, g_B, s_B, b_B) that takes in the input. 
+def f(N: int, g_A: int, s_A: int, b_A: int, g_B: int, s_B: int, b_B: int): 
+    ''' 
+    N: an integer 
+    g_A: an integer 
+    s_A: an integer 
+    b_A: an integer 
+    g_B: an integer 
+    s_B: an integer 
+    b_B: an integer 
+    '''

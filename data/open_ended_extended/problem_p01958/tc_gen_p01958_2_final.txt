@@ -1,0 +1,23 @@
+Sure, here is a test case generator for the "Prime-Factor Prime" problem:
+
+```python
+import random
+
+def tcgen():
+    # Generate l and r such that 1 ≤ l ≤ r ≤ 10^9 and 0 ≤ r - l < 1,000,000
+    l = random.randint(1, 10**9 - 1_000_000)
+    r = l + random.randint(0, 999_999)
+    
+    return l, r
+
+# Example of generating a test case
+l, r = tcgen()
+print(f"{l} {r}")
+```
+
+This code snippet generates random valid test cases for the given problem. Specifically:
+
+1. It ensures that `l` is between 1 and \(10^9 - 1,000,000\) to maintain a valid range.
+2. It ensures that `0 ≤ r - l < 1,000,000` by adding a random value between 0 and 999,999 to `l` to get `r`.
+
+To use the generated test case in your solution, you just need to call the `tcgen` function, which will produce a pair of integers, `l` and `r`, meeting the specified constraints.

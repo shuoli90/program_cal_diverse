@@ -1,0 +1,32 @@
+Sure, I can write a test case generator for the given problem. Here's a Python function that generates random test cases following the constraints specified in your problem statement:
+
+```python
+import random
+
+def tcgen():
+    # Generate a random integer N (1 ≤ N ≤ 18)
+    N = random.randint(1, 18)
+    
+    # Generate two lists A and B of size N with integers between 1 and 50
+    A = [random.randint(1, 50) for _ in range(N)]
+    B = [random.randint(1, 50) for _ in range(N)]
+    
+    return N, A, B
+
+# Example usage:
+for _ in range(5):  # Generate 5 test cases
+    N, A, B = tcgen()
+    print(f"{N}")
+    print(" ".join(map(str, A)))
+    print(" ".join(map(str, B)))
+    print()
+```
+
+### Explanation:
+1. **N**: The number of cards (1 ≤ N ≤ 18).
+2. **A**: A list of integers of size N representing the integers written in red ink on one side of the cards (each integer between 1 and 50).
+3. **B**: A list of integers of size N representing the integers written in blue ink on the other side of the cards (each integer between 1 and 50).
+
+The `tcgen` function generates random values for these according to the constraints and returns them. The example usage prints out 5 randomly generated test cases in the required format.
+
+You can run the given code to generate test cases for the problem.

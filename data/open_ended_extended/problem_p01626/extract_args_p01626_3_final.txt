@@ -1,0 +1,14 @@
+def extract_arguments(fh):
+    N = int(fh.readline().strip())
+    areas = []
+    for _ in range(N):
+        points = int(fh.readline().strip())
+        polygon = [tuple(map(int, fh.readline().strip().split())) for _ in range(points)]
+        areas.append(polygon)
+    return N, areas
+
+# if __name__ == "__main__":
+#     input_path = sys.argv[1]
+#     with open(input_path, 'r') as fh:
+#         N, areas = extract_arguments(fh)
+#         f(N, areas)

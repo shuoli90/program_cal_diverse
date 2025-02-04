@@ -1,0 +1,31 @@
+Certainly! Based on the provided problem statement, here’s a test case generator for the "Round Table of Sages" problem:
+
+```python
+import random
+
+def tcgen():
+    # Number of sages (3 ≤ N ≤ 10)
+    N = random.randint(3, 10)
+    
+    # Array a of size N, where each element is either 0 or 1
+    a = [random.randint(0, 1) for _ in range(N)]
+    
+    # Array w of size N, where each element w_i (1 ≤ w_i ≤ 1000)
+    w = [random.randint(1, 1000) for _ in range(N)]
+    
+    return N, a, w
+
+# Example usage
+N, a, w = tcgen()
+print(N)
+print(" ".join(map(str, a)))
+print(" ".join(map(str, w)))
+```
+
+### Explanation:
+
+1. **N**: We randomly select an integer between 3 and 10, inclusive, for the number of sages.
+2. **a**: We generate an array of size \(N\) where each element is randomly chosen to be either 0 (right-handed) or 1 (left-handed).
+3. **w**: We generate another array of size \(N\) where each element is a random integer between 1 and 1000, inclusive, representing the frustration levels.
+
+This generator will produce valid input data for the "Round Table of Sages" problem, which can be used for testing your solution.

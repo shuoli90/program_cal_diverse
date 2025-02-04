@@ -1,0 +1,195 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p01925 - Generation 1</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p01925 - Generation 1</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>Translation
+Quiz
+You are a director of a quiz show. There are N participants scheduled to appear as answerers in the quiz show, each of whom is numbered from 1 to N.
+The quiz plans to ask M+1 questions, each of which is numbered from 1 to M+1. The questions are asked in order of their numbers, and only the first person to answer correctly by pressing the buzzer will get the points. The score of the i-th question is an integer Si. The person with the highest total score at the end of the M+1-th question will win. However, if there are multiple persons with the highest score, no one will win.
+You have decided the scores for the first M questions and are now considering the score for the last question, which is usually set to a score that anyone can turn around. However, if the score for the last question is determined based on the participants' total scores at that time, it may discourage the participants from doing their best. Therefore, you have decided to set the score for the last question in advance so that all participants will have a chance to turn the game around no matter what the score situation may be.
+Fortunately, it is known which participants can answer correctly for questions 1 to M. For the M+1-th question, all participants can answer correctly. Only one person among those who can answer correctly will get the score Si for the M+1-th question. The answer to the question is closed as soon as the answerer who answered correctly appears, and the same answerer can answer the question as many times as he or she wants. Therefore, you do not need to consider the score Si of the question if no one can get it. Also, multiple answerers will not share the score Si of a question that they answered correctly or share the score.
+Given the information about the scores for each question and the participants who can answer correctly, find the minimum score SM+1 for the last question so that anyone can win the game by answering correctly regardless of the score situation.
+Input
+The input consists of multiple datasets, each in the following format.
+N M
+S1 k1 c1,1 ... c1,k1
+...
+SM kM cM,1 ... cM,kM
+The first line contains two integers N and M, the number of answerers and the number of questions except the last one.
+For questions 1 to M, information about the participants who can answer correctly is given. The i-th line contains the score Si for the i-th question, the number of participants ki who can answer the question correctly, and the numbers ci,1 ... ci,ki of the participants who can answer the question.
+The end of the input is indicated by a line containing two zeros. The number of datasets does not exceed 30.
+All integers in the input are positive integers that satisfy the following conditions.
+2 ≤ N ≤ 10,000
+1 ≤ M ≤ 1,000
+1 ≤ Si ≤ 100
+1 ≤ ki ≤ N
+1 ≤ ci,1 < ... < ci,ki ≤ N
+Σki  ≤  100,000
+Note that the output value of SM+1 may exceed this range.
+Output
+For each dataset, output the minimum value of SM+1 that satisfies the above condition in one line.
+Sample Input
+3 2
+5 2 1 3
+8 2 2 3
+2 3
+8 2 1 2
+3 1 1</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An integer N (2 ≤ N ≤ 10,000), representing some quantity or size.
+An integer M (1 ≤ M ≤ 1,000), representing some other quantity or size.
+A list of M tuples, where each tuple contains an integer Si (1 ≤ Si ≤ 100), an integer ki (1 ≤ ki ≤ N), and a list of ki integers, where each integer is between 1 and N.
+
+### Example Input:
+
+```
+3 2
+5 2 1 3
+8 2 2 3
+```
+
+### Function Signature:
+Write a function f(N, M, data) that takes in the input.
+def f(N: int, M: int, data: List[Tuple[int, int, List[int]]]):
+    '''
+    N: an integer
+    M: an integer
+    data: a list of tuples, where each tuple contains an integer, an integer, and a list of integers
+    '''</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Certainly! Below is a Python function to generate test cases for the given problem statement. This function will simulate the input format described and generate random test cases based on the constraints provided.
+
+```python
+import random
+
+def generate_test_case():
+    # Generate N (number of participants) and M (number of questions except the last one)
+    N = random.randint(2, 10000)
+    M = random.randint(1, 1000)
+    
+    # Generate the scores S1 to SM and the information about which participants can answer each question
+    questions = []
+    total_k = 0
+    for _ in range(M):
+        Si = random.randint(1, 100)
+        ki = random.randint(1, N)
+        total_k += ki
+        if total_k > 100000:  # Ensure the total ki does not exceed 100,000
+            ki = max(1, ki - (total_k - 100000))
+        participants = random.sample(range(1, N+1), ki)
+        questions.append((Si, ki, participants))
+    
+    # Prepare the input string
+    input_data = f"{N} {M}\n"
+    for Si, ki, participants in questions:
+        input_data += f"{Si} {ki} {' '.join(map(str, participants))}\n"
+    input_data += "0 0\n"
+    
+    return input_data
+
+# Generate a sample test case
+print(generate_test_case())
+```
+
+### Explanation:
+
+1. **N and M Generation:**
+   - `N` is generated randomly between 2 and 10,000.
+   - `M` is generated randomly between 1 and 1,000.
+
+2. **Questions Generation:**
+   - For each question (from 1 to M):
+     - `Si` (the score for the i-th question) is generated randomly between 1 and 100.
+     - `ki` (the number of participants who can answer the i-th question correctly) is generated randomly between 1 and `N`.
+     - We keep a running total of all `ki` values to ensure that their sum does not exceed 100,000. If adding the current `ki` would exceed this limit, we adjust `ki` accordingly.
+     - A random sample of `ki` unique participants (from 1 to N) is selected to indicate which participants can answer the question correctly.
+
+3. **Input Formatting:**
+   - The input string is constructed according to the problem's input format.
+   - The generated test case is returned as a string, which can be used as input for the problem.
+
+You can run the `generate_test_case()` function multiple times to get different test cases for your problem.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    datasets = []
+    while True:
+        first_line = fh.readline().strip()
+        if first_line == "0 0":
+            break
+        N, M = map(int, first_line.split())
+        questions = []
+        for _ in range(M):
+            line = list(map(int, fh.readline().strip().split()))
+            Si = line[0]
+            ki = line[1]
+            participants = line[2:]
+            questions.append((Si, ki, participants))
+        datasets.append((N, M, questions))
+    return datasets
+
+# if __name__ == "__main__":
+#     input_path = sys.argv[1]
+#     with open(input_path, 'r') as fh: 
+#         datasets = extract_arguments(fh)
+#         for dataset in datasets:
+#             f(*dataset)</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

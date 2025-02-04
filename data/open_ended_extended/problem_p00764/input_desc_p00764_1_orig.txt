@@ -1,0 +1,41 @@
+An integer n (3 ≤ n ≤ 100), representing some quantity or size.
+n lines of three integers each, where:
+- The first integer xi (0 ≤ xi ≤ 1000) represents a value.
+- The second integer yi (0 ≤ yi ≤ 1000) represents another value.
+- The third integer ri (1 ≤ ri ≤ 25) represents another value.
+
+The end of the input is indicated by a line containing a zero.
+
+### Example Input:
+
+```
+10
+802 0 10
+814 0 4
+820 1 4
+826 1 4
+832 3 5
+838 5 5
+845 7 3
+849 10 3
+853 14 4
+857 18 3
+3
+0 0 5
+8 0 5
+8 8 5
+3
+0 0 5
+7 3 6
+16 0 5
+0
+```
+
+### Function Signature:
+Write a function f(datasets) that takes in the input.
+```python
+def f(datasets: List[Tuple[int, List[Tuple[int, int, int]]]]):
+    '''
+    datasets: a list of tuples, each containing an integer and a list of tuples of three integers
+    '''
+```

@@ -1,0 +1,251 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p00773 - Generation 3</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p00773 - Generation 3</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>
+Tax Rate Changed
+    VAT (value-added tax) is a tax imposed at a certain rate proportional to the sale price.
+  
+    Our store uses the following rules to calculate the after-tax prices.
+    
+	When the VAT rate is x%,
+	for an item with the before-tax price of p yen,
+	its after-tax price of the item is p (100+x) / 100 yen, fractions rounded off.
+      
+	The total after-tax price of multiple items paid at once is
+	the sum of after-tax prices of the items.
+      
+    The VAT rate is changed quite often.
+    Our accountant has become aware that
+    "different pairs of items that had the same total after-tax price
+    may have different total after-tax prices after VAT rate changes."
+    For example, when the VAT rate rises from 5% to 8%,
+    a pair of items that had the total after-tax prices of 105 yen before
+    can now have after-tax prices either of 107, 108, or 109 yen, as shown in the table below.
+  
+Before-tax prices of two itemsAfter-tax price with 5% VATAfter-tax price with 8% VAT
+20, 8021 + 84 = 10521 + 86 = 107
+2, 992 + 103 = 1052 + 106 = 108
+13, 8813 + 92 = 10514 + 95 = 109
+    Our accountant is examining effects of VAT-rate changes on after-tax prices.
+    You are asked to write a program that calculates the possible maximum
+    total after-tax price of two items with the new VAT rate,
+    knowing their total after-tax price before the VAT rate change.
+  
+Input
+    The input consists of multiple datasets.
+    Each dataset is in one line,
+    which consists of three integers x, y, and s separated by a space.
+    x is the VAT rate in percent before the VAT-rate change,
+    y is the VAT rate in percent after the VAT-rate change,
+    and s is the sum of after-tax prices of two items before the VAT-rate change.
+    For these integers, 0 < x < 100, 0 < y < 100,
+    10 < s < 1000, and x ≠ y hold.
+    For before-tax prices of items, all possibilities of 1 yen through s-1 yen should be considered.
+  
+    The end of the input is specified by three zeros separated by a space.
+  
+Output
+    For each dataset,
+    output in a line the possible maximum total after-tax price when the VAT rate is changed to y%.
+  
+Sample Input
+5 8 105
+8 5 105
+1 2 24
+99 98 24
+12 13 26
+1 22 23
+1 13 201
+13 16 112
+2 24 50
+1 82 61
+1 84 125
+1 99 999
+99 1 999
+98 99 999
+1 99 11
+99 1 12
+0 0 0
+Output for the Sample Input
+109
+103
+24
+24
+26
+27
+225
+116
+62
+111
+230
+1972
+508
+1004
+20
+7
+Hints
+    In the following table,
+    an instance of a before-tax price pair that has the maximum after-tax price after the VAT-rate change
+    is given for each dataset of the sample input.
+  
+DatasetBefore-tax pricesAfter-tax price with y% VAT
+5 8 105  13, 88 14 + 95 = 109
+8 5 105  12, 87 12 + 91 = 103
+1 2 24   1, 23  1 + 23 =  24
+99 98 24   1, 12  1 + 23 =  24
+12 13 26   1, 23  1 + 25 =  26
+1 22 23   1, 22  1 + 26 =  27
+1 13 201   1,199  1 +224 = 225
+13 16 112 25, 75 29 + 87 = 116
+2 24 50  25, 25 31 + 31 =  62
+1 82 61  11, 50 20 + 91 = 111
+1 84 125  50, 75 92 +138 = 230
+1 99 999  92,899183+1789 =1972
+99 1 999   1,502  1 +507 = 508
+98 99 999  5,500  9 +995 =1004
+1 99 11   1, 10  1 + 19 =  20
+99 1 12   1,  6  1 +  6 =   7
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An integer x (0 < x < 100), representing a percentage.
+An integer y (0 < y < 100), representing a percentage and not equal to x.
+An integer s (10 < s < 1000), representing a sum.
+The end of the input is specified by three zeros separated by a space.
+
+### Example Input:
+
+```
+5 8 105
+0 0 0
+```
+
+### Function Signature:
+
+Write a function f(inputs) that takes in the input as a list of tuples.
+```python
+def f(inputs: List[Tuple[int, int, int]]):
+    '''
+    inputs: a list of tuples, where each tuple contains three integers
+    '''
+```</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Sure, here is a test case generator for the "Tax Rate Changed" problem statement:
+
+```python
+import random
+
+def generate_test_case():
+    # VAT rates: 0 < x < 100 and 0 < y < 100, and x ≠ y
+    x = random.randint(1, 99)
+    y = random.randint(1, 99)
+    while y == x:
+        y = random.randint(1, 99)
+        
+    # Total after-tax price s: 10 < s < 1000
+    s = random.randint(11, 999)
+    
+    return f"{x} {y} {s}"
+
+def generate_multiple_test_cases(num_cases):
+    test_cases = [generate_test_case() for _ in range(num_cases)]
+    test_cases.append("0 0 0")  # End of input
+    return test_cases
+
+if __name__ == "__main__":
+    num_cases = 20
+    test_cases = generate_multiple_test_cases(num_cases)
+    for case in test_cases:
+        print(case)
+```
+
+The above code will generate a specified number of test cases for the "Tax Rate Changed" problem. Each test case consists of three integers: `x`, `y`, and `s` as per the problem's constraints. The end of the input is marked by the line "0 0 0".
+
+You can adjust `num_cases` to generate a different number of test cases. Here are a few example test cases generated by the function:
+
+```
+45 67 123
+10 55 234
+32 98 567
+99 1 999
+...
+0 0 0
+```
+
+Each test case is printed on a new line and follows the rules specified in the problem statement.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    inputs = []
+    while True:
+        line = fh.readline().strip()
+        if line == "0 0 0":
+            break
+        x, y, s = map(int, line.split())
+        inputs.append((x, y, s))
+    return inputs
+
+# if __name__ == "__main__":
+#     input_path = sys.argv[1]
+#     with open(input_path, 'r') as fh: 
+#         inputs = extract_arguments(fh)
+#         f(inputs)</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

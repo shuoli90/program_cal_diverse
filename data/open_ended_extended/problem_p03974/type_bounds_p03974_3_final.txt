@@ -1,0 +1,3 @@
+Types: N: int, S: List[str], Q: int, k_i: int, p_i: str
+Ranges: 1 ≤ N ≤ 100000, 1 ≤ |S_i|, sum of |S_i| ≤ 400000, 1 ≤ k_i ≤ N, p_i is a permutation of 'abcdefghijklmnopqrstuvwxyz'
+Addtl Info: None

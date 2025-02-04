@@ -1,0 +1,30 @@
+An integer q (1 ≤ q ≤ 200,000), representing the number of queries.
+Each query is a string that can take one of the following forms:
+- "0 key x" where key is a string of lowercase letters (1 ≤ length of key ≤ 20) and x is an integer (1 ≤ x ≤ 1,000,000,000).
+- "1 key" where key is a string of lowercase letters.
+- "2 key" where key is a string of lowercase letters.
+- "3 L R" where L and R are strings of lowercase letters such that L ≤ R in lexicographic order.
+
+### Example Input:
+
+```
+9
+0 blue 4
+0 red 1
+0 white 5
+1 red
+1 blue
+2 red
+1 black
+1 red
+3 w z
+```
+
+### Function Signature:
+Write a function f(queries) that takes in the input.
+```python
+def f(queries: List[str]):
+    ''' 
+    queries: a list of query strings
+    '''
+```

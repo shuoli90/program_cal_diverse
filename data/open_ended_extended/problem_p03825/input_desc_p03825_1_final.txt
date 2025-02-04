@@ -1,0 +1,20 @@
+An integer N (1 ≤ N ≤ 2000), representing some quantity.
+An integer M (1 ≤ M ≤ 2000), representing another quantity.
+An integer K (2 ≤ K ≤ 2000), representing yet another quantity.
+
+### Example Input:
+
+```
+12
+2
+2
+```
+
+### Function Signature:
+Write a function f(N, M, K) that takes in the input.
+def f(N: int, M: int, K: int):
+    ''' 
+    N: an integer 
+    M: an integer 
+    K: an integer 
+    '''

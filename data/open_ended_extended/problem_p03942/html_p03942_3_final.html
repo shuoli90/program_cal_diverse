@@ -1,0 +1,174 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p03942 - Generation 3</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p03942 - Generation 3</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>
+Score : 1500 points
+Problem Statement
+Shik's job is very boring. At day 0, his boss gives him a string S_0 of length N which consists of only lowercase English letters. In the i-th day after day 0, Shik's job is to copy the string S_{i-1} to a string S_i. We denote the j-th letter of S_i as S_i[j].
+Shik is inexperienced in this job. In each day, when he is copying letters one by one from the first letter to the last letter, he would make mistakes. That is, he sometimes accidentally writes down the same letter that he wrote previously instead of the correct one. More specifically, S_i[j] is equal to either S_{i-1}[j] or S_{i}[j-1]. (Note that S_i[1] always equals to S_{i-1}[1].)
+You are given the string S_0 and another string T.
+Please determine the smallest integer i such that S_i could be equal to T. If no such i exists, please print -1.
+Constraints
+1 \leq N \leq 1,000,000
+The lengths of S_0 and T are both N.
+Both S_0 and T consist of lowercase English letters.
+InputThe input is given from Standard Input in the following format:
+N
+S_0
+T
+OutputPrint the smallest integer i such that S_i could be equal to T. If no such i exists, print -1 instead.
+Sample Input 15
+abcde
+aaacc
+Sample Output 12
+S_0 = abcde, S_1 = aaccc and S_2 = aaacc is a possible sequence such that S_2 = T.
+Sample Input 25
+abcde
+abcde
+Sample Output 20
+Sample Input 34
+acaa
+aaca
+Sample Output 32
+Sample Input 45
+abcde
+bbbbb
+Sample Output 4-1
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An integer N (1 ≤ N ≤ 1,000,000), representing some quantity or size.
+A string S of length N, consisting of lowercase English letters.
+A string T of length N, consisting of lowercase English letters.
+
+### Example Input:
+
+```
+5
+abcde
+aaacc
+```
+
+### Function Signature:
+Write a function f(N, S, T) that takes in the input.
+def f(N: int, S: str, T: str):
+    ''' 
+    N: an integer 
+    S: a string 
+    T: a string 
+    '''</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Absolutely! Let's create a test case generator for the given problem.
+
+Given the constraints and the problem statement, the test case generator will need to:
+1. Generate a random value for \(N\) within the specified range.
+2. Generate two random strings \(S_0\) and \(T\) of length \(N\), consisting of lowercase English letters.
+
+Here's the test case generator for the specified problem:
+
+```python
+import random
+import string
+
+def generate_random_string(length):
+    return ''.join(random.choice(string.ascii_lowercase) for _ in range(length))
+
+def tcgen():
+    # Generate N within the range [1, 1,000,000]
+    N = random.randint(1, 10**6)
+    
+    # Generate the string S_0 of length N
+    S_0 = generate_random_string(N)
+    
+    # Generate the string T of length N
+    T = generate_random_string(N)
+    
+    return N, S_0, T
+
+# Example usage
+if __name__ == "__main__":
+    N, S_0, T = tcgen()
+    print(N)
+    print(S_0)
+    print(T)
+```
+
+This script defines a function `generate_random_string` to create a random string of lowercase English letters, and another function `tcgen` that uses it to produce the test case. 
+
+### Explanation:
+1. **`generate_random_string` Function**: This function takes a length and returns a random string of that length composed of lowercase English letters.
+2. **`tcgen` Function**: 
+   - It first generates a random integer \(N\) within the range from 1 to 1,000,000.
+   - It then generates two random strings \(S_0\) and \(T\), each of length \(N\).
+   - Finally, it returns \(N\), \(S_0\), and \(T\).
+
+### Usage:
+When you run this script, it will print the values of \(N\), \(S_0\), and \(T\) in the format required by the problem statement. 
+
+You can integrate this generator into your testing framework to automatically create test cases for your problem.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    N = int(fh.readline().strip())
+    S_0 = fh.readline().strip()
+    T = fh.readline().strip()
+    return N, S_0, T</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

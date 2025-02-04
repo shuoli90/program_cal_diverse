@@ -1,0 +1,59 @@
+Sure, here is a test case generator for the "Land Distribution" problem statement:
+
+```python
+import random
+
+def generate_orchard_map(H, W):
+    symbols = ["@", "#", "*"]
+    return ["".join(random.choice(symbols) for _ in range(W)) for _ in range(H)]
+
+def tcgen():
+    datasets = []
+    
+    # Generate a random number of datasets (up to 20)
+    num_datasets = random.randint(1, 20)
+    
+    for _ in range(num_datasets):
+        # Randomly choose values for H and W within the constraints
+        H = random.randint(1, 100)
+        W = random.randint(1, 100)
+        
+        # Generate the orchard map
+        orchard_map = generate_orchard_map(H, W)
+        
+        # Append the dataset to our list
+        datasets.append((H, W, orchard_map))
+    
+    # Add the terminating dataset (0 0)
+    datasets.append((0, 0, []))
+    
+    return datasets
+
+def print_test_case(datasets):
+    for H, W, orchard_map in datasets:
+        print(f"{H} {W}")
+        for row in orchard_map:
+            print(row)
+        
+# Generate and print test cases
+datasets = tcgen()
+print_test_case(datasets)
+```
+
+### Explanation:
+1. **generate_orchard_map(H, W)**:
+   - This function generates an `H x W` orchard map filled with random symbols representing apples ('@'), oysters ('#'), and oranges ('*').
+
+2. **tcgen()**:
+   - It starts by creating an empty list `datasets` to store multiple datasets.
+   - It then generates a random number of datasets (between 1 and 20).
+   - For each dataset, it randomly chooses values for `H` (height) and `W` (width) within the range [1, 100].
+   - It generates the orchard map for each dataset using the `generate_orchard_map` function.
+   - After generating the required datasets, it appends the terminating dataset (0, 0) to the list.
+   - Finally, it returns the list of datasets.
+
+3. **print_test_case(datasets)**:
+   - This function takes the generated datasets and prints them in the required format.
+   - It iterates over each dataset, prints the dimensions `H` and `W`, and then prints each row of the orchard map.
+
+The `tcgen()` function can be adjusted to generate larger or smaller maps by altering the ranges of `H` and `W`. The `print_test_case()` function ensures that the test cases are printed in the correct format as required by the problem statement.

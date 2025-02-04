@@ -1,0 +1,21 @@
+An integer N (1 ≤ N ≤ 100), an integer M (M ≥ 0), and an integer L (1 ≤ L ≤ 10000).
+M lines follow, each containing three integers Ai, Bi, and Di (1 ≤ Ai < Bi ≤ N, 1 ≤ Di ≤ 10000).
+Two lines follow, each containing N integers.
+The input is terminated by EOF. All integers in each line are separated by a whitespace.
+
+### Example Input:
+```
+2 1 1
+1 2 1
+1000 0
+0 1000
+```
+
+### Function Signature:
+Write a function f(inputs) that takes in the input.
+```python
+def f(inputs: List[Tuple[int, int, int, List[Tuple[int, int, int]], List[int], List[int]]]):
+    '''
+    inputs: a list of tuples, where each tuple represents a single test case.
+    '''
+```

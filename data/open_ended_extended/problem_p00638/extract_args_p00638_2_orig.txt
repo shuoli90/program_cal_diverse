@@ -1,0 +1,12 @@
+def extract_arguments(fh):
+    datasets = []
+    while True:
+        n = int(fh.readline().strip())
+        if n == 0:
+            break
+        islands = []
+        for _ in range(n):
+            treasures, max_weight = map(int, fh.readline().strip().split())
+            islands.append((treasures, max_weight))
+        datasets.append((n, islands))
+    return datasets

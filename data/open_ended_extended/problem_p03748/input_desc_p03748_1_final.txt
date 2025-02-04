@@ -1,0 +1,18 @@
+Canonicalized Input Description: 
+
+An integer N (1 ≤ N ≤ 3000).
+An integer M (1 ≤ M ≤ 3000).
+
+### Example Input:
+
+```
+2 3
+```
+
+### Function Signature:
+Write a function f(N, M) that takes in the input.
+def f(N: int, M: int):
+    '''
+    N: an integer
+    M: an integer
+    '''

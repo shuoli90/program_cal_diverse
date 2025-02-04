@@ -1,0 +1,23 @@
+def extract_arguments(fh):
+    datasets = []
+    while True:
+        first_line = fh.readline().strip()
+        if first_line == "0 0":
+            break
+        N, M = map(int, first_line.split())
+        questions = []
+        for _ in range(M):
+            line = list(map(int, fh.readline().strip().split()))
+            Si = line[0]
+            ki = line[1]
+            participants = line[2:]
+            questions.append((Si, ki, participants))
+        datasets.append((N, M, questions))
+    return datasets
+
+# if __name__ == "__main__":
+#     input_path = sys.argv[1]
+#     with open(input_path, 'r') as fh: 
+#         datasets = extract_arguments(fh)
+#         for dataset in datasets:
+#             f(*dataset)

@@ -1,0 +1,171 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p00638 - Generation 3</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p00638 - Generation 3</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>
+Problem B: Old Bridges
+Long long ago, there was a thief. Looking for treasures, he was running about all over the world. One day, he heard a rumor that there were islands that had large amount of treasures, so he decided to head for there.
+Finally he found n islands that had treasures and one island that had nothing. Most of islands had seashore and he can land only on an island which had nothing. He walked around the island and found that there was an old bridge between this island and each of all other n islands.
+He tries to visit all islands one by one and pick all the treasures up. Since he is afraid to be stolen, he visits with bringing all treasures that he has picked up. He is a strong man and can bring all the treasures at a time, but the old bridges will break if he cross it with taking certain or more amount of treasures.
+Please write a program that judges if he can collect all the treasures and can be back to the island where he land on by properly selecting an order of his visit.
+Input
+Input consists of several datasets.
+The first line of each dataset contains an integer n.
+Next n lines represents information of the islands. Each line has two integers, which means the amount of treasures of the island and the maximal amount that he can take when he crosses the bridge to the islands, respectively.
+The end of input is represented by a case with n = 0.
+Output
+For each dataset, if he can collect all the treasures and can be back, print "Yes" Otherwise print "No"
+Constraints
+1  ≤ n ≤ 25
+Sample Input
+3
+2 3
+3 6
+1 2
+3
+2 3
+3 5
+1 2
+0
+Output for the Sample Input
+Yes
+No
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>Canonicalized Input Description:
+
+An integer n (1 ≤ n ≤ 25), representing some quantity. The input ends when n = 0.
+Next n lines each contain two integers. The first integer is a non-negative value representing some measure.
+The second integer is a positive value representing another measure.
+
+### Example Input:
+
+```
+3
+2 3
+3 6
+1 2
+3
+2 3
+3 5
+1 2
+0
+```
+
+### Function Signature:
+
+Write a function f(inputs) that takes in the input.
+```python
+def f(inputs: List[Tuple[int, List[Tuple[int, int]]]]):
+    '''
+    inputs: a list of tuples, where each tuple contains an integer and a list of tuples
+    '''
+```</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Sure! Here is a test case generator for the given problem "Old Bridges":
+
+```python
+import random
+
+def tcgen():
+    # Generate a random number of islands n (1 ≤ n ≤ 25)
+    n = random.randint(1, 25)
+    
+    # Generate the island information
+    islands = []
+    for _ in range(n):
+        # Amount of treasures on the island (1 ≤ treasures ≤ 1000)
+        treasures = random.randint(1, 1000)
+        # Maximal amount that he can take when crossing the bridge (treasures ≤ max_weight ≤ 2000)
+        max_weight = random.randint(treasures, 2000)
+        islands.append((treasures, max_weight))
+    
+    return n, islands
+
+# Example usage:
+if __name__ == "__main__":
+    n, islands = tcgen()
+    print(n)
+    for treasures, max_weight in islands:
+        print(treasures, max_weight)
+```
+
+Explanation:
+1. **Random Number of Islands**: We generate a random number `n` (1 ≤ n ≤ 25) which represents the number of islands.
+2. **Island Information**: For each island, we generate a random number of treasures (1 ≤ treasures ≤ 1000) and a corresponding maximum weight (treasures ≤ max_weight ≤ 2000) that the old bridge can handle.
+3. **Output Format**: The output is in the format expected by the problem statement. First, print the number of islands `n`, followed by `n` lines each containing two integers representing the amount of treasures and the maximum weight for the bridge.
+
+The `tcgen` function can be called to generate test cases, and these cases can be printed or used directly for testing the algorithm.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    datasets = []
+    while True:
+        n = int(fh.readline().strip())
+        if n == 0:
+            break
+        islands = []
+        for _ in range(n):
+            treasures, limit = map(int, fh.readline().strip().split())
+            islands.append((treasures, limit))
+        datasets.append((n, islands))
+    return datasets</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

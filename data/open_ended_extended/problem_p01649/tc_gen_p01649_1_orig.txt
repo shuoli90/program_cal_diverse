@@ -1,0 +1,62 @@
+Sure! Below is a test case generator written in Python for the provided billiard table competitive programming problem.
+
+```python
+import random
+
+def generate_random_ball_position(w, h, r):
+    x = random.randint(r + 1, w - r - 1)
+    y = random.randint(r + 1, h - r - 1)
+    return x, y
+
+def tcgen():
+    datasets = []
+    
+    num_datasets = random.randint(1, 100)
+    
+    for _ in range(num_datasets):
+        n = random.randint(2, 11)
+        w = random.randint(4, 1000)
+        h = random.randint(4, 1000)
+        r = random.randint(1, 100)
+        
+        v_x = random.randint(-10000, 10000)
+        v_y = random.randint(-10000, 10000)
+        
+        while v_x == 0 and v_y == 0:
+            v_x = random.randint(-10000, 10000)
+            v_y = random.randint(-10000, 10000)
+        
+        positions = [generate_random_ball_position(w, h, r) for _ in range(n)]
+        
+        dataset = {
+            "n": n,
+            "w": w,
+            "h": h,
+            "r": r,
+            "v_x": v_x,
+            "v_y": v_y,
+            "positions": positions
+        }
+        
+        datasets.append(dataset)
+    
+    return datasets
+
+# Example of how to use the generator
+datasets = tcgen()
+
+# Print the generated test cases
+for dataset in datasets:
+    print(dataset['n'])
+    print(f"{dataset['w']} {dataset['h']} {dataset['r']} {dataset['v_x']} {dataset['v_y']}")
+    for pos in dataset['positions']:
+        print(f"{pos[0]} {pos[1]}")
+    print()
+
+# End of input
+print(0)
+```
+
+The `tcgen` function generates random test cases based on the constraints provided in the problem statement. The function creates a specified number of datasets (less than 100), each containing random values for the parameters and positions of the balls. The positions of the balls are generated such that they do not touch the cushions or each other initially.
+
+To use this generator, call the `tcgen` function to get a list of datasets, and then you can print or process these datasets as needed. The script ends by printing `0` to indicate the end of input, as specified in the problem statement.

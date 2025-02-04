@@ -1,0 +1,3 @@
+Types: N: int, M: int, L: int, K: int, A: int, H: int, freezing_facilities: List[int], roads: List[Tuple[int, int, int]]
+Ranges: 2 ≤ N ≤ 100, 1 ≤ M ≤ 100, 0 ≤ L ≤ N - 2, 0 ≤ K ≤ 100, 0 ≤ A < N, 0 ≤ H < N, A ≠ H, 0 ≤ X < N, 0 ≤ Y < N, 0 ≤ T
+Addtl Info: Capital and hospital cities are not included in the list of freezing facilities; each city is assigned a number from 0 to N-1; at most one road directly connects any two cities; input ends with N=M=L=K=A=H=0 which is not part of the dataset.

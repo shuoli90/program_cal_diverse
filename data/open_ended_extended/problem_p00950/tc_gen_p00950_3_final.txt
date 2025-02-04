@@ -1,0 +1,64 @@
+To create a test case generator for the problem "Infallibly Crack Perplexing Cryptarithm," we need to consider the constraints and the structure of the input. The input is a string consisting of Roman alphabet characters, binary digits, operator symbols, parentheses, and equal signs, with a maximum length of 31 characters.
+
+Here is a Python test case generator for this problem:
+
+```python
+import random
+import string
+
+def generate_random_binary_number(max_length):
+    length = random.randint(1, max_length)
+    return '1' + ''.join(random.choice('01') for _ in range(length - 1))
+
+def generate_expression(max_length):
+    symbols = ['+', '-', '*', '(', ')', '=', '0', '1']
+    # Adding alphabet characters to symbols list
+    symbols += list(string.ascii_letters)
+    expression = []
+    
+    # Ensure at least one equal sign is present
+    equal_sign_position = random.randint(1, max_length - 2)
+    
+    for i in range(max_length):
+        if i == equal_sign_position:
+            expression.append('=')
+        else:
+            expression.append(random.choice(symbols))
+    
+    return ''.join(expression)
+
+def ensure_valid_expression(expression):
+    # Ensure there's exactly one '=' in the expression
+    if expression.count('=') != 1:
+        parts = expression.split('=')
+        if len(parts) > 2:
+            expression = parts[0] + '=' + ''.join(parts[1:])
+        if len(parts) < 2:
+            equal_sign_position = random.randint(1, len(expression) - 2)
+            expression = expression[:equal_sign_position] + '=' + expression[equal_sign_position:]
+    return expression
+
+def tcgen():
+    max_length = 31
+    expression_length = random.randint(1, max_length)
+    expression = generate_expression(expression_length)
+    valid_expression = ensure_valid_expression(expression)
+    
+    return valid_expression
+
+# Example usage
+for _ in range(10):
+    print(tcgen())
+```
+
+### Explanation:
+
+1. **generate_random_binary_number**: Generates a random binary number of a given maximum length (starts with '1' to ensure it's a valid binary number).
+
+2. **generate_expression**: Generates a random expression of a specified maximum length, ensuring it includes symbols, binary digits, and alphabetic characters.
+
+3. **ensure_valid_expression**: Ensures the generated expression contains exactly one '=' character.
+
+4. **tcgen**: Combines the above functions to generate the final test case.
+
+This generator creates random expressions that include a mix of binary digits, operators, parentheses, and Roman alphabet characters, ensuring there's exactly one equal sign in the expression, which is a requirement of the problem statement.

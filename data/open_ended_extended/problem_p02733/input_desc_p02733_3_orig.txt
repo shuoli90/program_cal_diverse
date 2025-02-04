@@ -1,0 +1,25 @@
+An integer H (1 ≤ H ≤ 10), representing some quantity or size.
+An integer W (1 ≤ W ≤ 1000), representing some quantity or size.
+An integer K (1 ≤ K ≤ H * W), representing a threshold.
+A list of H strings, each of length W, consisting of characters '0' or '1'.
+
+### Example Input:
+
+```
+3
+5
+4
+11100
+10001
+00111
+```
+
+### Function Signature:
+Write a function f(H, W, K, S) that takes in the input.
+def f(H: int, W: int, K: int, S: List[str]):
+    '''
+    H: an integer
+    W: an integer
+    K: an integer
+    S: a list of strings
+    '''

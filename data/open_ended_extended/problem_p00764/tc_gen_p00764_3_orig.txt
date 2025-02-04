@@ -1,0 +1,55 @@
+Certainly! Based on the problem statement for the "Chain-Confined Path," here is the test case generator in Python:
+
+```python
+import random
+
+def generate_test_case():
+    # Number of circles, must be between 3 and 100 inclusive
+    n = random.randint(3, 100)
+    
+    # Generate n circles
+    circles = []
+    for _ in range(n):
+        x = random.randint(0, 1000)  # x-coordinate of the center
+        y = random.randint(0, 1000)  # y-coordinate of the center
+        r = random.randint(1, 25)    # radius of the circle
+        circles.append((x, y, r))
+    
+    # Ensure the circles follow the problem constraints
+    # Note: This is a simplified version and does not guarantee all the constraints are met.
+    # In a real scenario, you might need a more sophisticated method to ensure all constraints are satisfied.
+    
+    # Print the test case
+    print(n)
+    for x, y, r in circles:
+        print(f"{x} {y} {r}")
+
+# Generate multiple test cases
+def generate_multiple_test_cases(num_cases=5):
+    for _ in range(num_cases):
+        generate_test_case()
+        print()  # Add a blank line between test cases
+
+# Main function to generate the test cases and add the terminating zero
+def main():
+    generate_multiple_test_cases()
+    print(0)  # Terminating zero to indicate end of input
+
+if __name__ == "__main__":
+    main()
+```
+
+### Explanation:
+
+1. **Random Generation**:
+   - `n` is randomly selected between 3 and 100 to represent the number of circles.
+   - For each circle, the coordinates (`x`, `y`) are randomly chosen between 0 and 1000, and the radius (`r`) is chosen between 1 and 25.
+
+2. **Constraints**:
+   - The generator does not enforce all constraints explicitly (e.g., ensuring each circle intersects only its neighbors and does not contain the center of another circle). For a competitive programming problem, this might need a more sophisticated approach to ensure all constraints are fully satisfied.
+
+3. **Output**:
+   - Each test case is printed in the required format, followed by a blank line to separate multiple test cases.
+   - The main function generates a specified number of test cases (`num_cases`) and appends a terminating zero to indicate the end of input.
+
+This generator provides a basic implementation to create random test cases for the problem. For more complex constraints, additional logic would need to be incorporated.

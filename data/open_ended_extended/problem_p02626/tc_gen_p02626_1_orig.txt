@@ -1,0 +1,26 @@
+Certainly! Here is a test case generator for the described problem statement:
+
+```python
+import random
+
+def tcgen():
+    # Generate a random N within the given constraints
+    N = random.randint(2, 300)
+    
+    # Generate a list A of size N with each element in the range [1, 10^12]
+    A = [random.randint(1, 10**12) for _ in range(N)]
+    
+    return N, A
+
+# Example usage
+for _ in range(5):
+    N, A = tcgen()
+    print(N)
+    print(" ".join(map(str, A)))
+```
+
+### Explanation:
+1. **N**: The number of piles is randomly chosen to be between 2 and 300.
+2. **A**: Each element in the list of piles is randomly chosen from 1 to \(10^{12}\).
+
+This script will generate a valid random test case each time it is called, adhering to the problem's constraints. You can run this generator multiple times to create different test cases for extensive testing.

@@ -1,0 +1,23 @@
+Canonicalized Input Description:
+
+A list of tuples, where each tuple contains six integers (a, b, c, d, e, f). Each integer can be negative. The list ends when a tuple containing all negative integers is encountered. The number of tuples does not exceed 50.
+
+### Example Input:
+
+```
+2006 9 2 2006 9 3
+2006 9 2 2006 11 11
+2004 1 1 2005 1 1
+2000 1 1 2006 1 1
+2000 1 1 2101 1 1
+-1 -1 -1 -1 -1 -1
+```
+
+### Function Signature:
+Write a function f(inputs) that takes in the input.
+```python
+def f(inputs: List[Tuple[int, int, int, int, int, int]]):
+    '''
+    inputs: a list of tuples, where each tuple contains six integers
+    '''
+```

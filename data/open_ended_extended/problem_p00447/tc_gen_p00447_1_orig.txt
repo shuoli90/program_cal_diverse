@@ -1,0 +1,79 @@
+Sure! Here is a test case generator for the "Constellation" problem in Python:
+
+```python
+import random
+
+def generate_star_coordinates(num_stars, max_coordinate=1000000):
+    stars = set()
+    while len(stars) < num_stars:
+        x = random.randint(0, max_coordinate)
+        y = random.randint(0, max_coordinate)
+        stars.add((x, y))
+    return list(stars)
+
+def tcgen():
+    datasets = []
+    
+    num_datasets = random.randint(1, 5)
+    for _ in range(num_datasets):
+        # Generate the constellation
+        m = random.randint(1, 200)
+        constellation = generate_star_coordinates(m)
+        
+        # Generate the photo with the constellation and additional stars
+        n = random.randint(m, 1000)
+        photo = generate_star_coordinates(n)
+        
+        # Ensure the constellation is a subset of the photo
+        photo[:m] = constellation
+        
+        # Shuffle the photo to add randomness
+        random.shuffle(photo)
+        
+        datasets.append((m, constellation, n, photo))
+    
+    return datasets
+
+def format_dataset(dataset):
+    m, constellation, n, photo = dataset
+    result = []
+    
+    result.append(str(m))
+    for star in constellation:
+        result.append(f"{star[0]} {star[1]}")
+    
+    result.append(str(n))
+    for star in photo:
+        result.append(f"{star[0]} {star[1]}")
+    
+    return "\n".join(result)
+
+def generate_input():
+    datasets = tcgen()
+    input_str = "\n".join(format_dataset(dataset) for dataset in datasets)
+    input_str += "\n0"  # End of input indicator
+    return input_str
+
+# Example of generating an input
+print(generate_input())
+```
+
+### Explanation:
+1. **`generate_star_coordinates(num_stars, max_coordinate=1000000)`**:
+    - Generates a set of unique star coordinates within the specified range.
+    
+2. **`tcgen()`**:
+    - Generates up to 5 datasets (between 1 and 5).
+    - For each dataset:
+        - It generates the constellation coordinates (`m` stars).
+        - It generates the photo with `n` stars where `n >= m`.
+        - Ensures the constellation is included in the photo.
+        - Randomizes the order of stars in the photo for added complexity.
+        
+3. **`format_dataset(dataset)`**:
+    - Formats a single dataset to match the input format required by the problem statement.
+
+4. **`generate_input()`**:
+    - Combines multiple datasets into a single string, including the end-of-input indicator `0`.
+
+This test case generator creates diverse and complex inputs that conform to the problem's input constraints, ensuring robust testing for the solution.

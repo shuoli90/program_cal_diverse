@@ -1,0 +1,5 @@
+Types: N: int, K: int
+
+Ranges: 1 ≤ K ≤ N ≤ 2000
+
+Addtl Info: None

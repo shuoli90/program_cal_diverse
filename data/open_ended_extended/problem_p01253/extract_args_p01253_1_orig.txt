@@ -1,0 +1,10 @@
+def extract_arguments(fh):
+    datasets = []
+    while True:
+        line = fh.readline().strip()
+        if line == "0 0":
+            break
+        N, T = map(int, line.split())
+        colors = fh.readline().strip()
+        datasets.append((N, T, colors))
+    return datasets

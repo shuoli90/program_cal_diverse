@@ -1,0 +1,3 @@
+Types: Y1: int, M1: int, D1: int, Y2: int, M2: int, D2: int
+Ranges: 1 ≤ Y1 ≤ Y2 ≤ 10^18, 1 ≤ Mi ≤ 12, 1 ≤ Di ≤ 31 (Mi in {1, 3, 5, 7, 8, 10, 12}), 1 ≤ Di ≤ 30 (Mi in {4, 6, 9, 11}), 1 ≤ Di ≤ 28 (Mi = 2 and Yi is not a leap year), 1 ≤ Di ≤ 29 (Mi = 2 and Yi is a leap year)
+Addtl Info: Y1, M1, D1 is a date that is at least 0 days before Y2, M2, D2

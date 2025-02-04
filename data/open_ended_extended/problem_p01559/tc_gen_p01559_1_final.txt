@@ -1,0 +1,55 @@
+Certainly! Below is a Python test case generator for the "MinimumCostPath" problem statement.
+
+```python
+import random
+
+def tcgen():
+    # Constants
+    MOD = 1000000009
+    
+    # Randomly generate N within the given constraint
+    N = random.randint(2, 10**6)
+    
+    # Randomly generate M within the given constraint
+    M = random.randint(0, 50)
+    
+    obstacle_positions = set()
+    
+    # Generate unique obstacle coordinates
+    while len(obstacle_positions) < M:
+        x = random.randint(1, N)
+        y = random.randint(1, N)
+        
+        # Ensure the position is not (1,1) or (N,N) and not already taken
+        if (x, y) != (1, 1) and (x, y) != (N, N):
+            obstacle_positions.add((x, y))
+    
+    obstacles = list(obstacle_positions)
+    
+    # Return the generated test case
+    return N, obstacles
+
+def format_test_case(N, obstacles):
+    M = len(obstacles)
+    obstacles_str = ' '.join(f'{x} {y}' for x, y in obstacles)
+    return f"{N} {M}\n{obstacles_str}"
+
+# Example of generating and formatting a test case
+if __name__ == "__main__":
+    N, obstacles = tcgen()
+    test_case = format_test_case(N, obstacles)
+    print(test_case)
+```
+
+### Explanation:
+1. **Generating `N`**: 
+    - We generate `N` randomly within the constraints (2 ≤ N ≤ 10^6).
+2. **Generating `M`**: 
+    - We generate `M` randomly within the constraints (0 ≤ M ≤ 50).
+3. **Generating Obstacles**: 
+    - We use a set to store unique obstacle positions.
+    - We ensure that no obstacle is placed at the start (1, 1) or the end (N, N) and that all positions are unique.
+4. **Formatting the Test Case**: 
+    - We create a function to convert the generated data into the expected input format.
+
+This generator will produce random test cases that adhere to the problem constraints. You can run the script to produce different test cases.

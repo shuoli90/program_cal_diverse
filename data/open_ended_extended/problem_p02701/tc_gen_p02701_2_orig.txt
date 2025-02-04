@@ -1,0 +1,51 @@
+Sure! Let's create a test case generator for the provided problem. This generator will create random test cases while ensuring that the constraints are respected.
+
+Here is the Python code for the test case generator:
+
+```python
+import random
+import string
+
+def tcgen():
+    # Generate a random value for N within the specified range
+    N = random.randint(1, 2 * 10**5)
+    
+    # Generate N random strings, each string's length between 1 and 10,
+    # and consisting of lowercase English letters.
+    strings = []
+    for _ in range(N):
+        length = random.randint(1, 10)
+        s = ''.join(random.choices(string.ascii_lowercase, k=length))
+        strings.append(s)
+    
+    # Return N and the list of strings
+    return N, strings
+
+# Example usage:
+N, strings = tcgen()
+print(N)
+for s in strings:
+    print(s)
+```
+
+### Explanation
+- **N Generation**: It generates a random integer \(N\) in the range \([1, 2 \times 10^5]\).
+- **String List Generation**: It generates \(N\) random strings. Each string's length is between 1 and 10, and the string consists of lowercase English letters.
+
+### Example Output
+When you run the `tcgen()` function, it might produce an output like the following:
+
+```
+5
+abc
+defgh
+ijklmnop
+qrstuvwx
+yz
+```
+
+This output represents:
+- \(N = 5\) (number of draws)
+- 5 strings: "abc", "defgh", "ijklmnop", "qrstuvwx", "yz"
+
+You can use this generator to create random test cases for testing the solution to the problem.

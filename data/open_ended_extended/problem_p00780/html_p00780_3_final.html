@@ -1,0 +1,155 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p00780 - Generation 3</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p00780 - Generation 3</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>
+Problem A:Goldbach's Conjecture
+Goldbach's Conjecture: For any even number n greater than or equal to 4, there exists at least one pair of prime numbers p1 and p2 such that n = p1 + p2.
+This conjecture has not been proved nor refused yet. No one is sure whether this conjecture actually holds. However, one can find such a pair of prime numbers, if any, for a given even number. The problem here is to write a program that reports the number of all the pairs of prime numbers satisfying the condition in the conjecture for a given even number.
+A sequence of even numbers is given as input. Corresponding to each number, the program should output the number of pairs mentioned above. Notice that we are intereseted in the number of essentially different pairs and therefore you should not count (p1, p2) and (p2, p1) separately as two different pairs.
+Input
+An integer is given in each input line. You may assume that each integer is even, and is greater than or equal to 4 and less than 215. The end of the input is indicated by a number 0.
+Output
+Each output line should contain an integer number. No other characters should appear in the output.
+Sample Input
+6
+10
+12
+0
+Output for the Sample Input
+1
+2
+1
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>Canonicalized Input Description: 
+
+A sequence of integers, where each integer is even and in the range [4, 214]. The sequence is terminated by the integer 0, which is not part of the sequence.
+
+### Example Input:
+
+```
+6
+10
+12
+0
+```
+
+### Function Signature:
+Write a function f(inputs) that takes in the input. 
+def f(inputs: List[int]):
+    ''' 
+    inputs: a list of integers 
+    '''</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Certainly! To create a test case generator for the Goldbach's Conjecture problem, we need to generate even numbers between 4 and 214. Here's a Python function that generates such test cases:
+
+```python
+import random
+
+def generate_even_number():
+    """Generates a random even number between 4 and 214 inclusive."""
+    return random.choice(range(4, 215, 2))
+
+def tcgen():
+    """Generates a sequence of test cases for the Goldbach's Conjecture problem."""
+    
+    # Random number of test cases between 1 and 20 (arbitrary choice for variety)
+    num_cases = random.randint(1, 20)
+    
+    # Generate the test cases
+    test_cases = [generate_even_number() for _ in range(num_cases)]
+    
+    # Add the terminating zero
+    test_cases.append(0)
+    
+    return test_cases
+
+# Example usage
+test_cases = tcgen()
+for tc in test_cases:
+    print(tc)
+```
+
+### Explanation:
+
+1. **`generate_even_number` Function**:
+    - Generates a random even number between 4 and 214 inclusive.
+    - Uses `random.choice` on the range of even numbers starting from 4 to 214 with a step of 2.
+
+2. **`tcgen` Function**:
+    - Generates a random number of test cases (between 1 and 20, for example) to ensure variety.
+    - Uses a list comprehension to generate the specified number of even test cases using the `generate_even_number` function.
+    - Appends the terminating zero to the list of test cases.
+    - Returns the list of test cases.
+
+This generator will produce a varied set of even numbers as required by the problem, while ensuring the termination with 0 as specified.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    inputs = []
+    while True:
+        line = int(fh.readline().strip())
+        if line == 0:
+            break
+        inputs.append(line)
+    return inputs</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

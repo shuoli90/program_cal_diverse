@@ -1,0 +1,31 @@
+### Canonicalized Input Description:
+
+An integer N (1 ≤ N ≤ 100), representing the number of test cases.
+For each test case:
+- Two integers W and H (1 ≤ W, H ≤ 20), representing some dimensions.
+- A grid of H lines, each containing W integers, where each integer is between 0 and 9999.
+
+### Example Input:
+
+```
+2
+2 2
+2 3
+3 5
+3 2
+4 1 1
+2 1 4
+```
+
+### Function Signature:
+
+```python
+def f(N: int, test_cases: List[Tuple[int, int, List[List[int]]]]):
+    '''
+    N: an integer
+    test_cases: a list of tuples, each containing:
+        - an integer W
+        - an integer H
+        - a grid of integers of dimensions H x W
+    '''
+```

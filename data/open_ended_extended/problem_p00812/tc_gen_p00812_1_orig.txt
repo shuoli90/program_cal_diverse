@@ -1,0 +1,73 @@
+Certainly! Here's a test case generator for the problem "Equals are Equals":
+
+### Test Case Generator
+
+```python
+import random
+import string
+
+def random_variable():
+    return random.choice(string.ascii_lowercase)
+
+def random_term():
+    base = random.choice([random_variable(), str(random.randint(1, 1000))])
+    if random.random() > 0.5:
+        base += '^' + str(random.randint(1, 9))
+    return base
+
+def random_expression(depth=0):
+    if depth > 3 or random.random() > 0.7:
+        return random_term()
+    
+    expr = random_term()
+    for _ in range(random.randint(1, 4)):
+        operator = random.choice(['+', '-', '*'])
+        if operator in ['+', '-']:
+            expr += f" {operator} {random_term()}"
+        else:
+            expr += f" {operator} {random_expression(depth + 1)}"
+    return expr
+
+def generate_test_case():
+    # Number of student answers for each block
+    num_blocks = random.randint(1, 5)
+    blocks = []
+    
+    for _ in range(num_blocks):
+        mr_simpson_answer = random_expression()
+        num_answers = random.randint(1, 5)
+        
+        answers = [mr_simpson_answer]
+        for _ in range(num_answers):
+            answers.append(random_expression())
+        
+        blocks.append(answers)
+    
+    return blocks
+
+def format_test_case(blocks):
+    lines = []
+    for block in blocks:
+        for expression in block:
+            lines.append(expression)
+        lines.append('.')
+    lines.append('.')
+    return '\n'.join(lines)
+
+if __name__ == "__main__":
+    blocks = generate_test_case()
+    test_case = format_test_case(blocks)
+    print(test_case)
+```
+
+### Explanation
+
+1. **random_variable()**: Generates a random variable from 'a' to 'z'.
+2. **random_term()**: Generates a random term which can be a variable, a number, or a variable with an exponent.
+3. **random_expression(depth=0)**: Recursively generates a random algebraic expression. It controls the depth to avoid too deeply nested expressions.
+4. **generate_test_case()**:
+   - Generates a specified number of blocks.
+   - For each block, it creates Mr. Simpson's answer and a random number of student answers.
+5. **format_test_case(blocks)**: Formats the test case into the required input format.
+
+Each block of input ends with a period, and the entire input sequence also ends with a period. The test case generator ensures that the expressions are varied and mimic the structure of the problem statement.

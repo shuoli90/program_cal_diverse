@@ -1,0 +1,233 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p00374 - Generation 1</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p00374 - Generation 1</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>Iron Bars
+A boy PCK had N straight iron bars, which were serially indexed. Unfortunately, the first M bars (0 ≤ M ≤ N) among them were bent during transportation. They all suffered a perpendicular bend at one point.
+  He is planning to make a cube using a set of bars selected using the following rules: X bars from bent ones, Y bars from straight ones, where 2X + Y = 12. Any two bars can be jointed only at the apexes of the cube. He wants to count how many types of rectangular parallelepipeds (hereafter RP) he can make using these bars.
+Make a program to count out types (different shapes) of RPs that PCK can make using the following information: the number of bars and length of each one, position of the bend, and the number of bars to be used to construct an RP. Note that any two RPs similar in shape are considered identical: namely if the length of three defining sides of two RPs coincide if arranged in increasing/decreasing order (e.g., three sides of RP i and j are A_i, B_i, C_i, and A_j, B_j and C_j in increasing order, then the relations A_i = A_j, B_i = B_j, and C_i = C_j hold. Note also that the bars are sufficiently thin to allow you to consider them as idealized lines.
+  
+Input
+  The input is given in the following format.
+N M X Y
+a_1
+a_2
+:
+a_N
+b_1
+b_2
+:
+b_M
+The first line provides the total number of iron bars and bent bars, and those straight and bent bars used to construct an RP: N (6 ≤ N ≤ 6000), M (0 ≤ M ≤ N), X (0 ≤ X ≤ 6), and Y (0 ≤ Y ≤ 12). The following relations always hold for them: 2X+Y=12, X+Y ≤ N, X ≤ M. Each of the subsequent N lines provides the length of the i-th bar a_i (1 ≤ a_i ≤ 6000) in integers. Furthermore, each of the subsequent M lines provides the location at which the i-th bent bar suffered a perpendicular bend b_i (1 ≤ b_i ≤ 3000) in centimeters from one end of the bar (note: 1 ≤ a_i-b_i ≤ 3000).
+  
+Output
+  Output the number of constructible rectangular parallelepipeds.
+Sample Input 1
+18 8 3 6
+4
+3
+3
+3
+3
+2
+2
+2
+1
+1
+1
+1
+1
+2
+2
+3
+3
+3
+1
+1
+1
+1
+1
+1
+1
+1
+Sample Output 1
+3
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>Canonicalized Input Description:
+
+An integer N (6 ≤ N ≤ 6000), representing some quantity.
+An integer M (0 ≤ M ≤ N), representing some quantity.
+An integer X (0 ≤ X ≤ 6), representing some quantity.
+An integer Y (0 ≤ Y ≤ 12), representing some quantity. The relation 2X + Y = 12 always holds.
+N integers a_i (1 ≤ a_i ≤ 6000), representing some values.
+M integers b_i (1 ≤ b_i ≤ 3000), representing some values, with the relation 1 ≤ a_i - b_i ≤ 3000 holding for corresponding values of a_i.
+
+### Example Input:
+```
+18 8 3 6
+4
+3
+3
+3
+3
+2
+2
+2
+1
+1
+1
+1
+1
+2
+2
+3
+3
+3
+1
+1
+1
+1
+1
+1
+1
+1
+```
+
+### Function Signature:
+Write a function f(inputs) that takes in the input.
+```python
+def f(inputs: List[Tuple[int, int, int, int, List[int], List[int]]]):
+    '''
+    inputs: a list of tuples where each tuple contains:
+        - an integer N
+        - an integer M
+        - an integer X
+        - an integer Y
+        - a list of N integers
+        - a list of M integers
+    '''
+```</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>To create a test case generator for the "Iron Bars" problem, we need to generate the input format that matches the constraints and structure of the problem statement. Below is a Python function that generates random valid input for this problem:
+
+```python
+import random
+
+def tcgen():
+    # Constants for constraints
+    N_min, N_max = 6, 6000
+    L_min, L_max = 1, 6000
+    B_min, B_max = 1, 3000
+
+    # Randomly generate N and M such that 0 ≤ M ≤ N and 6 ≤ N ≤ 6000
+    N = random.randint(N_min, N_max)
+    M = random.randint(0, N)
+
+    # X and Y must satisfy the equation 2X + Y = 12
+    X_options = [x for x in range(7) if (12 - 2*x) <= (N - x) and (12 - 2*x) >= 0 and x <= M]
+    if not X_options:
+        return tcgen()  # Retry if no valid X options found
+
+    X = random.choice(X_options)
+    Y = 12 - 2 * X
+
+    # Generate N lengths for the bars (1 ≤ a_i ≤ 6000)
+    lengths = [random.randint(L_min, L_max) for _ in range(N)]
+
+    # Generate M bend positions for the first M bars (1 ≤ b_i ≤ 3000 and 1 ≤ a_i - b_i ≤ 3000)
+    bends = [random.randint(B_min, min(L_max, lengths[i] - B_min)) for i in range(M)]
+
+    # Prepare the input format
+    input_data = f"{N} {M} {X} {Y}\n"
+    input_data += "\n".join(map(str, lengths)) + "\n"
+    input_data += "\n".join(map(str, bends)) + "\n"
+
+    return input_data
+
+# Example usage
+print(tcgen())
+```
+
+### Explanation
+
+1. **Constraints**: Ensure that the generated values for `N`, `M`, `X`, and `Y` respect the problem's constraints.
+    - \(N\) is between 6 and 6000.
+    - \(M\) is between 0 and \(N\).
+    - \(X\) and \(Y\) must satisfy \(2X + Y = 12\).
+    - \(X\) must be less than or equal to `M`.
+    - \(X\) and \(Y\) must sum up to less than or equal to `N`.
+
+2. **Lengths of Bars**: Each bar length \(a_i\) is between 1 and 6000.
+
+3. **Bend Positions**: For the first \(M\) bars, generate a bend position \(b_i\) such that \(1 \leq b_i \leq 3000\) and \(1 \leq a_i - b_i \leq 3000\).
+
+4. **Input Format**: Combine all the generated values in the specified input format.
+
+This generator will create random, valid test cases for the "Iron Bars" problem. You can run the `tcgen` function to generate a new test case each time.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    N, M, X, Y = map(int, fh.readline().strip().split())
+    lengths = [int(fh.readline().strip()) for _ in range(N)]
+    bends = [int(fh.readline().strip()) for _ in range(M)]
+    return N, M, X, Y, lengths, bends</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

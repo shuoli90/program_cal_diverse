@@ -1,0 +1,5 @@
+Types: N: int, d: int, p: List[int]
+
+Ranges: 3 ≤ N ≤ 1,000, 1 ≤ d ≤ 1,000, 1 ≤ p_i ≤ 1,000 (1 ≤ i ≤ N)
+
+Addtl Info: None

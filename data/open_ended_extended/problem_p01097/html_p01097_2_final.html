@@ -1,0 +1,368 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p01097 - Generation 2</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p01097 - Generation 2</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>
+3D Printing
+We are designing an installation art piece consisting of 
+a number of cubes with 3D printing technology for submitting one to
+Installation art Contest with Printed Cubes (ICPC).
+At this time, we are trying to model a piece consisting of exactly k cubes 
+of the same size facing the same direction.
+First, using a CAD system, 
+we prepare n (n ≥ k) positions as candidates
+in the 3D space where cubes can be placed.
+When cubes would be placed at all the candidate positions, 
+the following three conditions are satisfied.
+Each cube may overlap zero, one or two other cubes, but not three or more.
+When a cube overlap two other cubes, those two cubes do not overlap.
+Two non-overlapping cubes do not touch at their surfaces, edges or corners.
+Second, choosing appropriate k different positions from n candidates
+and placing cubes there, 
+we obtain a connected polyhedron as a union of the k cubes. 
+When we use a 3D printer,
+we usually print only the thin surface of a 3D object.
+In order to save the amount of filament material for the 3D printer, 
+we want to find the polyhedron with the minimal surface area.
+Your job is to find the polyhedron with the minimal surface area
+consisting of k connected
+cubes placed at k selected positions among n given ones. 
+Figure E1. A polyhedron formed with connected identical cubes.
+Input
+The input consists of multiple datasets. 
+The number of datasets is at most 100.
+Each dataset is in the following format.
+n k s
+x1 y1 z1
+... 
+xn yn zn
+In the first line of a dataset,
+n is the number of the candidate positions,
+k is the number of the cubes to form the connected polyhedron,
+and s is the edge length of cubes. 
+n, k and s are integers separated by a space. 
+The following n lines specify the n candidate positions.
+In the i-th line, there are three integers 
+xi,
+yi and 
+zi
+that specify the coordinates of a position,  
+where the corner of the cube with the smallest coordinate values
+may be placed.
+Edges of the cubes are to be aligned with either of three axes.
+All the values of coordinates are integers separated by a space.
+The three conditions on the candidate positions mentioned above are satisfied.
+The parameters satisfy the following conditions:
+1 ≤ k ≤ n ≤ 2000, 3 ≤ s ≤ 100,  and
+-4×107 ≤ xi, yi, zi ≤ 4×107. 
+The end of the input is indicated by a line containing three zeros
+separated by a space.
+Output
+For each dataset, output a single line containing one integer
+indicating the surface area of the connected polyhedron with 
+the minimal surface area.
+When no k cubes form a connected polyhedron, output -1.
+Sample Input
+1 1 100
+100 100 100
+6 4 10
+100 100 100
+106 102 102
+112 110 104
+104 116 102
+100 114 104
+92 107 100
+10 4 10
+-100 101 100
+-108 102 120
+-116 103 100
+-124 100 100
+-132 99 100
+-92 98 100
+-84 100 140
+-76 103 100
+-68 102 100
+-60 101 100
+10 4 10
+100 100 100
+108 101 100
+116 102 100
+124 100 100
+132 102 100
+200 100 103
+192 100 102
+184 100 101
+176 100 100
+168 100 103
+4 4 10
+100 100 100
+108 94 100
+116 100 100
+108 106 100
+23 6 10
+100 100 100
+96 109 100
+100 118 100
+109 126 100
+118 126 100
+127 118 98
+127 109 104
+127 100 97
+118 91 102
+109 91 100
+111 102 100
+111 102 109
+111 102 118
+111 102 91
+111 102 82
+111 114 96
+111 114 105
+102 114 114
+93 114 114
+84 114 105
+84 114 96
+93 114 87
+102 114 87
+10 3 10
+100 100 100
+116 116 102
+132 132 104
+148 148 106
+164 164 108
+108 108 108
+124 124 106
+140 140 104
+156 156 102
+172 172 100
+0 0 0
+Output for the Sample Input
+60000
+1856
+-1
+1632
+1856
+2796
+1640
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An integer n (1 ≤ n ≤ 2000), an integer k (1 ≤ k ≤ n), and an integer s (3 ≤ s ≤ 100), all separated by spaces.
+Following are n lines, each containing three integers xi, yi, and zi (-4×10^7 ≤ xi, yi, zi ≤ 4×10^7).
+
+### Example Input:
+
+```
+1 1 100
+100 100 100
+6 4 10
+100 100 100
+106 102 102
+112 110 104
+104 116 102
+100 114 104
+92 107 100
+10 4 10
+-100 101 100
+-108 102 120
+-116 103 100
+-124 100 100
+-132 99 100
+-92 98 100
+-84 100 140
+-76 103 100
+-68 102 100
+-60 101 100
+10 4 10
+100 100 100
+108 101 100
+116 102 100
+124 100 100
+132 102 100
+200 100 103
+192 100 102
+184 100 101
+176 100 100
+168 100 103
+4 4 10
+100 100 100
+108 94 100
+116 100 100
+108 106 100
+23 6 10
+100 100 100
+96 109 100
+100 118 100
+109 126 100
+118 126 100
+127 118 98
+127 109 104
+127 100 97
+118 91 102
+109 91 100
+111 102 100
+111 102 109
+111 102 118
+111 102 91
+111 102 82
+111 114 96
+111 114 105
+102 114 114
+93 114 114
+84 114 105
+84 114 96
+93 114 87
+102 114 87
+10 3 10
+100 100 100
+116 116 102
+132 132 104
+148 148 106
+164 164 108
+108 108 108
+124 124 106
+140 140 104
+156 156 102
+172 172 100
+0 0 0
+```
+
+### Function Signature:
+Write a function f(inputs) that takes in the input.
+```python
+def f(inputs: List[Tuple[int, int, int, List[Tuple[int, int, int]]]]):
+    '''
+    inputs: a list of tuples, where each tuple consists of:
+        - an integer n
+        - an integer k
+        - an integer s
+        - a list of n tuples, each containing three integers (xi, yi, zi)
+    '''
+```</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Certainly! Below is a test case generator for the competitive programming problem "3D Printing".
+
+```python
+import random
+
+def generate_single_dataset():
+    n = random.randint(1, 2000)
+    k = random.randint(1, n)
+    s = random.randint(3, 100)
+    
+    positions = []
+    for _ in range(n):
+        xi = random.randint(-4 * 10**7, 4 * 10**7)
+        yi = random.randint(-4 * 10**7, 4 * 10**7)
+        zi = random.randint(-4 * 10**7, 4 * 10**7)
+        positions.append((xi, yi, zi))
+    
+    return n, k, s, positions
+
+def generate_multiple_datasets(num_datasets):
+    datasets = []
+    for _ in range(num_datasets):
+        datasets.append(generate_single_dataset())
+    return datasets
+
+def format_datasets(datasets):
+    formatted_data = []
+    for dataset in datasets:
+        n, k, s, positions = dataset
+        formatted_data.append(f"{n} {k} {s}")
+        for pos in positions:
+            formatted_data.append(f"{pos[0]} {pos[1]} {pos[2]}")
+    formatted_data.append("0 0 0")
+    return "\n".join(formatted_data)
+
+def tcgen(num_datasets=100):
+    datasets = generate_multiple_datasets(num_datasets)
+    return format_datasets(datasets)
+
+# Example usage:
+test_cases = tcgen()
+print(test_cases)
+```
+
+### Explanation:
+1. **`generate_single_dataset`**: This function generates a single dataset. It randomly selects values for `n`, `k`, and `s` within the specified ranges. It then generates `n` positions, each with `xi`, `yi`, and `zi` coordinates randomly chosen within the specified range.
+
+2. **`generate_multiple_datasets`**: This function generates the specified number of datasets by calling `generate_single_dataset` the required number of times.
+
+3. **`format_datasets`**: This function formats the generated datasets into the required input format for the problem. It appends "0 0 0" at the end to indicate the end of input.
+
+4. **`tcgen`**: This function generates the specified number of datasets (default is 100) and returns them as a formatted string.
+
+This test case generator will produce random test cases that comply with the problem's requirements and constraints.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    datasets = []
+    while True:
+        line = fh.readline().strip()
+        if line == "0 0 0":
+            break
+        n, k, s = map(int, line.split())
+        positions = []
+        for _ in range(n):
+            x, y, z = map(int, fh.readline().strip().split())
+            positions.append((x, y, z))
+        datasets.append((n, k, s, positions))
+    return datasets</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

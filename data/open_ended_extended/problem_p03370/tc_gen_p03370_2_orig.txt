@@ -1,0 +1,60 @@
+Sure! Here's a test case generator for the given problem statement:
+
+```python
+import random
+
+def tcgen():
+    # Generate N within the range 2 to 100
+    N = random.randint(2, 100)
+    
+    # Generate X within the range sum(m_i) to 10^5 where sum(m_i) is the sum of all m_i
+    m = [random.randint(1, 1000) for _ in range(N)]
+    min_X = sum(m)
+    X = random.randint(min_X, 10**5)
+    
+    return N, X, m
+
+# Example of how to use the test case generator
+if __name__ == "__main__":
+    N, X, m = tcgen()
+    print(N)
+    print(X)
+    for mi in m:
+        print(mi)
+
+# Example Output:
+# 5
+# 3000
+# 150
+# 130
+# 150
+# 130
+# 110
+```
+
+### Explanation:
+
+1. **N** is generated randomly between 2 and 100.
+2. **m** is a list of integers randomly generated between 1 and 1000 for each kind of doughnut.
+3. **X** is generated such that it is at least the sum of all **m_i** (to ensure that making at least one doughnut of each kind is always possible) and at most \(10^5\).
+
+### Sample Execution:
+
+When executed, this generator will print out a random test case, e.g.:
+
+```
+5
+3000
+150
+130
+150
+130
+110
+```
+
+This output represents:
+- **N** = 5 (five kinds of doughnuts)
+- **X** = 3000 grams of Moto available
+- **m** = [150, 130, 150, 130, 110] (grams of Moto required for each kind of doughnut)
+
+You can run the generator multiple times to get different test cases.

@@ -1,0 +1,52 @@
+Certainly! Below is a Python function to generate test cases for the given problem statement. This function will simulate the input format described and generate random test cases based on the constraints provided.
+
+```python
+import random
+
+def generate_test_case():
+    # Generate N (number of participants) and M (number of questions except the last one)
+    N = random.randint(2, 10000)
+    M = random.randint(1, 1000)
+    
+    # Generate the scores S1 to SM and the information about which participants can answer each question
+    questions = []
+    total_k = 0
+    for _ in range(M):
+        Si = random.randint(1, 100)
+        ki = random.randint(1, N)
+        total_k += ki
+        if total_k > 100000:  # Ensure the total ki does not exceed 100,000
+            ki = max(1, ki - (total_k - 100000))
+        participants = random.sample(range(1, N+1), ki)
+        questions.append((Si, ki, participants))
+    
+    # Prepare the input string
+    input_data = f"{N} {M}\n"
+    for Si, ki, participants in questions:
+        input_data += f"{Si} {ki} {' '.join(map(str, participants))}\n"
+    input_data += "0 0\n"
+    
+    return input_data
+
+# Generate a sample test case
+print(generate_test_case())
+```
+
+### Explanation:
+
+1. **N and M Generation:**
+   - `N` is generated randomly between 2 and 10,000.
+   - `M` is generated randomly between 1 and 1,000.
+
+2. **Questions Generation:**
+   - For each question (from 1 to M):
+     - `Si` (the score for the i-th question) is generated randomly between 1 and 100.
+     - `ki` (the number of participants who can answer the i-th question correctly) is generated randomly between 1 and `N`.
+     - We keep a running total of all `ki` values to ensure that their sum does not exceed 100,000. If adding the current `ki` would exceed this limit, we adjust `ki` accordingly.
+     - A random sample of `ki` unique participants (from 1 to N) is selected to indicate which participants can answer the question correctly.
+
+3. **Input Formatting:**
+   - The input string is constructed according to the problem's input format.
+   - The generated test case is returned as a string, which can be used as input for the problem.
+
+You can run the `generate_test_case()` function multiple times to get different test cases for your problem.

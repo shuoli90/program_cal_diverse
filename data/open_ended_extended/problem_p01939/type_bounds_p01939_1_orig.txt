@@ -1,0 +1,3 @@
+Types: n: int, m: int
+Ranges: 1 ≤ n ≤ 10^15, 0 ≤ m ≤ 10^15
+Addtl Info: Output result modulo 10^9 + 7

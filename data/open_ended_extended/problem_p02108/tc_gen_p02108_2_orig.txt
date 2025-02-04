@@ -1,0 +1,44 @@
+Here's a test case generator for the provided competitive programming problem "Donuts Purchase":
+
+```python
+import random
+
+def tcgen():
+    # Number of towns (1 ≤ n ≤ 10^5)
+    n = random.randint(1, 10**5)
+    
+    # Maximum number of roads: min(n*(n-1), 10^5)
+    max_m = min(n * (n - 1), 10**5)
+    m = random.randint(0, max_m)
+    
+    # Satisfaction values for each town (0 ≤ ci ≤ 1000)
+    satisfaction = [random.randint(0, 1000) for _ in range(n)]
+    
+    roads = set()
+    while len(roads) < m:
+        a = random.randint(0, n - 1)
+        b = random.randint(0, n - 1)
+        if a != b:
+            roads.add((a, b))
+    
+    roads = list(roads)
+    
+    # Format the input as a string
+    input_data = f"{n} {m}\n" + " ".join(map(str, satisfaction)) + "\n"
+    for road in roads:
+        input_data += f"{road[0]} {road[1]}\n"
+    
+    return input_data
+
+# Generate a test case and print it
+print(tcgen())
+```
+
+### Explanation of the Code:
+1. **Number of Towns `n`:** Randomly generated between 1 and \(10^5\).
+2. **Number of Roads `m`:** Randomly generated between 0 and the minimum of \(n \times (n - 1)\) and \(10^5\), ensuring the constraints are satisfied.
+3. **Satisfaction Values `ci`:** A list of `n` integers where each integer is randomly chosen between 0 and 1000.
+4. **Roads `ai` and `bi`:** A set is used to ensure there are no duplicate roads or self-loops; roads are then randomly generated.
+5. **Formatting the Input:** The input is formatted according to the problem statement.
+
+This generator will create diverse test cases within the specified constraints, useful for testing solutions to the problem.

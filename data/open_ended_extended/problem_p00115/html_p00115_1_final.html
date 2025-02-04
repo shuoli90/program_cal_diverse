@@ -1,0 +1,182 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p00115 - Generation 1</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p00115 - Generation 1</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>Spaceship UAZ Advance
+Stellar calendar 2005.11.5. You are the captain of the UAZ Advance spacecraft and are about to engage in combat with an enemy spacecraft. Fortunately, the enemy spacecraft is still stationary and has not yet noticed us. Also, the coordinates of the enemy's spaceship are already known, and the "Feather Cannon," which emits a powerful straight-line beam, is ready to fire. All that remains is to give the order to fire.
+However, there is a problem. An energy barrier installed by the enemy exists in space. The barrier is in the shape of a triangle and reflects the "Feather Cannon" beam. Also, if the beam hits the barrier, the enemy will notice us and escape. If we cannot determine that the beam will hit its target in advance, we cannot issue the firing order.
+Therefore, please create a program that inputs the coordinates of the UAZ Advance spacecraft, the enemy, and the barrier in space coordinates (3D coordinates x, y, and z) and outputs "HIT" if the beam hits the enemy while avoiding the barrier, and "MISS" if the beam hits the barrier. If the enemy is inside the barrier, output "MISS."
+Note that only those barriers that appear as triangles from the UAZ Advance spacecraft are targeted, and those that appear as flattened lines are not included. Also, the barrier is effective even on the boundary that includes the vertices of the triangle and reflects the beam.
+Input
+The format of the input data is as follows:
+The first line contains the coordinates of the UAZ Advance spacecraft (x, y, z) (integers, separated by a single space).
+The second line contains the coordinates of the enemy (x, y, z) (integers, separated by a single space).
+The third line contains the coordinates of vertex 1 of the barrier (x, y, z) (integers, separated by a single space).
+The fourth line contains the coordinates of vertex 2 of the barrier (x, y, z) (integers, separated by a single space).
+The fifth line contains the coordinates of vertex 3 of the barrier (x, y, z) (integers, separated by a single space).
+Output
+Output either "HIT" or "MISS" on a single line.
+Constraints
+-100 ≤ x, y, z ≤ 100
+The UAZ Advance spacecraft and the enemy will never be in the same position.
+Sample Input 1
+-10 0 0
+10 0 0
+0 10 0
+0 10 10
+0 0 10
+Output for the Sample Input 1
+HIT
+Sample Input 2
+-10 6 6
+10 6 6
+0 10 0
+0 10 10
+0 0 10
+Output for the Sample Input 2
+MISS
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>Canonicalized Input Description:
+
+Three integers representing a point in 3D space where each integer is between -100 and 100.
+Three integers representing another point in 3D space where each integer is between -100 and 100.
+Three integers representing a vertex of a triangle in 3D space where each integer is between -100 and 100.
+Three integers representing another vertex of the triangle in 3D space where each integer is between -100 and 100.
+Three integers representing the third vertex of the triangle in 3D space where each integer is between -100 and 100.
+
+### Example Input:
+
+```
+-10 0 0
+10 0 0
+0 10 0
+0 10 10
+0 0 10
+```
+
+### Function Signature:
+Write a function `f(points)` that takes in the input. 
+```python
+def f(points: List[Tuple[int, int, int]]):
+    '''
+    points: a list of tuples, each containing three integers representing coordinates in 3D space
+    '''
+```</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>To create a test case generator for the provided problem statement "Spaceship UAZ Advance," we need to generate random coordinates for the UAZ Advance spacecraft, the enemy, and the vertices of the barrier. The coordinates will be within the constraints of -100 to 100 for x, y, and z values. Here's a Python function that generates test cases for this problem:
+
+```python
+import random
+
+def generate_coordinate():
+    return random.randint(-100, 100)
+
+def generate_unique_coordinate(existing_coordinates):
+    while True:
+        coord = (generate_coordinate(), generate_coordinate(), generate_coordinate())
+        if coord not in existing_coordinates:
+            return coord
+
+def tcgen_spaceship_uaz_advance():
+    # Set of coordinates to ensure uniqueness
+    coordinates = set()
+    
+    # UAZ Advance spacecraft coordinates
+    uaz_advance = generate_unique_coordinate(coordinates)
+    coordinates.add(uaz_advance)
+    
+    # Enemy coordinates
+    enemy = generate_unique_coordinate(coordinates)
+    coordinates.add(enemy)
+    
+    # Barrier vertices coordinates
+    barrier_vertex1 = generate_unique_coordinate(coordinates)
+    coordinates.add(barrier_vertex1)
+    
+    barrier_vertex2 = generate_unique_coordinate(coordinates)
+    coordinates.add(barrier_vertex2)
+    
+    barrier_vertex3 = generate_unique_coordinate(coordinates)
+    coordinates.add(barrier_vertex3)
+    
+    return uaz_advance, enemy, barrier_vertex1, barrier_vertex2, barrier_vertex3
+
+# Example usage
+uaz_advance, enemy, vertex1, vertex2, vertex3 = tcgen_spaceship_uaz_advance()
+print("UAZ Advance spacecraft coordinates:", uaz_advance)
+print("Enemy coordinates:", enemy)
+print("Barrier vertex 1 coordinates:", vertex1)
+print("Barrier vertex 2 coordinates:", vertex2)
+print("Barrier vertex 3 coordinates:", vertex3)
+```
+
+This function generates random coordinates for the UAZ Advance spacecraft, the enemy, and the three vertices of the barrier. It ensures that no two points have the same coordinates, as the generator checks for uniqueness before adding a coordinate to the set of existing coordinates.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    spacecraft_coords = tuple(map(int, fh.readline().strip().split()))
+    enemy_coords = tuple(map(int, fh.readline().strip().split()))
+    barrier_vertex_1 = tuple(map(int, fh.readline().strip().split()))
+    barrier_vertex_2 = tuple(map(int, fh.readline().strip().split()))
+    barrier_vertex_3 = tuple(map(int, fh.readline().strip().split()))
+    return (spacecraft_coords, enemy_coords, barrier_vertex_1, barrier_vertex_2, barrier_vertex_3)</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

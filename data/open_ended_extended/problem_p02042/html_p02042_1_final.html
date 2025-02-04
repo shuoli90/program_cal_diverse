@@ -1,0 +1,163 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p02042 - Generation 1</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p02042 - Generation 1</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>F: Absum
+Problem
+You are given a sequence $A$ of length $N$. You can perform at most $M$ operations to swap the $i$-th and $j$-th ($0 \leq i, j \leq N-1$) elements of the sequence.
+Find the maximum possible value of $\sum_{i = 0}^{N - 1} abs(A_i - i)$ over all possible sequences that can be obtained by performing the operations.
+Constraints
+$2 \leq N \leq 10^5$
+$0 \leq M \leq N$
+$0 \leq A_i \leq 10^5$
+Input format
+The input is given in the following format:
+$N\ M$
+$A_0\ A_1\ A_2\ \dots\ A_{N - 1}$
+Output format
+Print the maximum value of $\sum_{i = 0}^{N - 1} abs(A_i - i)$ over all possible sequences that can be obtained by performing the operations. Print a newline character at the end.
+Sample Input 1
+5 2
+0 3 2 1 4
+Sample Output 1
+12
+Swap the $0$-th and $4$-th elements to obtain the sequence $(4, 3, 2, 1, 0)$. The maximum value of $\sum_{i = 0}^{N - 1} abs(A_i - i)$ is $|4 - 0| + |3 - 1| + |2 - 2| + |1 - 3| + |0 - 4| = 12$. Note that it is not necessary to perform exactly $M$ operations.
+Sample Input 2
+3 2
+0 0 0
+Sample Output 2
+3
+The maximum value is obtained without performing any operations.
+Sample Input 3
+6 2
+1 0 3 6 5 4
+Sample Output 3
+20
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An integer N (2 ≤ N ≤ 10^5), representing some quantity or size.
+An integer M (0 ≤ M ≤ N), representing some quantity or size.
+A list of integers A of size N, where each integer is between 0 and 1e5.
+
+### Example Input:
+
+```
+5 2
+0 3 2 1 4
+```
+
+### Function Signature:
+Write a function f(N, M, A) that takes in the input. 
+def f(N: int, M: int, A: List[int]): 
+    ''' 
+    N: an integer 
+    M: an integer
+    A: a list of integers
+    '''</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Sure! Here is a test case generator for the "F: Absum" problem:
+
+```python
+import random
+
+def tcgen():
+    N = random.randint(2, 10**5)  # Random N between 2 and 100000
+    M = random.randint(0, N)      # Random M between 0 and N
+    
+    # Creating the array A with random values between 0 and 100000
+    A = [random.randint(0, 10**5) for _ in range(N)]
+    
+    return N, M, A
+
+# Example usage
+N, M, A = tcgen()
+print(N, M)
+print(" ".join(map(str, A)))
+```
+
+This test case generator will produce random test cases conforming to the given constraints for the "F: Absum" problem.
+
+### Explanation:
+
+1. **N**: Randomly chosen between 2 and 100000.
+2. **M**: Randomly chosen between 0 and N.
+3. **A**: A list of N integers where each integer is randomly chosen between 0 and 100000.
+
+### Example output:
+```
+5 2
+12345 67890 23456 98765 1234
+```
+This example indicates 5 elements in the array with up to 2 swap operations allowed, and the array elements are: 12345, 67890, 23456, 98765, 1234.
+
+You can adjust the random seed if you need reproducible results during testing.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    N, M = map(int, fh.readline().strip().split())
+    A = list(map(int, fh.readline().strip().split()))
+    return N, M, A
+
+# Example usage:
+# with open('input.txt', 'r') as fh:
+#     N, M, A = extract_arguments(fh)
+#     print(N, M, A)</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

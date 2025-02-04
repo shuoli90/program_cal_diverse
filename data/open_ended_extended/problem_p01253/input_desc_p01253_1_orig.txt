@@ -1,0 +1,20 @@
+An integer N (1 ≤ N ≤ 2000) representing some quantity or size.
+An integer T (1 ≤ T ≤ 2000) representing some quantity or size.
+A string S of length N consisting of characters 'R' and 'B'.
+
+### Example Input:
+
+```
+6 1
+RBRBRB
+```
+
+### Function Signature:
+Write a function f(inputs) that takes in the input as a list of tuples.
+def f(inputs: List[Tuple[int, int, str]]):
+    '''
+    inputs: a list of tuples, each tuple containing:
+        - an integer N
+        - an integer T
+        - a string S
+    '''

@@ -1,0 +1,3 @@
+Types: NA: int, deckA: List[str], NB: int, deckB: List[str]
+Ranges: 1 ≤ NA, NB ≤ 10, 1 ≤ len(deckA[i]), len(deckB[i]) ≤ 2
+Addtl Info: deckA and deckB contain unique cards from the set {'S', 'H', 'D', 'C'} x {'A', 'K', 'Q', 'J', 'X', '2', '3', '4', '5', '6', '7', '8', '9'}

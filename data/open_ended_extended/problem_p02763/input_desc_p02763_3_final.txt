@@ -1,0 +1,32 @@
+An integer N (1 ≤ N ≤ 500,000), representing some quantity or size.
+A string S of length N, consisting of lowercase English letters.
+An integer Q (1 ≤ Q ≤ 20,000), representing the number of queries.
+Q lines of queries, each being either:
+1 i_q c_q (where 1 ≤ i_q ≤ N and c_q is a lowercase English letter)
+2 l_q r_q (where 1 ≤ l_q ≤ r_q ≤ N)
+
+### Example Input:
+
+```
+7
+abcdbbd
+6
+2 3 6
+1 5 z
+2 1 1
+1 4 a
+1 7 d
+2 1 7
+```
+
+### Function Signature:
+Write a function f(N, S, Q, queries) that takes in the input.
+```python
+def f(N: int, S: str, Q: int, queries: List[Tuple[int, Union[Tuple[int, str], Tuple[int, int]]]]):
+    '''
+    N: an integer
+    S: a string
+    Q: an integer
+    queries: a list of tuples
+    '''
+```

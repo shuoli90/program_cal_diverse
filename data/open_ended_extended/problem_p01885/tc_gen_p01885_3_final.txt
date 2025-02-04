@@ -1,0 +1,38 @@
+Certainly! Here's a test case generator for the "Escape from the Hell" problem:
+
+```python
+import random
+
+def tcgen():
+    # Generate values for N and L
+    N = random.randint(1, 10**5)
+    L = random.randint(1, 10**9)
+    
+    # Generate values for A and B
+    A = [random.randint(1, 10**9) for _ in range(N)]
+    B = [random.randint(1, 10**9) for _ in range(N)]
+    
+    # Generate values for C
+    C = [random.randint(1, 10**9) for _ in range(N)]
+    
+    # Format the test case
+    test_case = f"{N} {L}\n"
+    for i in range(N):
+        test_case += f"{A[i]} {B[i]}\n"
+    for i in range(N):
+        test_case += f"{C[i]}\n"
+    
+    return test_case
+
+# Example usage
+print(tcgen())
+```
+
+This generator will produce a random test case each time it is called. Here's a breakdown of the generator:
+
+1. **N and L Generation**: Randomly generate the number of energy drinks \( N \) and the length of the spider silk \( L \).
+2. **A and B Generation**: For each energy drink, generate the meters climbed during the day \( A_i \) and meters slid down during the night \( B_i \).
+3. **C Generation**: For each day, generate the meters climbed by other sinners \( C_i \).
+4. **Formatting**: Combine all these values into a string formatted as specified in the problem statement.
+
+This will ensure that the test cases cover various scenarios of the problem, from minimal constraints to the upper limits.

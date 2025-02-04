@@ -1,0 +1,17 @@
+An integer M (1 ≤ M ≤ 50), representing the number of lines.
+M strings, each string has a length of at most 100 characters. The strings consist of uppercase and lowercase letters, digits, and symbols.
+
+### Example Input:
+
+```
+2
+ab@5C1@8050
+@99+1=1@90
+```
+
+### Function Signature:
+Write a function f(inputs) that takes in the input as a list of strings.
+def f(inputs: List[str]):
+    '''
+    inputs: a list of strings
+    '''

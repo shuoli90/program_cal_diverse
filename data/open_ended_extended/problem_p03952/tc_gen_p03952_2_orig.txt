@@ -1,0 +1,21 @@
+Sure, here's the test case generator for the given problem:
+
+```python
+import random
+
+def tcgen():
+    N = random.randint(2, 10**5)
+    x = random.randint(1, 2*N-1)
+    return N, x
+
+# Example usage
+N, x = tcgen()
+print(N, x)
+```
+
+Explanation:
+
+- **N** is generated to be an integer within the range [2, 10^5] as per the constraints.
+- **x** is generated to be an integer within the range [1, 2N-1] as per the constraints.
+
+This function will generate random values for N and x that fit within the constraints of the problem statement. You can call this function to generate test cases for your problem.

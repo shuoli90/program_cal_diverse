@@ -1,0 +1,12 @@
+def extract_arguments(fh):
+    datasets = []
+    while True:
+        n = int(fh.readline().strip())
+        if n == 0:
+            break
+        students = []
+        for _ in range(n):
+            scores = list(map(int, fh.readline().strip().split()))
+            students.append(tuple(scores))
+        datasets.append((n, students))
+    return datasets

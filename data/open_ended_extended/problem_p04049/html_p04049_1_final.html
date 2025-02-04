@@ -1,0 +1,214 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p04049 - Generation 1</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p04049 - Generation 1</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>
+Score : 600 points
+Problem StatementGiven an undirected tree, let the distance between vertices u and v be the
+number of edges on the simple path from u to v.
+The diameter of a tree is the maximum among the distances between any two vertices.
+We will call a tree good if and only if its diameter is at most K.
+You are given an undirected tree with N vertices numbered 1 through N.
+For each i (1≦i≦N-1), there is an edge connecting vertices A_i and B_i.
+You want to remove zero or more vertices from the tree, so that the resulting tree is good.
+When a vertex is removed, all incident edges will also be removed.
+The resulting graph must be connected.
+Find the minimum number of vertices that you need to remove in order to produce a good tree.
+Constraints
+2≦N≦2000
+1≦K≦N-1
+1≦A_i≦N, 1≦B_i≦N
+The graph defined by A_i and B_i is a tree.
+InputThe input is given from Standard Input in the following format:
+N K
+A_1 B_1
+A_2 B_2
+:
+A_{N-1} B_{N-1}
+OutputPrint the minimum number of vertices that you need to remove in order to produce a good tree.
+Sample Input 16 2
+1 2
+3 2
+4 2
+1 6
+5 6
+Sample Output 12
+The tree is shown below. Removing vertices 5 and 6 will result in a good tree with the diameter of 2.
+Sample Input 26 5
+1 2
+3 2
+4 2
+1 6
+5 6
+Sample Output 20
+Since the given tree is already good, you do not need to remove any vertex.
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An integer N (2 ≤ N ≤ 2000), representing some quantity or size.
+An integer K (1 ≤ K ≤ N-1).
+A list of tuples, each containing two integers (A_i, B_i) where (1 ≤ A_i ≤ N and 1 ≤ B_i ≤ N), representing pairs of connections.
+
+### Example Input:
+
+```
+6 2
+1 2
+3 2
+4 2
+1 6
+5 6
+```
+
+### Function Signature:
+Write a function f(N, K, edges) that takes in the input.
+```python
+def f(N: int, K: int, edges: List[Tuple[int, int]]):
+    '''
+    N: an integer
+    K: an integer
+    edges: a list of tuples, each containing two integers
+    '''
+```</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Sure, I can help you write a test case generator for the given problem statement about finding the minimum number of vertices to remove in order to produce a good tree. Below is a Python function that generates random test cases for this problem.
+
+```python
+import random
+
+def generate_tree(N):
+    edges = []
+    for i in range(2, N + 1):
+        # Connect each new node to an existing random node to ensure a tree structure
+        edges.append((i, random.randint(1, i - 1)))
+    return edges
+
+def tcgen():
+    N = random.randint(2, 2000)
+    K = random.randint(1, N - 1)
+    
+    edges = generate_tree(N)
+    
+    # Convert edges list to the required format
+    edge_list = "\n".join(f"{a} {b}" for a, b in edges)
+    
+    # Combine everything into the required input format
+    test_case = f"{N} {K}\n" + edge_list
+    
+    return test_case
+
+# Example of generating a test case
+print(tcgen())
+```
+
+### Explanation
+
+1. **Function `generate_tree(N)`**:
+    - This function generates a random tree with `N` nodes.
+    - It ensures that the tree is valid by connecting each new node to an existing random node, thus maintaining the tree structure.
+
+2. **Function `tcgen()`**:
+    - Randomly selects `N` in the range `[2, 2000]` and `K` in the range `[1, N-1]`.
+    - Generates the edges for the tree using `generate_tree(N)`.
+    - Formats the edges into the required input string format.
+    - Returns the complete test case as a formatted string.
+
+### Example Output
+
+When you run `print(tcgen())`, you might get an output like:
+
+```
+299 150
+2 1
+3 1
+4 2
+5 4
+6 5
+...
+299 298
+```
+
+This output represents a test case where `N=299`, `K=150`, and the subsequent lines represent the edges of the tree.
+
+### Notes
+
+- This generator ensures that the tree structure is valid by always connecting a new node to an existing node.
+- The randomness in node connections ensures diversity in test cases.
+- The edges are formatted to match the required input format for competitive programming. 
+
+You can use this generator to create many different test cases to test the robustness and correctness of your solution to the problem.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    first_line = fh.readline().strip().split()
+    N = int(first_line[0])
+    K = int(first_line[1])
+    edges = []
+    for _ in range(N-1):
+        edge = tuple(map(int, fh.readline().strip().split()))
+        edges.append(edge)
+    return N, K, edges
+
+# if __name__ == "__main__":
+#     input_path = sys.argv[1]
+#     with open(input_path, 'r') as fh: 
+#     N, K, edges = extract_arguments(fh)
+#     f(N, K, edges)</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

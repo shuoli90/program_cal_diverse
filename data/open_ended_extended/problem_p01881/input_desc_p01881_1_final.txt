@@ -1,0 +1,26 @@
+### Canonicalized Input Description:
+
+An integer H (2 ≤ H ≤ 200), representing some quantity or size.
+An integer W (2 ≤ W ≤ 200), representing some quantity or size.
+A list of H strings of length W, containing characters from the set {'@', '$', '%', '.', '#'}. 
+
+### Example Input:
+
+```
+2 4
+%.@$
+..$$
+```
+
+### Function Signature:
+
+Write a function f(H, W, grid) that takes in the input.
+
+```python
+def f(H: int, W: int, grid: List[str]):
+    '''
+    H: an integer
+    W: an integer
+    grid: a list of strings
+    '''
+```

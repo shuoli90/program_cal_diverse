@@ -1,0 +1,39 @@
+Sure, I can help you write a test case generator for this problem. Below is the Python code to generate random test cases for the given problem statement:
+
+```python
+import random
+
+def tcgen():
+    # Since A, B, and C are integers between 1 and 9 inclusive
+    A = random.randint(1, 9)
+    B = random.randint(1, 9)
+    C = random.randint(1, 9)
+    
+    return A, B, C
+
+# Generate a test case
+A, B, C = tcgen()
+print(A, B, C)
+```
+
+### Explanation:
+1. **Random Values Generation**:
+   - Each panel (A, B, and C) is assigned a random integer between 1 and 9, inclusive, as per the constraints of the problem.
+
+2. **Return Values**:
+   - The generated values are returned as a tuple `(A, B, C)`.
+
+3. **Print Statement**:
+   - The generated test case is printed to verify the output.
+
+### Usage:
+- You can call the `tcgen()` function to generate random test cases for the problem.
+- The test case values can be used in your solution to test its correctness and performance.
+
+### Example:
+When you run the generator, it might produce an output like:
+```
+7 3 5
+```
+
+This output means that the integers on the panels are 7, 3, and 5, respectively. You can then use these values to test your solution for finding the maximum possible allowance.

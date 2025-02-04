@@ -1,0 +1,13 @@
+def extract_arguments(fh):
+    N, Q = map(int, fh.readline().strip().split())
+    requests = []
+    for _ in range(Q):
+        a, b, p = map(int, fh.readline().strip().split())
+        requests.append((a, b, p))
+    return N, Q, requests
+
+# if __name__ == "__main__":
+#     input_path = sys.argv[1]
+#     with open(input_path, 'r') as fh:
+#         N, Q, requests = extract_arguments(fh)
+#         f(N, Q, requests)

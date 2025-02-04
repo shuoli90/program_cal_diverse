@@ -1,0 +1,23 @@
+Sure, I can help you create a test case generator for this problem. The generator will produce random values for \(N\) and the sequence \(A\) within the specified constraints. Here's the implementation:
+
+```python
+import random
+
+def tcgen():
+    N = random.randint(1, 2 * 10**5)
+    A = [random.randint(1, 10**6) for _ in range(N)]
+    
+    return N, A
+
+# Example usage
+N, A = tcgen()
+print(N)
+print(' '.join(map(str, A)))
+```
+
+This function `tcgen` will generate a random test case each time it is called. The output format will be consistent with the input format specified in the problem statement:
+
+1. An integer \(N\) (1 ≤ \(N\) ≤ 200,000), representing the length of the sequence.
+2. A list \(A\) of size \(N\), where each integer \(A[i]\) (1 ≤ \(A[i]\) ≤ 1,000,000) represents an element of the sequence.
+
+You can use this generator to create various test cases to thoroughly test your solution for the given problem.

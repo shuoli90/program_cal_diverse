@@ -1,0 +1,16 @@
+An input string consisting of Roman alphabet characters, binary digits, operator symbols, parentheses, and equal signs. The input string has at most 31 characters.
+
+### Example Input:
+
+```
+ACM
+```
+
+### Function Signature:
+Write a function `f(input_string)` that takes in the input.
+```python
+def f(input_string: str):
+    '''
+    input_string: a string
+    '''
+```

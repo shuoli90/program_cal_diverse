@@ -1,0 +1,19 @@
+Types:  
+Time: int, R: int  
+L: int, MaryX: List[int], MaryY: List[int], MaryT: List[int]  
+M: int, GeorgeX: List[int], GeorgeY: List[int], GeorgeT: List[int]  
+N: int, BlockSX: List[int], BlockSY: List[int], BlockTX: List[int], BlockTY: List[int]  
+
+Ranges:  
+0 ≤ Time ≤ 100  
+0 < R < 30000  
+2 ≤ L ≤ 20  
+All coordinates (MaryX, MaryY, GeorgeX, GeorgeY, BlockSX, BlockSY, BlockTX, BlockTY) are integers not greater than 10000 in their absolute values.  
+
+Addtl Info:  
+MaryT1 = 0 and MaryTL = Time  
+MaryTi < MaryTi+1 for any 1 ≤ i ≤ L - 1  
+(GeorgeXj, GeorgeYj ) and (GeorgeXj+1, GeorgeYj+1) do not coincide for any 1 ≤ j ≤ M - 1  
+Number of obstacles ranges from 0 to 20 inclusive  
+Last dataset is followed by a line containing two zeros  
+Output time accurate to 10^-4

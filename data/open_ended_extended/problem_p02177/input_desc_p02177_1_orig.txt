@@ -1,0 +1,19 @@
+An integer N (2 ≤ N ≤ 300), representing some quantity or size.  
+An integer M (1 ≤ M ≤ N(N-1)), representing another quantity or size.  
+M pairs of integers (a_i, b_i), where 1 ≤ a_i, b_i ≤ N and a_i ≠ b_i.  
+
+### Example Input:
+```
+5 2
+1 2
+2 1
+```
+
+### Function Signature:
+Write a function f(N, M, pairs) that takes in the input.  
+def f(N: int, M: int, pairs: List[Tuple[int, int]]):  
+    '''  
+    N: an integer  
+    M: an integer  
+    pairs: a list of tuples, each containing two integers  
+    '''

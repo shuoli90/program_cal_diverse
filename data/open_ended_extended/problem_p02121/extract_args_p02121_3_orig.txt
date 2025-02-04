@@ -1,0 +1,11 @@
+def extract_arguments(fh):
+    n, m = map(int, fh.readline().strip().split())
+    store_candidates = []
+    for _ in range(n):
+        a, b, c, d = map(int, fh.readline().strip().split())
+        store_candidates.append(((a, b), (c, d)))
+    factory_coords = []
+    for _ in range(m):
+        x, y = map(int, fh.readline().strip().split())
+        factory_coords.append((x, y))
+    return n, m, store_candidates, factory_coords

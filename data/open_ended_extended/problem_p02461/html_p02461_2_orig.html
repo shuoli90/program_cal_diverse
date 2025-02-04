@@ -1,0 +1,234 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p02461 - Generation 2</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p02461 - Generation 2</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>Map: Range Search
+  For a dictionary $M$ that stores elements formed by a pair of a string key and an integer value, perform a sequence of the following operations. Note that each key in $M$ must be unique.
+insert($key$, $x$): Insert an element formed by a pair of $key$ and $x$ to $M$.
+get($key$): Print the value with the specified $key$. Print 0 if there is no such element. 
+delete($key$): Delete the element with the specified $key$.
+dump($L$, $R$): Print all elements formed by a pair of the key and the value such that the key is greater than or equal to $L$ and less than or equal to $R$ in lexicographic order.
+Input
+  The input is given in the following format.
+$q$
+$query_1$
+$query_2$
+:
+$query_q$
+Each query $query_i$ is given by
+0 $key$ $x$
+or
+1 $key$
+or
+2 $key$
+or
+3 $L$ $R$
+ where the first digits 0, 1, 2 and 3 represent insert, get, delete and dump operations.
+Output
+For each get operation, print the corresponding value.
+For each dump operation, print the corresponding elements formed by a pair of the key and the value. For the dump operation, print the elements (a pair of key and value separated by a space character) in ascending order of the keys.
+Constraints
+$1 \leq q \leq 200,000$
+$1 \leq x \leq 1,000,000,000$
+$1 \leq $ length of $key$ $ \leq 20$ 
+$key$ consists of lower-case letters
+$L \leq R$ in lexicographic order
+The total number of elements printed by dump operations does not exceed $1,000,000$
+Sample Input 1
+9
+0 blue 4
+0 red 1
+0 white 5
+1 red
+1 blue
+2 red
+1 black
+1 red
+3 w z
+Sample Output 1
+1
+4
+0
+0
+white 5
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An integer q (1 ≤ q ≤ 200,000), representing some quantity or number of operations.
+A list of q queries, where each query is in one of the following formats:
+1. "0 key x" - Insert operation with a string key (1 ≤ length of key ≤ 20) and an integer x (1 ≤ x ≤ 1,000,000,000).
+2. "1 key" - Get operation with a string key (1 ≤ length of key ≤ 20).
+3. "2 key" - Delete operation with a string key (1 ≤ length of key ≤ 20).
+4. "3 L R" - Dump operation with two strings L and R (1 ≤ length of L, R ≤ 20) such that L ≤ R in lexicographic order.
+
+### Example Input:
+
+```
+9
+0 blue 4
+0 red 1
+0 white 5
+1 red
+1 blue
+2 red
+1 black
+1 red
+3 w z
+```
+
+### Function Signature:
+Write a function f(q, queries) that takes in the input.
+```python
+def f(q: int, queries: List[str]):
+    '''
+    q: an integer
+    queries: a list of strings
+    '''
+```</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Certainly! To generate test cases for the "Map: Range Search" problem, we will simulate a sequence of operations on a dictionary \( M \). Below is the Python code for a test case generator:
+
+```python
+import random
+import string
+
+def random_string(length):
+    return ''.join(random.choice(string.ascii_lowercase) for _ in range(length))
+
+def tcgen():
+    q = random.randint(1, 200000)
+
+    queries = []
+    keys = set()
+
+    for _ in range(q):
+        operation = random.randint(0, 3)
+        if operation == 0:  # insert operation
+            key = random_string(random.randint(1, 20))
+            x = random.randint(1, 1000000000)
+            queries.append(f"0 {key} {x}")
+            keys.add(key)
+        elif operation == 1:  # get operation
+            if keys:
+                key = random.choice(list(keys))
+            else:
+                key = random_string(random.randint(1, 20))
+            queries.append(f"1 {key}")
+        elif operation == 2:  # delete operation
+            if keys:
+                key = random.choice(list(keys))
+                keys.remove(key)
+            else:
+                key = random_string(random.randint(1, 20))
+            queries.append(f"2 {key}")
+        else:  # dump operation
+            if keys:
+                L = random.choice(list(keys))
+                R = random.choice(list(keys))
+                if L > R:
+                    L, R = R, L
+            else:
+                L = random_string(random.randint(1, 20))
+                R = random_string(random.randint(1, 20))
+                if L > R:
+                    L, R = R, L
+            queries.append(f"3 {L} {R}")
+
+    return q, queries
+
+# Example usage
+q, queries = tcgen()
+print(q)
+for query in queries:
+    print(query)
+```
+
+### Explanation:
+
+1. **random_string(length)**:
+   - Generates a random string of lowercase letters of the given length.
+
+2. **tcgen()**:
+   - Randomly generates a number of queries \( q \) within the constraints.
+   - Iterates \( q \) times to create random queries:
+     - **Insert Operation (0)**: Generates a random key and a random value \( x \), then adds it to the queries list and to the set of keys.
+     - **Get Operation (1)**: Randomly chooses an existing key (if any) or creates a new random key, then adds the query to the list.
+     - **Delete Operation (2)**: Randomly chooses an existing key (if any), removes it from the set of keys, and adds the query to the list.
+     - **Dump Operation (3)**: Randomly chooses two existing keys (if any) for the range or generates two new random keys, ensuring \( L \leq R \), then adds the query to the list.
+
+3. **Example usage**:
+   - Demonstrates how to use the `tcgen` function to generate a test case, printing the number of queries and each query.
+
+This test case generator ensures the creation of valid and varied test cases to thoroughly test the "Map: Range Search" problem.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    q = int(fh.readline().strip())
+    queries = []
+    for _ in range(q):
+        queries.append(fh.readline().strip())
+    return q, queries
+
+# if __name__ == "__main__":
+#     input_path = sys.argv[1]
+#     with open(input_path, 'r') as fh: 
+#     q, queries = extract_arguments(fh)
+#     f(q, queries)</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

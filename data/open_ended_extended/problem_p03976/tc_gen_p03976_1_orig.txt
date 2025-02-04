@@ -1,0 +1,49 @@
+Certainly! To generate test cases for the given problem, we need to ensure that the constraints and input format are strictly adhered to. Here is a Python function that generates random test cases for this problem:
+
+```python
+import random
+import string
+
+def generate_random_problem_name():
+    length = random.randint(1, 10)
+    return ''.join(random.choices(string.ascii_uppercase, k=length))
+
+def tcgen():
+    N = random.randint(1, 10000)
+    K = random.randint(1, 26)
+    
+    problem_names = [generate_random_problem_name() for _ in range(N)]
+    
+    return N, K, problem_names
+
+def print_test_case(N, K, problem_names):
+    print(N, K)
+    for name in problem_names:
+        print(name)
+
+# Example usage:
+N, K, problem_names = tcgen()
+print_test_case(N, K, problem_names)
+```
+
+### Explanation:
+1. **`generate_random_problem_name`**: This helper function generates a random problem name with a length between 1 and 10 characters, consisting of uppercase letters.
+2. **`tcgen`**: This function generates the main test case.
+   - `N` is chosen randomly between 1 and 10,000.
+   - `K` is chosen randomly between 1 and 26.
+   - `problem_names` is a list of `N` problem names generated using `generate_random_problem_name`.
+3. **`print_test_case`**: This helper function prints the test case in the required format.
+
+You can call `tcgen` to generate a test case and then use `print_test_case` to format and print the generated test case.
+
+### Sample Output:
+When you run the above code, you might get an output like this:
+```
+9991 7
+X
+...
+ZYX
+```
+Where `...` represents a continuation of random problem names.
+
+This function ensures that the generated test cases adhere to the constraints and formats specified in the problem statement.

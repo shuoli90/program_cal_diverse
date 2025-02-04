@@ -1,0 +1,217 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p00929 - Generation 1</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p00929 - Generation 1</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>
+Problem F:
+There is No Alternative
+  ICPC (Isles of Coral Park City) consist of several beautiful islands.
+  The citizens requested construction of bridges between islands to resolve inconveniences of using boats between islands, and they demand that all the islands should be reachable from any other islands via one or more bridges.
+  The city mayor selected a number of pairs of islands, and ordered a building company to estimate the costs to build bridges between the pairs. With this estimate, the mayor has to decide the set of bridges to build, minimizing the total construction cost.
+  However, it is difficult for him to select the most cost-efficient set of bridges among those connecting all the islands. For example, three sets of bridges connect all the islands for the Sample Input 1. The bridges in each set are expressed by bold edges in Figure F.1.
+Figure F.1. Three sets of bridges connecting all the islands for Sample Input 1
+  As the first step, he decided to build only those bridges which are contained in all the sets of bridges to connect all the islands and minimize the cost. We refer to such bridges as no alternative bridges. In Figure F.2, no alternative bridges are drawn as thick edges for the Sample Input 1, 2 and 3.
+Figure F.2. No alternative bridges for Sample Input 1, 2 and 3
+Write a program that advises the mayor which bridges are no alternative bridges for the given input.
+Input
+The input consists of a single test case.
+  
+$N$ $M$
+$S_1$ $D_1$ $C_1$
+.
+.
+.
+$S_M$ $D_M$ $C_M$
+The first line contains two positive integers $N$ and $M$. $N$ represents the number of islands and each island is identified by an integer 1 through $N$. $M$ represents the number of the pairs of islands between which a bridge may be built.
+Each line of the next $M$ lines contains three integers $S_i$, $D_i$ and $C_i$ ($1 \leq i \leq M$) which represent that it will cost $C_i$ to build the bridge between islands $S_i$ and $D_i$. You may assume $3 \leq N \leq 500$, $N − 1 \leq M \leq min(50000, N(N − 1)/2)$, $1 \leq S_i < D_i \leq N$, and $1 \leq C_i \leq 10000$. No two bridges connect the same pair of two islands, that is, if $i \ne j$ and $S_i = S_j$, then $D_i \ne D_j$ . If all the candidate bridges are built, all the islands are reachable from any other islands via one or more bridges.
+Output
+Output two integers, which mean the number of no alternative bridges and the sum of their construction cost, separated by a space.
+Sample Input 1
+4 4
+1 2 3
+1 3 3
+2 3 3
+2 4 3
+Sample Output 1
+1 3
+Sample Input 2
+4 4
+1 2 3
+1 3 5
+2 3 3
+2 4 3
+Sample Output 2
+3 9
+Sample Input 3
+4 4
+1 2 3
+1 3 1
+2 3 3
+2 4 3
+Sample Output 3
+2 4
+Sample Input 4
+3 3
+1 2 1
+2 3 1
+1 3 1
+Sample Output 4
+0 0
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An integer \(N\) (3 ≤ \(N\) ≤ 500), representing some quantity or size.
+An integer \(M\) (N-1 ≤ \(M\) ≤ min(50000, \(N(N−1)/2\))), representing another quantity or size.
+A list of \(M\) tuples \((S_i, D_i, C_i)\), where each tuple consists of:
+- An integer \(S_i\) (1 ≤ \(S_i\) < \(D_i\) ≤ \(N\)), representing some quantity or size.
+- An integer \(D_i\) (1 ≤ \(S_i\) < \(D_i\) ≤ \(N\)), representing some quantity or size.
+- An integer \(C_i\) (1 ≤ \(C_i\) ≤ 10000), representing some quantity or size.
+
+### Example Input:
+
+```
+4 4
+1 2 3
+1 3 3
+2 3 3
+2 4 3
+```
+
+### Function Signature:
+Write a function f(N, M, bridges) that takes in the input.
+```python
+def f(N: int, M: int, bridges: List[Tuple[int, int, int]]):
+    '''
+    N: an integer
+    M: an integer
+    bridges: a list of tuples, where each tuple contains three integers
+    '''
+```</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Sure! Below is a test case generator for the given problem "There is No Alternative".
+
+The generator creates random values for \(N\), \(M\), and the bridges with their respective costs, adhering to the constraints specified in the problem statement.
+
+```python
+import random
+
+def generate_island_pairs(N, M):
+    pairs = set()
+    while len(pairs) < M:
+        u = random.randint(1, N - 1)
+        v = random.randint(u + 1, N)
+        pairs.add((u, v))
+    return list(pairs)
+
+def tcgen():
+    # Number of islands
+    N = random.randint(3, 500)
+    
+    # Number of bridges
+    M = random.randint(N - 1, min(50000, N * (N - 1) // 2))
+    
+    # Generate unique pairs of islands
+    island_pairs = generate_island_pairs(N, M)
+    
+    bridges = []
+    for u, v in island_pairs:
+        cost = random.randint(1, 10000)
+        bridges.append((u, v, cost))
+    
+    return N, M, bridges
+
+def print_test_case(N, M, bridges):
+    print(f"{N} {M}")
+    for u, v, cost in bridges:
+        print(f"{u} {v} {cost}")
+
+# Example usage:
+N, M, bridges = tcgen()
+print_test_case(N, M, bridges)
+```
+
+### Explanation:
+
+1. **generate_island_pairs(N, M)**: This function generates `M` unique pairs of islands (u, v) such that \( 1 \leq u < v \leq N \). It ensures that no two bridges connect the same pair of islands.
+
+2. **tcgen()**: This function generates:
+   - `N`: A random number of islands between 3 and 500.
+   - `M`: A random number of bridges between \( N-1 \) and the minimum of \( 50000 \) or \( N(N-1)/2 \).
+   - `bridges`: A list of tuples where each tuple contains two islands and the cost to build the bridge between them. The costs are random integers between 1 and 10000.
+
+3. **print_test_case(N, M, bridges)**: This function prints the generated test case in the required format.
+
+The test case generator ensures that the constraints are respected and that the output format matches the problem statement. You can use the `tcgen()` function to generate multiple test cases as needed for thorough testing.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    N, M = map(int, fh.readline().strip().split())
+    bridges = []
+    for _ in range(M):
+        S, D, C = map(int, fh.readline().strip().split())
+        bridges.append((S, D, C))
+    return N, M, bridges
+
+# if __name__ == "__main__":
+#     input_path = sys.argv[1]
+#     with open(input_path, 'r') as fh: 
+#     N, M, bridges = extract_arguments(fh)
+#     f(N, M, bridges)</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

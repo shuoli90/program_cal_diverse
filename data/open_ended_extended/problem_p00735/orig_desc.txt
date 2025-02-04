@@ -1,0 +1,72 @@
+
+Problem B: Monday-Saturday Prime Factors
+Chief Judge's log, stardate 48642.5.
+We have decided to make a problem from elementary number theory.
+The problem looks like finding all prime factors of a positive integer,
+but it is not.
+A positive integer whose remainder divided by 7 is either 1 or 6 is called
+a 7N+{1,6} number.
+But as it is hard to pronounce,
+we shall call it a Monday-Saturday number.
+For Monday-Saturday numbers a and b,
+we say a is a Monday-Saturday divisor of b
+if there exists a Monday-Saturday number x
+such that ax = b.
+It is easy to show that
+for any Monday-Saturday numbers a and b,
+it holds that a is
+a Monday-Saturday divisor of b
+if and only if
+a is a divisor of b in the usual sense.
+We call a Monday-Saturday number a Monday-Saturday prime
+if it is greater than 1 and has no Monday-Saturday divisors
+other than itself and 1.
+A Monday-Saturday number which is a prime in the usual sense
+is a Monday-Saturday prime
+but the converse does not always hold.
+For example, 27 is a Monday-Saturday prime
+although it is not a prime in the usual sense.
+We call a Monday-Saturday prime
+which is a Monday-Saturday divisor of a Monday-Saturday number a
+a Monday-Saturday prime factor of a.
+For example, 27 is one of the Monday-Saturday prime factors of 216,
+since 27 is a Monday-Saturday prime
+and 216 = 27 × 8 holds.
+Any Monday-Saturday number greater than 1
+can be expressed as a product of one or more Monday-Saturday primes.
+The expression is not always unique
+even if differences in order are ignored.
+For example,
+216 = 6 × 6 × 6 = 8 × 27
+holds.
+Our contestants should write a program that outputs
+all Monday-Saturday prime factors
+of each input Monday-Saturday number.
+Input
+The input is a sequence of lines each of which contains a single
+Monday-Saturday number.
+Each Monday-Saturday number is greater than 1
+and less than 300000 (three hundred thousand).
+The end of the input is indicated by a line
+containing a single digit 1.
+Output
+For each input Monday-Saturday number,
+it should be printed, followed by a colon `:'
+and the list of its Monday-Saturday prime factors on a single line.
+Monday-Saturday prime factors should be listed in ascending order
+and each should be preceded by a space.
+All the Monday-Saturday prime factors should be printed only once
+even if they divide the input Monday-Saturday number more than once.
+Sample Input
+205920
+262144
+262200
+279936
+299998
+1
+Output for the Sample Input
+205920: 6 8 13 15 20 22 55 99
+262144: 8
+262200: 6 8 15 20 50 57 69 76 92 190 230 475 575 874 2185
+279936: 6 8 27
+299998: 299998

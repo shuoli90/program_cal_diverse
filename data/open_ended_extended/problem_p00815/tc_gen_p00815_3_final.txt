@@ -1,0 +1,84 @@
+To generate test cases for the "Map of Ninja House" problem, we need to simulate the exploration process described in the problem statement. Here is a Python function that generates such test cases:
+
+```python
+import random
+
+def generate_ninja_house_record(num_rooms, max_doors):
+    record = []
+    visited = [False] * num_rooms
+    stack = []
+    current_room = 0
+    visited[current_room] = True
+    room_distance = [0] * num_rooms
+    room_doors = [random.randint(2, max_doors) for _ in range(num_rooms)]
+
+    while True:
+        if all(visited):
+            break
+
+        appended = False
+        for _ in range(room_doors[current_room]):
+            next_room = random.randint(0, num_rooms-1)
+            if not visited[next_room]:
+                record.append(room_doors[next_room])
+                stack.append(current_room)
+                current_room = next_room
+                visited[current_room] = True
+                room_distance[current_room] = room_distance[stack[-1]] + 1
+                appended = True
+                break
+            else:
+                record.append(room_distance[next_room] - room_distance[current_room])
+
+        if not appended:
+            if stack:
+                current_room = stack.pop()
+            else:
+                break
+
+    record.append(0)
+    return record
+
+def tcgen():
+    n = random.randint(1, 99)
+    max_rooms = 99
+    max_doors = 39
+
+    records = []
+    for _ in range(n):
+        num_rooms = random.randint(2, max_rooms)
+        record = generate_ninja_house_record(num_rooms, max_doors)
+        records.append(record)
+
+    return n, records
+
+def format_test_case(n, records):
+    result = []
+    result.append(str(n))
+    for record in records:
+        record_str = ' '.join(map(str, record))
+        result.append(record_str)
+    return '\n'.join(result)
+
+# Example usage:
+n, records = tcgen()
+test_case = format_test_case(n, records)
+print(test_case)
+```
+
+### Explanation:
+1. **generate_ninja_house_record**: This function creates a record for one Ninja House. It simulates the exploration process as described:
+   - Initializes a `visited` list to keep track of which rooms have been visited.
+   - Uses a `stack` to backtrack when necessary.
+   - Randomly assigns the number of doors to each room.
+   - Records the number of doors or the distance difference based on the exploration rules.
+
+2. **tcgen**: This function generates multiple records:
+   - Chooses a random number of houses (`n`).
+   - For each house, it generates a record using the `generate_ninja_house_record` function.
+
+3. **format_test_case**: This function formats the generated records into the required input format:
+   - Joins the records into one string with appropriate formatting.
+
+### Testing:
+You can run the `tcgen` function and print the formatted test case to see the generated input. This will give you random test cases that can be used to validate your solution for the "Map of Ninja House" problem.

@@ -1,0 +1,174 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p00254 - Generation 1</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p00254 - Generation 1</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>All Numbers Lead to 6174
+Perform the following operation on a four-digit number N consisting of digits 0 to 9.
+Arrange the numbers in each digit of N in descending order, and let L be the resulting number.
+Arrange the numbers in each digit of N in ascending order, and let S be the resulting number.
+Set the difference L-S as the new N (one operation completed)
+Repeat from 1. for the new N
+In this case, it is known that every four-digit number eventually becomes 6174 except for numbers where all digits are the same (such as 0000, 1111, etc.). For example, when N = 2012,
+       1st operation (N = 2012): L = 2210, S = 0122, L-S = 2088
+       2nd operation (N = 2088): L = 8820, S = 0288, L-S = 8532
+       3rd operation (N = 8532): L = 8532, S = 2358, L-S = 6174
+and 6174 is reached in three operations.
+Write a program that calculates the number of operations required to reach 6174 from a four-digit number consisting of digits 0 to 9.
+Input
+The input consists of multiple datasets. The end of input is indicated by a line containing only 0000. Each dataset is given in the following format.
+N
+The dataset consists of one line, and N (1 ≤ N ≤ 9999) represents a four-digit number. If N < 1000, the upper digits are filled with 0s.
+The number of datasets does not exceed 10,000.
+Output
+For each dataset, output the number of operations required to reach 6174 on one line. However, if a number is given as input where all digits are the same, output NA.
+Sample Input
+6174
+2012
+3333
+0000
+Sample Output
+0
+3
+NA
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An integer N (1 ≤ N ≤ 9999), representing a four-digit number. The number of datasets does not exceed 10,000. The end of input is indicated by a line containing only 0000. 
+
+### Example Input:
+
+```
+6174
+2012
+3333
+0000
+```
+
+### Function Signature:
+Write a function f(inputs) that takes in the input.
+```python
+def f(inputs: List[int]): 
+    ''' 
+    inputs: a list of integers
+    '''
+```</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Certainly! Here is a test case generator for the problem "All Numbers Lead to 6174":
+
+```python
+import random
+
+def generate_valid_number():
+    while True:
+        num = random.randint(0, 9999)
+        digits = [int(d) for d in str(num).zfill(4)]
+        if len(set(digits)) > 1:  # Ensure not all digits are the same
+            return num
+
+def tcgen():
+    # Generate a random number of datasets
+    num_datasets = random.randint(1, 10000)
+    
+    datasets = []
+    
+    for _ in range(num_datasets):
+        if random.random() < 0.1:  # 10% chance to generate a number with all same digits
+            digit = random.randint(0, 9)
+            num = int(str(digit) * 4)  # Create a number like 1111, 2222, etc.
+        else:
+            num = generate_valid_number()
+        
+        datasets.append(str(num).zfill(4))
+    
+    # Add the terminating condition
+    datasets.append("0000")
+    
+    return datasets
+
+# Example usage:
+datasets = tcgen()
+for dataset in datasets:
+    print(dataset)
+```
+
+### Explanation:
+
+1. **`generate_valid_number` Function**: This function generates a four-digit integer where not all digits are the same. It keeps trying random numbers until it finds one that meets the criteria.
+
+2. **`tcgen` Function**:
+   - **Number of Datasets**: Randomly generates between 1 and 10,000 datasets.
+   - **Dataset Generation**:
+     - For each dataset, there's a 10% chance to generate a number where all digits are the same, ensuring cases like 1111, 2222, etc.
+     - The remaining 90% of the time, it generates a valid four-digit number using the `generate_valid_number` function.
+     - Each number is zero-padded to ensure it has four digits.
+   - **Terminating Condition**: Adds the string "0000" at the end to indicate the end of input.
+
+This test case generator ensures a variety of cases are covered, including edge cases where all digits are the same, and typical cases where the number eventually leads to 6174.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    inputs = []
+    while True:
+        line = fh.readline().strip()
+        if line == "0000":
+            break
+        inputs.append(int(line))
+    return inputs</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

@@ -1,0 +1,83 @@
+Certainly! Let's write a test case generator for the given problem statement.
+
+### Problem Statement: Count and Modify
+
+**Description**
+
+You are building a system that processes data based on a character command. The system takes in an array of integers and a character, which specifies a type of operation to perform. Each integer in the array represents a count of operations performed by a device in a network of devices.
+
+**Input**
+
+1. An integer \(N\) (1 ≤ \(N\) ≤ 10^3), representing the number of devices in a network.
+2. A list of integers \(A\) of size \(N\), where each integer \(A[i]\) (0 ≤ \(A[i]\) ≤ 10^5) represents the number of operations performed by the \(i\)-th device.
+3. A character \(C\) from the set {'a', 'b', 'c', 'd', 'e'}, which determines the type of operation to perform on the array.
+
+**Operations**
+
+- 'a': Increment all the counts by 1.
+- 'b': Decrement all the counts by 1 (no count should go below zero).
+- 'c': Double the counts of all devices.
+- 'd': Halve the counts of all devices (use integer division).
+- 'e': Reset all counts to zero.
+
+**Output**
+
+Print the modified list of integers after applying the operation specified by \(C\).
+
+**Examples**
+
+_Input_
+```
+5
+3 10 0 7 15
+b
+```
+
+_Output_
+```
+2 9 0 6 14
+```
+
+_Input_
+```
+3
+4 5 6
+c
+```
+
+_Output_
+```
+8 10 12
+```
+
+### Test Case Generator
+
+Here is the test case generator for the given problem statement:
+
+```python
+import random
+
+def tcgen():
+    # Generate random values for H and W within the given constraints
+    H = random.randint(1, 6)
+    W = random.randint(1, 6)
+    
+    # Generate the grid of characters
+    grid = []
+    for _ in range(H):
+        row = ''.join(random.choice(['.', '#']) for _ in range(W))
+        grid.append(row)
+    
+    # Generate a random value for K within the given constraints
+    K = random.randint(1, H * W)
+    
+    # Print the test case
+    print(H, W, K)
+    for row in grid:
+        print(row)
+
+# Example usage
+tcgen()
+```
+
+This code generates random values for \(H\) and \(W\) within the specified range (1 to 6), constructs a grid of characters (either '.' or '#'), and chooses a random value for \(K\) within the range from 1 to the total number of cells in the grid (\(H \times W\)). It then prints the generated test case in the required format.

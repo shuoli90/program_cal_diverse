@@ -1,0 +1,28 @@
+Canonicalized Input Description:
+
+An integer n (1 ≤ n ≤ 100), representing some quantity or size.
+An integer w (10 ≤ w ≤ 50), representing some interval width.
+A list of integers V of size n, where each integer is between 0 and 100.
+The input ends with a line containing two zeros.
+
+### Example Input:
+
+```
+3 50
+100
+0
+100
+0 0
+```
+
+### Function Signature:
+Write a function f(inputs) that takes in the input.
+```python
+def f(inputs: List[Tuple[int, int, List[int]]]):
+    '''
+    inputs: a list of tuples, where each tuple contains:
+        - an integer
+        - an integer
+        - a list of integers
+    '''
+```

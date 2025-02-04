@@ -1,0 +1,212 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p00190 - Generation 3</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p00190 - Generation 3</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>11 Puzzle
+Taro-kun is very good at the 8 puzzle and often plays with his friends during break time by having them rearrange the tiles. At such a time, his friend asked him, "Can you solve a more complex puzzle?" but he had never tried any other puzzles. It seemed that his friend had created an 11 puzzle himself. The puzzle is in the shape shown below.
+The 11 puzzle is played with 11 square cards and a frame shaped like the one in Figure 1. First, put the 11 cards in the frame. Then, two spaces will be left empty, and you can move the cards adjacent to these spaces. Repeat this process to neatly arrange the cards and complete the puzzle as shown in Figure 2.
+Taro-kun decided to challenge this puzzle. However, he easily solved the 11 puzzle. So his friend said, "Solve it with the fewest number of moves!" and asked him to create a program to output the minimum number of steps to solve the 11 puzzle before he challenged it. At this time, although there are two places where you can move, consider moving one number one space as one step.
+Create a program that takes the initial state of the 11 puzzle as input and outputs the minimum number of steps to solve the 11 puzzle. However, if it takes more than 20 steps to solve the puzzle, output "NA". The state of the puzzle is input in order from the first line of information, and the number 0 represents an empty space. For example, the input that represents the state in Figure 1 is as follows:
+6
+2 1 3
+10 5 7 0 8
+9 4 11
+0
+Input
+A sequence of multiple datasets is given as input. The end of the input is indicated by a single line with -1. Each dataset is given in the following format.
+p1
+p2 p3 p4
+p5 p6 p7 p8 p9
+p10 p11 p12
+p13
+The information for the i-th row of the puzzle, pi (0 ≤ pi ≤ 11), is given separated by spaces on the i-th line.
+There are no more than 100 datasets.
+Output
+For each dataset, output the minimum number of steps or NA on one line.
+Sample Input
+2
+1 0 3
+4 5 6 7 8
+9 0 11
+10
+0
+1 2 3
+4 5 6 7 8
+9 10 11
+0
+0
+11 10 9
+8 7 6 5 4
+3 2 1
+0
+-1
+Output for the Sample Input
+2
+0
+NA
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An integer sequence ending with -1. Each dataset is given in the following format:
+
+An integer p1 (0 ≤ p1 ≤ 11).
+A line of three integers p2, p3, p4 (0 ≤ pi ≤ 11).
+A line of five integers p5, p6, p7, p8, p9 (0 ≤ pi ≤ 11).
+A line of three integers p10, p11, p12 (0 ≤ pi ≤ 11).
+An integer p13 (0 ≤ p13 ≤ 11).
+
+There are no more than 100 datasets.
+
+### Example Input:
+```
+2
+1 0 3
+4 5 6 7 8
+9 0 11
+10
+0
+1 2 3
+4 5 6 7 8
+9 10 11
+0
+0
+11 10 9
+8 7 6 5 4
+3 2 1
+0
+-1
+```
+
+### Function Signature:
+Write a function f(inputs) that takes in the input.
+```python
+def f(inputs: List[str]):
+    '''
+    inputs: a list of strings representing the datasets
+    '''
+```</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Sure, I'll help you create a test case generator for the "11 Puzzle" problem. The generator will create random initial states of the puzzle and output them in the specified format. Here's a Python function to generate test cases for the problem:
+
+```python
+import random
+
+def generate_initial_state():
+    # Generate a list of numbers from 0 to 11
+    numbers = list(range(12))
+    # Shuffle the list to create a random initial state
+    random.shuffle(numbers)
+    
+    # Split the list into the required format
+    p1 = [numbers[0]]
+    p2_p4 = numbers[1:4]
+    p5_p9 = numbers[4:9]
+    p10_p12 = numbers[9:12]
+    p13 = [numbers[12]] if len(numbers) > 12 else []
+    
+    return p1, p2_p4, p5_p9, p10_p12, p13
+
+def format_state(p1, p2_p4, p5_p9, p10_p12, p13):
+    formatted_state = []
+    
+    formatted_state.append(' '.join(map(str, p1)))
+    formatted_state.append(' '.join(map(str, p2_p4)))
+    formatted_state.append(' '.join(map(str, p5_p9)))
+    formatted_state.append(' '.join(map(str, p10_p12)))
+    if p13:
+        formatted_state.append(' '.join(map(str, p13)))
+    
+    return '\n'.join(formatted_state)
+
+def tcgen(num_cases=100):
+    test_cases = []
+    
+    for _ in range(num_cases):
+        p1, p2_p4, p5_p9, p10_p12, p13 = generate_initial_state()
+        formatted_state = format_state(p1, p2_p4, p5_p9, p10_p12, p13)
+        test_cases.append(formatted_state)
+    
+    return '\n'.join(test_cases) + '\n-1'
+
+# Example usage
+if __name__ == "__main__":
+    print(tcgen())
+```
+
+### Explanation:
+1. **generate_initial_state()**: This function creates a random initial state for the 11 puzzle by generating a list of numbers from 0 to 11 and shuffling them. The list is then split into the required format.
+2. **format_state()**: This function takes the split lists and formats them into the string representation required by the problem statement.
+3. **tcgen()**: This is the main function that generates a specified number of test cases (default is 100). It calls the above functions to create and format each test case and then combines all test cases into a single string, ending with `-1` to indicate the end of input.
+
+This function can be called to generate random test cases for the "11 Puzzle" problem. You can adjust the number of cases by changing the `num_cases` parameter in the `tcgen` function.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    datasets = []
+    while True:
+        dataset = []
+        for _ in range(5):
+            line = fh.readline().strip()
+            if line == "-1":
+                return datasets
+            row = list(map(int, line.split()))
+            dataset.append(row)
+        datasets.append(dataset)</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

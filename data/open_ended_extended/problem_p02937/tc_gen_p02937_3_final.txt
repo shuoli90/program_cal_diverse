@@ -1,0 +1,37 @@
+Certainly! Here's a test case generator for the problem statement you provided. The generator will produce random strings `s` and `t` consisting of lowercase English letters, which can be used to test your solution:
+
+```python
+import random
+import string
+
+def tcgen():
+    # Generate random lengths for s and t within the constraints
+    s_length = random.randint(1, 10**5)
+    t_length = random.randint(1, 10**5)
+    
+    # Generate random strings of the given lengths
+    s = ''.join(random.choices(string.ascii_lowercase, k=s_length))
+    t = ''.join(random.choices(string.ascii_lowercase, k=t_length))
+    
+    return s, t
+
+# Example usage:
+s, t = tcgen()
+print("s:", s)
+print("t:", t)
+```
+
+### Explanation:
+
+1. **Random Lengths for `s` and `t`**:
+   - `s_length`: Random integer between 1 and 100,000.
+   - `t_length`: Random integer between 1 and 100,000.
+
+2. **Random Strings Generation**:
+   - `s`: Randomly chosen lowercase letters of length `s_length`.
+   - `t`: Randomly chosen lowercase letters of length `t_length`.
+
+3. **Output**:
+   - The function returns two strings `s` and `t`.
+
+You can use the generated test cases to validate the correctness and performance of your solution for the given problem statement.

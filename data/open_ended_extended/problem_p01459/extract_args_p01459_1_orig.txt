@@ -1,0 +1,10 @@
+def extract_arguments(fh):
+    N, M, A = map(int, fh.readline().strip().split())
+    grid = [fh.readline().strip() for _ in range(N)]
+    return N, M, A, grid
+
+# if __name__ == "__main__":
+#     input_path = sys.argv[1]
+#     with open(input_path, 'r') as fh: 
+#     N, M, A, grid = extract_arguments(fh)
+#     f(N, M, A, grid)

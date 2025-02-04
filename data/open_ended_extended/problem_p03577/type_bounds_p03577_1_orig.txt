@@ -1,0 +1,3 @@
+Types: S: str
+Ranges: 9 ≤ |S| ≤ 50
+Addtl Info: S consists of uppercase English letters and ends with "FESTIVAL"

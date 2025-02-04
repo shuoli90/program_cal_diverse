@@ -1,0 +1,3 @@
+Types: n: int, circles: List[Tuple[int, int, int]]
+Ranges: 3 ≤ n ≤ 100, 0 ≤ xi ≤ 1000, 0 ≤ yi ≤ 1000, 1 ≤ ri ≤ 25
+Addtl Info: circles[i] = (xi, yi, ri), input ends with a single line containing 0

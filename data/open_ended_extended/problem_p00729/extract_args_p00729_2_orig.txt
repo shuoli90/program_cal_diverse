@@ -1,0 +1,25 @@
+def extract_arguments(fh):
+    datasets = []
+    while True:
+        N, M = map(int, fh.readline().strip().split())
+        if N == 0 and M == 0:
+            break
+        r = int(fh.readline().strip())
+        records = []
+        for _ in range(r):
+            t, n, m, s = map(int, fh.readline().strip().split())
+            records.append((t, n, m, s))
+        q = int(fh.readline().strip())
+        queries = []
+        for _ in range(q):
+            ts, te, m = map(int, fh.readline().strip().split())
+            queries.append((ts, te, m))
+        datasets.append((N, M, r, records, q, queries))
+    return datasets
+
+# if __name__ == "__main__":
+#     input_path = sys.argv[1]
+#     with open(input_path, 'r') as fh:
+#         datasets = extract_arguments(fh)
+#         for dataset in datasets:
+#             process_dataset(*dataset)

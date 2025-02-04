@@ -1,0 +1,31 @@
+An integer N (1 ≤ N ≤ 2000) representing some quantity.
+An integer T (1 ≤ T ≤ 2000) representing some quantity.
+A string of length N consisting of characters 'R' and 'B'.
+
+The input consists of multiple datasets. The datasets are terminated by a line with two zeros which should not be processed.
+
+### Example Input:
+
+```
+6 1
+RBRBRB
+10 1
+RBBBRBBBBB
+10 2
+RBBBRBBBBB
+10 10
+RBBBBBBBBB
+0 0
+```
+
+### Function Signature:
+Write a function f(inputs) that takes in the input.
+```python
+def f(inputs: List[Tuple[int, int, str]]):
+    '''
+    inputs: a list of tuples, where each tuple contains:
+        - an integer N
+        - an integer T
+        - a string of length N
+    '''
+```

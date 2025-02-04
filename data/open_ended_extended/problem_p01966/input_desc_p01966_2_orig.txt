@@ -1,0 +1,23 @@
+An integer \(N\) (2 ≤ \(N\) ≤ 10^5), representing some quantity or size.
+An integer \(Q\) (1 ≤ \(Q\) ≤ 10^5), representing the number of requests.
+A list of \(Q\) tuples, each containing three integers \(a\), \(b\), and \(p\):
+  - \(a\) (1 ≤ \(a\) < \(b\) ≤ \(N\)), representing a starting point.
+  - \(b\) (1 ≤ \(a\) < \(b\) ≤ \(N\)), representing an ending point.
+  - \(p\) (1 ≤ \(p\) ≤ 10^9), representing a quantity or count.
+
+### Example Input:
+
+```
+5 2
+1 4 1
+2 3 1
+```
+
+### Function Signature:
+Write a function f(N, Q, requests) that takes in the input. 
+def f(N: int, Q: int, requests: List[Tuple[int, int, int]]):
+    '''
+    N: an integer
+    Q: an integer
+    requests: a list of tuples, each containing three integers
+    '''

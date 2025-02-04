@@ -1,0 +1,40 @@
+To generate test cases for the given problem statement, we need to create random strings \( S \) and \( T' \) that satisfy the constraints. Here is a test case generator for the problem:
+
+```python
+import random
+import string
+
+def generate_random_string(length):
+    return ''.join(random.choices(string.ascii_letters, k=length))
+
+def tcgen():
+    # Length of S
+    len_S = random.randint(1, 300000)
+    
+    # Generate random string S
+    S = generate_random_string(len_S)
+    
+    # Length of T' should be at most |S| and at least 1
+    len_T_prime = random.randint(1, len_S)
+    
+    # Generate random string T'
+    T_prime = generate_random_string(len_T_prime)
+    
+    return S, T_prime
+
+# Example usage:
+S, T_prime = tcgen()
+print(S)
+print(T_prime)
+```
+
+### Explanation:
+- **generate_random_string(length)**: This helper function generates a random string of the given length using uppercase and lowercase letters.
+- **tcgen()**: This function generates a random test case:
+  - It first determines the length of \( S \) which is a random integer between 1 and 300,000.
+  - It then generates a random string \( S \) of that length.
+  - It determines the length of \( T' \) which is a random integer between 1 and the length of \( S \).
+  - It generates a random string \( T' \) of that length.
+  - Finally, it returns the generated strings \( S \) and \( T' \).
+
+By running `tcgen()`, you can generate multiple test cases that adhere to the problem constraints.

@@ -1,0 +1,38 @@
+Sure, here is the test case generator for the given problem statement:
+
+```python
+import random
+import string
+
+def generate_string(length):
+    return ''.join(random.choices(string.ascii_lowercase, k=length))
+
+def tcgen():
+    # Generate length of strings s and t within the given constraints
+    len_s = random.randint(1, 5 * 10**5)
+    len_t = random.randint(1, 5 * 10**5)
+    
+    # Generate random strings s and t of the generated lengths
+    s = generate_string(len_s)
+    t = generate_string(len_t)
+    
+    return s, t
+
+# Example usage
+if __name__ == "__main__":
+    s, t = tcgen()
+    print(s)
+    print(t)
+```
+
+### Explanation
+
+1. **generate_string(length):** This helper function generates a random string of a given length using lowercase English letters.
+
+2. **tcgen():** The main function that generates test cases.
+    - It first generates random lengths for strings `s` and `t` within the given constraints (1 to 5 * 10^5).
+    - It then generates random strings `s` and `t` of the given lengths.
+    - It returns the generated strings `s` and `t`.
+
+### Usage
+The script includes an example usage of the `tcgen` function, which prints out a pair of randomly generated strings that can be used as test cases for the problem. This ensures that the test cases adhere to the constraints specified in the problem statement.

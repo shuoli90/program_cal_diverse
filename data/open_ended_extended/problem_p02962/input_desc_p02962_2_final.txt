@@ -1,0 +1,19 @@
+Canonicalized Input Description:
+
+Two strings \( s \) and \( t \) consisting of lowercase English letters.
+
+### Example Input:
+```
+abcabab
+ab
+```
+
+### Function Signature:
+Write a function `f(s, t)` that takes in the input.
+```python
+def f(s: str, t: str):
+    '''
+    s: a string
+    t: a string
+    '''
+```

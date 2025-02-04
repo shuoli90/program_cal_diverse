@@ -1,0 +1,3 @@
+Types: H: int, W: int, orchard: List[str]
+Ranges: 0 ≤ H ≤ 50, 0 ≤ W ≤ 50, orchard[i]: str of length W
+Addtl Info: orchard[i][j] in {' ', '@', '#', '*'}

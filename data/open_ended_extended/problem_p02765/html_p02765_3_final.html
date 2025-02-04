@@ -1,0 +1,136 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p02765 - Generation 3</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p02765 - Generation 3</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>
+Score : 100 points
+Problem StatementTakahashi is a member of a programming competition site, ButCoder.
+Each member of ButCoder is assigned two values: Inner Rating and Displayed Rating.
+The Displayed Rating of a member is equal to their Inner Rating if the member has participated in 10 or more contests. Otherwise, the Displayed Rating will be their Inner Rating minus 100 \times (10 - K) when the member has participated in K contests.
+Takahashi has participated in N contests, and his Displayed Rating is R. Find his Inner Rating.
+Constraints
+All values in input are integers.
+1 \leq N \leq 100
+0 \leq R \leq 4111
+InputInput is given from Standard Input in the following format:
+N R
+OutputPrint his Inner Rating.
+Sample Input 12 2919
+Sample Output 13719
+Takahashi has participated in 2 contests, which is less than 10, so his Displayed Rating is his Inner Rating minus 100 \times (10 - 2) = 800.
+Thus, Takahashi's Inner Rating is 2919 + 800 = 3719.
+Sample Input 222 3051
+Sample Output 23051
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An integer N (1 ≤ N ≤ 100), representing some quantity.
+An integer R (0 ≤ R ≤ 4111), representing some value.
+
+### Example Input:
+
+```
+12 2919
+```
+
+### Function Signature:
+Write a function f(N, R) that takes in the input.
+def f(N: int, R: int):
+    '''
+    N: an integer
+    R: an integer
+    '''</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Sure! Here's a test case generator for the given problem statement:
+
+```python
+import random
+
+def tcgen():
+    # Generate a random number of contests between 1 and 100
+    N = random.randint(1, 100)
+    
+    # Generate a random displayed rating between 0 and 4111
+    R = random.randint(0, 4111)
+    
+    return N, R
+
+# Example of generating a test case
+if __name__ == "__main__":
+    N, R = tcgen()
+    print(f"{N} {R}")
+```
+
+This generator will produce test cases within the specified constraints:
+- \( N \) will be a random integer between 1 and 100.
+- \( R \) will be a random integer between 0 and 4111.
+
+You can run this function to generate random test cases for the problem. Here's how it works in practice:
+
+1. **Generate a Random Number of Contests**: The number of contests \( N \) is randomly chosen between 1 and 100.
+2. **Generate a Random Displayed Rating**: The displayed rating \( R \) is randomly chosen between 0 and 4111.
+
+Output the generated test case in the required format. You can generate as many test cases as needed by calling the `tcgen()` function multiple times.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    N, R = map(int, fh.readline().strip().split())
+    return N, R</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

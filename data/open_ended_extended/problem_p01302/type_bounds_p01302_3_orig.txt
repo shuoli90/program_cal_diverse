@@ -1,0 +1,3 @@
+Types: n: int, vx: int, vy: int, xi: int, yi: int
+Ranges: 3 ≤ n ≤ 100, -10000 ≤ vx, vy ≤ 10000, vx² + vy² > 0, 0 ≤ xi, yi ≤ 10000
+Addtl Info: Input is terminated by a line with a zero; this line should not be processed. Vertices are given in counterclockwise order and form a simple polygon. Output area must not have an absolute error greater than 10^-2.

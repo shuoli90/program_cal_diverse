@@ -1,0 +1,193 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p01643 - Generation 2</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p01643 - Generation 2</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>Problem J: Avant-garde Art
+ICPC World Finals Day 6
+Russian Constructivism is an art movement that started in the mid-1910s in the Soviet Union.
+Mr. T, who had been staying in country R for a long time, was inspired by such things and decided to create a cool design even during the rehearsal of the ICPC World Finals.
+Mr. T says, "Only circles and line segments are enough for symbols. It is important how beautifully line segments intersect."
+Problem
+Allocate \(n\) coordinates \(1, 2, \ldots, n\) equally spaced on the circumference.
+Exactly one line segment emanates from each coordinate, and the line segment from coordinate \(i\) is connected to a different coordinate \(a_i\).
+(Conversely, the line segment from coordinate \(a_i\) is connected to coordinate \(a_{a_i} = i\).) Up to \(k\) line segments can be freely reconnected on the circumference, regardless of the coordinates or lengths. Determine the maximum size of the set of intersecting line segments.
+Input
+n k
+a1 a2 … an
+On the first line, the number of coordinates \(n\) and the number of line segments that can be reconnected \(k\) are given separated by a space.
+On the second line, the coordinate \(a_i\) that connects to the line segment at coordinate \(i\) is given separated by a space.
+Output
+After reconnecting at most \(k\) line segments,
+output the maximum size of a set of intersecting line segments on a single line.
+Constraints
+\(2 \leq n \leq 8000\)
+\(n\) is an even number.
+\(0 \leq k \leq \min(n/2, 20)\)
+\(1 \leq a_i \leq n\)
+\(a_i \neq i\)
+It is impossible to connect a line segment to itself.
+\(a_i \neq a_j (i \neq j)\)
+More than two line segments cannot be connected to the same coordinate.
+\(a_{a_i} = i\)
+If a line segment is connected from \(i\) to \(j\), then a line segment is connected from \(j\) to \(i\).
+Sample Input/Output
+Input 1
+8 0
+7 4 6 2 8 3 1 5
+Output 1
+2
+The intersecting line segments are represented by the red line segments in the figure below.
+Input 2
+8 1
+7 4 6 2 8 3 1 5
+Output 2
+3
+By reconnecting the line segment connecting 1 and 7 as shown in the figure below, three intersecting line segments can be obtained.
+Input 3
+8 0
+5 6 7 8 1 2 3 4
+Output 3
+4
+Since all line segments intersect with each other, the maximum number of intersecting line segments is 4.
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An integer \( n \) (2 ≤ \( n \) ≤ 8000), which is an even number.
+An integer \( k \) (0 ≤ \( k \) ≤ min(\( n/2 \), 20)).
+A list of integers \( a \) of size \( n \), where each integer is between 1 and \( n \), \( a[i] \neq i \), \( a[i] \neq a[j] \) (for \( i \neq j \)), and \( a[a[i]] = i \).
+
+### Example Input:
+
+```
+8 0
+7 4 6 2 8 3 1 5
+```
+
+### Function Signature:
+Write a function \( f \) that takes in the input.
+```python
+def f(n: int, k: int, a: List[int]):
+    '''
+    n: an integer
+    k: an integer
+    a: a list of integers
+    '''
+```</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Sure! Below is the Python code for generating test cases for the given problem statement "Avant-garde Art."
+
+```python
+import random
+
+def generate_permutation(n):
+    """Generate a valid permutation for the given problem constraints."""
+    # Generate a list of pairs where each pair (i, ai) is bidirectional
+    pairs = list(range(1, n + 1))
+    random.shuffle(pairs)
+    permutation = [0] * n
+    for i in range(n):
+        permutation[i] = pairs[i]
+    return permutation
+
+def tcgen():
+    # Generate n, which is even and within the range [2, 8000]
+    n = random.choice(range(2, 8001, 2))  # Ensure n is even
+
+    # Generate k, which is within the range [0, min(n/2, 20)]
+    k = random.randint(0, min(n // 2, 20))
+
+    # Generate a valid permutation of a_i for i in [1, n]
+    permutation = generate_permutation(n)
+
+    return n, k, permutation
+
+def print_test_case(n, k, permutation):
+    print(n, k)
+    print(" ".join(map(str, permutation)))
+
+# Example usage
+if __name__ == "__main__":
+    n, k, permutation = tcgen()
+    print_test_case(n, k, permutation)
+```
+
+### Explanation
+1. **`generate_permutation(n)` Function**:
+   - This function generates a valid permutation `a` of size `n` that meets the constraints of the problem.
+   - It ensures that `a_i != i` and `a_{a_i} = i`.
+   - The approach here is to shuffle a list of numbers from 1 to `n` and then validate that none of the numbers map to themselves.
+
+2. **`tcgen()` Function**:
+   - This function generates the required `n`, `k`, and `permutation` values.
+   - `n` is chosen as an even number in the range `[2, 8000]`.
+   - `k` is chosen in the range `[0, min(n/2, 20)]`.
+   - `permutation` is generated using the `generate_permutation(n)` function.
+
+3. **`print_test_case()` Function**:
+   - This function prints the generated test case in the required format.
+
+You can run the script and it will generate a test case for the problem, which you can use to test your solution.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    n, k = map(int, fh.readline().strip().split())
+    a = list(map(int, fh.readline().strip().split()))
+    return n, k, a</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

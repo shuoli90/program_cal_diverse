@@ -1,0 +1,3 @@
+Types: H: int, W: int, map: List[str]  
+Ranges: 2 ≤ H, W ≤ 200, len(map) = H, len(map[i]) = W, map[i][j] in {'@', '$', '%', '.', '#'}  
+Addtl Info: Only one '@', only one '%', and zero or more '$' in the grid.

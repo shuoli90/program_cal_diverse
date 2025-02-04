@@ -1,0 +1,75 @@
+Certainly! Here's a test case generator for the Quick Sort problem described:
+
+### Test Case Generator for Quick Sort
+
+```python
+import random
+
+def generate_card():
+    # Generate a random card suit
+    suit = random.choice(['S', 'H', 'C', 'D'])
+    # Generate a random card number
+    number = random.randint(1, 10**9)
+    return suit, number
+
+def tcgen(num_cases=1):
+    test_cases = []
+    
+    for _ in range(num_cases):
+        # Generate a random number of cards
+        n = random.randint(1, 100000)
+        cards = set()
+        
+        while len(cards) < n:
+            card = generate_card()
+            cards.add(card)
+        
+        test_case = [f"{n}"]
+        for suit, number in cards:
+            test_case.append(f"{suit} {number}")
+        
+        test_cases.append("\n".join(test_case))
+    
+    return test_cases
+
+# Usage example
+if __name__ == "__main__":
+    num_cases = 2  # Number of test cases to generate
+    cases = tcgen(num_cases)
+    for i, case in enumerate(cases):
+        print(f"Test Case {i + 1}:\n{case}\n")
+```
+
+### Explanation
+
+1. **generate_card()**: This function generates a random card by selecting a random suit from `['S', 'H', 'C', 'D']` and a random number between `1` and `10^9`.
+
+2. **tcgen(num_cases=1)**: This function generates the specified number of test cases (`num_cases`). For each test case:
+    - It generates a random number `n` of cards.
+    - It uses a set to ensure that there are no identical cards in the input, as per the problem constraints.
+    - It constructs the test case in the required format.
+
+### Usage
+
+You can specify the number of test cases you want to generate using the `num_cases` parameter when calling the `tcgen` function. The generated test cases are printed in the specified format.
+
+### Example Output
+
+```
+Test Case 1:
+6
+S 123456789
+H 987654321
+C 12345678
+D 87654321
+H 23456789
+S 8765432
+
+Test Case 2:
+3
+S 7654321
+D 56789012
+C 67890123
+```
+
+This generated output can be used for testing your quicksort implementation. Each test case is printed separately, and each card is represented by a suit and a number, ensuring that there are no duplicate cards.

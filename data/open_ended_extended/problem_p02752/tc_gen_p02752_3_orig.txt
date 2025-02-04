@@ -1,0 +1,53 @@
+Sure, let's write a test case generator for the tree problem described:
+
+### Problem Statement
+We need to generate a tree with `N` vertices and `N-1` edges, where `3 ≤ N ≤ 2 * 10^5` and for each edge, it connects two vertices `a_i` and `b_i` where `1 ≤ a_i, b_i ≤ N`.
+
+### Test Case Generator
+Here's a Python function to generate such test cases:
+
+```python
+import random
+
+def generate_tree(N):
+    edges = []
+    # A tree with N nodes has exactly N-1 edges
+    parents = list(range(1, N + 1))
+    random.shuffle(parents)
+    for i in range(2, N + 1):
+        # Connect each node to a previously connected node to ensure it's a tree
+        edges.append((parents[i - 1], parents[random.randint(0, i - 2)]))
+    return edges
+
+def tcgen():
+    N = random.randint(3, 2 * 10**5)
+    edges = generate_tree(N)
+    return N, edges
+
+# Example usage:
+N, edges = tcgen()
+print(N)
+for edge in edges:
+    print(edge[0], edge[1])
+```
+
+### Explanation
+1. **generate_tree(N)**:
+    - This function generates a random tree with `N` vertices.
+    - It creates a list of nodes and shuffles them to ensure randomness.
+    - It then iterates from the second node to the N-th node, connecting each node to a previously connected node to form a valid tree.
+
+2. **tcgen()**:
+    - Randomly selects `N` in the range `[3, 2 * 10^5]`.
+    - Calls `generate_tree(N)` to get a list of edges for a tree with `N` nodes.
+    - Returns `N` and the list of edges.
+
+### Example Run
+```python
+N, edges = tcgen()
+print(N)
+for edge in edges:
+    print(edge[0], edge[1])
+```
+
+This will generate a random valid tree and print it in the required format. Each test case output will start with the number of vertices `N`, followed by `N-1` lines of edges with two integers each representing an edge connecting two vertices.

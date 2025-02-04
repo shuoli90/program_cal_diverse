@@ -1,0 +1,82 @@
+Sure, I can help you write a test case generator for the given problem statement. Here's a Python function that generates test cases for the "Analyzing Login/Logout Records" problem:
+
+```python
+import random
+
+def generate_time():
+    return random.randint(540, 1260)
+
+def generate_records(N, M, r):
+    records = []
+    for _ in range(r):
+        t = generate_time()
+        n = random.randint(1, N)
+        m = random.randint(1, M)
+        s = random.randint(0, 1)
+        records.append((t, n, m, s))
+    # Ensure records are sorted by time and login/logout pairs are correct
+    records.sort()
+    pc_login_status = {}
+    filtered_records = []
+    for record in records:
+        t, n, m, s = record
+        if s == 1:
+            if pc_login_status.get(n) is None:
+                pc_login_status[n] = m
+                filtered_records.append(record)
+        else:
+            if pc_login_status.get(n) == m:
+                pc_login_status[n] = None
+                filtered_records.append(record)
+    return filtered_records
+
+def generate_queries(M, q):
+    queries = []
+    for _ in range(q):
+        ts = generate_time()
+        te = generate_time()
+        if ts > te:
+            ts, te = te, ts
+        m = random.randint(1, M)
+        queries.append((ts, te, m))
+    return queries
+
+def tcgen():
+    datasets = []
+    while True:
+        N = random.randint(1, 1000)
+        M = random.randint(1, 10000)
+        r = random.randint(2, 1000)
+        q = random.randint(1, 50)
+        
+        records = generate_records(N, M, r)
+        queries = generate_queries(M, q)
+        
+        datasets.append((N, M, r, q, records, queries))
+        
+        if len(datasets) >= 10 or random.random() < 0.1:
+            break
+            
+    return datasets
+
+# Generate and print datasets
+datasets = tcgen()
+for dataset in datasets:
+    N, M, r, q, records, queries = dataset
+    print(f"{N} {M}")
+    print(r)
+    for record in records:
+        print(" ".join(map(str, record)))
+    print(q)
+    for query in queries:
+        print(" ".join(map(str, query)))
+print("0 0")
+```
+
+### Explanation:
+1. **`generate_time` Function**: Generates a random time in the range [540, 1260].
+2. **`generate_records` Function**: Generates `r` records ensuring the constraints and alternating login/logout pairs for the same PC.
+3. **`generate_queries` Function**: Generates `q` queries ensuring the constraints.
+4. **`tcgen` Function**: Generates multiple datasets (up to 10) with random values for `N`, `M`, `r`, and `q`, and uses the helper functions to create valid records and queries.
+
+This generator ensures that the generated records and queries adhere to the problem constraints and format. It also ensures that the records are sorted by time and that login/logout pairs are consistent. Finally, it prints the datasets in the required format.

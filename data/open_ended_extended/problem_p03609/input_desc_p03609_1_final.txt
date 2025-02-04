@@ -1,0 +1,16 @@
+An integer X (1 ≤ X ≤ 10^9), representing some quantity.
+An integer t (1 ≤ t ≤ 10^9), representing some duration or time.
+
+### Example Input:
+
+```
+100 17
+```
+
+### Function Signature:
+Write a function f(X, t) that takes in the input.
+def f(X: int, t: int): 
+    ''' 
+    X: an integer 
+    t: an integer
+    '''

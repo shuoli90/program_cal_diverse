@@ -1,0 +1,40 @@
+Sure, here is a test case generator for the Goldbach's Conjecture problem. The generator will produce multiple even numbers in the specified range and will stop when a 0 is generated to indicate the end of the input.
+
+First, let's implement the test case generator function:
+
+```python
+import random
+
+def tcgen():
+    def is_prime(n):
+        if n <= 1:
+            return False
+        if n <= 3:
+            return True
+        if n % 2 == 0 or n % 3 == 0:
+            return False
+        i = 5
+        while i * i <= n:
+            if n % i == 0 or n % (i + 2) == 0:
+                return False
+            i += 6
+        return True
+
+    even_numbers = [random.choice(range(4, 215, 2)) for _ in range(random.randint(1, 10))]
+    even_numbers.append(0)
+
+    return even_numbers
+
+# Example usage:
+print(tcgen())
+```
+
+This code will generate a list of even numbers between 4 and 214 and will append a 0 at the end to indicate the end of the input sequence. The number of even numbers generated (excluding the terminating 0) will be between 1 and 10, which you can adjust as needed.
+
+Here is a brief explanation of the function:
+
+1. `is_prime(n)`: A helper function to determine if a number is prime.
+2. `even_numbers`: A list comprehension generates a random list of even numbers within the range [4, 214]. The range is stepped by 2 to ensure only even numbers are included.
+3. Append `0` to the list to indicate the end of the input.
+
+The output will be a list of even numbers followed by a 0. Each even number in the list can then be tested for the Goldbach pairs in your main function.

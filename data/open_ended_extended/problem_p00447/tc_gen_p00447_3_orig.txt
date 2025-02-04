@@ -1,0 +1,76 @@
+Sure, I can help you write a test case generator for the competitive programming problem "Constellation". Below is the Python code for the test case generator:
+
+```python
+import random
+
+def generate_test_case():
+    # Number of stars in the constellation (1 ≤ m ≤ 200)
+    m = random.randint(1, 200)
+    
+    # Generate m unique stars for the constellation
+    constellation_stars = set()
+    while len(constellation_stars) < m:
+        x = random.randint(0, 1000000)
+        y = random.randint(0, 1000000)
+        constellation_stars.add((x, y))
+    
+    constellation_stars = list(constellation_stars)
+    
+    # Number of stars in the photo (1 ≤ n ≤ 1000)
+    n = random.randint(1, 1000)
+    
+    # Generate n unique stars for the photo, ensuring it includes the constellation
+    photo_stars = set(constellation_stars)  # Start with constellation stars
+    
+    while len(photo_stars) < n:
+        x = random.randint(0, 1000000)
+        y = random.randint(0, 1000000)
+        photo_stars.add((x, y))
+    
+    photo_stars = list(photo_stars)
+    
+    # Shuffle the photo stars to simulate randomness
+    random.shuffle(photo_stars)
+
+    return m, constellation_stars, n, photo_stars
+
+def tcgen():
+    test_cases = []
+    
+    for _ in range(random.randint(1, 5)):  # Generate between 1 and 5 datasets
+        m, constellation_stars, n, photo_stars = generate_test_case()
+        test_cases.append((m, constellation_stars, n, photo_stars))
+    
+    return test_cases
+
+def print_test_case(tc):
+    for m, constellation_stars, n, photo_stars in tc:
+        print(m)
+        for (x, y) in constellation_stars:
+            print(x, y)
+        print(n)
+        for (x, y) in photo_stars:
+            print(x, y)
+    print(0)  # End of input
+
+# Example usage:
+test_cases = tcgen()
+print_test_case(test_cases)
+```
+
+### Explanation:
+
+1. **generate_test_case()**: This function generates a single test case.
+    - It starts by generating `m` unique stars for the constellation.
+    - Ensures the constellation is included within the photo, and then adds additional random stars to the photo until it reaches the desired number `n`.
+  
+2. **tcgen()**: This function generates a list of multiple datasets (between 1 and 5).
+    - For each dataset, it calls `generate_test_case()` to create a complete dataset.
+    - Returns the list of datasets.
+
+3. **print_test_case()**: This function prints the generated test cases in the required format.
+    - Iterates through each dataset and prints the number of stars in the constellation, followed by the coordinates of each star.
+    - Then it prints the number of stars in the photo, followed by the coordinates of each star.
+    - Finally, it prints `0` to indicate the end of input.
+
+You can call `tcgen()` to generate the test cases and then use `print_test_case()` to print them in the format required by the problem statement.

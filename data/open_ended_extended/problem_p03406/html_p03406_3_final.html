@@ -1,0 +1,189 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p03406 - Generation 3</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p03406 - Generation 3</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>
+Score : 1100 points
+Problem StatementThere are 2^N players, numbered 1, 2, ..., 2^N.
+They decided to hold a tournament.
+The tournament proceeds as follows:
+Choose a permutation of 1, 2, ..., 2^N: p_1, p_2, ..., p_{2^N}.
+The players stand in a row in the order of Player p_1, Player p_2, ..., Player p_{2^N}.
+Repeat the following until there is only one player remaining in the row:
+Play the following matches: the first player in the row versus the second player in the row, the third player versus the fourth player, and so on. The players who lose leave the row. The players who win stand in a row again, preserving the relative order of the players.
+The last player who remains in the row is the champion.
+It is known that, the result of the match between two players can be written as follows, using M integers A_1, A_2, ..., A_M given as input:
+When y = A_i for some i, the winner of the match between Player 1 and Player y (2 \leq y \leq 2^N) will be Player y.
+When y \neq A_i for every i, the winner of the match between Player 1 and Player y (2 \leq y \leq 2^N) will be Player 1.
+When 2 \leq x < y \leq 2^N, the winner of the match between Player x and Player y will be Player x.
+The champion of this tournament depends only on the permutation p_1, p_2, ..., p_{2^N} chosen at the beginning.
+Find the number of permutation p_1, p_2, ..., p_{2^N} chosen at the beginning of the tournament that would result in Player 1 becoming the champion, modulo 10^9 + 7.
+Constraints
+1 \leq N \leq 16
+0 \leq M \leq 16
+2 \leq A_i \leq 2^N (1 \leq i \leq M)
+A_i < A_{i + 1} (1 \leq i < M)
+InputInput is given from Standard Input in the following format:
+N M
+A_1 A_2 ... A_M
+OutputPrint the answer.
+Sample Input 12 1
+3
+Sample Output 18
+Examples of p that satisfy the condition are: [1, 4, 2, 3] and [3, 2, 1, 4]. Examples of p that do not satisfy the condition are: [1, 2, 3, 4] and [1, 3, 2, 4].
+Sample Input 24 3
+2 4 6
+Sample Output 20
+Sample Input 33 0
+Sample Output 340320
+Sample Input 43 3
+3 4 7
+Sample Output 42688
+Sample Input 516 16
+5489 5490 5491 5492 5493 5494 5495 5497 18993 18995 18997 18999 19000 19001 19002 19003
+Sample Output 5816646464
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An integer N (1 ≤ N ≤ 16), representing some quantity or size.
+An integer M (0 ≤ M ≤ 16), representing some quantity or size.
+A list of integers A of size M, where each integer is between 2 and 2^N and sorted in strictly increasing order.
+
+### Example Input:
+
+```
+1 1
+3
+```
+
+### Function Signature:
+Write a function f(N, M, A) that takes in the input.
+def f(N: int, M: int, A: List[int]):
+    '''
+    N: an integer
+    M: an integer
+    A: a list of integers
+    '''</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Sure! Here's a test case generator for the given problem statement:
+
+```python
+import random
+
+def tcgen():
+    N = random.randint(1, 16)  # N can be between 1 and 16
+    M = random.randint(0, 16)  # M can be between 0 and 16
+    max_value = 2**N
+    
+    A = sorted(random.sample(range(2, max_value + 1), M))
+    
+    return N, M, A
+
+def format_input(N, M, A):
+    input_str = f"{N} {M}\n"
+    if M > 0:
+        input_str += ' '.join(map(str, A)) + '\n'
+    return input_str
+
+def format_output(output):
+    return f"{output}\n"
+
+# Generate a test case
+N, M, A = tcgen()
+input_str = format_input(N, M, A)
+print("Generated Input:")
+print(input_str)
+
+# Note: The output generation/verification requires solving the problem, which is not included here.
+```
+
+### Explanation
+1. **Random Generation of N and M**: 
+    - `N` is randomly chosen between 1 and 16, inclusive.
+    - `M` is randomly chosen between 0 and 16, inclusive.
+    
+2. **Generate the List `A`**:
+    - `A` is a sorted list containing `M` unique integers. These integers are sampled from the range `[2, 2^N]`.
+    
+3. **Formatting the Input**:
+    - The function `format_input` converts `N`, `M`, and `A` into the required input format.
+    
+4. **Example Usage**:
+    - The test case generator produces a test case input, which is printed.
+
+### Note
+- The generator produces inputs for the problem. To fully test the problem, you would also need a function to compute the expected output. This function would implement the logic to determine the number of permutations where Player 1 becomes the champion, considering the constraints and rules given in the problem statement.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    N, M = map(int, fh.readline().strip().split())
+    if M > 0:
+        A = list(map(int, fh.readline().strip().split()))
+    else:
+        A = []
+    return N, M, A
+
+# if __name__ == "__main__":
+#     import sys
+#     input_path = sys.argv[1]
+#     with open(input_path, 'r') as fh:
+#         N, M, A = extract_arguments(fh)
+#         f(N, M, A)</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

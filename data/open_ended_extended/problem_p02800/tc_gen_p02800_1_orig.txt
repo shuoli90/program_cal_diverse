@@ -1,0 +1,49 @@
+Sure, let's write a test case generator for the given problem statement. This generator will create random test cases within the specified constraints.
+
+Here's the Python code for the test case generator:
+
+```python
+import random
+
+def tcgen():
+    # Randomly generate the dimensions of the grid H and W
+    H = random.randint(1, 10)
+    W = random.randint(1, 10)
+    
+    # Randomly generate the grid with 'H' rows and 'W' columns consisting of '.' and '#'
+    grid = []
+    for _ in range(H):
+        row = ''.join(random.choice(['.', '#']) for _ in range(W))
+        grid.append(row)
+    
+    return H, W, grid
+
+# Generate a test case and print it
+H, W, grid = tcgen()
+print(H, W)
+for row in grid:
+    print(row)
+```
+
+This generator will produce random grids within the constraints, ensuring that each grid is between 1 and 10 rows and columns, and each cell in the grid is either a '.' (white) or '#' (black).
+
+Let's walk through the generated test case output:
+
+```text
+H W
+A_1
+A_2
+...
+A_H
+```
+
+For example, if the generated grid has dimensions 3x4, the output might look like this:
+
+```text
+3 4
+.#..
+##.#
+...#
+```
+
+This output is ready to be used as an input for the problem statement. You can run the `tcgen` function multiple times to generate different test cases for extensive testing.

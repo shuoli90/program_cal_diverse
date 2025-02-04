@@ -1,0 +1,3 @@
+Types: N: int, M: int, L: List[int], R: List[int]
+Ranges: 1 ≤ N, M ≤ 2 × 10^5, 0 ≤ L[i] < R[i] ≤ M + 1 (1 ≤ i ≤ N)
+Addtl Info: All input values are integers

@@ -1,0 +1,48 @@
+To create a test case generator for the provided problem statement "Spaceship UAZ Advance," we need to generate random coordinates for the UAZ Advance spacecraft, the enemy, and the vertices of the barrier. The coordinates will be within the constraints of -100 to 100 for x, y, and z values. Here's a Python function that generates test cases for this problem:
+
+```python
+import random
+
+def generate_coordinate():
+    return random.randint(-100, 100)
+
+def generate_unique_coordinate(existing_coordinates):
+    while True:
+        coord = (generate_coordinate(), generate_coordinate(), generate_coordinate())
+        if coord not in existing_coordinates:
+            return coord
+
+def tcgen_spaceship_uaz_advance():
+    # Set of coordinates to ensure uniqueness
+    coordinates = set()
+    
+    # UAZ Advance spacecraft coordinates
+    uaz_advance = generate_unique_coordinate(coordinates)
+    coordinates.add(uaz_advance)
+    
+    # Enemy coordinates
+    enemy = generate_unique_coordinate(coordinates)
+    coordinates.add(enemy)
+    
+    # Barrier vertices coordinates
+    barrier_vertex1 = generate_unique_coordinate(coordinates)
+    coordinates.add(barrier_vertex1)
+    
+    barrier_vertex2 = generate_unique_coordinate(coordinates)
+    coordinates.add(barrier_vertex2)
+    
+    barrier_vertex3 = generate_unique_coordinate(coordinates)
+    coordinates.add(barrier_vertex3)
+    
+    return uaz_advance, enemy, barrier_vertex1, barrier_vertex2, barrier_vertex3
+
+# Example usage
+uaz_advance, enemy, vertex1, vertex2, vertex3 = tcgen_spaceship_uaz_advance()
+print("UAZ Advance spacecraft coordinates:", uaz_advance)
+print("Enemy coordinates:", enemy)
+print("Barrier vertex 1 coordinates:", vertex1)
+print("Barrier vertex 2 coordinates:", vertex2)
+print("Barrier vertex 3 coordinates:", vertex3)
+```
+
+This function generates random coordinates for the UAZ Advance spacecraft, the enemy, and the three vertices of the barrier. It ensures that no two points have the same coordinates, as the generator checks for uniqueness before adding a coordinate to the set of existing coordinates.

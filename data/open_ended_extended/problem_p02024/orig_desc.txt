@@ -1,0 +1,26 @@
+E: City
+Santa decided to deliver presents to a city.
+This city has the shape of a rectangle divided into $H$ rows and $W$ columns, and each cell contains one house that he has to deliver a present to.
+The houses are numbered from $(1,1)$ to $(H,W)$ in row-major order.
+Santa moves according to the following conditions:
+He starts at cell $(S,T)$.
+At each step, he can move to one of the four neighboring cells (north, south, east or west) as long as he stays inside the city.
+He cannot visit any cell more than once.
+Determine whether Santa can visit all the houses in the city or not.
+Input
+The input consists of a single line containing four integers $H$, $W$, $S$ and $T$ separated by a single space.
+Output
+If Santa can visit all the houses in the city, print "Yes". Otherwise, print "No".
+Constraints
+$2 \leq H, W \leq 10^9$
+$1 \leq S \leq H$
+$1 \leq T \leq W$
+Sample Input 1
+4 5 2 3
+Sample Output 1
+Yes
+For example, he can follow this path:
+Sample Input 2
+3 3 1 2
+Sample Output 2
+No

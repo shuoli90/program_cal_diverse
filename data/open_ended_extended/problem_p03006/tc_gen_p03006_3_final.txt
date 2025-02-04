@@ -1,0 +1,38 @@
+Sure, here is a Python test case generator for the given problem statement:
+
+```python
+import random
+
+def tcgen():
+    N = random.randint(1, 50)
+
+    balls = []
+    x_coords = set()
+    y_coords = set()
+
+    for _ in range(N):
+        while True:
+            x = random.randint(-10**9, 10**9)
+            y = random.randint(-10**9, 10**9)
+            # Ensure unique x or y coordinates as per problem constraints
+            if x not in x_coords and y not in y_coords:
+                x_coords.add(x)
+                y_coords.add(y)
+                balls.append((x, y))
+                break
+
+    return N, balls
+
+# Example usage
+N, balls = tcgen()
+print(N)
+for x, y in balls:
+    print(x, y)
+```
+
+This generator ensures that:
+1. `N` is chosen randomly between 1 and 50.
+2. Each ball's coordinates `(x, y)` are chosen such that `|x|` and `|y|` each can be as large as \(10^9\).
+3. Coordinates of each ball are unique in terms of either `x` or `y` (ensuring `x_i != x_j` or `y_i != y_j` for `i != j`).
+
+You can use the `tcgen` function to generate test cases for your problem. Each call to `tcgen` will produce a new set of test data adhering to the constraints specified.

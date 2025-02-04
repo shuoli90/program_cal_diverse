@@ -1,0 +1,69 @@
+Sure, I can help you create a test case generator for the "Battle Town" problem. Here's a detailed generator script in Python:
+
+```python
+import random
+
+def generate_map(H, W):
+    elements = ['.', '*', '#', '-', '^', 'v', '<', '>']
+    tank_positions = ['^', 'v', '<', '>']
+    
+    # Create an empty map
+    map_grid = [[random.choice(elements) for _ in range(W)] for _ in range(H)]
+
+    # Place a single tank at a random position
+    tank_pos = random.choice(tank_positions)
+    tank_x = random.randint(0, H - 1)
+    tank_y = random.randint(0, W - 1)
+    map_grid[tank_x][tank_y] = tank_pos
+
+    return map_grid
+
+def generate_actions():
+    actions = ['U', 'D', 'L', 'R', 'S']
+    num_actions = random.randint(1, 100)
+    return ''.join(random.choice(actions) for _ in range(num_actions))
+
+def tcgen():
+    T = random.randint(1, 100)
+    test_cases = []
+
+    for _ in range(T):
+        H = random.randint(1, 20)  # Assuming map height between 1 and 20
+        W = random.randint(1, 20)  # Assuming map width between 1 and 20
+        
+        map_grid = generate_map(H, W)
+        actions = generate_actions()
+
+        test_cases.append((H, W, map_grid, actions))
+
+    return T, test_cases
+
+def print_test_case(T, test_cases):
+    print(T)
+    for H, W, map_grid, actions in test_cases:
+        print(H, W)
+        for row in map_grid:
+            print(''.join(row))
+        print(actions)
+
+# Example usage
+T, test_cases = tcgen()
+print_test_case(T, test_cases)
+```
+
+### Explanation:
+1. **generate_map(H, W)**:
+    - Generates a random map of size H x W with random elements from the set ['.', '*', '#', '-', '^', 'v', '<', '>'].
+    - Places a single tank at a random position on the map.
+
+2. **generate_actions()**:
+    - Generates a random sequence of actions with a length between 1 and 100.
+
+3. **tcgen()**:
+    - Generates T test cases, where T is a random integer between 1 and 100.
+    - For each test case, creates a random map and a sequence of actions.
+
+4. **print_test_case(T, test_cases)**:
+    - Prints the test cases in the required format.
+
+You can use this script to generate and print test cases for the "Battle Town" problem. Adjust the parameters as needed to fit the problem constraints.

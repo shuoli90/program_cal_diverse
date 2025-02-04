@@ -1,0 +1,38 @@
+Sure, let's create a test case generator for the given problem statement. We'll need to generate random values for \(N\), the array \(A\), and the connections between devices \(U\) and \(V\). Here's a Python script that can generate such test cases:
+
+```python
+import random
+
+def tcgen():
+    # Generate a random N (number of devices) within the constraints
+    N = random.randint(1, 5000)
+    
+    # Generate the array A of size N with values between -10^9 and 10^9, non-zero
+    A = [random.randint(1, 10**9) * random.choice([-1, 1]) for _ in range(N)]
+    
+    # Generate the N-1 cables (edges) ensuring they form a valid tree
+    edges = []
+    for i in range(2, N + 1):
+        # Connect each new node to any of the previous nodes
+        edges.append((i, random.randint(1, i - 1)))
+
+    return N, A, edges
+
+def print_test_case():
+    N, A, edges = tcgen()
+    print(N)
+    print(" ".join(map(str, A)))
+    for u, v in edges:
+        print(u, v)
+
+# Example of generating and printing a test case
+print_test_case()
+```
+
+### Explanation:
+1. **Generating N**: We randomly choose \(N\) within the given constraints (1 ≤ \(N\) ≤ 5000).
+2. **Generating A**: We create an array \(A\) of size \(N\) with each element being a non-zero integer within the range \([-10^9, 10^9]\).
+3. **Generating edges**: We form a tree by connecting each new node \(i\) (from 2 to \(N\)) to any of the previous nodes (1 to \(i-1\)). This ensures the tree structure is maintained, meaning the graph is connected and acyclic.
+4. **Printing the test case**: The function `print_test_case` prints the generated test case in the required format.
+
+This script will produce random test cases each time it is run, which can be used to test the competitive programming problem.

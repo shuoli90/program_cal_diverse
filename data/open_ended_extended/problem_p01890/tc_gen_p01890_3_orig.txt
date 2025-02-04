@@ -1,0 +1,47 @@
+Certainly! Below is a Python code snippet that generates test cases for the "Non-redundant Drive" problem statement. This generator will create random valid inputs for the problem:
+
+```python
+import random
+
+def generate_test_case():
+    # Number of cities (N)
+    N = random.randint(1, 100000)
+
+    # Gasoline amounts for each city (g_1, g_2, ..., g_N)
+    gasolines = [random.randint(1, 10000) for _ in range(N)]
+
+    # Generate the roads
+    roads = []
+    available_nodes = list(range(1, N + 1))
+    random.shuffle(available_nodes)
+    
+    for i in range(2, N + 1):
+        a = available_nodes[i - 2]
+        b = available_nodes[i - 1]
+        d = random.randint(1, 10000)
+        roads.append((a, b, d))
+    
+    # Output the test case
+    print(N)
+    print(" ".join(map(str, gasolines)))
+    for road in roads:
+        print(f"{road[0]} {road[1]} {road[2]}")
+
+# Example of generating a test case
+generate_test_case()
+```
+
+### Explanation:
+
+1. **Number of Cities (N)**: We randomly choose a number between 1 and 100,000 inclusive for the number of cities.
+2. **Gasoline Amounts**: For each city, we randomly choose a gasoline supply amount between 1 and 10,000 inclusive.
+3. **Roads Generation**:
+    - We shuffle a list of city indices to ensure randomness.
+    - We connect cities sequentially to form a tree-like structure, ensuring there are no cycles and the graph remains connected.
+    - For each road, we randomly choose a distance between 1 and 10,000 inclusive.
+4. **Output**:
+    - The number of cities.
+    - The list of gasoline amounts.
+    - The list of roads, each with two city indices and a distance.
+
+This code will print a single test case each time it's run. You can run the `generate_test_case()` function multiple times to generate multiple test cases. For large values of `N`, ensure your environment can handle the large output efficiently.

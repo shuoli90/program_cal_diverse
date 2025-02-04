@@ -1,0 +1,37 @@
+Certainly! Here's a test case generator for the given problem statement:
+
+```python
+import random
+
+def generate_test_case():
+    # Constraints
+    N = random.randint(1, 1000)  # Number of rows
+    M = random.randint(1, 1000)  # Number of columns
+    K = random.randint(0, N * M)  # Number of black squares desired
+
+    return N, M, K
+
+# Printing a sample generated test case
+test_case = generate_test_case()
+print(test_case)
+```
+
+### Explanation:
+1. **N**: Randomly chooses the number of rows between 1 and 1000.
+2. **M**: Randomly chooses the number of columns between 1 and 1000.
+3. **K**: Randomly chooses the number of black squares desired between 0 and \(N \times M\).
+
+Running the `generate_test_case` function will provide a tuple representing a random test case for the problem, adhering to the constraints specified.
+
+### Example Output:
+Running the function might give an output like:
+```
+(753, 482, 123456)
+```
+
+This represents:
+- 753 rows
+- 482 columns
+- 123456 black squares desired
+
+Feel free to integrate this into your testing framework or use it to generate multiple test cases for thorough testing.

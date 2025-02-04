@@ -1,0 +1,38 @@
+An integer H (1 ≤ H ≤ 10), representing some quantity or size.  
+An integer W (1 ≤ W ≤ 10), representing some quantity or size.  
+A grid of dimensions H x W, containing characters from the set {'.', '#', '0'-'9', '+', '-', '*', '/', '='}.  
+An integer n (0 ≤ n ≤ 10), representing some quantity or size.  
+A list of n characters, each from the set {'0'-'9', '+', '-', '*', '/'}.
+
+### Example Input:
+
+```
+5 5
+4=..2
++#=#+
+.-2=.
+=#*#=
+.-.=3
+6
+7 3 1 4 / 8
+1 6
+8..3=2
+2
+2 +
+0 0
+```
+
+### Function Signature:
+Write a function f(inputs) that takes in the input. 
+
+```python
+def f(inputs: List[Tuple[int, int, List[str], int, List[str]]]):
+    '''
+    inputs: a list of tuples, each containing:
+        - an integer H
+        - an integer W
+        - a list of H strings, each of length W
+        - an integer n
+        - a list of n characters
+    '''
+```

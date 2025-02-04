@@ -1,0 +1,57 @@
+To generate test cases for the problem "School of Killifish", we need to create a function that produces random but valid inputs and outputs. Below is a test case generator for the given problem statement:
+
+```python
+import random
+
+def generate_test_case():
+    # Generate r and c such that r * c ≤ 10^6
+    max_cells = 10**6
+    r = random.randint(1, min(1000, max_cells))
+    c = random.randint(1, min(1000, max_cells // r))
+    assert r * c <= max_cells
+
+    # Generate a grid of size r * c with random dangerousness values
+    grid = [[random.randint(0, 2**31 - 1) for _ in range(c)] for _ in range(r)]
+
+    # Generate q with constraints
+    if r * c <= 250000:
+        q = random.randint(1, 100)
+    else:
+        q = random.randint(1, 10000)
+
+    queries = []
+    for _ in range(q):
+        r1 = random.randint(0, r - 1)
+        r2 = random.randint(r1, r - 1)
+        c1 = random.randint(0, c - 1)
+        c2 = random.randint(c1, c - 1)
+        queries.append((r1, c1, r2, c2))
+
+    return r, c, q, grid, queries
+
+def format_test_case(r, c, q, grid, queries):
+    lines = []
+    lines.append(f"{r} {c} {q}")
+    for row in grid:
+        lines.append(" ".join(map(str, row)))
+    for query in queries:
+        lines.append(" ".join(map(str, query)))
+    return "\n".join(lines)
+
+def main():
+    r, c, q, grid, queries = generate_test_case()
+    test_case = format_test_case(r, c, q, grid, queries)
+    print(test_case)
+
+if __name__ == "__main__":
+    main()
+```
+
+This test case generator does the following:
+1. Randomly determines the number of rows (`r`) and columns (`c`) of the grid, keeping the product `r * c` within the constraint of 10^6.
+2. Generates a grid with `r` rows and `c` columns where each cell contains a random dangerousness value between 0 and 2^31 - 1.
+3. Determines the number of queries (`q`) based on the size of the grid. If `r * c` is less than or equal to 250000, it generates up to 100 queries. Otherwise, it generates up to 10000 queries.
+4. For each query, it generates random valid subgrid coordinates (r1, c1, r2, c2) ensuring that r1 ≤ r2 and c1 ≤ c2.
+5. Formats the generated test case to match the input format specified in the problem statement.
+
+You can run this script to generate a test case and print it in the required format. Adjust the random seed or the specific ranges if you want more controlled test case generation.

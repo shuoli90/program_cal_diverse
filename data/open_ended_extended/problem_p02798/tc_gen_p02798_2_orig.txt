@@ -1,0 +1,31 @@
+Sure, I can write a test case generator for the given problem statement. Here is the Python code for generating random test cases based on the constraints provided:
+
+```python
+import random
+
+def tcgen():
+    N = random.randint(1, 18)  # 1 <= N <= 18
+    A = [random.randint(1, 50) for _ in range(N)]  # 1 <= A_i <= 50
+    B = [random.randint(1, 50) for _ in range(N)]  # 1 <= B_i <= 50
+    
+    return N, A, B
+
+# Example usage:
+def print_test_case():
+    N, A, B = tcgen()
+    print(N)
+    print(" ".join(map(str, A)))
+    print(" ".join(map(str, B)))
+
+# Generate and print a test case
+print_test_case()
+```
+
+This function generates random values within the specified constraints for `N`, `A`, and `B`:
+
+- `N` is a random integer between 1 and 18.
+- Each element in `A` and `B` is a random integer between 1 and 50.
+
+The `print_test_case` function demonstrates how to generate a test case and print it in the required format.
+
+You can run `print_test_case` multiple times to generate different test cases.

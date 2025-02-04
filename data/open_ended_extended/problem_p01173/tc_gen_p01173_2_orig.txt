@@ -1,0 +1,73 @@
+Certainly! Below is a test case generator for the "Dig or Climb" problem statement. This generator will produce random valid inputs adhering to the constraints specified in the problem description.
+
+```python
+import random
+
+def generate_test_case():
+    # Constraints
+    max_n = 1000
+    max_val = 10000
+    
+    # Generate a random number of points n (1 <= n <= 1000)
+    n = random.randint(1, max_n)
+    
+    # Generate random walking speed vw (1 <= vw <= 10)
+    vw = random.randint(1, 10)
+    
+    # Generate random tunneling speed vc (1 <= vc <= 10)
+    vc = random.randint(1, 10)
+    
+    # Generate n random points
+    points = []
+    x = 0
+    for _ in range(n):
+        x += random.randint(1, max_val // n)  # Ensure x is strictly increasing
+        y = random.randint(-max_val, max_val)
+        points.append((x, y))
+    
+    return n, vw, vc, points
+
+def generate_test_cases(num_cases):
+    test_cases = []
+    for _ in range(num_cases):
+        test_cases.append(generate_test_case())
+    return test_cases
+
+def format_test_case(test_case):
+    n, vw, vc, points = test_case
+    formatted = f"{n}\n{vw} {vc}\n"
+    for x, y in points:
+        formatted += f"{x} {y}\n"
+    return formatted
+
+def generate_input_file(num_cases, filename):
+    test_cases = generate_test_cases(num_cases)
+    with open(filename, 'w') as f:
+        for test_case in test_cases:
+            f.write(format_test_case(test_case))
+        f.write("0\n")  # Add the terminating case
+
+# Example usage
+if __name__ == "__main__":
+    num_cases = 5  # Number of test cases you want to generate
+    generate_input_file(num_cases, "test_cases.txt")
+```
+
+Explanation:
+
+1. **Generate Test Case**:
+    - `generate_test_case` function creates a single random test case.
+    - `n` (number of points) is randomly chosen between 1 and 1000.
+    - `vw` (walking speed) and `vc` (tunneling speed) are chosen between 1 and 10.
+    - `points` is a list of tuples representing `(xi, yi)`. The x-coordinates are strictly increasing, and the y-coordinates are chosen randomly within the range `-10000` to `10000`.
+
+2. **Generate Test Cases**:
+    - `generate_test_cases` function creates a list of multiple test cases.
+   
+3. **Format Test Case**:
+    - `format_test_case` function converts a test case into the required string format.
+    
+4. **Generate Input File**:
+    - `generate_input_file` function writes the test cases to a file, ending with a "0" to signal termination.
+
+This generator ensures that all constraints are met and that the test cases are formatted correctly for the problem.

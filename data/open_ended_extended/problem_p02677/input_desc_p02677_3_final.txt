@@ -1,0 +1,20 @@
+An integer A (1 ≤ A ≤ 1000).
+An integer B (1 ≤ B ≤ 1000).
+An integer H (0 ≤ H ≤ 11).
+An integer M (0 ≤ M ≤ 59).
+
+### Example Input:
+
+```
+13 4 9 0
+```
+
+### Function Signature:
+Write a function f(A, B, H, M) that takes in the input.
+def f(A: int, B: int, H: int, M: int):
+    ''' 
+    A: an integer 
+    B: an integer 
+    H: an integer 
+    M: an integer 
+    '''

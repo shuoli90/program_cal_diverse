@@ -1,0 +1,18 @@
+An integer N (2 ≤ N ≤ 10^5), representing some quantity or size.
+A string S of length N, where each character is 'L' or 'R', and the first character is 'R' and the last character is 'L'.
+
+### Example Input:
+
+```
+5
+RRLRL
+```
+
+### Function Signature:
+Write a function f(S: str) that takes in the input.
+```python
+def f(S: str):
+    '''
+    S: a string
+    '''
+```

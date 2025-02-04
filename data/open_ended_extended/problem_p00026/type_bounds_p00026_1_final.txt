@@ -1,0 +1,3 @@
+Types: x: int, y: int, s: int
+Ranges: 0 ≤ x < 10, 0 ≤ y < 10, s in {1, 2, 3}
+Addtl Info: The number of drops is less than or equal to 50.

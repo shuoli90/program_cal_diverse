@@ -1,0 +1,49 @@
+Sure, I can help you write a test case generator for the problem "Escape of Lappin the Phantom Thief".
+
+Here is a Python function to generate test cases for this problem:
+
+```python
+import random
+
+def generate_test_case():
+    # Define constraints
+    n = random.randint(1, 5 * 10**4)
+    m = random.randint(1, 5 * 10**4)
+    k = random.randint(1, min(10**5, n * m))
+
+    # Generate k unique robot coordinates
+    robot_positions = set()
+    while len(robot_positions) < k:
+        x = random.randint(0, n - 1)
+        y = random.randint(0, m - 1)
+        robot_positions.add((x, y))
+
+    # Convert set to list
+    robot_positions = list(robot_positions)
+
+    # Format the test case
+    test_case = f"{n} {m} {k}\n"
+    for x, y in robot_positions:
+        test_case += f"{x} {y}\n"
+
+    return test_case.strip()
+
+# Example usage
+print(generate_test_case())
+```
+
+### Explanation:
+
+1. **Constraints**:
+   - `n` and `m` are generated randomly within the range [1, 5 * 10^4].
+   - `k` is generated randomly within the range [1, min(10^5, n * m)].
+
+2. **Generating Unique Robot Coordinates**:
+   - A set is used to ensure the robot coordinates are unique.
+   - Random coordinates are generated and added to the set until its size reaches `k`.
+
+3. **Formatting the Output**:
+   - The test case is formatted as a string, with the first line containing `n`, `m`, and `k`.
+   - Each subsequent line contains the coordinates `xi` and `yi` of the robots.
+
+This generator creates random test cases that adhere to the given constraints, which can be used to test the algorithm for the problem "Escape of Lappin the Phantom Thief".

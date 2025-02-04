@@ -1,0 +1,16 @@
+An integer N (0 < N < 10).
+
+### Example Input:
+
+```
+3
+4
+0
+```
+
+### Function Signature:
+Write a function f(inputs) that takes in the input. 
+def f(inputs: List[int]):
+    ''' 
+    inputs: a list of integers 
+    '''

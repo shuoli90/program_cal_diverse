@@ -1,0 +1,45 @@
+Sure! Here's the test case generator for the "Modulo Query" problem:
+
+```python
+import random
+
+def tcgen():
+    # Generating the number of cards N and the number of questions Q
+    N = random.randint(2, 300000)
+    Q = random.randint(2, 100000)
+    
+    # Generating the list of card numbers c1, c2, ..., cN
+    cards = [random.randint(1, 300000) for _ in range(N)]
+    
+    # Generating the list of questions q1, q2, ..., qQ
+    questions = []
+    while len(questions) < Q:
+        q = random.randint(1, 300000)
+        if q not in questions:
+            questions.append(q)
+    
+    # Formatting the input
+    input_data = f"{N} {Q}\n" + ' '.join(map(str, cards)) + '\n' + '\n'.join(map(str, questions))
+    
+    return input_data
+
+# Example usage
+print(tcgen())
+```
+
+### Explanation
+
+1. **Generating N and Q**: 
+    - `N` is generated randomly between 2 and 300000.
+    - `Q` is generated randomly between 2 and 100000.
+
+2. **Generating the list of card numbers**:
+    - A list of `N` integers is generated, each integer between 1 and 300000.
+
+3. **Generating the list of questions**:
+    - A list of `Q` unique integers is generated, each integer between 1 and 300000. The uniqueness is ensured by checking if the generated question is already in the list.
+
+4. **Formatting the input**:
+    - The input is formatted to match the problem statement requirements, with `N` and `Q` on the first line, the card numbers on the second line, and each question on a new line.
+
+You can use this function to generate different test cases for the "Modulo Query" problem.

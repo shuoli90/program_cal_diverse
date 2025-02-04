@@ -1,0 +1,37 @@
+Sure, here's the test case generator for the given problem statement:
+
+```python
+import random
+import string
+
+def tcgen():
+    # Generate a random number of members in the programming research club
+    N = random.randint(1, 1000)
+    
+    # Generate a list of names, where each name is a string of numbers and uppercase letters
+    names = []
+    for _ in range(N):
+        # Randomly decide if this name will be "E869120" or some other name
+        if random.random() < 0.1:  # 10% probability to be "E869120"
+            names.append("E869120")
+        else:
+            # Generate a random name with length between 1 and 100
+            length = random.randint(1, 100)
+            name = ''.join(random.choices(string.ascii_uppercase + string.digits, k=length))
+            names.append(name)
+    
+    return N, names
+
+# Example of how to use the generator
+N, names = tcgen()
+print(N)
+for name in names:
+    print(name)
+```
+
+This generator does the following:
+1. Randomly selects the number of club members \( N \) between 1 and 1000.
+2. For each member, it randomly decides whether to assign the name "E869120" with a 10% probability or to generate a random string of uppercase letters and digits with a length between 1 and 100 characters.
+3. Returns the number of members and the list of names.
+
+You can use this generator to create test cases by calling the `tcgen` function and printing the results, as shown at the end of the script.

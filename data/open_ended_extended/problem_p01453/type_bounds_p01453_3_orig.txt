@@ -1,0 +1,4 @@
+
+Types: W: int, H: int, maze: List[str]
+Ranges: 3 ≤ W ≤ 500, 3 ≤ H ≤ 500, maze[i] ∈ {'#', '.', 's', 'g', '*'}
+Addtl Info: maze is a list of H strings, each of length W. "s" and "g" appear exactly once each in the maze. The outermost layer of the maze is surrounded by walls ('#').

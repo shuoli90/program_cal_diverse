@@ -1,0 +1,34 @@
+### Canonicalized Input Description:
+
+An integer N (1 ≤ N ≤ 50,000), representing some quantity or size.
+A list of tuples of size N, where each tuple contains:
+  - A string (1 ≤ length ≤ 20), where each character is an English letter.
+  - An integer (0 ≤ integer ≤ 10^5).
+An integer M (1 ≤ M ≤ 20,000), representing some quantity or size.
+A list of changes of size M, where each change is formatted as:
+  - "+ string integer" or "- string", where:
+    - The string (1 ≤ length ≤ 20) consists of English letters.
+    - The integer (0 ≤ integer ≤ 10^5) is present only for the "+" format.
+
+### Example Input:
+```
+4
+example1 7
+example2 3
+example3 6
+example4 0
+1
++ example5 2
+```
+
+### Function Signature:
+Write a function f(N, initial_members, M, changes) that takes in the input.
+```python
+def f(N: int, initial_members: List[Tuple[str, int]], M: int, changes: List[str]):
+    '''
+    N: an integer
+    initial_members: a list of tuples, where each tuple contains a string and an integer
+    M: an integer
+    changes: a list of strings
+    '''
+```

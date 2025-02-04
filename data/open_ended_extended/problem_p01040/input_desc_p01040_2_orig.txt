@@ -1,0 +1,22 @@
+Six integers Y1, M1, D1, Y2, M2, D2 separated by a space are given in one line.
+
+1 ≤ Y1 ≤ Y2 ≤ 10^18
+1 ≤ Mi ≤ 12
+1 ≤ Di ≤ 31 (Mi = 1, 3, 5, 7, 8, 10, 12)
+1 ≤ Di ≤ 30 (Mi = 4, 6, 9, 11)
+1 ≤ Di ≤ 28 (Mi = 2 and Yi is not a leap year)
+1 ≤ Di ≤ 29 (Mi = 2 and Yi is a leap year)
+Y1, M1, D1 is a date that is at least 0 days before Y2, M2, D2
+
+### Example Input:
+
+```
+2015 3 13 2015 3 13
+```
+
+### Function Signature:
+Write a function f(inputs) that takes in the input. 
+def f(inputs: List[Tuple[int, int, int, int, int, int]]): 
+    ''' 
+    inputs: a list of tuples, where each tuple contains six integers
+    '''

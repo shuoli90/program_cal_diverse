@@ -1,0 +1,39 @@
+Sure, let's break down the requirements of the problem to create a test case generator.
+
+The problem requires generating random Monday-Saturday numbers (positive integers whose remainder when divided by 7 is either 1 or 6) that are greater than 1 and less than 300,000. The test case generator will output a sequence of these numbers ending with a `1` to indicate the end of input.
+
+Here is the Python code to generate such test cases:
+
+```python
+import random
+
+def is_monday_saturday_number(n):
+    return n % 7 == 1 or n % 7 == 6
+
+def generate_monday_saturday_number():
+    while True:
+        num = random.randint(2, 299999)
+        if is_monday_saturday_number(num):
+            return num
+
+def tcgen(num_cases):
+    test_cases = []
+    for _ in range(num_cases):
+        test_cases.append(generate_monday_saturday_number())
+    test_cases.append(1)  # end of input marker
+    return test_cases
+
+# Example usage:
+if __name__ == "__main__":
+    num_cases = 5  # Number of test cases to generate
+    test_cases = tcgen(num_cases)
+    for case in test_cases:
+        print(case)
+```
+
+### Explanation:
+1. **`is_monday_saturday_number(n)`**: A helper function to check if a number is a Monday-Saturday number (i.e., \( n \% 7 == 1 \) or \( n \% 7 == 6 \)).
+2. **`generate_monday_saturday_number()`**: Generates a random number from 2 to 299999 and ensures it is a Monday-Saturday number by using the `is_monday_saturday_number` function.
+3. **`tcgen(num_cases)`**: Generates the specified number (`num_cases`) of Monday-Saturday numbers and appends a `1` at the end to indicate the end of input.
+
+This generator can be used to create multiple test cases for the problem and verify the correctness of the implementation.

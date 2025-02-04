@@ -1,0 +1,18 @@
+def extract_arguments(fh):
+    datasets = []
+    while True:
+        n = int(fh.readline().strip())
+        if n == 0:
+            break
+        vx, vy = map(int, fh.readline().strip().split())
+        vertices = [tuple(map(int, fh.readline().strip().split())) for _ in range(n)]
+        datasets.append((n, (vx, vy), vertices))
+    return datasets
+
+# if __name__ == "__main__":
+#     input_path = sys.argv[1]
+#     with open(input_path, 'r') as fh: 
+#         datasets = extract_arguments(fh)
+#         for dataset in datasets:
+#             n, (vx, vy), vertices = dataset
+#             f(n, (vx, vy), vertices)

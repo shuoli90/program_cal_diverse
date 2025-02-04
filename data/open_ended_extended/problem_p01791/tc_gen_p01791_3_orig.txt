@@ -1,0 +1,41 @@
+Here is a test case generator for "Problem B: Card Game Strategy":
+
+First, let’s analyze the requirements and constraints:
+
+1. \( n \) (1 ≤ \( k \) ≤ \( n \) ≤ 600): the number of cards.
+2. \( k \) (1 ≤ \( k \) ≤ \( n \)): the number of cards Bob will choose.
+3. \( a \) and \( b \) (0 ≤ \( a \) ≤ \( b \) ≤ 180,000): the range from which Alice will choose an integer \( t \).
+4. A list of integers \( x \), each between 0 and 300, representing the integers written on the cards.
+
+Given these constraints, we can create a test case generator as follows:
+
+```python
+import random
+
+def tcgen():
+    # Generating random values for n, k, a, and b within the given constraints
+    n = random.randint(1, 600)
+    k = random.randint(1, n)
+    a = random.randint(0, 180000)
+    b = random.randint(a, 180000)  # Ensure b is at least as large as a
+    
+    # Generating a list of n integers, each between 0 and 300
+    x = [random.randint(0, 300) for _ in range(n)]
+    
+    # Returning the generated values
+    return n, k, a, b, x
+
+# Example usage of the generator:
+n, k, a, b, x = tcgen()
+print(n, k, a, b)
+print(' '.join(map(str, x)))
+```
+
+### Explanation:
+1. **n** is chosen randomly between 1 and 600.
+2. **k** is chosen randomly between 1 and **n**.
+3. **a** is chosen randomly between 0 and 180,000.
+4. **b** is chosen randomly between **a** and 180,000 to ensure that **a** ≤ **b**.
+5. A list of **n** integers is generated, where each integer is between 0 and 300.
+
+This generator will produce random test cases that conform to the problem’s constraints. The output can be used directly in competitive programming platforms to test different scenarios of the "Card Game Strategy" problem.

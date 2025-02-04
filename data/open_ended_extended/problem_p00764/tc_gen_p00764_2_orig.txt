@@ -1,0 +1,48 @@
+Sure, let's create a test case generator for the given problem statement "Chain-Confined Path". Here is the Python code for generating test cases:
+
+```python
+import random
+
+def generate_circle():
+    x = random.randint(0, 1000)
+    y = random.randint(0, 1000)
+    r = random.randint(1, 25)
+    return (x, y, r)
+
+def circles_intersect(c1, c2):
+    x1, y1, r1 = c1
+    x2, y2, r2 = c2
+    dist_sq = (x2 - x1) ** 2 + (y2 - y1) ** 2
+    return (r1 - r2) ** 2 < dist_sq < (r1 + r2) ** 2
+
+def tcgen():
+    n = random.randint(3, 100)
+    
+    circles = [generate_circle()]
+    
+    for _ in range(1, n):
+        while True:
+            new_circle = generate_circle()
+            if circles_intersect(circles[-1], new_circle):
+                circles.append(new_circle)
+                break
+    
+    dataset = f"{n}\n" + "\n".join(f"{x} {y} {r}" for x, y, r in circles)
+    return dataset
+
+def generate_multiple_datasets(count):
+    datasets = [tcgen() for _ in range(count)]
+    return "\n0\n".join(datasets) + "\n0"
+
+# Example usage
+print(generate_multiple_datasets(5))
+```
+
+This code will generate multiple test cases for the "Chain-Confined Path" problem. Here’s a breakdown of what each part does:
+
+1. **generate_circle**: Generates a random circle with coordinates `x`, `y`, and radius `r` within the provided constraints.
+2. **circles_intersect**: Checks if two circles intersect at two separate points as required by the problem statement.
+3. **tcgen**: Generates a single dataset with `n` circles that meet the problem constraints. It ensures that each circle intersects with its predecessor.
+4. **generate_multiple_datasets**: Generates the specified number of datasets and concatenates them with the termination line (`0`).
+
+You can call `generate_multiple_datasets` with the desired number of datasets to generate the complete input for the problem.

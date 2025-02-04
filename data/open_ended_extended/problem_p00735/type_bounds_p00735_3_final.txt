@@ -1,0 +1,3 @@
+Types: Seq: List[int]
+Ranges: 2 ≤ Seq[i] < 300000, Seq[i] % 7 in {1, 6}
+Addtl Info: Input sequence ends with a single digit 1

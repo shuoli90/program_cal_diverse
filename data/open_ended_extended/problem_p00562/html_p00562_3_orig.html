@@ -1,0 +1,263 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p00562 - Generation 3</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p00562 - Generation 3</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>
+Soccer
+  You are a manager of a prestigious soccer team in the JOI league.
+  The team has $N$ players numbered from 1 to $N$. The players are practicing hard in order to win the tournament game. The field is a rectangle whose height is $H$ meters and width is $W$ meters. The vertical line of the field is in the north-south direction, and the horizontal line of the field is in the east-west direction. A point in the field is denoted by ($i, j$) if it is $i$-meters to the south and $j$ meters to the east from the northwest corner of the field.
+  After the practice finishes, players must clear the ball. In the beginning of the clearance, the player $i$ ($1 \leq i \leq N$) stands at ($S_i, T_i$). There is only one ball in the field, and the player 1 has it. You stand at ($S_N, T_N$) with the player $N$. The clearance is finished if the ball is passed to ($S_N, T_N$), and you catch it. You cannot move during the clearance process.
+  You can ask players to act. But, if a player acts, his fatigue degree will be increased according to the action. Here is a list of possible actions of the players. If a player has the ball, he can act (i),(ii), or (iii). Otherwise, he can act (ii) or (iv).
+ (i) Choose one of the 4 directions (east/west/south/north), and choose a positive integer $p$. Kick the ball to that direction. Then, the ball moves exactly p meters. The kicker does not move by this action, and he loses the ball. His fatigue degree is increased by $A \times p + B$.
+(ii) Choose one of the 4 directions (east/west/south/north), and move 1 meter to that direction. If he has the ball, he moves with it. His fatigue degree is increased by $C$ regardless of whether he has the ball or not.
+(iii) Place the ball where he stands. He loses the ball. His fatigue degree does not change.
+(iv) Take the ball. His fatigue degree does not change. A player can take this action only if he stands at the same place as the ball, and nobody has the ball.
+  Note that it is possible for a player or a ball to leave the field. More than one players can stand at the same place.
+Since the players just finished the practice, their fatigue degrees must not be increased too much. You want to calculate the minimum possible value of the sum of fatigue degrees of the players for the clearance process.
+Task
+Given the size of the field and the positions of the players, write a program which calculates the minimum possible value of the sum of fatigue degrees of the players for the clearance process.
+Input
+  Read the following data from the standard input.
+ The first line of input contains two space separated integers $H$, $W$. This means the field is a rectangle whose height is $H$ meters and width is $W$ meters.
+ The second line contains three space separated integers $A$, $B$, $C$ describing the increment of the fatigue degree by actions.
+ The third line contains an integer N, the number of players.
+ The $i$-th line ($1 \leq i \leq N$) of the following $N$ lines contains two space separated integers $S_i$, $T_i$. This means, in the beginning of the clearance, the player $i$ ($1 \leq i \leq N$) stands at ($S_i, T_i$).
+Output
+Write one line to the standard output. The output contains the minimum possible value of the sum of fatigue degrees of the players for the clearance process.
+  
+Constraints
+All input data satisfy the following conditions.
+$1 \leq H \leq 500．$
+$1 \leq W \leq 500．$
+$0 \leq A \leq 1 000 000 000．$
+$0 \leq B \leq 1 000 000 000．$
+$0 \leq C \leq 1 000 000 000．$
+$2 \leq N \leq 100 000．$
+$0 \leq S_i \leq H (1 \leq i \leq N)．$
+$0 \leq T_i \leq W (1 \leq i \leq N)．$
+$(S_1, T_1) \ne (S_N, T_N)．$
+Sample Input and Output
+Sample Input 1
+6 5
+1 3 6
+3
+1 1
+0 4
+6 5
+Sample Output 1
+26
+  In this sample input, the initial status of the field is as in the following figure. The white circles are the players. The black circle is the ball. You stand at (6, 5).
+  
+The initial status of the field
+  The players act as follows:
+. The player 1 kicks the ball to the east for $3$ meters. His fatigue degree is increased by $1 \times 3 + 3 = 6$. The ball moves to ($1, 4$).
+ The player 2 moves $1$ meter to the south, and he has the ball. His fatigue degree is increased by $6$.
+ The player 2 moves $1$ meter to the east. His fatigue degree is increased by $6$.
+ The player 2 kicks the ball to the south for $5$ meters. His fatigue degree is increased by $1 \times 5 + 3 = 8$. The ball moves to ($6, 5$).
+In these actions, the sum of fatigue degrees is $6 + 6 + 6 + 8 = 26$, which is the minimum possible value.
+The actions in an optimal solution
+  
+Sample Input 2
+3 3
+0 50 10
+2
+0 0
+3 3
+Sample Output 2
+60
+In Sample Input 2, it not not necessary to
+Sample Input 3
+4 3
+0 15 10
+2
+0 0
+4 3
+Sample Output 3
+45
+Sample Input 4
+4 6
+0 5 1000
+6
+3 1
+4 6
+3 0
+3 0
+4 0
+0 4
+Sample Output 4
+2020
+that more than one players can stand at the same place.
+The 16th Japanese Olympiad in Informatics (JOI 2016/2017)
+Final Round
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An integer H (1 ≤ H ≤ 500), representing some quantity.
+An integer W (1 ≤ W ≤ 500), representing some quantity.
+Three integers A, B, C (0 ≤ A, B, C ≤ 1,000,000,000), representing some quantities.
+An integer N (2 ≤ N ≤ 100,000), representing some quantity.
+N pairs of integers (S_i, T_i) where 0 ≤ S_i ≤ H and 0 ≤ T_i ≤ W, representing some coordinates.
+
+### Example Input:
+
+```
+6 5
+1 3 6
+3
+1 1
+0 4
+6 5
+```
+
+### Function Signature:
+Write a function f(H, W, A, B, C, N, coordinates) that takes in the input. 
+def f(H: int, W: int, A: int, B: int, C: int, N: int, coordinates: List[Tuple[int, int]]):
+    ''' 
+    H: an integer 
+    W: an integer 
+    A: an integer 
+    B: an integer 
+    C: an integer 
+    N: an integer 
+    coordinates: a list of tuples of integers
+    '''</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Sure, I can help you write a test case generator for the given problem statement. The generator will produce random values for the field dimensions, fatigue increments, number of players, and their initial positions.
+
+Here's the test case generator in Python:
+
+```python
+import random
+
+def tcgen():
+    # Generate random field dimensions H and W
+    H = random.randint(1, 500)
+    W = random.randint(1, 500)
+    
+    # Generate random fatigue increments A, B, and C
+    A = random.randint(0, 10**9)
+    B = random.randint(0, 10**9)
+    C = random.randint(0, 10**9)
+    
+    # Generate random number of players N
+    N = random.randint(2, 100000)
+    
+    # Generate random initial positions for N players
+    players = []
+    for _ in range(N):
+        S_i = random.randint(0, H)
+        T_i = random.randint(0, W)
+        players.append((S_i, T_i))
+    
+    # Ensure (S_1, T_1) != (S_N, T_N)
+    while players[0] == players[-1]:
+        players[-1] = (random.randint(0, H), random.randint(0, W))
+    
+    return H, W, A, B, C, N, players
+
+# Function to print test case in the required format
+def print_test_case(H, W, A, B, C, N, players):
+    print(H, W)
+    print(A, B, C)
+    print(N)
+    for player in players:
+        print(player[0], player[1])
+
+# Generate a test case
+H, W, A, B, C, N, players = tcgen()
+
+# Print the generated test case
+print_test_case(H, W, A, B, C, N, players)
+```
+
+### Explanation
+
+1. **Field Dimensions (H, W):**
+   - Randomly generate the height (H) and width (W) of the field within the constraints \(1 \leq H, W \leq 500\).
+
+2. **Fatigue Increments (A, B, C):**
+   - Randomly generate the values for fatigue increments \(A, B, C\) within the constraints \(0 \leq A, B, C \leq 1,000,000,000\).
+
+3. **Number of Players (N):**
+   - Randomly generate the number of players \(N\) within the constraints \(2 \leq N \leq 100,000\).
+
+4. **Initial Positions of Players:**
+   - For each player, generate a random initial position \((S_i, T_i)\) within the field dimensions \(0 \leq S_i \leq H\) and \(0 \leq T_i \leq W\).
+   - Ensure that the initial position of player 1 is not the same as the initial position of player \(N\).
+
+5. **Output:**
+   - The function `print_test_case` formats and prints the generated test case data.
+
+This generator ensures that all constraints are met and provides a diverse range of test cases for the problem. You can run the script multiple times to generate different test cases.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    H, W = map(int, fh.readline().strip().split())
+    A, B, C = map(int, fh.readline().strip().split())
+    N = int(fh.readline().strip())
+    positions = [tuple(map(int, fh.readline().strip().split())) for _ in range(N)]
+    return H, W, A, B, C, N, positions
+
+# if __name__ == "__main__":
+#     input_path = sys.argv[1]
+#     with open(input_path, 'r') as fh: 
+#     H, W, A, B, C, N, positions = extract_arguments(fh)
+#     f(H, W, A, B, C, N, positions)</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

@@ -1,0 +1,36 @@
+Sure! Here is a test case generator for the "F: Absum" problem:
+
+```python
+import random
+
+def tcgen():
+    N = random.randint(2, 10**5)  # Random N between 2 and 100000
+    M = random.randint(0, N)      # Random M between 0 and N
+    
+    # Creating the array A with random values between 0 and 100000
+    A = [random.randint(0, 10**5) for _ in range(N)]
+    
+    return N, M, A
+
+# Example usage
+N, M, A = tcgen()
+print(N, M)
+print(" ".join(map(str, A)))
+```
+
+This test case generator will produce random test cases conforming to the given constraints for the "F: Absum" problem.
+
+### Explanation:
+
+1. **N**: Randomly chosen between 2 and 100000.
+2. **M**: Randomly chosen between 0 and N.
+3. **A**: A list of N integers where each integer is randomly chosen between 0 and 100000.
+
+### Example output:
+```
+5 2
+12345 67890 23456 98765 1234
+```
+This example indicates 5 elements in the array with up to 2 swap operations allowed, and the array elements are: 12345, 67890, 23456, 98765, 1234.
+
+You can adjust the random seed if you need reproducible results during testing.

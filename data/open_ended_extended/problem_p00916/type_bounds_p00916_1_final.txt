@@ -1,0 +1,5 @@
+Types: n: int, li: int, ti: int, ri: int, bi: int
+
+Ranges: 1 ≤ n ≤ 50, 0 ≤ li < ri ≤ 10^6, 0 ≤ bi < ti ≤ 10^6
+
+Addtl Info: Input is terminated by a single zero.

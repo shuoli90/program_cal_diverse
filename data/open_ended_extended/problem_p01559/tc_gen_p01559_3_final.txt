@@ -1,0 +1,56 @@
+Certainly! Here is the test case generator for the "MinimumCostPath" problem:
+
+```python
+import random
+
+def tcgen():
+    # Generate a random N within the constraints
+    N = random.randint(2, 10**6)
+    
+    # Generate a random M within the constraints
+    M = random.randint(0, 50)
+    
+    obstacles = set()
+    while len(obstacles) < M:
+        x = random.randint(1, N)
+        y = random.randint(1, N)
+        if (x, y) != (1, 1) and (x, y) != (N, N) and (x, y) not in obstacles:
+            obstacles.add((x, y))
+    
+    obstacles = list(obstacles)
+    
+    # Convert obstacles to the required format
+    obstacle_str = ""
+    for x, y in obstacles:
+        obstacle_str += f"{x} {y}\n"
+    
+    return f"{N} {M}\n{obstacle_str}"
+
+# Example usage
+print(tcgen())
+```
+
+The test case generator `tcgen` follows these steps:
+
+1. It generates a random `N` between 2 and \(10^6\).
+2. It generates a random `M` between 0 and 50.
+3. It creates a set of unique obstacle coordinates while ensuring that the coordinates do not include the starting point `(1, 1)` or the ending point `(N, N)`.
+4. It formats the obstacle coordinates into the required string format.
+
+You can use this generator to create test cases for your problem statement. Here is an example output of running the generator:
+
+```
+100 10
+45 67
+23 89
+12 34
+56 78
+90 12
+34 56
+78 90
+12 23
+45 56
+67 78
+```
+
+Feel free to integrate or modify this generator as needed for your testing purposes!

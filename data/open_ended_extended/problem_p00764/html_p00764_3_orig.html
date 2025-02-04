@@ -1,0 +1,260 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p00764 - Generation 3</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p00764 - Generation 3</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>
+Chain-Confined Path
+There is a chain consisting of multiple circles on a plane.
+The first (last) circle of the chain only intersects with the next (previous) circle,
+and each intermediate circle intersects only with the two neighboring circles.
+Your task is to find the shortest path that satisfies the following conditions.
+The path connects the centers of the first circle and the last circle.
+The path is confined in the chain, that is, all the points on the path are located within or on at least one of the circles.
+Figure E-1 shows an example of such a chain and the corresponding shortest path.
+Figure E-1: An  example chain and the corresponding shortest path
+Input
+The input consists of multiple datasets.
+Each dataset represents the shape of a chain in the following format.
+n
+x1 y1 r1 
+x2 y2 r2 
+...
+xn yn rn 
+The first line of a dataset contains an integer n (3 ≤ n ≤ 100) 
+representing the number of the circles.
+Each of the following n lines contains three integers separated by a single space.
+(xi, yi) 
+and ri represent 
+the center position and the radius of the i-th circle Ci.
+You can assume that 0 ≤ xi ≤ 1000, 
+0 ≤ yi ≤ 1000, and
+1 ≤ ri ≤ 25.
+You can assume that Ci  and 
+Ci+1  (1 ≤ i ≤ n−1) intersect at two separate points.
+When j ≥ i+2, Ci  and Cj  are apart and either of them does not contain the other.
+In addition, you can assume that any circle does not contain the center of any other circle.
+The end of the input is indicated by a line containing a zero. 
+Figure E-1 corresponds to the first dataset of Sample Input below.
+Figure E-2 shows the shortest paths for the subsequent datasets of Sample Input. 
+Figure E-2: Example chains and the corresponding shortest paths
+Output
+For each dataset, output a single line containing the length of the shortest chain-confined path between the centers of the first circle and the last circle.
+The value should not have an error greater than 0.001.
+No extra characters should appear in the output. 
+Sample Input
+10
+802 0 10
+814 0 4
+820 1 4
+826 1 4
+832 3 5
+838 5 5
+845 7 3
+849 10 3
+853 14 4
+857 18 3
+3
+0 0 5
+8 0 5
+8 8 5
+3
+0 0 5
+7 3 6
+16 0 5
+9
+0 3 5
+8 0 8
+19 2 8
+23 14 6
+23 21 6
+23 28 6
+19 40 8
+8 42 8
+0 39 5
+11
+0 0 5
+8 0 5
+18 8 10
+8 16 5
+0 16 5
+0 24 5
+3 32 5
+10 32 5
+17 28 8
+27 25 3
+30 18 5
+0
+Output for the Sample Input
+58.953437
+11.414214
+16.0
+61.874812
+63.195179
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An integer n (3 ≤ n ≤ 100), representing some quantity or size.
+A list of n tuples where each tuple contains three integers (x, y, r).
+For each tuple: 
+- x (0 ≤ x ≤ 1000), an integer representing a coordinate.
+- y (0 ≤ y ≤ 1000), an integer representing a coordinate.
+- r (1 ≤ r ≤ 25), an integer representing a size.
+
+### Example Input:
+
+```
+10
+802 0 10
+814 0 4
+820 1 4
+826 1 4
+832 3 5
+838 5 5
+845 7 3
+849 10 3
+853 14 4
+857 18 3
+```
+
+### Function Signature:
+Write a function f(inputs) that takes in the input.
+```python
+def f(inputs: List[Tuple[int, int, int]]):
+    ''' 
+    inputs: a list of tuples, each containing three integers
+    '''
+```</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Certainly! Based on the problem statement for the "Chain-Confined Path," here is the test case generator in Python:
+
+```python
+import random
+
+def generate_test_case():
+    # Number of circles, must be between 3 and 100 inclusive
+    n = random.randint(3, 100)
+    
+    # Generate n circles
+    circles = []
+    for _ in range(n):
+        x = random.randint(0, 1000)  # x-coordinate of the center
+        y = random.randint(0, 1000)  # y-coordinate of the center
+        r = random.randint(1, 25)    # radius of the circle
+        circles.append((x, y, r))
+    
+    # Ensure the circles follow the problem constraints
+    # Note: This is a simplified version and does not guarantee all the constraints are met.
+    # In a real scenario, you might need a more sophisticated method to ensure all constraints are satisfied.
+    
+    # Print the test case
+    print(n)
+    for x, y, r in circles:
+        print(f"{x} {y} {r}")
+
+# Generate multiple test cases
+def generate_multiple_test_cases(num_cases=5):
+    for _ in range(num_cases):
+        generate_test_case()
+        print()  # Add a blank line between test cases
+
+# Main function to generate the test cases and add the terminating zero
+def main():
+    generate_multiple_test_cases()
+    print(0)  # Terminating zero to indicate end of input
+
+if __name__ == "__main__":
+    main()
+```
+
+### Explanation:
+
+1. **Random Generation**:
+   - `n` is randomly selected between 3 and 100 to represent the number of circles.
+   - For each circle, the coordinates (`x`, `y`) are randomly chosen between 0 and 1000, and the radius (`r`) is chosen between 1 and 25.
+
+2. **Constraints**:
+   - The generator does not enforce all constraints explicitly (e.g., ensuring each circle intersects only its neighbors and does not contain the center of another circle). For a competitive programming problem, this might need a more sophisticated approach to ensure all constraints are fully satisfied.
+
+3. **Output**:
+   - Each test case is printed in the required format, followed by a blank line to separate multiple test cases.
+   - The main function generates a specified number of test cases (`num_cases`) and appends a terminating zero to indicate the end of input.
+
+This generator provides a basic implementation to create random test cases for the problem. For more complex constraints, additional logic would need to be incorporated.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    inputs = []
+    while True:
+        n = int(fh.readline().strip())
+        if n == 0:
+            break
+        dataset = []
+        for _ in range(n):
+            x, y, r = map(int, fh.readline().strip().split())
+            dataset.append((x, y, r))
+        inputs.append(dataset)
+    return inputs
+
+# if __name__ == "__main__":
+#     input_path = sys.argv[1]
+#     with open(input_path, 'r') as fh: 
+#         inputs = extract_arguments(fh)
+#         f(inputs)</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

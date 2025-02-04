@@ -1,0 +1,233 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p00950 - Generation 1</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p00950 - Generation 1</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>
+Problem E
+Infallibly Crack Perplexing Cryptarithm
+  You are asked to crack an encrypted equation over binary numbers.
+  The original equation consists only of binary digits ("0" and "1"), operator symbols ("+", "-", and "*"), parentheses ("(" and ")"), and an equal sign ("="). The encryption replaces some occurrences of characters in an original arithmetic equation by letters. Occurrences of one character are replaced, if ever, by the same letter. Occurrences of two different characters are never replaced by the same letter. Note that the encryption does not always replace all the occurrences of the same character; some of its occurrences may be replaced while others may be left as they are. Some characters may be left unreplaced. Any character in the Roman alphabet, in either lowercase or uppercase, may be used as a replacement letter. Note that cases are significant, that is, "a" and "A" are different letters. Note that not only digits but also operator symbols, parentheses and even the equal sign are possibly replaced.
+  The arithmetic equation is derived from the start symbol of $Q$ of the following context-free grammar.
+  $Q ::= E=E$
+  $E ::= T | E+T | E-T$
+  $T ::= F | T*F $
+  $F ::= N | -F | (E) $
+  $N ::= 0 | 1B $
+  $B ::= \epsilon | 0B | 1B$
+Here, $\epsilon$ means empty.
+  As shown in this grammar, the arithmetic equation should have one equal sign. Each side of the equation is an expression consisting of numbers, additions, subtractions, multiplications, and negations. Multiplication has precedence over both addition and subtraction, while negation precedes multiplication. Multiplication, addition and subtraction are left associative. For example, x-y+z means (x-y)+z, not x-(y+z). Numbers are in binary notation, represented by a sequence of binary digits, 0 and 1. Multi-digit numbers always start with 1. Parentheses and negations may appear redundantly in the equation, as in ((--x+y))+z.
+Write a program that, for a given encrypted equation, counts the number of different possible original correct equations. Here, an equation should conform to the grammar and it is correct when the computed values of the both sides are equal.
+  For Sample Input 1, C must be = because any equation has one = between two expressions. Then, because A and M should be different, although there are equations conforming to the grammar, none of them can be correct.
+  For Sample Input 2, the only possible correct equation is -0=0.
+For Sample Input 3 (B-A-Y-L-zero-R), there are three different correct equations, 0=-(0), 0=(-0), and -0=(0). Note that one of the two occurrences of zero is not replaced with a letter in the encrypted equation.
+Input
+The input consists of a single test case which is a string of Roman alphabet characters, binary digits, operator symbols, parentheses and equal signs. The input string has at most 31 characters.
+Output
+Print in a line the number of correct equations that can be encrypted into the input string.
+Sample Input 1
+ACM
+Sample Output 1
+0
+Sample Input 2
+icpc
+Sample Output 2
+1
+Sample Input 3
+BAYL0R
+Sample Output 3
+3
+Sample Input 4
+-AB+AC-A
+Sample Output 4
+1
+Sample Input 5
+abcdefghi
+Sample Output 5
+0
+Sample Input 6
+111-10=1+10*10
+Sample Output 6
+1
+Sample Input 7
+0=10-1
+Sample Output 7
+0
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An alphanumeric string S of at most 31 characters.
+
+### Example Input:
+
+```
+ACM
+```
+
+### Function Signature:
+Write a function f(S) that takes in the input.
+def f(S: str):
+    '''
+    S: a string
+    '''</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Certainly! To create a test case generator for the given problem statement "Infallibly Crack Perplexing Cryptarithm", we need to generate valid encrypted arithmetic equations based on the specified rules. Here is how we can approach it:
+
+1. **Generate a valid equation based on the provided grammar:**
+   - Equations must have one equal sign `=`.
+   - Each side of the equation must be a valid expression involving binary digits, `+`, `-`, `*`, and parentheses `()`.
+   - Use context-free grammar to ensure the expressions are valid.
+
+2. **Randomly replace some characters with letters:**
+   - The letters used can be any letter from the Roman alphabet, either lowercase or uppercase.
+   - Ensure the replacements are consistent, i.e., the same character is always replaced by the same letter.
+   - Ensure that different characters are replaced by different letters.
+
+3. **Make sure the test cases include edge cases:**
+   - Equations with minimal and maximal numbers of characters.
+   - Different combinations of operators and parentheses.
+   - Ensure some cases where no valid equation can be decrypted.
+
+Here's the Python code for generating test cases:
+
+```python
+import random
+import string
+
+def generate_expression():
+    """Generate a valid binary arithmetic expression based on the given grammar."""
+    def generate_N():
+        length = random.randint(1, 10)  # Generate a binary number of random length.
+        return ''.join(random.choice('01') for _ in range(length)).lstrip('0') or '0'
+    
+    def generate_F():
+        choice = random.choice(['N', '-F', '(E)'])
+        if choice == 'N':
+            return generate_N()
+        elif choice == '-F':
+            return '-' + generate_F()
+        elif choice == '(E)':
+            return '(' + generate_E() + ')'
+    
+    def generate_T():
+        result = generate_F()
+        while random.choice([True, False]):
+            result += '*' + generate_F()
+        return result
+    
+    def generate_E():
+        result = generate_T()
+        while random.choice([True, False]):
+            result += random.choice(['+', '-']) + generate_T()
+        return result
+    
+    return generate_E()
+
+def generate_equation():
+    """Generate a full equation Q ::= E=E"""
+    left_expr = generate_expression()
+    right_expr = generate_expression()
+    return left_expr + '=' + right_expr
+
+def encrypt_equation(equation):
+    """Encrypt the equation by replacing some characters with letters."""
+    chars = list(set(equation))  # Unique characters in the equation.
+    letters = list(string.ascii_letters)  # Possible letters for replacement.
+    replacements = {}
+    
+    for char in chars:
+        if random.choice([True, False]):
+            letter = random.choice(letters)
+            replacements[char] = letter
+            letters.remove(letter)
+    
+    encrypted_equation = ''.join(replacements.get(char, char) for char in equation)
+    return encrypted_equation
+
+def generate_test_case():
+    equation = generate_equation()
+    encrypted_equation = encrypt_equation(equation)
+    return encrypted_equation
+
+# Example usage:
+for _ in range(10):  # Generate 10 test cases
+    print(generate_test_case())
+```
+
+### Explanation
+1. **generate_expression**:
+   - This generates a valid arithmetic expression recursively based on the given grammar.
+   - It handles `N`, `F`, `T`, and `E` productions as described.
+
+2. **generate_equation**:
+   - Combines two expressions with an equal sign `=` to form a valid equation.
+
+3. **encrypt_equation**:
+   - Randomly replaces some characters in the equation with letters while ensuring consistency.
+
+4. **generate_test_case**:
+   - Combines the above functions to produce a fully encrypted test case.
+
+This code will produce valid and varied test cases for the given problem statement.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    equation = fh.readline().strip()
+    return equation</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

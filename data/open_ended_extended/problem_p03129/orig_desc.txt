@@ -1,0 +1,18 @@
+
+Score : 100 points
+Problem StatementDetermine if we can choose K different integers between 1 and N (inclusive) so that no two of them differ by 1.
+Constraints
+1\leq N,K\leq 100
+N and K are integers.
+InputInput is given from Standard Input in the following format:
+N K
+OutputIf we can choose K integers as above, print YES; otherwise, print NO.
+Sample Input 13 2
+Sample Output 1YES
+We can choose 1 and 3.
+Sample Input 25 5
+Sample Output 2NO
+Sample Input 331 10
+Sample Output 3YES
+Sample Input 410 90
+Sample Output 4NO

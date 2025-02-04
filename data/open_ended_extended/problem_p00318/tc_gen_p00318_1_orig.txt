@@ -1,0 +1,37 @@
+Sure, I can help you write a test case generator for the "Sunken Ruins in Hibara Sea" problem. Here is a Python function that generates random test cases for this problem statement:
+
+```python
+import random
+
+def tcgen():
+    N = random.randint(1, 100000)  # number of observation data points
+    
+    data = []
+    for _ in range(N):
+        xi = random.randint(0, 1000000)  # position on the coastline
+        ri = random.randint(1, 1000000)  # radius
+        data.append((xi, ri))
+        
+    return N, data
+
+# Helper function to print the test case in the required format
+def print_test_case():
+    N, data = tcgen()
+    print(N)
+    for xi, ri in data:
+        print(xi, ri)
+
+# Example usage
+if __name__ == "__main__":
+    print_test_case()
+```
+
+### Explanation:
+
+- **N**: Randomly generated integer between 1 and 100000, representing the number of observation data points.
+- **xi**: Randomly generated integer between 0 and 1000000, representing the position on the coastline for the i-th observation.
+- **ri**: Randomly generated integer between 1 and 1000000, representing the radius within which the ruins exist from the i-th observation point.
+
+The `print_test_case` function calls `tcgen` to generate a test case and then prints it in the required format.
+
+You can run this script to generate and print a random test case. Each time you run it, you will get a new random test case.

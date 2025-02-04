@@ -1,0 +1,58 @@
+An integer Q (1 ≤ Q ≤ 100000), and an integer L (1 ≤ L ≤ 10^9).
+Q lines of queries, where each query is one of the following:
+- "0"
+- "1 d" where d is an integer (1 ≤ d ≤ 10^9)
+- "2 k" where k is an integer (1 ≤ k ≤ 10^9)
+- "3 x r" where x is an integer (0 ≤ x ≤ L) and r is an integer (0 ≤ r ≤ 10^9)
+- "4 k" where k is an integer (1 ≤ k ≤ 10^9)
+The input ends with two zeros "0 0".
+
+### Example Input:
+
+```
+18 10
+0
+4 1
+1 1
+4 1
+0
+1 1
+0
+2 2
+1 10
+0
+1 1
+0
+1 5
+3 4 0
+3 4 1
+0
+9 10
+4 1
+2 2
+3 5 5
+0
+4 1
+2 2
+3 5 5
+0
+2 1
+0 0
+```
+
+### Function Signature:
+Write a function `f(inputs)` that takes in the input.
+```python
+def f(inputs: List[Tuple[int, int, List[Union[str, Tuple[int], Tuple[int, int], Tuple[int, int, int]]]]]): 
+    '''
+    inputs: a list of tuples, where each tuple contains:
+        - an integer
+        - another integer
+        - a list of queries, where each query is one of the following:
+            - a string "0"
+            - a tuple (1, int)
+            - a tuple (2, int)
+            - a tuple (3, int, int)
+            - a tuple (4, int)
+    '''
+```

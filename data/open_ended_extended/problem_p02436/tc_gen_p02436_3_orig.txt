@@ -1,0 +1,48 @@
+Certainly! Below is a test case generator for the given problem statement about performing operations on multiple queues. This generator will randomly create test cases adhering to the given constraints.
+
+```python
+import random
+
+def tcgen():
+    # Number of queues
+    n = random.randint(1, 1000)
+    
+    # Number of queries
+    q = random.randint(1, 200000)
+    
+    queries = []
+    for _ in range(q):
+        operation = random.randint(0, 2)
+        t = random.randint(0, n - 1)
+        
+        if operation == 0:
+            # enqueue operation
+            x = random.randint(-1000000000, 1000000000)
+            queries.append(f"0 {t} {x}")
+        elif operation == 1:
+            # front operation
+            queries.append(f"1 {t}")
+        else:
+            # dequeue operation
+            queries.append(f"2 {t}")
+    
+    # Print the generated test case
+    print(f"{n} {q}")
+    for query in queries:
+        print(query)
+
+# Example usage
+tcgen()
+```
+
+### Explanation:
+
+1. **Number of Queues**: The number of queues \( n \) is randomly chosen between 1 and 1000.
+2. **Number of Queries**: The number of queries \( q \) is randomly chosen between 1 and 200,000.
+3. **Operation Generation**:
+    - For each query, a random operation type (0, 1, or 2) is chosen.
+    - If the operation is `enqueue` (0), a random integer \( x \) between -1,000,000,000 and 1,000,000,000 is generated, and the query is formatted as `0 t x`.
+    - If the operation is `front` (1) or `dequeue` (2), the query is formatted as `1 t` or `2 t` respectively.
+4. **Output**: The number of queues and queries are printed first, followed by the list of generated queries.
+
+This generator produces random test cases within the specified constraints, which can be used to thoroughly test the implementation of the solution to the given problem.

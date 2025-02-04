@@ -1,0 +1,212 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p00862 - Generation 2</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p00862 - Generation 2</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>
+Problem I: Most Distant Point from the Sea
+The main land of Japan called Honshu is an island surrounded by the sea. In such an island, it
+is natural to ask a question: "Where is the most distant point from the sea?" The answer to
+this question for Honshu was found in 1996. The most distant point is located in former Usuda
+Town, Nagano Prefecture, whose distance from the sea is 114.86 km.
+In this problem, you are asked to write a program which, given a map of an island, finds the
+most distant point from the sea in the island, and reports its distance from the sea. In order to
+simplify the problem, we only consider maps representable by convex polygons.
+Input
+The input consists of multiple datasets. Each dataset represents a map of an island, which is a convex polygon. The format of a dataset is as follows.
+n
+x1    y1
+   .
+   .
+   .
+xn    yn
+Every input item in a dataset is a non-negative integer. Two input items in a line are separated by a space.
+n in the first line is the number of vertices of the polygon, satisfying 3 ≤ n ≤ 100. Subsequent
+n lines are the x- and y-coordinates of the n vertices. Line segments (xi, yi) - (xi+1, yi+1) (1 ≤ i ≤ n - 1) and the line segment (xn, yn) - (x1, y1) form the border of the polygon in counterclockwise order. That is, these line segments see the inside of the polygon in the left of their directions. All coordinate values are between 0 and 10000, inclusive.
+You can assume that the polygon is simple, that is, its border never crosses or touches itself. As stated above, the given polygon is always a convex one.
+The last dataset is followed by a line containing a single zero.
+Output
+For each dataset in the input, one line containing the distance of the most distant point from
+the sea should be output. An output line should not contain extra characters such as spaces.
+The answer should not have an error greater than 0.00001 (10-5 ). You may output any number
+of digits after the decimal point, provided that the above accuracy condition is satisfied.
+Sample Input
+4
+0 0
+10000 0
+10000 10000
+0 10000
+3
+0 0
+10000 0
+7000 1000
+6
+0 40
+100 20
+250 40
+250 70
+100 90
+0 70
+3
+0 0
+10000 10000
+5000 5001
+0
+Output for the Sample Input
+5000.000000
+494.233641
+34.542948
+0.353553
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An integer \( n \) (3 ≤ \( n \) ≤ 100), representing some quantity.
+A list of \( n \) tuples of two integers each, where each integer is between 0 and 10000.
+
+### Example Input:
+
+```
+4
+0 0
+10000 0
+10000 10000
+0 10000
+```
+
+### Function Signature:
+Write a function f(inputs) that takes in the input.
+```python
+def f(inputs: List[Tuple[int, int]]):
+    '''
+    inputs: a list of tuples of integers
+    '''
+```</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Sure! Let's create a test case generator for the given problem. The generator will create random convex polygons by generating random points and ensuring they form a convex shape. 
+
+Here's the code for the test case generator:
+
+```python
+import random
+import math
+
+def generate_random_convex_polygon(n):
+    """ Generates a random convex polygon with n vertices. """
+    points = []
+    for _ in range(n):
+        x = random.randint(0, 10000)
+        y = random.randint(0, 10000)
+        points.append((x, y))
+    
+    # Sort points to ensure the polygon is convex and counterclockwise
+    points.sort()
+    points.sort(key=lambda point: math.atan2(point[1], point[0]))
+    
+    return points
+
+def tcgen():
+    test_cases = []
+    num_datasets = random.randint(1, 10)  # You can adjust the number of datasets for more tests
+
+    for _ in range(num_datasets):
+        n = random.randint(3, 100)
+        points = generate_random_convex_polygon(n)
+        
+        dataset = f"{n}\n"
+        for x, y in points:
+            dataset += f"{x} {y}\n"
+        
+        test_cases.append(dataset.strip())
+    
+    # Add the terminating zero line
+    test_cases.append("0")
+    
+    return "\n".join(test_cases)
+
+# Example usage:
+print(tcgen())
+```
+
+### Explanation:
+- `generate_random_convex_polygon(n)`: This function generates `n` random points and sorts them to form a convex polygon. Sorting by angles ensures that the points are arranged in a counterclockwise order.
+- `tcgen()`: This function generates multiple datasets by calling `generate_random_convex_polygon` and formats them according to the problem's input specifications. It also appends a terminating zero line to indicate the end of input.
+
+### Usage:
+This generator will output a string that represents the entire input for the problem, including multiple datasets followed by a terminating zero. You can adjust the ranges and numbers to generate different sets of test cases for thorough testing.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    inputs = []
+    while True:
+        n = int(fh.readline().strip())
+        if n == 0:
+            break
+        vertices = []
+        for _ in range(n):
+            x, y = map(int, fh.readline().strip().split())
+            vertices.append((x, y))
+        inputs.append((n, vertices))
+    return inputs
+
+# if __name__ == "__main__":
+#     input_path = sys.argv[1]
+#     with open(input_path, 'r') as fh: 
+#     inputs = extract_arguments(fh)
+#     f(inputs)</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

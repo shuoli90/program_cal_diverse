@@ -1,0 +1,54 @@
+Certainly! Below is a test case generator for the given problem statement involving a tree with \( N \) vertices and \( N-1 \) edges.
+
+```python
+import random
+
+def tcgen():
+    N = random.randint(3, 2 * 10**5)
+    
+    edges = []
+    available_vertices = list(range(2, N + 1))
+    random.shuffle(available_vertices)
+    
+    # Start with a tree where the first node is connected to every other node
+    for i in range(2, N + 1):
+        edges.append((1, available_vertices.pop()))
+
+    # Randomly shuffle the edges to avoid any specific pattern
+    random.shuffle(edges)
+
+    return N, edges
+
+def format_test_case(N, edges):
+    test_case = f"{N}\n"
+    for a, b in edges:
+        test_case += f"{a} {b}\n"
+    return test_case
+
+# Generate a test case
+N, edges = tcgen()
+test_case = format_test_case(N, edges)
+
+print(test_case)
+```
+
+### Explanation
+
+- **N**: Generates a random integer between 3 and \( 2 \times 10^5 \) to represent the number of vertices in the tree.
+- **edges**: Constructs the edges of the tree. The tree is initially constructed with a root node (1) connected to all other nodes, ensuring it stays a tree. The edges are then shuffled to add randomness.
+- **format_test_case**: Formats the generated edges neatly as required for input.
+
+### Sample Output
+When you run the generator, it might produce an output similar to this (the values will vary due to randomness):
+
+```
+7
+1 2
+1 3
+1 4
+1 5
+1 6
+1 7
+```
+
+This represents a tree with 7 vertices and 6 edges, where 1 is the root connected to all other nodes. The output is formatted according to the input constraints of the problem.

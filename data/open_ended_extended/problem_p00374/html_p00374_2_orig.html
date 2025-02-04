@@ -1,0 +1,218 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p00374 - Generation 2</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p00374 - Generation 2</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>Iron Bars
+A boy PCK had N straight iron bars, which were serially indexed. Unfortunately, the first M bars (0 ≤ M ≤ N) among them were bent during transportation. They all suffered a perpendicular bend at one point.
+  He is planning to make a cube using a set of bars selected using the following rules: X bars from bent ones, Y bars from straight ones, where 2X + Y = 12. Any two bars can be jointed only at the apexes of the cube. He wants to count how many types of rectangular parallelepipeds (hereafter RP) he can make using these bars.
+Make a program to count out types (different shapes) of RPs that PCK can make using the following information: the number of bars and length of each one, position of the bend, and the number of bars to be used to construct an RP. Note that any two RPs similar in shape are considered identical: namely if the length of three defining sides of two RPs coincide if arranged in increasing/decreasing order (e.g., three sides of RP i and j are A_i, B_i, C_i, and A_j, B_j and C_j in increasing order, then the relations A_i = A_j, B_i = B_j, and C_i = C_j hold. Note also that the bars are sufficiently thin to allow you to consider them as idealized lines.
+  
+Input
+  The input is given in the following format.
+N M X Y
+a_1
+a_2
+:
+a_N
+b_1
+b_2
+:
+b_M
+The first line provides the total number of iron bars and bent bars, and those straight and bent bars used to construct an RP: N (6 ≤ N ≤ 6000), M (0 ≤ M ≤ N), X (0 ≤ X ≤ 6), and Y (0 ≤ Y ≤ 12). The following relations always hold for them: 2X+Y=12, X+Y ≤ N, X ≤ M. Each of the subsequent N lines provides the length of the i-th bar a_i (1 ≤ a_i ≤ 6000) in integers. Furthermore, each of the subsequent M lines provides the location at which the i-th bent bar suffered a perpendicular bend b_i (1 ≤ b_i ≤ 3000) in centimeters from one end of the bar (note: 1 ≤ a_i-b_i ≤ 3000).
+  
+Output
+  Output the number of constructible rectangular parallelepipeds.
+Sample Input 1
+18 8 3 6
+4
+3
+3
+3
+3
+2
+2
+2
+1
+1
+1
+1
+1
+2
+2
+3
+3
+3
+1
+1
+1
+1
+1
+1
+1
+1
+Sample Output 1
+3
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>Canonicalized Input Description:
+
+An integer N (6 ≤ N ≤ 6000), representing some quantity or size.
+An integer M (0 ≤ M ≤ N), representing another quantity or size.
+An integer X (0 ≤ X ≤ 6), representing another quantity or size.
+An integer Y (0 ≤ Y ≤ 12), representing another quantity or size, with the additional constraint that 2X + Y = 12.
+A list of N integers, where each integer is between 1 and 6000.
+A list of M integers, where each integer is between 1 and 3000, with the additional constraint that each corresponding integer in the first list minus this integer is between 1 and 3000.
+
+### Example Input:
+
+```
+18 8 3 6
+4
+3
+3
+3
+3
+2
+2
+2
+1
+1
+1
+1
+1
+2
+2
+3
+3
+3
+1
+1
+1
+1
+1
+1
+1
+1
+```
+
+### Function Signature:
+Write a function f(N, M, X, Y, A, B) that takes in the input.
+def f(N: int, M: int, X: int, Y: int, A: List[int], B: List[int]):
+    '''
+    N: an integer
+    M: an integer
+    X: an integer
+    Y: an integer
+    A: a list of integers
+    B: a list of integers
+    '''
+</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Certainly! Below is a test case generator for the problem statement "Iron Bars":
+
+```python
+import random
+
+def tcgen():
+    # Define the constraints
+    N = random.randint(6, 6000)
+    M = random.randint(0, N)
+    
+    # Generate X and Y such that 2X + Y = 12
+    possible_pairs = [(X, Y) for X in range(0, 7) for Y in range(0, 13) if 2*X + Y == 12]
+    X, Y = random.choice(possible_pairs)
+    
+    # Generate lengths of N bars (1 ≤ a_i ≤ 6000)
+    A = [random.randint(1, 6000) for _ in range(N)]
+    
+    # Generate positions of bends for M bars (1 ≤ b_i ≤ 3000 and 1 ≤ a_i - b_i ≤ 3000)
+    B = []
+    for i in range(M):
+        a_i = A[i]
+        b_i = random.randint(1, min(3000, a_i - 1))
+        B.append(b_i)
+    
+    return N, M, X, Y, A, B
+
+# Example usage
+N, M, X, Y, A, B = tcgen()
+print(N, M, X, Y)
+for length in A:
+    print(length)
+for bend in B:
+    print(bend)
+```
+
+### Explanation:
+1. **Constraints**: The constraints for `N`, `M`, `X`, and `Y` are defined as per the problem statement.
+2. **Generating X and Y**: We generate all possible pairs `(X, Y)` such that `2X + Y = 12`. Then we randomly choose one of these pairs.
+3. **Lengths of N Bars**: We generate `N` integers representing the lengths of the bars, each between `1` and `6000`.
+4. **Positions of Bends**: For the first `M` bars, we generate bend positions such that `1 ≤ b_i ≤ 3000` and `1 ≤ a_i - b_i ≤ 3000`.
+
+This generator will produce a random valid input for the given problem. You can call the `tcgen` function to generate a new test case each time.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    N, M, X, Y = map(int, fh.readline().strip().split())
+    a = [int(fh.readline().strip()) for _ in range(N)]
+    b = [int(fh.readline().strip()) for _ in range(M)]
+    return N, M, X, Y, a, b</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

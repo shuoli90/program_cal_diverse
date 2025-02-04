@@ -1,0 +1,14 @@
+# def f(N, A, B):
+#     ....
+
+def extract_arguments(fh):
+    N = int(fh.readline().strip())
+    A = list(map(int, fh.readline().strip().split()))
+    B = list(map(int, fh.readline().strip().split()))
+    return N, A, B
+
+# if __name__ == "__main__":
+#     input_path = sys.argv[1]
+#     with open(input_path, 'r') as fh:
+#         N, A, B = extract_arguments(fh)
+#         f(N, A, B)

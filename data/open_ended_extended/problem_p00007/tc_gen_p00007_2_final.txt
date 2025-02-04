@@ -1,0 +1,38 @@
+Sure, I can write a test case generator for the "Debt Hell" problem. The generator will create random values for the input \(n\) and will compute the corresponding debt after \(n\) weeks according to the rules provided. 
+
+Here's the test case generator in Python:
+
+```python
+import random
+import math
+
+def calculate_debt(n):
+    debt = 100000
+    for _ in range(n):
+        debt = math.ceil(debt * 1.05 / 1000) * 1000
+    return debt
+
+def tcgen():
+    n = random.randint(0, 100)
+    debt = calculate_debt(n)
+    return n, debt
+
+# Example usage:
+for _ in range(5):
+    n, debt = tcgen()
+    print(f"Input: {n}")
+    print(f"Output: {debt}")
+    print()
+```
+
+Explanation:
+1. `calculate_debt(n)`: This function calculates the debt after \(n\) weeks.
+   - Starts with an initial debt of 100,000 yen.
+   - For each week, it increases the debt by 5%, rounds it up to the nearest 1,000 yen, and repeats this process.
+   
+2. `tcgen()`: This function generates a random test case.
+   - Selects a random \(n\) (0 ≤ \(n\) ≤ 100).
+   - Calculates the corresponding debt using the `calculate_debt` function.
+   - Returns the input \(n\) and the computed debt.
+
+You can use this generator to create multiple test cases and validate your solution against them.

@@ -1,0 +1,41 @@
+Sure, I can help you write a test case generator for the given problem statement. Let's break down the constraints and generate test cases accordingly.
+
+Here is the test case generator function in Python:
+
+```python
+import random
+
+def tcgen():
+    # Generate random counts for each type of tetromino
+    a_I = random.randint(0, 10**9)
+    a_O = random.randint(0, 10**9)
+    a_T = random.randint(0, 10**9)
+    a_J = random.randint(0, 10**9)
+    a_L = random.randint(0, 10**9)
+    a_S = random.randint(0, 10**9)
+    a_Z = random.randint(0, 10**9)
+    
+    # Ensure that the sum of all tetrominos is at least 1
+    while a_I + a_O + a_T + a_J + a_L + a_S + a_Z == 0:
+        a_I = random.randint(0, 10**9)
+        a_O = random.randint(0, 10**9)
+        a_T = random.randint(0, 10**9)
+        a_J = random.randint(0, 10**9)
+        a_L = random.randint(0, 10**9)
+        a_S = random.randint(0, 10**9)
+        a_Z = random.randint(0, 10**9)
+    
+    return a_I, a_O, a_T, a_J, a_L, a_S, a_Z
+
+# Example usage
+test_case = tcgen()
+print(test_case)  # Prints a randomly generated test case
+```
+
+### Explanation
+1. **Random Tetromino Counts**: We generate random integers for each type of tetromino within the given range [0, 10^9].
+2. **Ensure Non-zero Sum**: We ensure that the sum of all tetrominos is at least 1, as per the constraint \(a_I + a_O + a_T + a_J + a_L + a_S + a_Z \geq 1\).
+3. **Output**: The function returns a tuple containing the counts of each type of tetromino.
+
+### Example Usage
+To generate and print a test case, you can call the `tcgen()` function and print the result. This will give you a random test case that adheres to the problem constraints. You can use this function to generate multiple test cases for testing purposes.

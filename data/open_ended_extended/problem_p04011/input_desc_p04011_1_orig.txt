@@ -1,0 +1,24 @@
+An integer \(N\) (1 ≤ \(N\) ≤ 10000), representing some quantity or size.
+An integer \(K\) (1 ≤ \(K\) ≤ 10000), representing some quantity or threshold.
+An integer \(X\) (1 ≤ \(X\) ≤ 10000), greater than an integer \(Y\) (1 ≤ \(Y\) < \(X\)).
+
+### Example Input:
+
+```
+15
+3
+10000
+9000
+```
+
+### Function Signature:
+Write a function f(N, K, X, Y) that takes in the input.
+```python
+def f(N: int, K: int, X: int, Y: int):
+    ''' 
+    N: an integer 
+    K: an integer 
+    X: an integer 
+    Y: an integer 
+    '''
+```

@@ -1,0 +1,45 @@
+Sure, let's write a test case generator for the given problem statement. The generator will produce random values for the health of the monster \(H\) and the attack value \(A\), both constrained between 1 and 10,000.
+
+Here's the test case generator in Python:
+
+```python
+import random
+
+def tcgen():
+    # Generate random values within the given constraints
+    H = random.randint(1, 10**4)
+    A = random.randint(1, 10**4)
+    
+    return H, A
+
+# Example of using the test case generator
+H, A = tcgen()
+print(f"{H} {A}")
+
+# You can run this multiple times to get different test cases
+for _ in range(5):
+    H, A = tcgen()
+    print(f"{H} {A}")
+```
+
+This function will generate random values for \(H\) and \(A\) within the specified range, ensuring that the test cases adhere to the constraints provided in the problem statement.
+
+### Example Output
+If you run the test case generator, you might get outputs like:
+
+```
+3742 9234
+9382 420
+102 9981
+3245 5678
+7650 3456
+```
+
+You can use these generated values to test your solution extensively. Each pair represents a different scenario where Serval needs to attack the monster until its health drops to 0 or below.
+
+### Explanation of the Generator:
+1. `H = random.randint(1, 10**4)` generates a random integer for the monster's health between 1 and 10,000.
+2. `A = random.randint(1, 10**4)` generates a random integer for the attack value between 1 and 10,000.
+3. The function returns a tuple `(H, A)` which represents a single test case.
+
+You can call this function multiple times to generate multiple test cases, which will help in testing the robustness of your solution.

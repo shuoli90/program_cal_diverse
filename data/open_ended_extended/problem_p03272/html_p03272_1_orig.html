@@ -1,0 +1,200 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p03272 - Generation 1</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p03272 - Generation 1</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>
+Score : 100 points
+Problem StatementThere is an N-car train.
+You are given an integer i. Find the value of j such that the following statement is true: "the i-th car from the front of the train is the j-th car from the back."
+Constraints
+1 \leq N \leq 100
+1 \leq i \leq N
+InputInput is given from Standard Input in the following format:
+N i
+OutputPrint the answer.
+Sample Input 14 2
+Sample Output 13
+The second car from the front of a 4-car train is the third car from the back.
+Sample Input 21 1
+Sample Output 21
+Sample Input 315 11
+Sample Output 35
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>Canonicalized Input Description:
+
+An integer N (1 ≤ N ≤ 100), representing a quantity or size.
+An integer i (1 ≤ i ≤ N), representing an index or position.
+
+### Example Input:
+
+```
+4 2
+```
+
+### Function Signature:
+Write a function f(N, i) that takes in the input.
+def f(N: int, i: int):
+    '''
+    N: an integer
+    i: an integer
+    '''</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Certainly! Let's first understand the problem and then create a test case generator for it.
+
+### Problem Statement: Train Car Position
+
+**Description**
+
+You have an N-car train. Given an integer \(i\), you need to find the value of \(j\) such that the \(i\)-th car from the front is the \(j\)-th car from the back.
+
+**Constraints**
+
+- \(1 \leq N \leq 100\)
+- \(1 \leq i \leq N\)
+
+**Input**
+
+Input is given from Standard Input in the following format:
+```
+N i
+```
+
+**Output**
+
+Print the value of \(j\).
+
+### Examples
+
+**Example 1:**
+
+_Input:_
+```
+4 2
+```
+
+_Output:_
+```
+3
+```
+
+*Explanation:* The second car from the front in a 4-car train is the third car from the back.
+
+**Example 2:**
+
+_Input:_
+```
+1 1
+```
+
+_Output:_
+```
+1
+```
+
+*Explanation:* The first car from the front in a 1-car train is also the first car from the back.
+
+**Example 3:**
+
+_Input:_
+```
+15 11
+```
+
+_Output:_
+```
+5
+```
+
+*Explanation:* The 11th car from the front in a 15-car train is the 5th car from the back.
+
+### Test Case Generator
+
+The test case generator will create random values for \(N\) and \(i\) within the given constraints.
+
+```python
+import random
+
+def tcgen():
+    # Generate a random integer N (1 ≤ N ≤ 100)
+    N = random.randint(1, 100)
+    # Generate a random integer i (1 ≤ i ≤ N)
+    i = random.randint(1, N)
+    
+    return N, i
+
+# Example usage:
+if __name__ == "__main__":
+    for _ in range(5):  # Generate 5 test cases
+        N, i = tcgen()
+        print(f"Input: {N} {i}")
+        # Calculate the expected output for verification
+        j = N - i + 1
+        print(f"Output: {j}")
+```
+
+This script will generate random test cases for the problem and also calculate the expected output for each test case. The expected output is computed using the formula \(j = N - i + 1\), which finds the position of the \(i\)-th car from the front when viewed from the back.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    N, i = map(int, fh.readline().strip().split())
+    return N, i</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

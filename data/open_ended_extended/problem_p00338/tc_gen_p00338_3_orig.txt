@@ -1,0 +1,44 @@
+Sure, I can help you write a test case generator for the given problem statement. Below is the Python code to generate test cases for the "Programming Contest II" problem:
+
+```python
+import random
+
+def tcgen():
+    # Generate the number of teams N and the number of commands C
+    N = random.randint(2, 100000)
+    C = random.randint(1, 100000)
+    
+    commands = []
+    for _ in range(C):
+        # Randomly decide if the command will be an update or a report
+        command_type = random.randint(0, 1)
+        if command_type == 0:
+            # Update command: 0 t p
+            t = random.randint(1, N)
+            p = random.randint(1, 10**9)
+            commands.append(f"0 {t} {p}")
+        else:
+            # Report command: 1 m
+            m = random.randint(1, N)
+            commands.append(f"1 {m}")
+    
+    return N, C, commands
+
+# Example usage:
+N, C, commands = tcgen()
+print(N, C)
+for command in commands:
+    print(command)
+```
+
+### Explanation:
+
+1. **Generate `N` and `C`:** We randomly decide the number of teams `N` (between 2 and 100000) and the number of commands `C` (between 1 and 100000).
+2. **Generate Commands:**
+   - For each command:
+     - Randomly decide whether it is an update command (`0 t p`) or a report command (`1 m`).
+     - If it is an update command, generate a team number `t` (between 1 and `N`) and a score `p` (between 1 and 10^9).
+     - If it is a report command, generate a rank `m` (between 1 and `N`).
+3. **Return the Test Case:** The generated test case consists of `N`, `C`, and the list of commands.
+
+You can adjust the ranges or the probabilities of different types of commands if required. The example usage at the end demonstrates how to generate and print a test case.

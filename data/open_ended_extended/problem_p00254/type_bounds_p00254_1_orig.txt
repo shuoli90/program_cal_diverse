@@ -1,0 +1,3 @@
+Types: N: int
+Ranges: 1 ≤ N ≤ 9999
+Addtl Info: The number of datasets does not exceed 10,000

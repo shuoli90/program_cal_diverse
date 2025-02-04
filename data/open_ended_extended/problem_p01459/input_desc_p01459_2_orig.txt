@@ -1,0 +1,23 @@
+An integer N (2 ≤ N ≤ 100), representing some quantity or size.
+An integer M (2 ≤ M ≤ 100), representing some quantity or size.
+An integer A (0 ≤ A ≤ 10), representing some quantity or size.
+A list of N strings, each of length M, where each character is one of {'#', '.', 'S', 'G'}.
+
+### Example Input:
+
+```
+3 3 2
+S#.
+...
+.#G
+```
+
+### Function Signature:
+Write a function f(N, M, A, grid) that takes in the input.
+def f(N: int, M: int, A: int, grid: List[str]):
+    '''
+    N: an integer
+    M: an integer
+    A: an integer
+    grid: a list of strings
+    '''

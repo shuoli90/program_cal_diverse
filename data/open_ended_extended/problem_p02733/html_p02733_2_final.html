@@ -1,0 +1,173 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p02733 - Generation 2</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p02733 - Generation 2</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>
+Score : 500 points
+Problem StatementWe have a chocolate bar partitioned into H horizontal rows and W vertical columns of squares.
+The square (i, j) at the i-th row from the top and the j-th column from the left is dark if S_{i,j} is 0, and white if S_{i,j} is 1.
+We will cut the bar some number of times to divide it into some number of blocks. In each cut, we cut the whole bar by a line running along some boundaries of squares from end to end of the bar.
+How many times do we need to cut the bar so that every block after the cuts has K or less white squares?
+Constraints
+1 \leq H \leq 10
+1 \leq W \leq 1000
+1 \leq K \leq H \times W
+S_{i,j} is 0 or 1.
+InputInput is given from Standard Input in the following format:
+H W K
+S_{1,1}S_{1,2}...S_{1,W}
+:
+S_{H,1}S_{H,2}...S_{H,W}
+OutputPrint the number of minimum times the bar needs to be cut so that every block after the cuts has K or less white squares.
+Sample Input 13 5 4
+11100
+10001
+00111
+Sample Output 12
+For example, cutting between the 1-st and 2-nd rows and between the 3-rd and 4-th columns - as shown in the figure to the left - works.
+Note that we cannot cut the bar in the ways shown in the two figures to the right.
+Sample Input 23 5 8
+11100
+10001
+00111
+Sample Output 20
+No cut is needed.
+Sample Input 34 10 4
+1110010010
+1000101110
+0011101001
+1101000111
+Sample Output 33
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An integer H (1 ≤ H ≤ 10), representing some quantity or size.
+An integer W (1 ≤ W ≤ 1000), representing some quantity or size.
+An integer K (1 ≤ K ≤ H * W), representing some quantity or size.
+A list of H strings, each of length W, where each character is '0' or '1'.
+
+### Example Input:
+
+```
+3
+5
+4
+11100
+10001
+00111
+```
+
+### Function Signature:
+Write a function f(H, W, K, S) that takes in the input.
+```python
+def f(H: int, W: int, K: int, S: List[str]):
+    '''
+    H: an integer
+    W: an integer
+    K: an integer
+    S: a list of strings
+    '''
+```</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Sure, I can help you write a test case generator for this problem statement. We'll use Python to generate random test cases based on the given constraints.
+
+Here's the code:
+
+```python
+import random
+
+def generate_test_case():
+    # Constraints
+    H = random.randint(1, 10)
+    W = random.randint(1, 1000)
+    K = random.randint(1, H * W)
+    
+    # Generating the chocolate bar with random 0s and 1s
+    S = [[random.choice([0, 1]) for _ in range(W)] for _ in range(H)]
+    
+    return H, W, K, S
+
+def format_test_case(H, W, K, S):
+    formatted_input = f"{H} {W} {K}\n"
+    formatted_input += "\n".join("".join(map(str, row)) for row in S)
+    return formatted_input
+
+# Example usage
+if __name__ == "__main__":
+    H, W, K, S = generate_test_case()
+    test_case_input = format_test_case(H, W, K, S)
+    print(test_case_input)
+```
+
+### Explanation:
+1. **generate_test_case():** This function generates random values for `H`, `W`, and `K` within their respective constraints. It also generates the 2D list `S` representing the chocolate bar, with each cell randomly being either 0 (dark) or 1 (white).
+
+2. **format_test_case():** This function formats the generated test case into the required input format. The heights `H`, widths `W`, and `K` are placed on the first line followed by the rows of the chocolate bar `S`.
+
+3. **Example usage:** This demonstrates how to generate and print a test case.
+
+You can run this script to generate random test cases for the problem statement. Just copy the code into a Python environment and execute it. Each run will produce a different test case adhering to the constraints provided in the problem statement.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    H, W, K = map(int, fh.readline().strip().split())
+    S = [fh.readline().strip() for _ in range(H)]
+    return H, W, K, S</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

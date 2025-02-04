@@ -1,0 +1,7 @@
+def extract_arguments(fh):
+    n = int(fh.readline().strip())
+    activities = []
+    for _ in range(n):
+        s, t = map(int, fh.readline().strip().split())
+        activities.append((s, t))
+    return n, activities

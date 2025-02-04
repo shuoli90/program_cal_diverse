@@ -1,0 +1,18 @@
+Canonicalized Input Description:
+
+An integer N (1 ≤ N < 10^9).
+
+### Example Input:
+
+```
+575
+```
+
+### Function Signature:
+Write a function f(N) that takes in the input.
+```python
+def f(N: int):
+    '''
+    N: an integer
+    '''
+```

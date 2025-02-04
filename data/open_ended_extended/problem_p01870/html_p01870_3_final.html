@@ -1,0 +1,187 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p01870 - Generation 3</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p01870 - Generation 3</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>F: Relay
+Problem Statement
+There is a village named Biwako consisting of $N$ small islands floating on a lake. There are $N-1$ simple bridges in Biwako village. The islands are numbered from $0$ to $N-1$, and the bridges are numbered from $0$ to $N-2$. The $i$-th bridge connects the $i+1$-th island with the $p_i$-th island directly, and its length is $w_i$. The villagers can move between any two islands through several bridges.
+A relay race is going to be held in Biwako village according to the proposal of a villager. However, since there are no loops in Biwako village, they cannot prepare a track. Therefore, they consider replacing only one bridge to create a loop. Find the maximum length of the loop that can be created by this operation.
+Input
+$N$
+$p_0 \ w_0$
+$\vdots$
+$p_{n-2} \ w_{n-2}$
+Constraints
+$2 \leq N \leq 100000$
+$0 \leq p_i \leq N-1$
+$1 \leq w_i \leq 1000$
+All values are integers.
+All islands can be reached from any other island.
+Output
+Print the answer in one line.
+Sample
+The figure for each sample is as follows.
+Sample Input 1
+5
+0 1
+0 2
+0 3
+0 4
+Sample Output 1
+9
+Sample Input 2
+12
+0 6
+1 1
+0 3
+3 4
+0 2
+5 1
+6 1
+0 2
+8 1
+9 1
+10 2
+Sample Output 2
+19
+Sample Input 3
+2
+0 1
+Sample Output 3
+1
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An integer N (2 ≤ N ≤ 100000), representing some quantity or size.
+A list of N-1 tuples, where each tuple contains:
+  - an integer p_i (0 ≤ p_i ≤ N-1)
+  - an integer w_i (1 ≤ w_i ≤ 1000)
+
+### Example Input:
+
+```
+5
+0 1
+0 2
+0 3
+0 4
+```
+
+### Function Signature:
+Write a function f(N, inputs) that takes in the input.
+```python
+def f(N: int, inputs: List[Tuple[int, int]]):
+    ''' 
+    N: an integer 
+    inputs: a list of tuples, where each tuple consists of two integers 
+    '''
+```</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Sure, I can help you generate a test case generator for the given problem statement. Here is a Python function that generates random test cases for the "F: Relay" problem:
+
+```python
+import random
+
+def tcgen():
+    # Generate a random number of islands N
+    N = random.randint(2, 100000)
+    
+    # List to store pairs (p_i, w_i)
+    bridges = []
+    
+    for i in range(N - 1):
+        p_i = random.randint(0, i)  # ensure 0 <= p_i <= i
+        w_i = random.randint(1, 1000)
+        bridges.append((p_i, w_i))
+    
+    return N, bridges
+
+def format_test_case(N, bridges):
+    test_case_str = f"{N}\n"
+    for p_i, w_i in bridges:
+        test_case_str += f"{p_i} {w_i}\n"
+    return test_case_str
+
+# Example usage
+N, bridges = tcgen()
+test_case_str = format_test_case(N, bridges)
+print(test_case_str)
+```
+
+This script will generate a valid random test case for the "F: Relay" problem. Here’s a breakdown of the generator:
+
+1. **Number of Islands (`N`)**: Randomly choose an integer `N` between 2 and 100,000.
+2. **Bridges (`p_i` and `w_i`)**: 
+    - For each `i` from 0 to `N-2`, randomly select `p_i` such that `0 <= p_i <= i`. This ensures that the structure remains a connected tree.
+    - Randomly select `w_i` between 1 and 1000.
+
+The `format_test_case` function takes the generated test case and formats it into a string that matches the input format expected by the problem.
+
+You can run this script to generate random test cases for testing your solution.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    N = int(fh.readline().strip())
+    bridges = []
+    for _ in range(N - 1):
+        p, w = map(int, fh.readline().strip().split())
+        bridges.append((p, w))
+    return N, bridges</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

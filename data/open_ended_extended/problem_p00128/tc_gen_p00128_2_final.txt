@@ -1,0 +1,122 @@
+Sure, here is a test case generator for the "Soroban" problem:
+
+```python
+import random
+
+def generate_soroban_configuration(digit):
+    configurations = {
+        '0': [
+            "**** *",
+            "*   *",
+            "*****",
+            "*****",
+            "*****",
+            "=====",
+            "     "
+        ],
+        '1': [
+            "****  ",
+            "*  **",
+            "*****",
+            "*****",
+            "*****",
+            "=====",
+            "     "
+        ],
+        '2': [
+            "****  ",
+            "* ** ",
+            "*****",
+            "*****",
+            "*****",
+            "=====",
+            "     "
+        ],
+        '3': [
+            "****  ",
+            "* ***",
+            "*****",
+            "*****",
+            "*****",
+            "=====",
+            "     "
+        ],
+        '4': [
+            "****  ",
+            "* ***",
+            "*****",
+            "*****",
+            "*****",
+            "=====",
+            "     "
+        ],
+        '5': [
+            "****  ",
+            "*  **",
+            "*****",
+            "*****",
+            "*****",
+            "=====",
+            " *   "
+        ],
+        '6': [
+            "****  ",
+            "*    ",
+            "*****",
+            "*****",
+            "*****",
+            "=====",
+            " *   "
+        ],
+        '7': [
+            "****  ",
+            "*   *",
+            "*****",
+            "*****",
+            "*****",
+            "=====",
+            " * * "
+        ],
+        '8': [
+            "****  ",
+            "*   *",
+            "*****",
+            "*****",
+            "*****",
+            "=====",
+            "   * "
+        ],
+        '9': [
+            "****  ",
+            "*   *",
+            "*****",
+            "*****",
+            "*****",
+            "=====",
+            " * * "
+        ],
+    }
+    return configurations[digit]
+
+def generate_single_test_case():
+    number_of_test_cases = random.randint(1, 1024)
+    test_cases = []
+
+    for _ in range(number_of_test_cases):
+        num = str(random.randint(0, 99999)).zfill(5)
+        test_cases.append(num)
+
+    return test_cases
+
+def tcgen():
+    test_cases = generate_single_test_case()
+    return test_cases
+
+# Example of generating and printing test cases.
+if __name__ == "__main__":
+    test_cases = tcgen()
+    for case in test_cases:
+        print(case)
+```
+
+This generator function `tcgen` creates a list of test cases, each of which is a number with up to 5 digits. The `generate_soroban_configuration` function provides the configuration of soroban beads for each digit from 0 to 9. You can use these configurations to output the arrangement of soroban beads for each number in the test cases.

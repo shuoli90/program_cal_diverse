@@ -1,0 +1,25 @@
+An integer h (2 ≤ h ≤ 30), representing some quantity or size.
+An integer w (2 ≤ w ≤ 30), representing some quantity or size.
+An integer n (2 ≤ n ≤ 30), representing some quantity or size.
+A list of h strings, each of length w, consisting of uppercase letters ('A' - 'Z') and periods ('.').
+
+### Example Input:
+
+```
+4 6 3
+......
+...Y..
+...Y..
+RRYRYY
+```
+
+### Function Signature:
+Write a function f(inputs) that takes in the input. 
+def f(inputs: List[Tuple[int, int, int, List[str]]]):
+    ''' 
+    inputs: a list of tuples where each tuple contains:
+            - an integer
+            - an integer
+            - an integer
+            - a list of strings
+    '''

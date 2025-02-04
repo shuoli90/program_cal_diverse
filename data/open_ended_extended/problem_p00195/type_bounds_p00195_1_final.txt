@@ -1,0 +1,3 @@
+Types: s1A: int, s2A: int, s1B: int, s2B: int, s1C: int, s2C: int, s1D: int, s2D: int, s1E: int, s2E: int  
+Ranges: 1 ≤ s1A, s2A, s1B, s2B, s1C, s2C, s1D, s2D, s1E, s2E ≤ 10000  
+Addtl Info: The number of datasets is no more than 100. Each dataset ends with "0 0". Ensure there are no stores that sell the same number of items for the day.

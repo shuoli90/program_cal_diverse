@@ -1,0 +1,45 @@
+Certainly! Here's a test case generator for the "Snake Escaping" problem:
+
+```python
+import random
+
+def generate_test_case():
+    # Randomly generate L within the constraints 1 ≤ L ≤ 20
+    L = random.randint(1, 20)
+    
+    # Calculate 2^L
+    num_snakes = 2 ** L
+    
+    # Generate a string S of length 2^L with characters from '0' to '9'
+    S = ''.join(random.choices('0123456789', k=num_snakes))
+    
+    # Randomly generate Q within the constraints 1 ≤ Q ≤ 1,000,000
+    Q = random.randint(1, 1000000)
+    
+    # Generate Q strings of length L with characters from '0', '1', and '?'
+    T = [''.join(random.choices('01?', k=L)) for _ in range(Q)]
+    
+    return L, Q, S, T
+
+def format_test_case(L, Q, S, T):
+    # Format the test case into the required input format
+    result = []
+    result.append(f"{L} {Q}")
+    result.append(S)
+    result.extend(T)
+    return '\n'.join(result)
+
+# Generate and format a random test case
+L, Q, S, T = generate_test_case()
+test_case = format_test_case(L, Q, S, T)
+print(test_case)
+```
+
+### Explanation:
+1. **L**: Randomly chosen between 1 and 20.
+2. **num_snakes**: Calculated as \(2^L\).
+3. **S**: A string of length \(2^L\) with random digits from '0' to '9'.
+4. **Q**: Randomly chosen between 1 and 1,000,000.
+5. **T**: A list of \(Q\) binary strings of length \(L\) with characters from '0', '1', and '?'.
+
+You can run this generator to produce test cases for the given problem. The `print(test_case)` line at the end outputs a randomly generated test case in the format specified by the problem statement. If you need to generate multiple test cases, you can call `generate_test_case()` and `format_test_case()` in a loop.

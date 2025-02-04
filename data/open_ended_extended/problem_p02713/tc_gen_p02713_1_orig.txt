@@ -1,0 +1,31 @@
+Here's a test case generator for the given problem statement:
+
+```python
+import random
+
+def tcgen():
+    # Generate a random integer K within the given constraints
+    K = random.randint(1, 200)
+    
+    return K
+
+# Example usage
+if __name__ == "__main__":
+    # Generate a test case
+    K = tcgen()
+    
+    # Print the test case
+    print(K)
+```
+
+This generator will produce a random integer \( K \) in the range from 1 to 200, as required by the problem constraints. You can then use this test case to run your solution and verify its correctness.
+
+To explain it step by step:
+
+1. **Importing the `random` module:** This is necessary to generate random numbers.
+2. **Defining the `tcgen` function:** This function will generate a single random integer \( K \) within the range [1, 200].
+3. **Using `random.randint(1, 200)` to generate the random integer \( K \):** This method ensures that \( K \) will always be within the specified constraints.
+4. **Returning \( K \):** The function returns the generated \( K \).
+5. **Usage example:** This is a simple example of how to use the `tcgen` function to generate and print a test case.
+
+You can execute the provided code snippet to generate and print random test cases for your problem.

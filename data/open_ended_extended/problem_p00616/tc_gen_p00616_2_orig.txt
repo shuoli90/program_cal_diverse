@@ -1,0 +1,56 @@
+To create a test case generator for the problem "Cubes Without Holes," we need to handle multiple datasets and generate random values for `n`, `h`, and the marks' positions. The constraints are `n ≤ 500` and `h ≤ 200`. Here is the Python code for the test case generator:
+
+```python
+import random
+
+def tcgen():
+    def generate_single_dataset():
+        # Generate n and h, ensure h is not greater than n^2
+        n = random.randint(1, 500)
+        h = random.randint(1, min(n**2, 200))
+        
+        marks = []
+        planes = ["xy", "xz", "yz"]
+        
+        for _ in range(h):
+            plane = random.choice(planes)
+            if plane == "xy":
+                a = random.randint(1, n)
+                b = random.randint(1, n)
+            elif plane == "xz":
+                a = random.randint(1, n)
+                b = random.randint(1, n)
+            elif plane == "yz":
+                a = random.randint(1, n)
+                b = random.randint(1, n)
+            marks.append(f"{plane} {a} {b}")
+        
+        return f"{n} {h}\n" + "\n".join(marks)
+    
+    # Generate a number of datasets
+    num_datasets = random.randint(1, 10)
+    
+    datasets = [generate_single_dataset() for _ in range(num_datasets)]
+    
+    # Adding the terminating line
+    datasets.append("0 0")
+    
+    return "\n".join(datasets)
+
+# Generate and print a test case
+print(tcgen())
+```
+
+### Explanation
+
+1. **Function `generate_single_dataset`**: This function generates a single dataset:
+   - `n` is generated randomly between 1 and 500.
+   - `h` is generated randomly between 1 and the minimum of `n^2` and 200 to ensure valid constraints.
+   - For each mark, a plane is chosen randomly among "xy", "xz", and "yz".
+   - For each chosen plane, appropriate coordinates `(a, b)` are generated randomly within the bounds `[1, n]`.
+
+2. **Generating Multiple Datasets**: We generate multiple datasets (between 1 and 10 datasets) and append a terminating line "0 0".
+
+3. **Combining Datasets**: The datasets are combined into a single string with each dataset separated by a newline.
+
+This generator will create varied and comprehensive test cases, ensuring thorough testing of the problem solution.

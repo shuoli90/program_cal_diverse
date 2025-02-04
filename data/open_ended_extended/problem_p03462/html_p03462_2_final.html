@@ -1,0 +1,168 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p03462 - Generation 2</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p03462 - Generation 2</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>
+Score : 1100 points
+Problem StatementThere are N white balls arranged in a row, numbered 1,2,..,N from left to right.
+AtCoDeer the deer is thinking of painting some of these balls red and blue, while leaving some of them white.
+You are given a string s of length K.
+AtCoDeer performs the following operation for each i from 1 through K in order:
+The i-th operation: Choose a contiguous segment of balls (possibly empty), and paint these balls red if the i-th character in s is r; paint them blue if the character is b.
+Here, if a ball which is already painted is again painted, the color of the ball will be overwritten.
+However, due to the properties of dyes, it is not possible to paint a white, unpainted ball directly in blue.
+That is, when the i-th character in s is b, the chosen segment must not contain a white ball.
+After all the operations, how many different sequences of colors of the balls are possible?
+Since the count can be large, find it modulo 10^9+7.
+Constraints
+1 ≤ N ≤ 70
+1 ≤ K ≤ 70
+|s| = K
+s consists of r and b.
+N and K are integers.
+InputInput is given from Standard Input in the following format:
+N K
+s
+OutputPrint the number of the different possible sequences of colors of the balls after all the operations, modulo 10^9+7.
+Sample Input 12 2
+rb
+Sample Output 19
+There are nine possible sequences of colors of the balls, as follows:
+ww, wr, rw, rr, wb, bw, bb, rb, br.
+Here, r represents red, b represents blue and wrepresents white.
+Sample Input 25 2
+br
+Sample Output 216
+Since we cannot directly paint white balls in blue, we can only choose an empty segment in the first operation.
+Sample Input 37 4
+rbrb
+Sample Output 31569
+Sample Input 470 70
+bbrbrrbbrrbbbbrbbrbrrbbrrbbrbrrbrbrbbbbrbbrbrrbbrrbbbbrbbrbrrbbrrbbbbr
+Sample Output 4841634130
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An integer N (1 ≤ N ≤ 70), representing some quantity or size.  
+An integer K (1 ≤ K ≤ 70), representing another quantity or size.  
+A string s of length K, consisting of characters from the set {'r', 'b'}.  
+
+### Example Input:
+
+```
+12 2
+rb
+```
+
+### Function Signature:
+Write a function f(inputs) that takes in the input. 
+def f(inputs: List[Tuple[int, int, str]]): 
+    ''' 
+    inputs: a list of tuples 
+    '''</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Sure, I can help you write a test case generator for this problem. Here's a Python function that generates random test cases for the given problem:
+
+```python
+import random
+
+def tcgen():
+    # Constants for the problem
+    MAX_N = 70
+    MAX_K = 70
+    MOD = 10**9 + 7
+    
+    # Generate random N and K within the specified range
+    N = random.randint(1, MAX_N)
+    K = random.randint(1, MAX_K)
+    
+    # Generate a random string s of length K consisting of 'r' and 'b'
+    s = ''.join(random.choice(['r', 'b']) for _ in range(K))
+    
+    return N, K, s
+
+# Example usage of the generator
+N, K, s = tcgen()
+print(N, K)
+print(s)
+```
+
+This function generates random values for `N` and `K` within their respective ranges and constructs a random string `s` of length `K` composed of 'r' and 'b'. Each call to `tcgen()` produces a different test case.
+
+You can call this function and print the test cases to use them in your competitive programming environment. Below is an example of how to use this generator:
+
+```python
+if __name__ == "__main__":
+    for _ in range(5):  # Generate 5 random test cases
+        N, K, s = tcgen()
+        print(f"Generated Test Case:")
+        print(f"N: {N}, K: {K}")
+        print(f"s: {s}")
+        print()
+```
+
+You can adjust the number of test cases generated by changing the range in the for loop. Each generated test case will be different due to the randomness involved in the generation process.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    N, K = map(int, fh.readline().strip().split())
+    s = fh.readline().strip()
+    return N, K, s</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

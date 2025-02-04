@@ -1,0 +1,177 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p01082 - Generation 3</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p01082 - Generation 3</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>Problem K: Escape of Lappin the Phantom Thief
+Problem
+Lappin the Phantom Thief came to steal jewels. He easily obtained the jewels, but they were fitted with sensors and he was surrounded by security robots.
+The security robots are programmed to move towards the jewels. Since the sensors were difficult to remove, he decided to leave the jewels and escape. He decided to place the jewels as far away from the security robots as possible and buy himself some time to escape.
+The site is a rectangular shape consisting of n x m squares, and there are no obstacles.
+There are k security robots placed at squares (xi, yi) (0 ≤ xi ≤ n−1, 0 ≤ yi ≤ m−1), and they can move one square up, down, left, or right in one unit of time.
+The security robots will move to the jewels by the shortest path.
+When you can freely place jewels in the site, find the maximum time taken by at least one security robot to reach a square with jewels.
+Input
+n m k
+x1 y1
+x2 y2
+...
+xk yk
+All input is given as integers.
+The first line contains three integers n, m, and k, separated by a single space.
+The k lines following the first line contain the coordinates of the squares where the security robots are, (xi, yi), separated by a single space.
+Constraints
+1 ≤ n, m ≤ 5 × 104
+1 ≤ k ≤ min(105, n × m)
+0 ≤ xi ≤ n−1
+0 ≤ yi ≤ m−1
+The given coordinates are all different
+Output
+Output the maximum time taken by any security robot to reach a square with jewels on one line.
+Sample Input 1
+20 10 1
+0 0
+Sample Output 1
+28
+Sample Input 2
+20 10 2
+0 0
+17 5
+Sample Output 2
+15
+Sample Input 3
+20 10 3
+0 0
+17 5
+6 9
+Sample Output 3
+11
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>Canonicalized Input Description: 
+
+An integer n (1 ≤ n ≤ 5 × 10^4), an integer m (1 ≤ m ≤ 5 × 10^4), and an integer k (1 ≤ k ≤ min(10^5, n × m)).
+A list of k tuples where each tuple contains two integers xi and yi (0 ≤ xi ≤ n−1, 0 ≤ yi ≤ m−1).
+
+### Example Input:
+
+```
+20 10 2
+0 0
+17 5
+```
+
+### Function Signature:
+Write a function f(inputs) that takes in the input. 
+def f(inputs: List[Tuple[int, int, int]]): 
+    ''' 
+    inputs: a list of tuples where each tuple contains three integers
+    '''
+</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Sure, here is a test case generator for the given problem statement "Escape of Lappin the Phantom Thief":
+
+```python
+import random
+
+def tcgen():
+    # Generate n and m within the specified range
+    n = random.randint(1, 5 * 10**4)
+    m = random.randint(1, 5 * 10**4)
+    
+    # Generate k which is min(10^5, n * m)
+    k = random.randint(1, min(10**5, n * m))
+
+    # Generate k unique coordinates for the robots
+    robots = set()
+    while len(robots) < k:
+        x = random.randint(0, n - 1)
+        y = random.randint(0, m - 1)
+        robots.add((x, y))
+    
+    # Convert the set of robots to a list of coordinates
+    robots = list(robots)
+    
+    # Preparing the input in the required format
+    input_data = f"{n} {m} {k}\n"
+    for robot in robots:
+        input_data += f"{robot[0]} {robot[1]}\n"
+    
+    # Output the input data as a string
+    return input_data
+
+# Example usage to generate a test case
+print(tcgen())
+```
+
+This function generates a test case for the "Escape of Lappin the Phantom Thief" problem by:
+1. Randomly selecting dimensions `n` and `m` for the grid within the specified range.
+2. Randomly determining the number of robots `k` considering the constraints.
+3. Generating `k` unique coordinates for the robots.
+4. Formatting the generated data as required by the problem statement.
+
+You can call this function to generate different test cases. The function ensures that robot coordinates are unique and fit within the bounds of the grid.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    n, m, k = map(int, fh.readline().strip().split())
+    robots = [tuple(map(int, fh.readline().strip().split())) for _ in range(k)]
+    return n, m, k, robots</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

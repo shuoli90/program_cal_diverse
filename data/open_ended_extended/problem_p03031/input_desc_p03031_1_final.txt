@@ -1,0 +1,23 @@
+An integer N (1 ≤ N ≤ 10), representing some quantity or size.
+An integer M (1 ≤ M ≤ 10), representing some quantity or size.
+A list of M sublists, each containing integers. The first integer in each sublist represents k_i (1 ≤ k_i ≤ N), followed by k_i integers (1 ≤ integer ≤ N).
+A list of M integers, each being either 0 or 1.
+
+### Example Input:
+
+```
+2 2
+2 1 2
+1 2
+0 1
+```
+
+### Function Signature:
+Write a function f(N, M, data, P) that takes in the input.
+def f(N: int, M: int, data: List[List[int]], P: List[int]):
+    ''' 
+    N: an integer
+    M: an integer
+    data: a list of lists of integers
+    P: a list of integers
+    '''

@@ -1,0 +1,51 @@
+Sure! Below is a test case generator for the given problem statement "How to Create a Good Game". This generator will create random test cases that meet the specified input constraints.
+
+```python
+import random
+
+def generate_test_case():
+    # Number of checkpoints N (2 ≤ N ≤ 100)
+    N = random.randint(2, 100)
+
+    # Number of paths M (1 ≤ M ≤ 1000)
+    M = random.randint(1, 1000)
+
+    # Generate a DAG structure
+    edges = []
+    for _ in range(M):
+        # Select two random checkpoints such that xi < yi
+        xi = random.randint(0, N - 2)
+        yi = random.randint(xi + 1, N - 1)
+        
+        # Random number of stages si (1 ≤ si ≤ 1000)
+        si = random.randint(1, 1000)
+        
+        edges.append((xi, yi, si))
+
+    # Ensure all checkpoints are reachable
+    remaining_checkpoints = set(range(1, N))
+    current_checkpoint = 0
+    while remaining_checkpoints:
+        next_checkpoint = remaining_checkpoints.pop()
+        si = random.randint(1, 1000)
+        edges.append((current_checkpoint, next_checkpoint, si))
+        current_checkpoint = next_checkpoint
+    
+    # Ensure no duplicate edges
+    edges = list(set(edges))
+
+    # Adjust M to be the number of unique edges
+    M = len(edges)
+
+    # Format the output
+    test_case = f"{N} {M}\n"
+    for edge in edges:
+        test_case += f"{edge[0]} {edge[1]} {edge[2]}\n"
+    
+    return test_case
+
+# Generate a test case and print it
+print(generate_test_case())
+```
+
+This code generates a random Directed Acyclic Graph (DAG) structure that meets the constraints provided in the problem statement. It ensures that all checkpoints are reachable by adding necessary edges and avoids duplicate edges. The test case is formatted as per the input specification and can be used to test the solution for the problem "How to Create a Good Game".

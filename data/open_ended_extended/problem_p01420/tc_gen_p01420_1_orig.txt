@@ -1,0 +1,39 @@
+To generate test cases for the "Marathon Match" problem, we will need to create random values for the number of runners \(N\), resting places \(M\), marathon distance \(L\), and the parameters \(P_i\), \(T_i\), and \(V_i\) for each runner. Here's a Python function to generate such test cases:
+
+```python
+import random
+
+def tcgen():
+    # Generating random values for N, M, and L
+    N = random.randint(1, 100)
+    M = random.randint(0, 50)
+    L = random.randint(1, 100000)
+    
+    # Generating random values for each runner's P_i, T_i, and V_i
+    runners = []
+    for _ in range(N):
+        P_i = random.randint(0, 100)
+        T_i = random.randint(0, 100)
+        V_i = random.randint(0, 100)
+        runners.append((P_i, T_i, V_i))
+    
+    return N, M, L, runners
+
+# Example of usage:
+N, M, L, runners = tcgen()
+print(N, M, L)
+for runner in runners:
+    print(runner[0], runner[1], runner[2])
+```
+
+This function will generate random test cases with the following constraints:
+
+- \(N\) (1 ≤ \(N\) ≤ 100): number of runners.
+- \(M\) (0 ≤ \(M\) ≤ 50): number of resting places.
+- \(L\) (1 ≤ \(L\) ≤ 100,000): distance of the marathon.
+- For each runner \(i\):
+  - \(P_i\) (0 ≤ \(P_i\) ≤ 100): probability of taking a break.
+  - \(T_i\) (0 ≤ \(T_i\) ≤ 100): resting time.
+  - \(V_i\) (0 ≤ \(V_i\) ≤ 100): running speed.
+
+The output from the function is in the format required by the problem statement. You can use this generator function to create as many test cases as needed for testing the solution to the problem.

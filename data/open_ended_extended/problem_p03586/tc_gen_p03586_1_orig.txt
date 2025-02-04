@@ -1,0 +1,31 @@
+Sure, here is a test case generator for the given problem statement:
+
+```python
+import random
+
+def tcgen():
+    # Generate the number of queries
+    Q = random.randint(1, 100)
+    
+    # Generate the list of (A_i, M_i) pairs
+    queries = []
+    for _ in range(Q):
+        A_i = random.randint(0, 10**9)
+        M_i = random.randint(1, 10**9)
+        queries.append((A_i, M_i))
+    
+    return Q, queries
+
+# Example usage
+Q, queries = tcgen()
+print(Q)
+for A_i, M_i in queries:
+    print(A_i, M_i)
+```
+
+Explanation:
+- The number of queries \( Q \) is randomly chosen between 1 and 100.
+- For each query, \( A_i \) is randomly chosen between 0 and \( 10^9 \), and \( M_i \) is randomly chosen between 1 and \( 10^9 \).
+- The queries are returned as a list of tuples.
+
+This generator will produce test cases that fit within the constraints of the problem statement.

@@ -1,0 +1,13 @@
+def extract_arguments(fh):
+    H, W, N = map(int, fh.readline().strip().split())
+    obstacles = []
+    for _ in range(N):
+        X, Y = map(int, fh.readline().strip().split())
+        obstacles.append((X, Y))
+    return H, W, N, obstacles
+
+# if __name__ == "__main__":
+#     input_path = sys.argv[1]
+#     with open(input_path, 'r') as fh: 
+#     H, W, N, obstacles = extract_arguments(fh)
+#     f(H, W, N, obstacles)

@@ -1,0 +1,17 @@
+JOI Park
+In preparation for the Olympics to be held in the IOI country in 20XX, it was decided to develop the JOI Park in the IOI country. JOI Park has N squares, and the squares are numbered from 1 to N. There are M roads that connect the squares, and the roads are numbered from 1 to M. Road i (1 ≤ i ≤ M) connects square Ai and square Bi bidirectionally, and its length is Di. It is possible to reach any square from any other square by following some roads.
+In the development plan, first, an integer X greater than or equal to 0 is chosen, and all squares (including square 1) whose distance from square 1 is less than or equal to X are connected by an underground passage. Here, the distance between square i and square j is the minimum sum of the lengths of the roads that are traveled to go from square i to square j. The integer C related to the cost of building underground passages is determined in the development plan. The cost of building an underground passage is C × X.
+Next, all roads that connect squares by an underground passage are removed. There is no cost for removing the roads. Finally, all the remaining roads are repaired. The cost of repairing a road of length d is d. There are no underground passages in the JOI Park before the development plan is implemented. Find the minimum sum of the costs required for development of the JOI Park.
+Task
+Given the information about the squares in the JOI Park and an integer related to the cost of building underground passages, write a program to find the minimum sum of the costs required for development of the JOI Park.
+Input
+The data is read from standard input in the following format:
+ The first line contains three integers N, M, and C, separated by a single space, indicating that there are N squares, M roads, and the integer related to the cost of building underground passages is C.
+ Among the following M lines, the i-th line (1 ≤ i ≤ M) contains three integers Ai, Bi, and Di, separated by a single space, indicating that road i connects square Ai and square Bi with a length of Di.
+Output
+Print a single integer to standard output, indicating the minimum sum of the costs required for development of the JOI Park.
+Constraints
+For all input data, the following conditions hold.
+ 2 ≤ N ≤ 100,000.
+ 1 ≤ M ≤ 200,000.
+ 1 &le

@@ -1,0 +1,53 @@
+G: Treasure Hunter
+Problem
+There are N piles of treasure, each numbered from 1 to N. There is a treasure with value p_i sleeping in the ith pile, which can be obtained at the time of visiting the pile. Once the treasure is obtained, there will be no more treasure in that pile, so each treasure can only be obtained once.
+To move between different piles, you must use a road. There are a total of N-1 roads between piles, and the ith road connects piles u_i and v_i bidirectionally. Assuming that all roads are passable, it is known that any two piles are mutually accessible.
+Since no one has passed through any road for a long time and the road must be repaired before it can be passed, you need to pay c_i yen to repair the ith road when you first cross it, and make it passable. Once a road has been repaired, it can be used for free.
+You are a treasure hunter with a budget of W yen for road construction costs. Your goal is to maximize the total value of the treasure obtained by deciding arbitrarily on one pile to land on at the beginning and constructing roads to move between different piles with a total cost of no more than W yen. How much treasure can you get at most?
+Note that you cannot exchange treasure for construction costs along the way, so you cannot use treasure as construction costs.
+Input Format
+The input is given in the following format:
+N W
+p_1 p_2 ... p_N
+u_1 v_1 c_1
+:
+u_{N-1} v_{N-1} c_{N-1}
+In the first line, the number of piles N and the budget for road construction costs W are given.
+In the second line, the value of the treasure sleeping in the ith pile p_i is given.
+From the third line to the N+1th line, road information is given. The ith line represents the information of the ith road, indicating that there is a road with a construction cost of c_i between piles u_i and v_i.
+Constraints
+1 \leq N \leq 10^2
+1 \leq W \leq 10^5
+1 \leq p_i \leq 10^9
+1 \leq u_i \lt v_i \leq N
+If i \neq j, then u_i \neq u_j or v_i \neq v_j
+1 \leq c_i \leq 10^5
+All input is an integer.
+Output Format
+Output the maximum total value of treasure obtained on one line. Don't forget the tailing newline character.
+Sample Input 1
+3 10
+6 8 2
+1 2 3
+2 3 8
+Sample Output 1
+14
+It is optimal to land on pile 1 or pile 2, construct a road between pile 1 and pile 2, and obtain the treasures in pile 1 and pile 2. Since the budget for road construction costs is 10, both roads cannot be constructed.
+Sample Input 2
+3 15
+10 10 12
+1 2 6
+1 3 4
+Sample Output 2
+32
+You can obtain all the treasures.
+Sample Input 3
+5 1
+4 8 8 2 10
+1 2 3
+2 4 5
+2 5 2
+1 3 7
+Sample Output 3
+10
+There are cases where the budget is insufficient and no road can be constructed.

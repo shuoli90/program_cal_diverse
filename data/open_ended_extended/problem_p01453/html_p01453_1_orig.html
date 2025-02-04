@@ -1,0 +1,238 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p01453 - Generation 1</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p01453 - Generation 1</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>Problem G: Spring Tile
+One morning, when you woke up, you were in a maze full of springs.
+You don't know why you are in this unfamiliar place. Though there is an option to wait for help quietly, you know from experience that if you stay in such a maze for a long time, a sudden gust of wind will eventually blow and blow you away. However, it is impossible to judge the time until the gust of wind comes. Therefore, you thought that the best strategy would be to act so that the expected value of the number of moves required to escape from the maze is minimized before the gust of wind blows.
+You picked up an unidentified scroll that had fallen at your feet and tried reading it, and by chance, you were able to perceive the entire map of the maze. Furthermore, by drinking the grass you happened to have, you were able to know the positions of all the traps. Apparently, there are no other traps in this maze except for dangerous monsters and springs.
+This maze is in the shape of a rectangle with several types of tiles arranged in a row, as shown below, for example.
+########
+#..##g.#
+#*#.*#.#
+#......#
+#*s#*.*#
+########
+"." : Floor. You can move around freely on it.
+"#" : Wall. You cannot enter the wall.
+"s" : Your initial position. The tile below this tile is a floor.
+"g" : Stairs. If you get on this tile, you will have escaped from the maze.
+"*" : Spring. If you get on this tile, you will be randomly thrown onto one of the floors (excluding the stair and spring tiles). The probability of being thrown onto each floor is the same.
+The type of tile is one of the five listed above.
+You can move one square in any direction (up, down, left, or right) from the tile you are currently on. However, you cannot move diagonally.
+Given the map of the maze, find the expected number of moves required to escape from the maze if you take the best strategy. Do not include the number of moves you are thrown by the spring in the total number of moves.
+Input
+W H
+c11 c12 ... c1w
+c21 c22 ... c2w
+::    :
+ch1 ch2 ... ccw
+The first line of input contains two integers W (3 ≤ W ≤ 500) and H (3 ≤ H ≤ 500), written in this order, separated by a single space. W is the width of the maze and H is the height of the maze.
+The next H lines contain W characters each, representing the map of the maze (not separated by spaces). The format of this part is as shown in the example above. Note that "s" and "g" appear exactly once each in the data. Also, the outermost layer of the maze is surrounded by walls.
+It can be assumed that even if you move or are thrown by a spring in any way, it will not fall into a "state where it is impossible to escape, even if you can arbitrarily set the floor you are thrown by a spring".
+Output
+Find the expected number of moves required to escape from the maze if you take the best strategy. The output may contain an error, but the relative error with respect to the true value must be less than 10-9.
+Sample Input 1
+8 6
+########
+#..##g.#
+#*#.*#.#
+#......#
+#*s#*.*#
+########
+Sample Output 1
+5.857142857143
+Sample Input 2
+21 11
+#####################
+#*#*.*.*.*.*.*.*.*#*#
+#*#...............#*#
+#*#.#.#.#.#.#.#.#.#*#
+##.#.#.#.#.#.#.#.#.##
+#...................#
+##.#.#.#.#.#.#.#.#.##
+#s#.#.#.#.#.#.#.#.#g#
+#...................#
+#...................#
+#####################
+Sample Output 2
+20.000000000000
+Sample Input 3
+9 8
+#########
+#...#*.*#
+#.*.#...#
+#...#*.*#
+#########
+#.s....g#
+#.*#.*..#
+#########
+Sample Output 3
+5.000000000000
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>### Canonicalized Input Description:
+
+Two integers W and H (3 ≤ W ≤ 500), representing some dimensions.
+H lines, each containing W characters from the set {'#', '.', 's', 'g', '*'}. 
+
+### Example Input:
+
+```
+8 6
+########
+#..##g.#
+#*#.*#.#
+#......#
+#*s#*.*#
+########
+```
+
+### Function Signature:
+Write a function `f(W, H, grid)` that takes in the input.
+```python
+def f(W: int, H: int, grid: List[str]):
+    '''
+    W: an integer
+    H: an integer
+    grid: a list of strings
+    '''
+```</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Sure! Let's write a test case generator for the "Spring Tile" problem.
+
+The generator will need to:
+1. Randomly generate the dimensions \(W\) and \(H\) within the specified limits.
+2. Create a maze map that includes exactly one 's' (start) tile and one 'g' (goal/stairs) tile, surrounded by walls ('#') on the outermost layer.
+3. Randomly place the other types of tiles ('.', '*') within the maze.
+
+Here is the Python code for the test case generator:
+
+```python
+import random
+
+def generate_maze(W, H):
+    # Initialize maze with walls
+    maze = [['#' for _ in range(W)] for _ in range(H)]
+
+    # Place the start 's' and goal 'g' tiles
+    start_x, start_y = random.randint(1, H-2), random.randint(1, W-2)
+    goal_x, goal_y = random.randint(1, H-2), random.randint(1, W-2)
+    while goal_x == start_x and goal_y == start_y:
+        goal_x, goal_y = random.randint(1, H-2), random.randint(1, W-2)
+
+    maze[start_x][start_y] = 's'
+    maze[goal_x][goal_y] = 'g'
+
+    # Randomly place other tiles ('.' and '*')
+    for i in range(1, H-1):
+        for j in range(1, W-1):
+            if maze[i][j] == '#':
+                if (i, j) not in [(start_x, start_y), (goal_x, goal_y)]:
+                    maze[i][j] = random.choice(['.', '*'])
+
+    return maze
+
+def print_maze(maze):
+    for row in maze:
+        print(''.join(row))
+
+def tcgen():
+    W = random.randint(3, 500)
+    H = random.randint(3, 500)
+
+    maze = generate_maze(W, H)
+
+    # Output the generated test case
+    print(f"{W} {H}")
+    print_maze(maze)
+
+# Generate and print a random test case
+tcgen()
+```
+
+### Explanation:
+1. **`generate_maze(W, H)`:**
+   - Initializes a maze with walls ('#') on all tiles.
+   - Randomly selects positions for the start 's' and goal 'g' tiles, ensuring they are not on the same tile.
+   - Fills the rest of the maze with either floor tiles ('.') or spring tiles ('*').
+
+2. **`print_maze(maze)`:**
+   - Converts and prints the maze in the required format.
+
+3. **`tcgen()`:**
+   - Randomly generates the dimensions \(W\) and \(H\).
+   - Generates the maze and prints it.
+
+You can call `tcgen()` to generate a random test case for the "Spring Tile" problem. The output will be in the form required by the problem statement.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    W, H = map(int, fh.readline().strip().split())
+    maze = [fh.readline().strip() for _ in range(H)]
+    return W, H, maze
+
+# if __name__ == "__main__":
+#     input_path = sys.argv[1]
+#     with open(input_path, 'r') as fh: 
+#     W, H, maze = extract_arguments(fh)
+#     f(W, H, maze)</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

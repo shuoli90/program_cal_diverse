@@ -1,0 +1,7 @@
+def extract_arguments(fh):
+    N = int(fh.readline().strip())
+    segments = []
+    for _ in range(N):
+        x1, y1, x2, y2 = map(int, fh.readline().strip().split())
+        segments.append((x1, y1, x2, y2))
+    return N, segments

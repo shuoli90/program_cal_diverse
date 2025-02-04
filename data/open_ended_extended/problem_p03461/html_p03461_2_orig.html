@@ -1,0 +1,193 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p03461 - Generation 2</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p03461 - Generation 2</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>
+Score : 900 points
+Problem StatementAtCoDeer the deer wants a directed graph that satisfies the following conditions:
+The number of vertices, N, is at most 300.
+There must not be self-loops or multiple edges.
+The vertices are numbered from 1 through N.
+Each edge has either an integer weight between 0 and 100 (inclusive), or a label X or Y.
+For every pair of two integers (x,y) such that 1 ≤ x ≤ A, 1 ≤ y ≤ B,
+    the shortest distance from Vertex S to Vertex T in the graph where the edges labeled X have the weight x and the edges labeled Y have the weight y, is d_{x,y}.
+Construct such a graph (and a pair of S and T) for him, or report that it does not exist.
+Refer to Output section for output format.
+Constraints
+1 ≤ A,B ≤ 10
+1 ≤ d_{x,y} ≤ 100 (1 ≤ x ≤ A, 1 ≤ y ≤ B)
+All input values are integers.
+InputInput is given from Standard Input in the following format:
+A B
+d_{1,1} d_{1,2} .. d_{1,B}
+d_{2,1} d_{2,2} .. d_{2,B}
+:
+d_{A,1} d_{A,2} .. d_{A,B}
+OutputIf no graph satisfies the condition, print Impossible.
+If there exists a graph that satisfies the condition, print Possible in the first line.
+Then, in the subsequent lines, print the constructed graph in the following format:
+N M
+u_1 v_1 c_1
+u_2 v_2 c_2
+:
+u_M v_M c_M
+S T
+Here, M is the number of the edges, and u_i, v_i, c_i represent edges as follows: there is an edge from Vertex u_i to Vertex v_i whose weight or label is c_i.
+Also refer to Sample Outputs.
+Sample Input 12 3
+1 2 2
+1 2 3
+Sample Output 1Possible
+3 4
+1 2 X
+2 3 1
+3 2 Y
+1 3 Y
+1 3
+Sample Input 21 3
+100 50 1
+Sample Output 2Impossible
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An integer A (1 ≤ A ≤ 10), representing some quantity.
+An integer B (1 ≤ B ≤ 10), representing some quantity.
+A list of A lists, each containing B integers, where each integer is between 1 and 100.
+
+### Example Input:
+
+```
+2 3
+1 2 2
+1 2 3
+```
+
+### Function Signature:
+Write a function f(A, B, d) that takes in the input.
+```python
+def f(A: int, B: int, d: List[List[int]]):
+    ''' 
+    A: an integer 
+    B: an integer
+    d: a list of lists of integers
+    '''
+```</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>To generate test cases for this problem, we need to generate the following:
+
+1. Two integers \( A \) and \( B \) representing the dimensions of the distance matrix.
+2. A matrix \( d \) of dimensions \( A \times B \) where each element \( d_{x,y} \) is an integer between 1 and 100.
+
+Additionally, we need to ensure the generated graph satisfies the conditions mentioned in the problem statement, or we should report "Impossible" if it's not possible to construct such a graph.
+
+Here's a Python function that generates these test cases:
+
+```python
+import random
+
+def generate_test_case():
+    # Generate A and B
+    A = random.randint(1, 10)
+    B = random.randint(1, 10)
+
+    # Generate the distance matrix d
+    d = [[random.randint(1, 100) for _ in range(B)] for _ in range(A)]
+
+    return A, B, d
+
+# Function to print the test case
+def print_test_case():
+    A, B, d = generate_test_case()
+    
+    print(A, B)
+    for row in d:
+        print(' '.join(map(str, row)))
+
+print_test_case()
+```
+
+This function generates the test case by:
+1. Randomly selecting values for \( A \) and \( B \).
+2. Creating a distance matrix \( d \) with dimensions \( A \times B \) containing integers between 1 and 100.
+3. Printing the test case in the required format.
+
+Here's how the output might look when you run the function:
+
+```
+3 4
+23 45 67 23
+12 34 56 78
+90 12 34 56
+```
+
+In a real competitive programming scenario, you would use this function to generate various test cases and validate them against your solution to ensure it handles all edge cases and constraints effectively.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    A, B = map(int, fh.readline().strip().split())
+    d = [list(map(int, fh.readline().strip().split())) for _ in range(A)]
+    return A, B, d
+
+# if __name__ == "__main__":
+#     input_path = sys.argv[1]
+#     with open(input_path, 'r') as fh: 
+#     A, B, d = extract_arguments(fh)
+#     f(A, B, d)</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

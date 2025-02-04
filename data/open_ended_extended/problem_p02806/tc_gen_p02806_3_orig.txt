@@ -1,0 +1,49 @@
+Sure, I can write a test case generator for the given problem statement. Here's the Python code for generating test cases for the problem "Niwango's Playlist":
+
+```python
+import random
+import string
+
+def generate_song_title():
+    length = random.randint(1, 100)
+    return ''.join(random.choices(string.ascii_lowercase, k=length))
+
+def tcgen():
+    N = random.randint(1, 50)
+    
+    songs = []
+    song_titles = set()
+    
+    for _ in range(N):
+        title = generate_song_title()
+        while title in song_titles:
+            title = generate_song_title()
+        song_titles.add(title)
+        
+        duration = random.randint(1, 1000)
+        songs.append((title, duration))
+    
+    X = random.choice(songs)[0]
+    
+    return N, songs, X
+
+# Example of how to use the tcgen function
+if __name__ == "__main__":
+    N, songs, X = tcgen()
+    print(N)
+    for title, duration in songs:
+        print(f"{title} {duration}")
+    print(X)
+```
+
+This function `tcgen` will generate:
+
+- A random number of songs `N` (between 1 and 50).
+- A list of tuples representing songs, where each tuple contains:
+  - A distinct title of length between 1 and 100 characters, comprising lowercase English letters.
+  - A duration between 1 and 1000 seconds.
+- A song title `X` that is guaranteed to be in the list of songs.
+
+The generated test case can be printed out or used directly in the function to verify outputs. The example at the bottom demonstrates how to print a generated test case in the required format.
+
+To run the generator, you can call `tcgen()` in your testing environment, and it will produce the necessary random test cases for the problem.

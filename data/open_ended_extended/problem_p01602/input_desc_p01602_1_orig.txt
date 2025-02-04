@@ -1,0 +1,18 @@
+An integer n (1 ≤ n ≤ 1,000), representing some quantity or size.
+A list of tuples, each containing a character p_i from the set {'(', ')'} and an integer x_i (1 ≤ x_i ≤ 10^6).
+
+### Example Input:
+
+```
+3
+( 5
+) 4
+) 1
+```
+
+### Function Signature:
+Write a function f(inputs) that takes in the input.
+def f(inputs: List[Tuple[str, int]]):
+    '''
+    inputs: a list of tuples, each containing a character and an integer
+    '''

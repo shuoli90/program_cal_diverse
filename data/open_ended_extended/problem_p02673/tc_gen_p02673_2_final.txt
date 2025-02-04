@@ -1,0 +1,61 @@
+Sure, here is a Python function to generate test cases for the given competitive programming problem:
+
+```python
+import random
+
+def tcgen():
+    # Constraint parameters
+    max_N = 200000
+    max_A = 10**12
+    max_B = 100
+    
+    # Generate N
+    N = random.randint(2, max_N)
+    
+    # Generate A_p array
+    A = [random.randint(0, max_A) for _ in range(N)]
+    
+    # Generate B_p array
+    B = [random.randint(0, max_B) for _ in range(N)]
+    
+    return N, A, B
+
+# Example usage
+if __name__ == "__main__":
+    N, A, B = tcgen()
+    print(N)
+    print(" ".join(map(str, A)))
+    print(" ".join(map(str, B)))
+```
+
+### Explanation:
+
+1. **Generating N**:
+   - `N` is randomly chosen between 2 and 200,000 (both inclusive) as per the problem constraints.
+
+2. **Generating A array**:
+   - Each `A[i]` is an integer between 0 and \(10^{12}\), so a list comprehension is used to generate `N` such integers.
+
+3. **Generating B array**:
+   - Each `B[i]` is an integer between 0 and 100, so another list comprehension is used to generate `N` such integers.
+
+The generated test case will follow the input format:
+
+- The first line contains the integer \(N\).
+- The second line contains \(N\) integers representing \(A_1, A_2, \ldots, A_N\).
+- The third line contains \(N\) integers representing \(B_1, B_2, \ldots, B_N\).
+
+### Example Usage:
+
+Running the `tcgen()` function will create a random test case following the problem's constraints and format. When executed, it prints \(N\), followed by the `A` list and the `B` list.
+
+```python
+# Example output
+"""
+5
+4839 5400 6231 5800 6001
+34 54 61 32 52
+"""
+```
+
+This is how you can generate test cases programmatically for the given problem statement.

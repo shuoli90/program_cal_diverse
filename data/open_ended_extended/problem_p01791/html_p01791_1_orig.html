@@ -1,0 +1,161 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p01791 - Generation 1</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p01791 - Generation 1</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>
+Problem B
+Card Game Strategy
+Alice and Bob are going to play a card game. There are $n$ cards, each having an integer written on it. The game proceeds as follows:
+ Alice chooses an integer between $a$ and $b$, inclusive. Call this integer $t$. Alice then tells Bob the value of $t$.
+ Bob chooses $k$ out of the $n$ cards. Compute the sum of the integers written on the $k$ cards Bob chooses. Call this sum $u$.
+Alice's objective is to make $|t - u|$ as large as possible and Bob's is to make $|t - u|$ as small as possible.
+Prior to the game, both Alice and Bob know the values of $n$, $k$, $a$, and $b$, and also the integers on the cards. Both Alice and Bob will play optimally. In particular, Alice will make a choice, knowing that Bob will surely minimize $|t - u|$ for told $t$. Additionally, assume that Alice prefers to choose smaller $t$ if she has multiple equally good choices.
+Your task is to determine the outcome of the game: the value of $t$ Alice will choose and the $k$ cards Bob will choose for that $t$.
+Input
+The input consists of two lines representing a single test case. The first line contains four integers $n$, $k$, $a$, and $b$ $(1 \leq k \leq n \leq 600, 0 \leq a \leq b \leq 180,000)$. The second line contains $n$ integers $x_1, ...,  x_n$ $(0 \leq x_i \leq 300)$, denoting that $x_i$ is written on the $i$-th card.
+Output
+Display two lines: The first line should contain an integer representing the value of $t$ Alice will choose. The second line should contain k distinct integers between 1 and $n$, inclusive, representing the indices of the cards Bob will choose. If Bob has multiple equally good choices, display any one of them.
+Sample Input 1
+4 2 58 100
+10 10 50 80
+Output for the Sample Input 1
+75
+2 3
+Sample Input 2
+8 3 1300 1800
+2 0 1 5 0 4 1 9
+Output for the Sample Input 2
+1800
+4 6 8</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An integer N (1 ≤ N ≤ 600), representing some quantity or size.
+An integer K (1 ≤ K ≤ N), representing some quantity or size.
+An integer A (0 ≤ A ≤ 180,000), representing some quantity or size.
+An integer B (A ≤ B ≤ 180,000), representing some quantity or size.
+A list of integers X of size N, where each integer is between 0 and 300.
+
+### Example Input:
+
+```
+4
+2
+58
+100
+10 10 50 80
+```
+
+### Function Signature:
+Write a function f(N, K, A, B, X) that takes in the input.
+```python
+def f(N: int, K: int, A: int, B: int, X: List[int]):
+    '''
+    N: an integer
+    K: an integer
+    A: an integer
+    B: an integer
+    X: a list of integers
+    '''
+```</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Sure, here is a test case generator for the "Card Game Strategy" problem.
+
+```python
+import random
+
+def tcgen():
+    n = random.randint(1, 600)
+    k = random.randint(1, n)
+    a = random.randint(0, 180000)
+    b = random.randint(a, 180000)
+    
+    x = [random.randint(0, 300) for _ in range(n)]
+    
+    return n, k, a, b, x
+
+def generate_test_case():
+    n, k, a, b, x = tcgen()
+    
+    print(n, k, a, b)
+    print(' '.join(map(str, x)))
+
+generate_test_case()
+```
+
+### Explanation:
+1. `n` is the number of cards, chosen randomly between 1 and 600.
+2. `k` is the number of cards Bob will choose, which can be any value between 1 and `n`.
+3. `a` and `b` are the ranges within which Alice can choose her integer `t`. `a` can be any value between 0 and 180000, and `b` is chosen to be at least `a` and at most 180000.
+4. `x` is the list of integers on the cards, with each integer being between 0 and 300.
+
+This generator will print out the values in the format specified in the problem statement, creating a valid test case for the "Card Game Strategy" problem. You can call `generate_test_case()` multiple times to generate different test cases.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    n, k, a, b = map(int, fh.readline().strip().split())
+    x = list(map(int, fh.readline().strip().split()))
+    return n, k, a, b, x
+
+# if __name__ == "__main__":
+#     input_path = sys.argv[1]
+#     with open(input_path, 'r') as fh: 
+#     n, k, a, b, x = extract_arguments(fh)
+#     f(n, k, a, b, x)</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

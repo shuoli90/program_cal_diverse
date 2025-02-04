@@ -1,0 +1,46 @@
+Sure, I can write a test case generator for the problem statement you've provided. Here is the Python code for the test case generator:
+
+```python
+import random
+
+def tcgen():
+    A = random.randint(-10**9, 10**9)
+    B = random.randint(-10**9, 10**9)
+    
+    # Ensure A != B
+    while A == B:
+        B = random.randint(-10**9, 10**9)
+    
+    V = random.randint(1, 10**9)
+    W = random.randint(1, 10**9)
+    T = random.randint(1, 10**9)
+
+    return A, V, B, W, T
+
+# Example of generating a test case
+A, V, B, W, T = tcgen()
+print(f"{A} {V}")
+print(f"{B} {W}")
+print(f"{T}")
+```
+
+### Explanation of the Code:
+1. **A and B**: These are the coordinates of the two children. They are randomly generated between -10^9 and 10^9, ensuring that `A` is not equal to `B`.
+2. **V and W**: These represent the distances that "it" and the other child can travel per second, respectively. They are randomly generated between 1 and 10^9.
+3. **T**: This represents the number of seconds within which "it" must catch the other child. It is randomly generated between 1 and 10^9.
+
+### Sample Output:
+The generator will output values formatted as in the problem statement. Here is an example run:
+
+```
+-1000000000 999999999
+1000000000 1
+5000000
+```
+
+This output represents:
+1. The "it" child's starting coordinate is `-1000000000` and can travel `999999999` units per second.
+2. The other child's starting coordinate is `1000000000` and can travel `1` unit per second.
+3. The time limit is `5000000` seconds.
+
+Feel free to run the test case generator multiple times to get different test cases for your problem!

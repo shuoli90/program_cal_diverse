@@ -1,0 +1,47 @@
+Elevator Hall Number
+JAG (Japanese Alumni Group) is a mysterious organization located in a high-rise building somewhere in Tokyo. The building has $N$ elevators, and the $i$-th elevator stops at each floor from $low_i$ to $high_i$ ($1 \le i \le N$).
+X, a new member of JAG, has arrived at the elevator hall of the building to visit the headquarters. While waiting for the elevator after pressing the button, X noticed that the display showing the current floor of the elevator is a little different. When the $i$-th elevator is on the $a_i$-th floor, the display shows a single number obtained by concatenating $a_1,a_2,\dots,a_N$ in order without leading zeros or spaces. For example, if $N=3$ and the elevators are on the 10th, 2nd, and 11th floors, then "10211" is displayed.
+X is curious about how many possible numbers can be displayed on the screen. Your task is to create a program that calculates this.
+Input:
+The input consists of multiple datasets. Each dataset has the following format:
+  $N$
+  $low_1$ $high_1$
+  $\dots$
+  $low_N$ $high_N$
+The first line of each dataset contains an integer $N$ ($2 \leq N \leq 6$) that represents the number of elevators. The $i$-th of the following $N$ lines contains two integers $low_i$ and $high_i$ ($1 \leq low_i \leq high_i \leq 99$), which represent the range of floors that the $i$-th elevator can reach.
+The input ends with a line containing a single zero.
+Output:
+For each dataset, output the number of possible numbers that can be displayed on the screen in a single line.
+Sample Input:
+2
+1 11
+1 11
+3
+10 10
+2 2
+11 11
+4
+89 91
+1 12
+1 12
+89 91
+5
+1 8
+2 76
+10 19
+6 16
+33 42
+6
+10 59
+20 69
+30 79
+40 89
+50 99
+50 99
+0
+Sample Output:
+120
+1
+1278
+659520
+15625000000

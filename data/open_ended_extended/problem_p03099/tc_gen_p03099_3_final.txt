@@ -1,0 +1,64 @@
+Here's a test case generator for the given problem statement about Snuke the thief and the jewels:
+
+```python
+import random
+
+def tcgen():
+    # Generate number of jewels N (1 <= N <= 80)
+    N = random.randint(1, 80)
+    
+    # Generate coordinates and values for each jewel
+    jewels = []
+    coordinates = set()
+    
+    for _ in range(N):
+        while True:
+            x = random.randint(1, 100)
+            y = random.randint(1, 100)
+            if (x, y) not in coordinates:
+                coordinates.add((x, y))
+                break
+        v = random.randint(1, 10**15)
+        jewels.append((x, y, v))
+    
+    # Generate number of conditions M (1 <= M <= 320)
+    M = random.randint(1, 320)
+    
+    # Generate conditions
+    conditions = []
+    conditions_set = set()
+    
+    for _ in range(M):
+        t = random.choice(['L', 'R', 'D', 'U'])
+        while True:
+            a = random.randint(1, 100)
+            b = random.randint(0, N - 1)
+            if (t, a) not in conditions_set and (t, b) not in conditions_set:
+                conditions_set.add((t, a))
+                conditions_set.add((t, b))
+                break
+        conditions.append((t, a, b))
+    
+    return N, jewels, M, conditions
+
+# Function to print the test case in the required format
+def print_test_case():
+    N, jewels, M, conditions = tcgen()
+    print(N)
+    for x, y, v in jewels:
+        print(f"{x} {y} {v}")
+    print(M)
+    for t, a, b in conditions:
+        print(f"{t} {a} {b}")
+
+# Example usage
+print_test_case()
+```
+
+### Explanation:
+- **N**: Randomly generate the number of jewels within the given range.
+- **Jewels**: For each jewel, randomly generate distinct coordinates (x, y) and a value v within the constraints.
+- **M**: Randomly generate the number of conditions within the given range.
+- **Conditions**: Generate conditions ensuring that (t, a) and (t, b) pairs are unique as per the constraints.
+
+You can run the `print_test_case()` function to generate a random test case and print it in the required format. Each time you run it, it will produce a different test case within the problem's constraints.

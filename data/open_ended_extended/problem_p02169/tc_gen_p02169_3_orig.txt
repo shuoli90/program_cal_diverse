@@ -1,0 +1,41 @@
+Certainly! Below is a Python function for generating test cases for the given problem, "Count Words."
+
+```python
+import random
+
+def tcgen():
+    # Constraints
+    M_min, M_max = 1, 10**18
+    N_min, N_max = 1, 10**18
+    K_min, K_max = 1, 1000
+
+    # Generate M, N, and K within the specified ranges
+    M = random.randint(M_min, M_max)
+    N = random.randint(N_min, N_max)
+    K = random.randint(K_min, K_max)
+
+    # Ensure K is not greater than the minimum of M or N
+    K = min(K, M, N)
+
+    return M, N, K
+
+# Example usage:
+for _ in range(10):
+    print(tcgen())
+```
+
+### Explanation:
+
+1. **Constraints:**
+    - \( M \): Number of types of characters (1 ≤ \( M \) ≤ \( 10^{18} \)).
+    - \( N \): Length of the string (1 ≤ \( N \) ≤ \( 10^{18} \)).
+    - \( K \): Minimum number of different types of characters to be used in the string (1 ≤ \( K \) ≤ 1000).
+
+2. **Random Generation:**
+    - Randomly generate \( M \) and \( N \) within their respective ranges.
+    - Randomly generate \( K \) within its range but ensure it's not greater than the minimum of \( M \) or \( N \) to maintain logical consistency.
+
+3. **Example Usage:**
+    - The function can be called multiple times to generate different test cases.
+
+This function will generate random test cases while respecting the constraints provided in the problem statement.

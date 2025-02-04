@@ -1,0 +1,3 @@
+Types: N: int, M: int, r: int, q: int, t: int, n: int, m: int, s: int, ts: int, te: int
+Ranges: 1 ≤ N ≤ 1000, 1 ≤ M ≤ 10000, 2 ≤ r ≤ 1000, 1 ≤ q ≤ 50, 540 ≤ t ≤ 1260, 1 ≤ n ≤ N, 1 ≤ m ≤ M, s in {0, 1}, 540 ≤ ts < te ≤ 1260
+Addtl Info: None

@@ -1,0 +1,21 @@
+An integer N (2 ≤ N ≤ 100), representing some quantity or size.
+An integer M (1 ≤ M ≤ 1000), representing some quantity or size.
+M lines follow, each containing three integers xi, yi, si (0 ≤ xi < yi ≤ N - 1, 1 ≤ si ≤ 1000).
+
+### Example Input:
+
+```
+3 3
+0 1 5
+1 2 3
+0 2 2
+```
+
+### Function Signature:
+Write a function f(N, M, paths) that takes in the input.
+def f(N: int, M: int, paths: List[Tuple[int, int, int]]):
+    ''' 
+    N: an integer 
+    M: an integer 
+    paths: a list of tuples, each containing three integers 
+    '''

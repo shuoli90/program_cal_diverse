@@ -1,0 +1,26 @@
+An integer N (1 ≤ N ≤ 10^6), representing some quantity or size.
+An integer M (1 ≤ M ≤ 10^6), representing some quantity or size.
+An integer K (1 ≤ K ≤ 10^6), representing some quantity or size.
+A string S of length N consisting of the characters '0' and '1', with the first character guaranteed to be '1'.
+A string T of length M consisting of the characters '0' and '1', with the first character guaranteed to be '1'.
+
+### Example Input:
+
+```
+2 3 3
+11
+101
+```
+
+### Function Signature:
+Write a function `f(N, M, K, S, T)` that takes in the input. 
+```python
+def f(N: int, M: int, K: int, S: str, T: str):
+    ''' 
+    N: an integer 
+    M: an integer
+    K: an integer
+    S: a string
+    T: a string
+    '''
+```

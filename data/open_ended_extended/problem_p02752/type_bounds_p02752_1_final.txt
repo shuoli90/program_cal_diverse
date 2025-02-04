@@ -1,0 +1,3 @@
+Types: N: int, a: List[int], b: List[int]
+Ranges: 3 ≤ N ≤ 2 × 10^5, 1 ≤ a_i, b_i ≤ N
+Addtl Info: The given graph is a tree.

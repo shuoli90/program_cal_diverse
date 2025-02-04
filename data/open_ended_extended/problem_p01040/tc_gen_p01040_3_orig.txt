@@ -1,0 +1,58 @@
+To generate test cases for the "Friday the 13th" problem, we need to consider the constraints on the dates and ensure that the generated dates are valid. Here’s a Python code snippet that generates random test cases for this problem:
+
+```python
+import random
+from datetime import datetime, timedelta
+
+def is_leap_year(year):
+    # Check if a year is a leap year
+    return (year % 4 == 0 and year % 100 != 0) or (year % 400 == 0)
+
+def random_date_within_range(start_year, end_year):
+    # Generate a random date within a given range of years
+    year = random.randint(start_year, end_year)
+    month = random.randint(1, 12)
+    
+    if month in {1, 3, 5, 7, 8, 10, 12}:
+        day = random.randint(1, 31)
+    elif month in {4, 6, 9, 11}:
+        day = random.randint(1, 30)
+    elif month == 2:
+        if is_leap_year(year):
+            day = random.randint(1, 29)
+        else:
+            day = random.randint(1, 28)
+    
+    return year, month, day
+
+def tcgen():
+    # Define the range for years
+    start_year = 1
+    end_year = 1018
+    
+    # Generate two random dates
+    Y1, M1, D1 = random_date_within_range(start_year, end_year)
+    Y2, M2, D2 = random_date_within_range(Y1, end_year)
+    
+    # Ensure Y2, M2, D2 is not before Y1, M1, D1
+    start_date = datetime(Y1, M1, D1)
+    end_date = datetime(Y2, M2, D2)
+    
+    if start_date > end_date:
+        start_date, end_date = end_date, start_date
+    
+    Y1, M1, D1 = start_date.year, start_date.month, start_date.day
+    Y2, M2, D2 = end_date.year, end_date.month, end_date.day
+    
+    return f"{Y1} {M1} {D1} {Y2} {M2} {D2}"
+
+# Example of generating a test case
+print(tcgen())
+```
+
+### Explanation
+1. **Leap Year Function**: `is_leap_year(year)` checks whether a given year is a leap year.
+2. **Random Date Generator**: `random_date_within_range(start_year, end_year)` generates a random date within the specified range of years, ensuring the day is valid for the month and year.
+3. **Test Case Generator**: `tcgen()` generates two random dates, ensuring the second date is not before the first date. It then outputs the dates in the required format.
+
+This test case generator covers the constraints given in the problem statement and ensures that the generated dates are valid.

@@ -1,0 +1,29 @@
+An integer N (1 ≤ N ≤ 50,000), representing some quantity or size.
+N lines follow, each containing a string s and an integer a (0 ≤ a ≤ 10^5), separated by a space.
+The string s consists of English letters and has a length between 1 and 20.
+An integer M (1 ≤ M ≤ 20,000), representing some quantity or size.
+M lines follow, each containing either "+ t b" or "- t".
+The string t consists of English letters and has a length between 1 and 20.
+The integer b (0 ≤ b ≤ 10^5) appears only in lines containing "+ t b".
+
+### Example Input:
+
+```
+4
+Name1 7
+Name2 3
+Name3 6
+Name4 0
+1
++ Name5 2
+```
+
+### Function Signature:
+Write a function f(N, members, M, changes) that takes in the input. 
+def f(N: int, members: List[Tuple[str, int]], M: int, changes: List[str]): 
+    ''' 
+    N: an integer 
+    members: a list of tuples, each containing a string and an integer
+    M: an integer
+    changes: a list of strings
+    '''

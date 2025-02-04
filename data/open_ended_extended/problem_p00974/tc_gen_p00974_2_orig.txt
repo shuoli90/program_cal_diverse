@@ -1,0 +1,24 @@
+Sure, here's a Python function to generate test cases for the "What Goes Up Must Come Down" problem:
+
+```python
+import random
+
+def tcgen():
+    # Number of cards
+    n = random.randint(1, 100000)
+    
+    # Cards' numbers
+    a = [random.randint(1, 100000) for _ in range(n)]
+    
+    return n, a
+
+# Example of using the generator function
+if __name__ == "__main__":
+    n, a = tcgen()
+    print(n)
+    print(" ".join(map(str, a)))
+```
+
+This function generates a random number of cards `n` within the given constraints, and then generates a list `a` of length `n` with random numbers between 1 and 100000.
+
+To use this generator in a competitive programming environment, you may need to adjust how it prints or returns the test cases based on the specific requirements of the platform or the testing framework you're using.

@@ -1,0 +1,36 @@
+Certainly! Here is a test case generator for the Circle problem:
+
+```python
+import random
+import math
+
+def tcgen():
+    # Generate a random real number r such that 0 < r < 10000
+    r = random.uniform(0.00001, 9999.99999)
+
+    # Calculate the area and circumference of the circle
+    area = math.pi * r * r
+    circumference = 2 * math.pi * r
+
+    # Format the output to ensure the precision requirement is met
+    area = f"{area:.6f}"
+    circumference = f"{circumference:.6f}"
+
+    # Return the radius, area, and circumference
+    return r, area, circumference
+
+# Example usage:
+r, area, circumference = tcgen()
+print(f"Radius: {r}")
+print(f"Output: {area} {circumference}")
+
+# Note: In a real test case, the radius would be the input and the area and circumference would be the expected output.
+```
+
+In this generator:
+- We use `random.uniform(0.00001, 9999.99999)` to generate a random radius `r`. We avoid using exactly 0 as it is outside the constraint.
+- We calculate the area and circumference using the formulas \( \text{area} = \pi r^2 \) and \( \text{circumference} = 2 \pi r \).
+- We format the area and circumference to six decimal places to meet the precision requirement.
+- The function returns the radius, area, and circumference which can be used as a test case for the problem.
+
+You can use this generator to create multiple test cases and validate the implementation of the solution to the Circle problem.

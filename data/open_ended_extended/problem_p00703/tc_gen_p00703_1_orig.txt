@@ -1,0 +1,55 @@
+Sure! Let's create a test case generator for the problem "What is the Number in my Mind?" given its constraints and requirements.
+
+Here’s the Python code for the test case generator:
+
+```python
+import random
+from itertools import permutations
+
+def generate_number_with_unique_digits(L):
+    digits = list('0123456789')
+    random.shuffle(digits)
+    return ''.join(digits[:L])
+
+def calculate_hits_and_blows(secret, guess):
+    hits = sum(s == g for s, g in zip(secret, guess))
+    blows = sum(min(secret.count(x), guess.count(x)) for x in set(guess)) - hits
+    return hits, blows
+
+def generate_hints(secret, L, H):
+    hints = []
+    for _ in range(H):
+        guess = generate_number_with_unique_digits(L)
+        hits, blows = calculate_hits_and_blows(secret, guess)
+        hints.append(f"{guess} {hits} {blows}")
+    return hints
+
+def tcgen():
+    test_cases = []
+    while True:
+        L = random.randint(4, 10)
+        H = random.randint(1, 10)
+        if L == 0 and H == 0:
+            break
+        secret = generate_number_with_unique_digits(L)
+        hints = generate_hints(secret, L, H)
+        hint_set = f"{L} {H}\n" + "\n".join(hints)
+        test_cases.append(hint_set)
+        if len(test_cases) >= 5:  # Let's generate 5 hint-sets for illustration
+            break
+
+    test_cases.append("0 0")
+    return "\n".join(test_cases)
+
+# Example usage:
+if __name__ == "__main__":
+    print(tcgen())
+```
+
+### Explanation:
+1. **generate_number_with_unique_digits(L)** - Generates a number of length `L` where all digits are unique.
+2. **calculate_hits_and_blows(secret, guess)** - Computes the number of hits and blows for a given secret and guess.
+3. **generate_hints(secret, L, H)** - Generates `H` hints for a given secret number.
+4. **tcgen()** - Main function to generate multiple hint-sets. It keeps generating hint-sets until it reaches a specified number (5 in this case). It ends the test case generation with the termination line "0 0".
+
+This script will generate valid and varied test cases for the given problem, ensuring each hint-set is correctly formatted and contains plausible hints for the secret number. Adjust the number of hint-sets or the number of hints per set as needed.

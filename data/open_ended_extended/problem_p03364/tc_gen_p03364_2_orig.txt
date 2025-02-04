@@ -1,0 +1,25 @@
+Sure! Here's a Python function that generates test cases for the given problem statement:
+
+```python
+import random
+import string
+
+def generate_board(N):
+    return [''.join(random.choice(string.ascii_lowercase) for _ in range(N)) for _ in range(N)]
+
+def tcgen():
+    N = random.randint(1, 300)
+    board = generate_board(N)
+    return N, board
+
+# Example of generating a test case
+N, board = tcgen()
+
+print(N)
+for row in board:
+    print(row)
+```
+
+This function generates a random test case for the problem. The `generate_board` function creates an N x N board filled with random lowercase English letters. The `tcgen` function generates a random value for N within the given constraints (1 ≤ N ≤ 300) and a corresponding board. 
+
+The example at the bottom demonstrates how to use the `tcgen` function to generate and print a test case.

@@ -1,0 +1,42 @@
+Certainly! Here's a test case generator for the "Circular Sugoroku" problem:
+
+```python
+import random
+
+def tcgen():
+    N = random.randint(1, 100000)  # Number of squares (1 ≤ N ≤ 100000)
+    
+    # List of integers written on each square, each integer ai (1 ≤ ai ≤ 10^9)
+    a = [random.randint(1, 10**9) for _ in range(N)]
+    
+    return N, a
+
+# Example usage:
+N, a = tcgen()
+print(N)
+print(" ".join(map(str, a)))
+```
+
+This test case generator will produce random inputs for the "Circular Sugoroku" problem with the constraints provided. The generated test cases will help you test the robustness and performance of your solution. Here are the elements of the generator:
+
+1. **N:** Randomly generated number of squares, ensuring it falls within the range \[1, 100000\].
+2. **a:** List of integers representing the number of steps to move in the sugoroku game, each falling within the range \[1, \(10^9\)\].
+
+You can run this generator multiple times to create different test cases for your problem.
+
+Let's run an example to see the generated output:
+
+```python
+N, a = tcgen()
+print(N)  # Prints the number of squares
+print(" ".join(map(str, a)))  # Prints the list of integers in the sugoroku
+```
+
+This will produce an output similar to:
+
+```
+100
+123456789 987654321 456789123 ...  # and so on, with 100 numbers in the range [1, 10^9]
+```
+
+Each execution of `tcgen()` will provide a new, random test case for the "Circular Sugoroku" problem.

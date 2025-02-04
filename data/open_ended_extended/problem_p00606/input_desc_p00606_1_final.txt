@@ -1,0 +1,25 @@
+An integer n (n ≤ 15), representing some quantity.
+Three distinct characters s, t, b from the set {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I'}.
+
+The input ends with a dataset which consists of single 0 for n.
+
+### Example Input:
+
+```
+1
+E A C
+1
+E B C
+2
+E A B
+0
+```
+
+### Function Signature:
+Write a function f(inputs) that takes in the input as a list of tuples.
+def f(inputs: List[Tuple[int, str, str, str]]):
+    ''' 
+    inputs: a list of tuples, where each tuple contains:
+        - an integer
+        - three distinct characters
+    '''

@@ -1,0 +1,151 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p02675 - Generation 2</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p02675 - Generation 2</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>
+Score: 100 points
+Problem
+Snuke, a cat, wants to play the popular Japanese game "ÅtCoder". Therefore, Iroha-chan decided to teach Snuke Japanese.
+In Japanese, when counting pencils, you attach the counter word "hon" after the number. The reading of this counter word "hon" differs depending on the number. Specifically, when using the expression "N hon" to mean "N pencils", it is read as follows:
+When the last digit of N is 2, 4, 5, 7, or 9, it is read as "hon".
+When the last digit of N is 0, 1, 6, or 8, it is read as "pon".
+When the last digit of N is 3, it is read as "bon".
+Given N, write a program to output how to read "N hon" using the counter word "hon".
+Constraints
+N is an integer between 1 and 999 (inclusive).
+Input
+The input is given in the following format from standard input:
+N
+Output
+Output how to read "N hon" using the counter word "hon".
+Sample Input 116
+Sample Output 1pon
+Since the last digit of 16 is 6, "16 hon" is read as "pon".
+Sample Input 22
+Sample Output 2hon
+Since the last digit of 2 is 2, "2 hon" is read as "hon".
+Sample Input 3183
+Sample Output 3bon
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An integer N (1 ≤ N ≤ 999).
+
+### Example Input:
+
+```
+16
+```
+
+### Function Signature:
+Write a function f(N) that takes in the input.
+def f(N: int):
+    '''
+    N: an integer
+    '''</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Sure, I can help you write a test case generator for the problem described. The generator will produce a random integer \( N \) within the specified constraints (1 ≤ \( N \) ≤ 999) and the expected output based on the last digit of \( N \).
+
+Here is the test case generator:
+
+```python
+import random
+
+def tcgen():
+    # Generate a random integer N between 1 and 999
+    N = random.randint(1, 999)
+    
+    # Determine the reading based on the last digit of N
+    last_digit = N % 10
+    if last_digit in [2, 4, 5, 7, 9]:
+        reading = "hon"
+    elif last_digit in [0, 1, 6, 8]:
+        reading = "pon"
+    elif last_digit == 3:
+        reading = "bon"
+    
+    return N, reading
+
+# Example usage
+for _ in range(5):
+    N, reading = tcgen()
+    print(f"Input: {N}")
+    print(f"Expected Output: {N}{reading}")
+```
+
+### Explanation:
+
+1. **Generate a Random Integer \( N \)**:
+   - We use `random.randint(1, 999)` to generate a random integer \( N \) within the required range.
+
+2. **Determine the Reading**:
+   - The last digit of \( N \) is found using `N % 10`.
+   - Depending on the last digit, we determine the reading as "hon", "pon", or "bon" following the given rules.
+
+3. **Output the Test Case**:
+   - The function returns the integer \( N \) and its corresponding reading.
+
+This generator will produce a variety of test cases, each consisting of a random integer \( N \) and the correct output string.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    N = int(fh.readline().strip())
+    return N</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

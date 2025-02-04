@@ -1,0 +1,17 @@
+An integer \(N\) (0 < \(N\) < 10) given in several test cases, with each test case consisting of a single integer \(N\). The input ends with a line containing a single zero.
+
+### Example Input:
+```
+3
+4
+0
+```
+
+### Function Signature:
+Write a function f(inputs) that takes in the input as a list of integers.
+```python
+def f(inputs: List[int]):
+    '''
+    inputs: a list of integers
+    '''
+```

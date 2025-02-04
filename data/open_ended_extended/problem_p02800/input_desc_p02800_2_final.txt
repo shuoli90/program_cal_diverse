@@ -1,0 +1,24 @@
+Canonicalized Input Description:
+
+An integer H (1 ≤ H ≤ 10), representing some dimension.
+An integer W (1 ≤ W ≤ 10), representing some dimension.
+A list of H strings, each of length W, consisting of characters from the set {'.', '#'}. 
+
+### Example Input:
+
+```
+2 2
+#.
+.#
+```
+
+### Function Signature:
+Write a function f(H, W, A) that takes in the input. 
+```python
+def f(H: int, W: int, A: List[str]):
+    '''
+    H: an integer
+    W: an integer
+    A: a list of strings
+    '''
+```

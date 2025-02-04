@@ -1,0 +1,24 @@
+Canonicalized Input Description:
+
+An integer N (2 ≤ N ≤ 10^5), representing some quantity or size.
+N tuples of integers (a, b, c, d) where 0 ≤ a, b, c, d ≤ 100 and (a, b) ≠ (c, d).
+
+### Example Input:
+
+```
+4
+2 0 2 25
+0 30 15 20
+16 20 5 15
+23 0 23 30
+```
+
+### Function Signature:
+Write a function f(N, segments) that takes in the input. 
+```python
+def f(N: int, segments: List[Tuple[int, int, int, int]]):
+    '''
+    N: an integer
+    segments: a list of tuples, each containing four integers
+    '''
+```

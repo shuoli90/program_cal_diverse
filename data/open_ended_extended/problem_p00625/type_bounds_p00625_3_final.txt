@@ -1,0 +1,25 @@
+Types: 
+- N: int 
+- M: int 
+- Dix: float 
+- Diy: float 
+- Vi: float 
+- FPix: float 
+- FPin: float 
+- FVix: float 
+- FViy: float 
+
+Ranges: 
+- 1 ≤ N ≤ 10 
+- 1 ≤ M ≤ 1000 
+- |Dix| ≤ 1000 
+- |Diy| ≤ 1000 
+- 1 ≤ Vi ≤ 100 
+- |FPix| ≤ 1000 
+- |FPin| ≤ 1000 
+- -25 ≤ FVix ≤ 25 
+- -25 ≤ FViy ≤ 25 
+
+Addtl Info: 
+- Real number coordinates and speeds 
+- End of input indicated by N=0 and M=0

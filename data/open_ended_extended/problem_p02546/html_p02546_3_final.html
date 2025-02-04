@@ -1,0 +1,139 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p02546 - Generation 3</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p02546 - Generation 3</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>
+Score : 100 points
+Problem StatementIn the Kingdom of AtCoder, people use a language called Taknese, which uses lowercase English letters.
+In Taknese, the plural form of a noun is spelled based on the following rules:
+If a noun's singular form does not end with s, append s to the end of the singular form.
+If a noun's singular form ends with s, append es to the end of the singular form.
+You are given the singular form S of a Taknese noun. Output its plural form.
+Constraints
+S is a string of length 1 between 1000, inclusive.
+S contains only lowercase English letters.
+InputInput is given from Standard Input in the following format:
+S
+OutputPrint the plural form of the given Taknese word.
+Sample Input 1apple
+Sample Output 1apples
+apple ends with e, so its plural form is apples.
+Sample Input 2bus
+Sample Output 2buses
+bus ends with s, so its plural form is buses.
+Sample Input 3box
+Sample Output 3boxs
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>Canonicalized Input Description:
+
+A string S of length between 1 and 1000, inclusive, containing only lowercase English letters.
+
+### Example Input:
+
+```
+apple
+```
+
+### Function Signature:
+Write a function f(S) that takes in the input. 
+```python
+def f(S: str):
+    '''
+    S: a string
+    '''
+```</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Certainly! Below is the test case generator for the given problem statement:
+
+```python
+import random
+import string
+
+def generate_random_string(n):
+    return ''.join(random.choices(string.ascii_lowercase, k=n))
+
+def tcgen():
+    # Length of the string S, which is between 1 and 1000 inclusive
+    length = random.randint(1, 1000)
+
+    # Generate a random lowercase string of the determined length
+    S = generate_random_string(length)
+    
+    return S
+
+# Example usage of the test case generator
+for _ in range(5):  # Generate 5 test cases
+    print(tcgen())
+```
+
+**Explanation:**
+1. `generate_random_string(n)`: This helper function generates a random string of length `n` composed of lowercase English letters.
+2. `tcgen()`: This function generates a random length for the string `S` between 1 and 1000 inclusive, then generates a random string of that length using the helper function.
+3. The example usage shows how to generate and print 5 test cases.
+
+This script will provide you with a variety of test cases that adhere to the constraints specified in your problem statement.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    S = fh.readline().strip()
+    return S</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

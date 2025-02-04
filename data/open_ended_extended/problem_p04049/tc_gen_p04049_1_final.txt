@@ -1,0 +1,66 @@
+Sure, I can help you write a test case generator for the given problem statement about finding the minimum number of vertices to remove in order to produce a good tree. Below is a Python function that generates random test cases for this problem.
+
+```python
+import random
+
+def generate_tree(N):
+    edges = []
+    for i in range(2, N + 1):
+        # Connect each new node to an existing random node to ensure a tree structure
+        edges.append((i, random.randint(1, i - 1)))
+    return edges
+
+def tcgen():
+    N = random.randint(2, 2000)
+    K = random.randint(1, N - 1)
+    
+    edges = generate_tree(N)
+    
+    # Convert edges list to the required format
+    edge_list = "\n".join(f"{a} {b}" for a, b in edges)
+    
+    # Combine everything into the required input format
+    test_case = f"{N} {K}\n" + edge_list
+    
+    return test_case
+
+# Example of generating a test case
+print(tcgen())
+```
+
+### Explanation
+
+1. **Function `generate_tree(N)`**:
+    - This function generates a random tree with `N` nodes.
+    - It ensures that the tree is valid by connecting each new node to an existing random node, thus maintaining the tree structure.
+
+2. **Function `tcgen()`**:
+    - Randomly selects `N` in the range `[2, 2000]` and `K` in the range `[1, N-1]`.
+    - Generates the edges for the tree using `generate_tree(N)`.
+    - Formats the edges into the required input string format.
+    - Returns the complete test case as a formatted string.
+
+### Example Output
+
+When you run `print(tcgen())`, you might get an output like:
+
+```
+299 150
+2 1
+3 1
+4 2
+5 4
+6 5
+...
+299 298
+```
+
+This output represents a test case where `N=299`, `K=150`, and the subsequent lines represent the edges of the tree.
+
+### Notes
+
+- This generator ensures that the tree structure is valid by always connecting a new node to an existing node.
+- The randomness in node connections ensures diversity in test cases.
+- The edges are formatted to match the required input format for competitive programming. 
+
+You can use this generator to create many different test cases to test the robustness and correctness of your solution to the problem.

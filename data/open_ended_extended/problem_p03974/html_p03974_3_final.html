@@ -1,0 +1,240 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p03974 - Generation 3</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p03974 - Generation 3</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>
+Score : 1100 points
+Problem StatementThere are N strings of lowercase alphabet only. The i-th string is S_i. Every string is unique.
+Provide answers for the Q queries below. The i-th query has the following format:
+Query: An integer k_i and a string p_{i,1}p_{i,2}...p_{i,26} that results from permuting {a,b,...,z} are given. Output the sequence of the string S_{k_i} among the N strings in lexicographical order when the literal sequence is p_{i,1}<p_{i,2}<...<p_{i,26}.
+Constraints
+1 ≦ N,Q ≦ 100000
+1 ≦ |S_i| (1 ≦ i ≦ N)
+S_i (1 ≦ i ≦ N) is a string of lowercase alphabet.
+The sum of |S_i| is no more than 400000.
+Every S_i is unique.
+1 ≦ k_i ≦ N (1 ≦ i ≦ Q)
+For all 1 ≦ i ≦ Q, p_{i,1}p_{i,2}...p_{i,26} is a permutation of abcd...z.
+InputInputs are provided from standard inputs in the following form.
+N
+S_1
+:
+S_N
+Q
+k_1 p_{1,1}p_{1,2}...p_{1,26}
+:
+k_Q p_{Q,1}p_{Q,2}...p_{Q,26}
+OutputOutput Q lines.
+On line i, for the i-th query, output an integer indicating the sequence of the string S_{k_i} among the N strings in lexicographical order.
+Sample Input 15
+aa
+abbaa
+abbba
+aaab
+aaaaaba
+5
+1 abcdefghijklmnopqrstuvwxyz
+2 bacdefghijklmnopqrstuvwxyz
+3 abcdefghijklmnopqrstuvwxyz
+4 bacdefghijklmnopqrstuvwxyz
+5 abcdefghijklmnopqrstuvwxyz
+Sample Output 11
+2
+5
+4
+2
+When the literal sequence is a < b, sorting the input strings in lexicographical order yields aa, aaaaaba, aaab, abbaa, abbba. The answers to queries 1, 3, and 5 are thus 1, 5, and 2, respectively.
+When the literal sequence is b < a, sorting the input strings in lexicographical order yields abbba, abbaa, aa, aaab, aaaaaba. The answers to queries 2 and 4 are thus 2 and 4, respectively.
+Sample Input 28
+abrakatabra
+abadaba
+abracadabra
+atcoder
+grand
+contest
+ababa
+a
+6
+3 abcdefghijklmnopqrstuvwxyz
+6 qwertyuiopasdfghjklzxcvbnm
+8 poiuytrewqlkjhgfdsamnbvcxz
+2 qazwsxedcrfvtgbyhnujmikolp
+1 plokmijnuhbygvtfcrdxeszwaq
+4 mnbvcxzasdfghjklpoiuytrewq
+Sample Output 24
+8
+2
+3
+4
+7
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An integer N (1 ≤ N ≤ 100,000), representing some quantity or size.
+N strings, each consisting of lowercase alphabet characters. Each string is unique.
+An integer Q (1 ≤ Q ≤ 100,000), representing some quantity or size.
+Q pairs, each consisting of an integer k (1 ≤ k ≤ N) and a permutation of the lowercase alphabet characters.
+
+### Example Input:
+
+```
+5
+aa
+abbaa
+abbba
+aaab
+aaaaaba
+5
+1 abcdefghijklmnopqrstuvwxyz
+2 bacdefghijklmnopqrstuvwxyz
+3 abcdefghijklmnopqrstuvwxyz
+4 bacdefghijklmnopqrstuvwxyz
+5 abcdefghijklmnopqrstuvwxyz
+```
+
+### Function Signature:
+Write a function f(N, strings, Q, queries) that takes in the input.
+```
+def f(N: int, strings: List[str], Q: int, queries: List[Tuple[int, str]]):
+    '''
+    N: an integer
+    strings: a list of strings
+    Q: an integer
+    queries: a list of tuples, each containing an integer and a string
+    '''
+```</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Sure, I can help you write a test case generator for the given problem statement. Here is a Python function that generates random test cases for the described problem:
+
+```python
+import random
+import string
+
+def generate_random_string(length):
+    return ''.join(random.choices(string.ascii_lowercase, k=length))
+
+def generate_unique_strings(N, max_total_length):
+    unique_strings = set()
+    current_length = 0
+    
+    while len(unique_strings) < N:
+        length = random.randint(1, min(100, max_total_length - current_length))
+        new_string = generate_random_string(length)
+        if new_string not in unique_strings:
+            unique_strings.add(new_string)
+            current_length += length
+    
+    return list(unique_strings)
+
+def tcgen():
+    N = random.randint(1, 100000)
+    max_total_length = 400000
+    strings = generate_unique_strings(N, max_total_length)
+    
+    Q = random.randint(1, 100000)
+    queries = []
+    
+    for _ in range(Q):
+        k = random.randint(1, N)
+        perm = ''.join(random.sample(string.ascii_lowercase, 26))
+        queries.append((k, perm))
+    
+    return N, strings, Q, queries
+
+def format_test_case(N, strings, Q, queries):
+    result = [str(N)]
+    result.extend(strings)
+    result.append(str(Q))
+    for k, perm in queries:
+        result.append(f"{k} {perm}")
+    return "\n".join(result)
+
+# Generate a test case
+N, strings, Q, queries = tcgen()
+test_case = format_test_case(N, strings, Q, queries)
+print(test_case)
+```
+
+### Explanation
+
+1. **generate_random_string(length)**: Generates a random string of lowercase letters of the specified length.
+2. **generate_unique_strings(N, max_total_length)**: Generates `N` unique strings of lowercase letters such that the sum of the lengths does not exceed `max_total_length`.
+3. **tcgen()**: Generates the test case parameters:
+   - `N`: Number of unique strings.
+   - `strings`: List of `N` unique strings.
+   - `Q`: Number of queries.
+   - `queries`: List of tuples where each tuple contains a query in the form `(k, perm)`, where `k` is an integer and `perm` is a permutation of the alphabet.
+4. **format_test_case(N, strings, Q, queries)**: Formats the generated test case into the specified input format.
+
+Run the provided script to generate and print a test case. This will give you random yet valid inputs that adhere to the constraints described in the problem statement.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    N = int(fh.readline().strip())
+    S = [fh.readline().strip() for _ in range(N)]
+    Q = int(fh.readline().strip())
+    queries = []
+    for _ in range(Q):
+        k_p = fh.readline().strip().split()
+        k = int(k_p[0])
+        p = k_p[1]
+        queries.append((k, p))
+    return N, S, Q, queries</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

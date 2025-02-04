@@ -1,0 +1,26 @@
+
+### Canonicalized Input Description:
+
+An integer N (1 ≤ N ≤ 10^3), representing some quantity or size.
+A list of tuples P of size N, where each tuple consists of two integers (x, y) representing coordinates, and each integer is between -10^4 and 10^4.
+A string L, representing a line equation in the format "ax + by + c = 0", where a, b, and c are integers (-10^4 ≤ a, b, c ≤ 10^4).
+
+### Example Input:
+
+```
+3
+1 2
+-3 4
+5 -6
+3x + 4y + 2 = 0
+```
+
+### Function Signature:
+
+Write a function f(N, P, L) that takes in the input.
+def f(N: int, P: List[Tuple[int, int]], L: str):
+    '''
+    N: an integer
+    P: a list of tuples, each containing two integers
+    L: a string representing a line equation
+    '''

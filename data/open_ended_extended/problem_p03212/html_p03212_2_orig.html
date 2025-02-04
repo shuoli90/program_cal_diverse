@@ -1,0 +1,138 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p03212 - Generation 2</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p03212 - Generation 2</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>
+Score : 300 points
+Problem StatementYou are given an integer N. Among the integers between 1 and N (inclusive), how many Shichi-Go-San numbers (literally "Seven-Five-Three numbers") are there?
+Here, a Shichi-Go-San number is a positive integer that satisfies the following condition:
+When the number is written in base ten, each of the digits 7, 5 and 3 appears at least once, and the other digits never appear.
+Constraints
+1 \leq N < 10^9
+N is an integer.
+InputInput is given from Standard Input in the following format:
+N
+OutputPrint the number of the Shichi-Go-San numbers between 1 and N (inclusive).
+Sample Input 1575
+Sample Output 14
+There are four Shichi-Go-San numbers not greater than 575: 357, 375, 537 and 573.
+Sample Input 23600
+Sample Output 213
+There are 13 Shichi-Go-San numbers not greater than 3600: the above four numbers, 735, 753, 3357, 3375, 3537, 3557, 3573, 3575 and 3577.
+Sample Input 3999999999
+Sample Output 326484
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>Canonicalized Input Description:
+
+An integer N (1 ≤ N < 10^9).
+
+### Example Input:
+
+```
+575
+```
+
+### Function Signature:
+Write a function f(N) that takes in the input.
+```python
+def f(N: int):
+    '''
+    N: an integer
+    '''
+```</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Sure, I can help you with a test case generator for your problem statement. The main task is to generate a random integer \( N \) within the given constraints and output it.
+
+Here's the test case generator for the given problem statement:
+
+```python
+import random
+
+def tcgen():
+    # Generate a random N within the given constraint 1 <= N < 10^9
+    N = random.randint(1, 10**9 - 1)
+    
+    return N
+
+# Example usage:
+if __name__ == "__main__":
+    test_case = tcgen()
+    print(test_case)
+```
+
+This function `tcgen` will generate a random integer \( N \) between 1 and \( 10^9 - 1 \) and return it. You can call this function to generate test cases for your problem.
+
+### Explanation:
+- **N**: The integer \( N \) is randomly chosen to be between 1 and \( 10^9 - 1 \) inclusive, ensuring it meets the problem constraints.
+
+Feel free to integrate this generator in your testing setup and generate as many test cases as you need!</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    N = int(fh.readline().strip())
+    return N
+
+# if __name__ == "__main__":
+#     input_path = sys.argv[1]
+#     with open(input_path, 'r') as fh: 
+#     N = extract_arguments(fh)</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

@@ -1,0 +1,44 @@
+Sure! I can write a test case generator for the given problem statement about Chokudai the squirrel and his acorns. The generator will create random values for the constraints provided, ensuring valid inputs according to the problem's requirements.
+
+Here is a Python function to generate test cases:
+
+```python
+import random
+
+def generate_test_case():
+    # Generate a random integer N (1 ≤ N ≤ 5000)
+    N = random.randint(1, 5000)
+    
+    # Generate random integers for g_A, s_A, b_A, g_B, s_B, b_B (1 ≤ value ≤ 5000)
+    g_A = random.randint(1, 5000)
+    s_A = random.randint(1, 5000)
+    b_A = random.randint(1, 5000)
+    g_B = random.randint(1, 5000)
+    s_B = random.randint(1, 5000)
+    b_B = random.randint(1, 5000)
+    
+    return N, g_A, s_A, b_A, g_B, s_B, b_B
+
+def print_test_case():
+    N, g_A, s_A, b_A, g_B, s_B, b_B = generate_test_case()
+    
+    print(N)
+    print(f"{g_A} {s_A} {b_A}")
+    print(f"{g_B} {s_B} {b_B}")
+
+# Example of generating and printing a single test case
+if __name__ == "__main__":
+    print_test_case()
+```
+
+This code will generate random, valid test cases for the given problem. Here's a breakdown of what each part does:
+
+1. **`generate_test_case` function**:
+    - Generates a random integer \(N\) between 1 and 5000.
+    - Generates random integers for \(g_A\), \(s_A\), \(b_A\), \(g_B\), \(s_B\), and \(b_B\) between 1 and 5000.
+
+2. **`print_test_case` function**:
+    - Calls `generate_test_case` to get a set of random values.
+    - Prints the values in the required format.
+
+You can call `print_test_case()` to generate and display a new test case. This can be integrated into a larger testing framework or used as a standalone script for generating inputs for manual or automated testing.

@@ -1,0 +1,139 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p03766 - Generation 1</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p03766 - Generation 1</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>
+Score : 1000 points
+Problem StatementHow many infinite sequences a_1, a_2, ... consisting of {{1, ... ,n}} satisfy the following conditions?
+The n-th and subsequent elements are all equal. That is, if n \leq i,j, a_i = a_j.
+For every integer i, the a_i elements immediately following the i-th element are all equal. That is, if i < j < k\leq i+a_i, a_j = a_k.
+Find the count modulo 10^9+7.
+Constraints
+1 \leq n \leq 10^6
+InputInput is given from Standard Input in the following format:
+n
+OutputPrint how many sequences satisfy the conditions, modulo 10^9+7.
+Sample Input 12
+Sample Output 14
+The four sequences that satisfy the conditions are:
+1, 1, 1, ...
+1, 2, 2, ...
+2, 1, 1, ...
+2, 2, 2, ...
+Sample Input 2654321
+Sample Output 2968545283
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An integer n (1 ≤ n ≤ 10^6), representing some quantity or size.
+
+### Example Input:
+
+```
+12
+```
+
+### Function Signature:
+Write a function f(n) that takes in the input. 
+def f(n: int): 
+    ''' 
+    n: an integer 
+    '''</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Certainly! Below is a test case generator for the given problem statement.
+
+### Test Case Generator:
+
+```python
+import random
+
+def tcgen():
+    # Generate a random value for n within the given constraints
+    n = random.randint(1, 10**6)
+    
+    return n
+
+# Example usage:
+# Generate a test case
+n = tcgen()
+print(n)
+```
+
+### Explanation:
+
+This test case generator creates a random test case for the provided problem statement:
+
+1. **n**: Randomly generated integer between 1 and 10^6.
+
+You can run this generator multiple times to create different test cases for the problem.
+
+### Example Output from the Generator:
+
+```plaintext
+834057
+```
+
+This output corresponds to a single randomly generated test case with \( n \) as 834057. You can use this in your program to test the correctness and performance of your solution.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    n = int(fh.readline().strip())
+    return n</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

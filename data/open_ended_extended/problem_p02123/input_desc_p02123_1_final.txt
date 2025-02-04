@@ -1,0 +1,23 @@
+An integer N (3 ≤ N ≤ 2047), where N is odd.
+An N x N grid of characters where each character is either 'o' or 'x'.
+
+### Example Input:
+
+```
+5
+oxooo
+oxooo
+oxooo
+xxxxx
+oxooo
+```
+
+### Function Signature:
+Write a function f(N, A) that takes in the input. 
+```python
+def f(N: int, A: List[List[str]]): 
+    ''' 
+    N: an integer 
+    A: a list of lists of characters
+    '''
+```

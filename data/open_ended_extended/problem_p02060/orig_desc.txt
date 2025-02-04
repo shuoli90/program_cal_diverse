@@ -1,0 +1,41 @@
+A: Four Tea
+Problem
+Tea is indispensable for programming contests. It has the effect of relieving the tension of the contestants. [citation needed]
+There are N players participating in the contest, and you want to prepare tea for this number of people. There are four types of tea packages, A, B, C, and D, all of which are of the same variety but have different contents. For a package X, it is known that the price of one package is p_X yen, and it can be used to make t_X cups of tea when one is bought.
+Find the minimum amount of money required to make tea for N people. Note that it is not necessary to purchase all packages, and it is not necessary to purchase packages that make exactly N cups of tea (it is sufficient if you can make more than N cups).
+Input Format
+The input is given in the following format.
+N
+p_A p_B p_C p_D
+t_A t_B t_C t_D
+In the first line, the number of players participating in the contest is given.
+In the second line, the prices of the tea packages A, B, C, and D are given separated by spaces.
+In the third line, the number of cups of tea that can be made from tea packages A, B, C, and D are given separated by spaces.
+Constraints
+1 \leq N \leq 100
+1 \leq p_X \leq 100
+1 \leq t_X \leq 100
+All input values are integers.
+Output Format
+Print the minimum amount of money required to make tea for N people on a single line.
+Sample Input 1
+10
+1 2 3 4
+1 2 4 8
+Sample Output 1
+6
+The optimal solution is to buy one package of B and one package of D.
+Sample Input 2
+5
+2 9 9 8
+1 4 5 100
+Sample Output 2
+8
+It is necessary to prepare 20 times the required amount of tea, but buying one package of D is the cheapest option and it can make 5 or more cups of tea.
+Sample Input 3
+24
+2 3 4 7
+7 9 11 20
+Sample Output 3
+8
+The optimal solution is to buy two packages of A and one package of C. It is possible that the required amount of tea cannot be made exactly, as in this case.

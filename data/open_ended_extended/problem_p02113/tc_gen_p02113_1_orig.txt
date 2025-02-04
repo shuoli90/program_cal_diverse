@@ -1,0 +1,43 @@
+Here is a test case generator for the given problem "Palindrome":
+
+```python
+import random
+import string
+
+def generate_random_string(length):
+    return ''.join(random.choices(string.ascii_lowercase, k=length))
+
+def tcgen():
+    # Generate random N and L based on the problem constraints
+    N = random.randint(1, 1000)
+    L = random.randint(1, 30)
+
+    # Generate N random strings of length L
+    strings = [generate_random_string(L) for _ in range(N)]
+    
+    return N, L, strings
+
+# Example usage of the test case generator
+N, L, strings = tcgen()
+print(N, L)
+for s in strings:
+    print(s)
+```
+
+### Explanation:
+1. **generate_random_string(length)**: This helper function generates a random string of a given length composed of lowercase English letters.
+2. **tcgen()**: The main function that generates a test case:
+   - It first generates random values for \(N\) (number of strings) and \(L\) (length of each string) within the given constraints.
+   - It then creates a list of \(N\) random strings, each of length \(L\), using the `generate_random_string` function.
+
+### Example Usage:
+Running the provided example will generate a random test case every time:
+
+```plaintext
+532 27
+lguvkjjepzvazgnmvwalyncdnyy
+sxnbbwlzizbfvcmxyvbxcrhmtrh
+...
+```
+
+Each run will produce different values for \(N\), \(L\), and the list of strings. This makes it a useful tool for generating diverse test cases for the problem.

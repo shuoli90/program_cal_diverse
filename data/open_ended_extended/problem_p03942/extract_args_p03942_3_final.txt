@@ -1,0 +1,5 @@
+def extract_arguments(fh):
+    N = int(fh.readline().strip())
+    S_0 = fh.readline().strip()
+    T = fh.readline().strip()
+    return N, S_0, T

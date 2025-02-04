@@ -1,0 +1,55 @@
+Certainly! Below is a test case generator for the "Sergeant Ryan" problem. This generator will create random test cases following the constraints described in the problem statement.
+
+```python
+import random
+
+def tcgen():
+    # Generate a random number of islands N (2 ≤ N ≤ 20)
+    N = random.randint(2, 20)
+
+    bridges = []
+    for i in range(2, N+1):
+        # Connect the island i to a random previously created island
+        a = random.randint(1, i-1)
+        b = i
+        t = random.randint(1, 500)
+        bridges.append((a, b, t))
+
+    return N, bridges
+
+def generate_multiple_datasets(num_datasets=100):
+    datasets = []
+    for _ in range(num_datasets):
+        N, bridges = tcgen()
+        dataset = [N] + bridges
+        datasets.append(dataset)
+    return datasets
+
+def format_datasets(datasets):
+    formatted_data = ""
+    for dataset in datasets:
+        formatted_data += f"{dataset[0]}\n"
+        for bridge in dataset[1:]:
+            formatted_data += f"{bridge[0]} {bridge[1]} {bridge[2]}\n"
+    formatted_data += "0\n"
+    return formatted_data
+
+# Generate test cases
+datasets = generate_multiple_datasets(100)
+formatted_output = format_datasets(datasets)
+print(formatted_output)
+```
+
+### Explanation:
+1. **`tcgen` Function**: This function generates a random test case:
+   - It first picks a random number of islands \( N \) between 2 and 20.
+   - For each island from 2 to \( N \), it connects it to a randomly selected previously created island, ensuring the tree structure.
+   - Each bridge is assigned a random travel time \( t \) between 1 and 500.
+
+2. **`generate_multiple_datasets` Function**: This function leverages `tcgen` to generate multiple datasets (up to 100 in this case).
+
+3. **`format_datasets` Function**: This function formats the datasets to match the input format specified in the problem statement, with each dataset ending in a line with a `0`.
+
+4. **Main Execution**: The code generates 100 datasets and prints them in the required format.
+
+This script will produce a random but valid set of test cases that you can use to test your solution to the problem.

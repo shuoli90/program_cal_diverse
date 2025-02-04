@@ -1,0 +1,50 @@
+Creating a test case generator for the given "Quadruplet Primes" problem involves generating multiple datasets, as specified, and ensuring that each dataset adheres to the constraints given in the problem statement. Below is the implementation of a test case generator for this problem:
+
+```python
+import random
+import sympy
+
+def generate_quadruplet_primes(limit):
+    quadruplet_primes = []
+    for num in range(5, limit + 1):
+        if sympy.isprime(num) and sympy.isprime(num + 2) and sympy.isprime(num + 6) and sympy.isprime(num + 8):
+            quadruplet_primes.append(num + 8)
+    return quadruplet_primes
+
+def tcgen():
+    # Generate up to 2000 datasets
+    num_datasets = random.randint(1, 2000)
+    
+    # List to store all datasets
+    datasets = []
+
+    # Generate a list of quadruplet primes up to the maximum possible n (10,000,000)
+    quadruplet_primes = generate_quadruplet_primes(10000000)
+
+    for _ in range(num_datasets):
+        n = random.randint(13, 10000000)
+        datasets.append(n)
+    
+    # Add the terminating zero
+    datasets.append(0)
+
+    return datasets, quadruplet_primes
+
+def main():
+    datasets, quadruplet_primes = tcgen()
+    
+    # Print the datasets
+    for data in datasets:
+        print(data)
+
+if __name__ == "__main__":
+    main()
+```
+
+### Explanation:
+1. **Prime Checking with `sympy`**: The `generate_quadruplet_primes` function generates a list of all quadruplet primes up to the specified limit using the `sympy` library to check for primality.
+2. **Dataset Generation**: The `tcgen` function generates a random number of datasets up to 2000. Each dataset is a random integer \( n \) within the range [13, 10,000,000].
+3. **Appending the Terminating Zero**: After generating the datasets, the function appends a zero to indicate the end of input.
+4. **Main Function**: The `main` function calls the test case generator and prints each dataset to simulate reading input datasets.
+
+This will generate realistic input cases that can be used to test the "Quadruplet Primes" problem. The list of quadruplet primes can be used to validate the output by checking the largest quadruplet prime less than or equal to each \( n \).

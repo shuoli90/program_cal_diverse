@@ -1,0 +1,11 @@
+def extract_arguments(fh):
+    inputs = []
+    while True:
+        NA = int(fh.readline().strip())
+        if NA == 0:
+            break
+        deck_A = fh.readline().strip().split()
+        NB = int(fh.readline().strip())
+        deck_B = fh.readline().strip().split()
+        inputs.append((NA, deck_A, NB, deck_B))
+    return inputs

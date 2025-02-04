@@ -1,0 +1,50 @@
+Certainly! Here is a Python function that generates test cases for the "Problem I: Explosion" problem. This function will generate random values for \(N\), \(M\), and the coordinates of the heroes within the specified constraints.
+
+```python
+import random
+
+def tcgen():
+    # Constraints
+    N = random.randint(1, 14)
+    M = random.randint(1, N)
+    
+    heroes = []
+    for _ in range(N):
+        x = random.randint(0, 10**5)
+        y = random.randint(0, 10**5)
+        heroes.append((x, y))
+    
+    return N, M, heroes
+
+# Generate a test case
+N, M, heroes = tcgen()
+
+# Print the test case in the format specified by the problem statement
+print(N, M)
+for hero in heroes:
+    print(hero[0], hero[1])
+```
+
+### Explanation
+- `N` and `M` are generated randomly within their constraints.
+- `N` is the number of heroes, and `M` is the number of explosion spells.
+- For each hero, we generate random coordinates \(x\) and \(y\) within the range \([0, 10^5]\).
+
+### Sample Output
+Here is an example output from running the generator:
+
+```
+10 5
+321 675
+4312 6534
+312 532
+412 6543
+21 43
+654 321
+543 0
+32 5
+41 76
+5 1
+```
+
+This output can be directly used as an input for your competitive programming problem. The function ensures that the constraints are respected and provides varied test cases for thorough testing.

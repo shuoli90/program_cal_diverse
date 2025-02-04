@@ -1,0 +1,5 @@
+Types: even_numbers: List[int]
+
+Ranges: 4 ≤ even_numbers[i] < 215
+
+Addtl Info: all integers in even_numbers are even, input terminated by 0

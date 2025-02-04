@@ -1,0 +1,39 @@
+F: Partial String Decomposition
+Problem
+Given two strings S and T, and an integer k. Determine if S can be constructed by concatenating continuous substrings of T that have a length of at least k.
+Here, a continuous substring s[l, r] = s_l s_{l+1} ... s_r (1 \leq l \leq r \leq n) of a string s = s_1 s_2 ... s_n refers to a string that can be obtained by extracting characters from position l to position r of s, and its length is r - l + 1.
+Input Format
+S
+T
+k
+Constraints
+Both S and T are composed of lowercase alphabets.
+1 \leq |S|, |T| \leq 2\times 10^5
+1 \leq k \leq |T|
+Output Format
+If S can be constructed, output Yes; otherwise, output No.
+Sample Input 1
+abracadabra
+cadabra
+4
+Sample Output 1
+Yes
+By concatenating the continuous substrings abra and cadabra of T (both of which have a length of at least 4), we can construct abracadabra, which is equal to S.
+Sample Input 2
+abcd
+zcba
+1
+Sample Output 2
+No
+Sample Input 3
+abc
+zcba
+1
+Sample Output 3
+Yes
+Sample Input 4
+abcdefg
+abcddefg
+4
+Sample Output 4
+No

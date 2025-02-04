@@ -1,0 +1,30 @@
+An integer N, representing the number of expression blocks.
+Each block contains one or more strings (each string has no more than 80 characters) followed by a single period '.' on a new line. The final block is also followed by a single period '.' on a new line.
+
+### Example Input:
+
+```
+3
+a+b+c
+(a+b)+c
+a- (b-c)+2
+.
+4ab
+(a - b) (0-b+a) - 1a ^ 2 - b ^ 2
+2 b 2 a
+.
+108 a
+2 2 3 3 3 a
+4 a^1 27
+.
+.
+```
+
+### Function Signature:
+Write a function f(inputs) that takes in the input.
+```python
+def f(inputs: List[List[str]]):
+    '''
+    inputs: a list of blocks, each block is a list of strings
+    '''
+```

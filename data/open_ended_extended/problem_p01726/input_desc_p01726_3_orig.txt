@@ -1,0 +1,18 @@
+An uppercase or lowercase string S (1 ≤ |S| ≤ 300,000).
+An uppercase or lowercase string T' (1 ≤ |T'| ≤ |S|).
+
+### Example Input:
+```
+abcbcdbc
+abc
+```
+
+### Function Signature:
+Write a function f(S, T_prime) that takes in the input.
+```python
+def f(S: str, T_prime: str):
+    '''
+    S: a string
+    T_prime: a string
+    '''
+```

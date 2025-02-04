@@ -1,0 +1,10 @@
+Long and Narrow
+ Takahashi and Ringo-chan decided to go sightseeing in New York. Takahashi had no particular place he wanted to visit, but due to Ringo-chan's enthusiastic invitation, they decided to visit the "long and narrow" place shown on the map below. 
+Google Map -(C)2012 Google
+The "long and narrow" place is very long and can be considered as a straight line. There are several tourist carriages running from the starting point to the goal point on this "long and narrow" place. These carriages are operated according to the following rules. 
+There are n carriages, and all carriages depart from the starting point and move towards the goal point.
+For all cases below, carriage size can be ignored.
+Since it is difficult to change speed along the way, all carriages move at a constant speed of Si (an integer of 1 or more) minutes per 1 km.
+Carriages have a predetermined departure order, which must be followed. However, there is no particular rule regarding the order in which carriages arrive at the goal point.
+Multiple carriages cannot depart from the starting point at the same time, and there must be at least 1 minute between the departure of one carriage and the next carriage.
+The goal point is large enough that it doesn't matter how many carriages arrive at the same time. Also, carriages that arrive at the goal point

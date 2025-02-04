@@ -1,0 +1,5 @@
+Types: N: int, K: int
+
+Ranges: 1 ≤ N ≤ 2×10^5, 1 ≤ K ≤ N+1
+
+Addtl Info: None

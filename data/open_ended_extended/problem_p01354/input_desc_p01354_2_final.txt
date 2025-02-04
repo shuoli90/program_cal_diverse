@@ -1,0 +1,24 @@
+Canonicalized Input Description:
+
+An integer m (1 ≤ m ≤ 16), representing some quantity or size.
+An integer n (1 ≤ n ≤ 16), representing some quantity or size.
+A list of m lists, where each inner list is of size n and contains real numbers between 0.000 and 1.000 (inclusive) with up to three decimal places.
+
+### Example Input:
+
+```
+2 3
+0.900 0.500 0.100
+0.500 0.500 0.500
+```
+
+### Function Signature:
+Write a function f(m, n, probabilities) that takes in the input.
+```python
+def f(m: int, n: int, probabilities: List[List[float]]):
+    '''
+    m: an integer
+    n: an integer
+    probabilities: a list of lists of floats
+    '''
+```

@@ -1,0 +1,157 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p03122 - Generation 2</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p03122 - Generation 2</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>
+Score : 1000 points
+Problem StatementRed bold fonts show the difference from C1.
+There is an infinitely large triangular grid, as shown below.
+Each point with integer coordinates contains a lamp.
+Initially, only the lamp at (X, Y) was on, and all other lamps were off.
+Then, Snuke performed the following operation zero or more times:
+Choose two integers x and y.
+Toggle (on to off, off to on) the following three lamps: (x, y), (x, y+1), (x+1, y).
+After the operations, N lamps (x_1, y_1), \cdots, (x_N, y_N) are on, and all other lamps are off.
+Find X and Y.
+Constraints
+1 \leq N \leq 10^4
+-10^{17} \leq x_i, y_i \leq 10^{17}
+(x_i, y_i) are pairwise distinct.
+The input is consistent with the statement, and you can uniquely determine X and Y.
+InputInput is given from Standard Input in the following format:
+N
+x_1 y_1
+:
+x_N y_N
+OutputPrint X and Y, separated by a space.
+Sample Input 14
+-2 1
+-2 2
+0 1
+1 0
+Sample Output 1-1 0
+The following picture shows one possible sequence of operations:
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An integer N (1 ≤ N ≤ 10^4), representing some quantity or size.
+N pairs of integers (x_i, y_i) where each integer is between -10^17 and 10^17. Each pair (x_i, y_i) is unique.
+
+### Example Input:
+
+```
+4
+-2 1
+-2 2
+0 1
+1 0
+```
+
+### Function Signature:
+Write a function f(inputs) that takes in the input.
+```python
+def f(inputs: List[Tuple[int, int]]): 
+    ''' 
+    inputs: a list of tuples, where each tuple contains two integers
+    '''
+```</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Sure, I can create a test case generator for the given problem statement. Here's a Python function that generates test cases within the constraints specified:
+
+```python
+import random
+
+def tcgen():
+    N = random.randint(1, 10**4)
+    
+    lamps = set()
+    while len(lamps) < N:
+        x = random.randint(-10**17, 10**17)
+        y = random.randint(-10**17, 10**17)
+        lamps.add((x, y))
+    
+    lamps_list = list(lamps)
+    
+    return N, lamps_list
+
+# Generate a test case and print it in the required format
+N, lamps = tcgen()
+print(N)
+for lamp in lamps:
+    print(lamp[0], lamp[1])
+```
+
+Explanation:
+- `N` is chosen as a random integer between 1 and 10,000.
+- A set `lamps` is used to ensure that all generated (x, y) pairs are unique.
+- Pairs `(x, y)` are generated with x and y values ranging from `-10^17` to `10^17`.
+- The set `lamps` is converted to a list and returned.
+
+This function ensures that the generated test cases adhere to the constraints provided in the problem statement. The generated test cases will provide a variety of inputs that can be used to test the solution to the problem.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    N = int(fh.readline().strip())
+    lamps = []
+    for _ in range(N):
+        x, y = map(int, fh.readline().strip().split())
+        lamps.append((x, y))
+    return N, lamps</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

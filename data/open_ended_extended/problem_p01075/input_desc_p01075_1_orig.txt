@@ -1,0 +1,26 @@
+An integer N (2 ≤ N ≤ 10^5), representing some quantity or size.
+An integer M (1 ≤ M ≤ 2 × 10^5), representing some other quantity or size.
+A list of tuples (a, b, c) of size M, where each tuple contains three integers:
+  - a (1 ≤ a < N)
+  - b (1 ≤ b ≤ N)
+  - c (1 ≤ c ≤ 10^9)
+  - a ≠ b
+
+### Example Input:
+
+```
+5 4
+1 2 3
+2 3 4
+3 4 5
+4 5 6
+```
+
+### Function Signature:
+Write a function f(N, M, bridges) that takes in the input.
+def f(N: int, M: int, bridges: List[Tuple[int, int, int]]):
+    '''
+    N: an integer
+    M: an integer
+    bridges: a list of tuples, where each tuple contains three integers (a, b, c)
+    '''

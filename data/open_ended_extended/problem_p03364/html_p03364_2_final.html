@@ -1,0 +1,160 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p03364 - Generation 2</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p03364 - Generation 2</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>
+Score : 500 points
+Problem StatementSnuke has two boards, each divided into a grid with N rows and N columns.
+For both of these boards, the square at the i-th row from the top and the j-th column from the left is called Square (i,j).
+There is a lowercase English letter written in each square on the first board. The letter written in Square (i,j) is S_{i,j}. On the second board, nothing is written yet.
+Snuke will write letters on the second board, as follows:
+First, choose two integers A and B ( 0 \leq A, B < N ).
+Write one letter in each square on the second board.
+Specifically, write the letter written in Square ( i+A, j+B ) on the first board into Square (i,j) on the second board.
+Here, the k-th row is also represented as the (N+k)-th row, and the k-th column is also represented as the (N+k)-th column.
+After this operation, the second board is called a good board when, for every i and j ( 1 \leq i, j \leq N ), the letter in Square (i,j) and the letter in Square (j,i) are equal.
+Find the number of the ways to choose integers A and B ( 0 \leq A, B < N ) such that the second board is a good board.
+Constraints
+1 \leq N \leq 300
+S_{i,j} ( 1 \leq i, j \leq N ) is a lowercase English letter.
+InputInput is given from Standard Input in the following format:
+N
+S_{1,1}S_{1,2}..S_{1,N}
+S_{2,1}S_{2,2}..S_{2,N}
+:
+S_{N,1}S_{N,2}..S_{N,N}
+OutputPrint the number of the ways to choose integers A and B ( 0 \leq A, B < N ) such that the second board is a good board.
+Sample Input 12
+ab
+ca
+Sample Output 12
+For each pair of A and B, the second board will look as shown below:
+The second board is a good board when (A,B) = (0,1) or (A,B) = (1,0), thus the answer is 2.
+Sample Input 24
+aaaa
+aaaa
+aaaa
+aaaa
+Sample Output 216
+Every possible choice of A and B makes the second board good.
+Sample Input 35
+abcde
+fghij
+klmno
+pqrst
+uvwxy
+Sample Output 30
+No possible choice of A and B makes the second board good.
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An integer N (1 ≤ N ≤ 300), representing some dimension.
+A list of N strings, each of length N, consisting of lowercase English letters.
+
+### Example Input:
+
+```
+2
+ab
+ca
+```
+
+### Function Signature:
+Write a function f(N, S) that takes in the input.
+```python
+def f(N: int, S: List[str]):
+    '''
+    N: an integer
+    S: a list of strings
+    '''
+```</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Sure! Here's a Python function that generates test cases for the given problem statement:
+
+```python
+import random
+import string
+
+def generate_board(N):
+    return [''.join(random.choice(string.ascii_lowercase) for _ in range(N)) for _ in range(N)]
+
+def tcgen():
+    N = random.randint(1, 300)
+    board = generate_board(N)
+    return N, board
+
+# Example of generating a test case
+N, board = tcgen()
+
+print(N)
+for row in board:
+    print(row)
+```
+
+This function generates a random test case for the problem. The `generate_board` function creates an N x N board filled with random lowercase English letters. The `tcgen` function generates a random value for N within the given constraints (1 ≤ N ≤ 300) and a corresponding board. 
+
+The example at the bottom demonstrates how to use the `tcgen` function to generate and print a test case.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    N = int(fh.readline().strip())
+    S = [fh.readline().strip() for _ in range(N)]
+    return N, S</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

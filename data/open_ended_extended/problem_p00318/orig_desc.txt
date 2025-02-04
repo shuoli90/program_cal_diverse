@@ -1,0 +1,34 @@
+Sunken Ruins in Hibara Sea
+The Aizu Archaeological Society has embarked on an investigation of the ancient nation of Iwashiro, whose ruins lie beneath the Hibara Sea. The ruins exist in only one place in the Hibara Sea. Therefore, they decided to use a probing radar to estimate how far they need to investigate from the coastline by making an approximate estimate of the location of the ruins using a radar survey from the coastline.
+Observation points are set on the coastline as shown in the figure above, and a probing radar is placed. With the probing radar, it is known that there are ruins in a semi-circular range of a certain size centered on the observation point. However, by combining multiple observation data, it is possible to narrow down the range even further.
+Write a program that, given several observation data consisting of the position of the observation point and the radius shown by the probing radar, determines the maximum distance from the coastline that needs to be investigated.
+Input
+The input is given in the following format.
+N
+x1 r1
+x2 r2
+:
+xN rN
+The first line contains the number of data measured by the probing radar N (1 ≤ N ≤ 100000). Following are N lines, with an integer xi (0 ≤ xi ≤ 1,000,000) representing the position on the coastline of the i-th observation data in meters and an integer ri (1 ≤ ri ≤ 1,000,000) representing the radius within which the ruins exist from that position. The same observation data may be given more than once.
+If more than one observation data is given, it can be assumed that there is always a point that falls within all of the semi-circles.
+Output
+Output the maximum distance from the coastline that needs to be investigated as a real number. The error should not exceed plus or minus 0.001 meters. Any number of decimal places can be displayed as long as this condition is met.
+Sample Input 1
+2
+0 2
+1 2
+Sample Output 1
+1.936
+Sample Input 2
+3
+0 3
+1 2
+2 1
+Sample Output 2
+1.0
+Sample Input 3
+2
+0 1
+3 2
+Sample Output 3
+0.0

@@ -1,0 +1,11 @@
+Types: 
+- N: int
+- low: List[int]
+- high: List[int]
+
+Ranges: 
+- 2 ≤ N ≤ 6
+- 1 ≤ low[i] ≤ high[i] ≤ 99
+
+Addtl Info: 
+- Input ends with a line containing a single zero

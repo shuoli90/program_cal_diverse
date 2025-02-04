@@ -1,0 +1,3 @@
+Types: W: int, H: int, c: List[str]
+Ranges: 3 ≤ W ≤ 500, 3 ≤ H ≤ 500, c[i] in {'.', '#', 's', 'g', '*'}
+Addtl Info: None

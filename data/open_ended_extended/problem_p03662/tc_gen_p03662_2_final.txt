@@ -1,0 +1,51 @@
+Sure! I can write a test case generator for the given problem statement. The goal is to generate valid random trees with \( N \) nodes and \( N-1 \) edges, ensuring that the graph remains a tree (connected and acyclic).
+
+Here's the test case generator for the problem:
+
+```python
+import random
+
+def generate_tree_edges(N):
+    """ Generates a random tree with N nodes. """
+    edges = []
+    for i in range(2, N+1):
+        # Ensure tree property by connecting each new node to a previous node
+        edges.append((i, random.randint(1, i-1)))
+    random.shuffle(edges)
+    return edges
+
+def tcgen():
+    N = random.randint(2, 10**5)
+    edges = generate_tree_edges(N)
+    
+    return N, edges
+
+# Example usage:
+N, edges = tcgen()
+print(N)
+for a, b in edges:
+    print(a, b)
+```
+
+### Explanation:
+1. **generate_tree_edges(N)**: This function generates \( N-1 \) edges to form a random tree with \( N \) nodes. It ensures the tree property by connecting each new node to one of the already existing nodes (ensuring connectivity and no cycles).
+
+2. **tcgen()**: This function:
+   - Randomly selects \( N \) within the constraints.
+   - Calls `generate_tree_edges(N)` to generate the edges of the tree.
+   - Returns \( N \) and the list of edges.
+
+### Sample Output
+If you run the test case generator, you might get an output like:
+
+```
+5
+2 1
+3 1
+4 3
+5 2
+```
+
+**Note**: The generated tree edges are shuffled to ensure randomness, while still maintaining the tree structure.
+
+This generator can be used to create a variety of test cases for the given problem, ensuring comprehensive coverage for different tree structures.

@@ -1,0 +1,21 @@
+An integer N (1 ≤ N ≤ 15), representing some quantity or size.
+A list of tuples (q, x) of size N, where each tuple consists of:
+- an integer q (1 ≤ q ≤ 3), representing a type of operation.
+- an integer x (1 ≤ x ≤ 10), representing an operand for the operation.
+
+### Example Input:
+
+```
+3
+1 2
+2 10
+3 8
+```
+
+### Function Signature:
+Write a function f(N, queries) that takes in the input. 
+def f(N: int, queries: List[Tuple[int, int]]): 
+    ''' 
+    N: an integer 
+    queries: a list of tuples, each containing two integers
+    '''

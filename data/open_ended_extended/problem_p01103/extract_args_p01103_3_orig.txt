@@ -1,0 +1,22 @@
+def extract_arguments(fh):
+    datasets = []
+    while True:
+        # Read the first line containing d and w
+        line = fh.readline().strip()
+        if line == "0 0":
+            break
+        d, w = map(int, line.split())
+        
+        # Read the next d lines containing the elevation values
+        elevations = []
+        for _ in range(d):
+            elevations.append(list(map(int, fh.readline().strip().split())))
+        
+        # Append the dataset as a tuple (d, w, elevations) to the datasets list
+        datasets.append((d, w, elevations))
+    
+    return datasets
+
+# Example usage:
+# with open('input.txt', 'r') as fh:
+#     inputs = extract_arguments(fh)

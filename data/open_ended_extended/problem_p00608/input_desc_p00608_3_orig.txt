@@ -1,0 +1,29 @@
+An integer H and an integer W (1 ≤ H, W ≤ 10), representing some dimensions.
+A grid of H × W characters, each character can be '.', '#', '0'-'9', '+', '-', '*', '/', '='.
+An integer n (0 ≤ n ≤ 10), representing some quantity.
+A list of n characters, where each character can be '0'-'9', '+', '-', '*', '/'.
+
+### Example Input:
+
+```
+5 5
+4=..2
++#=#+
+.-2=.
+=#*#=
+.-.=3
+6
+7 3 1 4 / 8
+```
+
+### Function Signature:
+Write a function f(inputs) that takes in the input as a list of tuples.
+def f(inputs: List[Tuple[int, int, List[str], int, List[str]]]): 
+    '''
+    inputs: a list of tuples, each containing:
+        - an integer
+        - an integer
+        - a list of strings
+        - an integer
+        - a list of strings
+    '''

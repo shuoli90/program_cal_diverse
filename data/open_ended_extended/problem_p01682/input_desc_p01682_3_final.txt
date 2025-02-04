@@ -1,0 +1,22 @@
+Canonicalized Input Description:
+
+A sequence of strings, each representing an expression using specific binary and unary operators. The sequence ends with a line containing the character '#'. Each expression string contains at most 2,000,000 bytes in total, and there are at most 100 such expressions.
+
+### Example Input:
+```
+S< S< 12 >> 2 > >
+123 >> 1 >> 1
+1000000000   >>129
+S<S<S<S<S<2>>>>>
+S  <S< S<2013    >>> 11 >>> 10 >
+#
+```
+
+### Function Signature:
+Write a function f(inputs) that takes in the input.
+```python
+def f(inputs: List[str]):
+    '''
+    inputs: a list of strings
+    '''
+```

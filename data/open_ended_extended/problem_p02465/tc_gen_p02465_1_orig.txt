@@ -1,0 +1,48 @@
+Sure, I can write a test case generator for the problem "Set Difference". Below is a Python function that generates test cases according to the given problem statement:
+
+```python
+import random
+
+def generate_ascending_list(size, max_value):
+    """Generate an ascending list of unique integers."""
+    if size > max_value + 1:
+        raise ValueError("Cannot generate a unique ascending list with the given size and max_value.")
+    
+    result = sorted(random.sample(range(max_value + 1), size))
+    return result
+
+def tcgen():
+    # Constraints
+    max_n_m = 200000
+    max_value = 10**9
+    
+    # Generate random sizes for set A and set B
+    n = random.randint(1, max_n_m)
+    m = random.randint(1, max_n_m)
+    
+    # Generate unique ascending elements for set A and set B
+    A = generate_ascending_list(n, max_value)
+    B = generate_ascending_list(m, max_value)
+    
+    return n, A, m, B
+
+# Example usage:
+n, A, m, B = tcgen()
+print(f"{n}\n{' '.join(map(str, A))}\n{m}\n{' '.join(map(str, B))}")
+```
+
+### Explanation:
+1. **Function `generate_ascending_list(size, max_value)`**:
+   - Generates a list of unique integers of given size within the range [0, max_value].
+   - Ensures the list is sorted in ascending order.
+   - Uses `random.sample` to avoid duplicates and ensure all elements are unique within the given range.
+
+2. **Function `tcgen()`**:
+   - Picks random sizes `n` and `m` for sets A and B within the constraints.
+   - Uses `generate_ascending_list` to generate the actual sets in ascending order.
+   - Returns the sizes and the sets.
+
+3. **Example usage**:
+   - Generates a test case and prints it in the format specified in the problem statement.
+
+This function should cover a wide range of test cases including edge cases with minimum and maximum constraints.

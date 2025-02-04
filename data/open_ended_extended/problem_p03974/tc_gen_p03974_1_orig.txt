@@ -1,0 +1,53 @@
+Certainly! Here is a test case generator for the provided problem statement:
+
+```python
+import random
+import string
+
+def generate_random_string(max_length):
+    length = random.randint(1, max_length)
+    return ''.join(random.choice(string.ascii_lowercase) for _ in range(length))
+
+def generate_permutation():
+    return ''.join(random.sample(string.ascii_lowercase, 26))
+
+def tcgen():
+    max_total_length = 400000
+    N = random.randint(1, 100000)
+    strings = []
+    total_length = 0
+    
+    for _ in range(N):
+        if total_length >= max_total_length:
+            break
+        s = generate_random_string(min(max_total_length - total_length, 100))
+        strings.append(s)
+        total_length += len(s)
+    
+    N = len(strings)  # In case we had to stop early due to total_length constraint
+    
+    Q = random.randint(1, 100000)
+    queries = []
+    
+    for _ in range(Q):
+        k = random.randint(1, N)
+        permutation = generate_permutation()
+        queries.append((k, permutation))
+    
+    return N, strings, Q, queries
+
+# Example usage:
+N, strings, Q, queries = tcgen()
+print(N)
+for s in strings:
+    print(s)
+print(Q)
+for k, p in queries:
+    print(k, p)
+```
+
+This Python script generates random test cases for the problem described. The `generate_random_string` function creates a random string with a length between 1 and `max_length`. The `generate_permutation` function generates a random permutation of the 26 lowercase English letters.
+
+The `tcgen` function generates the number of strings `N` and the list of unique strings, ensuring that the total length of all strings does not exceed 400,000 characters. It then generates `Q` queries, each consisting of a random integer `k` and a random permutation of the alphabet.
+
+The `Example usage` section demonstrates how to use the `tcgen` function and print the generated test case.

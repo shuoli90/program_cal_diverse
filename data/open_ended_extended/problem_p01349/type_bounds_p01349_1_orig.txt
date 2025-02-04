@@ -1,0 +1,3 @@
+Types: h: int, w: int, n: int, field: List[str]
+Ranges: 2 ≤ h, w, n ≤ 30
+Addtl Info: field contains h strings of length w consisting of uppercase letters ('A'-'Z') and periods ('.')

@@ -1,0 +1,78 @@
+Certainly! To generate test cases for this problem, we need to consider the constraints and the possible scenarios in which members join or leave the ACM. Here's the test case generator written in Python:
+
+```python
+import random
+import string
+
+def random_name(length=20):
+    return ''.join(random.choices(string.ascii_letters, k=length))
+
+def tcgen():
+    # Number of initial members of ACM
+    N = random.randint(1, 50000)
+    
+    # Generate initial members with their motivation levels
+    initial_members = []
+    for _ in range(N):
+        name_length = random.randint(1, 20)
+        name = random_name(name_length)
+        motivation_level = random.randint(0, 100000)
+        initial_members.append((name, motivation_level))
+    
+    # Number of changes of ACM members
+    M = random.randint(1, 20000)
+    
+    # Generate changes (incoming/outgoing) members
+    changes = []
+    current_members = {name for name, _ in initial_members}
+    for _ in range(M):
+        action = random.choice(['+', '-'])
+        if action == '+':
+            # Incoming member
+            name_length = random.randint(1, 20)
+            name = random_name(name_length)
+            while name in current_members:
+                name = random_name(name_length)
+            motivation_level = random.randint(0, 100000)
+            changes.append((action, name, motivation_level))
+            current_members.add(name)
+        elif action == '-' and current_members:
+            # Outgoing member
+            name = random.choice(list(current_members))
+            changes.append((action, name))
+            current_members.remove(name)
+
+    return N, initial_members, M, changes
+
+def format_test_case(N, initial_members, M, changes):
+    test_case = f"{N}\n"
+    for name, motivation in initial_members:
+        test_case += f"{name} {motivation}\n"
+    
+    test_case += f"{M}\n"
+    for change in changes:
+        if change[0] == '+':
+            test_case += f"+ {change[1]} {change[2]}\n"
+        elif change[0] == '-':
+            test_case += f"- {change[1]}\n"
+    
+    return test_case
+
+if __name__ == "__main__":
+    N, initial_members, M, changes = tcgen()
+    test_case = format_test_case(N, initial_members, M, changes)
+    print(test_case)
+```
+
+### Explanation:
+1. **random_name**: Generates a random name with a specified length using uppercase and lowercase letters.
+2. **tcgen**:
+   - Generates a random integer `N` between 1 and 50,000 for the initial number of members.
+   - For each initial member, it generates a random name (1 to 20 characters) and a random motivation level (0 to 100,000).
+   - Generates a random integer `M` between 1 and 20,000 for the number of changes.
+   - For each change, it randomly decides if the change is an incoming or outgoing member:
+     - Incoming: Generates a unique random name and a random motivation level.
+     - Outgoing: Picks a random current member and marks them as outgoing.
+3. **format_test_case**: Formats the generated test case into the required input format.
+
+You can use this script to generate and print random test cases for the problem. Each test case includes the initial list of members and a sequence of incoming or outgoing events.

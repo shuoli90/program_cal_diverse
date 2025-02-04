@@ -1,0 +1,9 @@
+def extract_arguments(fh):
+    inputs = []
+    while True:
+        line = fh.readline().strip()
+        if line == "0 0 0":
+            break
+        N, D, X = map(int, line.split())
+        inputs.append((N, D, X))
+    return inputs

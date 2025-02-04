@@ -1,0 +1,22 @@
+An integer n (1 ≤ n ≤ 100) and an integer m (1 ≤ m ≤ 1000).
+n pairs of an 8-character string (with digits and '*') and an integer (1 ≤ integer ≤ 1,000,000).
+m 8-character strings consisting of digits.
+
+### Example Input:
+
+```
+3 3
+*******1 100
+******22 1000
+11111112 1000000
+01203291
+02382022
+11111111
+```
+
+### Function Signature:
+Write a function f(inputs) that takes in the input.
+def f(inputs: List[Tuple[str, int], List[str]]):
+    '''
+    inputs: a list of tuples, where each tuple consists of an 8-character string and an integer, followed by a list of 8-character strings. 
+    '''

@@ -1,0 +1,227 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p02123 - Generation 2</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p02123 - Generation 2</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>Problem M: Fissure Puzzle Hard
+Problem
+There is a grid consisting of $N \times N$ squares. All squares are initially white. We increase the number of black squares following the procedure below.
+Choose a white square in a cell that is on an even-numbered row and an even-numbered column. The chosen square is changed to black. Furthermore, the white squares adjacent to the chosen square in each direction, north, south, east, and west, are changed to black in a chain until there is no white square in that direction. (See the example below.)
+□□□□□□□□□
+□□□□□□□□□
+□□□□□□□□□
+□□□□□□□□□
+□□□□□□□□□
+□□□□□□□□□
+□□□□□□□□□
+□□□□□□□□□
+□□□□□□□□□
+↓ choose the square in the 4th row from the top and the 6th column
+□□□□□■□□□
+□□□□□■□□□
+□□□□□■□□□
+■■■■■■■■■
+□□□□□■□□□
+□□□□□■□□□
+□□□□□■□□□
+□□□□□■□□□
+□□□□□■□□□
+↓ choose the square in the 2nd row from the top and the 2nd column
+□■□□□■□□□
+■■■■■■□□□
+□■□□□■□□□
+■■■■■■■■■
+□□□□□■□□□
+□□□□□■□□□
+□□□□□■□□□
+□□□□□■□□□
+□□□□□■□□□
+↓ choose the square in the 6th row from the top and the 8th column
+□■□□□■□□□
+■■■■■■□□□
+□■□□□■□□□
+■■■■■■■■■
+□□□□□■□■□
+□□□□□■■■■
+□□□□□■□■□
+□□□□□■□■□
+□□□□□■□■□
+You want to create a grid where the color of the square at the $i$-th row from the top and the $j$-th column from the left is $A_{i,j}$. Determine whether it is possible to create such a grid. If possible, find the places and order of the squares to be selected.
+Input
+The input is given in the following format.
+$N$
+$A_{1,1}$ $A_{1,2}$ ... $A_{1,N}$
+$A_{2,1}$ $A_{2,2}$ ... $A_{2,N}$
+...
+$A_{N,1}$ $A_{N,2}$ ... $A_{N,N}$
+  When $A_{i,j}$ is 'o', it means that the square at the $i$-th row from the top and the $j$-th column from the left is white, and when it is 'x', it means that the square is black.
+Constraints
+$3 \le N \le 2047$
+$N$ is odd.
+$A_{i,j}$ is either 'o' or 'x'.
+Output
+If it is impossible, output -1 in one line.
+If it is possible, output the number of squares to be selected in the first line, the row number from the top of the $i$-th square to be selected in the $2i$-th line, and the column number from the left to be selected in the $2i+1$-th line. If it is not uniquely determined, output the smallest one in lexicographic order.
+Sample Input 1
+5
+oxooo
+oxooo
+oxooo
+xxxxx
+oxooo
+Sample Output 1
+1
+4
+2
+Sample Input 2
+9
+oxoooooxo
+oxxxxxxxx
+oxoooooxo
+xxxxxxxxx
+oxoxooooo
+oxxxxxxxx
+oxoxoxooo
+oxoxxxxxx
+oxoxoxooo
+Sample Output 2
+4
+4
+2
+2
+8
+6
+4
+8
+6
+Sample Input 3
+3
+oxx
+oxx
+ooo
+Sample Output 3
+-1
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An integer N (3 ≤ N ≤ 2047), where N is odd.
+A 2D list of characters A of size N x N, where each character is either 'o' or 'x'.
+
+### Example Input:
+
+```
+5
+oxooo
+oxooo
+oxooo
+xxxxx
+oxooo
+```
+
+### Function Signature:
+Write a function f(N, A) that takes in the input.
+def f(N: int, A: List[List[str]]):
+    '''
+    N: an integer
+    A: a 2D list of characters
+    '''
+</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Sure! Below is a Python function to generate test cases for the problem "Fissure Puzzle Hard." The function generates a random grid that fits the problem's constraints.
+
+```python
+import random
+
+def generate_fissure_puzzle_hard_test_case():
+    # Generate an odd number N between 3 and 2047
+    N = random.choice([i for i in range(3, 2048) if i % 2 != 0])
+    
+    # Generate the grid of NxN where each cell is either 'o' or 'x'
+    grid = []
+    for _ in range(N):
+        row = ''.join(random.choice(['o', 'x']) for _ in range(N))
+        grid.append(row)
+    
+    return N, grid
+
+def format_test_case(N, grid):
+    # Format the test case into the required input format as a string
+    test_case_str = f"{N}\n"
+    test_case_str += '\n'.join(grid)
+    return test_case_str
+
+# Example of generating a test case and printing it
+N, grid = generate_fissure_puzzle_hard_test_case()
+test_case_str = format_test_case(N, grid)
+print(test_case_str)
+```
+
+### Explanation:
+1. **Generating N:** The code first generates an odd number \( N \) between 3 and 2047 using `random.choice` to ensure the number is odd.
+2. **Generating the Grid:** For each row in the \( N \times N \) grid, we generate a string of length \( N \) where each character is randomly chosen to be either 'o' (white) or 'x' (black).
+3. **Formatting the Output:** The function `format_test_case` converts the generated grid into the required input format as a multiline string.
+
+You can use this generator to produce random test cases for the problem. Each execution of the generator will provide a different test case within the specified constraints.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    N = int(fh.readline().strip())
+    A = [fh.readline().strip() for _ in range(N)]
+    return N, A</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

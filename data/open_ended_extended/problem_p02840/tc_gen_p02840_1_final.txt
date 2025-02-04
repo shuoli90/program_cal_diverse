@@ -1,0 +1,22 @@
+Here's a test case generator for the given problem statement:
+
+```python
+import random
+
+def tcgen():
+    N = random.randint(1, 2 * 10**5)
+    X = random.randint(-10**8, 10**8)
+    D = random.randint(-10**8, 10**8)
+    return N, X, D
+
+# Example usage:
+N, X, D = tcgen()
+print(f"{N} {X} {D}")
+```
+
+This function generates a random test case for your problem statement by:
+1. Generating \(N\) as a random integer between 1 and \(2 \times 10^5\).
+2. Generating \(X\) as a random integer between \(-10^8\) and \(10^8\).
+3. Generating \(D\) as a random integer between \(-10^8\) and \(10^8\).
+
+You can use the `tcgen` function to generate diverse test cases, which can then be used to test the solution to the problem. The `print` statement at the end demonstrates how to output the generated test case in the required format.

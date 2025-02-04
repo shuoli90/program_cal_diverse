@@ -1,0 +1,145 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p03012 - Generation 1</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p03012 - Generation 1</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>
+Score : 200 points
+Problem StatementWe have N weights indexed 1 to N. The mass of the weight indexed i is W_i.
+We will divide these weights into two groups: the weights with indices not greater than T, and those with indices greater than T, for some integer 1 \leq T < N. Let S_1 be the sum of the masses of the weights in the former group, and S_2 be the sum of the masses of the weights in the latter group.
+Consider all possible such divisions and find the minimum possible absolute difference of S_1 and S_2.
+Constraints
+2 \leq N \leq 100
+1 \leq W_i \leq 100
+All values in input are integers.
+InputInput is given from Standard Input in the following format:
+N
+W_1 W_2 ... W_{N-1} W_N
+OutputPrint the minimum possible absolute difference of S_1 and S_2.
+Sample Input 13
+1 2 3
+Sample Output 10
+If T = 2, S_1 = 1 + 2 = 3 and S_2 = 3, with the absolute difference of 0.
+Sample Input 24
+1 3 1 1
+Sample Output 22
+If T = 2, S_1 = 1 + 3 = 4 and S_2 = 1 + 1 = 2, with the absolute difference of 2. We cannot have a smaller absolute difference.
+Sample Input 38
+27 23 76 2 3 5 62 52
+Sample Output 32
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>Canonicalized Input Description: 
+
+An integer N (2 ≤ N ≤ 100), representing some quantity or size.
+A list of integers W of size N, where each integer is between 1 and 100.
+
+### Example Input:
+
+```
+3
+1 2 3
+```
+
+### Function Signature:
+Write a function f(N, W) that takes in the input.
+def f(N: int, W: List[int]):
+    '''
+    N: an integer
+    W: a list of integers
+    '''</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Sure! Here is a test case generator for the given problem statement:
+
+```python
+import random
+
+def tcgen():
+    # Generate a random integer N such that 2 ≤ N ≤ 100
+    N = random.randint(2, 100)
+    
+    # Generate a list of N integers W such that each integer is between 1 and 100
+    W = [random.randint(1, 100) for _ in range(N)]
+    
+    return N, W
+
+# Function to print the generated test case in the required format
+def print_test_case():
+    N, W = tcgen()
+    print(N)
+    print(' '.join(map(str, W)))
+
+# Generate and print a test case
+print_test_case()
+```
+
+This code will generate a random test case for the problem where:
+
+- \(N\) is an integer between 2 and 100.
+- \(W\) is a list of \(N\) integers, each between 1 and 100.
+
+The `print_test_case` function prints the generated test case in the format required by the problem statement. This can be run multiple times to generate different test cases for testing.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    N = int(fh.readline().strip())
+    W = list(map(int, fh.readline().strip().split()))
+    return N, W</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

@@ -1,0 +1,44 @@
+Sure! Here is a test case generator for the given problem statement:
+
+```python
+import random
+
+def generate_tree(n):
+    edges = []
+    for i in range(2, n + 1):
+        # Connect each new node to a random existing node to form a tree
+        edges.append((i, random.randint(1, i - 1)))
+    return edges
+
+def tcgen():
+    N = random.randint(2, 2000)
+    K = random.randint(1, N - 1)
+    edges = generate_tree(N)
+    
+    return N, K, edges
+
+def format_input(N, K, edges):
+    input_str = f"{N} {K}\n"
+    input_str += "\n".join(f"{a} {b}" for a, b in edges)
+    return input_str
+
+# Example of generating a test case and formatting it
+N, K, edges = tcgen()
+print(format_input(N, K, edges))
+```
+
+This test case generator will create valid random trees and format the input appropriately to fit the problem's requirements. Here's a step-by-step breakdown of the code:
+
+1. **generate_tree(n)**:
+    - Generates a random tree with `n` nodes.
+    - Ensures the created structure is a valid tree by connecting each new node to a previously existing one.
+
+2. **tcgen()**:
+    - Randomly selects `N` (number of vertices) between 2 and 2000.
+    - Randomly selects `K` (maximum allowed diameter) between 1 and `N-1`.
+    - Uses the `generate_tree(N)` function to create the edges of the tree.
+
+3. **format_input(N, K, edges)**:
+    - Formats the generated tree and parameters into the required input format.
+
+This generator ensures that you get a variety of test cases, from very small trees to large ones close to the upper constraints, with random connections ensuring different tree shapes.

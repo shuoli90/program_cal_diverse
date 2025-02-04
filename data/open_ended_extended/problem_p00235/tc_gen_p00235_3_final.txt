@@ -1,0 +1,56 @@
+Sure, here is a test case generator for the "Sergeant Ryan" problem. This generator will create multiple data sets, each representing a water city with islands connected by bridges.
+
+```python
+import random
+
+def generate_tree_edges(N):
+    edges = []
+    for i in range(2, N + 1):
+        # Connect current node with a random existing node
+        parent = random.randint(1, i - 1)
+        time = random.randint(1, 500)
+        edges.append((parent, i, time))
+    return edges
+
+def tcgen():
+    test_cases = []
+    num_cases = random.randint(1, 100)
+
+    for _ in range(num_cases):
+        N = random.randint(2, 20)
+        edges = generate_tree_edges(N)
+        test_cases.append((N, edges))
+
+    return test_cases
+
+def format_test_cases(test_cases):
+    formatted_input = ""
+    for N, edges in test_cases:
+        formatted_input += f"{N}\n"
+        for (a, b, t) in edges:
+            formatted_input += f"{a} {b} {t}\n"
+    formatted_input += "0\n"
+    return formatted_input
+
+# Generate test cases
+test_cases = tcgen()
+formatted_input = format_test_cases(test_cases)
+print(formatted_input)
+```
+
+### Explanation:
+
+1. **generate_tree_edges(N)**:
+   - This function generates a tree structure with `N` nodes. Each new node `i` (from 2 to N) is connected to a random existing node (in the range 1 to `i-1`), ensuring the graph remains acyclic and connected. The time `t` to cross each bridge is a random integer between 1 and 500.
+
+2. **tcgen()**:
+   - This function generates up to 100 test cases. Each test case has a random number of islands `N` (between 2 and 20). For each `N`, it generates the tree edges using `generate_tree_edges(N)`.
+
+3. **format_test_cases(test_cases)**:
+   - This function formats the generated test cases as a single input string, where each test case is followed by a zero to denote the end of input.
+
+### Usage:
+- Run the script to generate a set of test cases formatted as required by the problem statement.
+- The output will be a single string representing multiple test cases, each ending with a zero.
+
+Feel free to adjust the ranges and parameters to fit specific needs or constraints.

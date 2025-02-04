@@ -1,0 +1,23 @@
+Certainly! Here's a test case generator for the given problem statement:
+
+```python
+import random
+
+def tcgen():
+    N = random.randint(2, 300)
+    A = [random.randint(1, 10**12) for _ in range(N)]
+    return N, A
+
+# Example usage:
+N, A = tcgen()
+print(N)
+print(" ".join(map(str, A)))
+```
+
+This generator will create random test cases for the problem. Here’s a brief explanation of how it works:
+
+1. It generates a random integer `N` between 2 and 300 inclusive, representing the number of piles of stones.
+2. It creates a list `A` of size `N`, where each element is a random integer between 1 and 10^12 inclusive, representing the number of stones in each pile.
+3. It returns the generated `N` and `A`.
+
+You can use this function to generate multiple test cases by calling `tcgen()` repeatedly. The output format is adapted to match the input format of the problem statement.

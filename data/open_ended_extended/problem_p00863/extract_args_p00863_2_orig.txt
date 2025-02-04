@@ -1,0 +1,16 @@
+def extract_arguments(fh):
+    inputs = []
+    while True:
+        line = fh.readline().strip()
+        if line == "0 0 0 0":
+            break
+        a, m, b, n = map(int, line.split())
+        inputs.append((a, m, b, n))
+    return inputs
+
+# if __name__ == "__main__":
+#     input_path = sys.argv[1]
+#     with open(input_path, 'r') as fh: 
+#         inputs = extract_arguments(fh)
+#         for inp in inputs:
+#             f(*inp)

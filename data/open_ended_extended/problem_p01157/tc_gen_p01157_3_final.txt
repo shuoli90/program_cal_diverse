@@ -1,0 +1,54 @@
+Certainly! Here's a test case generator for the given problem statement "Online Quizu System":
+
+```python
+import random
+import string
+
+def random_string(length):
+    return ''.join(random.choices(string.ascii_uppercase + string.ascii_lowercase + string.digits, k=length))
+
+def generate_test_case():
+    # Generate random values for M and N within the given constraints
+    M = random.randint(1, 100)   # Number of players
+    N = random.randint(1, 100)   # Number of problems
+
+    # Generate random delays for each player
+    D = [random.randint(0, 100) for _ in range(M)]
+
+    test_case = []
+    test_case.append(f"{M} {N}")
+    test_case.append(" ".join(map(str, D)))
+
+    for _ in range(N):
+        # Number of players that submitted an answer for this problem
+        L = random.randint(0, M)
+        submissions = []
+        for _ in range(L):
+            P = random.randint(0, M - 1)  # Player ID
+            T = random.randint(0, 19999)  # Time elapsed
+            A = random_string(random.randint(1, 9))  # Player's answer
+            submissions.append(f"{P} {T} {A}")
+        test_case.append(f"{L}")
+        test_case.extend(submissions)
+
+    return "\n".join(test_case)
+
+def generate_multiple_test_cases(num_cases):
+    test_cases = []
+    for _ in range(num_cases):
+        test_cases.append(generate_test_case())
+        test_cases.append("0 0")  # To mark the end of the input
+    return "\n\n".join(test_cases)
+
+if __name__ == "__main__":
+    num_cases = 5  # Number of test cases to generate
+    test_cases = generate_multiple_test_cases(num_cases)
+    print(test_cases)
+```
+
+This code will generate multiple test cases for the described problem. Each test case includes:
+1. Random values for `M` and `N`.
+2. Random delays for each player.
+3. Random submissions for each problem, following the given format.
+
+Each test case ends with `0 0` to mark the end of input, as specified in the problem statement. The function `generate_multiple_test_cases` allows you to specify how many test cases you want to generate and outputs them in the required format.

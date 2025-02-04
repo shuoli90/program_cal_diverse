@@ -1,0 +1,182 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p03537 - Generation 2</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p03537 - Generation 2</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>
+Score : 1000 points
+Problem StatementRingo has a string S.
+He can perform the following N kinds of operations any number of times in any order.
+Operation i: For each of the characters from the L_i-th through the R_i-th characters in S, replace it with its succeeding letter in the English alphabet. (That is, replace a with b, replace b with c and so on.) For z, we assume that its succeeding letter is a.
+Ringo loves palindromes and wants to turn S into a palindrome.
+Determine whether this is possible.
+Constraints
+1 \leq |S| \leq 10^5
+S consists of lowercase English letters.
+1 \leq N \leq 10^5
+1 \leq L_i \leq R_i \leq |S|
+InputInput is given from Standard Input in the following format:
+S
+N
+L_1 R_1
+L_2 R_2
+:
+L_N R_N
+OutputPrint YES if it is possible to turn S into a palindrome; print NO if it is impossible.
+Sample Input 1bixzja
+2
+2 3
+3 6
+Sample Output 1YES
+For example, if we perform Operation 1, 2 and 1 in this order, S changes as bixzja → bjyzja → bjzakb → bkaakb and becomes a palindrome.
+Sample Input 2abc
+1
+2 2
+Sample Output 2NO
+Sample Input 3cassert
+4
+1 2
+3 4
+1 1
+2 2
+Sample Output 3YES
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An integer N (1 ≤ N ≤ 10^5), representing some quantity or size.
+A string S of length |S| (1 ≤ |S| ≤ 10^5), consisting of lowercase English letters.
+A list of N pairs (L_i, R_i), where each pair consists of two integers (1 ≤ L_i ≤ R_i ≤ |S|).
+
+### Example Input:
+```
+bixzja
+2
+2 3
+3 6
+```
+
+### Function Signature:
+Write a function f(S, N, intervals) that takes in the input.
+```python
+def f(S: str, N: int, intervals: List[Tuple[int, int]]):
+    '''
+    S: a string
+    N: an integer
+    intervals: a list of tuples, where each tuple contains two integers
+    '''</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Certainly! Here's a test case generator for the problem statement described:
+
+```python
+import random
+import string
+
+def generate_string(length):
+    return ''.join(random.choices(string.ascii_lowercase, k=length))
+
+def tcgen():
+    # Length of string S
+    S_len = random.randint(1, 10**5)
+    S = generate_string(S_len)
+    
+    # Number of operations N
+    N = random.randint(1, 10**5)
+    
+    operations = []
+    for _ in range(N):
+        L = random.randint(1, S_len)
+        R = random.randint(L, S_len)
+        operations.append((L, R))
+    
+    return S, N, operations
+
+# Function to print the generated test case in the required format
+def print_test_case(S, N, operations):
+    print(S)
+    print(N)
+    for L, R in operations:
+        print(L, R)
+        
+# Example usage
+S, N, operations = tcgen()
+print_test_case(S, N, operations)
+```
+
+### Explanation:
+1. **generate_string(length)**: This function generates a random string of lowercase English letters of a given length.
+2. **tcgen()**: 
+    - Generates a random length for the string \( S \) between 1 and \( 10^5 \).
+    - Generates the random string \( S \) using the `generate_string` function.
+    - Generates a random number \( N \) for the number of operations between 1 and \( 10^5 \).
+    - For each operation, generates two random integers \( L \) and \( R \) such that \( 1 \leq L \leq R \leq |S| \).
+3. **print_test_case(S, N, operations)**:
+    - Prints the string \( S \), the number \( N \), and the list of operations in the required format.
+
+This generator will create random test cases that adhere to the constraints of the problem. You can run this code to generate a test case and print it in the format specified in the problem statement.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    S = fh.readline().strip()
+    N = int(fh.readline().strip())
+    operations = []
+    for _ in range(N):
+        L, R = map(int, fh.readline().strip().split())
+        operations.append((L, R))
+    return S, N, operations</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

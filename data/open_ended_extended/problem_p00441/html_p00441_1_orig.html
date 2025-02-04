@@ -1,0 +1,198 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p00441 - Generation 1</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p00441 - Generation 1</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>The Oldest Site
+Problem
+In the past, there was a village where many people lived. People built buildings of various shapes and sizes. However, those buildings are already lost, and only documents and pillars found in the ruins were a clue to the location of the buildings.
+There is a description of the temple in the document. The temple is a square when viewed from above, and there were pillars at the four corners. It is not known which direction the temple was facing. Also, it is not known whether there were pillars on the sides or inside. Archaeologists believed that among the pillars found in the ruins, the one with the largest area that is square must be the temple.
+Given the coordinates of the pillars, write a program that finds the square made up of four pillars with the largest area and outputs its area. Note that the sides of the square are not necessarily parallel to the coordinate axis.
+Example
+In the example of the figure below, there are ten pillars, and the four at coordinates (4, 2), (5, 2), (5, 3), and (4, 3) make a square, and the four at coordinates (1, 1), (4, 0), (5, 3), and (2, 4) also make a square. The latter square has the largest area of 10.
+Input
+The input consists of multiple datasets. Each dataset is given in the following format. The input is terminated by a line containing a single zero.
+The first line contains the number of pillars n found in the ruins.
+From the second line to the n + 1-th line, each of the n lines contains the x and y coordinates of a pillar separated by a space.
+Each pillar appears only once or never.
+n is an integer satisfying 1 ≤ n ≤ 3000, and the x and y coordinates of the pillars are integers between 0 and 5000 inclusive.
+30% of the score is for datasets where 1 ≤   n ≤ 100, and 60% of the score is for datasets where 1 ≤ n ≤ 500.
+There are no more than 10 datasets.
+Output
+For each dataset, output one integer. If there is a square made up of four pillars, output the area of the largest such square, and if there is no such square, output 0.
+Sample Input
+10
+9 4
+4 3
+1 1
+4 2
+2 4
+5 8
+4 0
+5 3
+0 5
+5 2
+10
+9 4
+4 3
+1 1
+4 2
+2 4
+5 8
+4 0
+5 3
+0 5
+5 2
+0
+Sample Output
+10
+10
+The problem statement and test data used in the automated judge are provided by Information-technology Promotion Agency, Japan.
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An integer n (1 ≤ n ≤ 3000), representing some quantity or size.
+A list of n tuples, where each tuple contains two integers (x, y) with 0 ≤ x, y ≤ 5000.
+
+### Example Input:
+
+```
+10
+9 4
+4 3
+1 1
+4 2
+2 4
+5 8
+4 0
+5 3
+0 5
+5 2
+```
+
+### Function Signature:
+Write a function f(inputs) that takes in the input.
+```python
+def f(inputs: List[Tuple[int, int]]):
+    '''
+    inputs: a list of tuples, where each tuple contains two integers
+    '''
+```</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Certainly! Here is a test case generator in Python for the problem "The Oldest Site". This generator will create valid input data according to the problem statement, including multiple datasets and a terminating zero line.
+
+```python
+import random
+
+def generate_dataset():
+    n = random.randint(1, 3000)
+    coordinates = set()
+    while len(coordinates) < n:
+        x = random.randint(0, 5000)
+        y = random.randint(0, 5000)
+        coordinates.add((x, y))
+    return n, list(coordinates)
+
+def generate_test_cases(num_datasets=10):
+    datasets = []
+    for _ in range(num_datasets):
+        n, coordinates = generate_dataset()
+        datasets.append((n, coordinates))
+    return datasets
+
+def print_test_cases(datasets):
+    for n, coordinates in datasets:
+        print(n)
+        for x, y in coordinates:
+            print(f"{x} {y}")
+    print(0)  # Terminating line
+
+# Generate and print test cases
+datasets = generate_test_cases()
+print_test_cases(datasets)
+```
+
+### Explanation
+
+- **`generate_dataset` Function**: This function generates a single dataset. It randomly selects a number of pillars \( n \) between 1 and 3000, then generates \( n \) unique coordinates within the range [0, 5000]. Using a set ensures that coordinates are unique.
+- **`generate_test_cases` Function**: This function generates a specified number of datasets (default is 10). It calls `generate_dataset` for each dataset and stores the results.
+- **`print_test_cases` Function**: This function prints out the generated datasets in the required format. It iterates through each dataset, prints the number of pillars \( n \), and then prints each coordinate. Finally, it prints a terminating zero line as specified in the problem statement.
+
+You can run this code to generate test cases for the problem "The Oldest Site".</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    datasets = []
+    while True:
+        n = int(fh.readline().strip())
+        if n == 0:
+            break
+        pillars = []
+        for _ in range(n):
+            x, y = map(int, fh.readline().strip().split())
+            pillars.append((x, y))
+        datasets.append((n, pillars))
+    return datasets
+
+# if __name__ == "__main__":
+#     input_path = sys.argv[1]
+#     with open(input_path, 'r') as fh:
+#         datasets = extract_arguments(fh)
+#         f(datasets)</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

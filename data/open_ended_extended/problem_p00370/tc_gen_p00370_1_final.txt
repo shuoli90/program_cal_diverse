@@ -1,0 +1,106 @@
+Certainly! Let's create a test case generator for the "Lake Survey" problem statement. This generator will create random but valid coordinates for the start and end points, and for the vertices of the convex polygon representing the lake.
+
+We'll make sure the generated coordinates adhere to the constraints mentioned in the problem statement, such as being outside the polygon and not identical.
+
+Here is the Python code for the test case generator:
+
+```python
+import random
+import math
+
+def generate_convex_polygon(n, max_coord=104):
+    """ Generates a random convex polygon with n vertices. """
+    points = []
+    for _ in range(n):
+        x = random.randint(0, max_coord)
+        y = random.randint(0, max_coord)
+        points.append((x, y))
+    
+    # Sort the points in counter-clockwise order to form a convex polygon
+    points = sorted(points, key=lambda p: (p[0], p[1]))
+
+    def cross(o, a, b):
+        return (a[0] - o[0]) * (b[1] - o[1]) - (a[1] - o[1]) * (b[0] - o[0])
+    
+    lower = []
+    for p in points:
+        while len(lower) >= 2 and cross(lower[-2], lower[-1], p) <= 0:
+            lower.pop()
+        lower.append(p)
+    
+    upper = []
+    for p in reversed(points):
+        while len(upper) >= 2 and cross(upper[-2], upper[-1], p) <= 0:
+            upper.pop()
+        upper.append(p)
+    
+    convex_polygon = lower[:-1] + upper[:-1]
+    return convex_polygon
+
+def is_point_in_polygon(point, polygon):
+    """ Check if a point is inside a polygon using the ray-casting algorithm. """
+    x, y = point
+    inside = False
+    for i in range(len(polygon)):
+        j = (i + 1) % len(polygon)
+        xi, yi = polygon[i]
+        xj, yj = polygon[j]
+        intersect = ((yi > y) != (yj > y)) and (x < (xj - xi) * (y - yi) / (yj - yi) + xi)
+        if intersect:
+            inside = not inside
+    return inside
+
+def generate_valid_point_outside_polygon(polygon, max_coord=104):
+    """ Generates a random point that is outside the given polygon. """
+    while True:
+        x = random.randint(0, max_coord)
+        y = random.randint(0, max_coord)
+        if not is_point_in_polygon((x, y), polygon):
+            return (x, y)
+
+def tcgen():
+    N = random.randint(3, 100)
+    polygon = generate_convex_polygon(N)
+    start_point = generate_valid_point_outside_polygon(polygon)
+    end_point = generate_valid_point_outside_polygon(polygon)
+    
+    while end_point == start_point:
+        end_point = generate_valid_point_outside_polygon(polygon)
+    
+    return start_point, end_point, polygon
+
+def format_test_case(start_point, end_point, polygon):
+    lines = []
+    lines.append(f"{start_point[0]} {start_point[1]}")
+    lines.append(f"{end_point[0]} {end_point[1]}")
+    lines.append(f"{len(polygon)}")
+    for x, y in polygon:
+        lines.append(f"{x} {y}")
+    return "\n".join(lines)
+
+# Generate and print a test case
+start_point, end_point, polygon = tcgen()
+test_case = format_test_case(start_point, end_point, polygon)
+print(test_case)
+```
+
+### Explanation of the Code:
+
+1. **generate_convex_polygon(n, max_coord=104)**:
+   - Generates `n` random points.
+   - Sorts the points and uses a convex hull algorithm (Graham scan) to ensure they form a convex polygon.
+
+2. **is_point_in_polygon(point, polygon)**:
+   - Uses the ray-casting algorithm to determine if a point is inside the polygon.
+
+3. **generate_valid_point_outside_polygon(polygon, max_coord=104)**:
+   - Generates random points until it finds one outside the polygon.
+
+4. **tcgen()**:
+   - Generates a convex polygon.
+   - Finds valid start and end points outside the polygon.
+
+5. **format_test_case(start_point, end_point, polygon)**:
+   - Formats the generated data according to the problem statement.
+
+This generator ensures that the test cases are within the constraints and can be used directly in competitive programming environments.

@@ -1,0 +1,174 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p03992 - Generation 1</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p03992 - Generation 1</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>
+Score : 100 points
+Problem StatementThis contest is CODE FESTIVAL.
+However, Mr. Takahashi always writes it CODEFESTIVAL, omitting the single space between CODE and FESTIVAL.
+So he has decided to make a program that puts the single space he omitted.
+You are given a string s with 12 letters.
+Output the string putting a single space between the first 4 letters and last 8 letters in the string s.
+Constraints
+s contains exactly 12 letters.
+All letters in s are uppercase English letters.
+InputThe input is given from Standard Input in the following format:
+s
+OutputPrint the string putting a single space between the first 4 letters and last 8 letters in the string s.
+Put a line break at the end.
+Sample Input 1CODEFESTIVAL
+Sample Output 1CODE FESTIVAL
+Putting a single space between the first 4 letters and last 8 letters in CODEFESTIVAL makes it CODE FESTIVAL.
+Sample Input 2POSTGRADUATE
+Sample Output 2POST GRADUATE
+Sample Input 3ABCDEFGHIJKL
+Sample Output 3ABCD EFGHIJKL
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>Canonicalized Input Description:
+
+A string s with exactly 12 uppercase English letters.
+
+### Example Input:
+
+```
+CODEFESTIVAL
+```
+
+### Function Signature:
+Write a function f(s) that takes in the input.
+def f(s: str):
+    '''
+    s: a string
+    '''</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Certainly! Here's a test case generator for the given problem statement:
+
+### Problem Statement: Insert Space in String
+
+**Description**
+
+Mr. Takahashi always writes "CODE FESTIVAL" as "CODEFESTIVAL", omitting the single space between "CODE" and "FESTIVAL". You are given a string `s` with exactly 12 letters. Your task is to output the string with a single space between the first 4 letters and the last 8 letters.
+
+**Input**
+
+A string `s` consisting of exactly 12 uppercase English letters.
+
+**Output**
+
+Print the string with a single space between the first 4 letters and the last 8 letters in the string `s`.
+
+**Constraints**
+
+- `s` contains exactly 12 uppercase English letters.
+
+**Example**
+
+_Input_
+```
+CODEFESTIVAL
+```
+
+_Output_
+```
+CODE FESTIVAL
+```
+
+_Input_
+```
+POSTGRADUATE
+```
+
+_Output_
+```
+POST GRADUATE
+```
+
+### Test Case Generator Code
+
+Here is a Python script to generate test cases for this problem:
+
+```python
+import random
+import string
+
+def generate_random_string(length):
+    return ''.join(random.choice(string.ascii_uppercase) for _ in range(length))
+
+def tcgen():
+    s = generate_random_string(12)
+    return s
+
+# Example of usage
+for _ in range(5):
+    s = tcgen()
+    print(s)
+```
+
+This script generates a random string `s` of exactly 12 uppercase English letters, which fits the input constraints of the problem. Each time you run the `tcgen` function, it will provide a new valid test case. The example usage shows how to generate and print five test cases. 
+
+You can adapt this script to generate as many test cases as needed for your testing purposes.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    s = fh.readline().strip()
+    return s</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

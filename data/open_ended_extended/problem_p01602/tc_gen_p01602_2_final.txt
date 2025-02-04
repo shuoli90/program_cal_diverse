@@ -1,0 +1,67 @@
+Sure! Here's a test case generator for the given problem statement:
+
+```python
+import random
+
+def tcgen():
+    # Number of operations, n
+    n = random.randint(1, 1000)
+    
+    operations = []
+    for _ in range(n):
+        # Randomly choose between '(' and ')'
+        p = random.choice(['(', ')'])
+        
+        # Randomly choose an integer x_i (1 ≤ x_i ≤ 10^6)
+        x = random.randint(1, 10**6)
+        
+        operations.append((p, x))
+    
+    return n, operations
+
+# Function to print the test case in the required format
+def print_test_case(n, operations):
+    print(n)
+    for p, x in operations:
+        print(p, x)
+
+# Generate a test case and print it
+if __name__ == "__main__":
+    n, operations = tcgen()
+    print_test_case(n, operations)
+```
+
+This generator will produce random test cases conforming to the constraints specified in the problem statement.
+
+### Explanation of the Test Case Generator:
+
+1. **Generate `n`**:
+   - Randomly choose an integer `n` between 1 and 1000.
+
+2. **Generate Operations**:
+   - For each of the `n` operations:
+     - Randomly choose a character `p` which is either '(' or ')'.
+     - Randomly choose an integer `x` between 1 and \(10^6\).
+
+3. **Print the Test Case**:
+   - The `print_test_case` function prints the test case in the required format.
+   - It first prints the number of operations `n`.
+   - Then, for each operation, it prints the character `p` and the integer `x`.
+
+### Example Output:
+
+Running the generator might produce an output like this:
+
+```
+3
+( 1000000
+) 500000
+( 750000
+```
+
+This represents a test case where `n` is 3, and the operations are to add:
+1. `1000000` occurrences of '('
+2. `500000` occurrences of ')'
+3. `750000` occurrences of '('
+
+You can use this generator to create multiple test cases for testing the solution to the problem.

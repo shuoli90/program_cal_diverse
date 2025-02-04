@@ -1,0 +1,64 @@
+Sure, here's a test case generator for the problem "The Last Line of Defense":
+
+```python
+import random
+
+def generate_polygon():
+    num_vertices = random.randint(3, 5)
+    vertices = []
+    for _ in range(num_vertices):
+        x = random.randint(-1000, 1000)
+        y = random.randint(-1000, 1000)
+        vertices.append((x, y))
+    return num_vertices, vertices
+
+def generate_occurrence_facility_data():
+    x1 = random.randint(-1000, 1000)
+    y1 = random.randint(-1000, 1000)
+    x2 = random.randint(-1000, 1000)
+    y2 = random.randint(-1000, 1000)
+    return (x1, y1, x2, y2)
+
+def tcgen():
+    num_polygons = random.randint(1, 5)
+    polygons = []
+    for _ in range(num_polygons):
+        num_vertices, vertices = generate_polygon()
+        polygons.append((num_vertices, vertices))
+    
+    num_occurrence_facility_pairs = random.randint(1, 100)
+    occurrence_facility_data = [generate_occurrence_facility_data() for _ in range(num_occurrence_facility_pairs)]
+    
+    return num_polygons, polygons, num_occurrence_facility_pairs, occurrence_facility_data
+
+def format_test_case(num_polygons, polygons, num_occurrence_facility_pairs, occurrence_facility_data):
+    lines = []
+    lines.append(str(num_polygons))
+    
+    for num_vertices, vertices in polygons:
+        lines.append(str(num_vertices))
+        for x, y in vertices:
+            lines.append(f"{x} {y}")
+    
+    lines.append(str(num_occurrence_facility_pairs))
+    
+    for x1, y1, x2, y2 in occurrence_facility_data:
+        lines.append(f"{x1} {y1} {x2} {y2}")
+    
+    return "\n".join(lines)
+
+# Example usage
+num_polygons, polygons, num_occurrence_facility_pairs, occurrence_facility_data = tcgen()
+formatted_test_case = format_test_case(num_polygons, polygons, num_occurrence_facility_pairs, occurrence_facility_data)
+print(formatted_test_case)
+```
+
+This script generates random test cases for the problem "The Last Line of Defense". The function `tcgen()` generates the necessary components based on the constraints provided, and `format_test_case()` formats these components into the required input format.
+
+### Notes:
+- The `generate_polygon()` function creates a random polygon with vertices in the range of -1000 to 1000.
+- The `generate_occurrence_facility_data()` function creates random coordinates for the occurrence point and important facility.
+- The `tcgen()` function composes all the elements, ensuring the constraints are met.
+- The `format_test_case()` function formats the generated data into the problem's input format. 
+
+You can run this script to generate test cases and use the printed output as input to your problem solver.

@@ -1,0 +1,4 @@
+def extract_arguments(fh):
+    N, M = map(int, fh.readline().strip().split())
+    propositions = [tuple(map(int, fh.readline().strip().split())) for _ in range(M)]
+    return N, M, propositions

@@ -1,0 +1,39 @@
+Sure, I can help you write a test case generator for the given problem. Here is a Python function that generates test cases for "Problem A: Decimal Sequences":
+
+```python
+import random
+
+def generate_test_case():
+    # Generate the number of digits, n
+    n = random.randint(1, 1000)
+    
+    # Generate a sequence of n digits (each digit is between 0 and 9)
+    digits = [random.randint(0, 9) for _ in range(n)]
+    
+    return n, digits
+
+def format_test_case(n, digits):
+    # Format the test case to match the input format
+    test_case = f"{n}\n" + " ".join(map(str, digits))
+    return test_case
+
+# Example usage
+for _ in range(5):  # Generate 5 example test cases
+    n, digits = generate_test_case()
+    test_case = format_test_case(n, digits)
+    print("Test Case:")
+    print(test_case)
+    print()
+```
+
+### Explanation:
+
+1. **`generate_test_case()`**:
+   - It generates a random integer `n` (1 ≤ n ≤ 1000).
+   - It creates a list of `n` random digits (each digit is between 0 and 9).
+
+2. **`format_test_case(n, digits)`**:
+   - It formats the generated test case to match the input format specified in the problem statement.
+   - The formatted test case consists of `n` followed by a newline, and then the `n` digits separated by spaces.
+
+In the **example usage** section, the code generates and prints 5 example test cases. You can adjust the number of test cases by changing the range in the for loop.

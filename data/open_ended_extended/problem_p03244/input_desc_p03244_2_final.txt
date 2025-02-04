@@ -1,0 +1,17 @@
+An integer N (2 ≤ N ≤ 10^5), representing some quantity or size. N is even.
+A list of integers V of size N, where each integer is between 1 and 1e5.
+
+### Example Input:
+
+```
+4
+3 1 3 2
+```
+
+### Function Signature:
+Write a function f(N, V) that takes in the input.
+def f(N: int, V: List[int]):
+    '''
+    N: an integer
+    V: a list of integers
+    '''

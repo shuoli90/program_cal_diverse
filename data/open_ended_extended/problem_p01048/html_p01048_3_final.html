@@ -1,0 +1,125 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p01048 - Generation 3</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p01048 - Generation 3</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>Divisor
+Problem
+Given a natural number N less than or equal to 12, find the smallest natural number whose number of divisors is exactly N.
+Input
+A single natural number N is given on one line.
+Constraints
+1 ≤ N ≤ 12
+Output
+Output the smallest natural number whose number of divisors is exactly N on one line.
+Sample Input 1
+1
+Sample Output 1
+1
+Sample Input 2
+2
+Sample Output 2
+2
+Sample Input 3
+3
+Sample Output 3
+4
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>Canonicalized Input Description:
+
+A single integer N (1 ≤ N ≤ 12).
+
+### Example Input:
+
+```
+3
+```
+
+### Function Signature:
+Write a function f(N) that takes in the input.
+def f(N: int):
+    '''
+    N: an integer
+    '''</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Sure! Below is a Python function that generates test cases for the given problem statement "Divisor".
+
+```python
+import random
+
+def tcgen():
+    # Generate a random value for N within the given constraint
+    N = random.randint(1, 12)
+    
+    return N
+
+# Example usage
+for _ in range(5):  # Generate 5 test cases
+    print(tcgen())
+```
+
+This function `tcgen()` generates a random integer \(N\) within the range [1, 12], as specified in the problem constraints. Each call to `tcgen()` will produce a new value for \(N\) which can be used as an input to test the solution for the problem.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    N = int(fh.readline().strip())
+    return (N,)</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

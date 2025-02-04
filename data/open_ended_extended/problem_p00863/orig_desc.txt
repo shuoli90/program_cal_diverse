@@ -1,0 +1,47 @@
+
+Problem J: The Teacher’s Side of Math
+One of the tasks students routinely carry out in their mathematics classes is to solve a polynomial equation. It is, given a polynomial, say X2 - 4X + 1, to find its roots (2 ± √3).
+If the students’ task is to find the roots of a given polynomial, the teacher’s task is then to find a polynomial that has a given root. Ms. Galsone is an enthusiastic mathematics teacher who is bored with finding solutions of quadratic equations that are as simple as a + b√c. She wanted to make higher-degree equations whose solutions are a little more complicated. As usual in problems in mathematics classes, she wants to maintain all coefficients to be integers and keep the degree of the polynomial as small as possible (provided it has the specified root). Please help her by writing a program that carries out the task of the teacher’s side.
+You are given a number t of the form:
+    t = m√a+n√b
+where a and b are distinct prime numbers, and m and n are integers greater than 1.
+In this problem, you are asked to find t's minimal polynomial on integers, which is the polynomial F(X) = adXd + ad-1Xd-1 + ... + a1X + a0 satisfying the following conditions.
+ Coefficients a0, ... , ad are integers and ad > 0.
+ F(t) = 0.
+ The degree d is minimum among polynomials satisfying the above two conditions.
+ F(X) is primitive. That is, coefficients a0, ... , ad have no common divisors greater than one.
+For example, the minimal polynomial of √3+ √2 on integers is F(X) = X4 - 10X2 + 1. Verifying F(t) = 0 is as simple as the following (α = 3, β = 2).
+F(t) = (α + β)4 - 10(α + β)2 + 1
+= (α4 + 4α3β + 6α2β2 + 4αβ3 + β4 ) - 10(α2 + 2αβ + β2) + 1
+= 9 + 12αβ + 36 + 8αβ + 4 - 10(3 + 2αβ + 2) + 1
+= (9 + 36 + 4 - 50 + 1) + (12 + 8 - 20)αβ
+                     = 0
+Verifying that the degree of F(t) is in fact minimum is a bit more difficult. Fortunately, under
+the condition given in this problem, which is that a and b are distinct prime numbers and m and n greater than one, the degree of the minimal polynomial is always mn. Moreover, it is
+always monic. That is, the coefficient of its highest-order term (ad) is one.
+Input
+The input consists of multiple datasets, each in the following format.
+   a    m   b      n
+This line represents m√a + n√b. The last dataset is followed by a single line consisting of four zeros. Numbers in a single line are separated by a single space.
+Every dataset satisfies the following conditions.
+ m√a + n√b ≤ 4.
+ mn ≤ 20.
+ The coefficients of the answer a0, ... , ad are between (-231 + 1) and (231 - 1), inclusive.
+Output
+For each dataset, output the coefficients of its minimal polynomial on integers F(X) = adXd + ad-1Xd-1 + ... + a1X + a0, in the following format.
+ad ad-1    ...   a1 a0
+Non-negative integers must be printed without a sign (+ or -). Numbers in a single line must
+be separated by a single space and no other characters or extra spaces may appear in the output.
+Sample Input
+3 2 2 2
+3 2 2 3
+2 2 3 4
+31 4 2 3
+3 2 2 7
+0 0 0 0
+Output for the Sample Input
+1 0 -10 0 1
+1 0 -9 -4 27 -36 -23
+1 0 -8 0 18 0 -104 0 1
+1 0 0 -8 -93 0 24 -2976 2883 -32 -3720 -23064 -29775
+1 0 -21 0 189 0 -945 -4 2835 -252 -5103 -1260 5103 -756 -2183

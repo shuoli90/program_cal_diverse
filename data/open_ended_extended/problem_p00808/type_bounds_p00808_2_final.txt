@@ -1,0 +1,3 @@
+Types: num_connections: int, connections: List[Tuple[str, str, str, str, int]]
+Ranges: 1 ≤ num_connections ≤ 2000, price between 1 and 10000, time between 00:00 to 23:59
+Addtl Info: Start_city and Arrival_city are strings with up to 16 alphabetical characters (with only the first one in upper case)

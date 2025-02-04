@@ -1,0 +1,45 @@
+Sure, I can help you create a test case generator for the "Lottery Checker" problem. Here is the Python function to generate random test cases for this problem:
+
+```python
+import random
+import string
+
+def generate_winning_number():
+    # Generate a winning number with '*' or digits
+    return ''.join(random.choice('*' + string.digits) for _ in range(8))
+
+def generate_ticket_number():
+    # Generate a ticket number with digits
+    return ''.join(random.choice(string.digits) for _ in range(8))
+
+def tcgen():
+    n = random.randint(1, 100)
+    m = random.randint(1, 1000)
+    
+    winning_numbers = []
+    for _ in range(n):
+        winning_number = generate_winning_number()
+        prize_money = random.randint(1, 1000000)
+        winning_numbers.append((winning_number, prize_money))
+    
+    ticket_numbers = [generate_ticket_number() for _ in range(m)]
+    
+    return n, m, winning_numbers, ticket_numbers
+
+def format_test_case(n, m, winning_numbers, ticket_numbers):
+    test_case = f"{n} {m}\n"
+    for num, prize in winning_numbers:
+        test_case += f"{num} {prize}\n"
+    for ticket in ticket_numbers:
+        test_case += f"{ticket}\n"
+    return test_case
+
+# Generate a test case
+n, m, winning_numbers, ticket_numbers = tcgen()
+test_case = format_test_case(n, m, winning_numbers, ticket_numbers)
+print(test_case)
+```
+
+This script will generate a random test case for the "Lottery Checker" problem. The `tcgen` function creates random values for the number of winning numbers `n` and the number of tickets `m`. It then generates `n` random winning numbers, each with a random prize money, and `m` random ticket numbers. Finally, the `format_test_case` function formats these values into the required input format. 
+
+You can run the script to generate different test cases, and it will print the formatted test case to the console.

@@ -1,0 +1,55 @@
+Sure, let's write a test case generator for the given graph problem. The generator will create a connected undirected graph with \( N \) vertices and \( M \) edges, where \( N-1 \leq M \leq N \). Here is the Python code for generating such test cases:
+
+```python
+import random
+import sys
+
+def generate_tree(N):
+    """ Generate a random tree with N vertices. """
+    edges = []
+    for i in range(2, N + 1):
+        edges.append((i, random.randint(1, i - 1)))
+    return edges
+
+def generate_additional_edges(N, M, tree_edges):
+    """ Generate (M - (N - 1)) additional edges to ensure the graph has exactly M edges. """
+    additional_edges = []
+    existing_edges = set(tree_edges)
+    while len(additional_edges) < (M - (N - 1)):
+        u = random.randint(1, N)
+        v = random.randint(1, N)
+        if u != v and (u, v) not in existing_edges and (v, u) not in existing_edges:
+            existing_edges.add((u, v))
+            additional_edges.append((u, v))
+    return additional_edges
+
+def tcgen():
+    N = random.randint(2, 10**5)
+    M = random.randint(N - 1, N)
+    
+    tree_edges = generate_tree(N)
+    additional_edges = generate_additional_edges(N, M, tree_edges)
+    edges = tree_edges + additional_edges
+    
+    # Shuffle the edges to make the input less predictable
+    random.shuffle(edges)
+    
+    return N, M, edges
+
+def print_test_case(N, M, edges):
+    print(N, M)
+    for edge in edges:
+        print(edge[0], edge[1])
+
+# Example usage:
+N, M, edges = tcgen()
+print_test_case(N, M, edges)
+```
+
+### Explanation:
+1. **generate_tree(N)**: This function generates a random tree with \( N \) vertices. A tree with \( N \) vertices has exactly \( N-1 \) edges. It ensures that the graph is connected.
+2. **generate_additional_edges(N, M, tree_edges)**: This function generates additional edges to make the total number of edges equal to \( M \). It ensures that there are no self-loops or multiple edges and that the graph remains connected.
+3. **tcgen()**: This function generates \( N \), \( M \), and the list of edges combining the tree edges and additional edges.
+4. **print_test_case(N, M, edges)**: This function prints the generated test case in the required format.
+
+You can run this script to generate a test case for the given problem. The generated test case will be printed to the standard output.

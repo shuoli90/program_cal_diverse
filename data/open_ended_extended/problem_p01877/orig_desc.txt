@@ -1,0 +1,61 @@
+F: Precisely - Kitsuchiri -
+Problem
+Chisato Atsuji, a second-year student in the Wakakamatsu High School Class 2-H, can't be satisfied unless the sequence is "precisely" arranged.
+According to Atsuji, a "precisely" arranged sequence is a sequence that is even in length and symmetrical from left to right.
+That is, for a sequence S of length N (N is even), the sequence S is "precisely" arranged if it satisfies the following conditions.
+S_1 = S_N, S_2 = S_{N-1}, ..., S_{N/2} = S_{N - N/2 + 1}
+The math teacher in charge of the second year's class has been struggling to make the sequence "precisely" arranged by applying many queries to add a number x to each element from the l-th to the r-th of the sequence.
+Your job as a genius programmer belonging to the second year's class is to create a program that checks whether the sequence being rebuilt by the teacher is "precisely" arranged before the teacher becomes hopeless.
+Input format
+The input consists of the following format.
+N
+S_1 ... S_N
+Q
+q_1
+...
+q_Q
+Q is the total number of queries, and for each i (1 ≤ i ≤ Q), each q_i gives l, r, and x in order, separated by a single half-width space.
+Also, the following constraints are satisfied.
+2 ≤ N ≤ 500,000.
+N is even.
+For 1 ≤ j ≤ N, -100,000,000 ≤ S_j ≤ 100,000,000.
+Each element T_{i,j} of the sequence after applying each i-th query satisfies -100,000,000 ≤ T_{i,j} ≤ 100,000,000.
+1 ≤ Q ≤ 100,000.
+1 ≤ l ≤ r ≤ N.
+-1,000 ≤ x ≤ 1,000.
+Output format
+If the sequence after processing query i is "precisely" arranged, output "1" on the i-th line; otherwise, output "0".
+Sample Input 1
+10
+0 1 2 3 4 4 3 2 1 0
+7
+2 6 0
+2 4 5
+7 9 10
+2 4 5
+3 8 100
+4 6 1000
+7 7 1000
+Sample Output 1
+1
+0
+0
+1
+1
+0
+1
+Sample Input 2
+10
+4 4 4 4 4 4 4 4 6 4
+5
+9 9 -2
+1 10 1000
+1 10 -1000
+3 8 100
+5 6 1
+Sample Output 2
+1
+1
+1
+1
+1

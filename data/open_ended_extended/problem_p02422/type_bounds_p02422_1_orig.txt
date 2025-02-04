@@ -1,0 +1,3 @@
+Types: str: str, q: int, command: List[Tuple[str, int, int, Optional[str]]]
+Ranges: 1 ≤ len(str) ≤ 1000, 1 ≤ q ≤ 100, 0 ≤ a ≤ b < len(str)
+Addtl Info: for replace command, b - a + 1 = len(p)

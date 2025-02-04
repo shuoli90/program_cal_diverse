@@ -1,0 +1,29 @@
+An integer N (1 ≤ N ≤ 10^5), representing some quantity or size.
+A list of N tuples, each containing:
+- A string C, composed of lowercase alphabets (length between 1 and 20 inclusive).
+- An integer D (1 ≤ D ≤ 10^5).
+An integer M (1 ≤ M ≤ 10^5), representing some other quantity.
+A list of M strings, each composed of lowercase alphabets (length between 1 and 20 inclusive).
+
+### Example Input:
+
+```
+2
+white 20
+black 10
+2
+black
+white
+```
+
+### Function Signature:
+Write a function f(N, data, M, layers) that takes in the input.
+```python
+def f(N: int, data: List[Tuple[str, int]], M: int, layers: List[str]):
+    '''
+    N: an integer
+    data: a list of tuples, each containing a string and an integer
+    M: an integer
+    layers: a list of strings
+    '''
+```

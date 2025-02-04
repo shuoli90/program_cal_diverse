@@ -1,0 +1,34 @@
+Sure, here is a test case generator for the given problem:
+
+```python
+import random
+
+def generate_coordinates(N):
+    coordinates = set()
+    while len(coordinates) < N:
+        x = random.randint(-10**9, 10**9)
+        y = random.randint(-10**9, 10**9)
+        coordinates.add((x, y))
+    return list(coordinates)
+
+def tcgen():
+    N = random.randint(1, 50)
+    coordinates = generate_coordinates(N)
+    
+    return N, coordinates
+
+# Example usage
+if __name__ == "__main__":
+    N, coordinates = tcgen()
+    print(N)
+    for x, y in coordinates:
+        print(x, y)
+```
+
+### Explanation:
+
+- **generate_coordinates(N)**: This function generates a set of \(N\) unique coordinate pairs \((x, y)\) where \(|x|\) and \(|y|\) are within the range \([-10^9, 10^9]\).
+- **tcgen()**: This function generates a random integer \(N\) within the range \([1, 50]\) and then calls `generate_coordinates(N)` to get the unique coordinates.
+- **Example usage**: In the example usage section, the `tcgen` function is called, and the generated number of balls \(N\) and their coordinates are printed in the required format.
+
+You can run this code to generate random test cases for the given problem statement.

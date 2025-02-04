@@ -1,0 +1,19 @@
+def extract_arguments(fh):
+    datasets = []
+    while True:
+        N = int(fh.readline().strip())
+        if N == 0:
+            break
+        bridges = []
+        for _ in range(N - 1):
+            a, b, t = map(int, fh.readline().strip().split())
+            bridges.append((a, b, t))
+        datasets.append((N, bridges))
+    return datasets
+
+# if __name__ == "__main__":
+#     input_path = sys.argv[1]
+#     with open(input_path, 'r') as fh:
+#         inputs = extract_arguments(fh)
+#     for dataset in inputs:
+#         f(dataset)

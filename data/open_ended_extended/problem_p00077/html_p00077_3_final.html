@@ -1,0 +1,155 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p00077 - Generation 3</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p00077 - Generation 3</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>Run Length Encoding
+When a string has consecutive characters, you can compress the string by replacing the characters with a rule. For example, if the string is "AAAA", you can represent it as "@4A" and compress it by one character. Create a program that takes a compressed string as input and restores it to the original string. However, the restored string should not contain the "@" character.
+In addition, the original string consists of uppercase and lowercase letters, digits, and symbols, and is within 100 characters. Consecutive characters are up to 9 characters.
+Input
+Multiple strings are given. Each line contains one string. The number of strings is no more than 50.
+Output
+For each string, output the restored string for each character on one line.
+Sample Input
+ab@5C1@8050
+@99+1=1@90
+Output for the Sample Input
+abCCCCC10000000050
+999999999+1=1000000000
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An integer M (1 ≤ M ≤ 50), representing the number of lines.
+M strings, each string has a length of at most 100 characters. The strings consist of uppercase and lowercase letters, digits, and symbols.
+
+### Example Input:
+
+```
+2
+ab@5C1@8050
+@99+1=1@90
+```
+
+### Function Signature:
+Write a function f(inputs) that takes in the input as a list of strings.
+def f(inputs: List[str]):
+    '''
+    inputs: a list of strings
+    '''</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Sure! Let's create a test case generator for the "Run Length Encoding" problem. The generator will create multiple compressed strings, each with a mix of plain characters and encoded sequences using the "@" notation.
+
+Here's a possible implementation in Python:
+
+```python
+import random
+import string
+
+def generate_compressed_string():
+    original = []
+    length = random.randint(1, 100)  # Length of the original string is up to 100 characters
+    i = 0
+    
+    while i < length:
+        # Decide whether to add a normal character or a compressed sequence
+        if random.choice([True, False]) and i + 2 <= length:  # Ensure there's space for a compressed sequence
+            char = random.choice(string.ascii_letters + string.digits + string.punctuation)
+            count = random.randint(2, 9)  # 2 to 9 consecutive characters
+            original.append(f"@{count}{char}")
+            i += 2  # One character for '@' and one for the count
+        else:
+            original.append(random.choice(string.ascii_letters + string.digits + string.punctuation))
+            i += 1
+    
+    return ''.join(original)
+
+def tcgen():
+    num_strings = random.randint(1, 50)  # Number of strings, up to 50
+    test_cases = [generate_compressed_string() for _ in range(num_strings)]
+    return test_cases
+
+if __name__ == "__main__":
+    test_cases = tcgen()
+    for tc in test_cases:
+        print(tc)
+```
+
+### Explanation:
+
+1. **generate_compressed_string()**:
+    - This function generates a single compressed string.
+    - It randomly decides whether to add a plain character or an encoded sequence.
+    - Plain characters are chosen from uppercase and lowercase letters, digits, and symbols.
+    - Encoded sequences use the "@" notation with a subsequent digit (2 to 9) and a character.
+
+2. **tcgen()**:
+    - This function generates a list of compressed strings, with the number of strings being up to 50.
+    - Each string is generated using the `generate_compressed_string()` function.
+
+To use this generator, simply call the `tcgen()` function, and it will return a list of compressed strings as test cases. Each string can be printed or used directly in testing environments.
+
+This setup ensures that each test case adheres to the constraints given in the problem statement and provides a diverse set of inputs for robust testing.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    inputs = []
+    for line in fh:
+        inputs.append(line.strip())
+    return inputs</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

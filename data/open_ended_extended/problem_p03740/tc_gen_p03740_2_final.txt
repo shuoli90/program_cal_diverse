@@ -1,0 +1,91 @@
+Sure! Below is a test case generator for the given problem statement of Alice and Brown's game involving two piles of stones.
+
+### Problem Statement
+
+**Alice and Brown loves games. Today, they will play the following game.**
+
+In this game, there are two piles initially consisting of \(X\) and \(Y\) stones, respectively.
+
+Alice and Bob alternately perform the following operation, starting from Alice:
+
+- Take \(2i\) stones from one of the piles.
+- Throw away \(i\) of them, and put the remaining \(i\) in the other pile. Here, the integer \(i\) (\(1 \leq i\)) can be freely chosen as long as there is a sufficient number of stones in the pile.
+
+The player who becomes unable to perform the operation, loses the game.
+
+Given \(X\) and \(Y\), determine the winner of the game, assuming that both players play optimally.
+
+**Constraints**
+
+- \(0 \leq X, Y \leq 10^{18}\)
+
+**Input**
+
+Input is given from Standard Input in the following format:
+```
+X Y
+```
+
+**Output**
+
+Print the winner: either `Alice` or `Brown`.
+
+**Examples**
+
+_Input 1_
+```
+12 1
+```
+_Output 1_
+```
+Brown
+```
+
+_Input 2_
+```
+25 0
+```
+_Output 2_
+```
+Alice
+```
+
+_Input 3_
+```
+30 0
+```
+_Output 3_
+```
+Brown
+```
+
+_Input 4_
+```
+44 8
+```
+_Output 4_
+```
+Alice
+```
+
+### Test Case Generator
+
+Here is the test case generator in Python:
+
+```python
+import random
+
+def tcgen():
+    # Generate X and Y such that 0 ≤ X, Y ≤ 10^18
+    X = random.randint(0, 10**18)
+    Y = random.randint(0, 10**18)
+    
+    return X, Y
+
+# Example of generating a test case
+if __name__ == "__main__":
+    X, Y = tcgen()
+    print(X, Y)
+```
+
+This code will generate random values for \(X\) and \(Y\) within the specified constraints and print them out. Each run of the script will produce different values for \(X\) and \(Y\).

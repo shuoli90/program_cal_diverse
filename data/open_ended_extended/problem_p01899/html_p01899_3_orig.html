@@ -1,0 +1,184 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p01899 - Generation 3</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p01899 - Generation 3</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>
+B: Yamanote-line Game
+Trivia
+Yamanote-line is convenient. That's because you can ride it as many times as you want as long as you pay 130 yen. However, if you ride with a ticket, you have to be careful about the valid time of the ticket. It seems safe if you use an IC card. Taking advantage of this characteristic of the Yamanote-line, there are people who indulge in a nap while being rocked by the train in the Tokyo suburbs. By the way, the author of this problem has never done that. It is rare to be caught by a station staff, but it seems troublesome if you are caught, so it is not recommended.
+Problem Statement
+Let's play a game using the characteristic of the Yamanote-line. Here, for generalization, let's consider a Yamanote-line modoki where N stations numbered from 1 to N are arranged in a circle in the order of 1, 2, ..., N, and you can ride on the line for d yen to any station from any station. The game follows the following rules:
+Select any station as the starting point and ride on the Yamanote-line modoki for d yen.
+After that, get off at any station and ride again.
+The game ends when you get off at the starting station.
+You can earn p_i yen if you get off at station i.
+However, you cannot earn rewards again at a station where you have received rewards once.
+Also, it costs d yen to ride the Yamanote-line modoki again after getting off.
+Now, how much can you earn at most? Please try to challenge.
+Input Format
+N d
+p_1 p_2 … p_N
+All inputs are integers.
+In the first line, the number of stations N and the fare d to ride the Yamanote-line modoki are given separated by a space.
+In the second line, the reward that can be obtained at each station is given separated by spaces, and the i-th value p_i represents the reward at station i.
+Constraints
+3 ≤ N ≤ 1,000
+1 ≤ d ≤ 1,000
+1 ≤ p_i ≤ 1,000 (1 ≤ i ≤ N)
+Output Format
+Output the maximum amount of money you can earn in the game on one line. If you cannot earn more than 1 yen, output "kusoge" on one line. The end of the output must be a newline character and must not contain any unnecessary characters.
+Sample Input 1
+5 130
+130 170 100 120 140
+Sample Output 1
+50
+Sample Input 2
+3 100
+100 90 65
+Sample Output 2
+kusoge
+Sample Input 3
+6 210
+300 270 400 330 250 370
+Sample Output 3
+660
+Sample Input 4
+4 540
+100 460 320 280
+Sample Output 4
+kusoge</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An integer N (3 ≤ N ≤ 1,000), representing some quantity or size.
+An integer d (1 ≤ d ≤ 1,000), representing another quantity.
+A list of integers p of size N, where each integer is between 1 and 1,000.
+
+### Example Input:
+
+```
+5 130
+130 170 100 120 140
+```
+
+### Function Signature:
+Write a function f(N, d, p) that takes in the input.
+def f(N: int, d: int, p: List[int]):
+    '''
+    N: an integer
+    d: an integer
+    p: a list of integers
+    '''</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Sure, I can help you write a test case generator for the Yamanote-line Game problem. Below is the Python code that generates random test cases based on the problem constraints:
+
+```python
+import random
+
+def tcgen():
+    # Randomly generate N within the constraint 3 ≤ N ≤ 1,000
+    N = random.randint(3, 1000)
+    
+    # Randomly generate d within the constraint 1 ≤ d ≤ 1,000
+    d = random.randint(1, 1000)
+    
+    # Generate the list of rewards p of size N where each p_i is within the constraint 1 ≤ p_i ≤ 1,000
+    p = [random.randint(1, 1000) for _ in range(N)]
+    
+    # Return the generated test case
+    return N, d, p
+
+# Function to format the output in the required way
+def format_test_case(N, d, p):
+    # First line: N and d separated by a space
+    first_line = f"{N} {d}"
+    
+    # Second line: list of rewards separated by spaces
+    second_line = " ".join(map(str, p))
+    
+    # Combine both lines into the final formatted string
+    return f"{first_line}\n{second_line}"
+
+# Example usage
+for _ in range(5):  # Generate 5 test cases for demonstration
+    N, d, p = tcgen()
+    print(format_test_case(N, d, p))
+    print()  # Print a newline for better separation between test cases
+```
+
+### Explanation
+1. **tcgen Function:**
+   - Generates a random integer `N` within the range [3, 1000].
+   - Generates a random integer `d` within the range [1, 1000].
+   - Generates a list `p` of size `N` where each element is a random integer within the range [1, 1000].
+
+2. **format_test_case Function:**
+   - Formats the generated test case into the required input format with `N` and `d` on the first line, and the list of rewards `p` on the second line.
+
+3. **Example usage:**
+   - Demonstrates generating and printing 5 test cases.
+
+This code will help generate diverse test cases for testing the Yamanote-line Game problem effectively.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    N, d = map(int, fh.readline().strip().split())
+    p = list(map(int, fh.readline().strip().split()))
+    return N, d, p</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

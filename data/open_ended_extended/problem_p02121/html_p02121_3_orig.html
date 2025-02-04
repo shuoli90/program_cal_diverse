@@ -1,0 +1,205 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p02121 - Generation 3</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p02121 - Generation 3</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>Problem K: Chinol Choco
+Problem
+Chinol Choco is a chocolate company that has decided to build n new stores.
+Each store manager is asked to provide two candidate locations to build a store, and the company will choose one of the locations for each store.
+Chinol Choco sells m types of chocolate, each produced in a separate factory.
+All stores sell all types of chocolate.
+The company owns only one truck to transport chocolate, and the truck can carry chocolate for only one store at a time.
+Therefore, when the truck moves from one store to another, it must visit all factories.
+Find the maximum distance between two stores when the stores are arranged so that the maximum distance between two stores when moving from one store to another is minimized.
+Multiple stores and factories can be located at the same location.
+Input
+The input is given in the following format.
+n m
+a0 b0 c0 d0
+...
+an−1 bn−1 cn−1 dn−1
+x0 y0
+...
+xm−1 ym−1
+All input is given as integers.
+The first line contains two integers n and m, the number of Chinol Choco stores and the number of chocolate factories, respectively.
+For each of the next n lines, two candidate coordinates (ai,bi) and (ci,di) for building the store are given, separated by a space.
+The next m lines give the coordinates (xi,yi) of the factories, separated by a space.
+Constraints
+The input satisfies the following conditions.
+2 ≤ n ≤ 200
+1 ≤ m ≤ 15
+0 ≤ ai,bi,ci,di,xi,yi ≤ 1000
+Output
+Output the maximum distance between two stores when the stores are arranged so that the maximum distance between two stores when moving from one store to another is minimized.
+The output should not differ from the correct answer by more than 10−6.
+Sample Input 1
+2 1
+0 0 5 5
+3 3 6 6
+2 2
+Sample Output 1
+4.2426406871
+Sample Input 2
+2 2
+0 0 6 0
+7 0 3 0
+4 0
+5 0
+Sample Output 2
+3.0000000000
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>### Canonicalized Input Description:
+
+An integer n (2 ≤ n ≤ 200), representing some quantity or size.
+An integer m (1 ≤ m ≤ 15), representing some quantity or size.
+A list of tuples of integers (ai, bi, ci, di) of size n, where each integer is between 0 and 1000.
+A list of tuples of integers (xi, yi) of size m, where each integer is between 0 and 1000.
+
+### Example Input:
+
+```
+2 1
+0 0 5 5
+3 3 6 6
+2 2
+```
+
+### Function Signature:
+Write a function f(n, m, stores, factories) that takes in the input.
+```
+def f(n: int, m: int, stores: List[Tuple[int, int, int, int]], factories: List[Tuple[int, int]]):
+    ''' 
+    n: an integer
+    m: an integer
+    stores: a list of tuples of integers
+    factories: a list of tuples of integers
+    '''
+```</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Below is the test case generator for the given problem statement "Chinol Choco":
+
+```python
+import random
+
+def generate_coordinates():
+    return random.randint(0, 1000), random.randint(0, 1000)
+
+def tcgen():
+    n = random.randint(2, 200)  # number of stores
+    m = random.randint(1, 15)  # number of factories
+    
+    store_candidates = []
+    for _ in range(n):
+        a, b = generate_coordinates()
+        c, d = generate_coordinates()
+        store_candidates.append((a, b, c, d))
+    
+    factory_locations = []
+    for _ in range(m):
+        x, y = generate_coordinates()
+        factory_locations.append((x, y))
+    
+    return n, m, store_candidates, factory_locations
+
+def format_test_case(n, m, store_candidates, factory_locations):
+    lines = []
+    lines.append(f"{n} {m}")
+    for a, b, c, d in store_candidates:
+        lines.append(f"{a} {b} {c} {d}")
+    for x, y in factory_locations:
+        lines.append(f"{x} {y}")
+    return "\n".join(lines)
+
+# Example usage:
+n, m, store_candidates, factory_locations = tcgen()
+test_case = format_test_case(n, m, store_candidates, factory_locations)
+print(test_case)
+```
+
+This generator creates random test cases for the given problem statement. Here is what each part of the generator does:
+
+- `generate_coordinates()`: Generates a random coordinate within the range [0, 1000].
+
+- `tcgen()`: Generates the entire test case:
+  - Randomly selects the number of stores `n` within the range [2, 200].
+  - Randomly selects the number of factories `m` within the range [1, 15].
+  - Generates `n` pairs of candidate coordinates for the stores.
+  - Generates `m` factory coordinates.
+
+- `format_test_case()`: Formats the generated test case into a string suitable for competitive programming input.
+
+You can use the generated test case for testing purposes or to understand the structure of the input. Simply run the provided example usage to generate and print a test case.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    n, m = map(int, fh.readline().strip().split())
+    store_candidates = []
+    for _ in range(n):
+        a, b, c, d = map(int, fh.readline().strip().split())
+        store_candidates.append(((a, b), (c, d)))
+    factory_coords = []
+    for _ in range(m):
+        x, y = map(int, fh.readline().strip().split())
+        factory_coords.append((x, y))
+    return n, m, store_candidates, factory_coords</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

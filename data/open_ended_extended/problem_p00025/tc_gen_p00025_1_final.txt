@@ -1,0 +1,28 @@
+Sure! Here is a test case generator for the "Hit and Blow" problem:
+
+```python
+import random
+
+def generate_unique_numbers():
+    return random.sample(range(10), 4)
+
+def tcgen():
+    datasets = []
+    num_datasets = random.randint(1, 50)
+    for _ in range(num_datasets):
+        A = generate_unique_numbers()
+        B = generate_unique_numbers()
+        datasets.append((A, B))
+    return datasets
+
+# Test case generator usage example
+if __name__ == "__main__":
+    test_cases = tcgen()
+    for A, B in test_cases:
+        print(" ".join(map(str, A)))
+        print(" ".join(map(str, B)))
+```
+
+This script generates a random number of datasets (between 1 and 50, inclusive), where each dataset consists of two lists of four unique integers between 0 and 9. The `generate_unique_numbers` function ensures that the numbers in each list are unique.
+
+You can run this script to generate test cases. The output will be formatted in such a way that each dataset is printed on two lines: the first line for `A` and the second line for `B`.

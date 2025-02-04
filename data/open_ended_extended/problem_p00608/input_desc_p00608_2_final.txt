@@ -1,0 +1,25 @@
+An integer H (1 ≤ H ≤ 10), representing some quantity.
+An integer W (1 ≤ W ≤ 10), representing some quantity.
+An H x W grid, where each cell contains a single character from {'.', '#', '0'-'9', '+', '-', '*', '/', '='}.
+An integer n (1 ≤ n ≤ 10), representing some quantity.
+A list of n characters, each being one of {'0'-'9', '+', '-', '*', '/'}.
+
+### Example Input:
+
+```
+5 5
+4=..2
++#=#+
+.-2=.
+=#*#=
+.-.=3
+6
+7 3 1 4 / 8
+```
+
+### Function Signature:
+Write a function f(inputs) that takes in the input.
+def f(inputs: List[Tuple[int, int, List[str], int, List[str]]]): 
+    '''  
+    inputs: list of tuples, where each tuple represents a dataset
+    '''

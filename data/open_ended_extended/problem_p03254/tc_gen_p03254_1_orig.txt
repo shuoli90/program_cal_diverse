@@ -1,0 +1,31 @@
+Here is a test case generator for the given problem statement:
+
+```python
+import random
+
+def tcgen():
+    # Number of children (2 ≤ N ≤ 100)
+    N = random.randint(2, 100)
+    
+    # Number of sweets (1 ≤ x ≤ 10^9)
+    x = random.randint(1, 10**9)
+    
+    # List of sweets each child wants (1 ≤ a_i ≤ 10^9)
+    a = [random.randint(1, 10**9) for _ in range(N)]
+
+    return N, x, a
+
+# Example usage:
+N, x, a = tcgen()
+print(N, x)
+print(" ".join(map(str, a)))
+```
+
+Explanation:
+
+1. The number of children, `N`, is randomly chosen between 2 and 100.
+2. The number of sweets, `x`, is randomly chosen between 1 and 10^9.
+3. The list `a` contains `N` integers, each representing the number of sweets a child wants, and each integer is randomly chosen between 1 and 10^9.
+4. The function returns the generated test case values.
+
+You can run the `tcgen` function to generate random test cases for the given problem. The example usage prints the generated test case in the required format.

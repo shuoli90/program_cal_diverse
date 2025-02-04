@@ -1,0 +1,17 @@
+An integer H (2 ≤ H ≤ 10^9), representing some quantity or size.
+An integer W (2 ≤ W ≤ 10^9), representing some quantity or size.
+An integer S (1 ≤ S ≤ H), representing some quantity or size.
+An integer T (1 ≤ T ≤ W), representing some quantity or size.
+
+### Example Input:
+
+```
+4 5 2 3
+```
+
+### Function Signature:
+Write a function f(inputs) that takes in the input.
+def f(inputs: Tuple[int, int, int, int]):
+    '''
+    inputs: a tuple of four integers
+    '''

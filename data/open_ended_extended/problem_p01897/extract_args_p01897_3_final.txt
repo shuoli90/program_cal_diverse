@@ -1,0 +1,10 @@
+def extract_arguments(fh):
+    N, M = map(int, fh.readline().strip().split())
+    edges = [tuple(map(int, fh.readline().strip().split())) for _ in range(M)]
+    return N, M, edges
+
+# if __name__ == "__main__":
+#     input_path = sys.argv[1]
+#     with open(input_path, 'r') as fh:
+#         N, M, edges = extract_arguments(fh)
+#     f(N, M, edges)

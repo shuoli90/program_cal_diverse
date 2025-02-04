@@ -1,0 +1,144 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p03139 - Generation 3</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p03139 - Generation 3</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>
+Score : 100 points
+Problem StatementWe conducted a survey on newspaper subscriptions.
+More specifically, we asked each of the N respondents the following two questions:
+Question 1: Are you subscribing to Newspaper X?
+Question 2: Are you subscribing to Newspaper Y?
+As the result, A respondents answered "yes" to Question 1, and B respondents answered "yes" to Question 2.
+What are the maximum possible number and the minimum possible number of respondents subscribing to both newspapers X and Y?
+Write a program to answer this question.
+Constraints
+1 \leq N \leq 100
+0 \leq A \leq N
+0 \leq B \leq N
+All values in input are integers.
+InputInput is given from Standard Input in the following format:
+N A B
+OutputPrint the maximum possible number and the minimum possible number of respondents subscribing to both newspapers, in this order, with a space in between.
+Sample Input 110 3 5
+Sample Output 13 0
+In this sample, out of the 10 respondents, 3 answered they are subscribing to Newspaper X, and 5 answered they are subscribing to Newspaper Y.
+Here, the number of respondents subscribing to both newspapers is at most 3 and at least 0.
+Sample Input 210 7 5
+Sample Output 25 2
+In this sample, out of the 10 respondents, 7 answered they are subscribing to Newspaper X, and 5 answered they are subscribing to Newspaper Y.
+Here, the number of respondents subscribing to both newspapers is at most 5 and at least 2.
+Sample Input 3100 100 100
+Sample Output 3100 100
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An integer N (1 ≤ N ≤ 100), representing some quantity or size.
+An integer A (0 ≤ A ≤ N).
+An integer B (0 ≤ B ≤ N).
+
+### Example Input:
+
+```
+10 3 5
+```
+
+### Function Signature:
+Write a function f(N, A, B) that takes in the input. 
+def f(N: int, A: int, B: int): 
+    ''' 
+    N: an integer 
+    A: an integer 
+    B: an integer 
+    '''</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Sure, I can help you write a test case generator for this problem statement. The generator will produce random valid inputs for the given constraints. Here is the code:
+
+```python
+import random
+
+def tcgen():
+    # Generate N in the range [1, 100]
+    N = random.randint(1, 100)
+    
+    # Generate A and B in the range [0, N]
+    A = random.randint(0, N)
+    B = random.randint(0, N)
+    
+    return N, A, B
+
+# Sample usage
+for _ in range(5):  # Generate and print 5 sample test cases
+    N, A, B = tcgen()
+    print(N, A, B)
+```
+
+This generator ensures that the values of \(N\), \(A\), and \(B\) adhere to the constraints given in the problem statement. Here's a brief explanation:
+
+- `N` is a random integer between 1 and 100, inclusive.
+- `A` is a random integer between 0 and \(N\), inclusive.
+- `B` is a random integer between 0 and \(N\), inclusive.
+
+These generated values can be used as input for the problem to test various edge cases and typical cases. Feel free to run the `tcgen` function multiple times to generate multiple test cases.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    N, A, B = map(int, fh.readline().strip().split())
+    return N, A, B</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

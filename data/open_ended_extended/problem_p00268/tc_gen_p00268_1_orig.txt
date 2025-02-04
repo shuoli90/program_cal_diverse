@@ -1,0 +1,70 @@
+Sure, I can help you write a test case generator for the competitive programming problem "Cat Going Straight II". Below is the Python code that generates test cases for this problem:
+
+```python
+import random
+
+def generate_pillars(C):
+    # Generating C unique pillars with coordinates between -1000 and 1000
+    pillars = set()
+    while len(pillars) < C:
+        x = random.randint(-1000, 1000)
+        y = random.randint(-1000, 1000)
+        pillars.add((x, y))
+    return list(pillars)
+
+def generate_walls(C, W):
+    # Generating W walls based on C pillars (1-indexed)
+    walls = set()
+    while len(walls) < W:
+        s = random.randint(1, C)
+        t = random.randint(1, C)
+        if s != t:
+            # Ensure no duplicate walls and no wall with the same pillar at both ends
+            wall = tuple(sorted((s, t)))
+            walls.add(wall)
+    return list(walls)
+
+def tcgen():
+    # Generate number of pillars and walls
+    C = random.randint(3, 100)
+    W = random.randint(3, 300)
+    
+    # Generate pillars' coordinates
+    pillars = generate_pillars(C)
+    
+    # Generate walls using the pillars
+    walls = generate_walls(C, W)
+    
+    # Formatting the test case
+    test_case = f"{C} {W}\n"
+    
+    for x, y in pillars:
+        test_case += f"{x} {y}\n"
+    
+    for s, t in walls:
+        test_case += f"{s} {t}\n"
+    
+    return test_case
+
+# Generate multiple test cases
+num_test_cases = 5
+for _ in range(num_test_cases):
+    print(tcgen())
+    print("0 0")
+```
+
+### Explanation:
+
+1. **Generating Pillars**:
+   - We generate `C` unique pillars with coordinates between -1000 and 1000. The set data structure ensures that each pillar has unique coordinates.
+
+2. **Generating Walls**:
+   - We generate `W` walls, each defined by two distinct pillars. The walls are represented by tuples of pillar indices, and we use a set to avoid duplicate walls.
+
+3. **Formatting the Test Case**:
+   - We format the pillars and walls into the input format specified in the problem statement.
+
+4. **Generating Multiple Test Cases**:
+   - We loop to generate multiple test cases and print each one, followed by the `0 0` termination line.
+
+This script generates random valid test cases that you can use to test your solution for the "Cat Going Straight II" problem.

@@ -1,0 +1,25 @@
+    
+An integer N (2 ≤ N ≤ 1000), representing some quantity or size.  
+An integer M (1 ≤ M ≤ min(N(N-1), 2000)), representing another quantity or size.  
+M tuples of three integers each (a_i, b_i, c_i) where:
+- 1 ≤ a_i, b_i ≤ N
+- a_i ≠ b_i
+- -10^9 ≤ c_i ≤ 10^9
+
+### Example Input:
+
+```
+3 3
+1 2 4
+2 3 3
+1 3 5
+```
+
+### Function Signature:
+Write a function f(N, M, edges) that takes in the input.
+def f(N: int, M: int, edges: List[Tuple[int, int, int]]): 
+    ''' 
+    N: an integer 
+    M: an integer 
+    edges: a list of tuples of three integers
+    '''

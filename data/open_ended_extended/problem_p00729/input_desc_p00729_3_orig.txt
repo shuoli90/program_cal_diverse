@@ -1,0 +1,38 @@
+An integer \(N\) (1 ≤ \(N\) ≤ 1000), representing some quantity or size.
+An integer \(M\) (1 ≤ \(M\) ≤ 10000), representing some quantity or size.
+An integer \(r\) (2 ≤ \(r\) ≤ 1000), representing some quantity or size.
+A list of \(r\) records, each containing four integers \(t\) (540 ≤ \(t\) ≤ 1260), \(n\) (1 ≤ \(n\) ≤ \(N\)), \(m\) (1 ≤ \(m\) ≤ \(M\)), and \(s\) (0 or 1).
+An integer \(q\) (1 ≤ \(q\) ≤ 50), representing some quantity or size.
+A list of \(q\) queries, each containing three integers \(ts\) (540 ≤ \(ts\) < \(te\) ≤ 1260), \(te\) (540 ≤ \(te\) ≤ 1260), and \(m\) (1 ≤ \(m\) ≤ \(M\)).
+
+### Example Input:
+
+```
+4 2
+10
+775 1 1 1
+780 4 2 1
+790 2 1 1
+800 2 1 0
+810 3 1 1
+820 1 1 0
+825 3 1 0
+860 1 1 1
+870 4 2 0
+880 1 1 0
+1
+780 870 1
+```
+
+### Function Signature:
+Write a function f(inputs) that takes in the input.
+def f(inputs: List[Tuple[int, int, int, List[Tuple[int, int, int, int]], int, List[Tuple[int, int, int]]]]):
+    '''
+    inputs: a list of tuples, each containing:
+        - an integer N
+        - an integer M
+        - an integer r
+        - a list of r tuples, each containing four integers (t, n, m, s)
+        - an integer q
+        - a list of q tuples, each containing three integers (ts, te, m)
+    '''

@@ -1,0 +1,201 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p00626 - Generation 2</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p00626 - Generation 2</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>Problem F: Chocolate with Heart Marks
+Taro loves chocolate, and after returning from school, he eats his favorite chocolate bar with heart marks. His recent enjoyment is to eat all the blocks without heart marks while leaving all the heart-shaped blocks until the end. Taro tries to eat as many blocks without heart marks as possible while keeping all the blocks with heart marks connected.
+However, Taro is still young, and even if he tries to eat as described above, some blocks will be left uneaten. Therefore, Taro has asked you to create a program that finds the maximum number of blocks that can be eaten when all the blocks with heart marks remain connected.
+Taro can eat the chocolate bar in any way as long as all blocks with heart marks are connected. If any side of a block is not touching another block, it is considered separated.
+Input
+The input consists of multiple datasets. Each dataset is given in the following format:
+H W
+H × W integers
+H and W are integers that indicate the vertical and horizontal sizes of the chocolate bar, respectively. The H × W integers represent the block information, consisting of '0's that represent blocks without heart marks and '1's that represent blocks with heart marks.
+The end of the input is indicated by a dataset where H = W = 0. Do not output anything for this case.
+1 ≤ H, W ≤ 12, and it is assumed that the number of blocks with heart marks is six or less.
+Output
+For each dataset, output the maximum number of blocks that Taro can eat.
+Sample Input
+4 4
+1 0 0 0
+0 0 1 0
+0 1 0 0
+1 0 0 1
+1 1
+1
+2 3
+1 0 0
+0 0 1
+0 0	 
+Output for the Sample Input
+7
+0
+2
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An integer H (1 ≤ H ≤ 12), representing some quantity or size.
+An integer W (1 ≤ W ≤ 12), representing some quantity or size.
+A matrix of size H × W consisting of integers, where each integer is either 0 or 1.
+
+### Example Input:
+```
+4 4
+1 0 0 0
+0 0 1 0
+0 1 0 0
+1 0 0 1
+```
+
+### Function Signature:
+Write a function f(inputs) that takes in the input.
+```python
+from typing import List, Tuple
+
+def f(inputs: List[Tuple[int, int, List[List[int]]]]):
+    ''' 
+    inputs: a list of tuples, each containing:
+        - an integer
+        - an integer
+        - a list of lists of integers
+    '''
+```</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Given the problem statement for "Chocolate with Heart Marks," we need to generate test cases that are consistent with the input format and constraints. Here's a test case generator for this problem:
+
+```python
+import random
+
+def generate_dataset(H, W):
+    # Ensure that there are 6 or fewer '1's in the grid
+    num_ones = random.randint(0, 6)
+    total_blocks = H * W
+    dataset = ['0'] * total_blocks
+    ones_positions = random.sample(range(total_blocks), num_ones)
+    for pos in ones_positions:
+        dataset[pos] = '1'
+    # Convert the flat list to a grid format
+    grid = [dataset[i * W:(i + 1) * W] for i in range(H)]
+    return grid
+
+def generate_test_cases(num_cases=5):
+    test_cases = []
+    for _ in range(num_cases):
+        H = random.randint(1, 12)
+        W = random.randint(1, 12)
+        grid = generate_dataset(H, W)
+        test_cases.append((H, W, grid))
+    
+    # Add the terminating test case
+    test_cases.append((0, 0, []))
+    
+    return test_cases
+
+def print_test_cases(test_cases):
+    for H, W, grid in test_cases:
+        print(f"{H} {W}")
+        for row in grid:
+            print(" ".join(row))
+        if H != 0 and W != 0:
+            print()
+
+# Generate and print the test cases
+test_cases = generate_test_cases()
+print_test_cases(test_cases)
+```
+
+Explanation:
+
+1. **`generate_dataset(H, W)`**:
+   - Creates a grid of size \(H \times W\) with exactly 6 or fewer '1's (heart marks).
+   - Randomly places '1's in the grid, ensuring the constraints are met.
+
+2. **`generate_test_cases(num_cases=5)`**:
+   - Generates a specified number of test cases (default is 5).
+   - For each test case, it randomly selects the dimensions \(H\) and \(W\) (both between 1 and 12).
+   - Calls `generate_dataset` to create the grid for each test case.
+   - Appends the terminating test case `(0, 0, [])` at the end.
+
+3. **`print_test_cases(test_cases)`**:
+   - Prints the generated test cases in the required format.
+   - Ensures there is a blank line between consecutive test cases except at the end.
+
+This code will generate random but valid test cases for the given problem, including the required end marker `(0, 0)`.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    datasets = []
+    while True:
+        H, W = map(int, fh.readline().strip().split())
+        if H == 0 and W == 0:
+            break
+        matrix = []
+        for _ in range(H):
+            matrix.append(list(map(int, fh.readline().strip().split())))
+        datasets.append((H, W, matrix))
+    return datasets
+
+# if __name__ == "__main__":
+#     input_path = sys.argv[1]
+#     with open(input_path, 'r') as fh: 
+#         datasets = extract_arguments(fh)
+#         for H, W, matrix in datasets:
+#             f(H, W, matrix)</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

@@ -1,0 +1,29 @@
+Certainly! Here is a test case generator for the given problem statement:
+
+```python
+import random
+
+def tcgen():
+    # Generate values for N, X, D with the given constraints
+    N = random.randint(1, 2 * 10**5)
+    X = random.randint(-10**8, 10**8)
+    D = random.randint(-10**8, 10**8)
+    
+    return N, X, D
+
+# Generate a test case and print it
+N, X, D = tcgen()
+print(N, X, D)
+```
+
+This function generates random values for \(N\), \(X\), and \(D\) within the specified constraints of the problem. Each time you run it, you will get a new test case with different values of \(N\), \(X\), and \(D\).
+
+For example, if you want to generate and display test cases, you can simply call this function multiple times:
+
+```python
+for _ in range(5):  # Generate 5 test cases
+    N, X, D = tcgen()
+    print(f'Test Case - N: {N}, X: {X}, D: {D}')
+```
+
+This will give you different test cases each time you run it.

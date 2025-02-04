@@ -1,0 +1,52 @@
+Certainly! Below is a test case generator for the given problem statement.
+
+### Test Case Generator
+
+```python
+import random
+import math
+
+def tcgen():
+    test_cases = []
+    num_cases = random.randint(1, 100)
+    
+    for _ in range(num_cases):
+        D = random.randint(1, 100)
+        E = random.randint(1, 100)
+        test_cases.append((D, E))
+    
+    # Append the termination line
+    test_cases.append((0, 0))
+    
+    return test_cases
+
+def format_test_cases(test_cases):
+    formatted = []
+    for D, E in test_cases:
+        formatted.append(f"{D} {E}")
+    return "\n".join(formatted)
+
+
+# Example usage
+if __name__ == "__main__":
+    test_cases = tcgen()
+    formatted_test_cases = format_test_cases(test_cases)
+    print(formatted_test_cases)
+```
+
+### Explanation
+1. **Random Test Case Generation**:
+    - We first determine the number of test cases, which can be up to 100.
+    - For each test case, we generate random integers `D` and `E` within the range [1, 100].
+    - The test cases are stored in a list as tuples `(D, E)`.
+
+2. **Termination Line**:
+    - After generating the required number of test cases, we append the termination line `(0, 0)` to indicate the end of input.
+
+3. **Format Function**:
+    - The `format_test_cases` function converts the list of tuples into a string formatted as required by the problem statement, with each test case on a new line.
+
+4. **Example Usage**:
+    - The script generates and prints out the formatted test cases.
+
+You can run the provided script, and it will generate a set of test cases formatted appropriately for the problem statement. This script ensures that the test cases are within the specified constraints and include the proper termination line.

@@ -1,0 +1,50 @@
+Iron Bars
+A boy PCK had N straight iron bars, which were serially indexed. Unfortunately, the first M bars (0 ≤ M ≤ N) among them were bent during transportation. They all suffered a perpendicular bend at one point.
+  He is planning to make a cube using a set of bars selected using the following rules: X bars from bent ones, Y bars from straight ones, where 2X + Y = 12. Any two bars can be jointed only at the apexes of the cube. He wants to count how many types of rectangular parallelepipeds (hereafter RP) he can make using these bars.
+Make a program to count out types (different shapes) of RPs that PCK can make using the following information: the number of bars and length of each one, position of the bend, and the number of bars to be used to construct an RP. Note that any two RPs similar in shape are considered identical: namely if the length of three defining sides of two RPs coincide if arranged in increasing/decreasing order (e.g., three sides of RP i and j are A_i, B_i, C_i, and A_j, B_j and C_j in increasing order, then the relations A_i = A_j, B_i = B_j, and C_i = C_j hold. Note also that the bars are sufficiently thin to allow you to consider them as idealized lines.
+  
+Input
+  The input is given in the following format.
+N M X Y
+a_1
+a_2
+:
+a_N
+b_1
+b_2
+:
+b_M
+The first line provides the total number of iron bars and bent bars, and those straight and bent bars used to construct an RP: N (6 ≤ N ≤ 6000), M (0 ≤ M ≤ N), X (0 ≤ X ≤ 6), and Y (0 ≤ Y ≤ 12). The following relations always hold for them: 2X+Y=12, X+Y ≤ N, X ≤ M. Each of the subsequent N lines provides the length of the i-th bar a_i (1 ≤ a_i ≤ 6000) in integers. Furthermore, each of the subsequent M lines provides the location at which the i-th bent bar suffered a perpendicular bend b_i (1 ≤ b_i ≤ 3000) in centimeters from one end of the bar (note: 1 ≤ a_i-b_i ≤ 3000).
+  
+Output
+  Output the number of constructible rectangular parallelepipeds.
+Sample Input 1
+18 8 3 6
+4
+3
+3
+3
+3
+2
+2
+2
+1
+1
+1
+1
+1
+2
+2
+3
+3
+3
+1
+1
+1
+1
+1
+1
+1
+1
+Sample Output 1
+3

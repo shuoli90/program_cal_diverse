@@ -1,0 +1,37 @@
+Certainly! Below is the test case generator for the specified problem "One-Time Path".
+
+```python
+import random
+
+def tcgen():
+    # Number of islands (N) and bridges (M)
+    N = random.randint(2, 10**5)
+    M = random.randint(1, 2 * 10**5)
+    
+    bridges = []
+    for _ in range(M):
+        ai = random.randint(1, N-1)
+        bi = random.randint(1, N)
+        while bi == ai:  # Ensure ai ≠ bi
+            bi = random.randint(1, N)
+        ci = random.randint(1, 10**9)
+        bridges.append((ai, bi, ci))
+    
+    return N, M, bridges
+
+# Example usage:
+N, M, bridges = tcgen()
+print(N, M)
+for bridge in bridges:
+    print(bridge[0], bridge[1], bridge[2])
+```
+
+### Explanation:
+1. **N (Number of Islands):** Randomly chosen between 2 and \(10^5\).
+2. **M (Number of Bridges):** Randomly chosen between 1 and \(2 \times 10^5\).
+3. **Bridges:**
+   - Each bridge has a start island \(a_i\) and an end island \(b_i\) with \(1 \leq a_i < N\) and \(1 \leq b_i \leq N\).
+   - Ensure \(a_i \neq b_i\).
+   - The crossing time \(c_i\) is randomly chosen between 1 and \(10^9\).
+
+This generator creates random test cases within the constraints specified, ensuring that the input data is valid. You can run the above script to generate test cases for the problem.

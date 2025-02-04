@@ -1,0 +1,3 @@
+Types: n: int, m: int, c: List[int], a: List[int], b: List[int]
+Ranges: 1 ≤ n ≤ 10^5, 0 ≤ m ≤ min(n×(n−1),10^5), 0 ≤ c[i] ≤ 1000, 0 ≤ a[i], b[i] ≤ n − 1
+Addtl Info: No self-loops or multiple edges

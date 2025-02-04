@@ -1,0 +1,17 @@
+Sure! Below is a Python function that generates test cases for the given problem statement "Divisor".
+
+```python
+import random
+
+def tcgen():
+    # Generate a random value for N within the given constraint
+    N = random.randint(1, 12)
+    
+    return N
+
+# Example usage
+for _ in range(5):  # Generate 5 test cases
+    print(tcgen())
+```
+
+This function `tcgen()` generates a random integer \(N\) within the range [1, 12], as specified in the problem constraints. Each call to `tcgen()` will produce a new value for \(N\) which can be used as an input to test the solution for the problem.

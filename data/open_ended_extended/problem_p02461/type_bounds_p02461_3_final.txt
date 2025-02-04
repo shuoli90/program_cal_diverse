@@ -1,0 +1,13 @@
+Types: 
+- q: int
+- query_i: Tuple[int, str, Optional[int]] for i in 1 to q
+
+Ranges:
+- 1 ≤ q ≤ 200,000
+- 1 ≤ x ≤ 1,000,000,000
+- 1 ≤ length of key ≤ 20
+- key consists of lower-case letters
+- L ≤ R in lexicographic order
+
+Addtl Info: 
+- The total number of elements printed by dump operations does not exceed 1,000,000

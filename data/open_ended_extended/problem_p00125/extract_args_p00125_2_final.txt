@@ -1,0 +1,11 @@
+def extract_arguments(fh):
+    inputs = []
+    while True:
+        line = fh.readline().strip()
+        if not line:
+            break
+        y1, m1, d1, y2, m2, d2 = map(int, line.split())
+        if min(y1, m1, d1, y2, m2, d2) < 0:
+            break
+        inputs.append((y1, m1, d1, y2, m2, d2))
+    return inputs

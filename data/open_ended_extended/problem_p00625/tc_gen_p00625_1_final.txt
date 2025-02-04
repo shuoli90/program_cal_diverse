@@ -1,0 +1,75 @@
+Sure, let's write a test case generator for the problem "Frisbee Dogs". The generator will create random values for the number of dogs \(N\), the number of Frisbees \(M\), the initial positions and speeds of the dogs, and the launch positions and velocities of the Frisbees.
+
+Here is the test case generator in Python:
+
+```python
+import random
+
+def generate_random_float(min_value, max_value, precision=6):
+    """Generates a random float between min_value and max_value with the specified precision."""
+    return round(random.uniform(min_value, max_value), precision)
+
+def tcgen():
+    # Generate random number of dogs (N) and Frisbees (M)
+    N = random.randint(1, 10)
+    M = random.randint(1, 1000)
+    
+    # Generate initial positions and speeds for N dogs
+    dogs = []
+    for _ in range(N):
+        Dix = generate_random_float(-1000, 1000)
+        Diy = generate_random_float(-1000, 1000)
+        Vi = generate_random_float(1, 100)
+        dogs.append((Dix, Diy, Vi))
+    
+    # Generate launch positions and velocities for M frisbees
+    frisbees = []
+    for _ in range(M):
+        FPix = generate_random_float(-1000, 1000)
+        FPin = generate_random_float(-1000, 1000)
+        FVix = generate_random_float(-25, 25)
+        FViy = generate_random_float(-25, 25)
+        frisbees.append((FPix, FPin, FVix, FViy))
+    
+    return N, M, dogs, frisbees
+
+def format_test_case(N, M, dogs, frisbees):
+    """Formats the test case into the required input format."""
+    result = []
+    result.append(f"{N} {M}")
+    for dog in dogs:
+        result.append(f"{dog[0]} {dog[1]} {dog[2]}")
+    for frisbee in frisbees:
+        result.append(f"{frisbee[0]} {frisbee[1]} {frisbee[2]} {frisbee[3]}")
+    return "\n".join(result)
+
+# Generate a test case
+N, M, dogs, frisbees = tcgen()
+formatted_test_case = format_test_case(N, M, dogs, frisbees)
+print(formatted_test_case)
+
+# Generate multiple test cases, including the termination case
+test_cases = []
+for _ in range(5):  # Adjust the number of test cases as needed
+    N, M, dogs, frisbees = tcgen()
+    test_cases.append(format_test_case(N, M, dogs, frisbees))
+test_cases.append("0 0")  # Add the termination case
+
+# Print all test cases
+for test_case in test_cases:
+    print(test_case)
+    print()  # Add a blank line between test cases
+```
+
+Here is a breakdown of what each part of the code does:
+
+1. **`generate_random_float` function**: Generates a random float between a specified minimum and maximum value with a given precision.
+2. **`tcgen` function**: Generates a random test case with:
+    - A random number of dogs \(N\) (1 ≤ \(N\) ≤ 10).
+    - A random number of Frisbees \(M\) (1 ≤ \(M\) ≤ 1000).
+    - Random initial positions and speeds for each dog.
+    - Random launch positions and velocities for each Frisbee.
+3. **`format_test_case` function**: Formats the generated test case into the required input format for the problem.
+4. **Main script**: Generates and prints multiple test cases, including the termination case (`0 0`).
+
+This generator will help create diverse test cases to test the robustness of your Frisbee Dogs competition simulation program.

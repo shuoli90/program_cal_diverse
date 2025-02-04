@@ -1,0 +1,63 @@
+Sure, I can help generate a test case generator for the given problem statement "Number of Days". Below is the Python code for generating test cases:
+
+```python
+import random
+import datetime
+
+def generate_random_date(start_year=1, end_year=9999):
+    year = random.randint(start_year, end_year)
+    month = random.randint(1, 12)
+    # Get the number of days in the given month and year
+    day = random.randint(1, (datetime.date(year if month != 12 else year + 1, month % 12 + 1, 1) - datetime.timedelta(days=1)).day)
+    return year, month, day
+
+def tcgen():
+    num_datasets = random.randint(1, 50)
+    datasets = []
+    
+    for _ in range(num_datasets):
+        y1, m1, d1 = generate_random_date()
+        y2, m2, d2 = generate_random_date(y1, 9999)  # Ensure y2 is not earlier than y1
+        if datetime.date(y1, m1, d1) > datetime.date(y2, m2, d2):
+            y1, m1, d1, y2, m2, d2 = y2, m2, d2, y1, m1, d1  # Swap if the first date is later than the second date
+        datasets.append((y1, m1, d1, y2, m2, d2))
+    
+    # Add the terminating condition
+    datasets.append((-1, -1, -1, -1, -1, -1))
+    
+    return datasets
+
+# Example usage
+test_cases = tcgen()
+for case in test_cases:
+    print(" ".join(map(str, case)))
+```
+
+### Explanation
+
+1. **generate_random_date(start_year, end_year)**:
+    - Generates a random date between the given `start_year` and `end_year`.
+    - Ensures the day is valid based on the month and year.
+
+2. **tcgen()**:
+    - Randomly decides the number of datasets (between 1 and 50).
+    - For each dataset:
+        - Generates two dates `y1, m1, d1` and `y2, m2, d2` such that `y1, m1, d1` is not later than `y2, m2, d2`.
+        - If the generated dates are in the wrong order, they are swapped.
+    - Adds the terminating condition `(-1, -1, -1, -1, -1, -1)` at the end of the datasets.
+    - Returns the list of datasets.
+
+### Sample Output
+
+Below is a possible output from the test case generator:
+
+```
+2023 3 28 2024 4 15
+2022 5 10 2022 8 22
+2000 1 1 2006 1 1
+2010 6 15 2020 12 25
+1995 4 4 2000 1 1
+-1 -1 -1 -1 -1 -1
+```
+
+This generator will help create a variety of test cases for the "Number of Days" problem, ensuring comprehensive testing of different date ranges and leap year considerations.

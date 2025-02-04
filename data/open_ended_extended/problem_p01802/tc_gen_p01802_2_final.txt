@@ -1,0 +1,47 @@
+Sure, here is the test case generator for the given problem statement:
+
+```python
+import random
+
+def tcgen():
+    test_cases = []
+    num_tests = random.randint(1, 100)  # Number of datasets in one input (up to 100)
+    
+    for _ in range(num_tests):
+        D = random.randint(1, 100)  # D is an integer representing the shortest distance walked
+        E = random.randint(1, 100)  # E is an integer representing the budget for rail construction
+        test_cases.append((D, E))
+    
+    return test_cases
+
+def format_test_cases(test_cases):
+    formatted_cases = "\n".join(f"{D} {E}" for D, E in test_cases)
+    return f"{formatted_cases}\n0 0"
+
+# Generate test cases
+test_cases = tcgen()
+
+# Format the test cases into the required input format
+formatted_input = format_test_cases(test_cases)
+
+print(formatted_input)
+```
+
+### Explanation:
+
+1. **`tcgen` Function**:
+   - This function generates a random number of test cases (between 1 and 100).
+   - For each test case, it randomly generates values for `D` and `E` within the specified ranges (1 ≤ D, E ≤ 100).
+
+2. **`format_test_cases` Function**:
+   - This function formats the generated test cases into the required input format.
+   - It joins all test cases into a single string, each test case on a new line.
+   - It appends the termination line `0 0` at the end.
+
+### Usage:
+
+- The `tcgen` function generates the test cases.
+- The `format_test_cases` function formats the test cases as required by the problem statement.
+- The final formatted input can be printed or used as desired for testing the solution.
+
+This generator ensures that the test cases adhere to the constraints and the required input format for the problem.

@@ -1,0 +1,18 @@
+Types: N: int, M: int, L: int, K: int, A: int, H: int, freezing_facilities: List[int], roads: List[Tuple[int, int, int]]
+
+Ranges: 
+- 2 ≤ N ≤ 100
+- 1 ≤ M ≤ 100
+- 0 ≤ L ≤ N - 2
+- 0 ≤ K
+- 0 ≤ A < N
+- 0 ≤ H < N
+- freezing_facilities[i] (for i in [0, L)): 0 ≤ freezing_facilities[i] < N
+- roads[i] (for i in [0, K)): 0 ≤ X < N, 0 ≤ Y < N, 0 ≤ T
+
+Addtl Info: 
+- Capital (A) and Hospital (H) are different cities.
+- Capital (A) and Hospital (H) are not included in freezing_facilities.
+- Each city is assigned a number from 0 to N-1.
+- Roads are bi-directional.
+- At most one road directly connects any pair of cities.

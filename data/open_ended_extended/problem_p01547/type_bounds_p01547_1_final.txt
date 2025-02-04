@@ -1,0 +1,22 @@
+Types: 
+- Number of polygons: int
+- Number of polygon vertices: List[int]
+- x-coordinate: List[List[int]]
+- y-coordinate: List[List[int]]
+- Number of occurrence points and important facility data: int
+- x-coordinate of the occurrence position: List[int]
+- y-coordinate of the occurrence position: List[int]
+- x-coordinate of the important facility: List[int]
+- y-coordinate of the important facility: List[int]
+
+Ranges:
+- Number of polygons: 1 ≤ number of polygons ≤ 5
+- Number of polygon vertices[i]: 3 ≤ number of polygon vertices[i] ≤ 5
+- x-coordinate[i][j], y-coordinate[i][j]: -1000 ≤ x-coordinate[i][j], y-coordinate[i][j] ≤ 1000
+- Number of occurrence points and important facility data: 1 ≤ number of occurrence points and important facility data ≤ 100
+- x-coordinate of the occurrence position[i], y-coordinate of the occurrence position[i], x-coordinate of the important facility[i], y-coordinate of the important facility[i]: -1000 ≤ x-coordinate of the occurrence position[i], y-coordinate of the occurrence position[i], x-coordinate of the important facility[i], y-coordinate of the important facility[i] ≤ 1000
+
+Addtl Info: 
+- The coordinates included in the input are integers.
+- A polygon refers to a polygon that can be created by connecting the given vertices in order, and has no self-intersection.
+- Neither the occurrence point nor the important facility is on the vertex or the edge of the polygon.

@@ -1,0 +1,39 @@
+Sure! Below is the test case generator for the given problem statement. This generator will create random test cases which conform to the constraints provided.
+
+```python
+import random
+
+def tcgen():
+    # Generate a random N between 1 and 10^3
+    N = random.randint(1, 1000)
+    
+    # Generate N blocks with weights, solidnesses, and values
+    blocks = []
+    for _ in range(N):
+        w = random.randint(1, 10000)
+        s = random.randint(1, 10000)
+        v = random.randint(1, 10**9)
+        blocks.append((w, s, v))
+    
+    return N, blocks
+
+# Example of how to use the generator and print a test case
+def print_test_case():
+    N, blocks = tcgen()
+    print(N)
+    for w, s, v in blocks:
+        print(w, s, v)
+
+# Generate and print a test case
+print_test_case()
+```
+
+### Explanation
+1. **Generate Random N**: `N` is chosen randomly between 1 and 1000.
+2. **Generate N Blocks**: For each block, `w`, `s`, and `v` are generated within their respective constraints:
+   - `w` (weight) is between 1 and 10,000.
+   - `s` (solidness) is between 1 and 10,000.
+   - `v` (value) is between 1 and 1,000,000,000.
+3. **Print the Test Case**: The function `print_test_case()` demonstrates how to generate and print a test case using the `tcgen()` function.
+
+This should provide a robust set of test cases for the problem statement.

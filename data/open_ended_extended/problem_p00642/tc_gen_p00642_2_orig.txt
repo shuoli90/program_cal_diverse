@@ -1,0 +1,47 @@
+Sure, let's create a test case generator for the given problem "Ben Toh." The task is to simply generate several datasets where each dataset is a single integer \( n \) and terminates with a dataset where \( n = 0 \).
+
+Here's a Python function to generate a test case:
+
+```python
+import random
+
+def tcgen():
+    test_cases = []
+    
+    # Number of datasets to generate
+    num_datasets = random.randint(1, 100)
+    
+    for _ in range(num_datasets):
+        # Generate a random n value within the given constraints
+        n = random.randint(1, 100000)
+        test_cases.append(n)
+    
+    # Add the terminating condition
+    test_cases.append(0)
+    
+    return test_cases
+
+# Example usage
+if __name__ == "__main__":
+    test_cases = tcgen()
+    for case in test_cases:
+        print(case)
+```
+
+### Explanation:
+
+- **`num_datasets`**: We randomly decide the number of datasets to generate, ensuring it is a reasonable number for testing purposes.
+- **`for` loop**: For each dataset, we generate a random integer \( n \) within the range [1, 100000] as specified by the problem constraints.
+- **Termination condition**: We append a `0` at the end of the datasets to indicate the termination condition as required by the problem statement.
+
+### Example Output from Running the Generator:
+
+```
+84372
+194
+38291
+...
+0
+```
+
+This generator will provide a variety of test cases to thoroughly test the competitive programming problem.

@@ -1,0 +1,22 @@
+def extract_arguments(fh):
+    # Read the number of buildings
+    M = int(fh.readline().strip())
+    
+    buildings = []
+    
+    for _ in range(M):
+        # Read the number of points in the polygon
+        P = int(fh.readline().strip())
+        
+        # Read the points
+        points = []
+        for _ in range(P):
+            x, y = map(int, fh.readline().strip().split())
+            points.append((x, y))
+        
+        buildings.append(points)
+    
+    # Read the coefficients of the line equation
+    a, b, c = map(int, fh.readline().strip().split())
+    
+    return M, buildings, (a, b, c)

@@ -1,0 +1,43 @@
+Certainly! Here's a Python function to generate test cases for the given sandglass problem:
+
+```python
+import random
+
+def tcgen():
+    # Constraints
+    X = random.randint(1, 10**9)  # Total amount of sand
+    K = random.randint(1, 10**5)  # Number of turn-over times
+
+    # Generate K unique turn-over times in increasing order
+    r = sorted(random.sample(range(1, 10**9 + 1), K))
+
+    Q = random.randint(1, 10**5)  # Number of queries
+
+    # Generate Q unique query times in increasing order
+    t = sorted(random.sample(range(0, 10**9 + 1), Q))
+
+    # Generate corresponding amounts of sand in bulb A for each query
+    a = [random.randint(0, X) for _ in range(Q)]
+
+    # Construct the input format
+    input_data = f"{X}\n{K}\n" + " ".join(map(str, r)) + f"\n{Q}\n"
+    for i in range(Q):
+        input_data += f"{t[i]} {a[i]}\n"
+
+    return input_data
+
+# Example usage
+print(tcgen())
+```
+
+Here's what the function does:
+
+1. Generates a random integer `X` between 1 and \(10^9\), representing the total amount of sand.
+2. Generates a random integer `K` between 1 and \(10^5\), representing the number of turn-over times.
+3. Creates a list of `K` unique turn-over times `r` in increasing order.
+4. Generates a random integer `Q` between 1 and \(10^5\), representing the number of queries.
+5. Creates a list of `Q` unique query times `t` in increasing order.
+6. Generates a list of random amounts of sand `a` for each query.
+7. Constructs the input in the required format.
+
+You can use this generator function to create various test cases for the sandglass problem.

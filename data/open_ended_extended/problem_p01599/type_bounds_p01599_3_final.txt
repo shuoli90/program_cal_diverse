@@ -1,0 +1,5 @@
+Types: NAB: int, NBA: int, Ci: int, Di: int, Ai: int
+
+Ranges: 0 ≤ NAB, 0 ≤ NBA, NAB + NBA ≤ 50, 1 ≤ Ci ≤ 10, 0 ≤ Di, Ai < 86400
+
+Addtl Info: None

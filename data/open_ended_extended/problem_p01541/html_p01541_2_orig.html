@@ -1,0 +1,125 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p01541 - Generation 2</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p01541 - Generation 2</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>Long and Narrow
+ Takahashi and Ringo-chan decided to go sightseeing in New York. Takahashi had no particular place he wanted to visit, but due to Ringo-chan's enthusiastic invitation, they decided to visit the "long and narrow" place shown on the map below. 
+Google Map -(C)2012 Google
+The "long and narrow" place is very long and can be considered as a straight line. There are several tourist carriages running from the starting point to the goal point on this "long and narrow" place. These carriages are operated according to the following rules. 
+There are n carriages, and all carriages depart from the starting point and move towards the goal point.
+For all cases below, carriage size can be ignored.
+Since it is difficult to change speed along the way, all carriages move at a constant speed of Si (an integer of 1 or more) minutes per 1 km.
+Carriages have a predetermined departure order, which must be followed. However, there is no particular rule regarding the order in which carriages arrive at the goal point.
+Multiple carriages cannot depart from the starting point at the same time, and there must be at least 1 minute between the departure of one carriage and the next carriage.
+The goal point is large enough that it doesn't matter how many carriages arrive at the same time. Also, carriages that arrive at the goal point</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An integer n (1 ≤ n ≤ 10^3), representing some quantity.
+A list of integers S of size n, where each integer is between 1 and 10^5.
+
+### Example Input:
+
+```
+5
+3 10 1 7 15
+```
+
+### Function Signature:
+Write a function f(n, S) that takes in the input.
+```python
+def f(n: int, S: List[int]):
+    ''' 
+    n: an integer 
+    S: a list of integers
+    '''
+```</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Sure, I can help you write a test case generator for the "Long and Narrow" problem. Here is a possible generator:
+
+```python
+import random
+
+def tcgen():
+    # Generate a random number of carriages, n, within the given constraint
+    n = random.randint(1, 10**3)
+    
+    # Generate the speeds Si for each carriage, each speed is between 1 and a large number
+    S = [random.randint(1, 10**3) for _ in range(n)]
+    
+    return n, S
+
+# Example usage:
+n, S = tcgen()
+print(n)
+print(S)
+```
+
+Explanation:
+1. `n` is the number of carriages, randomly generated between 1 and 1000.
+2. `S` is a list of integers representing the speed of each carriage, randomly generated between 1 and 1000 for each carriage.
+
+This will give you a diverse set of test cases to ensure thorough testing of your solution. You can further customize the range of speeds or the maximum number of carriages based on specific needs or constraints of the problem.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    n = int(fh.readline().strip())
+    S = list(map(int, fh.readline().strip().split()))
+    return n, S</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

@@ -1,0 +1,17 @@
+An integer A (1 ≤ A ≤ 10^100).
+An integer B (1 ≤ B ≤ 10^100).
+
+### Example Input:
+
+```
+36
+24
+```
+
+### Function Signature:
+Write a function f(A, B) that takes in the input.
+def f(A: str, B: str):
+    ''' 
+    A: a string representing a large integer 
+    B: a string representing a large integer 
+    '''

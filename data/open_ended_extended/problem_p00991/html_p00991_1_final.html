@@ -1,0 +1,164 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p00991 - Generation 1</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p00991 - Generation 1</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>Problem B: Grid
+Given two coordinates (a1,a2) and (b1,b2) on a two-dimensional grid of size r × c, find the number of shortest paths from the first coordinate to the second coordinate. Moving from one cell to an adjacent cell (one step) costs one unit, and moving from cell (e,c-1) to cell (e,0), or from cell (r-1,f) to cell (0,f), also costs one unit.
+Input
+The input is given in the following format:
+r c a1 a2 b1 b2
+The input satisfies the following constraints:
+1 ≤ r, c ≤ 1,000
+0 ≤ a1, b1 < r
+0 ≤ a2, b2 < c
+Output
+Output the number of shortest paths from the first coordinate to the second coordinate modulo 100,000,007.
+Sample Input 1
+4 4 0 0 3 3
+Sample Output 1
+2
+Sample Input 2
+4 4 0 0 1 1
+Sample Output 2
+2
+Sample Input 3
+2 3 0 0 1 2
+Sample Output 3
+4
+Sample Input 4
+500 500 0 0 200 200
+Sample Output 4
+34807775
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An integer r (1 ≤ r ≤ 1,000).
+An integer c (1 ≤ c ≤ 1,000).
+An integer a1 (0 ≤ a1 < r).
+An integer a2 (0 ≤ a2 < c).
+An integer b1 (0 ≤ b1 < r).
+An integer b2 (0 ≤ b2 < c).
+
+### Example Input:
+
+```
+4 4 0 0 3 3
+```
+
+### Function Signature:
+Write a function f(r, c, a1, a2, b1, b2) that takes in the input. 
+def f(r: int, c: int, a1: int, a2: int, b1: int, b2: int): 
+    ''' 
+    r: an integer 
+    c: an integer 
+    a1: an integer 
+    a2: an integer 
+    b1: an integer 
+    b2: an integer 
+    '''</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>To create a test case generator for the given problem statement "Grid", we need to generate random values for the grid size and the coordinates within the given constraints. Below is the test case generator function for the problem:
+
+```python
+import random
+
+def tcgen():
+    # Generate random values for r and c within the constraint 1 ≤ r, c ≤ 1,000
+    r = random.randint(1, 1000)
+    c = random.randint(1, 1000)
+    
+    # Generate random values for coordinates a1, a2, b1, b2 within the grid size
+    a1 = random.randint(0, r - 1)
+    a2 = random.randint(0, c - 1)
+    b1 = random.randint(0, r - 1)
+    b2 = random.randint(0, c - 1)
+    
+    return r, c, a1, a2, b1, b2
+
+# Example of how to use the test case generator
+for _ in range(5):  # Generate 5 test cases
+    test_case = tcgen()
+    print(test_case)
+```
+
+### Explanation:
+1. **Grid Size (r, c)**:
+   - Randomly generate `r` and `c` within the range [1, 1000].
+2. **Coordinates (a1, a2, b1, b2)**:
+   - Randomly generate `a1` and `b1` within the range [0, r-1].
+   - Randomly generate `a2` and `b2` within the range [0, c-1].
+
+### Example Output:
+Executing the test case generator might give you output like:
+```
+(352, 982, 129, 501, 345, 741)
+(87, 451, 3, 220, 85, 300)
+(999, 999, 0, 0, 998, 998)
+(500, 500, 100, 100, 400, 400)
+(10, 20, 0, 19, 9, 0)
+```
+
+This ensures that the generated test cases are within the specified constraints and provide adequate coverage for various grid sizes and coordinate positions.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    r, c, a1, a2, b1, b2 = map(int, fh.readline().strip().split())
+    return (r, c, a1, a2, b1, b2)</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

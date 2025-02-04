@@ -1,0 +1,250 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p01173 - Generation 3</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p01173 - Generation 3</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>
+Problem C: Dig or Climb
+Benjamin Forest VIII is a king of a country. One of his best friends Nod lives in a village far from
+his castle. Nod gets seriously sick and is on the verge of death. Benjamin orders his subordinate
+Red to bring good medicine for him as soon as possible. However, there is no road from the
+castle to the village. Therefore, Red needs to climb over mountains and across canyons to reach
+the village. He has decided to get to the village on the shortest path on a map, that is, he will
+move on the straight line between the castle and the village. Then his way can be considered as
+polyline with n points (x1, y1) . . . (xn , yn ) as illustlated in the following figure.
+Figure 1: An example route from the castle to the village
+Here, xi indicates the distance between the castle and the point i, as the crow flies, and yi
+indicates the height of the point i. The castle is located on the point (x1 , y1 ), and the village is
+located on the point (xn , yn).
+Red can walk in speed vw . Also, since he has a skill to cut a tunnel through a mountain
+horizontally, he can move inside the mountain in speed vc.
+Your job is to write a program to the minimum time to get to the village.
+Input
+The input is a sequence of datasets. Each dataset is given in the following format:
+n
+vw vc
+x1 y1
+...
+xn yn
+You may assume all the following: n ≤ 1,000, 1 ≤ vw, vc ≤ 10, -10,000 ≤ xi, yi ≤ 10,000, and
+xi < xj for all i < j.
+The input is terminated in case of n = 0. This is not part of any datasets and thus should not
+be processed.
+Output
+For each dataset, you should print the minimum time required to get to the village in a line.
+Each minimum time should be given as a decimal with an arbitrary number of fractional digits
+and with an absolute error of at most 10-6 . No extra space or character is allowed.
+Sample Input
+3
+2 1
+0 0
+50 50
+100 0
+3
+1 1
+0 0
+50 50
+100 0
+3
+1 2
+0 0
+50 50
+100 0
+3
+2 1
+0 0
+100 100
+150 50
+6
+1 2
+0 0
+50 50
+100 0
+150 0
+200 50
+250 0
+0
+Output for the Sample Input
+70.710678
+100.000000
+50.000000
+106.066017
+150.000000
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An integer n (0 ≤ n ≤ 1000), representing some quantity or size. If n is 0, it signifies the end of input and should not be processed.
+Two integers vw and vc (1 ≤ vw, vc ≤ 10), representing some speeds.
+A list of n tuples, where each tuple consists of two integers (xi, yi) (-10000 ≤ xi, yi ≤ 10000), representing some coordinates. The first integer in the tuple increases with each subsequent tuple.
+
+### Example Input:
+
+```
+3
+2 1
+0 0
+50 50
+100 0
+3
+1 1
+0 0
+50 50
+100 0
+3
+1 2
+0 0
+50 50
+100 0
+3
+2 1
+0 0
+100 100
+150 50
+6
+1 2
+0 0
+50 50
+100 0
+150 0
+200 50
+250 0
+0
+```
+
+### Function Signature:
+Write a function f(inputs) that takes in the input.
+
+```python
+def f(inputs: List[Tuple[int, int, int, List[Tuple[int, int]]]]):
+    '''
+    inputs: a list of tuples, where each tuple consists of:
+        n: an integer
+        vw: an integer
+        vc: an integer
+        coordinates: a list of tuples, each consisting of two integers
+    '''
+```</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Certainly! Below is a Python function to generate test cases for the "Dig or Climb" problem. The function `tcgen` generates random test datasets adhering to the specified constraints and formats the input as required.
+
+```python
+import random
+
+def tcgen():
+    test_cases = []
+    while True:
+        # Randomly decide if we should generate a new test case or terminate
+        if random.random() < 0.1:  # 10% chance to add the termination line
+            test_cases.append("0")
+            break
+        
+        # Generate values for n, vw, and vc
+        n = random.randint(1, 1000)
+        vw = random.randint(1, 10)
+        vc = random.randint(1, 10)
+        
+        # Generate coordinates (xi, yi)
+        coordinates = []
+        for i in range(n):
+            x = random.randint(-10000, 10000)
+            y = random.randint(-10000, 10000)
+            # Ensure xi < xj for all i < j
+            if i > 0:
+                while x <= coordinates[-1][0]:
+                    x = random.randint(coordinates[-1][0] + 1, 10000)  # Ensure x is increasing
+            coordinates.append((x, y))
+        
+        # Format the test case
+        test_case = f"{n}\n{vw} {vc}\n"
+        for (x, y) in coordinates:
+            test_case += f"{x} {y}\n"
+        
+        test_cases.append(test_case.strip())
+    
+    return "\n".join(test_cases)
+
+# Example use case of the test case generator
+if __name__ == "__main__":
+    print(tcgen())
+```
+
+This function generates a sequence of datasets, ensuring that the constraints are met:
+- `n` is between 1 and 1000.
+- `vw` and `vc` are between 1 and 10.
+- `xi` and `yi` are between -10000 and 10000.
+- Coordinates `(xi, yi)` are generated such that `xi < xj` for all `i < j`.
+- The input sequence is terminated by a line containing `0`.
+
+You can run the `tcgen` function to generate test cases and print them out. Each dataset is formatted as specified and the generated output will be suitable for use in competitive programming contests or for testing purposes.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    datasets = []
+    while True:
+        n = int(fh.readline().strip())
+        if n == 0:
+            break
+        vw, vc = map(int, fh.readline().strip().split())
+        points = []
+        for _ in range(n):
+            x, y = map(int, fh.readline().strip().split())
+            points.append((x, y))
+        datasets.append((n, vw, vc, points))
+    return datasets</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

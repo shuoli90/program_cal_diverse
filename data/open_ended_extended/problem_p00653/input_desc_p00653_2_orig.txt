@@ -1,0 +1,28 @@
+An integer r and an integer c (1 ≤ r*c ≤ 10^6), representing dimensions of a 2D grid.
+An integer q (1 ≤ q ≤ 10^4), representing the number of queries.
+A 2D list of integers of size r*c, where each integer is between 0 and 2^31-1.
+A list of q tuples, each containing four integers (r1, c1, r2, c2) (0 ≤ r1 ≤ r2 < r, 0 ≤ c1 ≤ c2 < c).
+
+### Example Input:
+
+```
+3 3 4
+1 2 3
+4 2 2
+2 1 1
+0 0 2 2
+0 0 1 1
+1 0 1 0
+0 1 1 2
+```
+
+### Function Signature:
+Write a function f(r, c, q, grid, queries) that takes in the input. 
+def f(r: int, c: int, q: int, grid: List[List[int]], queries: List[Tuple[int, int, int, int]]): 
+    ''' 
+    r: an integer 
+    c: an integer 
+    q: an integer 
+    grid: a 2D list of integers 
+    queries: a list of tuples with four integers each 
+    '''

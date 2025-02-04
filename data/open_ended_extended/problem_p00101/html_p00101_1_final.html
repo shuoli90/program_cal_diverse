@@ -1,0 +1,155 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p00101 - Generation 1</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p00101 - Generation 1</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>
+Aizu PR
+An English booklet has been created for publicizing Aizu to the world.
+When you read it carefully, you found a misnomer (an error in writing) on the last name of Masayuki Hoshina, the lord of the Aizu domain. The booklet says "Hoshino" not "Hoshina".
+Your task is to write a program which replace all the words "Hoshino" with "Hoshina". You can assume that the number of characters in a text is less than or equal to 1000.
+Input
+The input consists of several datasets. There will be the number of datasets n in the first line. There will be n lines. A line consisting of english texts will be given for each dataset.
+Output
+For each dataset, print the converted texts in a line.
+Sample Input
+3
+Hoshino
+Hashino
+Masayuki Hoshino was the grandson of Ieyasu Tokugawa.
+Output for the Sample Input
+Hoshina
+Hashino
+Masayuki Hoshina was the grandson of Ieyasu Tokugawa.
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An integer n (1 ≤ n ≤ 1000), representing the number of datasets.
+n lines of text, where each line has up to 1000 characters.
+
+### Example Input:
+
+```
+3
+Hoshino
+Hashino
+Masayuki Hoshino was the grandson of Ieyasu Tokugawa.
+```
+
+### Function Signature:
+Write a function f(n, datasets) that takes in the input.
+def f(n: int, datasets: List[str]):
+    '''
+    n: an integer
+    datasets: a list of strings
+    '''</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Sure! Here is a test case generator for the problem statement you provided:
+
+```python
+import random
+import string
+
+def generate_random_text():
+    length = random.randint(1, 200)  # Length of each line can vary but should be reasonably small for ease of testing.
+    words = ["Hoshino", "Hoshina", "Masayuki", "Tokugawa", "Aizu", "domain", "lord", "grandson", "Ieyasu"]
+    text = " ".join(random.choices(words + [""]*5 + [""]*5 + list(string.ascii_lowercase), k=length))
+    return text
+
+def tcgen():
+    n = random.randint(1, 10)
+    datasets = [generate_random_text() for _ in range(n)]
+    return n, datasets
+
+# Example of generating a test case
+n, datasets = tcgen()
+print(n)
+for data in datasets:
+    print(data)
+```
+
+### Explanation
+1. **generate_random_text()**:
+   - This function generates a random text of length up to 200 characters.
+   - The text is constructed by randomly selecting words from a predefined list of words that are relevant to the problem or random lowercase letters to add variability.
+
+2. **tcgen()**:
+   - This function generates the whole test case.
+   - It randomly determines the number of datasets `n` (between 1 and 10 for complexity control).
+   - It then generates `n` lines of random text using the `generate_random_text` function.
+
+### Example Output
+You can run this in a Python environment to see the generated output. Here’s an example of what it might look like:
+
+```
+4
+Hoshino was the lord of the Aizu domain
+Masayuki was the grandson of Ieyasu Tokugawa
+grandson Ieyasu domain Aizu domain
+lord Tokugawa Hoshino Masayuki
+```
+
+This generator can be run multiple times to get different sets of test cases to ensure your solution handles a variety of inputs correctly.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    n = int(fh.readline().strip())
+    datasets = [fh.readline().strip() for _ in range(n)]
+    return n, datasets</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

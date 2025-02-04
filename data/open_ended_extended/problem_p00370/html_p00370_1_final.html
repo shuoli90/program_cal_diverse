@@ -1,0 +1,251 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p00370 - Generation 1</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p00370 - Generation 1</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>Lake Survery
+  The Onogawa Expedition is planning to conduct a survey of the Aizu nature reserve. The expedition planner wants to take the shortest possible route from the start to end point of the survey, while the expedition has to go around the coast of the Lake of Onogawa en route. The expedition walks along the coast of the lake, but can not wade across the lake.
+  Based on the base information including the start and end point of the survey and the area of Lake Onogawa as convex polygon data, make a program to find the shortest possible route for the expedition and calculate its distance. Note that the expedition can move along the polygonal lines passing through the nodes, but never enter within the area enclosed by the polygon.
+Input
+  The input is given in the following format.
+x_s y_s
+x_g y_g
+N
+x_1 y_1
+x_2 y_2
+:
+x_N y_N
+The first line provides the start point of the survey x_s,y_s (0≤x_s,y_s≤104), and the second line provides the end point x_g,y_g (0 ≤ x_g,y_g ≤ 104) all in integers. The third line provides the number of apexes N (3 ≤ N ≤ 100) of the polygon that represents the lake, and each of the subsequent N lines provides the coordinate of the i-th apex x_i,y_i (0 ≤ x_i,y_i ≤ 104) in counter-clockwise order. These data satisfy the following criteria:
+Start and end points of the expedition are not within the area enclosed by the polygon nor on boundaries.
+Start and end points of the expedition are not identical, i.e., x_s ≠ x_g or y_s ≠ y_g.
+No duplicate coordinates are given, i.e., if i ≠ j then x_i ≠ x_r or y_i ≠ y_j.
+The area enclosed by the polygon has a positive value.
+Any three coordinates that define an area are not aligned on a line.
+Output
+Output the distance of the shortest possible expedition route. Any number of decimal places can be selected as long as the error does not exceed ± 10-3.
+  
+Sample Input 1
+0 0
+4 0
+4
+1 1
+2 1
+3 3
+1 2
+Sample Output 1
+4.472136
+Sample Input 2
+4 4
+0 0
+4
+1 1
+3 1
+3 3
+1 3
+Sample Output 2
+6.32455
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An integer x_s (0 ≤ x_s ≤ 10^4).
+An integer y_s (0 ≤ y_s ≤ 10^4).
+An integer x_g (0 ≤ x_g ≤ 10^4).
+An integer y_g (0 ≤ y_g ≤ 10^4).
+An integer N (3 ≤ N ≤ 100).
+A list of N tuples, where each tuple consists of two integers x_i and y_i (0 ≤ x_i, y_i ≤ 10^4).
+
+### Example Input:
+
+```
+0 0
+4 0
+4
+1 1
+2 1
+3 3
+1 2
+```
+
+### Function Signature:
+Write a function f(x_s, y_s, x_g, y_g, N, coordinates) that takes in the input.
+def f(x_s: int, y_s: int, x_g: int, y_g: int, N: int, coordinates: List[Tuple[int, int]]): 
+    ''' 
+    x_s: an integer
+    y_s: an integer
+    x_g: an integer
+    y_g: an integer
+    N: an integer
+    coordinates: a list of tuples with two integers each
+    '''</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Certainly! Let's create a test case generator for the "Lake Survey" problem statement. This generator will create random but valid coordinates for the start and end points, and for the vertices of the convex polygon representing the lake.
+
+We'll make sure the generated coordinates adhere to the constraints mentioned in the problem statement, such as being outside the polygon and not identical.
+
+Here is the Python code for the test case generator:
+
+```python
+import random
+import math
+
+def generate_convex_polygon(n, max_coord=104):
+    """ Generates a random convex polygon with n vertices. """
+    points = []
+    for _ in range(n):
+        x = random.randint(0, max_coord)
+        y = random.randint(0, max_coord)
+        points.append((x, y))
+    
+    # Sort the points in counter-clockwise order to form a convex polygon
+    points = sorted(points, key=lambda p: (p[0], p[1]))
+
+    def cross(o, a, b):
+        return (a[0] - o[0]) * (b[1] - o[1]) - (a[1] - o[1]) * (b[0] - o[0])
+    
+    lower = []
+    for p in points:
+        while len(lower) >= 2 and cross(lower[-2], lower[-1], p) <= 0:
+            lower.pop()
+        lower.append(p)
+    
+    upper = []
+    for p in reversed(points):
+        while len(upper) >= 2 and cross(upper[-2], upper[-1], p) <= 0:
+            upper.pop()
+        upper.append(p)
+    
+    convex_polygon = lower[:-1] + upper[:-1]
+    return convex_polygon
+
+def is_point_in_polygon(point, polygon):
+    """ Check if a point is inside a polygon using the ray-casting algorithm. """
+    x, y = point
+    inside = False
+    for i in range(len(polygon)):
+        j = (i + 1) % len(polygon)
+        xi, yi = polygon[i]
+        xj, yj = polygon[j]
+        intersect = ((yi > y) != (yj > y)) and (x < (xj - xi) * (y - yi) / (yj - yi) + xi)
+        if intersect:
+            inside = not inside
+    return inside
+
+def generate_valid_point_outside_polygon(polygon, max_coord=104):
+    """ Generates a random point that is outside the given polygon. """
+    while True:
+        x = random.randint(0, max_coord)
+        y = random.randint(0, max_coord)
+        if not is_point_in_polygon((x, y), polygon):
+            return (x, y)
+
+def tcgen():
+    N = random.randint(3, 100)
+    polygon = generate_convex_polygon(N)
+    start_point = generate_valid_point_outside_polygon(polygon)
+    end_point = generate_valid_point_outside_polygon(polygon)
+    
+    while end_point == start_point:
+        end_point = generate_valid_point_outside_polygon(polygon)
+    
+    return start_point, end_point, polygon
+
+def format_test_case(start_point, end_point, polygon):
+    lines = []
+    lines.append(f"{start_point[0]} {start_point[1]}")
+    lines.append(f"{end_point[0]} {end_point[1]}")
+    lines.append(f"{len(polygon)}")
+    for x, y in polygon:
+        lines.append(f"{x} {y}")
+    return "\n".join(lines)
+
+# Generate and print a test case
+start_point, end_point, polygon = tcgen()
+test_case = format_test_case(start_point, end_point, polygon)
+print(test_case)
+```
+
+### Explanation of the Code:
+
+1. **generate_convex_polygon(n, max_coord=104)**:
+   - Generates `n` random points.
+   - Sorts the points and uses a convex hull algorithm (Graham scan) to ensure they form a convex polygon.
+
+2. **is_point_in_polygon(point, polygon)**:
+   - Uses the ray-casting algorithm to determine if a point is inside the polygon.
+
+3. **generate_valid_point_outside_polygon(polygon, max_coord=104)**:
+   - Generates random points until it finds one outside the polygon.
+
+4. **tcgen()**:
+   - Generates a convex polygon.
+   - Finds valid start and end points outside the polygon.
+
+5. **format_test_case(start_point, end_point, polygon)**:
+   - Formats the generated data according to the problem statement.
+
+This generator ensures that the test cases are within the constraints and can be used directly in competitive programming environments.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    x_s, y_s = map(int, fh.readline().strip().split())
+    x_g, y_g = map(int, fh.readline().strip().split())
+    N = int(fh.readline().strip())
+    polygon = [tuple(map(int, fh.readline().strip().split())) for _ in range(N)]
+    return (x_s, y_s), (x_g, y_g), N, polygon</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

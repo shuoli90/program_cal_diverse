@@ -1,0 +1,38 @@
+Certainly! The problem involves generating random values for \(N\), \(K\), and \(M\) while ensuring they respect the given constraints. Here's the test case generator in Python for the given problem statement:
+
+```python
+import random
+
+def tcgen():
+    # Constraints
+    MIN_N_K = 1
+    MAX_N_K = 150
+    MIN_M = 10**8
+    MAX_M = 10**9
+
+    # Generate random values for N, K, and M within their respective ranges
+    N = random.randint(MIN_N_K, MAX_N_K)
+    K = random.randint(MIN_N_K, N)
+    M = random.randint(MIN_M, MAX_M)
+
+    return N, K, M
+
+# Example usage:
+if __name__ == "__main__":
+    for _ in range(5):  # Generate 5 test cases
+        N, K, M = tcgen()
+        print(f"Generated Test Case: N={N}, K={K}, M={M}")
+```
+
+### Explanation:
+1. **N and K Generation**:
+   - \(N\) is generated randomly between 1 and 150.
+   - \(K\) is generated randomly between 1 and \(N\). This ensures \(1 \leq K \leq N \leq 150\).
+
+2. **M Generation**:
+   - \(M\) is generated randomly between \(10^8\) and \(10^9\).
+
+3. **Output**:
+   - The generator prints out the generated test case values \(N\), \(K\), and \(M\).
+
+This generator will produce a variety of test cases within the specified constraints, suitable for testing the competitive programming problem.

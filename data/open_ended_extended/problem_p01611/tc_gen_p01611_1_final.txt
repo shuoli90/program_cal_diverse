@@ -1,0 +1,39 @@
+Sure! To create a test case generator for the "K-th String" problem, we need to generate values for \(N\), \(A\), and \(K\), as well as the suffix array \(SA\). Here is a Python function to generate such test cases:
+
+```python
+import random
+
+def generate_suffix_array(N):
+    suffix_array = list(range(1, N + 1))
+    random.shuffle(suffix_array)
+    return suffix_array
+
+def tcgen():
+    N = random.randint(1, 10**5)
+    A = random.randint(1, 26)
+    # For large N, to avoid extremely large K, we limit K to a reasonable factor of N.
+    K_max = 10**18 // (26**N)
+    K = random.randint(1, K_max if K_max > 1 else 1)
+    SA = generate_suffix_array(N)
+    
+    return N, A, K, SA
+
+# Example usage:
+N, A, K, SA = tcgen()
+print(N)
+print(A)
+print(K)
+for sa in SA:
+    print(sa)
+
+```
+
+### Explanation:
+1. **N Generation**: We generate \(N\) as a random integer between 1 and \(10^5\).
+2. **A Generation**: We generate \(A\) as a random integer between 1 and 26.
+3. **K Generation**: The value of \(K\) can be extremely large (up to \(10^{18}\)). To avoid generating an infeasible test case, \(K\) is limited based on \(N\) and \(A\). This will ensure that \(K\) remains within computable bounds.
+4. **Suffix Array Generation**: The suffix array \(SA\) is generated as a shuffled list of integers from 1 to \(N\).
+
+This function generates random but valid test cases for the problem statement. You can call `tcgen()` to get a new test case each time.
+
+Please note that the constraints are preserved, and the suffices are unique and range from 1 to \(N\). The value of \(K\) is kept within a feasible range to ensure the problem remains solvable.

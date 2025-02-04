@@ -1,0 +1,48 @@
+Sure! Below is the test case generator for the given problem statement:
+
+```python
+import random
+
+def tcgen():
+    # Step 1: Generate a random integer N (1 ≤ N ≤ 10^3)
+    N = random.randint(1, 1000)
+    
+    # Step 2: Generate N blocks with random weights, solidness, and values
+    blocks = []
+    for _ in range(N):
+        w = random.randint(1, 10000)
+        s = random.randint(1, 10000)
+        v = random.randint(1, 1000000000)
+        blocks.append((w, s, v))
+    
+    return N, blocks
+
+# Example usage
+N, blocks = tcgen()
+print(N)
+for w, s, v in blocks:
+    print(w, s, v)
+```
+
+### Explanation
+1. **Generate N**: The first step is to generate a random integer \( N \) between 1 and 1000 inclusive, which represents the number of blocks.
+2. **Generate Blocks**: For each block, we generate:
+   - A weight \( w \) between 1 and 10000 inclusive.
+   - A solidness \( s \) between 1 and 10000 inclusive.
+   - A value \( v \) between 1 and 1000000000 inclusive.
+3. **Return Values**: The function returns \( N \) and a list of tuples, where each tuple contains the weight, solidness, and value of a block.
+
+### Example Output
+Here is an example of the output you might get from running the test case generator:
+```
+5
+1234 5678 9101112
+3456 7890 1234567
+2345 6789 12345678
+4567 8901 23456789
+6789 1234 34567890
+```
+
+This output represents:
+- \( N \) as 5, which means there are 5 blocks.
+- Each subsequent line represents the weight, solidness, and value of a block respectively.

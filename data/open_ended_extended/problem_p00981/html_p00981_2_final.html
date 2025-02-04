@@ -1,0 +1,237 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p00981 - Generation 2</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p00981 - Generation 2</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>Wall Painting
+  Here stands a wall made of a number of vertical panels. The panels are not painted yet.
+  You have a number of robots each of which can paint panels in a single color, either red, green, or blue. Each of the robots, when activated, paints panels between a certain position and another certain position in a certain color. The panels painted and the color to paint them are fixed for each of the robots, but which of them are to be activated and the order of their activation can be arbitrarily decided.
+  You’d like to have the wall painted to have a high aesthetic value. Here, the aesthetic value of the wall is defined simply as the sum of aesthetic values of the panels of the wall, and the aesthetic value of a panel is defined to be:
+ 0, if the panel is left unpainted.
+ The bonus value specified, if it is painted only in a single color, no matter how many times it is painted.
+ The penalty value specified, if it is once painted in a color and then overpainted in one or more different colors.
+Input
+  The input consists of a single test case of the following format.
+$n$ $m$ $x$ $y$
+$c_1$ $l_1$ $r_1$
+.
+.
+.
+$c_m$ $l_m$ $r_m$
+  Here, $n$ is the number of the panels ($1 \leq n \leq 10^9$) and $m$ is the number of robots ($1 \leq m \leq 2 \times 10^5$). $x$ and $y$ are integers between $1$ and $10^5$, inclusive. $x$ is the bonus value and $-y$ is the penalty value. The panels of the wall are consecutively numbered $1$ through $n$. The $i$-th robot, when activated, paints all the panels of numbers $l_i$ through $r_i$ ($1 \leq l_i \leq r_i \leq n$) in color with color number $c_i$ ($c_i \in \{1, 2, 3\}$). Color numbers 1, 2, and 3 correspond to red, green, and blue, respectively.
+Output
+  Output a single integer in a line which is the maximum achievable aesthetic value of the wall.
+Sample Input 1 
+8 5 10 5
+1 1 7
+3 1 2
+1 5 6
+3 1 4
+3 6 8
+Sample Output 1
+70
+Sample Input 2 
+26 3 9 7
+1 11 13
+3 1 11
+3 18 26
+Sample Output 2
+182
+Sample Input 3 
+21 10 10 5
+1 10 21
+3 4 16
+1 1 7
+3 11 21
+3 1 16
+3 3 3
+2 1 17
+3 5 18
+1 7 11
+2 3 14
+Sample Output 3
+210
+Sample Input 4 
+21 15 8 7
+2 12 21
+2 1 2
+3 6 13
+2 13 17
+1 11 19
+3 3 5
+1 12 13
+3 2 2
+1 12 15
+1 5 17
+1 2 3
+1 1 9
+1 8 12
+3 8 9
+3 2 9
+Sample Output 4
+153
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An integer n (1 ≤ n ≤ 10^9), representing some quantity or size.
+An integer m (1 ≤ m ≤ 2 × 10^5), representing some count.
+Two integers x and y, both between 1 and 1e5, representing some values.
+A list of m tuples. Each tuple consists of:
+- An integer c (1 ≤ c ≤ 3), representing some category.
+- Two integers l and r (1 ≤ l ≤ r ≤ n), representing some range.
+
+### Example Input:
+
+```
+8 5 10 5
+1 1 7
+3 1 2
+1 5 6
+3 1 4
+3 6 8
+```
+
+### Function Signature:
+Write a function f(n, m, x, y, instructions) that takes in the input. 
+def f(n: int, m: int, x: int, y: int, instructions: List[Tuple[int, int, int]]):
+    ''' 
+    n: an integer 
+    m: an integer 
+    x: an integer 
+    y: an integer 
+    instructions: a list of tuples, each containing three integers
+    '''</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>To generate test cases for the "Wall Painting" problem, we need to generate random inputs that adhere to the constraints specified in the problem statement. The input consists of:
+
+1. \( n \): the number of panels.
+2. \( m \): the number of robots.
+3. \( x \): the bonus value.
+4. \( y \): the penalty value.
+5. \( m \) lines, each containing:
+   - \( c_i \): the color (1, 2, or 3).
+   - \( l_i \): the starting position (1 ≤ \( l_i \) ≤ \( r_i \) ≤ \( n \)).
+   - \( r_i \): the ending position.
+
+Given these constraints, we can create a function to generate random test cases. Here is the Python function to generate test cases:
+
+```python
+import random
+
+def generate_test_case():
+    # Randomly generate n within the allowed range
+    n = random.randint(1, 10**9)
+    
+    # Randomly generate m within the allowed range
+    m = random.randint(1, 2 * 10**5)
+    
+    # Randomly generate x and y within the allowed range
+    x = random.randint(1, 10**5)
+    y = random.randint(1, 10**5)
+    
+    # Initialize the list of robot operations
+    operations = []
+    
+    for _ in range(m):
+        # Randomly choose a color c_i from {1, 2, 3}
+        c_i = random.choice([1, 2, 3])
+        
+        # Randomly choose l_i and r_i within the allowed range
+        l_i = random.randint(1, n)
+        r_i = random.randint(l_i, n)
+        
+        # Add the operation to the list
+        operations.append((c_i, l_i, r_i))
+    
+    return n, m, x, y, operations
+
+# Function to format the generated test case for output
+def format_test_case(n, m, x, y, operations):
+    output = f"{n} {m} {x} {y}\n"
+    for c_i, l_i, r_i in operations:
+        output += f"{c_i} {l_i} {r_i}\n"
+    return output
+
+# Example usage
+n, m, x, y, operations = generate_test_case()
+test_case = format_test_case(n, m, x, y, operations)
+print(test_case)
+```
+
+This function, `generate_test_case`, first generates random values for \( n \), \( m \), \( x \), and \( y \). It then creates random robot operations while ensuring the constraints are respected. Finally, the `format_test_case` function formats the generated test case into the required input format for the problem.
+
+Note:
+- This generator will produce random test cases within the specified constraints. You might want to add specific scenarios to thoroughly test edge cases and different conditions, such as minimal and maximal values for \( n \), \( m \), \( x \), and \( y \).
+- Printing the test cases with very large values of \( n \) and \( m \) might not be practical for manual inspection, but it is essential for testing the efficiency and correctness of the solution in a competitive programming environment.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    n, m, x, y = map(int, fh.readline().strip().split())
+    commands = []
+    for _ in range(m):
+        c, l, r = map(int, fh.readline().strip().split())
+        commands.append((c, l, r))
+    return n, m, x, y, commands
+
+# if __name__ == "__main__":
+#     input_path = sys.argv[1]
+#     with open(input_path, 'r') as fh:
+#         n, m, x, y, commands = extract_arguments(fh)
+#         f(n, m, x, y, commands)</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

@@ -1,0 +1,216 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p00735 - Generation 3</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p00735 - Generation 3</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>
+Problem B: Monday-Saturday Prime Factors
+Chief Judge's log, stardate 48642.5.
+We have decided to make a problem from elementary number theory.
+The problem looks like finding all prime factors of a positive integer,
+but it is not.
+A positive integer whose remainder divided by 7 is either 1 or 6 is called
+a 7N+{1,6} number.
+But as it is hard to pronounce,
+we shall call it a Monday-Saturday number.
+For Monday-Saturday numbers a and b,
+we say a is a Monday-Saturday divisor of b
+if there exists a Monday-Saturday number x
+such that ax = b.
+It is easy to show that
+for any Monday-Saturday numbers a and b,
+it holds that a is
+a Monday-Saturday divisor of b
+if and only if
+a is a divisor of b in the usual sense.
+We call a Monday-Saturday number a Monday-Saturday prime
+if it is greater than 1 and has no Monday-Saturday divisors
+other than itself and 1.
+A Monday-Saturday number which is a prime in the usual sense
+is a Monday-Saturday prime
+but the converse does not always hold.
+For example, 27 is a Monday-Saturday prime
+although it is not a prime in the usual sense.
+We call a Monday-Saturday prime
+which is a Monday-Saturday divisor of a Monday-Saturday number a
+a Monday-Saturday prime factor of a.
+For example, 27 is one of the Monday-Saturday prime factors of 216,
+since 27 is a Monday-Saturday prime
+and 216 = 27 × 8 holds.
+Any Monday-Saturday number greater than 1
+can be expressed as a product of one or more Monday-Saturday primes.
+The expression is not always unique
+even if differences in order are ignored.
+For example,
+216 = 6 × 6 × 6 = 8 × 27
+holds.
+Our contestants should write a program that outputs
+all Monday-Saturday prime factors
+of each input Monday-Saturday number.
+Input
+The input is a sequence of lines each of which contains a single
+Monday-Saturday number.
+Each Monday-Saturday number is greater than 1
+and less than 300000 (three hundred thousand).
+The end of the input is indicated by a line
+containing a single digit 1.
+Output
+For each input Monday-Saturday number,
+it should be printed, followed by a colon `:'
+and the list of its Monday-Saturday prime factors on a single line.
+Monday-Saturday prime factors should be listed in ascending order
+and each should be preceded by a space.
+All the Monday-Saturday prime factors should be printed only once
+even if they divide the input Monday-Saturday number more than once.
+Sample Input
+205920
+262144
+262200
+279936
+299998
+1
+Output for the Sample Input
+205920: 6 8 13 15 20 22 55 99
+262144: 8
+262200: 6 8 15 20 50 57 69 76 92 190 230 475 575 874 2185
+279936: 6 8 27
+299998: 299998
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An integer \(N\) (2 ≤ \(N\) < 300000), representing some positive quantity.
+A sequence of integers, each greater than 1 and less than 300000, terminated by a single digit 1.
+
+### Example Input:
+
+```
+205920
+262144
+262200
+279936
+299998
+1
+```
+
+### Function Signature:
+Write a function f(inputs) that takes in the input. 
+```
+def f(inputs: List[int]):
+    ''' 
+    inputs: a list of integers 
+    '''
+```</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Sure, here is a test case generator for the "Monday-Saturday Prime Factors" problem:
+
+```python
+import random
+
+def is_monday_saturday_number(n):
+    return n % 7 == 1 or n % 7 == 6
+
+def generate_monday_saturday_numbers(limit):
+    monday_saturday_numbers = []
+    for i in range(2, limit):
+        if is_monday_saturday_number(i):
+            monday_saturday_numbers.append(i)
+    return monday_saturday_numbers
+
+def generate_test_case():
+    limit = 300000
+    monday_saturday_numbers = generate_monday_saturday_numbers(limit)
+    
+    test_cases = []
+    number_of_cases = random.randint(1, 10)
+    for _ in range(number_of_cases):
+        test_case = random.choice(monday_saturday_numbers)
+        test_cases.append(test_case)
+    
+    test_cases.append(1)  # End of input
+    return test_cases
+
+# Example of generating a test case
+test_cases = generate_test_case()
+for tc in test_cases:
+    print(tc)
+```
+
+This script defines several functions:
+1. `is_monday_saturday_number` checks if a number is a "Monday-Saturday number".
+2. `generate_monday_saturday_numbers` generates all "Monday-Saturday numbers" up to a given limit.
+3. `generate_test_case` generates a random list of "Monday-Saturday numbers" and appends a `1` to signify the end of input as per the problem statement.
+
+The generated test cases will be random but constrained within the problem's limits. The script makes sure the "Monday-Saturday numbers" are chosen correctly and the input format follows the given constraints.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    numbers = []
+    while True:
+        line = fh.readline().strip()
+        if line == '1':
+            break
+        numbers.append(int(line))
+    return numbers
+
+# if __name__ == "__main__":
+#     input_path = sys.argv[1]
+#     with open(input_path, 'r') as fh: 
+#     numbers = extract_arguments(fh)
+#     # Process the numbers as needed</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

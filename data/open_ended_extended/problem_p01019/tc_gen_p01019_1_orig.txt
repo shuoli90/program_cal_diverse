@@ -1,0 +1,69 @@
+To create a test case generator for the given problem statement "Problem D: Cheat Case," we need to break down the elements required for a complete test case based on the provided description. Here's a detailed plan and the Python code to generate such test cases:
+
+### Problem Analysis
+1. **Input Elements:**
+   - **Grid size (N, M):** The dimensions of the grid, where \(1 \leq N, M \leq 1000\).
+   - **Number of brush-strokes (K):** The number of brush-strokes, where \(1 \leq K \leq 1000\).
+   - **Brush-strokes:** Each brush-stroke is represented by its coordinates (x1, y1) to (x2, y2).
+
+2. **Output:**
+   - The result of interpreting and solving the arithmetic expressions formed by the brush-strokes.
+
+### Test Case Generator Structure
+
+- **Step 1:** Randomly generate the grid dimensions (N and M).
+- **Step 2:** Randomly determine the number of brush-strokes (K).
+- **Step 3:** Generate K brush-strokes with random coordinates within the grid's bounds.
+
+### Python Code for Test Case Generator
+
+Here is the Python function to generate test cases for the problem "Problem D: Cheat Case":
+
+```python
+import random
+
+def generate_brush_stroke(N, M):
+    """Generate a random brush stroke within the grid."""
+    x1, y1 = random.randint(1, N), random.randint(1, M)
+    direction = random.choice(['horizontal', 'vertical', 'dot'])
+    
+    if direction == 'horizontal':
+        x2, y2 = x1, random.randint(1, M)
+    elif direction == 'vertical':
+        x2, y2 = random.randint(1, N), y1
+    else:  # direction == 'dot'
+        x2, y2 = x1, y1
+    
+    return x1, y1, x2, y2
+
+def tcgen():
+    N = random.randint(1, 1000)
+    M = random.randint(1, 1000)
+    K = random.randint(1, 1000)
+    
+    brush_strokes = [generate_brush_stroke(N, M) for _ in range(K)]
+    
+    return N, M, K, brush_strokes
+
+# Example usage
+N, M, K, brush_strokes = tcgen()
+print(f"Grid size: {N}x{M}")
+print(f"Number of brush strokes: {K}")
+for stroke in brush_strokes:
+    print(f"Brush stroke: {stroke}")
+```
+
+### Explanation of the Code:
+
+- **`generate_brush_stroke(N, M)` function:** This function generates a single brush-stroke within the bounds of an \(N \times M\) grid. It randomly decides whether the brush-stroke is horizontal, vertical, or a dot and then generates appropriate coordinates.
+- **`tcgen()` function:** This function generates the grid dimensions \(N\) and \(M\), the number of brush-strokes \(K\), and then uses the `generate_brush_stroke` function to create \(K\) brush-strokes.
+
+### Output
+
+The output of `tcgen()` will be four values:
+- **N:** Number of rows in the grid.
+- **M:** Number of columns in the grid.
+- **K:** Number of brush-strokes.
+- **brush_strokes:** A list of tuples representing the brush-strokes, where each tuple is in the form \((x1, y1, x2, y2)\).
+
+This generator will help in creating diverse and random test cases for the problem, ensuring that your solution can handle various scenarios effectively.

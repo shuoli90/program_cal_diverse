@@ -1,0 +1,27 @@
+An integer N (1 ≤ N ≤ 100), representing some quantity or size.
+An integer W (1 ≤ W ≤ 10,000), representing some capacity.
+A list of tuples of form (vi, wi, mi) of size N, where each tuple contains:
+  - an integer vi (1 ≤ vi ≤ 1,000)
+  - an integer wi (1 ≤ wi ≤ 1,000)
+  - an integer mi (1 ≤ mi ≤ 10,000)
+
+### Example Input:
+
+```
+4 8
+4 3 2
+2 1 1
+1 2 4
+3 2 2
+```
+
+### Function Signature:
+Write a function f(N, W, items) that takes in the input.
+```python
+def f(N: int, W: int, items: List[Tuple[int, int, int]]):
+    '''
+    N: an integer
+    W: an integer
+    items: a list of tuples, where each tuple contains three integers
+    '''
+```

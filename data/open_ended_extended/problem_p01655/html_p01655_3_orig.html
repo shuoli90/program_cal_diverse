@@ -1,0 +1,201 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p01655 - Generation 3</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p01655 - Generation 3</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>
+Problem Statement
+You bought 3 ancient scrolls from a magician. These scrolls have a long string, and the lengths of the strings are the same. He said that these scrolls are copies of the key string to enter a dungeon with a secret treasure.
+However, he also said, they were copied so many times by hand, so the string will contain some errors, though the length seems correct. 
+Your job is to recover the original string from these strings. When finding the original string, you decided to use the following assumption. 
+  The copied string will contain at most d errors. In other words, the Hamming distance of the original string and the copied string is at most d. 
+  If there exist many candidates, the lexicographically minimum string is the original string.
+Can you find the orignal string?
+Input
+The input contains a series of datasets.
+Each dataset has the following format:
+l d
+str_1
+str_2
+str_3
+The first line contains two integers l (1 \leq l \leq 100,000) and d (0 \leq d \leq 5,000.)
+l describes the length of 3 given strings and d describes acceptable maximal Hamming distance.
+The following 3 lines have given strings, whose lengths are l.
+These 3 strings consist of only lower and upper case alphabets.
+The input ends with a line containing two zeros, which should not be processed. 
+Output
+Print the lexicographically minimum satisfying the condition in a line.
+If there do not exist such strings, print -1.
+Sample Input
+3 1
+ACM
+IBM
+ICM
+5 2
+iwzwz
+iziwi
+zwizi
+1 0
+A
+B
+C
+10 5
+jLRNlNyGWx
+yyLnlyyGDA
+yLRnvyyGDA
+0 0
+Output for the Sample Input
+ICM
+iwiwi
+-1
+AARAlNyGDA
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An integer l (1 ≤ l ≤ 100,000) and an integer d (0 ≤ d ≤ 5,000)
+Three strings of length l consisting of only lower and upper case alphabets.
+The input ends with a line containing two zeros, which should not be processed.
+
+### Example Input:
+
+```
+3 1
+ACM
+IBM
+ICM
+5 2
+iwzwz
+iziwi
+zwizi
+0 0
+```
+
+### Function Signature:
+Write a function f(inputs) that takes in the input.
+def f(inputs: List[Tuple[int, int, str, str, str]]):
+    '''
+    inputs: a list of tuples, each containing:
+        - an integer l
+        - an integer d
+        - a string
+        - a string
+        - a string
+    '''</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Sure! The problem you've provided involves generating test cases for a string recovery problem based on given constraints. Below is a Python function to generate test cases for this problem:
+
+```python
+import random
+import string
+
+def generate_string(length):
+    """Generate a random string of given length consisting of lowercase and uppercase letters."""
+    return ''.join(random.choices(string.ascii_letters, k=length))
+
+def tcgen():
+    # Random length for the string, constrained by problem limits
+    l = random.randint(1, 100000)
+    # Random acceptable Hamming distance, constrained by problem limits
+    d = random.randint(0, min(5000, l))
+    
+    # Three strings of length `l`
+    str_1 = generate_string(l)
+    str_2 = generate_string(l)
+    str_3 = generate_string(l)
+    
+    return l, d, str_1, str_2, str_3
+
+# Example of generating a single test case
+l, d, str_1, str_2, str_3 = tcgen()
+print(f"{l} {d}")
+print(str_1)
+print(str_2)
+print(str_3)
+```
+
+### Explanation:
+
+1. **generate_string(length)**:
+   - This function creates a random string of a specified length using lowercase and uppercase alphabets.
+
+2. **tcgen()**:
+   - The function generates the variables according to the constraints provided in the problem statement:
+     - `l` is a random integer between 1 and 100,000.
+     - `d` is a random integer between 0 and the minimum of 5,000 or `l`.
+     - Three random strings `str_1`, `str_2`, and `str_3` each of length `l`.
+
+3. **Output**:
+   - The function returns the generated values which represent a test case.
+   - Example usage generates and prints one test case.
+
+This generator will help create diverse test cases that adhere to the constraints and requirements specified in the problem statement. You can adjust the function to produce multiple test cases or manipulate the randomness to target specific edge cases if needed.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    datasets = []
+    while True:
+        l, d = map(int, fh.readline().strip().split())
+        if l == 0 and d == 0:
+            break
+        str_1 = fh.readline().strip()
+        str_2 = fh.readline().strip()
+        str_3 = fh.readline().strip()
+        datasets.append((l, d, str_1, str_2, str_3))
+    return datasets</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

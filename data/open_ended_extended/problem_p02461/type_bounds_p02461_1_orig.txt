@@ -1,0 +1,3 @@
+Types: q: int, query: List[Union[Tuple[int, str, int], Tuple[int, str], Tuple[int, str], Tuple[int, str, str]]]
+Ranges: 1 ≤ q ≤ 200,000, 1 ≤ x ≤ 1,000,000,000, 1 ≤ length of key ≤ 20, key consists of lower-case letters, L ≤ R in lexicographic order
+Addtl Info: The total number of elements printed by dump operations does not exceed 1,000,000

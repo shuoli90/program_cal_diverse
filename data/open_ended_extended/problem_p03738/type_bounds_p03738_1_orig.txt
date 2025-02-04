@@ -1,0 +1,3 @@
+Types: A: str, B: str
+Ranges: 1 ≤ len(A) ≤ 100, 1 ≤ len(B) ≤ 100
+Addtl Info: A and B only contain digits and do not begin with 0

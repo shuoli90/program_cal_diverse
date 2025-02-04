@@ -1,0 +1,15 @@
+An integer \( l \) and an integer \( r \) (1 ≤ \( l \) ≤ \( r \) ≤ 10^9) with the constraint \( 0 \leq r - l < 1,000,000 \).
+
+### Example Input:
+
+```
+1 9
+```
+
+### Function Signature:
+Write a function f(l, r) that takes in the input. 
+def f(l: int, r: int): 
+    ''' 
+    l: an integer 
+    r: an integer
+    '''

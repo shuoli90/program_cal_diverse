@@ -1,0 +1,56 @@
+Sure, here's a test case generator for the "Chain-Confined Path" problem statement:
+
+```python
+import random
+
+def generate_circle():
+    x = random.randint(0, 1000)
+    y = random.randint(0, 1000)
+    r = random.randint(1, 25)
+    return x, y, r
+
+def tcgen():
+    datasets = []
+    while True:
+        n = random.randint(3, 100)
+        circles = []
+        
+        # Generate first circle
+        x1, y1, r1 = generate_circle()
+        circles.append((x1, y1, r1))
+        
+        # Generate remaining n-1 circles ensuring they intersect with the previous one
+        for _ in range(n - 1):
+            while True:
+                x, y, r = generate_circle()
+                # Ensure this circle intersects with the previous one 
+                prev_x, prev_y, prev_r = circles[-1]
+                dist = ((x - prev_x)**2 + (y - prev_y)**2)**0.5
+                if dist < (r + prev_r) and dist > abs(r - prev_r):
+                    circles.append((x, y, r))
+                    break
+        
+        dataset = [n] + circles
+        datasets.append(dataset)
+        
+        # Decide whether to generate more datasets or terminate
+        if random.random() < 0.2:
+            break
+    
+    # Format the final input string
+    input_str = ""
+    for dataset in datasets:
+        input_str += f"{dataset[0]}\n"
+        for circle in dataset[1:]:
+            input_str += f"{circle[0]} {circle[1]} {circle[2]}\n"
+    input_str += "0\n"  # End of input
+    
+    return input_str
+
+# Example usage
+print(tcgen())
+```
+
+This generator creates random test cases for the "Chain-Confined Path" problem. Each dataset is a list of circles that intersect in a chain-like manner, ensuring the constraints of the problem are met. It also ensures that the circles intersect properly by checking the distances between the centers of consecutive circles.
+
+Feel free to execute the `tcgen` function to generate randomized test cases for your problem!

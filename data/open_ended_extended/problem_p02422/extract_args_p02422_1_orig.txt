@@ -1,0 +1,18 @@
+def extract_arguments(fh):
+    str_input = fh.readline().strip()
+    q = int(fh.readline().strip())
+    commands = []
+    for _ in range(q):
+        command = fh.readline().strip().split()
+        if command[0] == 'print' or command[0] == 'reverse':
+            a, b = int(command[1]), int(command[2])
+            commands.append((command[0], a, b))
+        elif command[0] == 'replace':
+            a, b, p = int(command[1]), int(command[2]), command[3]
+            commands.append((command[0], a, b, p))
+    return str_input, q, commands
+
+# Example usage:
+# with open('input.txt', 'r') as fh:
+#     str_input, q, commands = extract_arguments(fh)
+#     print(str_input, q, commands)

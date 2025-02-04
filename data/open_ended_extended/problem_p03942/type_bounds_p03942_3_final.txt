@@ -1,0 +1,3 @@
+Types: N: int, S_0: str, T: str
+Ranges: 1 ≤ N ≤ 1,000,000
+Addtl Info: Both S_0 and T consist of lowercase English letters.

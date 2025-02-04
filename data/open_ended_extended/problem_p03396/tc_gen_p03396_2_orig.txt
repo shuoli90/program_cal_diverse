@@ -1,0 +1,40 @@
+Certainly! Here's a test case generator for the given problem statement:
+
+```python
+import random
+
+def tcgen():
+    # Constraints
+    N = random.randint(1, 300000)
+    L = random.randint(1, 10**9)
+    
+    # Ensure the shopping centres' coordinates are unique and sorted
+    x = sorted(random.sample(range(1, L), N))
+    
+    # Generate random shopping times
+    t = [random.randint(1, 10**9) for _ in range(N)]
+    
+    return N, L, x, t
+
+# Function to format the test case for the problem statement
+def format_tc(N, L, x, t):
+    x_str = ' '.join(map(str, x))
+    t_str = ' '.join(map(str, t))
+    return f"{N} {L}\n{x_str}\n{t_str}"
+
+# Example usage
+if __name__ == "__main__":
+    N, L, x, t = tcgen()
+    test_case = format_tc(N, L, x, t)
+    print(test_case)
+```
+
+This code will generate valid test cases according to the constraints specified in the problem. It ensures that the coordinates of the shopping centers are unique and sorted, and it formats the test case in the required input format.
+
+### Explanation:
+1. **N**: Randomly chosen between 1 and 300,000.
+2. **L**: Randomly chosen between 1 and \(10^9\).
+3. **x (shopping centers' coordinates)**: Generated using `random.sample` to ensure unique values within the range [1, L-1] and sorted.
+4. **t (shopping times)**: Randomly chosen between 1 and \(10^9\) for each shopping center.
+
+This generator can be used to produce a variety of test cases to test the robustness and efficiency of the solution for the given problem.

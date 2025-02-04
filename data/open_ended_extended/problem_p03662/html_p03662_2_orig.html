@@ -1,0 +1,192 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p03662 - Generation 2</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p03662 - Generation 2</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>
+Score : 400 points
+Problem StatementFennec and Snuke are playing a board game.
+On the board, there are N cells numbered 1 through N, and N-1 roads, each connecting two cells. Cell a_i is adjacent to Cell b_i through the i-th road. Every cell can be reached from every other cell by repeatedly traveling to an adjacent cell. In terms of graph theory, the graph formed by the cells and the roads is a tree.
+Initially, Cell 1 is painted black, and Cell N is painted white. The other cells are not yet colored.
+Fennec (who goes first) and Snuke (who goes second) alternately paint an uncolored cell.
+More specifically, each player performs the following action in her/his turn:
+Fennec: selects an uncolored cell that is adjacent to a black cell, and paints it black.
+Snuke: selects an uncolored cell that is adjacent to a white cell, and paints it white.
+A player loses when she/he cannot paint a cell. Determine the winner of the game when Fennec and Snuke play optimally.
+Constraints
+2 \leq N \leq 10^5
+1 \leq a_i, b_i \leq N
+The given graph is a tree.
+InputInput is given from Standard Input in the following format:
+N
+a_1 b_1
+:
+a_{N-1} b_{N-1}
+OutputIf Fennec wins, print Fennec; if Snuke wins, print Snuke.
+Sample Input 17
+3 6
+1 2
+3 1
+7 4
+5 7
+1 4
+Sample Output 1Fennec
+For example, if Fennec first paints Cell 2 black, she will win regardless of Snuke's moves.
+Sample Input 24
+1 4
+4 2
+2 3
+Sample Output 2Snuke
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>Canonicalized Input Description:
+
+An integer \(N\) (2 ≤ \(N\) ≤ 10^5), representing some quantity or size.
+A list of \(N-1\) pairs of integers \((a_i, b_i)\) where each integer is between 1 and \(N\).
+
+### Example Input:
+
+```
+7
+3 6
+1 2
+3 1
+7 4
+5 7
+1 4
+```
+
+### Function Signature:
+Write a function f(N, edges) that takes in the input.
+```python
+def f(N: int, edges: List[Tuple[int, int]]):
+    '''
+    N: an integer
+    edges: a list of tuples of integers
+    '''
+```</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Sure! I can write a test case generator for the given problem statement. The goal is to generate valid random trees with \( N \) nodes and \( N-1 \) edges, ensuring that the graph remains a tree (connected and acyclic).
+
+Here's the test case generator for the problem:
+
+```python
+import random
+
+def generate_tree_edges(N):
+    """ Generates a random tree with N nodes. """
+    edges = []
+    for i in range(2, N+1):
+        # Ensure tree property by connecting each new node to a previous node
+        edges.append((i, random.randint(1, i-1)))
+    random.shuffle(edges)
+    return edges
+
+def tcgen():
+    N = random.randint(2, 10**5)
+    edges = generate_tree_edges(N)
+    
+    return N, edges
+
+# Example usage:
+N, edges = tcgen()
+print(N)
+for a, b in edges:
+    print(a, b)
+```
+
+### Explanation:
+1. **generate_tree_edges(N)**: This function generates \( N-1 \) edges to form a random tree with \( N \) nodes. It ensures the tree property by connecting each new node to one of the already existing nodes (ensuring connectivity and no cycles).
+
+2. **tcgen()**: This function:
+   - Randomly selects \( N \) within the constraints.
+   - Calls `generate_tree_edges(N)` to generate the edges of the tree.
+   - Returns \( N \) and the list of edges.
+
+### Sample Output
+If you run the test case generator, you might get an output like:
+
+```
+5
+2 1
+3 1
+4 3
+5 2
+```
+
+**Note**: The generated tree edges are shuffled to ensure randomness, while still maintaining the tree structure.
+
+This generator can be used to create a variety of test cases for the given problem, ensuring comprehensive coverage for different tree structures.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    N = int(fh.readline().strip())
+    edges = []
+    for _ in range(N-1):
+        a, b = map(int, fh.readline().strip().split())
+        edges.append((a, b))
+    return N, edges
+
+# if __name__ == "__main__":
+#     input_path = sys.argv[1]
+#     with open(input_path, 'r') as fh: 
+#         N, edges = extract_arguments(fh)
+#         f(N, edges)</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

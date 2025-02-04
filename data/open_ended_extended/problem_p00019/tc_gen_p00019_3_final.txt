@@ -1,0 +1,32 @@
+Sure, I can help you generate test cases for the "Factorial" problem. Here is a test case generator for the described problem:
+
+```python
+import random
+import math
+
+def factorial(n):
+    if n == 0:
+        return 1
+    else:
+        return n * factorial(n-1)
+
+def tcgen():
+    # Generate a random integer n between 1 and 20
+    n = random.randint(1, 20)
+    
+    # Compute the factorial of n
+    result = math.factorial(n)
+    
+    return n, result
+
+# Example usage
+for _ in range(5):  # Generate and print 5 test cases
+    n, result = tcgen()
+    print(f"Input: {n}")
+    print(f"Expected Output: {result}")
+    print()
+```
+
+This script uses Python's `random` module to generate a random integer `n` within the specified range (1 ≤ n ≤ 20). It also uses Python's built-in `math.factorial` function to compute the expected result, although the custom `factorial` function is provided for completeness.
+
+You can run this test case generator to create as many test cases as needed. Each test case consists of an input value `n` and the corresponding expected output, which is the factorial of `n`.

@@ -1,0 +1,40 @@
+To generate test cases for the problem "Hierarchical Calculator", we need to consider the constraints and the nature of the problem. We will generate a random number of formulae \( N \) and their corresponding coefficients \( a_i \). Here is the test case generator:
+
+```python
+import random
+
+def tcgen():
+    # Generate a random number of formulae N
+    N = random.randint(1, 60)
+    
+    # Generate the coefficients a_i in the range [-2, 2]
+    A = [random.randint(-2, 2) for _ in range(N)]
+    
+    return N, A
+
+# Example usage:
+if __name__ == "__main__":
+    N, A = tcgen()
+    print(N)
+    print(' '.join(map(str, A)))
+```
+
+### Explanation:
+
+1. **N**: The number of formulae - randomly generated between 1 and 60, inclusive.
+2. **A**: The list of coefficients, where each coefficient \( a_i \) is randomly chosen from the set \([-2, -1, 0, 1, 2]\).
+
+### Example Output:
+
+Running the `tcgen` function might output something like this:
+
+```
+5
+2 -1 0 0 1
+```
+
+This output represents:
+- \( N = 5 \) which means there are 5 formulae.
+- The coefficients of the formulae are \( [2, -1, 0, 0, 1] \).
+
+You can run the test case generator multiple times to get different test cases for your problem. These random test cases will help in thoroughly testing your solution to ensure it handles all edge cases correctly.

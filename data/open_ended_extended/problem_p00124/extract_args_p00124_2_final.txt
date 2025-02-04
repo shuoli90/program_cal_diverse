@@ -1,0 +1,16 @@
+def extract_arguments(fh):
+    data_sets = []
+    while True:
+        n = int(fh.readline().strip())
+        if n == 0:
+            break
+        teams = []
+        for _ in range(n):
+            parts = fh.readline().strip().split()
+            name = parts[0]
+            w = int(parts[1])
+            l = int(parts[2])
+            d = int(parts[3])
+            teams.append((name, w, l, d))
+        data_sets.append(teams)
+    return data_sets

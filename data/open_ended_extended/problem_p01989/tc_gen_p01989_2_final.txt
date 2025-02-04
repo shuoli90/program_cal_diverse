@@ -1,0 +1,34 @@
+Sure, I can help you write a test case generator for the given problem statement. Here's a Python function that generates random test cases for this problem:
+
+```python
+import random
+
+def generate_random_ip_string():
+    length = random.randint(4, 12)
+    return ''.join(random.choices('0123456789', k=length))
+
+def tcgen():
+    S = generate_random_ip_string()
+    return S
+
+# Example usage:
+for _ in range(5):
+    print(tcgen())
+```
+
+Explanation:
+- `generate_random_ip_string()`: This helper function generates a random string of digits with a length between 4 and 12.
+- `tcgen()`: This function generates the actual test case by calling the helper function to get a random string `S`.
+
+The generated string `S` will be a valid input for the problem constraints (4 ≤ |S| ≤ 12 and S consists only of digits). You can use this function to generate multiple test cases for your problem.
+
+Example output from the generator:
+```
+739104
+928374
+123456789
+192837465
+283746
+```
+
+Feel free to run the `tcgen()` function repeatedly to generate as many test cases as you need.

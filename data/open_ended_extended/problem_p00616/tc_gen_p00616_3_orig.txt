@@ -1,0 +1,63 @@
+Certainly! Below is a test case generator for the problem "Cubes Without Holes". This generator will create random values for `n`, `h`, and the positions of marks.
+
+We'll use Python for the implementation of the test case generator:
+
+```python
+import random
+
+def tcgen():
+    datasets = []
+    
+    while True:
+        # Generate n and h
+        n = random.randint(1, 500)
+        h = random.randint(0, 200)
+        
+        if n == 0 and h == 0:
+            break
+
+        marks = []
+        for _ in range(h):
+            plane = random.choice(["xy", "xz", "yz"])
+            a = random.randint(1, n)
+            b = random.randint(1, n)
+            marks.append(f"{plane} {a} {b}")
+        
+        datasets.append((n, h, marks))
+        
+        # Randomly decide to stop generating more datasets
+        if random.random() < 0.1:
+            break
+    
+    # Ensure the last dataset is "0 0"
+    datasets.append((0, 0, []))
+    
+    return datasets
+
+# Function to print the generated test cases in the required format
+def print_test_cases(datasets):
+    for dataset in datasets:
+        n, h, marks = dataset
+        print(f"{n} {h}")
+        for mark in marks:
+            print(mark)
+        if n == 0 and h == 0:
+            break
+
+# Generate and print test cases
+datasets = tcgen()
+print_test_cases(datasets)
+```
+
+### Explanation:
+- **tcgen function**:
+  - Generates random `n` (1 ≤ `n` ≤ 500).
+  - Generates random `h` (0 ≤ `h` ≤ 200).
+  - For each mark, randomly selects a plane (`"xy"`, `"xz"`, `"yz"`) and random coordinates within the range of `n`.
+  - Continues generating datasets until a stopping condition (1 in 10 chance after each dataset) is met, ensuring the last dataset is `0 0`.
+
+- **print_test_cases function**:
+  - Prints each dataset in the format specified in the problem statement.
+  - Stops printing when `n` and `h` are `0`.
+
+You can use this generator to produce multiple test cases for the problem. This way, you can test your solution more effectively.

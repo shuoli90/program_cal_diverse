@@ -1,0 +1,31 @@
+An integer W (3 ≤ W ≤ 30) and an integer H (3 ≤ H ≤ 30), describing dimensions.
+An H x W grid of characters, where:
+- '@' denotes a starting position.
+- '<' denotes an exit.
+- Lowercase letters 'a'-'h' denote a specific type of cell.
+- Uppercase letters 'A'-'H' denote another specific type of cell.
+- '#' denotes a wall.
+- '.' denotes an empty cell.
+A line containing two zeros indicates the end of input and should not be processed.
+
+### Example Input:
+
+```
+8 3
+########
+#<A.@.a#
+########
+0 0
+```
+
+### Function Signature:
+Write a function f(inputs) that takes in the input.
+```python
+def f(inputs: List[Tuple[int, int, List[str]]]):
+    '''
+    inputs: a list of tuples where each tuple contains:
+        - an integer W
+        - an integer H
+        - a list of H strings, each of length W
+    '''
+```

@@ -1,0 +1,56 @@
+Sure, here is a test case generator for the given problem statement:
+
+```python
+import random
+
+def tcgen():
+    # Constraint values
+    N_max = 10**5
+    A_max = 10**9
+    K_max = 10**9
+    
+    # Generate N
+    N = random.randint(1, N_max)
+    
+    # Generate K
+    K = random.randint(1, K_max)
+    
+    # Generate array A of size N with values between 1 and A_max
+    A = [random.randint(1, A_max) for _ in range(N)]
+    
+    return N, K, A
+
+# Function to print the test case in the required format
+def format_test_case(N, K, A):
+    print(N, K)
+    print(' '.join(map(str, A)))
+
+# Generate a test case
+N, K, A = tcgen()
+
+# Print the test case
+format_test_case(N, K, A)
+```
+
+This code will generate a random valid test case for the given problem. The `tcgen` function generates values for \(N\), \(K\), and the array \(A\) based on the constraints provided. The `format_test_case` function prints the generated test case in the required input format.
+
+Here is how you can use it:
+
+1. Call `tcgen()` to generate a test case.
+2. Use `format_test_case(N, K, A)` to print the generated test case.
+
+Example usage:
+
+```python
+N, K, A = tcgen()
+format_test_case(N, K, A)
+```
+
+It will print something like:
+
+```
+92345 987654321
+123456789 987654321 123456789 987654321 ... (up to 92345 numbers)
+```
+
+This ensures that the test cases are generated within the constraints provided for the problem.

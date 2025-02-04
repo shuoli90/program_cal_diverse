@@ -1,0 +1,175 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p02060 - Generation 1</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p02060 - Generation 1</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>A: Four Tea
+Problem
+Tea is indispensable for programming contests. It has the effect of relieving the tension of the contestants. [citation needed]
+There are N players participating in the contest, and you want to prepare tea for this number of people. There are four types of tea packages, A, B, C, and D, all of which are of the same variety but have different contents. For a package X, it is known that the price of one package is p_X yen, and it can be used to make t_X cups of tea when one is bought.
+Find the minimum amount of money required to make tea for N people. Note that it is not necessary to purchase all packages, and it is not necessary to purchase packages that make exactly N cups of tea (it is sufficient if you can make more than N cups).
+Input Format
+The input is given in the following format.
+N
+p_A p_B p_C p_D
+t_A t_B t_C t_D
+In the first line, the number of players participating in the contest is given.
+In the second line, the prices of the tea packages A, B, C, and D are given separated by spaces.
+In the third line, the number of cups of tea that can be made from tea packages A, B, C, and D are given separated by spaces.
+Constraints
+1 \leq N \leq 100
+1 \leq p_X \leq 100
+1 \leq t_X \leq 100
+All input values are integers.
+Output Format
+Print the minimum amount of money required to make tea for N people on a single line.
+Sample Input 1
+10
+1 2 3 4
+1 2 4 8
+Sample Output 1
+6
+The optimal solution is to buy one package of B and one package of D.
+Sample Input 2
+5
+2 9 9 8
+1 4 5 100
+Sample Output 2
+8
+It is necessary to prepare 20 times the required amount of tea, but buying one package of D is the cheapest option and it can make 5 or more cups of tea.
+Sample Input 3
+24
+2 3 4 7
+7 9 11 20
+Sample Output 3
+8
+The optimal solution is to buy two packages of A and one package of C. It is possible that the required amount of tea cannot be made exactly, as in this case.
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An integer N (1 ≤ N ≤ 100), representing some quantity or size.
+Four integers p_A, p_B, p_C, p_D (each between 1 and 100), representing some prices.
+Four integers t_A, t_B, t_C, t_D (each between 1 and 100), representing some quantities.
+
+### Example Input:
+
+```
+10
+1 2 3 4
+1 2 4 8
+```
+
+### Function Signature:
+Write a function f(N, prices, quantities) that takes in the input. 
+def f(N: int, prices: Tuple[int, int, int, int], quantities: Tuple[int, int, int, int]): 
+    ''' 
+    N: an integer 
+    prices: a tuple of four integers
+    quantities: a tuple of four integers
+    '''</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Sure! Below is a test case generator for the given problem "Four Tea":
+
+```python
+import random
+
+def tcgen():
+    # Generating the number of players participating in the contest (N)
+    N = random.randint(1, 100)
+    
+    # Generating the prices of the tea packages (p_A, p_B, p_C, p_D)
+    prices = [random.randint(1, 100) for _ in range(4)]
+    
+    # Generating the number of cups of tea that can be made from each package (t_A, t_B, t_C, t_D)
+    tea_counts = [random.randint(1, 100) for _ in range(4)]
+    
+    return N, prices, tea_counts
+
+# Example of generating and printing a test case
+if __name__ == "__main__":
+    test_case = tcgen()
+    print("Generated Test Case:")
+    print(test_case[0])  # N
+    print(" ".join(map(str, test_case[1])))  # p_A p_B p_C p_D
+    print(" ".join(map(str, test_case[2])))  # t_A t_B t_C t_D
+```
+
+### Explanation:
+1. **N**: The number of players participating in the contest. It is randomly generated between 1 and 100.
+2. **Prices**: The prices of the tea packages A, B, C, and D. Each price is randomly generated between 1 and 100.
+3. **Tea Counts**: The number of cups of tea that each package can make (t_A, t_B, t_C, t_D). Each count is randomly generated between 1 and 100.
+
+This generator will produce random valid test cases based on the constraints provided in the problem statement. You can use this in your test suite for generating multiple test cases and validating your solution.
+
+### How to use:
+1. Call the `tcgen()` function to generate a new test case.
+2. The function returns a tuple containing:
+   - The number of players \(N\).
+   - A list of prices for the tea packages.
+   - A list of the number of cups each package can make.
+
+You can print or directly use these values to feed into your solution to test its correctness.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    N = int(fh.readline().strip())
+    p = list(map(int, fh.readline().strip().split()))
+    t = list(map(int, fh.readline().strip().split()))
+    return N, p, t</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

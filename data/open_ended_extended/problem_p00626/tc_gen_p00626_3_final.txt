@@ -1,0 +1,73 @@
+Certainly! Let's create a test case generator for the problem "Chocolate with Heart Marks."
+
+The generator will create a valid matrix (chocolate bar) of size \( H \times W \) with the given constraints. Since the number of blocks with heart marks is at most six, the generator will ensure that condition is met.
+
+Here's the Python function to generate test cases:
+
+```python
+import random
+
+def generate_matrix(H, W, max_hearts=6):
+    # Initialize the matrix with zeros
+    matrix = [[0 for _ in range(W)] for _ in range(H)]
+    
+    # Place the hearts (1s) randomly in the matrix
+    hearts_count = random.randint(1, min(max_hearts, H * W))
+    hearts_positions = random.sample(range(H * W), hearts_count)
+    
+    for pos in hearts_positions:
+        row = pos // W
+        col = pos % W
+        matrix[row][col] = 1
+    
+    return matrix
+
+def tcgen():
+    test_cases = []
+    
+    while True:
+        # Randomly decide if we should add another test case or stop
+        if random.random() < 0.2:  # 20% chance to stop
+            break
+        
+        # Generate random H and W within the required range
+        H = random.randint(1, 12)
+        W = random.randint(1, 12)
+        
+        # Generate the matrix
+        matrix = generate_matrix(H, W)
+        
+        test_cases.append((H, W, matrix))
+    
+    # Add the terminating case
+    test_cases.append((0, 0, []))
+    
+    return test_cases
+
+# Example usage:
+test_cases = tcgen()
+for case in test_cases:
+    H, W, matrix = case
+    print(f"{H} {W}")
+    for row in matrix:
+        print(' '.join(map(str, row)))
+```
+
+### Explanation:
+
+1. **generate_matrix(H, W, max_hearts=6):**
+    - Initializes an \( H \times W \) matrix filled with zeros.
+    - Randomly selects a number of hearts (1s) to place in the matrix, ensuring that the number is at most `max_hearts`.
+    - Randomly distributes the hearts within the matrix.
+
+2. **tcgen():**
+    - Creates a list of test cases.
+    - Uses a loop to generate multiple test cases with a random chance of stopping.
+    - For each test case, it generates random values for \( H \) and \( W \) within the specified range.
+    - Calls `generate_matrix` to create the matrix for each test case.
+    - Ensures the addition of the terminating case `(0, 0, [])`.
+  
+3. **Example usage:**
+    - This block demonstrates how to use the `tcgen` function to generate test cases and print them in the required format.
+
+This generator will produce various test cases, including both small and large matrices, and ensure that there's a mix of cases with different numbers of heart-marked blocks.

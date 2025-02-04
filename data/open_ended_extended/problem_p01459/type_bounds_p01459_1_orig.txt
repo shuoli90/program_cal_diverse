@@ -1,0 +1,5 @@
+Types: N: int, M: int, A: int, grid: List[List[str]]
+
+Ranges: 2 ≤ N, M ≤ 100, 0 ≤ A ≤ 10, grid[i][j] in {'#', '.', 'S', 'G'}
+
+Addtl Info: None

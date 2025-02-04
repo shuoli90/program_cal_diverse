@@ -1,0 +1,27 @@
+An integer m (2 ≤ m ≤ 1000), representing some quantity.
+An integer n (1 ≤ n ≤ 10000), representing some quantity.
+A list of n statements, each statement being an integer or a string from the set {'Fizz', 'Buzz', 'FizzBuzz'}.
+
+### Example Input:
+
+```
+5 7
+1
+2
+Fizz
+4
+Buzz
+6
+7
+```
+
+### Function Signature:
+Write a function f(m, n, statements) that takes in the inputs.
+```python
+def f(m: int, n: int, statements: List[Union[int, str]]):
+    '''
+    m: an integer
+    n: an integer
+    statements: a list of integers and strings
+    '''
+```

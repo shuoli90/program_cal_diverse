@@ -1,0 +1,19 @@
+def extract_arguments(fh):
+    test_cases = []
+    while True:
+        line = fh.readline().strip()
+        if line == "0 0 0":
+            break
+        N, M, L = map(int, line.split())
+        initial_state = []
+        for _ in range(2 * N - 1):
+            initial_state.append(list(map(int, fh.readline().strip().split())))
+        test_cases.append((N, M, L, initial_state))
+    return test_cases
+
+# if __name__ == "__main__":
+#     input_path = sys.argv[1]
+#     with open(input_path, 'r') as fh:
+#         test_cases = extract_arguments(fh)
+#         for i, args in enumerate(test_cases):
+#             f(*args)

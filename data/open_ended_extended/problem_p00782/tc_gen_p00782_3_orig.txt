@@ -1,0 +1,47 @@
+Certainly! Below is a Python test case generator for the given problem "Mobile Phone Coverage". This generator will produce multiple data sets with random values for the number of antennas and their properties.
+
+```python
+import random
+
+def tcgen():
+    test_cases = []
+    num_cases = random.randint(1, 10)  # Let's generate between 1 and 10 test cases
+    
+    for _ in range(num_cases):
+        n = random.randint(2, 100)  # Number of antennas (2 ≤ n ≤ 100)
+        
+        antennas = []
+        for _ in range(n):
+            xi = round(random.uniform(0, 200), 1)  # xi coordinate (0 ≤ xi ≤ 200)
+            yi = round(random.uniform(0, 200), 1)  # yi coordinate (0 ≤ yi ≤ 200)
+            ri = round(random.uniform(0, 200), 1)  # radius (0 ≤ ri ≤ 200)
+            antennas.append((xi, yi, ri))
+        
+        test_cases.append((n, antennas))
+    
+    # Add a terminating case with n = 0
+    test_cases.append((0, []))
+    
+    return test_cases
+
+# Example usage:
+if __name__ == "__main__":
+    test_cases = tcgen()
+    for i, (n, antennas) in enumerate(test_cases):
+        if n == 0:
+            print(0)
+        else:
+            print(n)
+            for xi, yi, ri in antennas:
+                print(f"{xi} {yi} {ri}")
+```
+
+### Explanation:
+1. **Number of Test Cases**: A random number of test cases is generated, between 1 and 10.
+2. **Number of Antennas (n)**: For each test case, a random number of antennas `n` is chosen, between 2 and 100.
+3. **Antenna Properties**:
+    - **Coordinates (xi, yi)**: Random values between 0 and 200, rounded to one decimal place.
+    - **Radius (ri)**: Random values between 0 and 200, rounded to one decimal place.
+4. **Terminating Case**: The generator adds a final test case with `n = 0` to signify the end of the input.
+
+This generator will create diverse input cases that can be used to test the correctness and performance of the solution to the problem.

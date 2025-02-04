@@ -1,0 +1,45 @@
+Sure! Below is a test case generator for the given problem statement regarding switches and bulbs.
+
+The generator will create random values for \(N\) (number of switches) and \(M\) (number of bulbs), and for each bulb, it will also generate random values for \(k_i\) (number of switches connected to a bulb), the corresponding switch indices, and the value \(p_i\) (parity condition).
+
+```python
+import random
+
+def generate_test_case():
+    # Step 1: Generate random values for N and M
+    N = random.randint(1, 10)
+    M = random.randint(1, 10)
+    
+    # Step 2: Initialize arrays to store bulb configurations and parity conditions
+    bulb_configs = []
+    parity_conditions = []
+    
+    # Step 3: Generate bulb configurations and parity conditions
+    for _ in range(M):
+        k_i = random.randint(1, N)  # Random number of switches connected to this bulb
+        switches = random.sample(range(1, N + 1), k_i)  # Randomly choose k_i unique switches
+        bulb_configs.append((k_i, switches))
+        parity_conditions.append(random.randint(0, 1))  # Random parity condition (0 or 1)
+
+    # Step 4: Format the test case as required by the problem statement
+    test_case_str = f"{N} {M}\n"
+    for k_i, switches in bulb_configs:
+        test_case_str += f"{k_i} " + " ".join(map(str, switches)) + "\n"
+    test_case_str += " ".join(map(str, parity_conditions)) + "\n"
+    
+    return test_case_str
+
+# Example usage
+print(generate_test_case())
+```
+
+### Explanation of the Generator:
+1. **Step 1:** Generate random values for \(N\) (number of switches) and \(M\) (number of bulbs), both between 1 and 10 as per the problem constraints.
+2. **Step 2:** Initialize lists to store the configurations for each bulb and the parity conditions.
+3. **Step 3:** For each bulb, generate:
+   - `k_i`: A random number of switches connected to the bulb.
+   - `switches`: A random sample of `k_i` unique switches from the available switches.
+   - Append these values to the `bulb_configs` list and randomly generate the parity condition \(p_i\) (either 0 or 1) and append it to the `parity_conditions` list.
+4. **Step 4:** Format the generated test case into the required input format.
+
+The function `generate_test_case` returns a string that represents a test case in the correct format. This string can be printed or used directly in a testing framework.

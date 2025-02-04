@@ -1,0 +1,16 @@
+Types: 
+- T: int, 
+- H: int, 
+- W: int, 
+- map: List[str], 
+- actions: str
+
+Ranges: 
+- 1 ≤ T ≤ 100, 
+- 1 ≤ H ≤ 100, 
+- 1 ≤ W ≤ 100, 
+- map[i]: str (length W, characters in {'.', '*', '#', '-', '^', 'v', '<', '>'}), 
+- actions: str (characters in {'U', 'D', 'L', 'R', 'S'})
+
+Addtl Info: 
+- None

@@ -1,0 +1,3 @@
+Types: H: int, W: int, S: int, T: int  
+Ranges: 2 ≤ H, W ≤ 10^9, 1 ≤ S ≤ H, 1 ≤ T ≤ W  
+Addtl Info: None

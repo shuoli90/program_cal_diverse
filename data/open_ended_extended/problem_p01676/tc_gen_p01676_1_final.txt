@@ -1,0 +1,62 @@
+Certainly! Below is a Python function `tcgen` that generates random test cases for the problem "Tree Reconstruction" as described:
+
+```python
+import random
+
+def tcgen():
+    def generate_strongly_connected_graph(N, M):
+        edges = set()
+        
+        # Ensure the graph is strongly connected by creating a strongly connected component
+        nodes = list(range(1, N+1))
+        random.shuffle(nodes)
+        
+        for i in range(len(nodes) - 1):
+            edges.add((nodes[i], nodes[i+1]))
+            edges.add((nodes[i+1], nodes[i]))
+        
+        edges.add((nodes[-1], nodes[0]))
+        edges.add((nodes[0], nodes[-1]))
+        
+        # Add random additional edges to reach M edges
+        while len(edges) < M:
+            u, v = random.randint(1, N), random.randint(1, N)
+            if u != v and (u, v) not in edges:
+                edges.add((u, v))
+        
+        return list(edges)
+    
+    # Generate N and M
+    N = random.randint(1, 500)
+    M = random.randint(0, 3000)
+    
+    edges = generate_strongly_connected_graph(N, M)
+    
+    # Format the input as required
+    input_data = f"{N} {M}\n"
+    for edge in edges:
+        input_data += f"{edge[0]} {edge[1]}\n"
+    
+    return input_data.strip()
+
+# Example Usage:
+test_case = tcgen()
+print(test_case)
+```
+
+### Explanation:
+
+1. **Function `tcgen`**: This function generates a random test case for the problem.
+2. **Function `generate_strongly_connected_graph`**:
+    - Ensures the graph is strongly connected by constructing a cycle that includes all nodes.
+    - Adds additional random edges to ensure the total number of edges is `M`.
+3. **Generating `N` and `M`**:
+    - Randomly generates `N` within the range [1, 500].
+    - Randomly generates `M` within the range [0, 3000].
+4. **Creating the edges**:
+    - Uses a set to avoid duplicate edges and ensures the graph is strongly connected.
+    - Ensures no self-loops and no multi-edges by checking conditions.
+5. **Formatting the input**:
+    - Constructs the input string in the required format.
+    
+This will create diverse and valid test cases for the given problem statement.

@@ -1,0 +1,10 @@
+Types: 
+- n: int
+- a: List[int]
+
+Ranges:
+- 1 ≤ n ≤ 1000000
+- 0 ≤ a[i] ≤ 120
+
+Addtl Info: 
+- Input ends with a line containing a single zero

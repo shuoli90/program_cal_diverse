@@ -1,0 +1,28 @@
+Certainly! Here is a Python test case generator for the "Complete Equality Bilateral Trade" problem. This generator will create random test cases within the given constraints.
+
+```python
+import random
+
+def tcgen():
+    N = random.randint(1, 200000)
+    
+    # Random integers between -10^9 and 10^9 for the table
+    d = [random.randint(-10**9, 10**9) for _ in range(N)]
+    
+    return N, d
+
+# Function to print the generated test case in the required format
+def print_test_case():
+    N, d = tcgen()
+    print(N)
+    for value in d:
+        print(value)
+
+# Example usage
+if __name__ == "__main__":
+    print_test_case()
+```
+
+This function `tcgen()` generates a random value for \(N\) within the range [1, 200000] and a list of \(N\) integers, each between \(-10^9\) and \(10^9\). The `print_test_case` function prints the generated test case in the required format.
+
+You can run this script to generate and print random test cases for the problem. This way, you can test the robustness and performance of your solution with various input sizes and values.

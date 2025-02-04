@@ -1,0 +1,41 @@
+Sure, I can help you write a test case generator for the given problem. The generator will create random strings of varying lengths containing the characters 'A', 'B', and 'C'. Here's the code:
+
+```python
+import random
+
+def tcgen():
+    # Generate a random length for the string s
+    length = random.randint(1, 200000)
+    
+    # Generate a random string of the given length consisting of 'A', 'B', and 'C'
+    s = ''.join(random.choice('ABC') for _ in range(length))
+    
+    return s
+
+# Example usage:
+for _ in range(5):  # Generate 5 test cases
+    print(tcgen())
+```
+
+### Explanation
+
+1. **Length of String**: We generate a random integer between 1 and 200,000 for the length of the string, ensuring it meets the problem constraints.
+
+2. **Generate String**: We then generate a string of the specified length composed of random characters chosen from the set {'A', 'B', 'C'}.
+
+3. **Output**: The function returns the generated string.
+
+This will generate test cases of varying lengths and compositions, ensuring comprehensive coverage for the problem.
+
+### Example Output
+
+Here's an example of what the output might look like when you run the `tcgen()` function:
+
+```
+BCABCA
+A
+CABCBACBACBBAC
+...
+```
+
+Each string will be a random sequence of 'A', 'B', and 'C', suitable for testing the competitive programming problem's solution.

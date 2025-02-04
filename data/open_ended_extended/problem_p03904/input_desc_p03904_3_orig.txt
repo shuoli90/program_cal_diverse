@@ -1,0 +1,19 @@
+An integer K (0 ≤ K < 100,000), representing some quantity or limit.
+A string S consisting of digits between '1' and '9', inclusive, with a length |S| (1 ≤ |S| ≤ 100,000).
+
+### Example Input:
+
+```
+2
+15267315
+```
+
+### Function Signature:
+Write a function f(K, S) that takes in the input. 
+```python
+def f(K: int, S: str):
+    ''' 
+    K: an integer
+    S: a string of digits
+    '''
+```

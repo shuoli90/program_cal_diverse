@@ -1,0 +1,3 @@
+Types: S: str  
+Ranges: 4 ≤ |S| ≤ 12  
+Addtl Info: S consists only of digits

@@ -1,0 +1,44 @@
+Certainly! Here is a test case generator for the given problem:
+
+```python
+import random
+
+def generate_board(N):
+    return [[random.randint(-10**5, 10**5) for _ in range(N)] for _ in range(N)]
+
+def tcgen():
+    N = random.randint(1, 8)
+    F = random.randint(-10**5, 10**5)
+    X = generate_board(N)
+    
+    return N, F, X
+
+def format_test_case(N, F, X):
+    test_case = f"{N} {F}\n"
+    for row in X:
+        test_case += " ".join(map(str, row)) + "\n"
+    return test_case.strip()
+
+# Example usage:
+for _ in range(5):  # Generate 5 random test cases
+    N, F, X = tcgen()
+    print(format_test_case(N, F, X))
+    print()
+```
+
+### Explanation:
+1. **`generate_board(N)` function**:
+   - Generates an \(N \times N\) matrix filled with random integers in the range \([-10^5, 10^5]\).
+
+2. **`tcgen()` function**:
+   - Randomly selects \(N\) (size of the board) between 1 and 8.
+   - Randomly selects \(F\) (initial points for the first player) between \(-10^5\) and \(10^5\).
+   - Uses the `generate_board` function to create a random \(N \times N\) board.
+
+3. **`format_test_case(N, F, X)` function**:
+   - Formats the generated \(N\), \(F\), and \(X\) into a string that matches the input format specified in the problem statement.
+
+4. **Example usage**:
+   - Generates and prints 5 random test cases to demonstrate the generator in action.
+
+This generator will create various test cases respecting the constraints and format required by the problem statement. You can adjust the number of test cases or the range of random values if needed.

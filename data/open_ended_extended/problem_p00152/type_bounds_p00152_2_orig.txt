@@ -1,0 +1,3 @@
+Types: m: int, participants: List[Tuple[int, List[int]]]
+Ranges: 3 ≤ m ≤ 40, 0 ≤ id ≤ 9999, 0 ≤ sj ≤ 10, 12 ≤ n ≤ 21
+Addtl Info: None

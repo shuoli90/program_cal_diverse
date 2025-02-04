@@ -1,0 +1,60 @@
+Certainly! Below is a test case generator for the given problem statement.
+
+### Test Case Generator
+
+```python
+import random
+
+def tcgen():
+    # Constraints
+    A = random.randint(1, 10**9)
+    B = random.randint(A, 10**9)  # Ensure B >= A
+    K = random.randint(1, 100)
+    
+    return A, B, K
+
+# Example of generating a test case
+if __name__ == "__main__":
+    A, B, K = tcgen()
+    print(A, B, K)
+```
+
+### Explanation
+
+1. **A**: Randomly generate the starting integer within the range [1, 10^9].
+2. **B**: Randomly generate the ending integer within the range [A, 10^9] to ensure B is always greater than or equal to A.
+3. **K**: Randomly generate K within the range [1, 100].
+
+### Sample Output Generation
+
+To generate the sample output based on the generated test case, you can follow this logic:
+
+```python
+def generate_output(A, B, K):
+    numbers = list(range(A, B + 1))
+    smallest_k = numbers[:K]
+    largest_k = numbers[-K:]
+    
+    result = sorted(set(smallest_k + largest_k))
+    return result
+
+# Example of generating a test case and its output
+if __name__ == "__main__":
+    A, B, K = tcgen()
+    print(f"Generated Test Case: A={A}, B={B}, K={K}")
+    
+    output = generate_output(A, B, K)
+    print("Output:")
+    for num in output:
+        print(num)
+```
+
+### Explanation of Output Generation
+
+1. **Numbers**: Create a list of numbers from A to B inclusive.
+2. **Smallest K**: Extract the first K elements from the list.
+3. **Largest K**: Extract the last K elements from the list.
+4. **Merge and Sort**: Merge the two lists, remove duplicates using `set`, and sort the result.
+5. **Print**: Print the sorted result.
+
+By using the above functions, you can generate both the test case and the expected output to verify the correctness of your implementation.

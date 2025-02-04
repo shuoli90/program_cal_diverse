@@ -1,0 +1,16 @@
+An integer N (9 ≤ N ≤ 50), representing the length of a string.
+A string S of length N, consisting of uppercase English letters, ending with a specific substring.
+
+### Example Input:
+
+```
+12
+CODEFESTIVAL
+```
+
+### Function Signature:
+Write a function f(S) that takes in the input.
+def f(S: str):
+    '''
+    S: a string
+    '''

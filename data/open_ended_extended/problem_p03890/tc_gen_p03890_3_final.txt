@@ -1,0 +1,22 @@
+Certainly! Here is a Python function to generate test cases for the given "Kode Festival" problem statement.
+
+```python
+import random
+
+def tcgen():
+    N = random.randint(1, 18)
+    A = [random.randint(1, 10**9) for _ in range(2**N)]
+    
+    return N, A
+
+# Example usage:
+if __name__ == "__main__":
+    N, A = tcgen()
+    print(N)
+    for a in A:
+        print(a)
+```
+
+This function `tcgen()` generates a random value for \(N\) within the range [1, 18] and then generates \(2^N\) random integers within the range [1, 10^9] for the array \(A\). The generated values are printed in the format specified by the problem statement.
+
+You can run this script to generate random test cases to use for testing your solution to the problem.

@@ -1,0 +1,169 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p02661 - Generation 2</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p02661 - Generation 2</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>
+Score : 500 points
+Problem StatementThere are N integers X_1, X_2, \cdots, X_N, and we know that A_i \leq X_i \leq B_i.
+Find the number of different values that the median of X_1, X_2, \cdots, X_N can take.
+NotesThe median of X_1, X_2, \cdots, X_N is defined as follows. Let x_1, x_2, \cdots, x_N be the result of sorting X_1, X_2, \cdots, X_N in ascending order.
+If N is odd, the median is x_{(N+1)/2};
+if N is even, the median is (x_{N/2} + x_{N/2+1}) / 2.
+Constraints
+2 \leq N \leq 2 \times 10^5
+1 \leq A_i \leq B_i \leq 10^9
+All values in input are integers.
+InputInput is given from Standard Input in the following format:
+N
+A_1 B_1
+A_2 B_2
+:
+A_N B_N
+OutputPrint the answer.
+Sample Input 12
+1 2
+2 3
+Sample Output 13
+If X_1 = 1 and X_2 = 2, the median is \frac{3}{2};
+if X_1 = 1 and X_2 = 3, the median is 2;
+if X_1 = 2 and X_2 = 2, the median is 2;
+if X_1 = 2 and X_2 = 3, the median is \frac{5}{2}.
+Thus, the median can take three values: \frac{3}{2}, 2, and \frac{5}{2}.
+Sample Input 23
+100 100
+10 10000
+1 1000000000
+Sample Output 29991
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>    
+An integer N (2 ≤ N ≤ 2 * 10^5), representing some quantity or size.
+N pairs of integers (A_i, B_i) where 1 ≤ A_i ≤ B_i ≤ 10^9.
+
+### Example Input:
+
+```
+3
+100 100
+10 10000
+1 1000000000
+```
+
+### Function Signature:
+Write a function f(N, AB) that takes in the input.
+def f(N: int, AB: List[Tuple[int, int]]): 
+    ''' 
+    N: an integer 
+    AB: a list of tuples, where each tuple contains two integers 
+    '''</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Sure! Here is a test case generator for the given competitive programming problem:
+
+```python
+import random
+
+def tcgen():
+    # Generate a random N within the given constraints
+    N = random.randint(2, 2 * 10**5)
+    
+    # Generate the array of (A_i, B_i) pairs
+    AB = []
+    for _ in range(N):
+        A = random.randint(1, 10**9)
+        B = random.randint(A, 10**9)
+        AB.append((A, B))
+    
+    return N, AB
+
+# Example usage:
+N, AB = tcgen()
+print(N)
+for a, b in AB:
+    print(a, b)
+```
+
+Explanation of the generator:
+
+1. **N generation**: It generates an integer \(N\) such that \(2 \leq N \leq 2 \times 10^5\).
+2. **(A_i, B_i) pairs generation**: It generates \(N\) pairs of integers (A_i, B_i) such that \(1 \leq A_i \leq B_i \leq 10^9\). Each A_i is a random integer, and B_i is a random integer that is at least A_i to ensure \(A_i \leq B_i\).
+
+Here is the test case generator in action:
+
+```python
+# Example usage
+if __name__ == "__main__":
+    N, AB = tcgen()
+    print(N)
+    for a, b in AB:
+        print(a, b)
+```
+
+This will print a valid test case for the problem. Each run will generate a different test case due to the randomness.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    N = int(fh.readline().strip())
+    A_B = []
+    for _ in range(N):
+        A, B = map(int, fh.readline().strip().split())
+        A_B.append((A, B))
+    return N, A_B</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

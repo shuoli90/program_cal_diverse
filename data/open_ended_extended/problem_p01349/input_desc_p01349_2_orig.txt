@@ -1,0 +1,22 @@
+An integer h (2 ≤ h ≤ 30), an integer w (2 ≤ w ≤ 30), and an integer n (2 ≤ n ≤ 30).
+A list of h strings, each containing exactly w characters, where each character is either an uppercase letter ('A'-'Z') or a period ('.').
+
+### Example Input:
+
+```
+4 6 3
+......
+...Y..
+...Y..
+RRYRY.
+```
+
+### Function Signature:
+Write a function f(h, w, n, field) that takes in the input.
+def f(h: int, w: int, n: int, field: List[str]):
+    '''
+    h: an integer
+    w: an integer
+    n: an integer
+    field: a list of strings
+    '''

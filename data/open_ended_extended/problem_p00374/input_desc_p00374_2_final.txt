@@ -1,0 +1,52 @@
+Canonicalized Input Description:
+
+An integer N (6 ≤ N ≤ 6000), representing some quantity or size.
+An integer M (0 ≤ M ≤ N), representing another quantity or size.
+An integer X (0 ≤ X ≤ 6), representing another quantity or size.
+An integer Y (0 ≤ Y ≤ 12), representing another quantity or size, with the additional constraint that 2X + Y = 12.
+A list of N integers, where each integer is between 1 and 6000.
+A list of M integers, where each integer is between 1 and 3000, with the additional constraint that each corresponding integer in the first list minus this integer is between 1 and 3000.
+
+### Example Input:
+
+```
+18 8 3 6
+4
+3
+3
+3
+3
+2
+2
+2
+1
+1
+1
+1
+1
+2
+2
+3
+3
+3
+1
+1
+1
+1
+1
+1
+1
+1
+```
+
+### Function Signature:
+Write a function f(N, M, X, Y, A, B) that takes in the input.
+def f(N: int, M: int, X: int, Y: int, A: List[int], B: List[int]):
+    '''
+    N: an integer
+    M: an integer
+    X: an integer
+    Y: an integer
+    A: a list of integers
+    B: a list of integers
+    '''

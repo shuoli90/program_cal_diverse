@@ -1,0 +1,60 @@
+
+Problem C: Alice and Bob
+Alice and Bob are in love with each other, but they have difficulty going out on a date - Alice is a very
+busy graduate student at the ACM university.
+For this reason, Bob came to the ACM university to meet her on a day. He tried to reach the meeting
+spot but got lost because the campus of the university was very large. Alice talked with him via mobile
+phones and identified his current location exactly. So she told him to stay there and decided to go to the
+place where she would be visible to him without interruption by buildings.
+The campus can be considered as a two-dimensional plane and all buildings as rectangles whose edges
+are parallel to x-axis or y-axis. Alice and Bob can be considered as points. Alice is visible to Bob if the
+line segment connecting them does not intersect the interior of any building. Note that she is still visible
+even if the line segment touches the borders of buildings.
+Since Alice does not like to walk, she wants to minimize her walking distance. Can you write a program
+that finds the best route for her?
+Figure 1: Example Situation
+Input
+The input contains multiple datasets. The end of the input is indicated by a line containing a single zero.
+Each dataset is formatted as follows.
+      N
+      x11 y11 x12 y12
+      x21 y21 x22 y22
+      ...
+      xN1 yN1 xN2 yN2
+      Ax Ay Bx By
+N (0 < N ≤ 30) is the number of buildings. The i-th building is given by its bottom left corner (xi1 , yi1)
+and up right corner (xi2, yi2 ). (Ax, Ay) is the location of Alice and (Bx, By) is that of Bob. All integers xi1, yi1, xi2, yi2, Ax, Ay, Bx and By are between -10000 and 10000, inclusive. You may assume that no building
+touches or overlaps other buildings.
+Output
+For each dataset, output a separate line containing the minimum distance Alice has to walk.
+The value may contain an error less than or equal to 0.001. You may print any number of digits after the
+decimal point.
+Sample Input
+1
+3 3 7 7
+2 2 8 2
+2
+2 5 5 9
+6 1 9 5
+1 5 10 5
+2
+2 1 3 2
+2 3 3 4
+1 1 4 4
+1
+3 3 7 7
+1 5 9 5
+1
+3 3 7 7
+1 5 8 5
+1
+3 3 7 7
+1 5 10 5
+0
+Output for the Sample Input
+0.000
+0.000
+0.000
+5.657
+6.406
+4.992

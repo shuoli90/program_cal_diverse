@@ -1,0 +1,23 @@
+An integer N (1 ≤ N ≤ 10^5), representing the length of the first string.
+A string S of length N, consisting of lowercase English letters.
+An integer M (1 ≤ M ≤ 10^5), representing the length of the second string.
+A string T of length M, consisting of lowercase English letters.
+
+### Example Input:
+
+```
+7
+contest
+3
+son
+```
+
+### Function Signature:
+Write a function f(N, S, M, T) that takes in the input. 
+def f(N: int, S: str, M: int, T: str): 
+    ''' 
+    N: an integer 
+    S: a string
+    M: an integer
+    T: a string
+    '''

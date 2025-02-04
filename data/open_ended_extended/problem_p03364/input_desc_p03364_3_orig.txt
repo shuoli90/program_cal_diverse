@@ -1,0 +1,18 @@
+An integer N (1 ≤ N ≤ 300), representing some quantity or size.
+A list of N strings, each of length N, consisting of lowercase English letters.
+
+### Example Input:
+
+```
+2
+ab
+ca
+```
+
+### Function Signature:
+Write a function f(N, S) that takes in the input.
+def f(N: int, S: List[str]):
+    ''' 
+    N: an integer 
+    S: a list of strings
+    '''

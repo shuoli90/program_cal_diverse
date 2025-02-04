@@ -1,0 +1,7 @@
+def extract_arguments(fh):
+    spaceship_coords = tuple(map(int, fh.readline().strip().split()))
+    enemy_coords = tuple(map(int, fh.readline().strip().split()))
+    barrier_vertex1 = tuple(map(int, fh.readline().strip().split()))
+    barrier_vertex2 = tuple(map(int, fh.readline().strip().split()))
+    barrier_vertex3 = tuple(map(int, fh.readline().strip().split()))
+    return spaceship_coords, enemy_coords, barrier_vertex1, barrier_vertex2, barrier_vertex3

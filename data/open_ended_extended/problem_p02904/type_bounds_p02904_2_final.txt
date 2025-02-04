@@ -1,0 +1,3 @@
+Types: N: int, K: int, P: List[int]
+Ranges: 2 ≤ N ≤ 200000, 2 ≤ K ≤ N, 0 ≤ P[i] ≤ N-1
+Addtl Info: P contains all unique integers from 0 to N-1

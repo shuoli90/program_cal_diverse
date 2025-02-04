@@ -1,0 +1,33 @@
+Sure, I can write a test case generator for the "Conveyor Belt" problem. The generator will produce random values for \(N\) (the number of positions on the conveyor belt) and \(Q\) (the number of delivery requests). Each delivery request will include start position \(a\), end position \(b\), and the number of products \(p\) to be delivered. Here's the Python code for the test case generator:
+
+```python
+import random
+
+def generate_test_case():
+    # Number of positions on the conveyor belt (2 ≤ N ≤ 10^5)
+    N = random.randint(2, 10**5)
+    
+    # Number of delivery requests (1 ≤ Q ≤ 10^5)
+    Q = random.randint(1, 10**5)
+    
+    test_case = f"{N} {Q}\n"
+    
+    for _ in range(Q):
+        # Start position (1 ≤ a < b ≤ N)
+        a = random.randint(1, N - 1)
+        b = random.randint(a + 1, N)
+        
+        # Number of products to deliver (1 ≤ p ≤ 10^9)
+        p = random.randint(1, 10**9)
+        
+        test_case += f"{a} {b} {p}\n"
+    
+    return test_case
+
+# Example usage
+print(generate_test_case())
+```
+
+This function will generate a string representing a valid test case for the problem. The output can be copied and pasted into a file or used directly in a testing framework. Each call to `generate_test_case` will produce different random values within the specified constraints.
+
+Feel free to adjust the randomness or constraints if you have specific scenarios in mind for testing.

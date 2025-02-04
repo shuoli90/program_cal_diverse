@@ -1,0 +1,219 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p00441 - Generation 3</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p00441 - Generation 3</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>The Oldest Site
+Problem
+In the past, there was a village where many people lived. People built buildings of various shapes and sizes. However, those buildings are already lost, and only documents and pillars found in the ruins were a clue to the location of the buildings.
+There is a description of the temple in the document. The temple is a square when viewed from above, and there were pillars at the four corners. It is not known which direction the temple was facing. Also, it is not known whether there were pillars on the sides or inside. Archaeologists believed that among the pillars found in the ruins, the one with the largest area that is square must be the temple.
+Given the coordinates of the pillars, write a program that finds the square made up of four pillars with the largest area and outputs its area. Note that the sides of the square are not necessarily parallel to the coordinate axis.
+Example
+In the example of the figure below, there are ten pillars, and the four at coordinates (4, 2), (5, 2), (5, 3), and (4, 3) make a square, and the four at coordinates (1, 1), (4, 0), (5, 3), and (2, 4) also make a square. The latter square has the largest area of 10.
+Input
+The input consists of multiple datasets. Each dataset is given in the following format. The input is terminated by a line containing a single zero.
+The first line contains the number of pillars n found in the ruins.
+From the second line to the n + 1-th line, each of the n lines contains the x and y coordinates of a pillar separated by a space.
+Each pillar appears only once or never.
+n is an integer satisfying 1 ≤ n ≤ 3000, and the x and y coordinates of the pillars are integers between 0 and 5000 inclusive.
+30% of the score is for datasets where 1 ≤   n ≤ 100, and 60% of the score is for datasets where 1 ≤ n ≤ 500.
+There are no more than 10 datasets.
+Output
+For each dataset, output one integer. If there is a square made up of four pillars, output the area of the largest such square, and if there is no such square, output 0.
+Sample Input
+10
+9 4
+4 3
+1 1
+4 2
+2 4
+5 8
+4 0
+5 3
+0 5
+5 2
+10
+9 4
+4 3
+1 1
+4 2
+2 4
+5 8
+4 0
+5 3
+0 5
+5 2
+0
+Sample Output
+10
+10
+The problem statement and test data used in the automated judge are provided by Information-technology Promotion Agency, Japan.
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An integer n (1 ≤ n ≤ 3000), representing some quantity.
+n lines follow, each containing two integers x and y (0 ≤ x, y ≤ 5000).
+
+### Example Input:
+
+```
+10
+9 4
+4 3
+1 1
+4 2
+2 4
+5 8
+4 0
+5 3
+0 5
+5 2
+```
+
+### Function Signature:
+Write a function f(n, coordinates) that takes in the input.
+def f(n: int, coordinates: List[Tuple[int, int]]):
+    '''
+    n: an integer
+    coordinates: a list of tuples, each containing two integers
+    '''</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Sure, let's write a test case generator for the problem statement "The Oldest Site". The generator will create multiple datasets with random coordinates for pillars within the given constraints.
+
+Here's the Python code for the test case generator:
+
+```python
+import random
+
+def generate_dataset():
+    # Number of pillars, randomly chosen between 1 and 3000
+    n = random.randint(1, 3000)
+    dataset = [str(n)]
+    
+    # Generate n unique random pillars.
+    pillars = set()
+    while len(pillars) < n:
+        x = random.randint(0, 5000)
+        y = random.randint(0, 5000)
+        pillars.add((x, y))
+    
+    for pillar in pillars:
+        dataset.append(f"{pillar[0]} {pillar[1]}")
+    
+    return "\n".join(dataset)
+
+def generate_test_cases(num_datasets):
+    test_cases = []
+    for _ in range(num_datasets):
+        test_cases.append(generate_dataset())
+    
+    # Append the terminating line with a single zero
+    test_cases.append("0")
+    
+    return "\n".join(test_cases)
+
+# Generate the test cases
+num_datasets = random.randint(1, 10)  # No more than 10 datasets
+test_input = generate_test_cases(num_datasets)
+
+print(test_input)
+```
+
+### Explanation:
+1. **generate_dataset**: This function generates a single dataset.
+   - It randomly selects the number of pillars \( n \) between 1 and 3000.
+   - It generates \( n \) unique pillars by ensuring no duplicate coordinates.
+   - Each pillar's coordinates \( (x, y) \) are chosen randomly between 0 and 5000 inclusive.
+   - The dataset is formatted as specified in the problem statement, with each coordinate pair on a new line.
+
+2. **generate_test_cases**: This function generates multiple datasets.
+   - It randomly selects the number of datasets (up to the maximum of 10).
+   - It calls the `generate_dataset` function to create each dataset.
+   - It appends a terminating line with a single zero to indicate the end of the input as required by the problem statement.
+
+3. **num_datasets**: The number of datasets is randomly chosen to be between 1 and 10.
+
+### Usage:
+- You can run this script to generate test inputs for your problem.
+- The generated test cases will be printed out, and you can use them to test your solution.
+
+This approach ensures that all constraints are respected and provides a variety of datasets to thoroughly test the solution.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    datasets = []
+    while True:
+        n = int(fh.readline().strip())
+        if n == 0:
+            break
+        coordinates = []
+        for _ in range(n):
+            x, y = map(int, fh.readline().strip().split())
+            coordinates.append((x, y))
+        datasets.append((n, coordinates))
+    return datasets
+
+# if __name__ == "__main__":
+#     input_path = sys.argv[1]
+#     with open(input_path, 'r') as fh:
+#         datasets = extract_arguments(fh)
+#         for dataset in datasets:
+#             n, coordinates = dataset
+#             f(n, coordinates)</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

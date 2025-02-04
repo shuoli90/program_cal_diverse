@@ -1,0 +1,18 @@
+def extract_arguments(fh):
+    datasets = []
+    while True:
+        n = int(fh.readline().strip())
+        if n == 0:
+            break
+        circles = []
+        for _ in range(n):
+            xi, yi, ri = map(int, fh.readline().strip().split())
+            circles.append((xi, yi, ri))
+        datasets.append((n, circles))
+    return datasets
+
+# Example usage:
+# with open('input.txt', 'r') as fh:
+#     datasets = extract_arguments(fh)
+#     for dataset in datasets:
+#         print(dataset)

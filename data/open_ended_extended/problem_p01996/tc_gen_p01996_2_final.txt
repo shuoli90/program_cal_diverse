@@ -1,0 +1,46 @@
+Sure, let's create a test case generator for the given problem statement. The generator will randomly produce values for \( N \), \( M \), and the list \( A \) such that the constraints are satisfied.
+
+Here's the test case generator in Python:
+
+```python
+import random
+
+def tcgen():
+    # Generate random values for N and M such that 1 ≤ M ≤ N ≤ 1000
+    N = random.randint(1, 1000)
+    M = random.randint(1, N)
+    
+    # Generate a sorted list of M unique integers from 1 to N
+    A = sorted(random.sample(range(1, N + 1), M))
+    
+    return N, M, A
+
+# Example usage:
+N, M, A = tcgen()
+print(N, M)
+print(' '.join(map(str, A)))
+```
+
+### Explanation:
+1. **N and M Generation**:
+   - The value of \( N \) is randomly chosen between 1 and 1000.
+   - The value of \( M \) is randomly chosen between 1 and \( N \).
+
+2. **List A Generation**:
+   - We generate a list of \( M \) unique integers within the range from 1 to \( N \) using `random.sample`.
+   - The list \( A \) is then sorted to ensure it follows the constraint \( A_i < A_j \) for \( 1 \leq i < j \leq M \).
+
+### Example Output:
+Running the test case generator might produce output like:
+
+```
+10 3
+3 6 9
+```
+
+This implies:
+- \( N = 10 \)
+- \( M = 3 \)
+- \( A = [3, 6, 9] \)
+
+You can run the `tcgen` function multiple times to generate different test cases.

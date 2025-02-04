@@ -1,0 +1,5 @@
+Types: H: int, W: int, grid: List[str], n: int, chars: List[str]
+
+Ranges: 1 ≤ H, W ≤ 10, 0 ≤ n ≤ 10
+
+Addtl Info: The input ends when the line "0 0" is encountered. Each grid is represented by H strings of length W. The list of characters contains n characters. The number of datasets is at most 100.

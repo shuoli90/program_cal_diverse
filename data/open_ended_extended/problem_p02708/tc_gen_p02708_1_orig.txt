@@ -1,0 +1,32 @@
+Sure! Below is a test case generator for the given problem statement:
+
+```python
+import random
+
+def tcgen():
+    N = random.randint(1, 200000)
+    K = random.randint(1, N + 1)
+    return N, K
+
+# Example usage:
+if __name__ == "__main__":
+    N, K = tcgen()
+    print(N, K)
+```
+
+### Explanation:
+1. **N Generation**:
+   - `N` is generated randomly between 1 and 200,000 (inclusive), as per the constraints.
+
+2. **K Generation**:
+   - `K` is generated randomly between 1 and \(N + 1\) (inclusive), ensuring it adheres to the constraint \(1 \leq K \leq N + 1\).
+
+### Sample Outputs:
+- When you run the generator, it will give you random test cases within the specified constraints. For example:
+  ```
+  13795 4302
+  200000 150000
+  1 1
+  ```
+
+You can use this generator to create multiple test cases for your problem. The values will be printed in the required format for each test run.

@@ -1,0 +1,281 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p01882 - Generation 2</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p01882 - Generation 2</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>
+We don't wanna work!
+ACM is an organization of programming contests. The purpose of ACM does not matter to you. The only important thing is that workstyles of ACM members are polarized: each member is either a workhorse or an idle fellow.
+Each member of ACM has a motivation level. The members are ranked by their motivation levels: a member who has a higher motivation level is ranked higher. When several members have the same value of motivation levels, the member who joined ACM later have a higher rank. The top 20% highest ranked members work hard, and the other (80%) members never (!) work. Note that if 20% of the number of ACM members is not an integer, its fraction part is rounded down.
+You, a manager of ACM, tried to know whether each member is a workhorse or an idle fellow to manage ACM. Finally, you completed to evaluate motivation levels of all the current members. However, your task is not accomplished yet because the members of ACM are dynamically changed from day to day due to incoming and outgoing of members. So, you want to record transitions of members from workhorses to idle fellows, and vice versa.
+You are given a list of the current members of ACM and their motivation levels in chronological order of their incoming date to ACM. You are also given a list of incoming/outgoing of members in chronological order.
+Your task is to write a program that computes changes of workstyles of ACM members.
+Input
+The first line of the input contains a single integer $N$ ($1 \leq N \leq 50,000$) that means the number of initial members of ACM. The ($i$ + 1)-th line of the input contains a string $s_i$ and an integer $a_i$ ($0 \leq a_i \leq 10^5$), separated by a single space. $s_i$ means the name of the $i$-th initial member and $a_i$ means the motivation level of the $i$-th initial member. Each character of $s_i$ is an English letter, and $1 \leq |s_i| \leq 20$. Note that those $N$ lines are ordered in chronological order of incoming dates to ACM of each member.
+The ($N$ + 2)-th line of the input contains a single integer $M$ ($1 \leq M \leq 20,000$) that means the number of changes of ACM members. The ($N$ + 2 + $j$)-th line of the input contains information of the $j$-th incoming/outgoing member. When the $j$-th information represents an incoming of a member, the information is formatted as "$+ t_j b_j$", where $t_j$ is the name of the incoming member and $b_j$ ($0 \leq b_j \leq 10^5$) is his motivation level. On the other hand, when the $j$-th information represents an outgoing of a member, the information is formatted as "$- t_j$", where $t_j$ means the name of the outgoing member. Each character of $t_j$ is an English letter, and $1 \leq |t_j| \leq 20$. Note that uppercase letters and lowercase letters are distinguished. Note that those $M$ lines are ordered in chronological order of dates when each event happens.
+No two incoming/outgoing events never happen at the same time. No two members have the same name, but members who left ACM once may join ACM again.
+Output
+Print the log, a sequence of changes in chronological order. When each of the following four changes happens, you should print a message corresponding to the type of the change as follows:
+ Member $name$ begins to work hard : "$name$ is working hard now."
+ Member $name$ begins to not work : "$name$ is not working now."
+For each incoming/outgoing, changes happen in the following order:
+ Some member joins/leaves.
+ When a member joins, the member is added to either workhorses or idle fellows.
+ Some member may change from a workhorse to an idle fellow and vice versa. Note that there are no cases such that two or more members change their workstyles at the same time.
+Sample Input 1
+4
+Durett 7
+Gayles 3
+Facenda 6
+Daughtery 0
+1
++ Mccourtney 2
+Output for the Sample Input 1
+Mccourtney is not working now.
+Durett is working hard now.
+Initially, no member works because $4 \times 20$% $< 1$. When one member joins ACM, Durrett begins to work hard.
+Sample Input 2
+3
+Burdon 2
+Orlin 8
+Trumper 5
+1
++ Lukaszewicz 7
+Output for the Sample Input 2
+Lukaszewicz is not working now.
+No member works.
+Sample Input 3
+5
+Andy 3
+Bob 4
+Cindy 10
+David 1
+Emile 1
+3
++ Fred 10
+- David
++ Gustav 3
+Output for the Sample Input 3
+Fred is working hard now.
+Cindy is not working now.
+Gustav is not working now.
+Sample Input 4
+7
+Laplant 5
+Varnes 2
+Warchal 7
+Degregorio 3
+Chalender 9
+Rascon 5
+Burdon 0
+7
++ Mccarroll 1
+- Chalender
++ Orlin 2
++ Chalender 1
++ Marnett 10
+- Chalender
++ Chalender 0
+Output for the Sample Input 4
+Mccarroll is not working now.
+Warchal is working hard now.
+Orlin is not working now.
+Chalender is not working now.
+Marnett is working hard now.
+Warchal is not working now.
+Chalender is not working now.
+Warchal is working hard now.
+Some member may repeat incoming and outgoing.
+Sample Input 5
+4
+Aoba 100
+Yun 70
+Hifumi 120
+Hajime 50
+2
+- Yun
+- Aoba
+Output for the Sample Input 5
+(blank)
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>### Canonicalized Input Description:
+
+An integer N (1 ≤ N ≤ 50,000), representing some quantity or size.
+A list of tuples of size N, where each tuple contains:
+  - A string (1 ≤ length ≤ 20), where each character is an English letter.
+  - An integer (0 ≤ integer ≤ 10^5).
+An integer M (1 ≤ M ≤ 20,000), representing some quantity or size.
+A list of changes of size M, where each change is formatted as:
+  - "+ string integer" or "- string", where:
+    - The string (1 ≤ length ≤ 20) consists of English letters.
+    - The integer (0 ≤ integer ≤ 10^5) is present only for the "+" format.
+
+### Example Input:
+```
+4
+example1 7
+example2 3
+example3 6
+example4 0
+1
++ example5 2
+```
+
+### Function Signature:
+Write a function f(N, initial_members, M, changes) that takes in the input.
+```python
+def f(N: int, initial_members: List[Tuple[str, int]], M: int, changes: List[str]):
+    '''
+    N: an integer
+    initial_members: a list of tuples, where each tuple contains a string and an integer
+    M: an integer
+    changes: a list of strings
+    '''
+```</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Sure! Here is a test case generator function for the given problem statement:
+
+```python
+import random
+import string
+
+def generate_name(length):
+    return ''.join(random.choices(string.ascii_letters, k=length))
+
+def tcgen():
+    N = random.randint(1, 50000)
+    members = [(generate_name(random.randint(1, 20)), random.randint(0, 100000)) for _ in range(N)]
+    
+    M = random.randint(1, 20000)
+    changes = []
+    existing_members = set(name for name, _ in members)
+    
+    for _ in range(M):
+        if existing_members and random.choice([True, False]):
+            # Outgoing member
+            name = random.choice(list(existing_members))
+            change = f"- {name}"
+            existing_members.remove(name)
+        else:
+            # Incoming member
+            name = generate_name(random.randint(1, 20))
+            while name in existing_members:
+                name = generate_name(random.randint(1, 20))
+            motivation = random.randint(0, 100000)
+            change = f"+ {name} {motivation}"
+            existing_members.add(name)
+        
+        changes.append(change)
+    
+    return N, members, M, changes
+
+def print_test_case(N, members, M, changes):
+    print(N)
+    for name, motivation in members:
+        print(f"{name} {motivation}")
+    print(M)
+    for change in changes:
+        print(change)
+
+if __name__ == "__main__":
+    N, members, M, changes = tcgen()
+    print_test_case(N, members, M, changes)
+```
+
+This function `tcgen` generates a test case with:
+1. A random number of initial members `N` (between 1 and 50,000).
+2. A list of tuples where each tuple contains a member name (randomly generated string of length between 1 and 20) and a motivation level (integer between 0 and 100,000).
+3. A random number of changes `M` (between 1 and 20,000).
+4. A list of changes, where each change is either an incoming member (with a new unique name and a motivation level) or an outgoing member (randomly chosen from the currently existing members).
+
+The `print_test_case` function prints the test case in the specified format.
+
+You can run the script to generate and print a random test case for the problem.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    N = int(fh.readline().strip())
+    members = []
+    for _ in range(N):
+        s, a = fh.readline().strip().split()
+        a = int(a)
+        members.append((s, a))
+    
+    M = int(fh.readline().strip())
+    changes = []
+    for _ in range(M):
+        line = fh.readline().strip()
+        if line[0] == '+':
+            _, t, b = line.split()
+            b = int(b)
+            changes.append((1, t, b))
+        else:
+            _, t = line.split()
+            changes.append((0, t))
+
+    return N, members, M, changes
+
+# Example usage:
+# if __name__ == "__main__":
+#     input_path = sys.argv[1]
+#     with open(input_path, 'r') as fh: 
+#         N, members, M, changes = extract_arguments(fh)</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

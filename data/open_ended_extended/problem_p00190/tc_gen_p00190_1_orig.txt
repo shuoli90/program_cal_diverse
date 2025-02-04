@@ -1,0 +1,62 @@
+Certainly! Here is a test case generator for the "11 Puzzle" problem statement.
+
+```python
+import random
+
+def tcgen():
+    # Generate a single dataset for the 11 puzzle
+    def generate_dataset():
+        # Create a list of numbers from 0 to 11
+        numbers = list(range(12))
+        random.shuffle(numbers)
+        
+        # Format the numbers into the specific layout
+        dataset = [
+            [numbers[0]],
+            numbers[1:4],
+            numbers[4:9],
+            numbers[9:12],
+            [numbers[12]]
+        ]
+        
+        # Convert the dataset into a format suitable for input
+        formatted_dataset = []
+        for row in dataset:
+            formatted_dataset.append(' '.join(map(str, row)))
+        return formatted_dataset
+
+    # Generate multiple datasets (up to 100)
+    num_datasets = random.randint(1, 100)
+    datasets = []
+    for _ in range(num_datasets):
+        datasets.append(generate_dataset())
+
+    # Add the end-of-input indicator
+    datasets.append(["-1"])
+
+    # Convert the dataset list into a single string with proper line breaks
+    test_case = '\n'.join(['\n'.join(dataset) for dataset in datasets])
+    
+    return test_case
+
+# Print a generated test case for demonstration
+print(tcgen())
+```
+
+### Explanation:
+
+1. **Dataset Generation**: 
+   - The function `generate_dataset` creates a shuffled list of numbers from 0 to 11 and formats them into the specific layout required by the problem.
+   - This dataset is then converted into strings suitable for input.
+
+2. **Multiple Datasets**:
+   - Up to 100 datasets are generated.
+   - Each dataset is appended to a list `datasets`.
+
+3. **End-of-Input Indicator**:
+   - After generating datasets, `-1` is appended to indicate the end of input.
+
+4. **Formatting**:
+   - The datasets are joined with line breaks to form a single input string suitable for the problem's input format.
+
+This generator will output a string that can be directly used as the input for the "11 Puzzle" problem, containing multiple datasets and the final `-1` to indicate the end.

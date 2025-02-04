@@ -1,0 +1,5 @@
+Types: N: int, P: List[int]
+
+Ranges: 1 ≤ N ≤ 2 × 10^5, P is a permutation of (1, 2, ..., N)
+
+Addtl Info: None

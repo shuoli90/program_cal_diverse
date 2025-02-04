@@ -1,0 +1,16 @@
+An integer N (1 ≤ N ≤ 100), representing some quantity.
+An integer R (0 ≤ R ≤ 4111), representing some value.
+
+### Example Input:
+
+```
+12 2919
+```
+
+### Function Signature:
+Write a function f(N, R) that takes in the input.
+def f(N: int, R: int):
+    '''
+    N: an integer
+    R: an integer
+    '''

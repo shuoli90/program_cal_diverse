@@ -1,0 +1,43 @@
+Certainly! Let's create a test case generator for the problem "Decrypting the Princess's Code". 
+
+First, let’s summarize the key points of the problem:
+- The input consists of multiple datasets.
+- Each dataset starts with an integer \( N \) (1 ≤ \( N \) ≤ 10), followed by \( N \) words.
+- Each word contains only lowercase letters and has a maximum length of 10.
+- The input ends with a line containing the number 0.
+
+Here's a Python function to generate test cases for this problem:
+
+```python
+import random
+import string
+
+def generate_word(max_length=10):
+    length = random.randint(1, max_length)
+    return ''.join(random.choice(string.ascii_lowercase) for _ in range(length))
+
+def generate_dataset():
+    N = random.randint(1, 10)
+    words = [generate_word() for _ in range(N)]
+    return [str(N)] + words
+
+def tcgen():
+    datasets = []
+    # Generate a random number of datasets, for example between 1 and 5
+    num_datasets = random.randint(1, 5)
+    for _ in range(num_datasets):
+        dataset = generate_dataset()
+        datasets.append('\n'.join(dataset))
+    datasets.append('0')  # End of input marker
+    return '\n'.join(datasets)
+
+# Example of generating a test case and printing it
+print(tcgen())
+```
+
+Explanation:
+- `generate_word(max_length=10)`: This function generates a random word with a length between 1 and the specified `max_length` (default is 10). The word consists of random lowercase letters.
+- `generate_dataset()`: This function generates one dataset. It starts with a random integer \( N \) between 1 and 10, followed by \( N \) random words.
+- `tcgen()`: This function generates multiple datasets (between 1 and 5 in this example) and concatenates them into a single string, with each dataset separated by new lines. It finally appends '0' to signify the end of input.
+
+You can modify the range of `num_datasets` or the `max_length` of the words as needed. This generator ensures that the test cases adhere to the constraints provided in the problem statement.

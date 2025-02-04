@@ -1,0 +1,5 @@
+Type Bounds:
+
+Types: N: int
+Ranges: 1 ≤ N ≤ 12
+Addtl Info: None

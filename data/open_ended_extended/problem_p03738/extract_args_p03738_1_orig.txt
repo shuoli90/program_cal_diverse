@@ -1,0 +1,4 @@
+def extract_arguments(fh):
+    A = fh.readline().strip()
+    B = fh.readline().strip()
+    return A, B

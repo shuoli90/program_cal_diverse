@@ -1,0 +1,38 @@
+Sure, I can help you write a test case generator for this problem statement. We'll use Python to generate random test cases based on the given constraints.
+
+Here's the code:
+
+```python
+import random
+
+def generate_test_case():
+    # Constraints
+    H = random.randint(1, 10)
+    W = random.randint(1, 1000)
+    K = random.randint(1, H * W)
+    
+    # Generating the chocolate bar with random 0s and 1s
+    S = [[random.choice([0, 1]) for _ in range(W)] for _ in range(H)]
+    
+    return H, W, K, S
+
+def format_test_case(H, W, K, S):
+    formatted_input = f"{H} {W} {K}\n"
+    formatted_input += "\n".join("".join(map(str, row)) for row in S)
+    return formatted_input
+
+# Example usage
+if __name__ == "__main__":
+    H, W, K, S = generate_test_case()
+    test_case_input = format_test_case(H, W, K, S)
+    print(test_case_input)
+```
+
+### Explanation:
+1. **generate_test_case():** This function generates random values for `H`, `W`, and `K` within their respective constraints. It also generates the 2D list `S` representing the chocolate bar, with each cell randomly being either 0 (dark) or 1 (white).
+
+2. **format_test_case():** This function formats the generated test case into the required input format. The heights `H`, widths `W`, and `K` are placed on the first line followed by the rows of the chocolate bar `S`.
+
+3. **Example usage:** This demonstrates how to generate and print a test case.
+
+You can run this script to generate random test cases for the problem statement. Just copy the code into a Python environment and execute it. Each run will produce a different test case adhering to the constraints provided in the problem statement.

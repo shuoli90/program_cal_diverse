@@ -1,0 +1,18 @@
+def extract_arguments(fh):
+    inputs = []
+    while True:
+        N = int(fh.readline().strip())
+        if N == 0:
+            break
+        ranges = []
+        for _ in range(N):
+            low, high = map(int, fh.readline().strip().split())
+            ranges.append((low, high))
+        inputs.append((N, ranges))
+    return inputs
+
+# Example usage:
+# with open('input.txt', 'r') as fh:
+#     inputs = extract_arguments(fh)
+#     for input_tuple in inputs:
+#         f(input_tuple)

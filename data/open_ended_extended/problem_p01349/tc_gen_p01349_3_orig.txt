@@ -1,0 +1,62 @@
+Sure, let's write a test case generator for the "Ennichi" problem, where we need to generate random test cases that conform to the problem's constraints.
+
+Here is the test case generator in Python:
+
+```python
+import random
+import string
+
+def generate_field(h, w, n):
+    """Generate a game field with given dimensions h and w."""
+    field = [['.' for _ in range(w)] for _ in range(h)]
+    
+    # Ensure at least one block is present
+    total_blocks = random.randint(1, h * w)
+    
+    for _ in range(total_blocks):
+        i = random.randint(0, h - 1)
+        j = random.randint(0, w - 1)
+        field[i][j] = random.choice(string.ascii_uppercase)
+    
+    # Convert lists to strings
+    field = [''.join(row) for row in field]
+    
+    return field
+
+def tcgen():
+    h = random.randint(2, 30)
+    w = random.randint(2, 30)
+    n = random.randint(2, 30)
+    
+    field = generate_field(h, w, n)
+    
+    return h, w, n, field
+
+def format_test_case(h, w, n, field):
+    """Format the test case as a string for printing or writing to a file."""
+    field_str = '\n'.join(field)
+    return f"{h} {w} {n}\n{field_str}"
+
+# Generate a test case
+h, w, n, field = tcgen()
+formatted_test_case = format_test_case(h, w, n, field)
+print(formatted_test_case)
+```
+
+### Explanation:
+
+1. **generate_field(h, w, n)**:
+   - This function creates a field of size \( h \times w \) filled with periods ('.').
+   - A random number of total blocks (at least one) are placed in the field. Each block is assigned a random uppercase letter.
+
+2. **tcgen()**:
+   - Randomly selects the dimensions \( h \), \( w \), and the threshold \( n \) within the given constraints.
+   - Calls `generate_field()` to create the game field.
+
+3. **format_test_case(h, w, n, field)**:
+   - Formats the generated test case into a string suitable for printing or writing to a file.
+
+4. **Main Code**:
+   - Generates a test case and prints it in the required format.
+
+This generator ensures that the generated test cases conform to the constraints provided in the problem statement and that there is at least one block in the field, making the test cases valid and useful for testing solutions to the problem.

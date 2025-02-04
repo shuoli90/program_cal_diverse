@@ -1,0 +1,33 @@
+Sure! Below is a test case generator for the given problem statement.
+
+```python
+import random
+
+def tcgen():
+    # Generate the number of doughnut types
+    N = random.randint(2, 100)
+    
+    # Generate grams required for each doughnut type
+    m = [random.randint(1, 1000) for _ in range(N)]
+    
+    # Ensure the sum of m is less than X and generate X appropriately
+    sum_m = sum(m)
+    X = random.randint(sum_m, 100000)
+    
+    return N, X, m
+
+# Example of generating a test case
+N, X, m = tcgen()
+print(N)
+print(X)
+for grams in m:
+    print(grams)
+```
+
+This function `tcgen` will generate random test cases for the given problem statement. Here's a breakdown of how it works:
+
+1. It generates a random integer \( N \) between 2 and 100, inclusive, representing the number of doughnut types.
+2. It generates a list \( m \) of size \( N \) where each element is a random integer between 1 and 1000, inclusive, representing the grams of Moto required to make each type of doughnut.
+3. It calculates the sum of the \( m \) list to ensure that \( X \) is at least as large as the sum of \( m \) and then generates a random integer \( X \) between the sum of \( m \) and 100000, inclusive.
+
+The generated test case is printed in the required input format.

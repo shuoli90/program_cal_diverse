@@ -1,0 +1,44 @@
+Bubble Sort
+Sorting algorithms are essential basic algorithms in computer science for arranging data. For example, sorting an array of integer values in ascending order is a sorting operation, as shown in the figure below.
+Many sorting algorithms have been developed, but one of the basic algorithms is bubble sort. For example, let's try to arrange an given array of integers in ascending order using bubble sort.
+In bubble sort, at each calculation step, the array is divided into a "sorted part" and an "unsorted part". At the beginning, the entire array becomes the unsorted part.
+Starting from the beginning of the unsorted part, adjacent elements are compared (green elements in the figure), and they are swapped so that the larger value comes to the right. If the two values are equal, they are not swapped.
+Repeat this process until the end of the unsorted part (white elements in the figure). Finally, add the end to the sorted part (blue elements), and one step is completed.
+Repeat this step until the length of the unsorted part becomes 1.
+When the length of the unsorted part becomes 1, the sorting process is finished.
+Now, create a program that takes an array of n numbers as input and sorts them in ascending order from the beginning of the array using the above bubble sort procedure, and outputs the number of array element swaps required.
+Input
+The input consists of multiple datasets. The end of the input is indicated by a single zero.
+Each dataset is given in the following format.
+n
+a1
+a2
+:
+an
+The first line contains the number of numbers n (1 ≤ n ≤ 100), and the following n lines contain the i-th number ai (1 ≤ ai ≤ 1000000).
+The number of datasets does not exceed 20.
+Output
+For each dataset, output the number of swaps required to sort the data elements in one line.
+Sample Input
+5
+5
+3
+2
+1
+4
+6
+1
+2
+3
+4
+5
+6
+3
+3
+2
+1
+0
+Output for the Sample Input
+7
+0
+3

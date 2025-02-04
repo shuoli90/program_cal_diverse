@@ -1,0 +1,27 @@
+Problem A: Ennichi
+A rabbit who came to a shrine's festival found a game booth where the prize was a carrot cake. The rules for this game are as follows:
+There is a rectangular field with h rows and w columns, and at most one block is placed in each square. Each block is colored with one of the uppercase letters ('A' - 'Z'). When n or more blocks of the same color are aligned vertically or horizontally, they disappear.
+Participants can choose two adjacent squares horizontally and swap their states. When a block falls because of swapping, disappearing, or falling, the block falls one square down. When n or more blocks of the same color are aligned again, they disappear. However, the blocks do not disappear while falling, and all the blocks disappear at the same time when all the blocks have finished falling.
+If all the blocks on the field disappear in one operation, the game is successful, and the rabbit can get the cake. The rabbit wants to get the cake by paying the participation fee only once, and does not want to participate if it is impossible. Given the initial state of the field at the start of the game, determine whether the rabbit should participate in the game.
+Input
+The first line of the input contains three integers h, w, and n separated by spaces.
+2 ≤ h, w, n ≤ 30.
+The next h lines give the state of the field from top to bottom. Uppercase letters represent blocks, and periods represent empty squares. The state of the field given does not contain n or more blocks of the same color aligned vertically or horizontally and there is no block in the state that will fall. There is at least one block.
+Output
+If the rabbit should participate in the game, print "YES". Otherwise, print "NO".
+Sample Input 1
+4 6 3
+......
+...Y..
+...Y..
+RRYRYY
+Sample Output 2
+YES
+Sample Input 1
+4 6 3
+......
+...Y..
+...Y..
+RRYRY.
+Sample Output 2
+NO

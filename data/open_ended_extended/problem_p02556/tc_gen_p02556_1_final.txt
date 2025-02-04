@@ -1,0 +1,42 @@
+Sure! Here's a Python function that generates test cases for the given problem statement about calculating the maximum possible Manhattan distance between two points on a 2D plane.
+
+```python
+import random
+
+def tcgen():
+    # Number of points on the 2D plane
+    N = random.randint(2, 2 * 10**5)
+    
+    # Generate the list of points
+    points = [(random.randint(1, 10**9), random.randint(1, 10**9)) for _ in range(N)]
+    
+    return N, points
+
+# Example usage
+if __name__ == "__main__":
+    N, points = tcgen()
+    
+    print(N)
+    for x, y in points:
+        print(x, y)
+```
+
+### Explanation:
+
+1. **N**: This is generated randomly within the given constraints, i.e., between 2 and 200,000.
+2. **Points**: Each point (x_i, y_i) is generated such that both x_i and y_i are random integers between 1 and \(10^9\).
+
+### Example Output:
+
+Upon running the `tcgen` function, you may get an output like:
+```
+4
+123456789 987654321
+135792468 246813579
+102938475 564738291
+192837465 564738291
+```
+
+This provides a valid input for the problem statement.
+
+Feel free to adjust the random seed (using `random.seed()`) if you need reproducible test cases.

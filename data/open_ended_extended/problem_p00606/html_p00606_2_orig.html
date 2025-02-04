@@ -1,0 +1,202 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p00606 - Generation 2</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p00606 - Generation 2</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>
+Problem B: Cleaning Robot
+Dr. Asimov, a robotics researcher, loves to research, but hates houseworks and his house were really dirty. So, he has developed a cleaning robot.
+As shown in the following figure, his house has 9 rooms, where each room is identified by an alphabet:
+The robot he developed operates as follows:
+If the battery runs down, the robot stops.
+ If not so, the robot chooses a direction from four cardinal points with the equal probability, and moves to the room in that direction. Then, the robot clean the room and consumes 1 point of the battery. 
+However, if there is no room in that direction, the robot does not move and remains the same room. In addition, there is a junk room in the house where the robot can not enter, and the robot also remains when it tries to enter the junk room. The robot also consumes 1 point of the battery when it remains the same place.
+A battery charger for the robot is in a room. It would be convenient for Dr. Asimov if the robot stops at the battery room when its battery run down.
+Your task is to write a program which computes the probability of the robot stopping at the battery room.
+Input
+The input consists of several datasets. Each dataset consists of:
+n
+s t b
+n is an integer that indicates the initial battery point. s, t, b are alphabets respectively represent the room where the robot is initially, the battery room, and the junk room.
+The input ends with a dataset which consists of single 0 for n. Your program should not output for this dataset.
+Output
+For each dataset, print the probability as a floating point number in a line. The answer may not have an error greater than 0.000001.
+Constraints
+Judge data includes at most 100 data sets.
+n ≤ 15
+s, t, b are distinct.
+Sample Input
+1
+E A C
+1
+E B C
+2
+E A B
+0
+Output for the Sample Input
+0.00000000
+0.25000000
+0.06250000
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An integer n (0 ≤ n ≤ 15), representing some battery points. When n is 0, the input ends and should not be processed.
+Three characters s, t, b, representing distinct rooms.
+
+### Example Input:
+```
+1
+E A C
+1
+E B C
+2
+E A B
+0
+```
+
+### Function Signature:
+Write a function f(inputs) that takes in the input.
+```python
+from typing import List, Tuple
+
+def f(inputs: List[Tuple[int, str, str, str]]):
+    '''
+    inputs: a list of tuples, where each tuple contains:
+    - an integer, representing some battery points
+    - a character, representing a room
+    - another character, representing a different room
+    - another character, representing a different room
+    '''
+```</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Sure! Based on the given problem statement for "Cleaning Robot," we need to generate test cases automatically. Here's the Python code for generating test cases:
+
+```python
+import random
+
+def generate_test_case():
+    # Generate the initial battery points n (1 <= n <= 15)
+    n = random.randint(1, 15)
+    
+    # All possible rooms
+    rooms = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I']
+    
+    # Randomly select three distinct rooms for s, t, and b
+    s, t, b = random.sample(rooms, 3)
+    
+    # Return the test case as a tuple
+    return n, s, t, b
+
+def generate_multiple_test_cases(num_cases):
+    test_cases = []
+    
+    for _ in range(num_cases):
+        test_cases.append(generate_test_case())
+    
+    # Add the terminating dataset
+    test_cases.append((0,))
+    
+    return test_cases
+
+# Generate test cases
+num_cases = random.randint(1, 100)  # Number of datasets (1 <= number of datasets <= 100)
+test_cases = generate_multiple_test_cases(num_cases)
+
+# Print the generated test cases in the required format
+for case in test_cases:
+    print(" ".join(map(str, case)))
+```
+
+This code will generate multiple test cases for the "Cleaning Robot" problem and print them in the required format. The number of datasets is picked randomly between 1 and 100, and each dataset is generated such that:
+
+1. `n` is an integer between 1 and 15.
+2. `s`, `t`, and `b` are distinct rooms selected randomly from a list of room identifiers.
+
+The last dataset in the output is (0,) which indicates the end of input.
+
+Here's an example output for reference:
+
+```
+8 G A B
+15 F D G
+7 B F H
+...
+0
+```
+
+You can run this code to generate and test various scenarios for your competitive programming problem.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    datasets = []
+    while True:
+        n = int(fh.readline().strip())
+        if n == 0:
+            break
+        s, t, b = fh.readline().strip().split()
+        datasets.append((n, s, t, b))
+    return datasets
+
+# if __name__ == "__main__":
+#     input_path = sys.argv[1]
+#     with open(input_path, 'r') as fh:
+#         datasets = extract_arguments(fh)
+#         for dataset in datasets:
+#             f(*dataset)</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

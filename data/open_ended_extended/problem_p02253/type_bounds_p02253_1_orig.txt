@@ -1,0 +1,3 @@
+Types: \( n: \text{int}, s: \text{List[int]}, t: \text{List[int]} \)
+Ranges: \( 1 \le n \le 10^5 \), \( 1 \le s_i < t_i \le 10^9 \) (\( 1 \le i \le n \))
+Addtl Info: None

@@ -1,0 +1,69 @@
+Certainly! Here's a Python function that generates test cases for the described problem:
+
+```python
+import random
+
+def tcgen():
+    datasets = []
+    
+    # Generate a random number of datasets, let's say between 1 and 5 for simplicity
+    num_datasets = random.randint(1, 5)
+    
+    for _ in range(num_datasets):
+        # Number of rectangles n (1 ≤ n ≤ 50)
+        n = random.randint(1, 50)
+        rectangles = []
+        
+        for _ in range(n):
+            # Coordinates (0 ≤ li < ri ≤ 10^6, 0 ≤ bi < ti ≤ 10^6)
+            l = random.randint(0, 999999)
+            r = random.randint(l + 1, 1000000)
+            b = random.randint(0, 999999)
+            t = random.randint(b + 1, 1000000)
+            rectangles.append((l, t, r, b))
+        
+        datasets.append((n, rectangles))
+    
+    return datasets
+
+def format_datasets(datasets):
+    formatted = []
+    for dataset in datasets:
+        n, rectangles = dataset
+        formatted.append(f"{n}")
+        for rect in rectangles:
+            formatted.append(f"{rect[0]} {rect[1]} {rect[2]} {rect[3]}")
+    formatted.append("0")
+    return "\n".join(formatted)
+
+# Example usage:
+datasets = tcgen()
+formatted_input = format_datasets(datasets)
+print(formatted_input)
+```
+
+### Explanation:
+1. **`tcgen` Function:**
+   - Generates a random number of datasets (between 1 and 5 for simplicity).
+   - For each dataset, it generates a random number of rectangles \(n\) (1 ≤ \(n\) ≤ 50).
+   - For each rectangle, it generates random coordinates \(l, t, r, b\) such that \(0 ≤ l < r ≤ 10^6\) and \(0 ≤ b < t ≤ 10^6\).
+
+2. **`format_datasets` Function:**
+   - Formats the generated datasets into the required input format as a string.
+   - Each dataset is separated by a newline, and the final dataset is terminated by a single zero.
+
+### Example Output:
+The generated output will look similar to the sample input provided in the problem statement, with randomly generated values for the rectangle coordinates.
+
+```plaintext
+3
+456789 987654 987654 123456
+12345 67890 23456 34567
+111111 222222 333333 444444
+2
+123 456 789 101112
+131415 161718 192021 202122
+0
+```
+
+This function can be modified further based on specific requirements or constraints, but it should serve as a good starting point for generating test cases for the given problem.

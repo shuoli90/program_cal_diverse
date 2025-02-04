@@ -1,0 +1,3 @@
+Types: N: int, s: str  
+Ranges: 1 ≤ N ≤ 5000, 1 ≤ |s| ≤ N, s consists of the letters '0' and '1'  
+Addtl Info: None

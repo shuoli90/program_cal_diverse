@@ -1,0 +1,82 @@
+Sure! Here's a test case generator for the given problem statement:
+
+### Problem Statement: Sum of Powers
+
+**Description**
+
+Given an integer \( a \), the task is to calculate and print the value \( a + a^2 + a^3 \).
+
+**Constraints**
+
+- \( 1 \leq a \leq 10 \)
+- \( a \) is an integer.
+
+**Input**
+
+Input is given from Standard Input in the following format:
+```
+a
+```
+
+**Output**
+
+Print the value \( a + a^2 + a^3 \) as an integer.
+
+**Examples**
+
+_Input_
+```
+2
+```
+
+_Output_
+```
+14
+```
+
+_Input_
+```
+10
+```
+
+_Output_
+```
+1110
+```
+
+**Explanation**
+
+In the first example, the value of \( a \) is 2, so the result is calculated as \( 2 + 2^2 + 2^3 = 2 + 4 + 8 = 14 \).
+
+In the second example, the value of \( a \) is 10, so the result is calculated as \( 10 + 10^2 + 10^3 = 10 + 100 + 1000 = 1110 \).
+
+### Test Case Generator
+
+Here's the Python code for the test case generator:
+
+```python
+import random
+
+def tcgen():
+    # Generate a random integer a in the range 1 to 10
+    a = random.randint(1, 10)
+    
+    # Return the generated test case
+    return a
+
+# Example usage:
+if __name__ == "__main__":
+    # Generate a test case
+    a = tcgen()
+    
+    # Print the test case
+    print(a)
+    
+    # Calculate the expected output
+    result = a + a**2 + a**3
+    
+    # Print the expected output
+    print(result)
+```
+
+This `tcgen` function will generate random test cases within the constraints provided. The main block demonstrates how to use the generator and print both the input and the expected output for verification.

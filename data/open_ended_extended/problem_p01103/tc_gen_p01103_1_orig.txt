@@ -1,0 +1,49 @@
+Sure, here's a Python test case generator for the "A Garden with Ponds" problem:
+
+```python
+import random
+
+def tcgen():
+    datasets = []
+    num_datasets = random.randint(1, 100)  # At most 100 datasets
+    
+    for _ in range(num_datasets):
+        d = random.randint(3, 10)
+        w = random.randint(3, 10)
+        elevation_map = [[random.randint(0, 9) for _ in range(w)] for _ in range(d)]
+        datasets.append((d, w, elevation_map))
+        
+    # Adding the terminating line "0 0"
+    datasets.append((0, 0, []))
+    
+    return datasets
+
+def print_test_case(datasets):
+    for dataset in datasets:
+        d, w, elevation_map = dataset
+        if d == 0 and w == 0:
+            print("0 0")
+        else:
+            print(f"{d} {w}")
+            for row in elevation_map:
+                print(" ".join(map(str, row)))
+
+# Example usage of the test case generator
+if __name__ == "__main__":
+    test_cases = tcgen()
+    print_test_case(test_cases)
+```
+
+### Explanation:
+1. **tcgen():** This function generates random test cases.
+    - `num_datasets`: Randomly decides the number of datasets (between 1 and 100).
+    - For each dataset, it randomly generates `d` (depth) and `w` (width), both between 3 and 10.
+    - It then creates an elevation map of size `d x w` with random integers between 0 and 9.
+    - The datasets are stored in a list, and a terminating line `(0, 0)` is appended at the end.
+
+2. **print_test_case(datasets):** This function prints the test cases in the required format.
+    - It iterates through each dataset and prints the depth and width.
+    - For each dataset, it prints the elevation map.
+    - Finally, it prints the terminating line `0 0`.
+
+You can use this code to generate and print random test cases for the "A Garden with Ponds" problem.

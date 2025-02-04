@@ -1,0 +1,7 @@
+def extract_arguments(fh):
+    N = int(fh.readline().strip())
+    data = []
+    for _ in range(N):
+        x, r = map(int, fh.readline().strip().split())
+        data.append((x, r))
+    return N, data

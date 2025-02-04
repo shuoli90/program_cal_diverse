@@ -1,0 +1,44 @@
+Sure! Below is a test case generator for the problem "The Teacher’s Side of Math." This generator will create valid test cases based on the constraints given in the problem statement.
+
+```python
+import random
+
+def generate_prime(upper_limit):
+    """Generate a random prime number less than or equal to upper_limit."""
+    sieve = [True] * (upper_limit + 1)
+    sieve[0] = sieve[1] = False
+    for start in range(2, int(upper_limit**0.5) + 1):
+        if sieve[start]:
+            for multiple in range(start*start, upper_limit + 1, start):
+                sieve[multiple] = False
+    primes = [num for num, is_prime in enumerate(sieve) if is_prime]
+    return random.choice(primes)
+
+def tcgen():
+    datasets = []
+    while len(datasets) < random.randint(1, 5):  # Generate between 1 and 5 datasets
+        a = generate_prime(100)  # Generate a prime number less than or equal to 100 for variety
+        b = generate_prime(100)
+        while a == b:  # Ensure a and b are distinct primes
+            b = generate_prime(100)
+        
+        m = random.randint(2, 4)  # m should be an integer greater than 1
+        n = random.randint(2, 4)  # n should be an integer greater than 1
+        
+        if m * n <= 20 and m * (a**0.5) + n * (b**0.5) <= 4:
+            datasets.append(f"{a} {m} {b} {n}")
+    
+    datasets.append("0 0 0 0")  # Append the end marker
+    
+    return "\n".join(datasets)
+
+# Example of generating test cases
+print(tcgen())
+```
+
+Explanation:
+- `generate_prime(upper_limit)`: This function generates a random prime number less than or equal to `upper_limit` using the Sieve of Eratosthenes.
+- `tcgen()`: This function generates multiple datasets, ensuring that the products `m * n` and `m√a + n√b` fit within the constraints given. It generates between 1 to 5 datasets for variety.
+- The function then ensures distinct primes for `a` and `b` and ensures that `m` and `n` are integers greater than 1 and their product is within the constraint (≤20). It also verifies that the sum of `m√a + n√b` is within the limit (≤4).
+
+Each dataset is formatted as a string and collected into a list, which is eventually joined and returned as a single string with each dataset on a new line. The end marker "0 0 0 0" is appended to signify the end of datasets.

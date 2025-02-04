@@ -1,0 +1,192 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p03031 - Generation 2</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p03031 - Generation 2</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>
+Score : 300 points
+Problem StatementWe have N switches with "on" and "off" state, and M bulbs. The switches are numbered 1 to N, and the bulbs are numbered 1 to M.
+Bulb i is connected to k_i switches: Switch s_{i1}, s_{i2}, ..., and s_{ik_i}. It is lighted when the number of switches that are "on" among these switches is congruent to p_i modulo 2.
+How many combinations of "on" and "off" states of the switches light all the bulbs?
+Constraints
+1 \leq N, M \leq 10
+1 \leq k_i \leq N
+1 \leq s_{ij} \leq N
+s_{ia} \neq s_{ib} (a \neq b)
+p_i is 0 or 1.
+All values in input are integers.
+InputInput is given from Standard Input in the following format:
+N M
+k_1 s_{11} s_{12} ... s_{1k_1}
+:
+k_M s_{M1} s_{M2} ... s_{Mk_M}
+p_1 p_2 ... p_M
+OutputPrint the number of combinations of "on" and "off" states of the switches that light all the bulbs.
+Sample Input 12 2
+2 1 2
+1 2
+0 1
+Sample Output 11
+Bulb 1 is lighted when there is an even number of switches that are "on" among the following: Switch 1 and 2.
+Bulb 2 is lighted when there is an odd number of switches that are "on" among the following: Switch 2.
+There are four possible combinations of states of (Switch 1, Switch 2): (on, on), (on, off), (off, on) and (off, off). Among them, only (on, on) lights all the bulbs, so we should print 1.
+Sample Input 22 3
+2 1 2
+1 1
+1 2
+0 0 1
+Sample Output 20
+Bulb 1 is lighted when there is an even number of switches that are "on" among the following: Switch 1 and 2.
+Bulb 2 is lighted when there is an even number of switches that are "on" among the following: Switch 1.
+Bulb 3 is lighted when there is an odd number of switches that are "on" among the following: Switch 2.
+Switch 1 has to be "off" to light Bulb 2 and Switch 2 has to be "on" to light Bulb 3, but then Bulb 1 will not be lighted. Thus, there are no combinations of states of the switches that light all the bulbs, so we should print 0.
+Sample Input 35 2
+3 1 2 5
+2 2 3
+1 0
+Sample Output 38
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An integer N (1 ≤ N ≤ 10), representing some quantity or size.
+An integer M (1 ≤ M ≤ 10), representing some quantity or size.
+M lines follow. Each line starts with an integer k_i (1 ≤ k_i ≤ N), followed by k_i integers (1 ≤ s_{ij} ≤ N, all values are unique within the line).
+A list of M integers, each either 0 or 1.
+
+### Example Input:
+```
+2 2
+2 1 2
+1 2
+0 1
+```
+
+### Function Signature:
+Write a function f(inputs) that takes in the input.
+```python
+def f(inputs: List[Tuple[int, int, List[Tuple[int, List[int]]], List[int]]]):
+    '''
+    inputs: a list of tuples where each tuple contains:
+        - an integer N
+        - an integer M
+        - a list of M tuples, where each tuple contains:
+            - an integer k_i
+            - a list of k_i integers
+        - a list of M integers
+    '''
+```</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Certainly! Below is a test case generator for the described competitive programming problem:
+
+```python
+import random
+
+def tcgen():
+    # Constraints
+    N = random.randint(1, 10)  # Number of switches
+    M = random.randint(1, 10)  # Number of bulbs
+    
+    bulbs = []
+    p = []
+    
+    for _ in range(M):
+        k_i = random.randint(1, N)  # Number of switches connected to this bulb
+        s_i = random.sample(range(1, N + 1), k_i)  # Select k_i unique switches for this bulb
+        bulbs.append((k_i, s_i))
+        p_i = random.randint(0, 1)  # p_i value (0 or 1)
+        p.append(p_i)
+    
+    # Format the output in the specified format
+    input_data = f"{N} {M}\n"
+    for k_i, s_i in bulbs:
+        input_data += f"{k_i} {' '.join(map(str, s_i))}\n"
+    input_data += ' '.join(map(str, p))
+    
+    return input_data
+
+# Example usage
+print(tcgen())
+```
+
+### Explanation:
+- **N**: Number of switches, chosen randomly between 1 and 10.
+- **M**: Number of bulbs, chosen randomly between 1 and 10.
+- For each bulb:
+  - **k_i**: Number of switches connected to the bulb, chosen randomly between 1 and N.
+  - **s_i**: A unique set of switches (sampled without replacement) to ensure no duplicates.
+  - **p_i**: Randomly chosen 0 or 1, indicating the parity condition for the bulb.
+
+This function generates and formats the input data as specified by the problem statement. It ensures that all constraints are respected, and the generated input is suitable for testing the solution to the problem.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    N, M = map(int, fh.readline().strip().split())
+    k_s = []
+    for _ in range(M):
+        line = list(map(int, fh.readline().strip().split()))
+        k_s.append(line)
+    p = list(map(int, fh.readline().strip().split()))
+    return N, M, k_s, p
+
+# if __name__ == "__main__":
+#     input_path = sys.argv[1]
+#     with open(input_path, 'r') as fh:
+#         N, M, k_s, p = extract_arguments(fh)
+#         f(N, M, k_s, p)</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

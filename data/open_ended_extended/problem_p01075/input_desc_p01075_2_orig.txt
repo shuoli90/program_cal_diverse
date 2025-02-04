@@ -1,0 +1,27 @@
+An integer \(N\) (2 ≤ \(N\) ≤ 10^5), representing some quantity or size.
+An integer \(M\) (1 ≤ \(M\) ≤ 2 × 10^5), representing some quantity or size.
+A list of \(M\) tuples, where each tuple contains three integers \((X, Y, Z)\):
+- \(X\) (1 ≤ \(X\) < \(N\)), representing some quantity.
+- \(Y\) (1 ≤ \(Y\) ≤ \(N\)), representing some quantity.
+- \(Z\) (1 ≤ \(Z\) ≤ 10^9), representing some quantity.
+- \(X\) ≠ \(Y\).
+
+### Example Input:
+
+```
+4 3
+1 2 5
+2 3 8
+3 4 10
+```
+
+### Function Signature:
+Write a function f(N, M, bridges) that takes in the input.
+```python
+def f(N: int, M: int, bridges: List[Tuple[int, int, int]]):
+    '''
+    N: an integer
+    M: an integer
+    bridges: a list of tuples, each containing three integers
+    '''
+```

@@ -1,0 +1,73 @@
+To create a test case generator for the given problem, we need to ensure that the generated test cases adhere to the constraints and formats as stated in the problem. Here's how we can implement such a generator:
+
+```python
+import random
+
+def generate_jewel_coordinates_and_values(N):
+    coordinates = set()
+    jewels = []
+    
+    while len(jewels) < N:
+        x = random.randint(1, 100)
+        y = random.randint(1, 100)
+        if (x, y) not in coordinates:
+            coordinates.add((x, y))
+            v = random.randint(1, 10**15)
+            jewels.append((x, y, v))
+    
+    return jewels
+
+def generate_conditions(M, N):
+    conditions = set()
+    condition_types = ['L', 'R', 'U', 'D']
+
+    while len(conditions) < M:
+        t = random.choice(condition_types)
+        a = random.randint(1, 100)
+        b = random.randint(0, N - 1)
+        condition = (t, a, b)
+        if condition not in conditions:
+            conditions.add(condition)
+    
+    return list(conditions)
+
+def tcgen():
+    N = random.randint(1, 80)
+    jewels = generate_jewel_coordinates_and_values(N)
+    
+    M = random.randint(1, 320)
+    conditions = generate_conditions(M, N)
+    
+    return N, jewels, M, conditions
+
+def format_test_case(N, jewels, M, conditions):
+    test_case = []
+    test_case.append(str(N))
+    for x, y, v in jewels:
+        test_case.append(f"{x} {y} {v}")
+    test_case.append(str(M))
+    for t, a, b in conditions:
+        test_case.append(f"{t} {a} {b}")
+    return "\n".join(test_case)
+
+# Example of generating a test case
+N, jewels, M, conditions = tcgen()
+formatted_test_case = format_test_case(N, jewels, M, conditions)
+print(formatted_test_case)
+```
+
+**Explanation:**
+
+1. **`generate_jewel_coordinates_and_values(N)`:** This function generates `N` unique jewel coordinates `(x, y)` and assigns a random value `v` to each jewel. The coordinates are ensured to be unique by storing them in a set.
+
+2. **`generate_conditions(M, N)`:** This function generates `M` unique conditions. Each condition is a tuple `(t, a, b)` where `t` is one of the four types (`L`, `R`, `U`, `D`), `a` is a random integer from 1 to 100, and `b` is a random integer from 0 to `N-1`. The uniqueness of conditions is ensured by storing them in a set.
+
+3. **`tcgen()`:** This is the main function that generates the entire test case:
+   - It first generates a random `N` (number of jewels).
+   - It then generates the list of jewels and their properties.
+   - It generates a random `M` (number of conditions).
+   - It generates the list of conditions.
+
+4. **`format_test_case(N, jewels, M, conditions)`:** This function formats the generated test case into the required input format for the problem.
+
+By running the `tcgen()` function, we can generate a test case for the given problem and format it appropriately to be used as input for testing.

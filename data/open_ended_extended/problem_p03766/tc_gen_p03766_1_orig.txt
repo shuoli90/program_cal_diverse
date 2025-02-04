@@ -1,0 +1,34 @@
+Certainly! Below is a test case generator for the given problem statement.
+
+### Test Case Generator:
+
+```python
+import random
+
+def tcgen():
+    # Generate a random value for n within the given constraints
+    n = random.randint(1, 10**6)
+    
+    return n
+
+# Example usage:
+# Generate a test case
+n = tcgen()
+print(n)
+```
+
+### Explanation:
+
+This test case generator creates a random test case for the provided problem statement:
+
+1. **n**: Randomly generated integer between 1 and 10^6.
+
+You can run this generator multiple times to create different test cases for the problem.
+
+### Example Output from the Generator:
+
+```plaintext
+834057
+```
+
+This output corresponds to a single randomly generated test case with \( n \) as 834057. You can use this in your program to test the correctness and performance of your solution.

@@ -1,0 +1,186 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p01424 - Generation 1</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p01424 - Generation 1</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>
+Palindrome Generator
+A palidrome craftsperson starts to work in the early morning, 
+with the clear air allowing him to polish up his palindromes.
+On this morning, he is making his pieces to submit to the International Contest for Palindrome Craftspeople.
+By the way, in order to make palindromes, he uses a special dictionary which contains a set of words and a set of ordered pairs of the words.
+Any words and any ordered pairs of consecutive words in his palindromes must appear in the dictionary.
+We already have his dictionary, so let's estimate how long a palindrome he can make.
+Input
+The first line in the data set consists of two integers N (1 \leq N \leq 100) and M (0 \leq M \leq 1\,000).
+N describes the number of words in the dictionary and M describes the number of ordered pairs of words.
+The following N lines describe the words he can use.
+The i-th line (1-based) contains the word i, which consists of only lower-case letters and whose length is between 1 and 10, inclusive.
+The following M lines describe the ordered pairs of consecutive words he can use.
+The j-th line (1-based) contains two integers X_j and Y_j (1 \leq X_j, Y_j \leq N).
+X_j describes the (1-based) index of the former word in the palindrome and Y_j describes that of the latter word.
+Output
+Print the maximal length of the possible palindrome in a line.
+If he can make no palidromes, print "0".
+If he can make arbitrary long palindromes, print "-1". 
+Sample Input 1
+2 2
+ab
+ba
+1 1
+1 2
+Output for the Sample Input 1
+4
+Sample Input 2
+2 2
+ab
+ba
+1 1
+2 2
+Output for the Sample Input 2
+0
+Sample Input 3
+2 2
+ab
+a
+1 1
+1 2
+Output for the Sample Input 3
+-1
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An integer N (1 ≤ N ≤ 100), representing some quantity or size.
+An integer M (0 ≤ M ≤ 1,000), representing some quantity or size.
+A list of N strings, each consisting of only lower-case letters and whose length is between 1 and 10, inclusive.
+A list of M tuples, each containing two integers (X, Y) where 1 ≤ X, Y ≤ N.
+
+### Example Input:
+```
+2
+2
+ab
+ba
+1 1
+1 2
+```
+
+### Function Signature:
+Write a function f(N, M, words, pairs) that takes in the input.
+```python
+def f(N: int, M: int, words: List[str], pairs: List[Tuple[int, int]]):
+    '''
+    N: an integer
+    M: an integer
+    words: a list of strings
+    pairs: a list of tuples, each containing two integers
+    '''
+```</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Sure! Below is a test case generator for the given "Palindrome Generator" problem statement:
+
+```python
+import random
+
+def generate_word():
+    length = random.randint(1, 10)
+    return ''.join(random.choice('abcdefghijklmnopqrstuvwxyz') for _ in range(length))
+
+def tcgen():
+    # Generating N and M
+    N = random.randint(1, 100)
+    M = random.randint(0, 1000)
+    
+    # Generating the list of words
+    words = [generate_word() for _ in range(N)]
+    
+    # Generating pairs of words
+    pairs = []
+    for _ in range(M):
+        X_j = random.randint(1, N)
+        Y_j = random.randint(1, N)
+        pairs.append((X_j, Y_j))
+    
+    # Formatting the output
+    test_case = f"{N} {M}\n"
+    test_case += '\n'.join(words) + '\n'
+    test_case += '\n'.join(f"{x} {y}" for x, y in pairs)
+    
+    return test_case
+
+# Example usage
+print(tcgen())
+```
+
+This generator function will create a random test case for the "Palindrome Generator" problem. It does the following:
+
+1. Randomly generates `N` (number of words) between 1 and 100.
+2. Randomly generates `M` (number of ordered pairs) between 0 and 1000.
+3. Creates `N` words, each with a random length between 1 and 10 characters, consisting of lowercase letters.
+4. Generates `M` pairs of indices representing ordered pairs of words.
+
+You can call the `tcgen` function to generate a new test case each time. The test case is formatted as specified in the problem statement and returned as a string.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    N, M = map(int, fh.readline().strip().split())
+    words = [fh.readline().strip() for _ in range(N)]
+    pairs = [tuple(map(int, fh.readline().strip().split())) for _ in range(M)]
+    return N, M, words, pairs</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

@@ -1,0 +1,22 @@
+Sure! Here is a test case generator for the given problem statement:
+
+```python
+import random
+
+def tcgen():
+    K = random.randint(1, 10**9)
+    A = random.randint(1, 10**9)
+    B = random.randint(1, 10**9)
+    
+    return K, A, B
+
+# Example usage:
+if __name__ == "__main__":
+    for _ in range(5):  # Generate 5 test cases
+        K, A, B = tcgen()
+        print(f"K: {K}, A: {A}, B: {B}")
+```
+
+This code will generate random test cases for the problem. Each test case will consist of three integers \( K \), \( A \), and \( B \), with the constraints \( 1 \leq K, A, B \leq 10^9 \).
+
+To generate and print multiple test cases, you can run the script and it will output the generated test cases. Adjust the number of test cases as needed by changing the range in the for loop.

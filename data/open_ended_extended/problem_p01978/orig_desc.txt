@@ -1,0 +1,41 @@
+E: Mischief Graph
+Problem
+You were solving the flow problem, which is typical as a graph algorithm.
+In the problem given, the graph has $N$ vertices and $M$ edges, and an edge with capacity $z_i$ and cost $d_i$ is connected from vertex $x_i$ to vertex $y_i$.
+However, AOR Squid mischievously shuffled the order of $x_i, y_i,$ and $z_i$, and the vertex and capacity information became indistinguishable.
+Therefore, you gave up finding the flow between $s-t$ and decided to find the shortest distance between $s-t$.
+You decided to create an edge with cost $d_i$ from two input cases $a_i, b_i, c_i$ whose order of $x_i, y_i,$ and $z_i$ was shuffled and turned into two vertex information. That is, one of the three candidates, $a_i$ to $b_i$, $a_i$ to $c_i$, and $b_i$ to $c_i$, has an edge with cost $d_i$.
+Find the minimum value of "the shortest distance from s to t" among the possible graphs.
+Constraints
+$2 \le N \le 10^5$
+$1 \le M \le 10^5$
+$1 \le s,t \le N$
+$1 \le a_i,b_i,c_i \le N$
+$1 \le d_i \le 10^9$
+$s \neq t$
+A path from $s$ to $t$ exists in the original graph
+The input consists of integers only
+Input
+$N \ M \ s \ t$
+$a_1 \ b_1 \ c_1 \ d_1$
+$\vdots$
+$a_M \ b_M \ c_M \ d_M$
+Output
+Output the minimum value of "the shortest distance from $s$ to $t$" among the possible graphs in one line. You must also output a newline at the end.
+Sample
+Sample Input 1
+5 3 1 4
+3 1 2 5
+3 4 2 3
+5 4 2 2
+Sample Output 1
+7
+Sample Input 2
+8 5 8 3
+4 5 1 2
+5 6 2 3
+7 8 5 12
+3 1 2 11
+1 2 3 10
+Sample Output 2
+24

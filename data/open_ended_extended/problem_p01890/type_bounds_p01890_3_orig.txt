@@ -1,0 +1,16 @@
+Types: 
+- N: int 
+- g: List[int] 
+- a: List[int] 
+- b: List[int] 
+- d: List[int]
+
+Ranges: 
+- 1 ≤ N ≤ 100,000 
+- 1 ≤ g[i] ≤ 10,000 
+- 1 ≤ a[j], b[j] ≤ N 
+- a[j] ≠ b[j] 
+- 1 ≤ d[j] ≤ 10,000
+
+Addtl Info: 
+- The kingdom's road network forms a tree structure (i.e., connected and acyclic).

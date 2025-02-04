@@ -1,0 +1,26 @@
+An integer W (3 ≤ W ≤ 500), representing some width.
+An integer H (3 ≤ H ≤ 500), representing some height.
+A list of H strings of length W each, where each string contains characters from the set {'.', '#', 's', 'g', '*'}. The first and last characters of each string are '#'.
+
+### Example Input:
+
+```
+8 6
+########
+#..##g.#
+#*#.*#.#
+#......#
+#*s#*.*#
+########
+```
+
+### Function Signature:
+Write a function f(W, H, maze) that takes in the input.
+```python
+def f(W: int, H: int, maze: List[str]):
+    '''
+    W: an integer
+    H: an integer
+    maze: a list of strings
+    '''
+```

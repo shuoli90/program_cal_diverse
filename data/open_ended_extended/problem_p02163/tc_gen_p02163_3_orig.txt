@@ -1,0 +1,40 @@
+Sure! Here is a test case generator for the problem "How old are you":
+
+```python
+import random
+
+def tcgen():
+    # Define the constraints
+    N = random.randint(1, 15)  # 1 ≤ N ≤ 15
+
+    queries = []
+    for _ in range(N):
+        q = random.randint(1, 3)  # 1 ≤ q ≤ 3
+        x = random.randint(1, 10)  # 1 ≤ x ≤ 10
+        queries.append((q, x))
+
+    return N, queries
+
+# Example usage:
+N, queries = tcgen()
+print(N)
+for q, x in queries:
+    print(q, x)
+```
+
+This function generates a random test case for the problem. It creates a random number of queries \(N\) between 1 and 15, and then for each query, it generates a random type \(q\) (either 1, 2, or 3) and a random integer \(x\) between 1 and 10. The output is formatted as specified in the problem statement.
+
+You can use this generator to create multiple test cases to test your solution. Here is an example of how the output might look:
+
+```
+7
+3 5
+1 3
+2 8
+1 6
+1 10
+3 2
+2 7
+```
+
+This represents a test case with 7 queries, where each query modifies the number you're thinking of by either multiplying, adding, or subtracting a specified value.

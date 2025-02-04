@@ -1,0 +1,7 @@
+def extract_arguments(fh):
+    q = int(fh.readline().strip())
+    queries = []
+    for _ in range(q):
+        parts = list(map(int, fh.readline().strip().split()))
+        queries.append(tuple(parts))
+    return q, queries

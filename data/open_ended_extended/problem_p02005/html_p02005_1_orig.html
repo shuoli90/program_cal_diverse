@@ -1,0 +1,234 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p02005 - Generation 1</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p02005 - Generation 1</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>Problem B. Colorful Drink
+  In the Jambo Amusement Garden (JAG), you sell colorful drinks consisting of multiple color layers. This colorful drink can be made by pouring multiple colored liquids of different density from the bottom in order.
+  You have already prepared several colored liquids with various colors and densities. You will receive a drink request with specified color layers. The colorful drink that you will serve must satisfy the following conditions.
+You cannot use a mixed colored liquid as a layer. Thus, for instance, you cannot create a new liquid with a new color by mixing two or more different colored liquids, nor create a liquid with a density between two or more liquids with the same color by mixing them.
+Only a colored liquid with strictly less density can be an upper layer of a denser colored liquid in a drink. That is, you can put a layer of a colored liquid with density $x$ directly above the layer of a colored liquid with density $y$ if $x < y$ holds.
+														Your task is to create a program to determine whether a given request can be fulfilled with the prepared colored liquids under the above conditions or not.
+Input
+  The input consists of a single test case in the format below.
+$N$
+$C_1$ $D_1$
+$\vdots$
+$C_N$ $D_N$
+$M$
+$O_1$
+$\vdots$
+$O_M$
+  The first line consists of an integer $N$ ($1 \leq N \leq 10^5$), which represents the number of the prepared colored liquids. The following $N$ lines consists of $C_i$ and $D_i$ ($1 \leq i \leq N$). $C_i$ is a string consisting of lowercase alphabets and denotes the color of the $i$-th prepared colored liquid. The length of $C_i$ is between $1$ and $20$ inclusive. $D_i$ is an integer and represents the density of the $i$-th prepared colored liquid. The value of $D_i$ is between $1$ and $10^5$ inclusive. The ($N+2$)-nd line consists of an integer $M$ ($1 \leq M \leq 10^5$), which represents the number of color layers of a drink request. The following $M$ lines consists of $O_i$ ($1 \leq i \leq M$). $O_i$ is a string consisting of lowercase alphabets and denotes the color of the $i$-th layer from the top of the drink request. The length of $O_i$ is between $1$ and $20$ inclusive.
+Output
+  If the requested colorful drink can be served by using some of the prepared colored liquids, print 'Yes'. Otherwise, print 'No'.
+Examples
+Sample Input 1
+2
+white 20
+black 10
+2
+black
+white
+Output for Sample Input 1
+Yes
+Sample Input 2
+2
+white 10
+black 10
+2
+black
+white
+Output for Sample Input 2
+No
+Sample Input 3
+2
+white 20
+black 10
+2
+black
+orange
+Output for Sample Input 3
+No
+Sample Input 4
+3
+white 10
+red 20
+white 30
+3
+white
+red
+white
+Output for Sample Input 4
+Yes
+Sample Input 5
+4
+red 3444
+red 3018
+red 3098
+red 3319
+4
+red
+red
+red
+red
+Output for Sample Input 5
+Yes
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An integer N (1 ≤ N ≤ 10^5), representing some quantity or size.
+N lines each containing a string Ci (length between 1 and 20) and an integer Di (1 ≤ Di ≤ 10^5).
+An integer M (1 ≤ M ≤ 10^5), representing some quantity or size.
+M lines each containing a string Oi (length between 1 and 20).
+
+### Example Input:
+
+```
+2
+white 20
+black 10
+2
+black
+white
+```
+
+### Function Signature:
+Write a function f(N, A, M, O) that takes in the input.
+def f(N: int, A: List[Tuple[str, int]], M: int, O: List[str]):
+    '''
+    N: an integer
+    A: a list of tuples, where each tuple contains a string and an integer
+    M: an integer
+    O: a list of strings
+    '''</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>To write a test case generator for the "Colorful Drink" problem, we need to generate valid inputs within the specified constraints. The generator will randomize the number of prepared liquids, their properties (colors and densities), and the requested color layers.
+
+Here's the Python code for the test case generator:
+
+```python
+import random
+import string
+
+def generate_random_color():
+    length = random.randint(1, 20)
+    return ''.join(random.choices(string.ascii_lowercase, k=length))
+
+def generate_test_case():
+    # N: number of prepared colored liquids
+    N = random.randint(1, 10**5)
+    
+    # Generating N prepared colored liquids
+    prepared_liquids = []
+    for _ in range(N):
+        color = generate_random_color()
+        density = random.randint(1, 10**5)
+        prepared_liquids.append((color, density))
+    
+    # M: number of color layers in the drink request
+    M = random.randint(1, 10**5)
+    
+    # Generating M color layers for the drink request
+    drink_request = []
+    for _ in range(M):
+        color = generate_random_color()
+        drink_request.append(color)
+    
+    # Formatting the test case as a string
+    test_case = f"{N}\n"
+    for color, density in prepared_liquids:
+        test_case += f"{color} {density}\n"
+    test_case += f"{M}\n"
+    for color in drink_request:
+        test_case += f"{color}\n"
+    
+    return test_case
+
+# Example usage:
+print(generate_test_case())
+```
+
+### Explanation
+1. **`generate_random_color`**: This function generates a random string of lowercase letters with a length between 1 and 20.
+2. **`generate_test_case`**: This function generates a complete test case:
+   - It selects a random number \(N\) for the count of prepared liquids.
+   - It then generates \(N\) colored liquids, each with a random color and a random density.
+   - It also selects a random number \(M\) for the requested color layers.
+   - It generates \(M\) requested color layers, each with a random color.
+3. **Formatting**: The generated data is formatted into the required input format as a string.
+
+### Notes
+- This generator creates random test cases within the constraints. For specific edge cases or particular scenarios, you might want to create additional, more directed test cases manually.
+- The function `generate_test_case` prints out a test case example in the required format. You can call this function multiple times to generate multiple test cases.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    N = int(fh.readline().strip())
+    prepared_liquids = []
+    for _ in range(N):
+        C_i, D_i = fh.readline().strip().split()
+        prepared_liquids.append((C_i, int(D_i)))
+    M = int(fh.readline().strip())
+    requested_layers = []
+    for _ in range(M):
+        O_i = fh.readline().strip()
+        requested_layers.append(O_i)
+    return N, prepared_liquids, M, requested_layers</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

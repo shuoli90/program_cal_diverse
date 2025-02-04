@@ -1,0 +1,52 @@
+To generate test cases for the given problem "JOI Park," we need to ensure that the generated input meets the specified constraints and structure. Here's a test case generator for this problem:
+
+```python
+import random
+
+def tcgen():
+    # Constraints
+    N = random.randint(2, 100000)  # Number of squares
+    M = random.randint(1, 200000)  # Number of roads
+    C = random.randint(1, 1000)    # Cost factor for underground passages
+
+    # Ensure we create a connected graph
+    edges = []
+    for i in range(1, N):
+        # Connect square i to square i+1 to guarantee connectivity
+        Ai = i
+        Bi = i + 1
+        Di = random.randint(1, 1000)  # Random road length
+        edges.append((Ai, Bi, Di))
+
+    # Add additional random edges to meet the count M
+    while len(edges) < M:
+        Ai = random.randint(1, N)
+        Bi = random.randint(1, N)
+        if Ai != Bi:
+            Di = random.randint(1, 1000)  # Random road length
+            edges.append((Ai, Bi, Di))
+
+    # Shuffle edges to randomize their order
+    random.shuffle(edges)
+
+    # Print the test case
+    print(N, M, C)
+    for edge in edges:
+        print(edge[0], edge[1], edge[2])
+
+# Example usage
+tcgen()
+```
+
+### Explanation:
+
+1. **Number of Squares (N)**: Randomly selected between 2 and 100,000.
+2. **Number of Roads (M)**: Randomly selected between 1 and 200,000.
+3. **Cost Factor (C)**: Randomly selected within a reasonable range, e.g., between 1 and 1000.
+4. **Edges**: 
+    - First, a simplistic way to ensure the graph is connected is by connecting each consecutive pair of squares. This guarantees at least one path between any two squares.
+    - Then, additional edges are added until the desired number of roads (M) is reached.
+    - Each road's length (Di) is randomly chosen within a reasonable range for variety.
+5. **Output**: The generated input is printed in the required format.
+
+This generator ensures that the graph is connected and that the generated test cases meet the constraints specified in the problem statement. The lengths of roads and the cost factor for the underground passages are varied to create diverse test scenarios.

@@ -1,0 +1,8 @@
+def extract_arguments(fh):
+    S = fh.readline().strip()
+    N = S.count('-') + 1
+    args = []
+    for _ in range(N):
+        line = fh.readline().strip().split()
+        args.append((line[0], int(line[1])))
+    return S, args

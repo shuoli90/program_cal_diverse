@@ -1,0 +1,3 @@
+Types: N: int, M: int, S: List[int], D: List[int], C: List[int]
+Ranges: 3 ≤ N ≤ 500, N - 1 ≤ M ≤ min(50000, N(N - 1)/2), 1 ≤ S[i] < D[i] ≤ N, 1 ≤ C[i] ≤ 10000
+Addtl Info: No two bridges connect the same pair of islands, all islands are reachable if all candidate bridges are built

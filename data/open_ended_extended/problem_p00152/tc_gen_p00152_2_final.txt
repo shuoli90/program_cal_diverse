@@ -1,0 +1,72 @@
+Sure, here's a test case generator for the provided "Bowling" problem:
+
+```python
+import random
+
+def tcgen():
+    # Number of participants, between 3 and 40
+    m = random.randint(3, 40)
+    
+    participants = []
+    for _ in range(m):
+        # Generate a unique student ID between 0 and 9999
+        student_id = random.randint(0, 9999)
+        
+        throws = []
+        
+        # Generate throws for 9 frames (each frame can have 1 or 2 throws)
+        for frame in range(9):
+            first_throw = random.randint(0, 10)
+            if first_throw == 10:
+                # Strike, only one throw
+                throws.append(first_throw)
+            else:
+                # Two throws in the frame
+                second_throw = random.randint(0, 10 - first_throw)
+                throws.append(first_throw)
+                throws.append(second_throw)
+        
+        # Generate throws for the 10th frame (can have 2 or 3 throws)
+        first_throw = random.randint(0, 10)
+        throws.append(first_throw)
+        if first_throw == 10:
+            # Strike, ensure there are two more throws
+            second_throw = random.randint(0, 10)
+            throws.append(second_throw)
+            if second_throw == 10:
+                # Another strike, one more throw
+                third_throw = random.randint(0, 10)
+                throws.append(third_throw)
+            else:
+                # Two throws in the frame
+                third_throw = random.randint(0, 10 - second_throw)
+                throws.append(third_throw)
+        else:
+            # Two throws in the frame
+            second_throw = random.randint(0, 10 - first_throw)
+            throws.append(second_throw)
+            if first_throw + second_throw == 10:
+                # Spare, one more throw
+                third_throw = random.randint(0, 10)
+                throws.append(third_throw)
+        
+        participants.append((student_id, throws))
+    
+    # Format the input
+    input_data = f"{m}\n"
+    for student_id, throws in participants:
+        input_data += f"{student_id} " + " ".join(map(str, throws)) + "\n"
+    
+    return input_data.strip()
+
+# Example usage:
+print(tcgen())
+```
+
+This script generates a test case for the "Bowling" problem. It ensures the following:
+- The number of participants is between 3 and 40.
+- Each participant has a unique student ID between 0 and 9999.
+- Each participant's throws are generated such that they adhere to the constraints of a typical bowling game, including handling strikes and spares appropriately.
+- The 10th frame is handled separately to account for additional throws in case of a strike or spare.
+
+Remember to run this script in an environment where `random` is available and can be imported. The output will be a single test case formatted as per the problem statement.

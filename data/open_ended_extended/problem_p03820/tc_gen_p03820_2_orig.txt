@@ -1,0 +1,41 @@
+To generate test cases for the given problem where Snuke is playing with cards and a deque, you need to ensure that the test cases follow the constraints and input/output format specified in the problem statement. Here is a Python function for generating such test cases:
+
+```python
+import random
+
+def tcgen():
+    # Constraints
+    N = random.randint(1, 2000)
+    K = random.randint(1, N)
+    
+    return N, K
+
+# Example usage:
+for _ in range(5):  # Generate 5 test cases
+    N, K = tcgen()
+    print(f"{N} {K}")
+```
+
+Explanation:
+1. **N** is chosen randomly between 1 and 2000, as specified by the problem constraints.
+2. **K** is chosen randomly between 1 and N, ensuring that K is always a valid position within the sequence of length N.
+
+This function will generate random test cases that adhere to the input constraints given in the problem statement. Below is an example of how you might generate and print multiple test cases using this function:
+
+```python
+for _ in range(5):  # Generate 5 test cases
+    N, K = tcgen()
+    print(f"{N} {K}")
+```
+
+This will output 5 different test cases, each with valid values for N and K. For example:
+
+```
+1420 713
+2000 57
+1893 22
+10 3
+765 423
+```
+
+These test cases can then be used to test the implementation of the solution for the given problem.

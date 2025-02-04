@@ -1,0 +1,5 @@
+Types: n: int, pieces: List[List[str]]
+
+Ranges: 3 ≤ n ≤ 9, n is odd, pieces: 6n lines of n characters where each character is either 'X' or '.'
+
+Addtl Info: None

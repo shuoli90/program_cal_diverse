@@ -1,0 +1,138 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p02910 - Generation 1</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p02910 - Generation 1</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>
+Score: 200 points
+Problem Statement
+Takahashi will do a tap dance. The dance is described by a string S where each character is L, R, U, or D. These characters indicate the positions on which Takahashi should step. He will follow these instructions one by one in order, starting with the first character.
+S is said to be easily playable if and only if it satisfies both of the following conditions:
+Every character in an odd position (1-st, 3-rd, 5-th, \ldots) is R, U, or D.
+Every character in an even position (2-nd, 4-th, 6-th, \ldots) is L, U, or D.
+Your task is to print Yes if S is easily playable, and No otherwise.
+Constraints
+S is a string of length between 1 and 100 (inclusive).
+Each character of S is L, R, U, or D.
+Input
+Input is given from Standard Input in the following format:
+S
+Output
+Print Yes if S is easily playable, and No otherwise.
+Sample Input 1RUDLUDR
+Sample Output 1Yes
+Every character in an odd position (1-st, 3-rd, 5-th, 7-th) is R, U, or D.
+Every character in an even position (2-nd, 4-th, 6-th) is L, U, or D.
+Thus, S is easily playable.
+Sample Input 2DULL
+Sample Output 2No
+The 3-rd character is not R, U, nor D, so S is not easily playable.
+Sample Input 3UUUUUUUUUUUUUUU
+Sample Output 3Yes
+Sample Input 4ULURU
+Sample Output 4No
+Sample Input 5RDULULDURURLRDULRLR
+Sample Output 5Yes
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An integer N (1 ≤ N ≤ 100), representing the length of a string.
+A string S of length N, where each character is from the set {'L', 'R', 'U', 'D'}.
+
+### Example Input:
+
+```
+7
+RUDLUDR
+```
+
+### Function Signature:
+Write a function f(N, S) that takes in the input. 
+```python
+def f(N: int, S: str):
+    ''' 
+    N: an integer 
+    S: a string
+    '''
+```</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Sure, here's a test case generator for the given problem statement:
+
+```python
+import random
+
+def generate_test_case():
+    length = random.randint(1, 100)
+    S = ''.join(random.choice(['L', 'R', 'U', 'D']) for _ in range(length))
+    return S
+
+# Example usage:
+if __name__ == "__main__":
+    for _ in range(5):  # Generate 5 test cases
+        test_case = generate_test_case()
+        print(test_case)
+```
+
+This generator creates a random string `S` of length between 1 and 100, with each character being one of 'L', 'R', 'U', or 'D'. You can run the code to generate multiple test cases for your problem statement. Adjust the loop count in the example usage to generate as many test cases as you need.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    S = fh.readline().strip()
+    return S</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

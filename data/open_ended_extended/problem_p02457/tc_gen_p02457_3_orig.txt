@@ -1,0 +1,64 @@
+Certainly! Here is a test case generator for the "Set: Range Search" problem:
+
+```python
+import random
+
+def tcgen():
+    # Number of queries q
+    q = random.randint(1, 200000)
+    
+    queries = []
+    current_set = set()
+    
+    for _ in range(q):
+        query_type = random.choice([0, 1, 2, 3])
+        if query_type == 0:  # insert(x)
+            x = random.randint(0, 1000000000)
+            queries.append(f"0 {x}")
+            current_set.add(x)
+        elif query_type == 1:  # find(x)
+            x = random.randint(0, 1000000000)
+            queries.append(f"1 {x}")
+        elif query_type == 2:  # delete(x)
+            if current_set:
+                x = random.choice(list(current_set))
+                queries.append(f"2 {x}")
+                current_set.remove(x)
+            else:
+                x = random.randint(0, 1000000000)
+                queries.append(f"2 {x}")
+        elif query_type == 3:  # dump(L, R)
+            if current_set:
+                elements = sorted(current_set)
+                L = random.choice(elements)
+                R = random.choice(elements)
+                if L > R:
+                    L, R = R, L
+                queries.append(f"3 {L} {R}")
+            else:
+                L = random.randint(0, 1000000000)
+                R = random.randint(0, 1000000000)
+                if L > R:
+                    L, R = R, L
+                queries.append(f"3 {L} {R}")
+    
+    return q, queries
+
+# Example of generating test cases
+q, queries = tcgen()
+print(q)
+for query in queries:
+    print(query)
+```
+
+### Explanation:
+
+1. **Number of Queries**: We randomly generate the number of queries \( q \) between 1 and 200,000.
+2. **Generating Queries**: We loop \( q \) times to generate each query:
+   - **Insert (`0 x`)**: Randomly generate a value \( x \) between 0 and 1,000,000,000 and add it to the set.
+   - **Find (`1 x`)**: Randomly generate a value \( x \) to search in the set.
+   - **Delete (`2 x`)**: Randomly select a value \( x \) from the set if it's not empty, otherwise generate a random value.
+   - **Dump (`3 L R`)**: If the set is not empty, randomly select two values \( L \) and \( R \) from the sorted set and make sure \( L \leq R \). Otherwise, generate two random values and ensure \( L \leq R \).
+3. **Output the Queries**: The function returns the number of queries and the list of generated queries.
+
+This generator should provide a good mixture of operations to thoroughly test the problem constraints and edge cases.

@@ -1,0 +1,33 @@
+Sure, I can write a test case generator for the given problem statement. The generator will create random values for \(N\), \(x\), and the list \(a\) according to the constraints specified in the problem.
+
+Here is the test case generator:
+
+```python
+import random
+
+def tcgen():
+    # Generate a random value for N within the range [2, 100]
+    N = random.randint(2, 100)
+    
+    # Generate a random value for x within the range [1, 10^9]
+    x = random.randint(1, 10**9)
+    
+    # Generate a list a of size N, with each element within the range [1, 10^9]
+    a = [random.randint(1, 10**9) for _ in range(N)]
+    
+    return N, x, a
+
+# Generating a random test case
+test_case = tcgen()
+print("N:", test_case[0])
+print("x:", test_case[1])
+print("a:", test_case[2])
+```
+
+This function will generate random test cases that adhere to the constraints:
+
+- \(N\) is an integer between 2 and 100.
+- \(x\) is an integer between 1 and \(10^9\).
+- Each \(a_i\) is an integer between 1 and \(10^9\).
+
+You can run the `tcgen()` function to generate a new test case each time. The output will be in the format required by the problem statement, with \(N\), \(x\), and the list \(a\).

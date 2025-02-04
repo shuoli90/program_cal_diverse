@@ -1,0 +1,144 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p02471 - Generation 1</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p02471 - Generation 1</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>
+Extended Euclid Algorithm
+Given positive integers a and b, find the integer solution (x, y) to ax + by = gcd(a, b), where gcd(a, b) is the greatest common divisor of a and b.
+Input
+a b
+Two positive integers a and b are given separated by a space in a line.
+Output
+Print two integers x and y separated by a space. If there are several pairs of such x and y, print that pair for which |x| + |y| is the minimal (primarily) and x ≤ y (secondarily).
+Constraints
+ 1 ≤ a, b ≤ 109
+Sample Input 1
+4 12
+Sample Output 1
+1 0
+Sample Input 2
+3 8
+Sample Output 2
+3 -1
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An integer \(a\) and an integer \(b\), where 1 ≤ \(a, b\) ≤ 10^9, separated by a space in a single line.
+
+### Example Input:
+
+```
+4 12
+```
+
+### Function Signature:
+Write a function f(a, b) that takes in the input.
+```python
+def f(a: int, b: int):
+    '''
+    a: an integer
+    b: an integer
+    '''
+```</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Sure, I can help you with that. Below is a test case generator for the problem statement involving the Extended Euclid Algorithm.
+
+```python
+import random
+
+def gcd(a, b):
+    while b:
+        a, b = b, a % b
+    return a
+
+def tcgen():
+    # Generating two positive integers a and b
+    a = random.randint(1, 10**9)
+    b = random.randint(1, 10**9)
+    
+    # Ensuring a <= b for sample output consistency
+    if a > b:
+        a, b = b, a
+
+    return f"{a} {b}"
+
+# Example usage
+for _ in range(5):  # Generate 5 test cases
+    print(tcgen())
+```
+
+### Explanation:
+1. **Importing random module**: To generate random integers.
+2. **GCD Function**: This is a helper function to compute the greatest common divisor. It is not directly used in the test case generation but can be useful for debugging or verifying test cases.
+3. **tcgen Function**: This is the main test case generator.
+    - It generates two random integers `a` and `b` in the range `[1, 10^9]`.
+    - It ensures that `a` is less than or equal to `b` for consistency in sample outputs.
+    - It returns the test case in the string format as required by the problem statement.
+
+### Example Usage:
+To generate multiple test cases, you can call `tcgen()` multiple times, as shown in the example usage. You can change the number of iterations based on how many test cases you need. 
+
+This generator ensures you have diverse test cases while respecting the given constraints of the problem.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    a, b = map(int, fh.readline().strip().split())
+    return a, b</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

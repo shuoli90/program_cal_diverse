@@ -1,0 +1,29 @@
+Sure! Here is the test case generator for the given problem statement:
+
+```python
+import random
+
+def tcgen():
+    N = random.randint(2, 10**4)
+    coordinates = [(random.randint(1, 10**9), random.randint(1, 10**9)) for _ in range(N)]
+    
+    return N, coordinates
+
+# Function to generate a formatted test case as a string
+def generate_test_case():
+    N, coordinates = tcgen()
+    test_case = f"{N}\n"
+    for x, y in coordinates:
+        test_case += f"{x} {y}\n"
+    return test_case
+
+# Example usage
+if __name__ == "__main__":
+    print(generate_test_case())
+```
+
+This generator function `tcgen()` will create a random test case for the problem statement. It will generate:
+- An integer \(N\) within the range [2, 10^4].
+- A list of \(N\) tuples where each tuple contains two integers \(x_i\) and \(y_i\) within the range [1, 10^9].
+
+The `generate_test_case()` function formats the output as a string similar to the input format required by the problem statement, which is useful for direct inclusion in test files or for competitive programming platforms.

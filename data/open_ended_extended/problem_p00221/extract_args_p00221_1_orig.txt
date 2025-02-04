@@ -1,0 +1,18 @@
+def extract_arguments(fh):
+    datasets = []
+    while True:
+        m, n = map(int, fh.readline().strip().split())
+        if m == 0 and n == 0:
+            break
+        statements = []
+        for _ in range(n):
+            statements.append(fh.readline().strip())
+        datasets.append((m, n, statements))
+    return datasets
+
+# if __name__ == "__main__":
+#     input_path = sys.argv[1]
+#     with open(input_path, 'r') as fh:
+#         datasets = extract_arguments(fh)
+#         for m, n, statements in datasets:
+#             f(m, n, statements)

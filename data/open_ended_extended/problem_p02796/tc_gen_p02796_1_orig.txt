@@ -1,0 +1,40 @@
+Here's a test case generator for the given problem statement:
+
+```python
+import random
+
+def tcgen():
+    # Generate a random integer N (1 ≤ N ≤ 100,000)
+    N = random.randint(1, 100000)
+    
+    # Generate N unique X_i (0 ≤ X_i ≤ 10^9)
+    X = random.sample(range(0, 10**9+1), N)
+    
+    # Generate N random L_i (1 ≤ L_i ≤ 10^9)
+    L = [random.randint(1, 10**9) for _ in range(N)]
+    
+    # Combine X and L into a list of tuples for easy parsing
+    robots = list(zip(X, L))
+    
+    return N, robots
+
+# Function to print the test case in the required format
+def print_test_case():
+    N, robots = tcgen()
+    print(N)
+    for x, l in robots:
+        print(f"{x} {l}")
+
+# Example usage
+if __name__ == "__main__":
+    print_test_case()
+```
+
+### Explanation:
+1. **N Generation**: Generates a random integer `N` which signifies the number of robots. The value of `N` is between 1 and 100,000.
+2. **X_i Generation**: Generates `N` unique random integers for the positions of the robots. Each `X_i` is between 0 and 10^9.
+3. **L_i Generation**: Generates `N` random integers for the arm lengths of the robots. Each `L_i` is between 1 and 10^9.
+4. **Combining X and L**: Combines the X and L values into a list of tuples for easier handling.
+5. **Printing the Test Case**: The `print_test_case` function prints the generated test case in the required format.
+
+This generator provides a variety of test cases with different distributions of robot positions and arm lengths, ensuring that the solution is well-tested for all possible scenarios.

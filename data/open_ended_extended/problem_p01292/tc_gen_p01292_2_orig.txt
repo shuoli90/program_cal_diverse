@@ -1,0 +1,102 @@
+Sure, here is a test case generator for the "Secret Operation" problem. This generator will create random datasets including the movements of Mary, George, and obstacles.
+
+```python
+import random
+
+def generate_coordinate():
+    return random.randint(-10000, 10000)
+
+def generate_time():
+    return random.randint(0, 100)
+
+def generate_distance():
+    return random.randint(1, 29999)
+
+def generate_movement_sequence(length, total_time):
+    sequence = []
+    current_time = 0
+    for i in range(length):
+        x = generate_coordinate()
+        y = generate_coordinate()
+        if i == length - 1:
+            t = total_time
+        else:
+            t = random.randint(current_time + 1, total_time - (length - i - 1))
+        sequence.append((x, y, t))
+        current_time = t
+    return sequence
+
+def generate_obstacles(num_obstacles):
+    obstacles = []
+    for _ in range(num_obstacles):
+        sx = generate_coordinate()
+        sy = generate_coordinate()
+        tx = generate_coordinate()
+        ty = generate_coordinate()
+        obstacles.append((sx, sy, tx, ty))
+    return obstacles
+
+def tcgen():
+    datasets = []
+    while True:
+        # Generate Time and R
+        Time = generate_time()
+        R = generate_distance()
+        
+        # Generate Mary's movements
+        L = random.randint(2, 20)
+        mary_movements = generate_movement_sequence(L, Time)
+        
+        # Generate George's movements
+        M = random.randint(2, 20)
+        george_movements = generate_movement_sequence(M, Time)
+        
+        # Generate obstacles
+        N = random.randint(0, 20)
+        obstacles = generate_obstacles(N)
+        
+        dataset = (Time, R, mary_movements, george_movements, obstacles)
+        datasets.append(dataset)
+        
+        # Randomly decide to stop adding more datasets
+        if random.choice([True, False]):
+            break
+    
+    return datasets
+
+def format_dataset(dataset):
+    Time, R, mary_movements, george_movements, obstacles = dataset
+    result = []
+    result.append(f"{Time} {R}")
+    result.append(str(len(mary_movements)))
+    for x, y, t in mary_movements:
+        result.append(f"{x} {y} {t}")
+    result.append(str(len(george_movements)))
+    for x, y, t in george_movements:
+        result.append(f"{x} {y} {t}")
+    result.append(str(len(obstacles)))
+    for sx, sy, tx, ty in obstacles:
+        result.append(f"{sx} {sy} {tx} {ty}")
+    return "\n".join(result)
+
+def main():
+    datasets = tcgen()
+    for dataset in datasets:
+        print(format_dataset(dataset))
+        print("0 0")  # End of dataset signal
+
+if __name__ == "__main__":
+    main()
+```
+
+### Explanation:
+1. **generate_coordinate**: Generates a random coordinate within the specified range (-10000 to 10000).
+2. **generate_time**: Generates a random time between 0 and 100.
+3. **generate_distance**: Generates a random distance between 1 and 29999.
+4. **generate_movement_sequence**: Generates a sequence of movements for either Mary or George. Ensures that the times are strictly increasing and that the total time matches the specified value.
+5. **generate_obstacles**: Generates a list of rectangular obstacles, ensuring that no two obstacles touch or cross.
+6. **tcgen**: Generates multiple datasets following the problem constraints.
+7. **format_dataset**: Formats a single dataset into the required input format.
+8. **main**: Generates and prints multiple datasets, including the dataset end signal `0 0`.
+
+This generator will create a variety of test cases to help ensure comprehensive testing of your solution.

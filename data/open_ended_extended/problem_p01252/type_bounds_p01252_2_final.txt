@@ -1,0 +1,3 @@
+Types: N: int, x: List[int], y: List[int], Ax: int, Ay: int, Bx: int, By: int
+Ranges: 0 < N ≤ 30, -10000 ≤ xi1, yi1, xi2, yi2, Ax, Ay, Bx, By ≤ 10000
+Addtl Info: None

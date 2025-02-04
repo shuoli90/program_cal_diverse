@@ -1,0 +1,199 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p02177 - Generation 3</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p02177 - Generation 3</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>C: Equivalent Propositions
+Problem
+    There are $N$ propositions, each of which is named 1, 2, ..., $N$. 
+    Also, information about propositions is given in $M$ pieces. The $i$-th information is given in the form of "$a_i$ $b_i$", which means that if $a_i$ is true, then $b_i$ is also true. ("If" is the logical implication and the transitive property holds.)
+    Output all propositions that are equivalent to each proposition $i$ in ascending order.
+    Proposition $i$ is always equivalent to proposition $i$.
+    Proposition $X$ and proposition $Y$ are equivalent if and only if "If $X$, then $Y$" and "If $Y$, then $X$" are both true.
+Constraints
+All input values are integers.
+$2 \leq N \leq 300$
+$1 \leq M \leq N(N-1)$
+$a_i \neq b_i$
+$1 \leq a_i, b_i \leq N$
+Input Format
+ The input is given in the following format. 
+    $N\ M$
+    $a_1\ b_1$
+    $a_2\ b_2$
+    $\vdots$
+    $a_M\ b_M$
+Output
+     On the $i$-th line, output all propositions that are equivalent to proposition $i$ in ascending order, separated by a space. Also, output a newline at the end of each line.
+Sample
+Sample Input 1
+5 2
+1 2
+2 1
+Sample Output 1
+1 2
+1 2
+3
+4
+5
+Sample Input 2
+3 3
+1 2
+2 3
+3 1
+Sample Output 2
+1 2 3
+1 2 3
+1 2 3
+Sample Input 3
+6 7
+1 2
+1 3
+2 6
+3 4
+4 5
+5 3
+6 2
+Sample Output 3
+1
+2 6
+3 4 5
+3 4 5
+3 4 5
+2 6
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An integer N (2 ≤ N ≤ 300), representing some quantity.
+An integer M (1 ≤ M ≤ N(N-1)), representing some quantity.
+M pairs of integers (a_i, b_i) where 1 ≤ a_i, b_i ≤ N and a_i ≠ b_i.
+
+### Example Input:
+
+```
+5 2
+1 2
+2 1
+```
+
+### Function Signature:
+Write a function f(N, M, pairs) that takes in the input.
+```python
+from typing import List, Tuple
+
+def f(N: int, M: int, pairs: List[Tuple[int, int]]):
+    '''
+    N: an integer
+    M: an integer
+    pairs: a list of tuples containing pairs of integers
+    '''
+```</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Certainly! Here's a test case generator for the competitive programming problem "Equivalent Propositions":
+
+```python
+import random
+
+def tcgen():
+    N = random.randint(2, 300)
+    M = random.randint(1, min(N * (N - 1), 10000))  # Ensure M is within valid range
+
+    propositions = set()
+    while len(propositions) < M:
+        a = random.randint(1, N)
+        b = random.randint(1, N)
+        if a != b:
+            propositions.add((a, b))
+
+    propositions = list(propositions)
+    
+    return N, M, propositions
+
+# Example usage
+N, M, propositions = tcgen()
+print(N, M)
+for a, b in propositions:
+    print(a, b)
+```
+
+### How the Generator Works:
+1. **N**: Chooses a random integer between 2 and 300, inclusive, to represent the number of propositions.
+2. **M**: Chooses a random integer between 1 and \( \min(N \times (N - 1), 10000) \), inclusive, to ensure that \( M \) does not exceed the constraints.
+3. **Propositions**: Uses a set to generate unique pairs \( (a_i, b_i) \) such that \( a_i \neq b_i \). The set ensures that there are no duplicate pairs. The process continues until we have \( M \) unique pairs.
+
+### Example Usage:
+This generator will produce test cases with the appropriate format. The example at the end demonstrates how to use the generator and print out the generated test case.
+
+You can run this code to generate and print random test cases for the problem.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    N, M = map(int, fh.readline().strip().split())
+    propositions = []
+    for _ in range(M):
+        a, b = map(int, fh.readline().strip().split())
+        propositions.append((a, b))
+    return N, M, propositions
+
+# if __name__ == "__main__":
+#     input_path = sys.argv[1]
+#     with open(input_path, 'r') as fh: 
+#         N, M, propositions = extract_arguments(fh)
+#         f(N, M, propositions)</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

@@ -1,0 +1,3 @@
+Types: n: int, records: List[List[int]]
+Ranges: 1 ≤ n < 100, each record is a list of integers terminated by 0, each integer in the record is either a positive integer (number of doors in a room ≤ 40) or a negative integer (distance difference), each record has total length < 1000 characters.
+Addtl Info: The number of rooms in each Ninja House is less than 100.

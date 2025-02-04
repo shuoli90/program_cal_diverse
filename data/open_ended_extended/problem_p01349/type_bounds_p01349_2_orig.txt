@@ -1,0 +1,5 @@
+Types: h: int, w: int, n: int, field: List[str]
+
+Ranges: 2 ≤ h, w, n ≤ 30, field[i] ∈ {'.', 'A'-'Z'}
+
+Addtl Info: field is a list of h strings, each of length w

@@ -1,0 +1,51 @@
+Sure, I can help you write a test case generator for the problem statement you provided. Here is a Python function that generates random test cases for the problem:
+
+```python
+import random
+
+def generate_tree(N):
+    P = []
+    for i in range(2, N + 1):
+        P.append(random.randint(1, i - 1))
+    return P
+
+def generate_sequence(N):
+    return [random.randint(0, 5000) for _ in range(N)]
+
+def tcgen():
+    N = random.randint(1, 1000)
+    P = generate_tree(N)
+    X = generate_sequence(N)
+    
+    return N, P, X
+
+# Example usage
+if __name__ == "__main__":
+    N, P, X = tcgen()
+    print(N)
+    if N > 1:
+        print(" ".join(map(str, P)))
+    print(" ".join(map(str, X)))
+```
+
+### Explanation of the Generator
+
+1. **generate_tree(N)**:
+   - This function generates the parent array \( P \) with \( N-1 \) values (since \( P \) starts from \( P_2 \) to \( P_N \)).
+   - For each \( i \) from 2 to \( N \), it appends a random integer between 1 and \( i-1 \) to the \( P \) list, ensuring the tree structure is maintained.
+
+2. **generate_sequence(N)**:
+   - This function generates the sequence \( X \) with \( N \) integers, each between 0 and 5000.
+
+3. **tcgen()**:
+   - This function combines the above two helper functions to generate random values for \( N \), \( P \), and \( X \).
+   - It returns these values to be used as a test case.
+
+4. **Example usage**:
+   - Demonstrates how to use the `tcgen` function to generate and print a test case.
+
+### Notes:
+- The tree is generated such that for each vertex \( i \) (where \( 2 \leq i \leq N \)), its parent \( P_i \) is a vertex from the range [1, \( i-1 \)], ensuring a valid tree structure.
+- The weights \( X \) are generated to fall within the specified range [0, 5000].
+
+You can run this script to generate random test cases for the given problem statement.

@@ -1,0 +1,3 @@
+Types: N: int, K: int, s: str  
+Ranges: 1 ≤ N ≤ 70, 1 ≤ K ≤ 70, |s| = K, s consists of 'r' and 'b'  
+Addtl Info: None

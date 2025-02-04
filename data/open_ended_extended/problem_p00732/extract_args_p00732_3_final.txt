@@ -1,0 +1,20 @@
+def extract_arguments(fh):
+    datasets = []
+    while True:
+        L, R, N = map(float, fh.readline().strip().split())
+        if L == 0 and R == 0 and N == 0:
+            break
+        N = int(N)
+        vertices = []
+        for _ in range(N):
+            X, Y = map(int, fh.readline().strip().split())
+            vertices.append((X, Y))
+        datasets.append((L, R, N, vertices))
+    return datasets
+
+# if __name__ == "__main__":
+#     input_path = sys.argv[1]
+#     with open(input_path, 'r') as fh:
+#         datasets = extract_arguments(fh)
+#         for dataset in datasets:
+#             f(*dataset)

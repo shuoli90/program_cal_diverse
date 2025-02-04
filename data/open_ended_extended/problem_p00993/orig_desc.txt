@@ -1,0 +1,29 @@
+Problem D: Numbers
+Given n, find n consecutive positive integers such that each number has no divisors other than 1 and itself.
+Input
+The input is given in the following format.
+n
+The input satisfies the following constraints.
+1 ≤ n ≤ 1,500
+Output
+On the first line, output the smallest of the n selected consecutive positive integers.
+From the second to the n+1-th line, output the divisors of each value.
+Any value other than 1 or itself can be output as a divisor.
+Let x be the value output on the first line and output the divisor of x+i-2 on the i-th line.
+The output value must not exceed 5,000 digits.
+Sample Input 1
+2
+Sample Output 1
+8
+2
+3
+Sample Input 2
+3
+Sample Output 2
+8
+2
+3
+5
+Hint
+In Sample Output 2, 8, 9, and 10 are selected as three consecutive integers.
+On the second line, 2 is output as the divisor of 8, on the third and fourth lines, 3 and 4 are output as the divisor of 9, and on the fifth line, 5 is output as the divisor of 10.

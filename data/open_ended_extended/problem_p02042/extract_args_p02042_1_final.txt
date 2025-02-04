@@ -1,0 +1,9 @@
+def extract_arguments(fh):
+    N, M = map(int, fh.readline().strip().split())
+    A = list(map(int, fh.readline().strip().split()))
+    return N, M, A
+
+# Example usage:
+# with open('input.txt', 'r') as fh:
+#     N, M, A = extract_arguments(fh)
+#     print(N, M, A)

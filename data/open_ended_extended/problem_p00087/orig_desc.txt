@@ -1,0 +1,50 @@
+Formula for beginners
+Doctor: Peter, I finally did it!
+Peter: What is it this time? What kind of pointless invention did you come up with now?
+Doctor: I came up with a revolutionary method for processing formulas with a computer. Take a look at this table.
+Normal notationDoctor's "revolutionary" notation
+1 + 21 2 +
+3 * 4 + 73 4 * 7 +
+10 / ( 2 - 12 )	10 2 12 - /
+( 3 - 4 ) * ( 7 + 2 * 3 )3 4 - 7 2 3 * + *
+Peter: Huh?
+Doctor: Hahaha. I guess it's still too complicated for you, a beginner. This is where it gets interesting.
+Peter: Uh, what...?
+Doctor: You know that computers have a data structure called a stack, right? It's the one where you put in things in first and take them out last.
+Peter: Yes, I know, but...
+Doctor: This revolutionary notation uses that stack. For example, in 10 2 12 - /, the processing goes like this:
+Object10212-/
+ ↓↓↓↓2-12↓10/-10
+Stack
+.
+.
+10
+.
+2
+10
+12
+2
+10
+.
+-10
+10
+.
+.
+-1
+Doctor: See? You don't need to worry about parentheses or operator precedence. The word order is "divide 10 by the result of subtracting 2 from 12." It sounds a bit like Japanese, doesn't it? With this revolutionary invention, our research lab is safe and sound. Hahaha.
+Peter: Uh, Doctor? This is something we learned in the basic course at Aizu University when I was in Japan. They called it "Reverse Polish Notation," and everyone in the class could program it easily.
+Doctor: ...
+And so, Peter had to teach the program to the Doctor. Create a program that takes a formula written in Reverse Polish Notation as input and outputs the result of the calculation.
+Input
+Multiple datasets will be given. In each dataset, one line will be given, consisting of a formula written in Reverse Polish Notation (a string of up to 80 characters consisting of integers and operation symbols separated by a single space (half-width) character). No formulas that divide a value by 0 or a value close to 0 will be given.
+The number of datasets is no more than 50.
+Output
+For each dataset, output the result of the calculation (a real number) on one line. The calculation result may include an error of up to 0.00001.
+Sample Input
+10 2 12 - /
+3 4 - 7 2 3 * + *
+-1 -2 3 + +
+Output for the Sample Input
+-1.000000
+-13.000000
+0.000000

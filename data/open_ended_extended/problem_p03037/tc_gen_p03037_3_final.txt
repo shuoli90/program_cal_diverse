@@ -1,0 +1,43 @@
+Certainly! Here’s a test case generator for the given problem involving ID cards and gates:
+
+```python
+import random
+
+def tcgen():
+    # Generate N and M within their respective constraints
+    N = random.randint(1, 10**5)
+    M = random.randint(1, 10**5)
+    
+    # Generate M pairs of (L_i, R_i) such that 1 <= L_i <= R_i <= N
+    gates = []
+    for _ in range(M):
+        L_i = random.randint(1, N)
+        R_i = random.randint(L_i, N)
+        gates.append((L_i, R_i))
+    
+    return N, M, gates
+
+def format_tc(N, M, gates):
+    output = []
+    output.append(f"{N} {M}")
+    for L_i, R_i in gates:
+        output.append(f"{L_i} {R_i}")
+    return "\n".join(output)
+
+# Example usage
+N, M, gates = tcgen()
+formatted_tc = format_tc(N, M, gates)
+print(formatted_tc)
+```
+
+This `tcgen` function generates random values for \( N \) and \( M \) within their respective constraints and then generates \( M \) pairs of \( (L_i, R_i) \). The `format_tc` function formats these values into the required input format.
+
+### Explanation:
+
+1. **N**: Number of ID cards, randomly chosen between 1 and 100,000.
+2. **M**: Number of gates, randomly chosen between 1 and 100,000.
+3. **gates**: A list of \( M \) pairs \((L_i, R_i)\) where \( 1 \leq L_i \leq R_i \leq N \).
+
+The test case generator ensures that each pair \((L_i, R_i)\) satisfies the constraints \( 1 \leq L_i \leq R_i \leq N \).
+
+You can use the function `tcgen` to generate random test cases for this problem and `format_tc` to format the output in the correct input format for testing purposes.

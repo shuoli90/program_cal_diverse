@@ -1,0 +1,45 @@
+Sure! Here's a test case generator for the "D: Scanner" problem:
+
+```python
+import random
+
+def tcgen():
+    N = random.randint(1, 50)  # Number of pieces of paper
+    T = [random.randint(1, 50) for _ in range(N)]  # Time to scan each piece of paper
+    
+    return N, T
+
+# Example of how to use the test case generator
+if __name__ == "__main__":
+    N, T = tcgen()
+    print(N)
+    for t in T:
+        print(t)
+```
+
+This test case generator creates random test cases for the given problem. It generates a random number of papers \(N\) (between 1 and 50), and for each paper, it generates a random scan time \(T_i\) (between 1 and 50). Here is an example of how the generated test cases might look:
+
+```plaintext
+4
+1
+1
+1
+1
+```
+
+And another example:
+
+```plaintext
+9
+15
+20
+27
+4
+10
+7
+34
+30
+36
+```
+
+This generator ensures that the constraints of the problem are adhered to and produces a variety of test cases to thoroughly test the solution.

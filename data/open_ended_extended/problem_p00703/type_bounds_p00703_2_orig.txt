@@ -1,0 +1,5 @@
+Types: L: int, H: int, TRY: str, HIT: int, BLOW: int
+
+Ranges: 4 ≤ L ≤ 10, 1 ≤ H ≤ 20, TRY is a string of length L with unique digits from '0' to '9', 0 ≤ HIT ≤ L, 0 ≤ BLOW ≤ L
+
+Addtl Info: Input terminates with a line containing "0 0"

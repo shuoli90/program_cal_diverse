@@ -1,0 +1,61 @@
+Sure, here's a test case generator for the given problem "The Humans Braving the Invaders":
+
+```python
+import random
+
+def generate_test_case():
+    # Generate a random number of data sets, not more than 3
+    num_datasets = random.randint(1, 3)
+    test_case = []
+    
+    for _ in range(num_datasets):
+        # Generate Q (1 ≤ Q ≤ 100000) and L (1 ≤ L ≤ 10^9)
+        Q = random.randint(1, 100000)
+        L = random.randint(1, 10**9)
+        test_case.append(f"{Q} {L}")
+        
+        queries = []
+        for _ in range(Q):
+            query_type = random.randint(0, 4)
+            
+            if query_type == 0:
+                queries.append(f"0")
+            elif query_type == 1:
+                d = random.randint(1, 10**9)
+                queries.append(f"1 {d}")
+            elif query_type == 2:
+                k = random.randint(1, 10**9)
+                queries.append(f"2 {k}")
+            elif query_type == 3:
+                x = random.randint(0, L)
+                r = random.randint(0, 10**9)
+                queries.append(f"3 {x} {r}")
+            elif query_type == 4:
+                k = random.randint(1, 10**9)
+                queries.append(f"4 {k}")
+        
+        test_case.extend(queries)
+    
+    # Append the ending zeroes to signify the end of input
+    test_case.append("0 0")
+    
+    return test_case
+
+# Example of how to use the test case generator
+test_case = generate_test_case()
+for line in test_case:
+    print(line)
+```
+
+### Explanation:
+1. **Number of Datasets**: The generator first determines how many datasets to generate (between 1 and 3).
+2. **Q and L**: For each dataset, it generates `Q` (number of queries, between 1 and 100000) and `L` (field length, between 1 and 10^9).
+3. **Queries**: For each query, it randomly selects a query type (0 to 4) and generates appropriate parameters:
+   - **Type 0**: No additional parameters.
+   - **Type 1**: Generates a random `d` (1 to 10^9).
+   - **Type 2**: Generates a random `k` (1 to 10^9).
+   - **Type 3**: Generates a random `x` (0 to `L`) and a random `r` (0 to 10^9).
+   - **Type 4**: Generates a random `k` (1 to 10^9).
+4. **End of Input**: Finally, it appends "0 0" to signify the end of input.
+
+This generator ensures that the generated test cases conform to the constraints provided in the problem statement.

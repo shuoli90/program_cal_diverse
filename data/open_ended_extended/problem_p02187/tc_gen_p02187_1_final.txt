@@ -1,0 +1,36 @@
+To generate test cases for the problem "Partial String Decomposition," we will need to produce valid instances of the input (strings S and T, and integer k) while ensuring they fall within the specified constraints. Here is the test case generator:
+
+```python
+import random
+import string
+
+def generate_string(length):
+    return ''.join(random.choices(string.ascii_lowercase, k=length))
+
+def tcgen():
+    # Generate lengths for S and T
+    len_S = random.randint(1, 2 * 10**5)
+    len_T = random.randint(1, 2 * 10**5)
+    
+    S = generate_string(len_S)
+    T = generate_string(len_T)
+    
+    # Generate k such that 1 <= k <= len(T)
+    k = random.randint(1, len_T)
+
+    return S, T, k
+
+# Example usage
+if __name__ == "__main__":
+    S, T, k = tcgen()
+    print(S)
+    print(T)
+    print(k)
+```
+
+In this generator:
+- `generate_string(length)` generates a random string of given length using lowercase alphabets.
+- `tcgen()` creates random lengths for strings S and T within the given constraints.
+- It generates a random value for `k` ensuring it is between 1 and the length of T.
+
+You can run this script to generate various test cases for the problem.

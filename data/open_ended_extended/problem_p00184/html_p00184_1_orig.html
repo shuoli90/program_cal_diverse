@@ -1,0 +1,205 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p00184 - Generation 1</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p00184 - Generation 1</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>Tsuruga Castle
+Tsuruga Castle, which is a symbol of Aizuwakamatsu City, was built by Ujisato Gamou with a fully-fledged castle tower and named it "Tsuruga Castle". From the castle tower, you can enjoy a panoramic view of the Aizu Basin. On a clear day, you can also see Tsuruga Castle from the summit of Iimoriyama, famous for the Byakkotai.
+In order to use it as a reference for future public relations activities in Aizuwakamatsu City, we decided to conduct an age survey of visitors to Tsuruga Castle. Create a program that outputs the number of people in each age group below based on the visitor's age input.
+  Age GroupAge Range
+Under 10  0  ~ 9
+ 10's  10  ~ 19
+ 20's  20  ~ 29
+ 30's  30  ~ 39
+ 40's  40  ~ 49
+ 50's  50  ~ 59
+Over 60 60  ~
+Input
+The input consists of a sequence of multiple datasets. The end of input is indicated by a line containing a single zero.
+Each dataset is given in the following format.
+n
+a1
+a2
+:
+an
+The first line contains the number of visitors n (1 ≤ n ≤ 1000000), followed by n lines describing the age ai (0 ≤ ai ≤ 120) of the i-th visitor.
+Output
+For each dataset, output the number of people in each age group in the following format:
+1st line: Number of people under 10
+2nd line: Number of people in their 10's
+3rd line: Number of people in their 20's
+4th line: Number of people in their 30's
+5th line: Number of people in their 40's
+6th line: Number of people in their 50's
+7th line: Number of people over 60
+Sample Input
+8
+71
+34
+65
+11
+41
+39
+6
+5
+4
+67
+81
+78
+65
+0
+Output for the Sample Input
+2
+1
+0
+2
+1
+0
+2
+0
+0
+0
+0
+0
+0
+4
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>Canonicalized Input Description:
+
+An integer n (1 ≤ n ≤ 1,000,000), representing some quantity or size.  
+A list of n integers where each integer ai (0 ≤ ai ≤ 120).
+
+### Example Input:
+
+```
+8
+71
+34
+65
+11
+41
+39
+6
+5
+0
+```
+
+### Function Signature:
+Write a function f(inputs) that takes in the input.
+```
+def f(inputs: List[Tuple[int, List[int]]]):
+    '''
+    inputs: a list of tuples where each tuple contains an integer and a list of integers
+    '''
+```</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Certainly! Here's a test case generator for the "Tsuruga Castle" problem statement:
+
+```python
+import random
+
+def tcgen():
+    # Generate a random number of datasets
+    num_datasets = random.randint(1, 5)  # You can adjust the number of datasets as needed
+
+    datasets = []
+    for _ in range(num_datasets):
+        # Generate a random number of visitors n
+        n = random.randint(1, 1000000)
+        
+        # Generate a list of ages for n visitors
+        ages = [random.randint(0, 120) for _ in range(n)]
+        
+        # Append the dataset
+        datasets.append((n, ages))
+    
+    return datasets
+
+# Example usage:
+test_cases = tcgen()
+for dataset in test_cases:
+    n, ages = dataset
+    print(n)
+    for age in ages:
+        print(age)
+print(0) # End of input indicator
+```
+
+Here's how the test case generator works:
+- It first decides the number of datasets it will generate.
+- For each dataset:
+  - It generates a random number of visitors `n` within the specified limit.
+  - It generates a list of `n` random ages, each between 0 and 120.
+- Finally, it prints the datasets in the required format and adds a line containing a single zero at the end to indicate the end of input.
+
+You can run this generator to produce test cases for the problem. Adjust the number of datasets (`num_datasets`) and the range of visitors (`n`) as needed to create more diverse test cases for testing.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    datasets = []
+    while True:
+        n = int(fh.readline().strip())
+        if n == 0:
+            break
+        ages = [int(fh.readline().strip()) for _ in range(n)]
+        datasets.append((n, ages))
+    return datasets</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

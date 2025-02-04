@@ -1,0 +1,21 @@
+
+Score : 800 points
+Problem StatementFind the number, modulo 998244353, of sequences of length N consisting of 0, 1 and 2 such that none of their contiguous subsequences totals to X.
+Constraints
+1 \leq N \leq 3000
+1 \leq X \leq 2N
+N and X are integers.
+InputInput is given from Standard Input in the following format:
+N X
+OutputPrint the number, modulo 998244353, of sequences that satisfy the condition.
+Sample Input 13 3
+Sample Output 114
+14 sequences satisfy the condition: (0,0,0),(0,0,1),(0,0,2),(0,1,0),(0,1,1),(0,2,0),(0,2,2),(1,0,0),(1,0,1),(1,1,0),(2,0,0),(2,0,2),(2,2,0) and (2,2,2).
+Sample Input 28 6
+Sample Output 21179
+Sample Input 310 1
+Sample Output 31024
+Sample Input 49 13
+Sample Output 418402
+Sample Input 5314 159
+Sample Output 5459765451

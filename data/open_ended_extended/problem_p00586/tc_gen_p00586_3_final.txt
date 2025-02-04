@@ -1,0 +1,42 @@
+To generate test cases for the "A + B Problem" as described in the problem statement, you can use the following Python function. This function will create multiple pairs of integers \(A\) and \(B\) within the given constraints and will format the output to simulate the input terminated by EOF.
+
+Here's the test case generator function:
+
+```python
+import random
+
+def tcgen(num_pairs):
+    test_cases = []
+    
+    for _ in range(num_pairs):
+        A = random.randint(-1000, 1000)
+        B = random.randint(-1000, 1000)
+        test_cases.append(f"{A} {B}")
+    
+    return "\n".join(test_cases)
+
+# Example usage:
+num_pairs = 10  # number of pairs to generate
+test_input = tcgen(num_pairs)
+print(test_input)
+```
+
+This function `tcgen` generates a specified number of pairs of integers \(A\) and \(B\) and returns a string representing the test input. You can modify `num_pairs` to generate as many test pairs as needed. The function uses `random.randint` to ensure that \(A\) and \(B\) are within the given constraints \([-1000, 1000]\).
+
+### Example Output
+An example of the output for `num_pairs = 10` might look like this:
+
+```
+-72 891
+-1000 1000
+500 -500
+-123 -987
+1000 0
+-1000 -999
+345 678
+-1 -1
+999 1
+-750 250
+```
+
+Each line represents a pair of integers \(A\) and \(B\) separated by a space, and the list is terminated by EOF implicitly when the program processes the input. Each pair can then be processed to compute and print the sum of \(A\) and \(B\) as described in the original problem statement.

@@ -1,0 +1,25 @@
+An integer N (1 ≤ N ≤ 200,000), representing some quantity or size.
+A list of integers A of size N, where each integer is between 0 and 1e9, and the list is in ascending order with no duplicates.
+An integer M (1 ≤ M ≤ 200,000), representing some quantity or size.
+A list of integers B of size M, where each integer is between 0 and 1e9, and the list is in ascending order with no duplicates.
+
+### Example Input:
+
+```
+5
+1 2 3 5 8
+2
+2 5
+```
+
+### Function Signature:
+Write a function f(N, A, M, B) that takes in the input.
+```python
+def f(N: int, A: List[int], M: int, B: List[int]):
+    '''
+    N: an integer
+    A: a list of integers
+    M: an integer
+    B: a list of integers
+    '''
+```

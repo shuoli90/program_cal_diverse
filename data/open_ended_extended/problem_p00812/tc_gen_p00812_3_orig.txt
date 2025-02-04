@@ -1,0 +1,71 @@
+Sure, let's create a test case generator for the "Equals are Equals" problem. We'll generate random algebraic expressions for both Mr. Simpson's expected answer and the students' answers, ensuring they adhere to the problem constraints.
+
+Here's a Python function to generate test cases:
+
+```python
+import random
+import string
+
+def generate_random_term():
+    # Generate a random term, which can be a constant, variable, or variable with power
+    term_type = random.choice(['constant', 'variable', 'variable_power'])
+    if term_type == 'constant':
+        return str(random.randint(1, 1000))  # Random constant
+    elif term_type == 'variable':
+        return random.choice(string.ascii_lowercase)  # Single variable
+    else:  # term_type == 'variable_power'
+        variable = random.choice(string.ascii_lowercase)
+        power = random.randint(1, 9)  # Power between 1 and 9
+        return f"{variable}^{power}"
+
+def generate_random_expression():
+    num_terms = random.randint(1, 5)  # Number of terms in the expression
+    terms = [generate_random_term() for _ in range(num_terms)]
+    expression = " ".join(f"{random.choice(['+', '-'])} {term}" for term in terms[1:])
+    return terms[0] + " " + expression
+
+def generate_test_block():
+    # Generate a block of expressions
+    num_answers = random.randint(1, 5)  # Number of student answers
+    correct_expression = generate_random_expression()
+    student_answers = [generate_random_expression() for _ in range(num_answers)]
+    
+    # Add some random whitespace to expressions to make them more varied
+    def add_random_whitespace(expr):
+        return ''.join([char + ' ' * random.randint(0, 2) for char in expr]).strip()
+    
+    correct_expression = add_random_whitespace(correct_expression)
+    student_answers = [add_random_whitespace(answer) for answer in student_answers]
+    
+    return [correct_expression] + student_answers
+
+def tcgen():
+    num_blocks = random.randint(1, 5)  # Number of blocks
+    test_cases = []
+    for _ in range(num_blocks):
+        block = generate_test_block()
+        test_cases.extend(block)
+        test_cases.append('.')  # Terminating line for the block
+    test_cases.append('.')  # Final terminating line
+    return test_cases
+
+# Example usage:
+for line in tcgen():
+    print(line)
+```
+
+### Explanation:
+1. **Generating Terms**:
+   - `generate_random_term` creates a random term, which could be a constant, a single variable, or a variable with an exponent.
+  
+2. **Generating Expressions**:
+   - `generate_random_expression` builds an algebraic expression by concatenating random terms with random `+` or `-` operators.
+   
+3. **Generating Blocks**:
+   - `generate_test_block` creates a block of expressions. The first one is the correct answer, followed by random student answers.
+   - It also optionally adds random whitespace to the expressions to simulate the students' attempts to make their answers more readable.
+   
+4. **Generating Test Cases**:
+   - `tcgen` generates multiple blocks and appends the required terminating lines.
+
+This function will generate a variety of test cases for the "Equals are Equals" problem, which can be used to comprehensively test your program.

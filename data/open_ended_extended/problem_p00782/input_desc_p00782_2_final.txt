@@ -1,0 +1,20 @@
+An integer n (2 ≤ n ≤ 100), representing some quantity or size.
+A list of n tuples (x, y, r), where x, y, and r are fractional numbers between 0 and 200 inclusive.
+
+### Example Input:
+
+```
+3
+4.0 4.0 3.0
+5.0 6.0 3.0
+5.5 4.5 1.0
+```
+
+### Function Signature:
+Write a function f(inputs) that takes in the input.
+```python
+def f(inputs: List[Tuple[float, float, float]]):
+    '''
+    inputs: a list of tuples where each tuple contains three fractional numbers
+    '''
+```

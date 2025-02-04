@@ -1,0 +1,33 @@
+Certainly! Here’s a test case generator for the problem statement you provided:
+
+```python
+import random
+
+def tcgen():
+    # Generate a random number of points between 2 and 200,000
+    N = random.randint(2, 200000)
+    
+    # Generate N points with random coordinates between 1 and 10^9
+    points = [(random.randint(1, 10**9), random.randint(1, 10**9)) for _ in range(N)]
+    
+    return N, points
+
+def format_test_case(N, points):
+    # Convert points into the required input format
+    test_case = f"{N}\n" + "\n".join(f"{x} {y}" for x, y in points)
+    return test_case
+
+# Example usage
+N, points = tcgen()
+test_case = format_test_case(N, points)
+print(test_case)
+```
+
+This script will generate a test case for the provided problem statement, including:
+
+1. A random integer \( N \) within the given constraints.
+2. A list of \( N \) points with coordinates randomly selected between 1 and \( 10^9 \).
+
+The `tcgen` function generates the data, while `format_test_case` converts it into the required input format.
+
+The example usage at the end demonstrates how you can generate and print a test case. You can integrate this into your testing environment to generate multiple test cases as needed.

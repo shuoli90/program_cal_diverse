@@ -1,0 +1,12 @@
+def extract_arguments(fh):
+    data_sets = []
+    while True:
+        N = int(fh.readline().strip())
+        if N == 0:
+            break
+        bridges = []
+        for _ in range(N-1):
+            a, b, t = map(int, fh.readline().strip().split())
+            bridges.append((a, b, t))
+        data_sets.append((N, bridges))
+    return data_sets

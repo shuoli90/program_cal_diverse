@@ -1,0 +1,3 @@
+Types: N: int, a: List[int]
+Ranges: 1 ≤ N ≤ 10^5, 1 ≤ a_i ≤ 10^9
+Addtl Info: Length of a is 3N

@@ -1,0 +1,138 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p03250 - Generation 3</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p03250 - Generation 3</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>
+Score : 100 points
+Problem StatementYou have decided to give an allowance to your child depending on the outcome of the game that he will play now.
+The game is played as follows:
+There are three "integer panels", each with a digit between 1 and 9 (inclusive) printed on it, and one "operator panel" with a + printed on it.
+The player should construct a formula of the form X + Y, by arranging the four panels from left to right. (The operator panel should not be placed at either end of the formula.)
+Then, the amount of the allowance will be equal to the resulting value of the formula.
+Given the values A, B and C printed on the integer panels used in the game, find the maximum possible amount of the allowance.
+Constraints
+All values in input are integers.
+1 \leq A, B, C \leq 9
+InputInput is given from Standard Input in the following format:
+A B C
+OutputPrint the maximum possible amount of the allowance.
+Sample Input 11 5 2
+Sample Output 153
+The amount of the allowance will be 53 when the panels are arranged as 52+1, and this is the maximum possible amount.
+Sample Input 29 9 9
+Sample Output 2108
+Sample Input 36 6 7
+Sample Output 382
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>    
+An integer A (1 ≤ A ≤ 9)
+An integer B (1 ≤ B ≤ 9)
+An integer C (1 ≤ C ≤ 9)
+
+### Example Input:
+
+```
+5 2 1
+```
+
+### Function Signature:
+Write a function f(A, B, C) that takes in the input.
+def f(A: int, B: int, C: int):
+    '''
+    A: an integer
+    B: an integer
+    C: an integer
+    '''
+</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Sure! To create a test case generator for this problem, we need to generate three integers \( A, B, \) and \( C \) each between 1 and 9. Here is a Python function that accomplishes this:
+
+```python
+import random
+
+def tcgen():
+    # Generate three integers between 1 and 9 inclusive
+    A = random.randint(1, 9)
+    B = random.randint(1, 9)
+    C = random.randint(1, 9)
+    
+    return A, B, C
+
+# Example usage:
+for _ in range(5):
+    print(tcgen())
+```
+
+This function will create different test cases every time it is called. Each test case contains three integers between 1 and 9 inclusive, suitable for the problem constraints.
+
+Here is a breakdown of the process:
+
+1. **Generate three random integers**: Each integer \( A, B, \) and \( C \) is generated within the range of 1 to 9.
+2. **Return the generated integers**: The function `tcgen()` returns these integers as a tuple.
+
+You can use the `print(tcgen())` to see the generated test cases. Each call to `tcgen()` will produce a new set of integers which you can then use as inputs to test your problem solution.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    A, B, C = map(int, fh.readline().strip().split())
+    return A, B, C</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

@@ -1,0 +1,28 @@
+Certainly! Here is a test case generator for the given problem statement:
+
+```python
+import random
+import string
+
+def tcgen():
+    # Generate a random length for string s and t within the given constraints
+    len_s = random.randint(1, 10**5)
+    len_t = random.randint(1, 10**5)
+    
+    # Generate random strings s and t of the specified lengths
+    s = ''.join(random.choices(string.ascii_lowercase, k=len_s))
+    t = ''.join(random.choices(string.ascii_lowercase, k=len_t))
+    
+    return s, t
+
+# Generate a test case
+s, t = tcgen()
+print(s)
+print(t)
+```
+
+This generator follows the constraints of the problem:
+- Length of `s` and `t` are between 1 and 100,000.
+- Both strings `s` and `t` consist of lowercase English letters.
+
+You can run this generator multiple times to create different test cases for the problem.

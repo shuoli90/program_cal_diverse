@@ -1,0 +1,71 @@
+Sure, I can help you write a test case generator for the "Ennichi" problem. The generator will create random test cases based on the problem constraints. 
+
+Here's the test case generator in Python:
+
+```python
+import random
+import string
+
+def tcgen():
+    # Generate random values for h, w, and n
+    h = random.randint(2, 30)
+    w = random.randint(2, 30)
+    n = random.randint(2, 30)
+    
+    # Generate the field with h rows and w columns
+    field = []
+    for _ in range(h):
+        row = ''.join(random.choice(string.ascii_uppercase + '.') for _ in range(w))
+        field.append(row)
+    
+    # Ensure the field contains at least one block
+    if all(row.count('.') == w for row in field):
+        random_row = random.randint(0, h - 1)
+        random_col = random.randint(0, w - 1)
+        field[random_row] = field[random_row][:random_col] + random.choice(string.ascii_uppercase) + field[random_row][random_col + 1:]
+    
+    # Ensure no initial alignment of n or more blocks of the same color
+    for i in range(h):
+        for j in range(w):
+            if field[i][j] != '.':
+                # Check horizontal alignment
+                if j + n <= w:
+                    block = field[i][j]
+                    if all(field[i][j + k] == block for k in range(n)):
+                        # Invalidate the sequence
+                        for k in range(n):
+                            field[i] = field[i][:j + k] + '.' + field[i][j + k + 1:]
+                
+                # Check vertical alignment
+                if i + n <= h:
+                    block = field[i][j]
+                    if all(field[i + k][j] == block for k in range(n)):
+                        # Invalidate the sequence
+                        for k in range(n):
+                            field[i + k] = field[i + k][:j] + '.' + field[i + k][j + 1:]
+    
+    return h, w, n, field
+
+# Example usage of the test case generator
+h, w, n, field = tcgen()
+print(f"{h} {w} {n}")
+for row in field:
+    print(row)
+```
+
+### Explanation
+
+1. **Parameter Generation**:
+    - Random values for `h`, `w`, and `n` are generated within the given constraints.
+
+2. **Field Creation**:
+    - Each row of the field is generated randomly with uppercase letters and periods.
+    - Ensure there is at least one block (not all periods).
+
+3. **Alignment Check**:
+    - The generator checks for horizontal and vertical alignments of `n` or more blocks and adjusts them to prevent initial alignments.
+
+4. **Output**:
+    - The function returns the values of `h`, `w`, `n`, and the generated field as a list of strings.
+
+You can use this generator to create varied and extensive test cases to thoroughly test the solution for the "Ennichi" problem.

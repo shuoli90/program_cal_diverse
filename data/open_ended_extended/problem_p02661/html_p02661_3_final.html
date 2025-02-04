@@ -1,0 +1,168 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p02661 - Generation 3</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p02661 - Generation 3</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>
+Score : 500 points
+Problem StatementThere are N integers X_1, X_2, \cdots, X_N, and we know that A_i \leq X_i \leq B_i.
+Find the number of different values that the median of X_1, X_2, \cdots, X_N can take.
+NotesThe median of X_1, X_2, \cdots, X_N is defined as follows. Let x_1, x_2, \cdots, x_N be the result of sorting X_1, X_2, \cdots, X_N in ascending order.
+If N is odd, the median is x_{(N+1)/2};
+if N is even, the median is (x_{N/2} + x_{N/2+1}) / 2.
+Constraints
+2 \leq N \leq 2 \times 10^5
+1 \leq A_i \leq B_i \leq 10^9
+All values in input are integers.
+InputInput is given from Standard Input in the following format:
+N
+A_1 B_1
+A_2 B_2
+:
+A_N B_N
+OutputPrint the answer.
+Sample Input 12
+1 2
+2 3
+Sample Output 13
+If X_1 = 1 and X_2 = 2, the median is \frac{3}{2};
+if X_1 = 1 and X_2 = 3, the median is 2;
+if X_1 = 2 and X_2 = 2, the median is 2;
+if X_1 = 2 and X_2 = 3, the median is \frac{5}{2}.
+Thus, the median can take three values: \frac{3}{2}, 2, and \frac{5}{2}.
+Sample Input 23
+100 100
+10 10000
+1 1000000000
+Sample Output 29991
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An integer N (2 ≤ N ≤ 2 × 10^5), representing some quantity or size.  
+A list of N tuples (A_i, B_i), where each tuple contains two integers:
+- A_i (1 ≤ A_i ≤ 10^9), representing a starting value.
+- B_i (A_i ≤ B_i ≤ 10^9), representing an ending value.
+
+### Example Input:
+
+```
+2
+1 2
+2 3
+```
+
+### Function Signature:
+Write a function f(N, ranges) that takes in the input.
+```python
+def f(N: int, ranges: List[Tuple[int, int]]):
+    '''
+    N: an integer
+    ranges: a list of tuples, where each tuple contains two integers (A_i, B_i)
+    '''
+```</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>To generate test cases for the problem "Find the number of different values that the median of X_1, X_2, \cdots, X_N can take", we need to account for various cases within the constraints provided. The constraints are:
+
+- \(2 \leq N \leq 2 \times 10^5\)
+- \(1 \leq A_i \leq B_i \leq 10^9\)
+
+Here's a Python function to generate test cases for the problem:
+
+```python
+import random
+
+def tcgen():
+    # Generate a random value for N within the constraints
+    N = random.randint(2, 2 * 10**5)
+    
+    # Generate pairs (A_i, B_i) where 1 <= A_i <= B_i <= 10^9
+    AB = []
+    for _ in range(N):
+        A = random.randint(1, 10**9)
+        B = random.randint(A, 10**9)
+        AB.append((A, B))
+    
+    return N, AB
+
+# Example usage:
+N, AB = tcgen()
+print(N)
+for A, B in AB:
+    print(A, B)
+```
+
+This function generates a random integer \(N\) within the specified range and then creates \(N\) pairs of integers \((A_i, B_i)\) such that \(1 \leq A_i \leq B_i \leq 10^9\). Each pair is generated to ensure \(A_i \leq B_i\).
+
+You can use this function to generate test cases for the problem. Note that the output of the function is in the correct format for input to the competitive programming problem.
+
+### Explanation:
+1. **N Generation**: Selects a random value for \(N\) which determines the number of pairs.
+2. **Pair Generation**: For each pair, selects \(A_i\) randomly between 1 and \(10^9\). Then, \(B_i\) is selected such that it is greater than or equal to \(A_i\).
+
+This should allow you to test the problem for a wide range of inputs, ensuring robustness and correctness of your solution.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    N = int(fh.readline().strip())
+    A_B_pairs = []
+    for _ in range(N):
+        A, B = map(int, fh.readline().strip().split())
+        A_B_pairs.append((A, B))
+    return N, A_B_pairs</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

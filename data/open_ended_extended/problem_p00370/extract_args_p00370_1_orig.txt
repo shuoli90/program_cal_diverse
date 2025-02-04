@@ -1,0 +1,6 @@
+def extract_arguments(fh):
+    x_s, y_s = map(int, fh.readline().strip().split())
+    x_g, y_g = map(int, fh.readline().strip().split())
+    N = int(fh.readline().strip())
+    polygon = [tuple(map(int, fh.readline().strip().split())) for _ in range(N)]
+    return (x_s, y_s), (x_g, y_g), N, polygon

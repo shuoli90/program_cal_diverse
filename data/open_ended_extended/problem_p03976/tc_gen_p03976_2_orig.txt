@@ -1,0 +1,42 @@
+Sure! Here is a test case generator for the problem statement:
+
+```python
+import random
+import string
+
+def generate_problem_name():
+    length = random.randint(1, 10)
+    return ''.join(random.choices(string.ascii_uppercase, k=length))
+
+def tcgen():
+    N = random.randint(1, 10**4)
+    K = random.randint(1, 26)
+    
+    P = [generate_problem_name() for _ in range(N)]
+    
+    return N, K, P
+
+# Helper function to print the generated test case in the required format
+def print_test_case(N, K, P):
+    print(N)
+    print(K)
+    for problem_name in P:
+        print(problem_name)
+
+# Generate a test case
+N, K, P = tcgen()
+
+# Print the generated test case
+print_test_case(N, K, P)
+```
+
+### Explanation:
+
+1. **generate_problem_name**: This function generates a random problem name with a length between 1 and 10 characters, using only capital letters.
+2. **tcgen**: This is the main test case generator function:
+    - It generates a random integer \(N\) (number of problems) between 1 and 10,000.
+    - It generates a random integer \(K\) (number of problems per KUPC) between 1 and 26.
+    - It generates a list of \(N\) random problem names using the `generate_problem_name` function.
+3. **print_test_case**: This helper function prints the generated test case in the required input format.
+
+To use this generator, you can simply call `tcgen` to get a new test case and then use `print_test_case` to output it. This will provide a comprehensive way to generate and test various scenarios for the problem.

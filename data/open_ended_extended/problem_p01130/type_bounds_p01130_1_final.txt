@@ -1,0 +1,3 @@
+Types: n: int, m: int, s: int, g1: int, g2: int, b1: int, b2: int, c: int
+Ranges: 3 ≤ n ≤ 100, 2 ≤ m ≤ 1000, 1 ≤ s ≤ n, 1 ≤ g1 ≤ n, 1 ≤ g2 ≤ n, 1 ≤ b1 ≤ n, 1 ≤ b2 ≤ n, 1 ≤ c ≤ 1000
+Addtl Info: s, g1, and g2 are distinct, b1 and b2 are distinct, the input ends with a line containing "0 0 0 0 0"

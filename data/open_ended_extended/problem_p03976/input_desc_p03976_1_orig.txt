@@ -1,0 +1,28 @@
+An integer N (1 ≤ N ≤ 10^4), representing some quantity or size.
+An integer K (1 ≤ K ≤ 26), representing some quantity or size.
+A list of N strings, each of length between 1 and 10, consisting of capital letters.
+
+### Example Input:
+
+```
+9 3
+APPLE
+ANT
+ATCODER
+BLOCK
+BULL
+BOSS
+CAT
+DOG
+EGG
+```
+
+### Function Signature:
+Write a function f(inputs) that takes in the input. 
+def f(inputs: List[Tuple[int, int, List[str]]]): 
+    ''' 
+    inputs: a list of tuples where each tuple contains:
+        - an integer
+        - an integer
+        - a list of strings
+    '''

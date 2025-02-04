@@ -1,0 +1,31 @@
+Certainly! Below is a test case generator for the given problem statement "B: Mapping".
+
+```python
+import random
+
+def tcgen():
+    N = random.randint(1, 10**5)
+
+    # Generate a permutation of [1, 2, ..., N] for a
+    a = list(range(1, N + 1))
+    random.shuffle(a)
+
+    # Generate a random permutation of [1, 2, ..., N] for b
+    b = list(range(1, N + 1))
+    random.shuffle(b)
+
+    return N, a, b
+
+# Example usage
+N, a, b = tcgen()
+print(N)
+print(' '.join(map(str, a)))
+print(' '.join(map(str, b)))
+```
+
+This generator creates a random test case for the problem statement where:
+- `N` is the number of elements in the set \( S \).
+- `a` is a permutation of the integers from 1 to \( N \) representing the elements in set \( S \).
+- `b` is a random permutation of the integers from 1 to \( N \) representing the mappings \( f(a_i) = b_i \).
+
+The generator ensures that all generated values for \( a \) and \( b \) adhere to the specified constraints.

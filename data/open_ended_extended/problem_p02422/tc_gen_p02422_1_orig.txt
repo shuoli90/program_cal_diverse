@@ -1,0 +1,48 @@
+Sure, here's a test case generator for the `Transformation` problem:
+
+```python
+import random
+import string
+
+def tcgen():
+    # Generate a random string of length between 1 and 1000.
+    str_len = random.randint(1, 1000)
+    str_val = ''.join(random.choices(string.ascii_lowercase, k=str_len))
+
+    # Generate a random number of commands between 1 and 100.
+    q = random.randint(1, 100)
+    commands = []
+    
+    for _ in range(q):
+        # Randomly choose a command type.
+        command_type = random.choice(['print', 'reverse', 'replace'])
+        
+        # Generate random indices a and b such that 0 <= a <= b < length of str.
+        a = random.randint(0, str_len - 1)
+        b = random.randint(a, str_len - 1)
+        
+        if command_type == 'print':
+            command = f"print {a} {b}"
+        elif command_type == 'reverse':
+            command = f"reverse {a} {b}"
+        elif command_type == 'replace':
+            # Generate a random string p of length b - a + 1.
+            p_length = b - a + 1
+            p = ''.join(random.choices(string.ascii_lowercase, k=p_length))
+            command = f"replace {a} {b} {p}"
+        
+        commands.append(command)
+    
+    return str_val, q, commands
+
+# Example usage:
+str_val, q, commands = tcgen()
+print(str_val)
+print(q)
+for command in commands:
+    print(command)
+```
+
+This script generates a random string `str` of length between 1 and 1000, and a sequence of `q` commands (between 1 and 100). Each command is randomly chosen to be either `print`, `reverse`, or `replace`, with valid random indices `a` and `b`. For the `replace` command, a random string `p` of appropriate length is generated. The generated test case includes the initial string, the number of commands, and the list of commands.
+
+You can run the `tcgen` function to generate a new test case each time and see the output by using the example usage snippet provided in the script.

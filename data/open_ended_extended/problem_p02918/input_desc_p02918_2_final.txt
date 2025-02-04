@@ -1,0 +1,21 @@
+An integer N (1 ≤ N ≤ 10^5), representing some quantity or size.
+An integer K (1 ≤ K ≤ 10^5), representing some quantity or limit.
+A string S of length N, where each character is either 'L' or 'R'.
+
+### Example Input:
+
+```
+6 1
+LRLRRL
+```
+
+### Function Signature:
+Write a function f(N, K, S) that takes in the input.
+```python
+def f(N: int, K: int, S: str):
+    '''
+    N: an integer
+    K: an integer
+    S: a string
+    '''
+```

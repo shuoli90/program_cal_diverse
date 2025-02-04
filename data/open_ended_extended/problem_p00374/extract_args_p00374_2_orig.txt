@@ -1,0 +1,5 @@
+def extract_arguments(fh):
+    N, M, X, Y = map(int, fh.readline().strip().split())
+    a = [int(fh.readline().strip()) for _ in range(N)]
+    b = [int(fh.readline().strip()) for _ in range(M)]
+    return N, M, X, Y, a, b

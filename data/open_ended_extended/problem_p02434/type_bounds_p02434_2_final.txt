@@ -1,0 +1,5 @@
+Types: n: int, q: int, t: int, x: int, query: List[Tuple[int, int, Optional[int]]]
+
+Ranges: 1 ≤ n ≤ 1,000, 1 ≤ q ≤ 500,000, -1,000,000,000 ≤ x ≤ 1,000,000,000, 0 ≤ t < n
+
+Addtl Info: None

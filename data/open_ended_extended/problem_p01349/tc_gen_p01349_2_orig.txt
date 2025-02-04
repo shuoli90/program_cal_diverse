@@ -1,0 +1,62 @@
+Sure, here is a test case generator for the given problem "Ennichi":
+
+```python
+import random
+import string
+
+def generate_field(h, w, n):
+    field = [['.' for _ in range(w)] for _ in range(h)]
+    
+    # Randomly place blocks
+    num_blocks = random.randint(1, h * w)  # Ensure there's at least one block
+    blocks = random.choices(string.ascii_uppercase, k=num_blocks)
+    
+    for block in blocks:
+        while True:
+            r, c = random.randint(0, h-1), random.randint(0, w-1)
+            if field[r][c] == '.':
+                field[r][c] = block
+                break
+
+    # Ensure no n or more blocks of the same color are aligned initially
+    def is_valid_field():
+        # Check rows
+        for row in field:
+            if any(row[i] == row[i+1] == row[i+2] == row[i+3] == row[i+n-1] for i in range(w - n + 1)):
+                return False
+        # Check columns
+        for c in range(w):
+            for r in range(h - n + 1):
+                if all(field[r+i][c] == field[r][c] and field[r][c] != '.' for i in range(n)):
+                    return False
+        return True
+    
+    while not is_valid_field():
+        for r in range(h):
+            for c in range(w):
+                field[r][c] = '.'
+        for block in blocks:
+            while True:
+                r, c = random.randint(0, h-1), random.randint(0, w-1)
+                if field[r][c] == '.':
+                    field[r][c] = block
+                    break
+    
+    return field
+
+def tcgen():
+    h = random.randint(2, 30)
+    w = random.randint(2, 30)
+    n = random.randint(2, 30)
+
+    field = generate_field(h, w, n)
+    
+    field_str = '\n'.join(''.join(row) for row in field)
+    
+    return f"{h} {w} {n}\n{field_str}"
+
+# Example of generating a test case
+print(tcgen())
+```
+
+This generator creates a random valid field configuration for the game according to the given constraints. It ensures that there are no initial alignments of `n` or more blocks of the same color vertically or horizontally, and it also guarantees that there is at least one block on the field. The function `tcgen` returns a formatted string with the generated test case, ready to be used as input for the problem.

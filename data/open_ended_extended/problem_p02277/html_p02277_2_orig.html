@@ -1,0 +1,208 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p02277 - Generation 2</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p02277 - Generation 2</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>
+Quick Sort
+Let's arrange a deck of cards. Your task is to sort totally n cards. A card consists of a part of a suit (S, H, C or D) and an number. Write a program which sorts such cards based on the following pseudocode:
+Partition(A, p, r)
+1 x = A[r]
+2 i = p-1
+3 for j = p to r-1
+4     do if A[j] <= x
+5        then i = i+1
+6            exchange A[i] and A[j] 
+7 exchange A[i+1] and A[r]
+8 return i+1
+Quicksort(A, p, r)
+1 if p < r
+2    then q = Partition(A, p, r)
+3        run Quicksort(A, p, q-1)
+4        run Quicksort(A, q+1, r)
+Here, A is an array which represents a deck of cards and comparison operations are performed based on the numbers.
+Your program should also report the stability of the output for the given input (instance). Here, 'stability of the output' means that: cards with the same value appear in the output in the same order as they do in the input (instance).
+Input
+The first line contains an integer n, the number of cards.
+n cards are given in the following lines. Each card is given in a line and represented by a pair of a character and an integer separated by a single space.
+Output
+In the first line, print the stability ("Stable" or "Not stable") of this output.
+In the following lines, print the arranged cards in the same manner of that of the input.
+Constraints
+1 ≤ n ≤ 100,000
+1 ≤ the number of a card  ≤ 109
+There are no identical card in the input
+Sample Input 1
+6
+D 3
+H 2
+D 1
+S 3
+D 2
+C 1
+Sample Output 1
+Not stable
+D 1
+C 1
+D 2
+H 2
+D 3
+S 3
+Sample Input 2
+2
+S 1
+H 1
+Sample Output 2
+Stable
+S 1
+H 1
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An integer n (1 ≤ n ≤ 100,000), representing some quantity or size.  
+A list of tuples (X, Y) of size n, where X is a character from the set {'S', 'H', 'C', 'D'} and Y is an integer (1 ≤ Y ≤ 1e9).
+
+### Example Input:
+
+```
+6
+D 3
+H 2
+D 1
+S 3
+D 2
+C 1
+```
+
+### Function Signature:
+Write a function f(n, cards) that takes in the input. 
+```python
+def f(n: int, cards: List[Tuple[str, int]]):
+    '''
+    n: an integer
+    cards: a list of tuples where each tuple contains a character and an integer
+    '''
+```</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>To create a test case generator for the given Quick Sort problem, we need to generate a random number of cards, each with a suit and a number, and ensure that the generated test cases conform to the specified constraints.
+
+Here's a test case generator using Python:
+
+```python
+import random
+
+def generate_card():
+    suit = random.choice(['S', 'H', 'C', 'D'])
+    number = random.randint(1, 10**9)
+    return f"{suit} {number}"
+
+def tcgen():
+    n = random.randint(1, 100000)
+    cards = [generate_card() for _ in range(n)]
+    return n, cards
+
+def print_test_case(n, cards):
+    print(n)
+    for card in cards:
+        print(card)
+
+# Example usage:
+if __name__ == "__main__":
+    n, cards = tcgen()
+    print_test_case(n, cards)
+```
+
+### Explanation:
+
+1. **generate_card()**:
+    - This function generates a single card by randomly choosing a suit from `['S', 'H', 'C', 'D']` and a number between 1 and \(10^9\).
+    - The card is formatted as a string in the format "Suit Number".
+
+2. **tcgen()**:
+    - This function generates a random number of cards \(n\) between 1 and 100,000.
+    - It then creates a list of \(n\) cards by calling the `generate_card()` function.
+
+3. **print_test_case(n, cards)**:
+    - This function prints the test case in the required format.
+    - It first prints the number of cards \(n\), followed by each card on a new line.
+
+### Example Output:
+
+Running the generator will produce output in the format required by the problem statement. Here is an example of the output:
+
+```
+5
+C 472839
+S 283746
+D 927364
+H 364738
+C 927365
+```
+
+This generator ensures that the test cases are within the constraints and the format specified in the problem statement. Each run of the generator will produce a different test case due to the use of randomization.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    n = int(fh.readline().strip())
+    cards = []
+    for _ in range(n):
+        suit, num = fh.readline().strip().split()
+        cards.append((suit, int(num)))
+    return n, cards</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

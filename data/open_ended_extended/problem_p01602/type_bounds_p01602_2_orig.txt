@@ -1,0 +1,3 @@
+Types: n: int, p: List[str], x: List[int]
+Ranges: 1 ≤ n ≤ 1,000, 1 ≤ x[i] ≤ 10^6, p[i] in {'(', ')'}
+Addtl Info: None

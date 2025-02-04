@@ -1,0 +1,28 @@
+Here is the test case generator for the given problem statement "E: City":
+
+```python
+import random
+
+def tcgen():
+    # Constraints
+    H = random.randint(2, 10**9)
+    W = random.randint(2, 10**9)
+    S = random.randint(1, H)
+    T = random.randint(1, W)
+    
+    return H, W, S, T
+
+# Example usage
+if __name__ == "__main__":
+    # Generate a test case
+    H, W, S, T = tcgen()
+    print(f"{H} {W} {S} {T}")
+```
+
+Explanation:
+- `H` is the number of rows in the city and is randomly chosen between 2 and \(10^9\).
+- `W` is the number of columns in the city and is randomly chosen between 2 and \(10^9\).
+- `S` is the starting row for Santa and is randomly chosen between 1 and `H`.
+- `T` is the starting column for Santa and is randomly chosen between 1 and `W`.
+
+Given this generator, you can easily create a variety of test cases to check the behavior of the problem solution under different scenarios. Note that due to the large potential values of `H` and `W`, the actual city grid is conceptual rather than something you would explicitly construct in memory for testing.

@@ -1,0 +1,3 @@
+Types: N: int, x: List[int], y: List[int]
+Ranges: 1 ≤ N ≤ 50, |x[i]|, |y[i]| ≤ 10^9
+Addtl Info: If i ≠ j, x[i] ≠ x[j] or y[i] ≠ y[j]

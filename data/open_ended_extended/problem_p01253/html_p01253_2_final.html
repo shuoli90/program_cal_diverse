@@ -1,0 +1,201 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p01253 - Generation 2</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p01253 - Generation 2</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>
+Problem D: Deadly Dice Game
+T.I. Financial Group, a world-famous group of finance companies, has decided to hold an evil gambling
+game in which insolvent debtors compete for special treatment of exemption from their debts.
+In this game, each debtor starts from one cell on the stage called the Deadly Ring. The Deadly Ring
+consists of N cells and each cell is colored black or red. Each cell is connected to exactly two other
+adjacent cells and all the cells form a ring. At the start of the game, each debtor chooses which cell to
+start. Then he rolls a die and moves on the ring in clockwise order by cells as many as the number of
+spots shown on the upside of the die. This step is called a round, and each debtor repeats a round T times.
+A debtor will be exempted from his debt if he is standing on a red cell after he finishes all the rounds.
+On the other hand, if he finishes the game at a black cell, he will be sent somewhere else and forced to
+devote his entire life to hard labor.
+You have happened to take part in this game. As you are allowed to choose the starting cell, you want to
+start from a cell that maximizes the probability of finishing the game at a red cell. Fortunately you can
+bring a laptop PC to the game stage, so you have decided to write a program that calculates the maximum
+winning probability.
+Input
+The input consists of multiple datasets.
+Each dataset consists of two lines. The first line contains two integers N (1 ≤ N ≤ 2000) and T (1 ≤ T ≤ 2000) in this order, delimited with a single space. The second line contains a string of N characters that
+consists of characters ‘R’ and ‘B’, which indicate red and black respectively. This string represents the
+colors of the cells in clockwise order.
+The input is terminated by a line with two zeros. This is not part of any datasets and should not be
+processed.
+Output
+For each dataset, print the maximum probability of finishing the game at a red cell in one line. Your
+program may output an arbitrary number of digits after the decimal point, provided that the absolute
+error does not exceed 10-8.
+Sample Input
+6 1
+RBRBRB
+10 1
+RBBBRBBBBB
+10 2
+RBBBRBBBBB
+10 10
+RBBBBBBBBB
+0 0
+Output for the Sample Input
+0.50000000
+0.33333333
+0.22222222
+0.10025221
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An integer N (1 ≤ N ≤ 2000) representing some quantity.
+An integer T (1 ≤ T ≤ 2000) representing some quantity.
+A string of length N consisting of characters 'R' and 'B'.
+
+The input consists of multiple datasets. The datasets are terminated by a line with two zeros which should not be processed.
+
+### Example Input:
+
+```
+6 1
+RBRBRB
+10 1
+RBBBRBBBBB
+10 2
+RBBBRBBBBB
+10 10
+RBBBBBBBBB
+0 0
+```
+
+### Function Signature:
+Write a function f(inputs) that takes in the input.
+```python
+def f(inputs: List[Tuple[int, int, str]]):
+    '''
+    inputs: a list of tuples, where each tuple contains:
+        - an integer N
+        - an integer T
+        - a string of length N
+    '''
+```</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Sure! Here is a test case generator for the "Deadly Dice Game" problem:
+
+```python
+import random
+
+def tcgen():
+    # Generate random values for N and T within their respective limits
+    N = random.randint(1, 2000)
+    T = random.randint(1, 2000)
+    
+    # Generate a random string of length N consisting of 'R' and 'B'
+    cells = ''.join(random.choice(['R', 'B']) for _ in range(N))
+    
+    return N, T, cells
+
+# Function to generate multiple test cases
+def generate_test_cases(num_cases):
+    test_cases = []
+    for _ in range(num_cases):
+        N, T, cells = tcgen()
+        test_cases.append(f"{N} {T}\n{cells}")
+    
+    # Add the termination line "0 0"
+    test_cases.append("0 0")
+    
+    return "\n".join(test_cases)
+
+# Example usage
+if __name__ == "__main__":
+    num_cases = 5  # Number of test cases to generate
+    print(generate_test_cases(num_cases))
+```
+
+### Explanation:
+
+1. **Random Values for N and T**:
+    - We generate random integers `N` and `T` within the specified limits (1 ≤ N ≤ 2000 and 1 ≤ T ≤ 2000).
+
+2. **Generating the Cells String**:
+    - We generate a random string of length `N` where each character is randomly chosen to be 'R' or 'B'.
+
+3. **Generating Multiple Test Cases**:
+    - We loop to generate the desired number of test cases.
+    - After generating the required number of test cases, we add the termination line "0 0".
+
+4. **Example Usage**:
+    - The `generate_test_cases` function can be called to generate a specific number of test cases.
+    - The example usage demonstrates generating 5 test cases.
+
+You can run the script to generate test cases for the "Deadly Dice Game" problem, and use the output for testing purposes.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    datasets = []
+    while True:
+        line = fh.readline().strip()
+        if line == "0 0":
+            break
+        N, T = map(int, line.split())
+        colors = fh.readline().strip()
+        datasets.append((N, T, colors))
+    return datasets</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

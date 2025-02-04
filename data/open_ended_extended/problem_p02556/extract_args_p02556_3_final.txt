@@ -1,0 +1,10 @@
+def extract_arguments(fh):
+    N = int(fh.readline().strip())
+    points = [tuple(map(int, fh.readline().strip().split())) for _ in range(N)]
+    return N, points
+
+# if __name__ == "__main__":
+#     input_path = sys.argv[1]
+#     with open(input_path, 'r') as fh: 
+#     N, points = extract_arguments(fh)
+#     f(N, points)

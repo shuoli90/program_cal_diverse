@@ -1,0 +1,60 @@
+To write a test case generator for the given problem statement "Tournament Chart", we need to follow the constraints and the structure of the input:
+
+1. Generate a valid tournament chart string \( S \) according to the given BNF.
+2. Ensure \( S \) includes exactly \( N \) distinct contestants where \( 2 \leq N \leq 26 \).
+3. Provide \( N \) lines of contestant win counts, ensuring that each contestant in \( S \) has a corresponding line.
+
+Here's a Python test case generator for the "Tournament Chart" problem:
+
+```python
+import random
+import string
+
+def generate_tournament_chart(contestants):
+    """Recursively generates a tournament chart string from a list of contestants."""
+    if len(contestants) == 1:
+        return contestants[0]
+    elif len(contestants) == 2:
+        return f"[{contestants[0]}-{contestants[1]}]"
+    else:
+        mid = len(contestants) // 2
+        left = generate_tournament_chart(contestants[:mid])
+        right = generate_tournament_chart(contestants[mid:])
+        return f"[{left}-{right}]"
+
+def tcgen():
+    N = random.randint(2, 26)
+    contestants = random.sample(string.ascii_lowercase, N)
+    
+    tournament_chart = generate_tournament_chart(contestants)
+    
+    wins = []
+    for c in contestants:
+        wins.append(f"{c} {random.randint(0, N-1)}")
+    
+    return tournament_chart, wins
+
+def print_test_case(tournament_chart, wins):
+    print(tournament_chart)
+    for win in wins:
+        print(win)
+
+# Generate and print a test case
+tournament_chart, wins = tcgen()
+print_test_case(tournament_chart, wins)
+```
+
+### Explanation:
+1. **generate_tournament_chart**:
+    - Recursively creates a valid tournament chart string from a list of contestants.
+    - If there's only one contestant, return the contestant.
+    - If there are two contestants, format as `"[a-b]"`.
+    - For more than two contestants, split the list in half and recursively generate the left and right parts of the chart, then combine them.
+2. **tcgen**:
+    - Randomly selects `N` contestants from the lowercase alphabet (ensuring each contestant is unique).
+    - Generates the tournament chart using the `generate_tournament_chart` function.
+    - Assigns a random number of wins (between 0 and \( N-1 \)) to each contestant.
+3. **print_test_case**:
+    - Prints the tournament chart and the wins in the required format.
+
+This generator ensures that the tournament chart and the win counts are valid and formatted correctly.

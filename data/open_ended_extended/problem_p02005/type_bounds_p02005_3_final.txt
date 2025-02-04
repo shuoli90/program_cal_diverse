@@ -1,0 +1,3 @@
+Types: N: int, C: List[Tuple[str, int]], M: int, O: List[str]
+Ranges: 1 ≤ N ≤ 10^5, 1 ≤ len(C_i) ≤ 20, 1 ≤ D_i ≤ 10^5, 1 ≤ M ≤ 10^5, 1 ≤ len(O_i) ≤ 20
+Addtl Info: None

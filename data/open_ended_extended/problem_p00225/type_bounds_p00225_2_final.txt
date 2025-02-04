@@ -1,0 +1,3 @@
+Types: n: int, wordi: str
+Ranges: 2 ≤ n ≤ 10000, 1 ≤ len(wordi) ≤ 32
+Addtl Info: No more than 50 datasets, input ends with a single zero line

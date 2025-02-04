@@ -1,0 +1,35 @@
+Sure! Below is a Python function to generate test cases for the problem "Fissure Puzzle Hard." The function generates a random grid that fits the problem's constraints.
+
+```python
+import random
+
+def generate_fissure_puzzle_hard_test_case():
+    # Generate an odd number N between 3 and 2047
+    N = random.choice([i for i in range(3, 2048) if i % 2 != 0])
+    
+    # Generate the grid of NxN where each cell is either 'o' or 'x'
+    grid = []
+    for _ in range(N):
+        row = ''.join(random.choice(['o', 'x']) for _ in range(N))
+        grid.append(row)
+    
+    return N, grid
+
+def format_test_case(N, grid):
+    # Format the test case into the required input format as a string
+    test_case_str = f"{N}\n"
+    test_case_str += '\n'.join(grid)
+    return test_case_str
+
+# Example of generating a test case and printing it
+N, grid = generate_fissure_puzzle_hard_test_case()
+test_case_str = format_test_case(N, grid)
+print(test_case_str)
+```
+
+### Explanation:
+1. **Generating N:** The code first generates an odd number \( N \) between 3 and 2047 using `random.choice` to ensure the number is odd.
+2. **Generating the Grid:** For each row in the \( N \times N \) grid, we generate a string of length \( N \) where each character is randomly chosen to be either 'o' (white) or 'x' (black).
+3. **Formatting the Output:** The function `format_test_case` converts the generated grid into the required input format as a multiline string.
+
+You can use this generator to produce random test cases for the problem. Each execution of the generator will provide a different test case within the specified constraints.

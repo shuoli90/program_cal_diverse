@@ -1,0 +1,33 @@
+An integer H (0 ≤ H ≤ 100) and an integer W (0 ≤ W ≤ 100), representing some dimensions. Each dataset contains H lines of W characters, where each character is one of {' ', '@', '#', '*'}. The input ends with a line "0 0". No more than 20 datasets will be provided.
+
+### Example Input:
+
+```
+10 10
+####
+#####@@
+@#
+@@@@@#*#*
+@##***@@@*
+#****#*@**
+##@*#@@*##
+*@@@@*@@@#
+***#@*@##*
+*@@@*@@##@
+*@*#*@##**
+@****#@@#@
+0 0
+```
+
+### Function Signature:
+Write a function f(inputs) that takes in the input.
+
+```python
+def f(inputs: List[Tuple[int, int, List[str]]]):
+    '''
+    inputs: a list of tuples, where each tuple contains:
+            - an integer H
+            - an integer W
+            - a list of H strings, each of length W
+    '''
+```

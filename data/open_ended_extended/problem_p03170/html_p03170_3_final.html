@@ -1,0 +1,185 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p03170 - Generation 3</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p03170 - Generation 3</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>
+Score : 100 points
+Problem StatementThere is a set A = \{ a_1, a_2, \ldots, a_N \} consisting of N positive integers.
+Taro and Jiro will play the following game against each other.
+Initially, we have a pile consisting of K stones.
+The two players perform the following operation alternately, starting from Taro:
+Choose an element x in A, and remove exactly x stones from the pile.
+A player loses when he becomes unable to play.
+Assuming that both players play optimally, determine the winner.
+Constraints
+All values in input are integers.
+1 \leq N \leq 100
+1 \leq K \leq 10^5
+1 \leq a_1 < a_2 < \cdots < a_N \leq K
+InputInput is given from Standard Input in the following format:
+N K
+a_1 a_2 \ldots a_N
+OutputIf Taro will win, print First; if Jiro will win, print Second.
+Sample Input 12 4
+2 3
+Sample Output 1First
+If Taro removes three stones, Jiro cannot make a move.
+Thus, Taro wins.
+Sample Input 22 5
+2 3
+Sample Output 2Second
+Whatever Taro does in his operation, Jiro wins, as follows:
+If Taro removes two stones, Jiro can remove three stones to make Taro unable to make a move.
+If Taro removes three stones, Jiro can remove two stones to make Taro unable to make a move.
+Sample Input 32 7
+2 3
+Sample Output 3First
+Taro should remove two stones. Then, whatever Jiro does in his operation, Taro wins, as follows:
+If Jiro removes two stones, Taro can remove three stones to make Jiro unable to make a move.
+If Jiro removes three stones, Taro can remove two stones to make Jiro unable to make a move.
+Sample Input 43 20
+1 2 3
+Sample Output 4Second
+Sample Input 53 21
+1 2 3
+Sample Output 5First
+Sample Input 61 100000
+1
+Sample Output 6Second
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An integer N (1 ≤ N ≤ 100), representing some quantity or size.
+An integer K (1 ≤ K ≤ 10^5), representing another quantity or size.
+A list of N integers A, where 1 ≤ A[i] ≤ K and A[i] < A[i+1] for all valid i.
+
+### Example Input:
+```
+2
+4
+2 3
+```
+
+### Function Signature:
+Write a function f(N, K, A) that takes in the input.
+```python
+def f(N: int, K: int, A: List[int]):
+    '''
+    N: an integer
+    K: an integer
+    A: a list of integers
+    '''
+```</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Sure, let's write a test case generator for this problem. The test case generator should create random values for \(N\), \(K\), and the set \(A\) based on the constraints given in the problem statement.
+
+Here is a Python function to generate test cases for the problem:
+
+```python
+import random
+
+def tcgen():
+    # Generate N in the range [1, 100]
+    N = random.randint(1, 100)
+
+    # Generate K in the range [1, 10^5]
+    K = random.randint(1, 10**5)
+    
+    # Generate a sorted list A of size N with unique elements in the range [1, K]
+    A = sorted(random.sample(range(1, K + 1), N))
+    
+    return N, K, A
+
+# Function to format the test case as input
+def format_test_case(N, K, A):
+    return f"{N} {K}\n" + " ".join(map(str, A))
+
+# Generate a test case
+N, K, A = tcgen()
+
+# Print the formatted test case
+print(format_test_case(N, K, A))
+```
+
+The `tcgen` function generates random values for \(N\), \(K\), and the list \(A\) according to the constraints:
+
+- \(N\) is between 1 and 100.
+- \(K\) is between 1 and \(10^5\).
+- \(A\) is a sorted list of \(N\) unique integers between 1 and \(K\).
+
+The `format_test_case` function formats the generated test case into the required input format.
+
+When you run the `tcgen` function, it will generate a new test case each time. Here is an example of what the output might look like:
+
+```
+3 15
+1 5 10
+```
+
+This means \(N = 3\), \(K = 15\), and \(A = [1, 5, 10]\).
+
+You can use this generator to create multiple test cases to validate your solution for different scenarios.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    N, K = map(int, fh.readline().strip().split())
+    A = list(map(int, fh.readline().strip().split()))
+    return N, K, A</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

@@ -1,0 +1,30 @@
+An integer T (0 < T ≤ 100), representing the number of datasets.
+For each dataset:
+1. An integer H, representing some quantity or size.
+2. An integer W, representing some quantity or size.
+3. A list of H strings, each of length W, consisting of characters from the set {'.', '*', '#', '-', '^', 'v', '<', '>'}.
+4. A string, consisting of characters from the set {'U', 'D', 'L', 'R', 'S'}.
+
+### Example Input:
+```
+1
+4 4
+....
+.^..
+....
+....
+UDLSR
+```
+
+### Function Signature:
+Write a function f(inputs) that takes in the input.
+```python
+def f(inputs: List[Tuple[int, int, int, List[str], str]]):
+    '''
+    inputs: a list of tuples, where each tuple contains:
+        - an integer
+        - an integer
+        - a list of strings
+        - a string
+    '''
+```

@@ -1,0 +1,28 @@
+
+An integer n (1 ≤ n ≤ 2000), an integer k (1 ≤ k ≤ n), and an integer s (3 ≤ s ≤ 100).
+A list of n tuples, each containing three integers where each integer is between -4×10^7 and 4×10^7.
+
+### Example Input:
+
+```
+6 4 10
+100 100 100
+106 102 102
+112 110 104
+104 116 102
+100 114 104
+92 107 100
+```
+
+### Function Signature:
+Write a function f(datasets) that takes in the input.
+```python
+def f(datasets: List[Tuple[int, int, int, List[Tuple[int, int, int]]]]):
+    ''' 
+    datasets: a list of tuples, each containing:
+              - an integer
+              - an integer
+              - an integer
+              - a list of tuples, each containing three integers
+    '''
+```

@@ -1,0 +1,191 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p01891 - Generation 2</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p01891 - Generation 2</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>A: Cabbage
+Problem Statement
+AOR Ika-chan has obtained a cabbage with $N$ leaves. The leaves of this cabbage are numbered from 1 to $N$ in order from the outside, and the degree of dirtiness of the $i$-th leaf is $D_i$. The larger the value, the dirtier the leaf.
+AOR Ika-chan decided to select dirty leaves to be discarded according to the following procedure for using the leaves of this cabbage for cooking.
+- Initialize the discard candidate to empty.
+- Focus on the outermost leaf that hasn't been checked yet. If all are finished, finish.
+- If the degree of dirtiness of the leaf is equal to or greater than $A$, add it to the discard candidate and return to 2. Otherwise, finish.
+However, it was found that the number of leaves that could be used for cooking became extremely small as a result of this operation. Therefore, AOR Ika-chan decided to reconsider the leaves to be discarded after the above operation and to perform the following operation.
+- If the number of leaves that are not discard candidates is less than $M$, proceed to 2. Otherwise, finish.
+- Focus on the innermost leaf among the discard candidate leaves that has not yet been checked. If there are no discard candidate leaves, finish.
+- If the degree of dirtiness of the leaf is less than or equal to $B$, remove it from the discard candidate and return to 2. Otherwise, discard all the discard candidate leaves and finish.
+Find the number of leaves to be finally discarded.
+Input
+$N \ M \ A \ B$
+$D_{1} \ D_{2} \ \cdots \ D_{N}$
+Constraints
+$1 \leq N \leq 1000$
+$0 \leq M \leq N$
+$1 \leq A \leq B \leq 1000$
+$1 \leq D_{i} \leq 1000$
+Output
+Output the number of leaves to be finally discarded.
+Sample Input 1
+5 3 6 9
+9 7 5 3 1
+Sample Output 1
+2
+Discard the first and second leaves.
+Sample Input 2
+5 3 6 9
+5 4 3 2 1
+Sample Output 2
+0
+Do not discard any leaves from the first leaf.
+Sample Input 3
+5 3 6 9
+10 8 6 4 2
+Sample Output 3
+1
+Although he tried to discard the first three leaves, he changed his mind and decided not to discard the second and third leaves.
+Sample Input 4
+5 3 6 9
+5 10 8 6 4
+Sample Output 4
+0
+AOR Ika-chan doesn't know that the second leaf is dirty.
+Sample Input 5
+5 0 6 9
+9 9 8 8 7
+Sample Output 5
+5
+Do not mind discarding all of them.</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An integer \(N\) (1 ≤ \(N\) ≤ 1000), representing some quantity or size.
+An integer \(M\) (0 ≤ \(M\) ≤ \(N\)), representing some quantity.
+An integer \(A\) (1 ≤ \(A\) ≤ 1000), representing some threshold.
+An integer \(B\) (1 ≤ \(A\) ≤ \(B\) ≤ 1000), representing another threshold.
+A list of integers \(D\) of size \(N\) where each integer is between 1 and 1000.
+
+### Example Input:
+
+```
+5 3 6 9
+9 7 5 3 1
+```
+
+### Function Signature:
+
+Write a function `f(N, M, A, B, D)` that takes in the input.
+def f(N: int, M: int, A: int, B: int, D: List[int]):
+    '''
+    N: an integer
+    M: an integer
+    A: an integer
+    B: an integer
+    D: a list of integers
+    '''</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Sure, let's create a test case generator for the given problem statement "Cabbage". The generator will produce random values for the parameters \(N\), \(M\), \(A\), \(B\), and the list \(D\).
+
+Here's the Python code for the test case generator:
+
+```python
+import random
+
+def tcgen():
+    # Generate a random value for N within the constraint 1 ≤ N ≤ 1000
+    N = random.randint(1, 1000)
+    
+    # Generate a random value for M within the constraint 0 ≤ M ≤ N
+    M = random.randint(0, N)
+    
+    # Generate random values for A and B where 1 ≤ A ≤ B ≤ 1000
+    A = random.randint(1, 1000)
+    B = random.randint(A, 1000)
+    
+    # Generate a list D of size N where each element is within the constraint 1 ≤ D[i] ≤ 1000
+    D = [random.randint(1, 1000) for _ in range(N)]
+    
+    return N, M, A, B, D
+
+# Function to format the generated test case in the required input format
+def format_test_case(N, M, A, B, D):
+    return f"{N} {M} {A} {B}\n" + " ".join(map(str, D))
+
+# Generate a test case
+N, M, A, B, D = tcgen()
+print(format_test_case(N, M, A, B, D))
+```
+
+Explanation:
+1. **Random Values Generation**:
+    - \(N\) is generated randomly between 1 and 1000.
+    - \(M\) is generated randomly between 0 and \(N\).
+    - \(A\) is generated randomly between 1 and 1000.
+    - \(B\) is generated randomly between \(A\) and 1000, ensuring \(A \leq B\).
+    - \(D\) is a list of \(N\) integers, each randomly generated between 1 and 1000.
+
+2. **Formatting**:
+    - The `format_test_case` function formats the generated values into the specified input format for the problem.
+
+You can run the code to generate different test cases for the problem statement. Each run will produce a new test case with random values adhering to the constraints provided in the problem statement.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    N, M, A, B = map(int, fh.readline().strip().split())
+    D = list(map(int, fh.readline().strip().split()))
+    return N, M, A, B, D</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

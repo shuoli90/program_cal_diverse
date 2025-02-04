@@ -1,0 +1,22 @@
+An integer N (1 ≤ N ≤ 10^3), representing some quantity or size.
+A list of N tuples, where each tuple contains three integers (a, b, c) such that:
+1 ≤ a, b ≤ 10^4
+1 ≤ c ≤ 10^9
+
+### Example Input:
+
+```
+3
+2 2 20
+2 1 30
+3 1 40
+```
+
+### Function Signature:
+Write a function f(inputs) that takes in the input.
+```python
+def f(inputs: List[Tuple[int, int, int]]):
+    '''
+    inputs: a list of tuples, each containing three integers
+    '''
+```

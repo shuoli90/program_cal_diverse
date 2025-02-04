@@ -1,0 +1,49 @@
+Sure, let's create a test case generator for the given problem statement "Flick Input".
+
+First, we need to understand the problem requirements and constraints:
+
+1. The input string consists of digits '0'-'9' and characters 'T', 'L', 'U', 'R', 'D'.
+2. The length of the input string is between 2 and 1000 characters.
+3. The string starts with a digit and ends with a flick direction character.
+
+We will generate a random input string that adheres to the constraints and then return it.
+
+Here is the code for the test case generator:
+
+```python
+import random
+
+def generate_flick_input_test_case():
+    # Define the possible digits and flick directions
+    digits = '0123456789'
+    flick_directions = 'TLURD'
+    
+    # Generate a random length for the input string between 2 and 1000
+    length = random.randint(2, 1000)
+    
+    # Initialize the input string with a random digit
+    input_string = random.choice(digits)
+    
+    # Generate the rest of the string such that each digit is followed by a flick direction
+    while len(input_string) < length - 1:
+        input_string += random.choice(flick_directions)
+        input_string += random.choice(digits)
+
+    # Ensure the last character is a flick direction
+    input_string += random.choice(flick_directions)
+    
+    return input_string
+
+# Example usage
+test_case = generate_flick_input_test_case()
+print(test_case)
+```
+
+This code will generate a valid test case for the "Flick Input" problem. Here's a brief explanation of the key points:
+- We start by defining the possible digits and flick directions.
+- We then choose a random length for the input string.
+- The input string is constructed by alternating between digits and flick directions.
+- Finally, we ensure that the last character of the input string is a flick direction to comply with the problem constraints.
+
+You can run the `generate_flick_input_test_case` function multiple times to generate different test cases for the problem.
+

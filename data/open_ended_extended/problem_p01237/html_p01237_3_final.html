@@ -1,0 +1,190 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p01237 - Generation 3</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p01237 - Generation 3</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>
+Problem D: Life Game
+You are working at a production plant of biological weapons. You are a maintainer of a terrible virus weapon
+with very high reproductive power. The virus has a tendency to build up regular hexagonal colonies. So as a
+whole, the virus weapon forms a hexagonal grid, each hexagon being a colony of the virus. The grid itself is in
+the regular hexagonal form with N colonies on each edge.
+The virus self-propagates at a constant speed. Self-propagation is performed simultaneously at all colonies.
+When it is done, for each colony, the same number of viruses are born at every neighboring colony. Note that,
+after the self-propagation, if the number of viruses in one colony is more than or equal to the limit density M,
+then the viruses in the colony start self-attacking, and the number reduces modulo M.
+Your task is to calculate the total number of viruses after L periods, given the size N of the hexagonal grid and
+the initial number of viruses in each of the colonies.
+Input
+The input consists of multiple test cases.
+Each case begins with a line containing three integers N (1 ≤ N ≤ 6), M (2 ≤ M ≤ 109 ), and L (1 ≤ L ≤ 109 ).
+The following 2N - 1 lines are the description of the initial state. Each non-negative integer (smaller than M)
+indicates the initial number of viruses in the colony. The first line contains the number of viruses in the N colonies
+on the topmost row from left to right, and the second line contains those of N + 1 colonies in the next row, and
+so on.
+The end of the input is indicated by a line “0 0 0”.
+Output
+For each test case, output the test case number followed by the total number of viruses in all colonies after L
+periods.
+Sample Input
+3 3 1
+1 0 0
+0 0 0 0
+0 0 0 0 0
+0 0 0 0
+0 0 1
+3 3 2
+1 0 0
+0 0 0 0
+0 0 0 0 0
+0 0 0 0
+0 0 1
+0 0 0
+Output for the Sample Input
+Case 1: 8
+Case 2: 18
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>### Canonicalized Input Description:
+
+An integer N (1 ≤ N ≤ 6), representing some quantity or size.
+An integer M (2 ≤ M ≤ 10^9), representing a limit or threshold.
+An integer L (1 ≤ L ≤ 10^9), representing a number of periods or iterations.
+A sequence of 2N-1 lines, where each line consists of non-negative integers smaller than M, representing some initial values. The first line has N integers, the second line has N+1 integers, and so on until the middle line, then the lines start decreasing in length symmetrically until the last line which has N integers.
+
+### Example Input:
+
+```
+3 3 1
+1 0 0
+0 0 0 0
+0 0 0 0 0
+0 0 0 0
+0 0 1
+```
+
+### Function Signature:
+
+Write a function f(inputs) that takes in the input.
+```python
+def f(inputs: List[Tuple[int, int, int, List[List[int]]]]):
+    '''
+    inputs: a list of tuples, where each tuple consists of:
+        - an integer N
+        - an integer M
+        - an integer L
+        - a list of lists of integers representing initial values
+    '''
+```</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Sure! Here's a test case generator for the "Life Game" problem:
+
+```python
+import random
+
+def generate_initial_state(N, M):
+    initial_state = []
+    for i in range(1, 2 * N):  # The number of rows is 2N - 1
+        row_length = N + min(i, 2 * N - i - 1)
+        row = [random.randint(0, M - 1) for _ in range(row_length)]
+        initial_state.append(row)
+    return initial_state
+
+def tcgen():
+    N = random.randint(1, 6)
+    M = random.randint(2, 10**9)
+    L = random.randint(1, 10**9)
+    
+    initial_state = generate_initial_state(N, M)
+    
+    return N, M, L, initial_state
+
+def format_test_case(N, M, L, initial_state):
+    test_case = f"{N} {M} {L}\n"
+    for row in initial_state:
+        test_case += " ".join(map(str, row)) + "\n"
+    return test_case.strip()
+
+# Generate a single test case and print it
+N, M, L, initial_state = tcgen()
+print(format_test_case(N, M, L, initial_state))
+```
+
+### Explanation:
+1. **`generate_initial_state(N, M)`**: This function generates the initial state of the hexagonal grid. The grid has `2N - 1` rows, where the `i-th` row has `N + min(i, 2 * N - i - 1)` columns.
+2. **`tcgen()`**: This function generates the parameters `N`, `M`, `L` and the initial state of the hexagonal grid.
+3. **`format_test_case(N, M, L, initial_state)`**: This function formats the generated test case into a string that matches the expected input format.
+
+You can use this generator to create multiple test cases and test your solution against them. Each time you run the generator, it will produce a new random test case within the constraints provided.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    test_cases = []
+    while True:
+        line = fh.readline().strip()
+        if line == "0 0 0":
+            break
+        N, M, L = map(int, line.split())
+        grid = []
+        for _ in range(2 * N - 1):
+            grid.append(list(map(int, fh.readline().strip().split())))
+        test_cases.append((N, M, L, grid))
+    return test_cases</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

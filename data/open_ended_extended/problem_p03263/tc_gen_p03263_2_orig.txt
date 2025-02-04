@@ -1,0 +1,40 @@
+Sure! Here is a test case generator for the given problem statement:
+
+```python
+import random
+
+def generate_test_case():
+    # Generate random values for H and W within the constraints
+    H = random.randint(1, 500)
+    W = random.randint(1, 500)
+    
+    # Generate random values for the grid a_ij within the constraints
+    grid = [[random.randint(0, 9) for _ in range(W)] for _ in range(H)]
+    
+    # Convert the grid to a string format for easy display
+    grid_str = "\n".join(" ".join(map(str, row)) for row in grid)
+    
+    return H, W, grid_str
+
+# Example usage
+if __name__ == "__main__":
+    H, W, grid_str = generate_test_case()
+    print(f"{H} {W}")
+    print(grid_str)
+```
+
+This function generates random test cases for the grid problem by:
+1. Randomly selecting the dimensions of the grid `H` and `W` within the given constraints.
+2. Filling the grid with random values between 0 and 9 inclusive.
+3. Converting the grid to a string format to be printed in the required format.
+
+You can call `generate_test_case` to get a new test case each time. Here is an example of how the output might look:
+
+```
+3 4
+4 0 7 3
+9 6 2 8
+1 0 0 5
+```
+
+This is a randomly generated test case with a 3x4 grid. Each call to `generate_test_case` will yield different values for the grid.

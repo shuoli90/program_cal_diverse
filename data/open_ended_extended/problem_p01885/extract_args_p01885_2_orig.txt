@@ -1,0 +1,20 @@
+def extract_arguments(fh):
+    N, L = map(int, fh.readline().strip().split())
+    A = []
+    B = []
+    for _ in range(N):
+        a, b = map(int, fh.readline().strip().split())
+        A.append(a)
+        B.append(b)
+    C = []
+    for _ in range(N):
+        c = int(fh.readline().strip())
+        C.append(c)
+    return N, L, A, B, C
+
+# Example usage:
+# if __name__ == "__main__":
+#     input_path = sys.argv[1]
+#     with open(input_path, 'r') as fh: 
+#         N, L, A, B, C = extract_arguments(fh)
+#         f(N, L, A, B, C)

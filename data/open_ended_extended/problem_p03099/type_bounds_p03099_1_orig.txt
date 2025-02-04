@@ -1,0 +1,19 @@
+Types: 
+- N: int 
+- M: int
+- coordinates_and_values: List[Tuple[int, int, int]]
+- conditions: List[Tuple[str, int, int]]
+
+Ranges: 
+- 1 ≤ N ≤ 80
+- 1 ≤ x_i, y_i ≤ 100
+- 1 ≤ v_i ≤ 10^15
+- 1 ≤ M ≤ 320
+- t_i in {'L', 'R', 'U', 'D'}
+- 1 ≤ a_i ≤ 100
+- 0 ≤ b_i ≤ N - 1
+
+Addtl Info: 
+- (x_i, y_i) are pairwise distinct.
+- (t_i, a_i) are pairwise distinct.
+- (t_i, b_i) are pairwise distinct.

@@ -1,0 +1,56 @@
+Here is a test case generator for the problem "Chocolate with Heart Marks":
+
+```python
+import random
+
+def generate_chocolate_bar(H, W):
+    """
+    Generates a random H x W chocolate bar with at most 6 heart marks.
+    """
+    hearts_positions = random.sample(range(H * W), random.randint(1, 6))
+    bar = []
+    for i in range(H):
+        row = []
+        for j in range(W):
+            if i * W + j in hearts_positions:
+                row.append(1)
+            else:
+                row.append(0)
+        bar.append(row)
+    return bar
+
+def tcgen():
+    test_cases = []
+    while True:
+        H = random.randint(1, 12)
+        W = random.randint(1, 12)
+
+        if H == W == 0:
+            break
+
+        chocolate_bar = generate_chocolate_bar(H, W)
+        test_cases.append((H, W, chocolate_bar))
+        
+        # To add termination condition dataset
+        if random.random() < 0.1:  # Adding a small probability to include a termination case
+            test_cases.append((0, 0, []))
+            break
+
+    return test_cases
+
+# Example usage
+if __name__ == "__main__":
+    random.seed(42)  # For reproducibility
+    test_cases = tcgen()
+    for (H, W, bar) in test_cases:
+        print(H, W)
+        for row in bar:
+            print(" ".join(map(str, row)))
+```
+
+Explanation:
+1. **generate_chocolate_bar(H, W)**: This function generates an H x W chocolate bar with at most 6 '1's (heart marks) randomly placed.
+2. **tcgen()**: This function generates multiple test cases based on the constraints. It keeps generating test cases until it decides to add a termination condition dataset `(0, 0)` with a small probability.
+3. The example usage at the bottom demonstrates how to use the `tcgen()` function to generate and print test cases.
+
+You can run this script and it will print out multiple test cases in the required format. The output will include the size of the chocolate bar and the actual bar configuration, terminated by a dataset with `H = 0` and `W = 0`. Adjust the probability or logic to include the termination case based on your specific needs for testing.

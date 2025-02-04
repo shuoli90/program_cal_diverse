@@ -1,0 +1,29 @@
+
+Score : 400 points
+Problem StatementWe have N+1 integers: 10^{100}, 10^{100}+1, ..., 10^{100}+N.
+We will choose K or more of these integers. Find the number of possible values of the sum of the chosen numbers, modulo (10^9+7).
+Constraints
+1 \leq N \leq 2\times 10^5
+1 \leq K \leq N+1
+All values in input are integers.
+InputInput is given from Standard Input in the following format:
+N K
+OutputPrint the number of possible values of the sum, modulo (10^9+7).
+Sample Input 13 2
+Sample Output 110
+The sum can take 10 values, as follows:
+(10^{100})+(10^{100}+1)=2\times 10^{100}+1
+(10^{100})+(10^{100}+2)=2\times 10^{100}+2
+(10^{100})+(10^{100}+3)=(10^{100}+1)+(10^{100}+2)=2\times 10^{100}+3
+(10^{100}+1)+(10^{100}+3)=2\times 10^{100}+4
+(10^{100}+2)+(10^{100}+3)=2\times 10^{100}+5
+(10^{100})+(10^{100}+1)+(10^{100}+2)=3\times 10^{100}+3
+(10^{100})+(10^{100}+1)+(10^{100}+3)=3\times 10^{100}+4
+(10^{100})+(10^{100}+2)+(10^{100}+3)=3\times 10^{100}+5
+(10^{100}+1)+(10^{100}+2)+(10^{100}+3)=3\times 10^{100}+6
+(10^{100})+(10^{100}+1)+(10^{100}+2)+(10^{100}+3)=4\times 10^{100}+6
+Sample Input 2200000 200001
+Sample Output 21
+We must choose all of the integers, so the sum can take just 1 value.
+Sample Input 3141421 35623
+Sample Output 3220280457

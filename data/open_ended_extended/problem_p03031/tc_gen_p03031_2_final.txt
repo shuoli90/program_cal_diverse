@@ -1,0 +1,41 @@
+Certainly! Below is a test case generator for the described competitive programming problem:
+
+```python
+import random
+
+def tcgen():
+    # Constraints
+    N = random.randint(1, 10)  # Number of switches
+    M = random.randint(1, 10)  # Number of bulbs
+    
+    bulbs = []
+    p = []
+    
+    for _ in range(M):
+        k_i = random.randint(1, N)  # Number of switches connected to this bulb
+        s_i = random.sample(range(1, N + 1), k_i)  # Select k_i unique switches for this bulb
+        bulbs.append((k_i, s_i))
+        p_i = random.randint(0, 1)  # p_i value (0 or 1)
+        p.append(p_i)
+    
+    # Format the output in the specified format
+    input_data = f"{N} {M}\n"
+    for k_i, s_i in bulbs:
+        input_data += f"{k_i} {' '.join(map(str, s_i))}\n"
+    input_data += ' '.join(map(str, p))
+    
+    return input_data
+
+# Example usage
+print(tcgen())
+```
+
+### Explanation:
+- **N**: Number of switches, chosen randomly between 1 and 10.
+- **M**: Number of bulbs, chosen randomly between 1 and 10.
+- For each bulb:
+  - **k_i**: Number of switches connected to the bulb, chosen randomly between 1 and N.
+  - **s_i**: A unique set of switches (sampled without replacement) to ensure no duplicates.
+  - **p_i**: Randomly chosen 0 or 1, indicating the parity condition for the bulb.
+
+This function generates and formats the input data as specified by the problem statement. It ensures that all constraints are respected, and the generated input is suitable for testing the solution to the problem.

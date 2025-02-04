@@ -1,0 +1,20 @@
+def extract_arguments(fh):
+    datasets = []
+    while True:
+        d, w = map(int, fh.readline().strip().split())
+        if d == 0 and w == 0:
+            break
+        elevation_map = []
+        for _ in range(d):
+            row = list(map(int, fh.readline().strip().split()))
+            elevation_map.append(row)
+        datasets.append((d, w, elevation_map))
+    return datasets
+
+# if __name__ == "__main__":
+#     input_path = sys.argv[1]
+#     with open(input_path, 'r') as fh:
+#         inputs = extract_arguments(fh)
+#         for dataset in inputs:
+#             result = f(*dataset)
+#             print(result)

@@ -1,0 +1,174 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p02796 - Generation 2</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p02796 - Generation 2</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>
+Score : 200 points
+Problem StatementIn a factory, there are N robots placed on a number line.
+Robot i is placed at coordinate X_i and can extend its arms of length L_i in both directions, positive and negative.
+We want to remove zero or more robots so that the movable ranges of arms of no two remaining robots intersect.
+Here, for each i (1 \leq i \leq N), the movable range of arms of Robot i is the part of the number line between the coordinates X_i - L_i and X_i + L_i, excluding the endpoints.
+Find the maximum number of robots that we can keep.
+Constraints
+1 \leq N \leq 100,000
+0 \leq X_i \leq 10^9 (1 \leq i \leq N)
+1 \leq L_i \leq 10^9 (1 \leq i \leq N)
+If i \neq j, X_i \neq X_j.
+All values in input are integers.
+InputInput is given from Standard Input in the following format:
+N
+X_1 L_1
+X_2 L_2
+\vdots
+X_N L_N
+OutputPrint the maximum number of robots that we can keep.
+Sample Input 14
+2 4
+4 3
+9 3
+100 5
+Sample Output 13
+By removing Robot 2, we can keep the other three robots.
+Sample Input 22
+8 20
+1 10
+Sample Output 21
+Sample Input 35
+10 1
+2 1
+4 1
+6 1
+8 1
+Sample Output 35
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An integer N (1 ≤ N ≤ 100,000), representing some quantity or size.
+A list of N tuples, where each tuple contains two integers. The first integer (0 ≤ X_i ≤ 10^9) and the second integer (1 ≤ L_i ≤ 10^9). 
+
+### Example Input:
+
+```
+4
+2 4
+4 3
+9 3
+100 5
+```
+
+### Function Signature:
+Write a function f(N, inputs) that takes in the input.
+def f(N: int, inputs: List[Tuple[int, int]]):
+    '''
+    N: an integer
+    inputs: a list of tuples, each containing two integers
+    '''</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Sure! Here's the test case generator for the given problem statement about robots on a number line:
+
+```python
+import random
+
+def tcgen():
+    # Number of robots
+    N = random.randint(1, 100000)
+    
+    # Generate unique X coordinates for robots
+    X = random.sample(range(0, 10**9 + 1), N)
+    
+    # Generate arm lengths for robots
+    L = [random.randint(1, 10**9) for _ in range(N)]
+    
+    # Combine X and L into a list of tuples
+    robots = list(zip(X, L))
+    
+    return N, robots
+
+# Example usage
+N, robots = tcgen()
+print(N)
+for x, l in robots:
+    print(x, l)
+```
+
+This generator will produce valid test cases for the problem. Let's break it down:
+
+1. **N** is the number of robots, randomly chosen between 1 and 100,000.
+2. **X** is a list of unique X coordinates, ensuring that no two robots share the same position. We use `random.sample` to generate a list of unique values within the specified range.
+3. **L** is a list of arm lengths for each robot, randomly chosen between 1 and 1 billion.
+4. **robots** combines the X coordinates and arm lengths into a list of tuples for easy processing.
+
+Each call to `tcgen()` will generate a new, random test case conforming to the problem's constraints.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    N = int(fh.readline().strip())
+    robots = []
+    for _ in range(N):
+        X, L = map(int, fh.readline().strip().split())
+        robots.append((X, L))
+    return N, robots
+
+# if __name__ == "__main__":
+#     input_path = sys.argv[1]
+#     with open(input_path, 'r') as fh:
+#         N, robots = extract_arguments(fh)
+#         f(N, robots)</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

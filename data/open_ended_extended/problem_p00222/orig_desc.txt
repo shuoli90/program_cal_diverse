@@ -1,0 +1,30 @@
+Quadruplet Primes
+  A set of four prime numbers arranged in the form (a, a+2, a+6, a+8) is called a quadruplet prime. Among the four prime numbers that make up the quadruplet prime, the largest number is called the size of the quadruplet prime. For example, the smallest quadruplet prime of size 13 is the set (5, 7, 11, 13), and the next largest quadruplet prime of size 19 is the set (11, 13, 17, 19).
+  Write a program that takes an integer n (13 ≤ n ≤ 10,000,000) as input and outputs the size of the largest quadruplet prime whose size is less than or equal to n.
+Input
+  The input consists of multiple datasets. The end of input is indicated by a line containing a single zero.
+For each dataset, a single integer n is given on a line.
+  The number of datasets is no more than 2000.
+Output
+  For each input dataset, output the size of the largest quadruplet prime on a single line.
+Sample Input
+13
+14
+15
+16
+17
+18
+19
+20
+10000
+0
+Output for the Sample Input
+13
+13
+13
+13
+13
+13
+19
+19
+9439

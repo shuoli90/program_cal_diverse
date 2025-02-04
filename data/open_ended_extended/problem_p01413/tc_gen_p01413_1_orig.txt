@@ -1,0 +1,96 @@
+Sure! Let's break down the problem and create a test case generator for "G: Quest of Merchant".
+
+### Problem Statement Breakdown
+- **Input:**
+  - \(N\) (number of towns)
+  - \(M\) (number of different products)
+  - \(W\) (maximum weight Rabbit can carry)
+  - \(T\) (total available time in minutes)
+  
+  - For each product:
+    - \(S_i\) (name of the product)
+    - \(V_i\) (weight per unit of the product)
+    - \(P_i\) (selling price per unit of the product)
+  
+  - For each town:
+    - \(L_i\) (name of the town)
+    - \(X_i\) (x-coordinate of the town)
+    - \(Y_i\) (y-coordinate of the town)
+    - For each product sold in the town:
+      - \(R_{i,j}\) (name of the product)
+      - \(Q_{i,j}\) (quantity of the product available)
+
+- **Output:**
+  - The maximum profit Rabbit can earn in \(T\) minutes.
+
+### Test Case Generator
+
+The generator will randomize the number of towns, products, weights, and coordinates. We will ensure that all inputs are within reasonable competitive programming constraints.
+
+Here's the Python code to generate such test cases:
+
+```python
+import random
+import string
+
+def generate_random_string(length=5):
+    return ''.join(random.choices(string.ascii_uppercase, k=length))
+
+def tcgen():
+    # Constraints
+    MAX_N = 100
+    MAX_M = 50
+    MAX_W = 1000
+    MAX_T = 10000
+    
+    N = random.randint(1, MAX_N)
+    M = random.randint(1, MAX_M)
+    W = random.randint(1, MAX_W)
+    T = random.randint(1, MAX_T)
+    
+    # Products information
+    products = []
+    for _ in range(M):
+        S = generate_random_string()
+        V = random.randint(1, 100)
+        P = random.randint(1, 1000)
+        products.append((S, V, P))
+    
+    # Towns information
+    towns = []
+    for _ in range(N):
+        L = generate_random_string()
+        X = random.randint(-100, 100)
+        Y = random.randint(-100, 100)
+        town_products = []
+        num_products_in_town = random.randint(1, M)
+        for _ in range(num_products_in_town):
+            R = random.choice(products)[0]
+            Q = random.randint(1, 100)
+            town_products.append((R, Q))
+        towns.append((L, X, Y, town_products))
+    
+    # Format output
+    input_data = f"{N} {M} {W} {T}\n"
+    for S, V, P in products:
+        input_data += f"{S} {V} {P}\n"
+    
+    for L, X, Y, town_products in towns:
+        input_data += f"{L} {X} {Y}\n"
+        for R, Q in town_products:
+            input_data += f"{R} {Q}\n"
+    
+    return input_data
+
+# Example of generating a test case
+print(tcgen())
+```
+
+### Explanation
+- **generate_random_string:** Generates random product or town names.
+- **tcgen:** Generates random values for towns, products, and their attributes, and aggregates them into a formatted input string.
+- **N, M, W, T:** Randomly chosen within set constraints.
+- **Product details:** Randomly generated names, weights, and prices.
+- **Town details:** Randomly generated names, coordinates, and associated products with their quantities.
+
+By running `tcgen()`, we get a test case formatted in the required input format for the problem. Each run will generate different test cases, suitable for thorough testing of the solution.

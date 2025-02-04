@@ -1,0 +1,138 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p03992 - Generation 3</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p03992 - Generation 3</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>
+Score : 100 points
+Problem StatementThis contest is CODE FESTIVAL.
+However, Mr. Takahashi always writes it CODEFESTIVAL, omitting the single space between CODE and FESTIVAL.
+So he has decided to make a program that puts the single space he omitted.
+You are given a string s with 12 letters.
+Output the string putting a single space between the first 4 letters and last 8 letters in the string s.
+Constraints
+s contains exactly 12 letters.
+All letters in s are uppercase English letters.
+InputThe input is given from Standard Input in the following format:
+s
+OutputPrint the string putting a single space between the first 4 letters and last 8 letters in the string s.
+Put a line break at the end.
+Sample Input 1CODEFESTIVAL
+Sample Output 1CODE FESTIVAL
+Putting a single space between the first 4 letters and last 8 letters in CODEFESTIVAL makes it CODE FESTIVAL.
+Sample Input 2POSTGRADUATE
+Sample Output 2POST GRADUATE
+Sample Input 3ABCDEFGHIJKL
+Sample Output 3ABCD EFGHIJKL
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An uppercase string \( s \) of exactly 12 letters.
+
+### Example Input:
+
+```
+ABCDEFGHIJKL
+```
+
+### Function Signature:
+Write a function f(s) that takes in the input.
+```python
+def f(s: str):
+    '''
+    s: a string
+    '''
+```</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Certainly! Given the problem statement, we need to generate test cases for a function that takes a 12-letter uppercase string and inserts a space between the first 4 letters and the last 8 letters. Here's a test case generator for this problem:
+
+```python
+import random
+import string
+
+def tcgen():
+    # Generate a random string of exactly 12 uppercase letters
+    s = ''.join(random.choices(string.ascii_uppercase, k=12))
+
+    return s
+
+# Example of generating a test case
+if __name__ == "__main__":
+    test_case = tcgen()
+    print("Generated Test Case:", test_case)
+    # Expected output
+    expected_output = test_case[:4] + " " + test_case[4:]
+    print("Expected Output:", expected_output)
+```
+
+### Explanation:
+1. **Import necessary modules**: We import `random` for random number generation and `string` to get uppercase letters.
+2. **Generate a random string**: Using `random.choices` with `string.ascii_uppercase`, we create a random string `s` of exactly 12 uppercase letters.
+3. **Return the generated string**: The function returns this string `s`.
+
+### Example usage:
+When you run this script, it will generate a random 12-letter uppercase string and then print the expected output by inserting a space between the first 4 and the last 8 letters.
+
+You can wrap this generator into a larger testing framework or use it to manually verify your solution to the problem.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    s = fh.readline().strip()
+    return s</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

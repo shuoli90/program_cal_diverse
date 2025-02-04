@@ -1,0 +1,13 @@
+def extract_arguments(fh):
+    datasets = []
+    while True:
+        n = int(fh.readline().strip())
+        if n == 0:
+            break
+        w, h, r, v_x, v_y = map(int, fh.readline().strip().split())
+        balls = []
+        for _ in range(n):
+            x, y = map(int, fh.readline().strip().split())
+            balls.append((x, y))
+        datasets.append((n, w, h, r, v_x, v_y, balls))
+    return datasets

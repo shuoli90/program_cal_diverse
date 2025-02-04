@@ -1,0 +1,179 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p02465 - Generation 2</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p02465 - Generation 2</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>Set Difference
+  Find the difference of two sets $A = \{a_0, a_1, ..., a_{n-1}\}$ and $B = \{b_0, b_1, ..., b_{m-1}\}$,  $A - B$.
+Input
+  The input is given in the following format.
+$n$
+$a_0 \; a_1 \; ... \; a_{n-1}$
+$m$
+$b_0 \; b_1 \; ... \; b_{m-1}$
+  Elements in $A$ and $B$ are given in ascending order. There are no duplicate elements in each set.
+Output
+  Print elements in the difference in ascending order. Print an element in a line.
+ 
+Constraints
+$1 \leq n, m \leq 200,000$
+$0 \leq a_0 < a_1 < ... < a_{n-1} \leq 10^9$
+$0 \leq b_0 < b_1 < ... < b_{m-1} \leq 10^9$
+Sample Input 1
+5
+1 2 3 5 8
+2
+2 5
+Sample Output 1
+1
+3
+8
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An integer N (1 ≤ N ≤ 200,000), representing some quantity or size.
+A list of integers A of size N, where each integer is between 0 and 1e9, and the list is in ascending order with no duplicates.
+An integer M (1 ≤ M ≤ 200,000), representing some quantity or size.
+A list of integers B of size M, where each integer is between 0 and 1e9, and the list is in ascending order with no duplicates.
+
+### Example Input:
+
+```
+5
+1 2 3 5 8
+2
+2 5
+```
+
+### Function Signature:
+Write a function f(N, A, M, B) that takes in the input.
+```python
+def f(N: int, A: List[int], M: int, B: List[int]):
+    '''
+    N: an integer
+    A: a list of integers
+    M: an integer
+    B: a list of integers
+    '''
+```</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Sure! Here is a test case generator for the "Set Difference" problem:
+
+```python
+import random
+
+def generate_unique_sorted_list(size, max_value):
+    # Generate a sorted list of unique elements
+    unique_elements = set()
+    while len(unique_elements) < size:
+        unique_elements.add(random.randint(0, max_value))
+    return sorted(unique_elements)
+
+def tcgen():
+    # Constraints
+    MAX_N = 200000
+    MAX_M = 200000
+    MAX_VAL = 10**9
+
+    # Random sizes for the sets A and B
+    n = random.randint(1, MAX_N)
+    m = random.randint(1, MAX_M)
+
+    # Generate sorted lists with unique elements
+    A = generate_unique_sorted_list(n, MAX_VAL)
+    B = generate_unique_sorted_list(m, MAX_VAL)
+
+    return n, A, m, B
+
+# Example usage
+if __name__ == "__main__":
+    n, A, m, B = tcgen()
+    print(n)
+    print(" ".join(map(str, A)))
+    print(m)
+    print(" ".join(map(str, B)))
+```
+
+### Explanation:
+
+1. **Function `generate_unique_sorted_list(size, max_value)`**:
+    - This function generates a sorted list of unique elements.
+    - It creates a set of unique random integers until the set reaches the desired size.
+    - The set is then converted to a sorted list and returned.
+
+2. **Function `tcgen()`**:
+    - It defines the upper limits for the constraints.
+    - It randomly selects the sizes `n` and `m` for sets `A` and `B` within the given constraints.
+    - It calls `generate_unique_sorted_list` to create the sorted lists `A` and `B` with unique elements.
+    - Finally, it returns `n`, `A`, `m`, and `B`.
+
+3. **Example usage**:
+    - The script can be run to generate a test case.
+    - It will print the sizes `n` and `m`, followed by the elements of sets `A` and `B`.
+
+This generator ensures that the sets `A` and `B` are in ascending order, contain unique elements, and respect the given constraints.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    n = int(fh.readline().strip())
+    A = list(map(int, fh.readline().strip().split()))
+    m = int(fh.readline().strip())
+    B = list(map(int, fh.readline().strip().split()))
+    return n, A, m, B</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

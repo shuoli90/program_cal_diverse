@@ -1,0 +1,43 @@
+
+Score : 2000 points
+Problem StatementYou are given a permutation P_1 ... P_N of the set {1, 2, ..., N}.
+You can apply the following operation to this permutation, any number of times (possibly zero):
+Choose two indices i,j (1 ≦ i < j ≦ N), such that j - i ≧ K and |P_i - P_j| = 1.
+Then, swap the values of P_i and P_j.
+Among all permutations that can be obtained by applying this operation to the given permutation, find the lexicographically smallest one.
+Constraints
+2≦N≦500,000
+1≦K≦N-1
+P is a permutation of the set {1, 2, ..., N}.
+InputThe input is given from Standard Input in the following format:
+N K
+P_1 P_2 ... P_N
+OutputPrint the lexicographically smallest permutation that can be obtained.
+Sample Input 14 2
+4 2 3 1
+Sample Output 12
+1
+4
+3
+One possible way to obtain the lexicographically smallest permutation is shown below:
+4 2 3 1
+4 1 3 2
+3 1 4 2
+2 1 4 3
+Sample Input 25 1
+5 4 3 2 1
+Sample Output 21
+2
+3
+4
+5
+Sample Input 38 3
+4 5 7 8 3 1 2 6
+Sample Output 31
+2
+6
+7
+5
+3
+4
+8

@@ -1,0 +1,64 @@
+To create a test case generator for the given problem statement "3D Printing", we need to generate multiple datasets following the specified format. Here's a Python function to generate such test cases:
+
+```python
+import random
+
+def generate_dataset():
+    # Randomly choose n and k such that 1 ≤ k ≤ n ≤ 2000
+    n = random.randint(1, 2000)
+    k = random.randint(1, n)
+    s = random.randint(3, 100)
+    
+    # Generate n candidate positions
+    positions = []
+    for _ in range(n):
+        x = random.randint(-4 * 10**7, 4 * 10**7)
+        y = random.randint(-4 * 10**7, 4 * 10**7)
+        z = random.randint(-4 * 10**7, 4 * 10**7)
+        positions.append((x, y, z))
+    
+    return n, k, s, positions
+
+def tcgen():
+    # Number of datasets
+    num_datasets = random.randint(1, 100)
+    datasets = []
+    
+    for _ in range(num_datasets):
+        n, k, s, positions = generate_dataset()
+        datasets.append((n, k, s, positions))
+    
+    # Add the ending indicator
+    datasets.append((0, 0, 0, []))
+    
+    return datasets
+
+def print_dataset(dataset):
+    for n, k, s, positions in dataset:
+        if n == 0 and k == 0 and s == 0:
+            print(f"0 0 0")
+        else:
+            print(f"{n} {k} {s}")
+            for x, y, z in positions:
+                print(f"{x} {y} {z}")
+
+# Generate and print datasets
+dataset = tcgen()
+print_dataset(dataset)
+```
+
+### Explanation:
+
+1. **Function `generate_dataset`**:
+   - Randomly selects values for `n` (number of candidate positions), `k` (number of cubes to form the connected polyhedron), and `s` (edge length of cubes).
+   - Generates `n` positions with coordinates in the range [-4 * 10^7, 4 * 10^7].
+
+2. **Function `tcgen`**:
+   - Randomly determines the number of datasets (between 1 and 100).
+   - Calls `generate_dataset` to create each dataset.
+   - Appends a line with `0 0 0` at the end to indicate the end of input.
+
+3. **Function `print_dataset`**:
+   - Formats and prints each dataset in the required format.
+
+You can call `tcgen()` to generate the test cases and use `print_dataset()` to print them in the correct format. This script ensures that all generated datasets conform to the constraints given in the problem statement.

@@ -1,0 +1,4 @@
+def extract_arguments(fh):
+    S = fh.readline().strip()
+    T_prime = fh.readline().strip()
+    return S, T_prime

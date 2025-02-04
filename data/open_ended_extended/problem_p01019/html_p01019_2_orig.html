@@ -1,0 +1,172 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p01019 - Generation 2</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p01019 - Generation 2</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>Problem D: Cheat Case
+Problem
+Faced with an upcoming math test and certain that even studying now won't save us from failing, we decide to cheat.
+Our math teacher, teacher A, is known for hand-writing the math test papers. Our plan is to steal the brush-strokes used by the teacher while creating the test's problems with a pen that can wiretap the brush strokes, a device made by a professor in our neighborhood. However, the professor was unable to create a program to interpret the brush-strokes and reconstruct the problems. Worse, even if the problems could be reconstructed, we wouldn't be smart enough to solve them. Out of options, we decide to ask you, a programmer, to create a program that can interpret brush-strokes and solve the resulting problems.
+This test will have problems where you'll have to solve arithmetic expressions. The arithmetic symbols are only + (addition), - (subtraction), and · (multiplication); multiplication takes priority over addition and subtraction. The expressions will always have the correct syntax. In addition, there will not be any numbers other than 0 with a leading 0.
+The paper on which the problems are written can be mapped as a grid. The brush-strokes are given as a set of line segments, where each segment is either horizontal or vertical along the X-axis or has the same starting and ending point (a dot). This line segment represents filling  ...</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>Canonicalized Input Description:
+
+An integer N (1 ≤ N ≤ 10^3), representing some quantity or size.
+A list of tuples, each containing 4 integers (X1, Y1, X2, Y2) where (-10^4 ≤ X1, Y1, X2, Y2 ≤ 10^4).
+
+### Example Input:
+
+```
+3
+1 1 1 3
+2 2 4 2
+3 3 3 3
+```
+
+### Function Signature:
+Write a function f(N, segments) that takes in the input.
+def f(N: int, segments: List[Tuple[int, int, int, int]]):
+    '''
+    N: an integer
+    segments: a list of tuples, each containing four integers
+    '''</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Certainly! Let's first summarize the problem statement you provided for "Problem D: Cheat Case" and then create a test case generator for it.
+
+### Problem Statement: Cheat Case
+
+**Description**
+
+Given brush-strokes on a grid that represent arithmetic expressions, you need to interpret these strokes and solve the resulting arithmetic expressions. The arithmetic symbols available are + (addition), - (subtraction), and · (multiplication). Multiplication takes priority over addition and subtraction. The grid-based brush-strokes can be horizontal, vertical, or dots.
+
+**Input**
+
+1. An integer \(N\) (1 ≤ \(N\) ≤ 10^3), representing the number of line segments.
+2. A list of \(N\) line segments. Each line segment is represented by four integers \(x1, y1, x2, y2\):
+   - \(x1, y1\): Starting point of the line segment.
+   - \(x2, y2\): Ending point of the line segment.
+3. The grid is such that \(0 \leq x1, y1, x2, y2 \leq 1000\).
+
+**Output**
+
+The result of the arithmetic expression formed by the brush-strokes.
+
+### Test Case Generator
+
+Let's create a function `tcgen()` that generates test cases for this problem. The function will randomly generate a number of line segments and their coordinates, ensuring they stay within the grid bounds.
+
+```python
+import random
+
+def tcgen():
+    N = random.randint(1, 10**3)
+    line_segments = []
+    
+    for _ in range(N):
+        x1 = random.randint(0, 1000)
+        y1 = random.randint(0, 1000)
+        if random.choice([True, False]):
+            # Horizontal or vertical line
+            if random.choice([True, False]):
+                # Horizontal line
+                x2 = random.randint(0, 1000)
+                y2 = y1
+            else:
+                # Vertical line
+                x2 = x1
+                y2 = random.randint(0, 1000)
+        else:
+            # Dot
+            x2 = x1
+            y2 = y1
+        
+        line_segments.append((x1, y1, x2, y2))
+    
+    return N, line_segments
+
+# Example usage
+N, segments = tcgen()
+print(f"N: {N}")
+for seg in segments:
+    print(f"{seg[0]} {seg[1]} {seg[2]} {seg[3]}")
+```
+
+### Explanation:
+
+1. **Number of Segments (N)**: A random integer between 1 and 1000.
+2. **Line Segments**: For each segment, randomly decide if it is a horizontal/vertical line or a dot.
+   - **Horizontal Line**: Keep `y1` and `y2` the same, vary `x1` to `x2`.
+   - **Vertical Line**: Keep `x1` and `x2` the same, vary `y1` to `y2`.
+   - **Dot**: Keep `x1`, `y1`, `x2`, and `y2` the same.
+
+The generated test cases will provide a variety of segment configurations, covering different types of lines and dots.
+
+Feel free to run this generator function to create the required test cases for your competitive programming problem, and adapt it if necessary to better suit any specific needs or constraints of your problem.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    N = int(fh.readline().strip())
+    segments = []
+    for _ in range(N):
+        x1, y1, x2, y2 = map(int, fh.readline().strip().split())
+        segments.append((x1, y1, x2, y2))
+    return N, segments</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

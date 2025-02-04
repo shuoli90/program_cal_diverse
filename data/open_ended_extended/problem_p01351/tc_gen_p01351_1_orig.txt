@@ -1,0 +1,27 @@
+Sure! Given the problem statement for "Problem C: Usagitobi," we need to create a test case generator that will generate inputs consisting of six integers \(m, n, a, b, c, d\), each ranging between 1 and 100,000.
+
+Here is the test case generator function for the problem:
+
+```python
+import random
+
+def tcgen():
+    # Generate random values for m, n, a, b, c, and d within the specified range
+    m = random.randint(1, 100000)
+    n = random.randint(1, 100000)
+    a = random.randint(1, 100000)
+    b = random.randint(1, 100000)
+    c = random.randint(1, 100000)
+    d = random.randint(1, 100000)
+    
+    # Return the generated test case as a tuple
+    return m, n, a, b, c, d
+
+# Example usage:
+for _ in range(5):  # Generate 5 test cases
+    print(tcgen())
+```
+
+This function generates random values for \(m\), \(n\), \(a\), \(b\), \(c\), and \(d\) within the range of 1 to 100,000, as specified in the problem statement. Each invocation of `tcgen` will produce a new set of values that can be used as input for testing the solution to the problem.
+
+You can run this function multiple times to generate a variety of test cases for thorough testing of your "Usagitobi" problem solution.

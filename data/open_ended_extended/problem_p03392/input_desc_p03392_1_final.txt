@@ -1,0 +1,18 @@
+An integer \( |S| \) (2 ≤ \( |S| \) ≤ 2 × 10^5), representing the length of a string.
+A string \( S \) consisting of characters from the set {'a', 'b', 'c'}.
+
+### Example Input:
+
+```
+5
+abbac
+```
+
+### Function Signature:
+Write a function f(S) that takes in the input.
+```python
+def f(S: str):
+    '''
+    S: a string
+    '''
+```

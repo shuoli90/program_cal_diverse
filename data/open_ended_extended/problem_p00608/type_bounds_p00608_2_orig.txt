@@ -1,0 +1,16 @@
+Types: 
+- H: int 
+- W: int 
+- grid: List[List[str]] 
+- n: int 
+- characters: List[str]
+
+Ranges: 
+- 1 ≤ H, W ≤ 10 
+- grid[i][j] in {'.', '#', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '+', '-', '*', '/', '='} for 0 ≤ i < H, 0 ≤ j < W 
+- 1 ≤ n ≤ 10 
+- characters[i] in {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '+', '-', '*', '/'} for 0 ≤ i < n
+
+Addtl Info: 
+- The input ends when a line containing "0 0" is encountered.
+- Judge data includes at most 100 data sets.

@@ -1,0 +1,6 @@
+def extract_arguments(fh):
+    N, D = map(int, fh.readline().strip().split())
+    d_list = list(map(int, fh.readline().strip().split()))
+    Q = int(fh.readline().strip())
+    q_list = list(map(int, fh.readline().strip().split()))
+    return N, D, d_list, Q, q_list

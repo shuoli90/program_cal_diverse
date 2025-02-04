@@ -1,0 +1,3 @@
+Types: input_string: str  
+Ranges: 2 ≤ len(input_string) ≤ 1000, input_string consists of {'0'-'9', 'T', 'L', 'U', 'R', 'D'}  
+Addtl Info: input_string starts with a digit and ends with a flick direction character, and no invalid flicks are made as per the operation rules.

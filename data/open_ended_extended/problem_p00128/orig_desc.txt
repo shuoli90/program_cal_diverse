@@ -1,0 +1,26 @@
+Soroban
+At the request of a friend who has just started learning soroban, you are asked to create a program that displays the arrangement of soroban beads. Create a program that takes a number as input and outputs the arrangement of soroban beads. However, assume that the number of digits to be displayed on the soroban is 5, and that the configuration of the beads for numbers 0 to 9 is represented by '*' (half-width asterisk), ' ' (half-width space), and '=' (half-width equal sign) as follows:
+Input
+Multiple test cases are given. Each test case consists of a single line containing a number (integer) of up to 5 digits.
+The number of test cases does not exceed 1024.
+Output
+For each test case, output the arrangement of soroban beads. Put a blank line between the test cases.
+Sample Input
+2006
+1111
+Output for the Sample Input
+**** 
+    *
+=====
+ *  *
+**** 
+* ***
+*****
+*****
+*****
+=====
+ ****
+*    
+*****
+*****
+*****

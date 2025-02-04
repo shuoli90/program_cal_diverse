@@ -1,0 +1,13 @@
+def extract_arguments(fh):
+    H, W = map(int, fh.readline().strip().split())
+    matrix = []
+    for _ in range(H):
+        row = list(map(int, fh.readline().strip().split()))
+        matrix.append(row)
+    return H, W, matrix
+
+# if __name__ == "__main__":
+#     input_path = sys.argv[1]
+#     with open(input_path, 'r') as fh:
+#         H, W, matrix = extract_arguments(fh)
+#         f(H, W, matrix)

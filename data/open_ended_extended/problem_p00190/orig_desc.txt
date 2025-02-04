@@ -1,0 +1,42 @@
+11 Puzzle
+Taro-kun is very good at the 8 puzzle and often plays with his friends during break time by having them rearrange the tiles. At such a time, his friend asked him, "Can you solve a more complex puzzle?" but he had never tried any other puzzles. It seemed that his friend had created an 11 puzzle himself. The puzzle is in the shape shown below.
+The 11 puzzle is played with 11 square cards and a frame shaped like the one in Figure 1. First, put the 11 cards in the frame. Then, two spaces will be left empty, and you can move the cards adjacent to these spaces. Repeat this process to neatly arrange the cards and complete the puzzle as shown in Figure 2.
+Taro-kun decided to challenge this puzzle. However, he easily solved the 11 puzzle. So his friend said, "Solve it with the fewest number of moves!" and asked him to create a program to output the minimum number of steps to solve the 11 puzzle before he challenged it. At this time, although there are two places where you can move, consider moving one number one space as one step.
+Create a program that takes the initial state of the 11 puzzle as input and outputs the minimum number of steps to solve the 11 puzzle. However, if it takes more than 20 steps to solve the puzzle, output "NA". The state of the puzzle is input in order from the first line of information, and the number 0 represents an empty space. For example, the input that represents the state in Figure 1 is as follows:
+6
+2 1 3
+10 5 7 0 8
+9 4 11
+0
+Input
+A sequence of multiple datasets is given as input. The end of the input is indicated by a single line with -1. Each dataset is given in the following format.
+p1
+p2 p3 p4
+p5 p6 p7 p8 p9
+p10 p11 p12
+p13
+The information for the i-th row of the puzzle, pi (0 ≤ pi ≤ 11), is given separated by spaces on the i-th line.
+There are no more than 100 datasets.
+Output
+For each dataset, output the minimum number of steps or NA on one line.
+Sample Input
+2
+1 0 3
+4 5 6 7 8
+9 0 11
+10
+0
+1 2 3
+4 5 6 7 8
+9 10 11
+0
+0
+11 10 9
+8 7 6 5 4
+3 2 1
+0
+-1
+Output for the Sample Input
+2
+0
+NA

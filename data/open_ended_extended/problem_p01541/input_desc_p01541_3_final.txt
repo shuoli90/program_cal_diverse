@@ -1,0 +1,19 @@
+Canonicalized Input Description: 
+
+An integer N (1 ≤ N ≤ 100), representing some quantity or size.  
+A list of N integers S, where each integer (1 ≤ S[i] ≤ 1000) represents some measurement or value.  
+
+### Example Input:
+
+```
+3
+5 10 15
+```
+
+### Function Signature:
+Write a function f(N, S) that takes in the input. 
+def f(N: int, S: List[int]): 
+    ''' 
+    N: an integer 
+    S: a list of integers 
+    '''

@@ -1,0 +1,3 @@
+Types: S: str
+Ranges: 9 ≤ |S| ≤ 50, S consists of uppercase English letters, S ends with FESTIVAL
+Addtl Info: None

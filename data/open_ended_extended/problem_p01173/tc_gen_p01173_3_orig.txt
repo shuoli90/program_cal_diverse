@@ -1,0 +1,51 @@
+Certainly! Below is a Python function to generate test cases for the "Dig or Climb" problem. The function `tcgen` generates random test datasets adhering to the specified constraints and formats the input as required.
+
+```python
+import random
+
+def tcgen():
+    test_cases = []
+    while True:
+        # Randomly decide if we should generate a new test case or terminate
+        if random.random() < 0.1:  # 10% chance to add the termination line
+            test_cases.append("0")
+            break
+        
+        # Generate values for n, vw, and vc
+        n = random.randint(1, 1000)
+        vw = random.randint(1, 10)
+        vc = random.randint(1, 10)
+        
+        # Generate coordinates (xi, yi)
+        coordinates = []
+        for i in range(n):
+            x = random.randint(-10000, 10000)
+            y = random.randint(-10000, 10000)
+            # Ensure xi < xj for all i < j
+            if i > 0:
+                while x <= coordinates[-1][0]:
+                    x = random.randint(coordinates[-1][0] + 1, 10000)  # Ensure x is increasing
+            coordinates.append((x, y))
+        
+        # Format the test case
+        test_case = f"{n}\n{vw} {vc}\n"
+        for (x, y) in coordinates:
+            test_case += f"{x} {y}\n"
+        
+        test_cases.append(test_case.strip())
+    
+    return "\n".join(test_cases)
+
+# Example use case of the test case generator
+if __name__ == "__main__":
+    print(tcgen())
+```
+
+This function generates a sequence of datasets, ensuring that the constraints are met:
+- `n` is between 1 and 1000.
+- `vw` and `vc` are between 1 and 10.
+- `xi` and `yi` are between -10000 and 10000.
+- Coordinates `(xi, yi)` are generated such that `xi < xj` for all `i < j`.
+- The input sequence is terminated by a line containing `0`.
+
+You can run the `tcgen` function to generate test cases and print them out. Each dataset is formatted as specified and the generated output will be suitable for use in competitive programming contests or for testing purposes.

@@ -1,0 +1,27 @@
+ Circular Sugoroku 
+Yuki made a sugoroku (Japanese board game similar to Snakes and Ladders) for the children's event so that everyone can play together. In this sugoroku, the squares are arranged in a circle, and each square has an integer greater than or equal to 1 written on it.
+The player chooses a square as the starting point and places their piece there. Then, they move their piece clockwise according to the number written on the square. They repeat this process, moving clockwise according to the number written on the square they land on, until they reach the starting point again, at which point they win.
+In reality, there may be cases where it is impossible to win, depending on which square the player chooses as their starting point. Yuki wants to count the number of squares from which it is possible to win.
+Write a program that takes the information of a sugoroku as input and reports the number of squares from which it is possible to win.
+Input
+The input is given in the following format.
+N
+a1 a2 ... aN
+The first line contains the number of squares N (1 ≤ N ≤ 100000) in the sugoroku. The second line gives the clockwise order of integers written on each square ai (1 ≤ ai ≤ 109).
+Output
+Print the number of squares from which it is possible to win.
+Sample Input 1
+3
+1 1 1
+Sample Output 1
+3
+Sample Input 2
+3
+1 1 2
+Sample Output 2
+2
+Sample Input 3
+8
+2 3 7 3 3 3 4 4
+Sample Output 3
+6

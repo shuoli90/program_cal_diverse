@@ -1,0 +1,7 @@
+def extract_arguments(fh):
+    n, m, x, y = map(int, fh.readline().strip().split())
+    robots = []
+    for _ in range(m):
+        c, l, r = map(int, fh.readline().strip().split())
+        robots.append((c, l, r))
+    return n, m, x, y, robots

@@ -1,0 +1,35 @@
+An integer n (3 ≤ n ≤ 100), representing some quantity or size.
+An integer m (2 ≤ m ≤ 1000), representing some quantity or size.
+An integer s (1 ≤ s ≤ n), representing some quantity or size, distinct from g1 and g2.
+An integer g1 (1 ≤ g1 ≤ n), representing some quantity or size, distinct from s and g2.
+An integer g2 (1 ≤ g2 ≤ n), representing some quantity or size, distinct from s and g1.
+A list of m tuples (b1, b2, c), where b1 and b2 are integers (1 ≤ b1, b2 ≤ n), distinct from each other, and c is an integer (1 ≤ c ≤ 1000).
+
+### Example Input:
+
+```
+4 5 1 3 4
+1 2 5
+2 3 5
+2 4 5
+1 3 8
+1 4 8
+0 0 0 0 0
+```
+
+### Function Signature:
+Write a function f(inputs) that takes in the input.
+```python
+from typing import List, Tuple
+
+def f(inputs: List[Tuple[int, int, int, int, int, List[Tuple[int, int, int]]]]):
+    '''
+    inputs: a list of tuples where each tuple contains:
+        - an integer n
+        - an integer m
+        - an integer s
+        - an integer g1
+        - an integer g2
+        - a list of m tuples (b1, b2, c)
+    '''
+```

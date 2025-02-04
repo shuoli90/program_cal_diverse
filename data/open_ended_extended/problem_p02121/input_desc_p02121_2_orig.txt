@@ -1,0 +1,22 @@
+An integer n (2 ≤ n ≤ 200) and an integer m (1 ≤ m ≤ 15), representing some quantities.
+A list of n tuples, each containing four integers (0 ≤ ai, bi, ci, di ≤ 1000).
+A list of m tuples, each containing two integers (0 ≤ xi, yi ≤ 1000).
+
+### Example Input:
+
+```
+2 1
+0 0 5 5
+3 3 6 6
+2 2
+```
+
+### Function Signature:
+Write a function f(n, m, store_candidates, factories) that takes in the input.
+def f(n: int, m: int, store_candidates: List[Tuple[int, int, int, int]], factories: List[Tuple[int, int]]): 
+    ''' 
+    n: an integer 
+    m: an integer 
+    store_candidates: a list of tuples of four integers 
+    factories: a list of tuples of two integers 
+    '''

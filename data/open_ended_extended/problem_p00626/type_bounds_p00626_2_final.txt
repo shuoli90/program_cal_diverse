@@ -1,0 +1,3 @@
+Types: H: int, W: int, blocks: List[List[int]]
+Ranges: 1 ≤ H, W ≤ 12, block values are either 0 or 1
+Addtl Info: Number of blocks with heart marks (value 1) is six or less

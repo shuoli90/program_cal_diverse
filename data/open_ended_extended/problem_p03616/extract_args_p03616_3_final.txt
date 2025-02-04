@@ -1,0 +1,10 @@
+def extract_arguments(fh):
+    X = int(fh.readline().strip())
+    K = int(fh.readline().strip())
+    r = list(map(int, fh.readline().strip().split()))
+    Q = int(fh.readline().strip())
+    queries = []
+    for _ in range(Q):
+        t, a = map(int, fh.readline().strip().split())
+        queries.append((t, a))
+    return X, K, r, Q, queries

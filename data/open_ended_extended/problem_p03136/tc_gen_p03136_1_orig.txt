@@ -1,0 +1,44 @@
+Sure! Here is a Python function to generate random test cases for the given problem statement:
+
+```python
+import random
+
+def tcgen():
+    # Constraint for the number of sides
+    N = random.randint(3, 10)
+    
+    # Constraint for the length of each side
+    L = [random.randint(1, 100) for _ in range(N)]
+    
+    return N, L
+
+# To print a generated test case
+if __name__ == "__main__":
+    N, L = tcgen()
+    print(N)
+    print(' '.join(map(str, L)))
+```
+
+This `tcgen` function will generate test cases adhering to the constraints specified in the problem statement. It randomly selects a number of sides between 3 and 10 and then generates side lengths between 1 and 100 for each side. When executed, it will print a random test case in the format required by the problem statement.
+
+Here are a few example outputs of the test case generator:
+
+Example Output 1:
+```
+7
+15 23 42 8 27 14 36
+```
+
+Example Output 2:
+```
+4
+10 24 35 12
+```
+
+Example Output 3:
+```
+9
+5 10 7 12 20 18 30 1 15
+```
+
+You can run the `tcgen` function multiple times to generate different test cases for your competitive programming problem.

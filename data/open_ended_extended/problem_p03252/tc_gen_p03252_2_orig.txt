@@ -1,0 +1,29 @@
+Certainly! Here is a test case generator for the given problem statement:
+
+```python
+import random
+import string
+
+def tcgen():
+    # Generate a random length for the strings, within the constraint
+    length = random.randint(1, 2 * 10**5)
+    
+    # Generate random strings S and T of the chosen length with lowercase English letters
+    S = ''.join(random.choices(string.ascii_lowercase, k=length))
+    T = ''.join(random.choices(string.ascii_lowercase, k=length))
+    
+    return S, T
+
+# Example usage
+if __name__ == "__main__":
+    S, T = tcgen()
+    print(S)
+    print(T)
+```
+
+Explanation:
+- The `random.randint(1, 2 * 10**5)` function generates a random length for the strings \(S\) and \(T\) within the given constraint \(1 \leq |S| \leq 2 \times 10^5\).
+- The `random.choices(string.ascii_lowercase, k=length)` function generates a random string of the given length consisting of lowercase English letters.
+- The function returns two strings \(S\) and \(T\).
+
+This test case generator will give you random test cases to test the problem "Determine if S and T can be made equal by performing the operation zero or more times."

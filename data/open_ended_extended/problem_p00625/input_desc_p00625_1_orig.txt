@@ -1,0 +1,34 @@
+An integer N (1 ≤ N ≤ 10), representing some quantity.
+An integer M (1 ≤ M ≤ 1000), representing some quantity.
+N lines follow, each containing three real numbers X, Y, and V, where -1000 ≤ X, Y ≤ 1000 and 1 ≤ V ≤ 100.
+M lines follow, each containing four real numbers X, Y, VX, and VY, where -1000 ≤ X, Y ≤ 1000 and -25 ≤ VX, VY ≤ 25.
+The end of the input is indicated by N=0 and M=0.
+
+### Example Input:
+
+```
+2 1
+12 5 3
+0 17 3
+0 0 2 2
+2 3
+2 0 2
+100 100 2
+0 0 -1 0
+-2 -5 0 3
+100 100 1 1
+0 0
+```
+
+### Function Signature:
+Write a function f(inputs) that takes in the input.
+```python
+def f(inputs: List[Tuple[int, int, List[Tuple[float, float, float]], List[Tuple[float, float, float, float]]]]):
+    '''
+    inputs: a list of tuples, each containing:
+        An integer
+        An integer
+        A list of tuples, each containing three real numbers
+        A list of tuples, each containing four real numbers
+    '''
+```

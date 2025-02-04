@@ -1,0 +1,129 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p03018 - Generation 2</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p03018 - Generation 2</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>
+Score : 600 points
+Problem StatementYou are given a string s consisting of A, B and C.
+Snuke wants to perform the following operation on s as many times as possible:
+Choose a contiguous substring of s that reads ABC and replace it with BCA.
+Find the maximum possible number of operations.
+Constraints
+1 \leq |s| \leq 200000
+Each character of s is A, B and C.
+InputInput is given from Standard Input in the following format:
+s
+OutputFind the maximum possible number of operations.
+Sample Input 1ABCABC
+Sample Output 13
+You can perform the operations three times as follows: ABCABC → BCAABC → BCABCA → BCBCAA. This is the maximum result.
+Sample Input 2C
+Sample Output 20
+Sample Input 3ABCACCBABCBCAABCB
+Sample Output 36
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An integer \( N \) (1 ≤ \( N \) ≤ 200000), representing the length of a string.
+A string \( s \) of length \( N \), consisting of characters 'A', 'B', and 'C'.
+
+### Example Input:
+
+```
+6
+ABCABC
+```
+
+### Function Signature:
+Write a function f(N, s) that takes in the input.
+```python
+def f(N: int, s: str):
+    '''
+    N: an integer
+    s: a string
+    '''</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Sure! Here's a test case generator for the given problem statement:
+
+```python
+import random
+
+def generate_string(length):
+    return ''.join(random.choice('ABC') for _ in range(length))
+
+def tcgen():
+    # Length of the string s
+    length = random.randint(1, 200000)
+    # Generate string of specified length consisting of characters A, B, and C
+    s = generate_string(length)
+    return s
+
+# Example usage:
+s = tcgen()
+print(s)
+```
+
+This script generates a test case for the problem where you need to find the maximum number of operations to replace "ABC" with "BCA". The test case consists of a string `s` with a length between 1 and 200,000 containing only characters 'A', 'B', and 'C'. The `generate_string` function helps in creating a random string of the specified length.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    s = fh.readline().strip()
+    return s</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

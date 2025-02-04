@@ -1,0 +1,3 @@
+Types: n: int, xi: float, yi: float, ri: float  
+Ranges: 2 ≤ n ≤ 100, 0.0 ≤ xi ≤ 200.0, 0.0 ≤ yi ≤ 200.0, 0.0 ≤ ri ≤ 200.0  
+Addtl Info: The end of the input is indicated by a data set with 0 as the value of n.

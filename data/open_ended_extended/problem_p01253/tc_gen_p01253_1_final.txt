@@ -1,0 +1,40 @@
+Sure, here is a test case generator for the "Deadly Dice Game" problem:
+
+```python
+import random
+
+def tcgen():
+    # Generate a random N and T within the specified limits
+    N = random.randint(1, 2000)
+    T = random.randint(1, 2000)
+    
+    # Generate a random string of 'R' and 'B' of length N
+    cells = ''.join(random.choice(['R', 'B']) for _ in range(N))
+    
+    return N, T, cells
+
+def multiple_tcgen(num_cases):
+    test_cases = []
+    for _ in range(num_cases):
+        N, T, cells = tcgen()
+        test_cases.append(f"{N} {T}\n{cells}")
+    test_cases.append("0 0")  # End of input
+    return "\n".join(test_cases)
+
+# Generate a single test case
+N, T, cells = tcgen()
+print(f"{N} {T}\n{cells}")
+
+# Generate multiple test cases
+print(multiple_tcgen(5))
+```
+
+### Explanation
+
+- **`tcgen()`**: Generates a single test case with:
+  - `N`: The number of cells, randomly chosen between 1 and 2000.
+  - `T`: The number of rounds, randomly chosen between 1 and 2000.
+  - `cells`: A string of length `N` consisting of random 'R' and 'B' characters.
+- **`multiple_tcgen(num_cases)`**: Generates multiple test cases based on the number of cases specified (`num_cases`), then appends the terminating "0 0" line.
+
+The generated test cases will be in the correct format for the problem statement, allowing you to test your solution with a variety of inputs.

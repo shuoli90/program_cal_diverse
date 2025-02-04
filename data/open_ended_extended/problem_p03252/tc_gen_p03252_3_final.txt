@@ -1,0 +1,37 @@
+Sure! Let's create a test case generator for the problem statement you provided.
+
+### Test Case Generator for the Problem Statement
+
+The goal is to generate random strings \( S \) and \( T \) of equal length such that they follow the constraints given. The strings should consist of lowercase English letters and have lengths between 1 and 200,000.
+
+Here is the code for the test case generator:
+
+```python
+import random
+import string
+
+def tcgen():
+    # Define the length of the strings
+    length = random.randint(1, 2 * 10**5)
+    
+    # Generate two random strings of the same length
+    S = ''.join(random.choices(string.ascii_lowercase, k=length))
+    T = ''.join(random.choices(string.ascii_lowercase, k=length))
+    
+    return S, T
+
+# Example usage:
+for _ in range(5):
+    S, T = tcgen()
+    print(f"S: {S}")
+    print(f"T: {T}")
+    print()
+```
+
+Here is a breakdown of the code:
+1. **Import the necessary modules**: `random` for generating random numbers and `string` for accessing lowercase English letters.
+2. **Define the length of the strings**: A random integer between 1 and 200,000 is chosen.
+3. **Generate two random strings**: Both strings \( S \) and \( T \) are generated using `random.choices` which selects random characters from `string.ascii_lowercase` and forms a string of the specified length.
+4. **Return the generated strings**: The function returns the two generated strings \( S \) and \( T \).
+
+This function will generate random test cases for the problem statement you provided. Note that the generated strings are completely random and do not guarantee any specific relationship between \( S \) and \( T \), which is suitable for general testing.

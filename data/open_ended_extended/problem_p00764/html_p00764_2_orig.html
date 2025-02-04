@@ -1,0 +1,254 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p00764 - Generation 2</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p00764 - Generation 2</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>
+Chain-Confined Path
+There is a chain consisting of multiple circles on a plane.
+The first (last) circle of the chain only intersects with the next (previous) circle,
+and each intermediate circle intersects only with the two neighboring circles.
+Your task is to find the shortest path that satisfies the following conditions.
+The path connects the centers of the first circle and the last circle.
+The path is confined in the chain, that is, all the points on the path are located within or on at least one of the circles.
+Figure E-1 shows an example of such a chain and the corresponding shortest path.
+Figure E-1: An  example chain and the corresponding shortest path
+Input
+The input consists of multiple datasets.
+Each dataset represents the shape of a chain in the following format.
+n
+x1 y1 r1 
+x2 y2 r2 
+...
+xn yn rn 
+The first line of a dataset contains an integer n (3 ≤ n ≤ 100) 
+representing the number of the circles.
+Each of the following n lines contains three integers separated by a single space.
+(xi, yi) 
+and ri represent 
+the center position and the radius of the i-th circle Ci.
+You can assume that 0 ≤ xi ≤ 1000, 
+0 ≤ yi ≤ 1000, and
+1 ≤ ri ≤ 25.
+You can assume that Ci  and 
+Ci+1  (1 ≤ i ≤ n−1) intersect at two separate points.
+When j ≥ i+2, Ci  and Cj  are apart and either of them does not contain the other.
+In addition, you can assume that any circle does not contain the center of any other circle.
+The end of the input is indicated by a line containing a zero. 
+Figure E-1 corresponds to the first dataset of Sample Input below.
+Figure E-2 shows the shortest paths for the subsequent datasets of Sample Input. 
+Figure E-2: Example chains and the corresponding shortest paths
+Output
+For each dataset, output a single line containing the length of the shortest chain-confined path between the centers of the first circle and the last circle.
+The value should not have an error greater than 0.001.
+No extra characters should appear in the output. 
+Sample Input
+10
+802 0 10
+814 0 4
+820 1 4
+826 1 4
+832 3 5
+838 5 5
+845 7 3
+849 10 3
+853 14 4
+857 18 3
+3
+0 0 5
+8 0 5
+8 8 5
+3
+0 0 5
+7 3 6
+16 0 5
+9
+0 3 5
+8 0 8
+19 2 8
+23 14 6
+23 21 6
+23 28 6
+19 40 8
+8 42 8
+0 39 5
+11
+0 0 5
+8 0 5
+18 8 10
+8 16 5
+0 16 5
+0 24 5
+3 32 5
+10 32 5
+17 28 8
+27 25 3
+30 18 5
+0
+Output for the Sample Input
+58.953437
+11.414214
+16.0
+61.874812
+63.195179
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An integer n (3 ≤ n ≤ 100), representing some quantity or size.
+n lines follow, each containing three integers separated by a single space.
+The first two integers (0 ≤ xi ≤ 1000, 0 ≤ yi ≤ 1000) represent coordinates.
+The third integer (1 ≤ ri ≤ 25) represents a size or radius.
+The end of the input is indicated by a line containing a zero.
+
+### Example Input:
+
+```
+10
+802 0 10
+814 0 4
+820 1 4
+826 1 4
+832 3 5
+838 5 5
+845 7 3
+849 10 3
+853 14 4
+857 18 3
+0
+```
+
+### Function Signature:
+Write a function f(inputs) that takes in the input. 
+def f(inputs: List[Tuple[int, List[Tuple[int, int, int]]]]): 
+    ''' 
+    inputs: a list of tuples, where each tuple contains an integer and a list of tuples
+    '''</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Sure, let's create a test case generator for the given problem statement "Chain-Confined Path". Here is the Python code for generating test cases:
+
+```python
+import random
+
+def generate_circle():
+    x = random.randint(0, 1000)
+    y = random.randint(0, 1000)
+    r = random.randint(1, 25)
+    return (x, y, r)
+
+def circles_intersect(c1, c2):
+    x1, y1, r1 = c1
+    x2, y2, r2 = c2
+    dist_sq = (x2 - x1) ** 2 + (y2 - y1) ** 2
+    return (r1 - r2) ** 2 < dist_sq < (r1 + r2) ** 2
+
+def tcgen():
+    n = random.randint(3, 100)
+    
+    circles = [generate_circle()]
+    
+    for _ in range(1, n):
+        while True:
+            new_circle = generate_circle()
+            if circles_intersect(circles[-1], new_circle):
+                circles.append(new_circle)
+                break
+    
+    dataset = f"{n}\n" + "\n".join(f"{x} {y} {r}" for x, y, r in circles)
+    return dataset
+
+def generate_multiple_datasets(count):
+    datasets = [tcgen() for _ in range(count)]
+    return "\n0\n".join(datasets) + "\n0"
+
+# Example usage
+print(generate_multiple_datasets(5))
+```
+
+This code will generate multiple test cases for the "Chain-Confined Path" problem. Here’s a breakdown of what each part does:
+
+1. **generate_circle**: Generates a random circle with coordinates `x`, `y`, and radius `r` within the provided constraints.
+2. **circles_intersect**: Checks if two circles intersect at two separate points as required by the problem statement.
+3. **tcgen**: Generates a single dataset with `n` circles that meet the problem constraints. It ensures that each circle intersects with its predecessor.
+4. **generate_multiple_datasets**: Generates the specified number of datasets and concatenates them with the termination line (`0`).
+
+You can call `generate_multiple_datasets` with the desired number of datasets to generate the complete input for the problem.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    datasets = []
+    while True:
+        n = int(fh.readline().strip())
+        if n == 0:
+            break
+        circles = []
+        for _ in range(n):
+            xi, yi, ri = map(int, fh.readline().strip().split())
+            circles.append((xi, yi, ri))
+        datasets.append((n, circles))
+    return datasets
+
+# Example usage:
+# if __name__ == "__main__":
+#     import sys
+#     input_path = sys.argv[1]
+#     with open(input_path, 'r') as fh:
+#         datasets = extract_arguments(fh)
+#         for dataset in datasets:
+#             f(dataset)</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

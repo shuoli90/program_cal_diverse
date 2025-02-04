@@ -1,0 +1,51 @@
+Sure, I can create a test case generator for the problem you've provided. The problem involves generating a tree with \( N \) nodes and \( N-1 \) edges. Since the input size can be as large as \( 10^5 \), we'll ensure to generate valid trees and format them appropriately.
+
+Here is a Python function that generates such test cases:
+
+```python
+import random
+import sys
+
+def generate_tree(N):
+    edges = []
+    for i in range(2, N+1):
+        edges.append((i, random.randint(1, i-1)))
+    random.shuffle(edges)
+    return edges
+
+def tcgen():
+    N = random.randint(2, 10**5)
+    edges = generate_tree(N)
+    
+    test_case = f"{N}\n"
+    for a, b in edges:
+        test_case += f"{a} {b}\n"
+        
+    return test_case
+
+# Example usage:
+if __name__ == "__main__":
+    sys.setrecursionlimit(200000)
+    print(tcgen())
+```
+
+### Explanation
+
+1. **generate_tree(N)**:
+   - This function generates a tree with \( N \) nodes by ensuring that each node \( i \) (from 2 to \( N \)) is connected to a random previous node (between 1 and \( i-1 \)). This guarantees that the generated structure forms a valid tree.
+
+2. **tcgen()**:
+   - This function uses `generate_tree(N)` to get the edges for the tree.
+   - The edges are then formatted according to the problem's input specification and returned as a single string.
+
+### How to Use
+
+- Run the script, and it will print a randomly generated test case to the standard output.
+- Each time you run the script, it generates a new test case with a different tree structure.
+
+### Note
+
+- The generated tree ensures that every node is connected, making the graph a valid tree.
+- The recursion limit is set higher to accommodate deeper recursive calls that might occur with trees having nodes close to the upper limit.
+
+You can modify the `sys.setrecursionlimit` if your environment requires it for handling large trees, or you can further adjust the generator for specific needs or constraints.

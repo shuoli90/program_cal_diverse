@@ -1,0 +1,17 @@
+def extract_arguments(fh):
+    datasets = []
+    while True:
+        first_line = fh.readline().strip()
+        if first_line == "0 0":
+            break
+        N, M = map(int, first_line.split())
+        troops = []
+        for _ in range(N):
+            x, y, v = map(int, fh.readline().strip().split())
+            troops.append((x, y, v))
+        bases = []
+        for _ in range(M):
+            x, y = map(int, fh.readline().strip().split())
+            bases.append((x, y))
+        datasets.append((N, M, troops, bases))
+    return datasets

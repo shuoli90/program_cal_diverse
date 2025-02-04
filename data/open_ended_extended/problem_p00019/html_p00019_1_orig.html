@@ -1,0 +1,124 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p00019 - Generation 1</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p00019 - Generation 1</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>
+Factorial
+Write a program which reads an integer n and prints the factorial of n. You can assume that n ≤ 20.
+Input
+An integer n (1 ≤ n ≤ 20) in a line.
+Output
+Print the factorial of n in a line.
+Sample Input
+5
+Output for the Sample Input
+120
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>Canonicalized Input Description:
+
+An integer n (1 ≤ n ≤ 20).
+
+### Example Input:
+
+```
+5
+```
+
+### Function Signature:
+Write a function f(n) that takes in the input.
+def f(n: int):
+    ''' 
+    n: an integer
+    '''</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Sure! Below is the test case generator for the given problem statement "Factorial":
+
+```python
+import random
+import math
+
+def factorial_tcgen():
+    # Generate a random integer n within the given constraints
+    n = random.randint(1, 20)
+    
+    # Compute the expected output for the given n
+    factorial_result = math.factorial(n)
+    
+    # Return the input and the expected output
+    return n, factorial_result
+
+# Example usage of the test case generator
+n, expected_output = factorial_tcgen()
+print("Generated Test Case:")
+print("Input:")
+print(n)
+print("Expected Output:")
+print(expected_output)
+```
+
+The `factorial_tcgen` function generates a random integer \( n \) within the range \([1, 20]\) and calculates the factorial for that integer. The function returns both the input and the expected output, which can be used for testing the implementation of the factorial function. The script also has an example usage that demonstrates how to generate and print a test case.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    n = int(fh.readline().strip())
+    return n</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

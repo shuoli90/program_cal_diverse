@@ -1,0 +1,44 @@
+Sure! Here is a Python script that generates test cases for the given problem statement "Problem I: Explosion".
+
+```python
+import random
+
+def generate_test_case():
+    # Constraints
+    N = random.randint(1, 14)
+    M = random.randint(1, N)
+    
+    coordinates = []
+    for _ in range(N):
+        x = random.randint(0, 10**5)
+        y = random.randint(0, 10**5)
+        coordinates.append((x, y))
+        
+    return N, M, coordinates
+
+def format_test_case(N, M, coordinates):
+    test_case = []
+    test_case.append(f"{N} {M}")
+    for x, y in coordinates:
+        test_case.append(f"{x} {y}")
+    return "\n".join(test_case)
+
+# Generate a test case
+N, M, coordinates = generate_test_case()
+test_case = format_test_case(N, M, coordinates)
+print(test_case)
+```
+
+### Explanation:
+1. **Constraints Handling:**
+   - `N` is the number of heroes, chosen randomly between 1 and 14.
+   - `M` is the number of explosion spells, chosen randomly between 1 and `N`.
+
+2. **Coordinates Generation:**
+   - For each hero, we generate random coordinates `(x, y)` where `0 ≤ x, y ≤ 10^5`.
+
+3. **Formatting the Test Case:**
+   - The first line contains `N` and `M`.
+   - Each subsequent line contains the coordinates of a hero.
+
+This script will generate randomized test cases that adhere to the constraints and format specified in the problem statement.

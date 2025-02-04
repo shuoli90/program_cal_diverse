@@ -1,0 +1,20 @@
+An integer H (2 ≤ H ≤ 10^9), representing some height or number of rows.
+An integer W (2 ≤ W ≤ 10^9), representing some width or number of columns.
+An integer S (1 ≤ S ≤ H), representing some starting row.
+An integer T (1 ≤ T ≤ W), representing some starting column.
+
+### Example Input:
+
+```
+4 5 2 3
+```
+
+### Function Signature:
+Write a function f(H, W, S, T) that takes in the input. 
+def f(H: int, W: int, S: int, T: int): 
+    ''' 
+    H: an integer 
+    W: an integer
+    S: an integer
+    T: an integer
+    '''

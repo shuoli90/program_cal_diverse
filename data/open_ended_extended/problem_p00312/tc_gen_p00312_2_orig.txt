@@ -1,0 +1,37 @@
+Sure! Here's a test case generator for the problem "Frog's Straight Path Home":
+
+```python
+import random
+
+def tcgen():
+    # Generate a random distance D between 1 and 10000
+    D = random.randint(1, 10000)
+    
+    # Generate a random big jump distance L between 2 and 10000
+    L = random.randint(2, 10000)
+    
+    return D, L
+
+# Example usage of the test case generator
+for _ in range(5):
+    D, L = tcgen()
+    print(D, L)
+```
+
+### Explanation
+
+1. **Random Distance D**: The distance `D` is generated to be a random integer between 1 and 10000, inclusive. This represents the distance from the frog to its nest.
+2. **Random Big Jump Distance L**: The big jump distance `L` is generated to be a random integer between 2 and 10000, inclusive. This represents the distance the frog can cover with a big jump.
+
+### Example Outputs
+Here are a few sample outputs from the generator:
+
+```
+5749 9812
+678 8763
+123 45
+9999 100
+4500 3000
+```
+
+These generated test cases can be used to test the program's ability to calculate the minimum number of jumps the frog needs to reach its nest.

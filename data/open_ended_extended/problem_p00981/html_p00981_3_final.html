@@ -1,0 +1,238 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p00981 - Generation 3</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p00981 - Generation 3</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>Wall Painting
+  Here stands a wall made of a number of vertical panels. The panels are not painted yet.
+  You have a number of robots each of which can paint panels in a single color, either red, green, or blue. Each of the robots, when activated, paints panels between a certain position and another certain position in a certain color. The panels painted and the color to paint them are fixed for each of the robots, but which of them are to be activated and the order of their activation can be arbitrarily decided.
+  You’d like to have the wall painted to have a high aesthetic value. Here, the aesthetic value of the wall is defined simply as the sum of aesthetic values of the panels of the wall, and the aesthetic value of a panel is defined to be:
+ 0, if the panel is left unpainted.
+ The bonus value specified, if it is painted only in a single color, no matter how many times it is painted.
+ The penalty value specified, if it is once painted in a color and then overpainted in one or more different colors.
+Input
+  The input consists of a single test case of the following format.
+$n$ $m$ $x$ $y$
+$c_1$ $l_1$ $r_1$
+.
+.
+.
+$c_m$ $l_m$ $r_m$
+  Here, $n$ is the number of the panels ($1 \leq n \leq 10^9$) and $m$ is the number of robots ($1 \leq m \leq 2 \times 10^5$). $x$ and $y$ are integers between $1$ and $10^5$, inclusive. $x$ is the bonus value and $-y$ is the penalty value. The panels of the wall are consecutively numbered $1$ through $n$. The $i$-th robot, when activated, paints all the panels of numbers $l_i$ through $r_i$ ($1 \leq l_i \leq r_i \leq n$) in color with color number $c_i$ ($c_i \in \{1, 2, 3\}$). Color numbers 1, 2, and 3 correspond to red, green, and blue, respectively.
+Output
+  Output a single integer in a line which is the maximum achievable aesthetic value of the wall.
+Sample Input 1 
+8 5 10 5
+1 1 7
+3 1 2
+1 5 6
+3 1 4
+3 6 8
+Sample Output 1
+70
+Sample Input 2 
+26 3 9 7
+1 11 13
+3 1 11
+3 18 26
+Sample Output 2
+182
+Sample Input 3 
+21 10 10 5
+1 10 21
+3 4 16
+1 1 7
+3 11 21
+3 1 16
+3 3 3
+2 1 17
+3 5 18
+1 7 11
+2 3 14
+Sample Output 3
+210
+Sample Input 4 
+21 15 8 7
+2 12 21
+2 1 2
+3 6 13
+2 13 17
+1 11 19
+3 3 5
+1 12 13
+3 2 2
+1 12 15
+1 5 17
+1 2 3
+1 1 9
+1 8 12
+3 8 9
+3 2 9
+Sample Output 4
+153
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An integer \( n \) (1 ≤ \( n \) ≤ 10^9), representing some quantity or size.
+An integer \( m \) (1 ≤ \( m \) ≤ 2 × 10^5), representing another quantity or size.
+An integer \( x \) (1 ≤ \( x \) ≤ 10^5), representing a bonus value.
+An integer \( y \) (1 ≤ \( y \) ≤ 10^5), representing a penalty value.
+A list of \( m \) tuples, each tuple containing:
+    - An integer \( c_i \) (1 ≤ \( c_i \) ≤ 3), representing a color.
+    - An integer \( l_i \) (1 ≤ \( l_i \) ≤ \( r_i \)), representing a start position.
+    - An integer \( r_i \) (\( l_i \) ≤ \( r_i \) ≤ \( n \)), representing an end position.
+
+### Example Input:
+
+```
+8 5 10 5
+1 1 7
+3 1 2
+1 5 6
+3 1 4
+3 6 8
+```
+
+### Function Signature:
+
+Write a function `f(n, m, x, y, robots)` that takes in the input.
+```python
+def f(n: int, m: int, x: int, y: int, robots: List[Tuple[int, int, int]]):
+    '''
+    n: an integer
+    m: an integer
+    x: an integer
+    y: an integer
+    robots: a list of tuples, each containing three integers
+    '''
+```</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>To generate test cases for the "Wall Painting" problem, we need to create randomized values for the number of panels, number of robots, bonus value, penalty value, and the operations each robot performs. Given the constraints, we need to ensure the values are within the specified ranges.
+
+Here's the Python code for the test case generator:
+
+```python
+import random
+
+def tcgen():
+    # Number of panels, constrained between 1 and 10^9 inclusive
+    n = random.randint(1, 10**9)
+    
+    # Number of robots, constrained between 1 and 2 * 10^5 inclusive
+    m = random.randint(1, 2 * 10**5)
+    
+    # Bonus value, constrained between 1 and 10^5 inclusive
+    x = random.randint(1, 10**5)
+    
+    # Penalty value, constrained between 1 and 10^5 inclusive
+    y = random.randint(1, 10**5)
+    
+    # Generating m robots with their respective painting operations
+    operations = []
+    for _ in range(m):
+        c = random.choice([1, 2, 3])
+        l = random.randint(1, n)
+        r = random.randint(l, n)  # Ensure r >= l
+        operations.append((c, l, r))
+    
+    return n, m, x, y, operations
+
+# Function to pretty print the test case
+def print_test_case():
+    n, m, x, y, operations = tcgen()
+    print(f"{n} {m} {x} {y}")
+    for operation in operations:
+        print(f"{operation[0]} {operation[1]} {operation[2]}")
+
+# Generate and print a test case
+print_test_case()
+```
+
+### Explanation:
+1. **Number of Panels (`n`)**:
+   - Randomly selected between 1 and \(10^9\) inclusive.
+
+2. **Number of Robots (`m`)**:
+   - Randomly selected between 1 and \(2 \times 10^5\) inclusive.
+
+3. **Bonus (`x`)**:
+   - Randomly selected between 1 and \(10^5\) inclusive.
+
+4. **Penalty (`y`)**:
+   - Randomly selected between 1 and \(10^5\) inclusive.
+
+5. **Robot Operations**:
+   - For each robot, select a random color `c` in {1, 2, 3}.
+   - Select a random starting position `l` between 1 and `n`.
+   - Select an ending position `r` such that `l ≤ r ≤ n`.
+
+6. **Output**:
+   - The function `print_test_case()` generates a test case, formats it, and prints it in the required format.
+
+This generator creates randomized test cases that respect the constraints of the problem, ensuring each generated test case is valid and suitable for testing the implementation of the "Wall Painting" problem.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    n, m, x, y = map(int, fh.readline().strip().split())
+    robots = []
+    for _ in range(m):
+        c, l, r = map(int, fh.readline().strip().split())
+        robots.append((c, l, r))
+    return n, m, x, y, robots</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

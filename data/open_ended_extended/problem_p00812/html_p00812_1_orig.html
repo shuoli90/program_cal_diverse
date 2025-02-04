@@ -1,0 +1,229 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p00812 - Generation 1</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p00812 - Generation 1</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>Problem B: Equals are Equals
+Mr. Simpson got up with a slight feeling of tiredness. It was the start of another day of hard work. A bunch of papers were waiting for his inspection on his desk in his office. The papers contained his students' answers to questions in his Math class, but the answers looked as if they were just stains of ink.
+His headache came from the ``creativity'' of his students. They provided him a variety of ways to answer each problem. He has his own answer to each problem, which is correct, of course, and the best from his aesthetic point of view.
+Some of his students wrote algebraic expressions equivalent to the expected answer, but many of them look quite different from Mr. Simpson's answer in terms of their literal forms. Some wrote algebraic expressions not equivalent to his answer, but they look quite similar to it. Only a few of the students' answers were exactly the same as his.
+It is his duty to check if each expression is mathematically equivalent to the answer he has prepared. This is to prevent expressions that are equivalent to his from being marked as ``incorrect'', even if they are not acceptable to his aesthetic moral.
+He had now spent five days checking the expressions. Suddenly, he stood up and yelled, ``I've had enough! I must call for help.''
+Your job is to write a program to help Mr. Simpson to judge if each answer is equivalent to the ``correct'' one. Algebraic expressions written on the papers are multi-variable polynomials over variable symbols a, b,..., z with integer coefficients, e.g.,
+(a + b2)(a - b2), ax2 +2bx + c and (x2 +5x + 4)(x2 + 5x + 6) + 1.
+Mr. Simpson will input every answer expression as it is written on the papers; he promises you that an algebraic expression he inputs is a sequence of terms separated by additive operators `+' and `-', representing the sum of the terms with those operators, if any; a term is a juxtaposition of multiplicands, representing their product; and a multiplicand is either (a) a non-negative integer as a digit sequence in decimal, (b) a variable symbol (one of the lowercase letters `a' to `z'), possibly followed by a symbol `^' and a non-zero digit, which represents the power of that variable, or (c) a parenthesized algebraic expression, recursively. Note that the operator `+' or `-' appears only as a binary operator and not as a unary operator to specify the sing of its operand.
+He says that he will put one or more space characters before an integer if it immediately follows another integer or a digit following the symbol `^'. He also says he may put spaces here and there in an expression as an attempt to make it readable, but he will never put a space between two consecutive digits of an integer. He remarks that the expressions are not so complicated, and that any expression, having its `-'s replaced with `+'s, if any, would have no variable raised to its 10th power, nor coefficient more than a billion, even if it is fully expanded into a form of a sum of products of coefficients and powered variables. 
+Input
+The input to your program is a sequence of blocks of lines. A block consists of lines, each containing an expression, and a terminating line. After the last block, there is another terminating line. A terminating line is a line solely consisting of a period symbol.
+The first expression of a block is one prepared by Mr. Simpson; all that follow in a block are answers by the students. An expression consists of lowercase letters, digits, operators `+', `-' and `^', parentheses `(' and `)', and spaces. A line containing an expression has no more than 80 characters. 
+Output
+Your program should produce a line solely consisting of ``yes'' or ``no'' for each answer by the students corresponding to whether or not it is mathematically equivalent to the expected answer. Your program should produce a line solely containing a period symbol after each block.
+Sample Input
+a+b+c
+(a+b)+c
+a- (b-c)+2
+.
+4ab
+(a - b) (0-b+a) - 1a ^ 2 - b ^ 2
+2 b 2 a
+.
+108 a
+2 2 3 3 3 a
+4 a^1 27
+.
+.
+Output for the Sample Input
+yes
+no
+.
+no
+yes
+.
+yes
+yes
+.
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An arbitrary number of blocks of lines. Each block consists of an arbitrary number of lines, containing strings with a maximum length of 80 characters each, followed by a terminating line solely consisting of a period symbol. After the last block, there is another terminating line solely consisting of a period symbol.
+
+### Example Input:
+
+```
+a+b+c
+(a+b)+c
+a- (b-c)+2
+.
+4ab
+(a - b) (0-b+a) - 1a ^ 2 - b ^ 2
+2 b 2 a
+.
+108 a
+2 2 3 3 3 a
+4 a^1 27
+.
+.
+```
+
+### Function Signature:
+Write a function f(inputs) that takes in the input.
+def f(inputs: List[List[str]]):
+    '''
+    inputs: a list of blocks, where each block is itself a list of strings
+    '''
+</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Certainly! Here's a test case generator for the problem "Equals are Equals":
+
+### Test Case Generator
+
+```python
+import random
+import string
+
+def random_variable():
+    return random.choice(string.ascii_lowercase)
+
+def random_term():
+    base = random.choice([random_variable(), str(random.randint(1, 1000))])
+    if random.random() > 0.5:
+        base += '^' + str(random.randint(1, 9))
+    return base
+
+def random_expression(depth=0):
+    if depth > 3 or random.random() > 0.7:
+        return random_term()
+    
+    expr = random_term()
+    for _ in range(random.randint(1, 4)):
+        operator = random.choice(['+', '-', '*'])
+        if operator in ['+', '-']:
+            expr += f" {operator} {random_term()}"
+        else:
+            expr += f" {operator} {random_expression(depth + 1)}"
+    return expr
+
+def generate_test_case():
+    # Number of student answers for each block
+    num_blocks = random.randint(1, 5)
+    blocks = []
+    
+    for _ in range(num_blocks):
+        mr_simpson_answer = random_expression()
+        num_answers = random.randint(1, 5)
+        
+        answers = [mr_simpson_answer]
+        for _ in range(num_answers):
+            answers.append(random_expression())
+        
+        blocks.append(answers)
+    
+    return blocks
+
+def format_test_case(blocks):
+    lines = []
+    for block in blocks:
+        for expression in block:
+            lines.append(expression)
+        lines.append('.')
+    lines.append('.')
+    return '\n'.join(lines)
+
+if __name__ == "__main__":
+    blocks = generate_test_case()
+    test_case = format_test_case(blocks)
+    print(test_case)
+```
+
+### Explanation
+
+1. **random_variable()**: Generates a random variable from 'a' to 'z'.
+2. **random_term()**: Generates a random term which can be a variable, a number, or a variable with an exponent.
+3. **random_expression(depth=0)**: Recursively generates a random algebraic expression. It controls the depth to avoid too deeply nested expressions.
+4. **generate_test_case()**:
+   - Generates a specified number of blocks.
+   - For each block, it creates Mr. Simpson's answer and a random number of student answers.
+5. **format_test_case(blocks)**: Formats the test case into the required input format.
+
+Each block of input ends with a period, and the entire input sequence also ends with a period. The test case generator ensures that the expressions are varied and mimic the structure of the problem statement.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    blocks = []
+    current_block = []
+
+    for line in fh:
+        line = line.strip()
+        if line == ".":
+            if current_block:
+                blocks.append(current_block)
+                current_block = []
+            else:
+                blocks.append(["."])
+        else:
+            current_block.append(line)
+
+    return blocks
+
+# if __name__ == "__main__":
+#     input_path = sys.argv[1]
+#     with open(input_path, 'r') as fh: 
+#     blocks = extract_arguments(fh)
+#     print(blocks)  # For testing purpose</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

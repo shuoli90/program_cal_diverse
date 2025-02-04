@@ -1,0 +1,144 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p02713 - Generation 3</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p02713 - Generation 3</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>
+Score : 300 points
+Problem StatementFind \displaystyle{\sum_{a=1}^{K}\sum_{b=1}^{K}\sum_{c=1}^{K} \gcd(a,b,c)}.
+Here \gcd(a,b,c) denotes the greatest common divisor of a, b, and c.
+Constraints
+1 \leq K \leq 200
+K is an integer.
+InputInput is given from Standard Input in the following format:
+K
+OutputPrint the value of \displaystyle{\sum_{a=1}^{K}\sum_{b=1}^{K}\sum_{c=1}^{K} \gcd(a,b,c)}.
+Sample Input 12
+Sample Output 19
+\gcd(1,1,1)+\gcd(1,1,2)+\gcd(1,2,1)+\gcd(1,2,2)
++\gcd(2,1,1)+\gcd(2,1,2)+\gcd(2,2,1)+\gcd(2,2,2)
+=1+1+1+1+1+1+1+2=9
+Thus, the answer is 9.
+Sample Input 2200
+Sample Output 210813692
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An integer K (1 ≤ K ≤ 200), representing some quantity or size.
+
+### Example Input:
+
+```
+12
+```
+
+### Function Signature:
+Write a function f(K) that takes in the input.
+def f(K: int): 
+    ''' 
+    K: an integer 
+    '''</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Certainly! Below is a test case generator for the given competitive programming problem:
+
+```python
+import random
+
+def tcgen():
+    K = random.randint(1, 200)
+    return K,
+
+# Example usage:
+for _ in range(5):  # generate 5 test cases
+    print(tcgen())
+```
+
+This function generates a random integer \( K \) within the specified constraints (1 ≤ K ≤ 200). The output is a tuple containing \( K \), which is suitable for the format expected by competitive programming platforms.
+
+If you want to also generate the expected output for these test cases, you would need to implement the logic to compute the sum of the greatest common divisors as described in the problem statement. Here’s an implementation to compute the expected output:
+
+```python
+import math
+
+def compute_gcd_sum(K):
+    gcd_sum = 0
+    for a in range(1, K + 1):
+        for b in range(1, K + 1):
+            for c in range(1, K + 1):
+                gcd_sum += math.gcd(math.gcd(a, b), c)
+    return gcd_sum
+
+def tcgen_with_output():
+    K = random.randint(1, 200)
+    expected_output = compute_gcd_sum(K)
+    return (K,), expected_output
+
+# Example usage:
+for _ in range(5):  # generate 5 test cases with expected outputs
+    test_case, expected_output = tcgen_with_output()
+    print(f"Input: {test_case}, Output: {expected_output}")
+```
+
+This extended version of the test case generator not only creates the input \( K \) but also computes the correct output for the given \( K \) using the `compute_gcd_sum` function. This can be useful for validating your solution or for creating comprehensive test cases for practice.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    K = int(fh.readline().strip())
+    return K</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

@@ -1,0 +1,3 @@
+Types: N: int, L: int, x: List[int], t: List[int]
+Ranges: 1 ≤ N ≤ 300000, 1 ≤ L ≤ 10^9, 0 < x[i] < L, 1 ≤ t[i] ≤ 10^9
+Addtl Info: x is strictly increasing

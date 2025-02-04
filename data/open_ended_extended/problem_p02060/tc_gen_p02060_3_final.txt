@@ -1,0 +1,51 @@
+To write a test case generator for the "Four Tea" problem, we need to create random values for the number of players \(N\), the prices of the tea packages \(p_A, p_B, p_C, p_D\), and the respective number of tea cups \(t_A, t_B, t_C, t_D\) that each package can make. The constraints given in the problem will guide us in generating valid test cases. Here is a sample implementation of the test case generator in Python:
+
+```python
+import random
+
+def tcgen():
+    # Generate a random number of players (1 to 100)
+    N = random.randint(1, 100)
+    
+    # Generate random prices for tea packages A, B, C, D (1 to 100)
+    p_A = random.randint(1, 100)
+    p_B = random.randint(1, 100)
+    p_C = random.randint(1, 100)
+    p_D = random.randint(1, 100)
+    
+    # Generate random number of cups for tea packages A, B, C, D (1 to 100)
+    t_A = random.randint(1, 100)
+    t_B = random.randint(1, 100)
+    t_C = random.randint(1, 100)
+    t_D = random.randint(1, 100)
+    
+    return N, (p_A, p_B, p_C, p_D), (t_A, t_B, t_C, t_D)
+
+# Example of how to use the test case generator
+if __name__ == "__main__":
+    N, prices, tea_cups = tcgen()
+    print("N:", N)
+    print("Prices:", prices)
+    print("Tea cups:", tea_cups)
+```
+
+This code will generate a test case with:
+
+- A random number of players \(N\) between 1 and 100.
+- Random prices for each type of tea package between 1 and 100.
+- Random numbers of tea cups that each package can make, also between 1 and 100.
+
+### Explanation of the Output Structure
+- \(N\): Number of players.
+- `prices`: A tuple containing the prices of tea packages A, B, C, and D.
+- `tea_cups`: A tuple containing the number of tea cups that packages A, B, C, and D can make.
+
+### Example Output
+The output from running the generator might look like this:
+```
+N: 45
+Prices: (56, 78, 12, 34)
+Tea cups: (7, 14, 20, 45)
+```
+
+You can use this generator to create multiple test cases for the problem, ensuring that all inputs are within the specified constraints.

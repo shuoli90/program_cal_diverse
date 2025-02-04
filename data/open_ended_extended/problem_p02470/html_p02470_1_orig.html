@@ -1,0 +1,147 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p02470 - Generation 1</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p02470 - Generation 1</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>
+Euler's Phi Function
+For given integer n, count the totatives of n, that is, the positive integers less than or equal to n that are relatively prime to n.
+Input
+n
+An integer n (1 ≤ n ≤ 1000000000).
+Output
+The number of totatives in a line.
+Sample Input 1
+6
+Sample Output 1
+2
+Sample Input 2
+1000000
+Sample Output 2
+400000
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An integer n (1 ≤ n ≤ 1000000000).
+
+### Example Input:
+
+```
+6
+```
+
+### Function Signature:
+Write a function f(n) that takes in the input.
+def f(n: int):
+    '''
+    n: an integer
+    '''</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Sure, I'll write a test case generator for the Euler's Phi Function problem.
+
+### Test Case Generator for Euler's Phi Function
+
+Here's a Python function that generates random test cases for the Euler's Phi Function problem.
+
+```python
+import random
+
+def tcgen():
+    n = random.randint(1, 1000000000)
+    return n
+
+# Example usage:
+random_test_case = tcgen()
+print(random_test_case)
+```
+
+### Explanation
+
+1. **Function `tcgen`**:
+   - Generates a random integer `n` within the range `[1, 1000000000]`.
+   - Returns the integer `n`.
+
+This function can be used to generate numerous random test cases to test the algorithm that calculates the Euler's Phi Function.
+
+### Note:
+
+- Since calculating the Euler's Phi Function for large numbers might be computationally intensive, ensure that your algorithm is efficient.
+- You can use known libraries like `sympy` in Python, which has an implementation for Euler's Totient function, to verify the correctness of the output for generated test cases.
+
+Example using `sympy` to verify a generated test case:
+
+```python
+from sympy import totient
+
+# Generate a random test case
+n = tcgen()
+
+# Calculate the Euler's Phi Function for n
+phi_n = totient(n)
+print(f"Test case: {n}")
+print(f"Output: {phi_n}")
+```
+
+This approach helps ensure that the test cases are valid and provides a mechanism to verify the correctness of your algorithm.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    n = int(fh.readline().strip())
+    return n</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

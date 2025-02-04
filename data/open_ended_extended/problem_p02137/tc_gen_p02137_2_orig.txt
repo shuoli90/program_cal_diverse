@@ -1,0 +1,28 @@
+Sure, I can help you create a test case generator for the "Special Chat" problem. Here is the code for generating a test case:
+
+```python
+import random
+
+def tcgen():
+    # Generating a random integer P in the range [1, 100000]
+    P = random.randint(1, 100000)
+    return P
+
+# Example usage:
+for _ in range(5):  # generating 5 test cases for demonstration
+    print(tcgen())
+```
+
+This function generates a random integer `P` between 1 and 100,000 which represents the total amount of points you currently have.
+
+Here is an example set of outputs when running the test case generator:
+
+```
+23456
+98765
+345
+12345
+67890
+```
+
+Each of these values represents a possible input for the problem statement. You can use this function to generate as many test cases as needed for your testing purposes.

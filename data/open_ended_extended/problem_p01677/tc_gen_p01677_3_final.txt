@@ -1,0 +1,65 @@
+Sure, let's write a test case generator for the given problem statement. We need to generate multiple datasets, each containing an integer \(N\) and a list with \(N\) elements, where some elements might be the character 'x', indicating broken samples, and other elements are integers between \(-10^9\) and \(10^9\). The end of the input is indicated by a single \(0\).
+
+Here is the test case generator:
+
+```python
+import random
+
+def generate_test_case():
+    # Randomly choose a value for N between 2 and 1000
+    N = random.randint(2, 1000)
+    # Generate the list with integers or 'x'
+    audio_signal = []
+    for _ in range(N):
+        # Randomly decide if the sample is broken or not
+        if random.random() < 0.3:  # Let's say 30% chance of being broken
+            audio_signal.append('x')
+        else:
+            audio_signal.append(random.randint(-10**9, 10**9))
+    
+    return N, audio_signal
+
+def tcgen():
+    test_cases = []
+    # Randomly decide the number of datasets, not exceeding 100
+    num_datasets = random.randint(1, 100)
+    
+    for _ in range(num_datasets):
+        N, audio_signal = generate_test_case()
+        test_cases.append((N, audio_signal))
+    
+    # Append the final 0 to indicate the end of input
+    test_cases.append(0)
+    
+    return test_cases
+
+def print_test_cases(test_cases):
+    for case in test_cases:
+        if case == 0:
+            print("0")
+        else:
+            N, audio_signal = case
+            print(N)
+            print(" ".join(map(str, audio_signal)))
+
+# Generate and print test cases
+test_cases = tcgen()
+print_test_cases(test_cases)
+```
+
+### Explanation:
+
+1. **generate_test_case() function**:
+   - Randomly chooses \(N\) between 2 and 1000.
+   - Constructs an audio signal list with \(N\) elements, where each element is either an integer between \(-10^9\) and \(10^9\) or the character 'x'.
+   - Uses a 30% chance to insert a broken sample ('x').
+
+2. **tcgen() function**:
+   - Generates a random number of datasets (up to 100).
+   - Calls generate_test_case() to create each dataset.
+   - Appends a final 0 to indicate the end of input.
+
+3. **print_test_cases() function**:
+   - Prints all test cases in the expected format.
+
+By running this code, you will generate test cases that can be used to test the problem of recovering the audio signal from broken samples.

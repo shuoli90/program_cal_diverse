@@ -1,0 +1,75 @@
+To generate test cases for the "Quadruplet Primes" problem, we need to ensure that we generate valid inputs within the specified range and also handle multiple datasets. Here is a test case generator function for this problem:
+
+```python
+import random
+
+def generate_primes_up_to(n):
+    """ Helper function to generate all prime numbers up to n using the Sieve of Eratosthenes. """
+    sieve = [True] * (n + 1)
+    sieve[0] = sieve[1] = False  # 0 and 1 are not primes
+    for start in range(2, int(n**0.5) + 1):
+        if sieve[start]:
+            for multiple in range(start * start, n + 1, start):
+                sieve[multiple] = False
+    return [num for num, is_prime in enumerate(sieve) if is_prime]
+
+def find_quadruplet_primes(primes):
+    """ Helper function to find all quadruplet primes from the list of primes. """
+    quadruplet_primes = []
+    prime_set = set(primes)
+    for prime in primes:
+        if prime + 2 in prime_set and prime + 6 in prime_set and prime + 8 in prime_set:
+            quadruplet_primes.append(prime + 8)
+    return quadruplet_primes
+
+def tcgen():
+    # Number of datasets
+    num_datasets = random.randint(1, 2000)
+    
+    # Generate a list of datasets
+    datasets = [random.randint(13, 10000000) for _ in range(num_datasets)]
+    
+    # Append 0 at the end to indicate the end of input
+    datasets.append(0)
+    
+    # Generate all primes up to the maximum value in the datasets
+    max_n = max(datasets)
+    primes = generate_primes_up_to(max_n)
+    
+    # Find all quadruplet primes
+    quadruplet_primes = find_quadruplet_primes(primes)
+    
+    # Function to find the largest quadruplet prime less than or equal to n
+    def largest_quadruplet_prime(n):
+        for qp in reversed(quadruplet_primes):
+            if qp <= n:
+                return qp
+        return None
+    
+    # Generate outputs for each dataset
+    outputs = [largest_quadruplet_prime(n) for n in datasets if n != 0]
+    
+    return datasets, outputs
+
+# Example of usage:
+datasets, outputs = tcgen()
+print("Sample Input:")
+print("\n".join(map(str, datasets)))
+print("Sample Output:")
+print("\n".join(map(str, outputs)))
+```
+
+### Explanation:
+
+1. **generate_primes_up_to**: This helper function generates all prime numbers up to a given number \( n \) using the Sieve of Eratosthenes.
+
+2. **find_quadruplet_primes**: This helper function finds all quadruplet primes from a list of prime numbers. It returns a list of the largest numbers in each quadruplet.
+
+3. **tcgen**: This function:
+    - Randomly decides the number of datasets (between 1 and 2000).
+    - Generates random values of \( n \) for each dataset within the given range (13 to 10,000,000).
+    - Ensures the end of input with a 0.
+    - Uses the helper functions to generate all necessary primes and find the quadruplet primes.
+    - For each dataset value, finds the largest quadruplet prime that is less than or equal to \( n \) and prepares the output.
+
+This generator provides both the input datasets and the corresponding outputs. You can use the generated inputs to test your solution and verify its correctness against the outputs.

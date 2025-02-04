@@ -1,0 +1,12 @@
+def extract_arguments(fh):
+    test_cases = []
+    while True:
+        line = fh.readline().strip()
+        if line == "0 0 0":
+            break
+        N, M, L = map(int, line.split())
+        grid = []
+        for _ in range(2 * N - 1):
+            grid.append(list(map(int, fh.readline().strip().split())))
+        test_cases.append((N, M, L, grid))
+    return test_cases

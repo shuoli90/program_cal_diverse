@@ -1,0 +1,5 @@
+Types: S: str, a_i: str, v_i: int
+
+Ranges: 2 ≤ N ≤ 26, 0 ≤ v_i ≤ 26
+
+Addtl Info: The string S is a well-formed tournament chart as per the BNF rules. Each contestant a_i is a distinct lowercase letter from 'a' to 'z'.

@@ -1,0 +1,33 @@
+Sure, here is a Python function that generates test cases for the given problem statement:
+
+```python
+import random
+
+def tcgen():
+    N = random.randint(1, 20)
+    A = random.randint(1, 50)
+    B = random.randint(1, 50)
+    
+    return N, A, B
+
+# Example usage:
+for _ in range(5):
+    N, A, B = tcgen()
+    print(f"{N} {A} {B}")
+```
+
+This function generates random values for \(N\), \(A\), and \(B\) within the specified constraints. Each test case is printed in the required format. You can run the function multiple times to generate different test cases. Here are a few example outputs:
+
+```
+10 20 30
+3 15 25
+5 45 10
+1 50 50
+20 1 5
+```
+
+Each line represents a test case with the values \(N\), \(A\), and \(B\) respectively. The values are within the constraints given in the problem statement:
+
+- \(1 \leq N \leq 20\)
+- \(1 \leq A \leq 50\)
+- \(1 \leq B \leq 50\)

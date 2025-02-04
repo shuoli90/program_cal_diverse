@@ -1,0 +1,28 @@
+Problem C: Accelerated Railgun
+She catched the thrown coin that draws parabolic curve with her sparkling fingers. She is an ESPer. Yes, she is an electro-master who has the third strongest power among more than one million ESPers in the city. Being flicked by her thumb, the coin is accelerated by electromagnetic force and is shot as Fleming's right-hand rule. Even if she holds back the initial velocity of the coin exceeds three times of the speed of sound. The coin that is shot in such velocity is heated because of air friction and adiabatic compression. As a result coin melts and shines in orange. This is her special ability, called railgun. The strength of railgun can make a hole of two meters in diameter on a concrete wall.
+She had defeated criminals such as post office robberies and bank robberies in the city with her ability. And today, she decided to destroy a laboratory that is suspected to making some inhumane experiments on human body. Only her railgun can shoot it.
+The railgun with a coin cannot destroy the laboratory because of lack of power. Since she have found a powered-suit nearby, so she decided to use it as a projectile. However, in this case it is difficult to take sight properly because the suit is much bigger and heavier than coins. Therefore she only can shoot the suit with certain velocity vector from her current position. Depending on the position of the laboratory, her railgun may not hit it and become a firework.
+Therefore she asked cooperation to the strongest ESPer in the city. He can change direction of a moving object as one of uncountable application of his ESP. Let's consider a 2-dimensional plane where the laboratory is on the origin (0, 0). She shoots a projectile from P = (px, py) with velocity vector V = (vx, vy). His ESP makes a virtual wall of radius R (= 1.0) centered on the origin. When projectile collides with the wall, it is reflected so that incident angle will be equal to reflection angle.
+Range of railgun is limited to D, because air friction decreases velocity of projectile and heat may melts projectile completely. Under these conditions, please write a program that judges if the railgun hits the laboratory. Size of the laboratory and the suit is ignorablly small. After the railgun is shot, it is allowed to pass through P again.
+Input
+Input consists of several datasets.
+The first line of each dataset contains a real number D.
+Next line contains 4 real numbers, which means px, py, vx, vy, respectively.
+Input terminates when D = 0.
+Output
+For each dataset, if the railgun hits, output the distance it moved until hits. Otherwise output 'impossible' (without quotes).
+You can print any number of digits and answer with an error less than 1.0e-6 will be accepted. 
+Constraints
+Judge data never include dataset where the answer is (D - 1.0e-3) or bigger. 
+0.0001 ≤ |V| ≤ 0.9999
+0.0001 ≤ |P| ≤ 0.9999
+D ≤ 50
+Sample Input
+10.0
+0.5 0.0 -0.2 0.0
+1.0
+0.1 0.0 0.2 0.2
+0
+Output for the Sample Input
+0.50000000
+impossible

@@ -1,0 +1,3 @@
+Types: N: int, bridges: List[Tuple[int, int, int]]
+Ranges: 2 ≤ N ≤ 20, 1 ≤ ai, bi ≤ N, 1 ≤ ti ≤ 500
+Addtl Info: Number of data sets ≤ 100

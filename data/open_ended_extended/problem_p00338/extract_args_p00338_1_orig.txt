@@ -1,0 +1,4 @@
+def extract_arguments(fh):
+    N, C = map(int, fh.readline().strip().split())
+    commands = [fh.readline().strip() for _ in range(C)]
+    return N, C, commands

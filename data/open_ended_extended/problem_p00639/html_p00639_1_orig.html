@@ -1,0 +1,172 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p00639 - Generation 1</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p00639 - Generation 1</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>Problem C: Accelerated Railgun
+She catched the thrown coin that draws parabolic curve with her sparkling fingers. She is an ESPer. Yes, she is an electro-master who has the third strongest power among more than one million ESPers in the city. Being flicked by her thumb, the coin is accelerated by electromagnetic force and is shot as Fleming's right-hand rule. Even if she holds back the initial velocity of the coin exceeds three times of the speed of sound. The coin that is shot in such velocity is heated because of air friction and adiabatic compression. As a result coin melts and shines in orange. This is her special ability, called railgun. The strength of railgun can make a hole of two meters in diameter on a concrete wall.
+She had defeated criminals such as post office robberies and bank robberies in the city with her ability. And today, she decided to destroy a laboratory that is suspected to making some inhumane experiments on human body. Only her railgun can shoot it.
+The railgun with a coin cannot destroy the laboratory because of lack of power. Since she have found a powered-suit nearby, so she decided to use it as a projectile. However, in this case it is difficult to take sight properly because the suit is much bigger and heavier than coins. Therefore she only can shoot the suit with certain velocity vector from her current position. Depending on the position of the laboratory, her railgun may not hit it and become a firework.
+Therefore she asked cooperation to the strongest ESPer in the city. He can change direction of a moving object as one of uncountable application of his ESP. Let's consider a 2-dimensional plane where the laboratory is on the origin (0, 0). She shoots a projectile from P = (px, py) with velocity vector V = (vx, vy). His ESP makes a virtual wall of radius R (= 1.0) centered on the origin. When projectile collides with the wall, it is reflected so that incident angle will be equal to reflection angle.
+Range of railgun is limited to D, because air friction decreases velocity of projectile and heat may melts projectile completely. Under these conditions, please write a program that judges if the railgun hits the laboratory. Size of the laboratory and the suit is ignorablly small. After the railgun is shot, it is allowed to pass through P again.
+Input
+Input consists of several datasets.
+The first line of each dataset contains a real number D.
+Next line contains 4 real numbers, which means px, py, vx, vy, respectively.
+Input terminates when D = 0.
+Output
+For each dataset, if the railgun hits, output the distance it moved until hits. Otherwise output 'impossible' (without quotes).
+You can print any number of digits and answer with an error less than 1.0e-6 will be accepted. 
+Constraints
+Judge data never include dataset where the answer is (D - 1.0e-3) or bigger. 
+0.0001 ≤ |V| ≤ 0.9999
+0.0001 ≤ |P| ≤ 0.9999
+D ≤ 50
+Sample Input
+10.0
+0.5 0.0 -0.2 0.0
+1.0
+0.1 0.0 0.2 0.2
+0
+Output for the Sample Input
+0.50000000
+impossible
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An integer D (0 < D ≤ 50), representing some distance.
+A list of 4 real numbers [px, py, vx, vy], where each number is between 0.0001 and 0.9999.
+Input terminates when D = 0.
+
+### Example Input:
+
+```
+10.0
+0.5 0.0 -0.2 0.0
+1.0
+0.1 0.0 0.2 0.2
+0
+```
+
+### Function Signature:
+Write a function f(inputs) that takes in the input.
+def f(inputs: List[Tuple[float, List[float]]]):
+    '''
+    inputs: a list of tuples, where each tuple contains a float and a list of 4 floats
+    '''</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Sure! Here’s a Python function to generate test cases for the given competitive programming problem "Accelerated Railgun". This function generates random values for \(D\), \(px\), \(py\), \(vx\), and \(vy\) while adhering to the constraints specified in the problem statement.
+
+```python
+import random
+
+def generate_random_value(min_val, max_val, precision):
+    return round(random.uniform(min_val, max_val), precision)
+
+def tcgen():
+    test_cases = []
+    
+    while True:
+        # Probability of terminating input
+        if random.random() < 0.1:
+            test_cases.append("0")
+            break
+            
+        # Generate D
+        D = generate_random_value(0.0001, 50, 4)
+        
+        # Generate px, py
+        px = generate_random_value(0.0001, 0.9999, 4)
+        py = generate_random_value(0.0001, 0.9999, 4)
+        
+        # Generate vx, vy
+        vx = generate_random_value(0.0001, 0.9999, 4)
+        vy = generate_random_value(0.0001, 0.9999, 4)
+        
+        test_cases.append(f"{D}")
+        test_cases.append(f"{px} {py} {vx} {vy}")
+    
+    return "\n".join(test_cases)
+
+# Example usage:
+print(tcgen())
+```
+
+Explanation:
+1. `generate_random_value` function generates a random float between `min_val` and `max_val` with a specified precision.
+2. `tcgen` function constructs several test cases until it decides to terminate (randomly decided with a 10% probability for this example).
+3. For each test case:
+   - `D` is generated within the range [0.0001, 50].
+   - \(px\) and \(py\) are generated within the range [0.0001, 0.9999].
+   - \(vx\) and \(vy\) are generated within the range [0.0001, 0.9999].
+4. The test cases are collected in a list and then joined into a single string with newline characters separating each line.
+
+This function ensures that the generated test cases comply with the given constraints, and they are appropriate for use in testing the "Accelerated Railgun" problem.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    datasets = []
+    while True:
+        D = float(fh.readline().strip())
+        if D == 0:
+            break
+        px, py, vx, vy = map(float, fh.readline().strip().split())
+        datasets.append((D, (px, py, vx, vy)))
+    return datasets</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

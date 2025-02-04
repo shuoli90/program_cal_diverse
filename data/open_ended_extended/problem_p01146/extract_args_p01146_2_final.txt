@@ -1,0 +1,20 @@
+def extract_arguments(fh):
+    datasets = []
+    while True:
+        line = fh.readline().strip()
+        if line == "0 0 0 0 0 0":
+            break
+        N, M, L, K, A, H = map(int, line.split())
+        freezing_facilities = list(map(int, fh.readline().strip().split()))
+        roads = []
+        for _ in range(K):
+            X, Y, T = map(int, fh.readline().strip().split())
+            roads.append((X, Y, T))
+        datasets.append((N, M, L, K, A, H, freezing_facilities, roads))
+    return datasets
+
+# Example usage:
+# with open('input.txt', 'r') as fh:
+#     datasets = extract_arguments(fh)
+#     for dataset in datasets:
+#         f(*dataset)

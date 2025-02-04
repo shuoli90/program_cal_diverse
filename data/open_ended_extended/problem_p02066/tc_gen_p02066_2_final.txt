@@ -1,0 +1,54 @@
+Sure! Below is a Python function to generate test cases for the "G: Treasure Hunter" problem:
+
+```python
+import random
+
+def generate_test_case():
+    # Generate the number of piles (N) and budget (W)
+    N = random.randint(1, 100)
+    W = random.randint(1, 100000)
+
+    # Generate the value of treasures in each pile (p_i)
+    p = [random.randint(1, 1000000000) for _ in range(N)]
+
+    # Generate the road information
+    roads = []
+    for i in range(1, N):
+        u = random.randint(1, i)
+        v = i + 1
+        c = random.randint(1, 100000)
+        roads.append((u, v, c))
+
+    return N, W, p, roads
+
+def format_test_case(N, W, p, roads):
+    test_case = f"{N} {W}\n"
+    test_case += " ".join(map(str, p)) + "\n"
+    for u, v, c in roads:
+        test_case += f"{u} {v} {c}\n"
+    return test_case
+
+# Generate a test case
+N, W, p, roads = generate_test_case()
+test_case_str = format_test_case(N, W, p, roads)
+print(test_case_str)
+
+```
+
+### Explanation
+
+1. **Generating N and W**:
+   - `N` is randomly selected between 1 and 100.
+   - `W` is randomly selected between 1 and 100,000.
+
+2. **Generating treasure values**:
+   - Each pile's treasure value, `p_i`, is randomly selected between 1 and 1,000,000,000.
+
+3. **Generating roads**:
+   - We ensure that the roads form a connected graph by iterating from 1 to N-1 and connecting each pile `i+1` to a random previous pile `u` (1 to i).
+   - Each road's cost, `c_i`, is randomly selected between 1 and 100,000.
+
+4. **Formatting the test case**:
+   - The output is formatted as per the problem's input format, with each road's information on a new line.
+
+You can run this code to generate random test cases for the problem "G: Treasure Hunter". Each execution of the function will provide a different test case, ensuring a wide range of scenarios for testing.

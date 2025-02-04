@@ -1,0 +1,35 @@
+An integer M (1 ≤ M ≤ 100), representing some quantity.
+An integer N (1 ≤ N ≤ 100), representing some quantity.
+A list of M non-negative integers \(D\), where each integer \(D[i]\) represents some value between 0 and 10^4.
+N blocks follow:
+- Each block begins with an integer L, representing some quantity.
+- Each of the following L lines contains:
+  - An integer P, representing some quantity.
+  - An integer T, representing some value between 0 and 19999.
+  - A string A, with a length between 1 and 9, inclusive.
+
+The input is terminated by a line containing two zeros.
+
+### Example Input:
+
+```
+3 2
+1 2 10
+3
+0 3420 o
+1 4589 o
+2 4638 x
+3
+1 6577 SUZUMIYA
+2 7644 SUZUMIYA
+0 19979 YASUZUMI
+0 0
+```
+
+### Function Signature:
+Write a function f(inputs) that takes in the input as a list of tuples.
+def f(inputs: List[Tuple[int, int, List[int], List[Tuple[int, List[Tuple[int, int, str]]]]]]): 
+    ''' 
+    inputs: a list of tuples representing the input data
+    '''
+    

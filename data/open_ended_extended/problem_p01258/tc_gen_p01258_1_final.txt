@@ -1,0 +1,25 @@
+Certainly! Here is a test case generator for the provided "Memory Match" problem statement:
+
+```python
+import random
+
+def tcgen():
+    datasets = []
+    while True:
+        N = random.choice([2, 4, 6, 8, 10] + [i for i in range(12, 1001, 2)])
+        if N == 0:
+            break
+        datasets.append(N)
+    datasets.append(0)  # End of input indicator
+    return datasets
+
+# Example usage:
+if __name__ == "__main__":
+    test_cases = tcgen()
+    for case in test_cases:
+        print(case)
+```
+
+This generator creates multiple datasets by picking an even number \( N \) (ranging from 2 to 1000) randomly. It continues generating datasets until it generates a zero, which indicates the end of the input. This zero is appended at the end of the list of datasets to mark the termination of the input as per the problem statement.
+
+You can run the generator to produce test cases for the problem. The output will be a series of even numbers followed by a `0`, ensuring that the test cases are valid as per the problem's constraints.

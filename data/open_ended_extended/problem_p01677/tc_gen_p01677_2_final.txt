@@ -1,0 +1,56 @@
+Certainly! Here’s a test case generator for the problem statement provided. This generator will create multiple datasets based on the given constraints and randomly decide the values or whether a sample is broken.
+
+```python
+import random
+
+def generate_dataset():
+    N = random.randint(2, 1000)
+    # Generate the signal
+    signal = []
+    for i in range(1, N + 1):
+        if random.random() < 0.2:  # 20% chance to be a broken sample
+            signal.append('x')
+        else:
+            signal.append(random.randint(-10**9, 10**9))
+    
+    return N, signal
+
+def tcgen():
+    num_datasets = random.randint(1, 100)  # Number of datasets
+    datasets = []
+
+    for _ in range(num_datasets):
+        N, signal = generate_dataset()
+        datasets.append((N, signal))
+    
+    return datasets
+
+# To generate and print a test case
+if __name__ == "__main__":
+    datasets = tcgen()
+    for dataset in datasets:
+        N, signal = dataset
+        print(N)
+        print(" ".join(map(str, signal)))
+    print(0)  # End of input
+```
+
+### Explanation
+
+1. **Function `generate_dataset`**:
+    - Generates a single dataset.
+    - Randomly decides the number of samples \( N \) within the range [2, 1000].
+    - Constructs the audio signal with a 20% chance of each sample being broken (represented as 'x').
+    - Otherwise, assigns a random integer value between \(-10^9\) and \(10^9\).
+
+2. **Function `tcgen`**:
+    - Randomly decides the number of datasets within the range [1, 100].
+    - Calls `generate_dataset` to create each dataset.
+    - Collects all datasets and returns them.
+
+3. **Main Execution**:
+    - Generates the datasets.
+    - Prints each dataset in the required format.
+    - Ends the input with a single `0`.
+
+This generator ensures that all constraints are respected and provides a variety of test cases for robust testing.

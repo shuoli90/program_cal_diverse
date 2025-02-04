@@ -1,0 +1,3 @@
+Types: W: int, H: int, dungeon_map: List[List[str]]
+Ranges: 3 ≤ W, H ≤ 30, dungeon_map[i][j] in {'@', '<', 'a'-'z', 'A'-'Z', '#', '.'}
+Addtl Info: Each dungeon is surrounded by wall cells (‘#’), and has exactly one ‘@’ cell and one ‘<’ cell. Up to eight distinct uppercase labels for the rocks and eight distinct lowercase labels for the carpets.

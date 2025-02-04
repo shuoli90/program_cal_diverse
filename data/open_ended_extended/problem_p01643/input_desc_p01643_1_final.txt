@@ -1,0 +1,19 @@
+An integer \( n \) (2 ≤ \( n \) ≤ 8000, \( n \) is even), and an integer \( k \) (0 ≤ \( k \) ≤ min(\( n/2 \), 20)), followed by a list of integers \( a \) of size \( n \), where each integer \( a[i] \) (1 ≤ \( a[i] \) ≤ \( n \)) is unique and \( a[i] \neq i \).
+
+### Example Input:
+
+```
+8 0
+7 4 6 2 8 3 1 5
+```
+
+### Function Signature:
+Write a function f(n, k, a) that takes in the input.
+```python
+def f(n: int, k: int, a: List[int]):
+    '''
+    n: an integer
+    k: an integer
+    a: a list of integers
+    '''
+```

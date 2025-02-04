@@ -1,0 +1,72 @@
+Certainly! Below is a test case generator for the FizzBuzz problem as described in the problem statement. This generator will create random test cases within the constraints provided.
+
+```python
+import random
+
+def generate_fizzbuzz_statement(i):
+    if i % 3 == 0 and i % 5 == 0:
+        return "FizzBuzz"
+    elif i % 3 == 0:
+        return "Fizz"
+    elif i % 5 == 0:
+        return "Buzz"
+    else:
+        return str(i)
+
+def tcgen():
+    datasets = []
+    
+    while len(datasets) < 50:  # Generating up to 50 datasets
+        m = random.randint(2, 1000)  # Number of players (2 ≤ m ≤ 1000)
+        n = random.randint(1, 10000) # Number of statements (1 ≤ n ≤ 10000)
+        
+        statements = []
+        for i in range(1, n + 1):
+            correct_statement = generate_fizzbuzz_statement(i)
+            if random.random() < 0.1:  # 10% chance to introduce an error
+                options = ["Fizz", "Buzz", "FizzBuzz"]
+                if correct_statement in options:
+                    options.remove(correct_statement)
+                statements.append(random.choice(options + [str(i)]))
+            else:
+                statements.append(correct_statement)
+        
+        datasets.append((m, n, statements))
+    
+    return datasets
+
+def format_test_case(datasets):
+    formatted_data = []
+    for m, n, statements in datasets:
+        formatted_data.append(f"{m} {n}")
+        formatted_data.extend(statements)
+    formatted_data.append("0 0")
+    return "\n".join(formatted_data)
+
+if __name__ == "__main__":
+    datasets = tcgen()
+    formatted_test_cases = format_test_case(datasets)
+    print(formatted_test_cases)
+```
+
+### Explanation
+1. **Helper Function `generate_fizzbuzz_statement`:**
+   - This function generates the correct FizzBuzz statement for a given number `i`.
+
+2. **Test Case Generator `tcgen`:**
+   - Generates up to 50 datasets.
+   - For each dataset:
+     - Randomly selects the number of players `m` between 2 and 1000.
+     - Randomly selects the number of statements `n` between 1 and 10000.
+     - Generates the correct FizzBuzz sequence for numbers from 1 to `n`.
+     - Introduces a 10% chance to introduce an incorrect statement.
+   - Collects all the datasets in a list.
+
+3. **Test Case Formatter `format_test_case`:**
+   - Converts the list of datasets into a formatted string suitable for input to the FizzBuzz problem.
+   - Ensures the input ends with `0 0` to indicate the end of the input.
+
+4. **Main Block:**
+   - Calls the test case generator and formatter, then prints the formatted test cases.
+
+This script will produce randomized test cases within the problem constraints, making it suitable for thorough testing of a solution to the FizzBuzz problem.

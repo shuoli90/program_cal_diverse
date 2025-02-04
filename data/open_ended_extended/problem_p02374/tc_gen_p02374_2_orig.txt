@@ -1,0 +1,65 @@
+Sure, I can help you write a test case generator for the problem "Range Query on a Tree." Below is a Python function that generates random test cases based on the constraints provided in the problem statement.
+
+```python
+import random
+
+def generate_tree(n):
+    tree = []
+    nodes = list(range(1, n))
+    random.shuffle(nodes)
+
+    children = []
+    for parent in range(n):
+        k = random.randint(0, len(nodes))
+        c = sorted(nodes[:k])
+        nodes = nodes[k:]
+        children.append(c)
+        tree.append(f"{k} " + " ".join(map(str, c)))
+    
+    return tree
+
+def generate_queries(n, q):
+    queries = []
+    for _ in range(q):
+        query_type = random.randint(0, 1)
+        if query_type == 0:
+            v = random.randint(1, n-1)
+            w = random.randint(1, 10000)
+            queries.append(f"0 {v} {w}")
+        else:
+            u = random.randint(1, n-1)
+            queries.append(f"1 {u}")
+    return queries
+
+def tcgen():
+    n = random.randint(2, 100000)
+    tree = generate_tree(n)
+    q = random.randint(2, 200000)
+    queries = generate_queries(n, q)
+    
+    return n, tree, q, queries
+
+def print_tc(n, tree, q, queries):
+    print(n)
+    for line in tree:
+        print(line)
+    print(q)
+    for query in queries:
+        print(query)
+
+# Generate and print a test case
+n, tree, q, queries = tcgen()
+print_tc(n, tree, q, queries)
+```
+
+### Explanation:
+
+1. **generate_tree(n)**: This function generates a random tree with `n` nodes. Each node is assigned a random number of children from the remaining nodes, ensuring that the constraints `c_j < c_{j+1}` are satisfied by sorting the children list.
+
+2. **generate_queries(n, q)**: This function generates `q` random queries. Queries can be either of type `add(v, w)` or `getSum(u)`, where `v`, `u` are node IDs and `w` is a weight. The type of query is determined randomly.
+
+3. **tcgen()**: This function initializes the number of nodes `n`, generates the tree structure and queries, and returns them.
+
+4. **print_tc(n, tree, q, queries)**: This function prints the generated test case in the required format.
+
+You can run this code to generate and print a test case for the problem. The `tcgen()` function ensures that all constraints are adhered to, providing a variety of edge cases and typical cases for thorough testing.

@@ -1,0 +1,30 @@
+An integer L (4 ≤ L ≤ 10), representing the number of decimal digits.
+An integer H, the number of hints.
+A list of H tuples, where each tuple consists of:
+- A string TRY of length L, containing unique decimal digits.
+- An integer HIT (0 ≤ HIT ≤ L), representing the count of correct digits in the correct position.
+- An integer BLOW (0 ≤ BLOW ≤ L), representing the count of correct digits in the incorrect position.
+
+### Example Input:
+
+```
+6 4
+160348 0 4
+913286 2 3
+431289 3 1
+671283 3 3
+```
+
+### Function Signature:
+Write a function f(inputs) that takes in the input.
+
+def f(inputs: List[Tuple[int, int, List[Tuple[str, int, int]]]]):
+    '''
+    inputs: a list of tuples, each containing:
+        - an integer L
+        - an integer H
+        - a list of H tuples, each containing:
+            - a string TRY of length L
+            - an integer HIT
+            - an integer BLOW
+    '''

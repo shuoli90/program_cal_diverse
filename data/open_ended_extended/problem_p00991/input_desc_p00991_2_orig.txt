@@ -1,0 +1,24 @@
+An integer r (1 ≤ r ≤ 1,000), representing some quantity or size.
+An integer c (1 ≤ c ≤ 1,000), representing some quantity or size.
+An integer a1 (0 ≤ a1 < r), representing some coordinate.
+An integer a2 (0 ≤ a2 < c), representing some coordinate.
+An integer b1 (0 ≤ b1 < r), representing some coordinate.
+An integer b2 (0 ≤ b2 < c), representing some coordinate.
+
+### Example Input:
+
+```
+4 4 0 0 3 3
+```
+
+### Function Signature:
+Write a function f(r, c, a1, a2, b1, b2) that takes in the input. 
+def f(r: int, c: int, a1: int, a2: int, b1: int, b2: int): 
+    ''' 
+    r: an integer 
+    c: an integer
+    a1: an integer
+    a2: an integer
+    b1: an integer
+    b2: an integer
+    '''

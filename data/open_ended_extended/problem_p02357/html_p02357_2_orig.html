@@ -1,0 +1,143 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p02357 - Generation 2</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p02357 - Generation 2</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>
+Sliding Minimum Element
+  For a given array $a_1, a_2, a_3, ... , a_N$ of $N$ elements and an integer $L$, find the minimum of each possible sub-arrays with size $L$ and print them from the beginning. For example, for an array $\{1, 7, 7, 4, 8, 1, 6\}$ and $L = 3$, the possible sub-arrays with size $L = 3$ includes $\{1, 7, 7\}$, $\{7, 7, 4\}$, $\{7, 4, 8\}$, $\{4, 8, 1\}$, $\{8, 1, 6\}$ and the minimum of each sub-array is 1, 4, 4, 1, 1 respectively.
+Constraints
+ $1 \leq N \leq 10^6$ 
+ $1 \leq L \leq 10^6$
+ $1 \leq a_i \leq 10^9$
+ $L \leq N$ 
+Input
+The input is given in the following format.
+$N$ $L$
+$a_1$ $a_2$ ... $a_N$
+Output
+  Print a sequence of the minimum in a line. Print a space character between adjacent elements.
+Sample Input 1
+7 3
+1 7 7 4 8 1 6
+Sample Output 1
+1 4 4 1 1
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An integer N (1 ≤ N ≤ 10^6), representing some quantity or size.
+An integer L (1 ≤ L ≤ 10^6), also representing some quantity or size.
+A list of integers A of size N, where each integer is between 1 and 1e9.
+
+### Example Input:
+
+```
+7 3
+1 7 7 4 8 1 6
+```
+
+### Function Signature:
+Write a function f(N, L, A) that takes in the input.
+```python
+def f(N: int, L: int, A: List[int]):
+    '''
+    N: an integer
+    L: an integer
+    A: a list of integers
+    '''
+```</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Sure! Below is the test case generator for the given problem statement "Sliding Minimum Element":
+
+```python
+import random
+
+def tcgen():
+    # Generate N such that 1 <= N <= 10^6
+    N = random.randint(1, 10**6)
+    
+    # Generate L such that 1 <= L <= N (if N is 1, L must be 1)
+    L = random.randint(1, N)
+    
+    # Generate array A of size N with elements between 1 and 10^9
+    A = [random.randint(1, 10**9) for _ in range(N)]
+    
+    return N, L, A
+
+# Example usage
+N, L, A = tcgen()
+print(N, L)
+print(' '.join(map(str, A)))
+```
+
+### Explanation
+- **N**: Randomly generated integer between 1 and \(10^6\).
+- **L**: Randomly generated integer between 1 and \(N\).
+- **A**: List of \(N\) integers, each between 1 and \(10^9\).
+
+The function `tcgen()` generates a random test case for the problem which can be used for testing solutions. The values for \(N\), \(L\), and the list \(A\) are printed in the format specified by the problem statement. 
+
+This test case generator adheres to the constraints of the problem and ensures that the size of the sub-array \(L\) is always less than or equal to \(N\).</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    N, L = map(int, fh.readline().strip().split())
+    A = list(map(int, fh.readline().strip().split()))
+    return N, L, A</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

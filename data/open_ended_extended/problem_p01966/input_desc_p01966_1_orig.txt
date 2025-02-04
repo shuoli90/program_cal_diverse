@@ -1,0 +1,23 @@
+An integer N (2 ≤ N ≤ 10^5), representing some quantity or size.
+An integer Q (1 ≤ Q ≤ 10^5), representing the number of requests.
+Q lines follow, each consisting of three integers \(a_i\), \(b_i\), and \(p_i\):
+- \(a_i\) (1 ≤ \(a_i\) < \(b_i\) ≤ N), an integer representing a start point.
+- \(b_i\) (1 ≤ \(a_i\) < \(b_i\) ≤ N), an integer representing an end point.
+- \(p_i\) (1 ≤ \(p_i\) ≤ 10^9), an integer representing some quantity.
+
+### Example Input:
+
+```
+5 2
+1 4 1
+2 3 1
+```
+
+### Function Signature:
+Write a function f(N, Q, requests) that takes in the input.
+def f(N: int, Q: int, requests: List[Tuple[int, int, int]]):
+    '''
+    N: an integer
+    Q: an integer
+    requests: a list of tuples, each containing three integers
+    '''

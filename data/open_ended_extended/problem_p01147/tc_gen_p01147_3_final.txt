@@ -1,0 +1,66 @@
+Sure! Here is a test case generator for the problem "Decrypting the Princess's Code":
+
+```python
+import random
+import string
+
+def generate_word():
+    # Generate a random word with a length between 1 and 10
+    length = random.randint(1, 10)
+    return ''.join(random.choices(string.ascii_lowercase, k=length))
+
+def tcgen():
+    test_cases = []
+    
+    while True:
+        # Generate a random number N (1 ≤ N ≤ 10)
+        N = random.randint(1, 10)
+        
+        if N == 0:
+            break
+        
+        words = [generate_word() for _ in range(N)]
+        
+        test_cases.append((N, words))
+    
+    # Append the termination line
+    test_cases.append((0, []))
+    
+    return test_cases
+
+# Example of generating and printing test cases
+test_cases = tcgen()
+
+for case in test_cases:
+    N, words = case
+    print(N)
+    for word in words:
+        print(word)
+```
+
+### Explanation
+
+- **generate_word()**: This helper function generates a random word with a length between 1 and 10 characters, using lowercase letters only.
+- **tcgen()**: This function generates multiple test cases until a termination condition (N = 0) is reached.
+  - For each test case, it generates a random number \( N \) (1 ≤ \( N \) ≤ 10).
+  - It then generates \( N \) random words using the `generate_word()` function.
+  - The generated test cases are collected in a list.
+  - The termination condition (N = 0) is appended at the end of the list.
+- Finally, the test cases are printed in the specified format, where each test case is separated by a newline and the words are printed line by line.
+
+### Example Usage
+
+You can use this generator to create input files for testing or for feeding directly into your program to ensure it handles various edge cases and random inputs correctly.
+
+```python
+# Example of generating and printing test cases
+test_cases = tcgen()
+
+for case in test_cases:
+    N, words = case
+    print(N)
+    for word in words:
+        print(word)
+```
+
+This code will generate random test cases and print them in the format required by the problem "Decrypting the Princess's Code".

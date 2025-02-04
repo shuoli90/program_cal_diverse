@@ -1,0 +1,57 @@
+Sure! Let's create a test case generator for the given problem. The generator will produce random values for \(N\), \(K\), and the permutation \(P\) based on the problem constraints.
+
+Here's the code for the test case generator:
+
+```python
+import random
+
+def generate_permutation(N):
+    P = list(range(1, N + 1))
+    random.shuffle(P)
+    return P
+
+def tcgen():
+    N = random.randint(2, 500000)
+    K = random.randint(1, N - 1)
+    P = generate_permutation(N)
+    
+    return N, K, P
+
+def main():
+    N, K, P = tcgen()
+    print(N, K)
+    print(' '.join(map(str, P)))
+
+if __name__ == "__main__":
+    main()
+```
+
+### Explanation:
+1. **generate_permutation(N)**: This function generates a random permutation of the numbers from 1 to \(N\).
+2. **tcgen()**:
+    - It randomly selects a value for \(N\) within the range [2, 500000].
+    - It randomly selects a value for \(K\) within the range [1, \(N-1\)].
+    - It generates a random permutation \(P\) of size \(N\).
+3. **main()**:
+    - Calls the `tcgen()` function to get a random test case.
+    - Prints the values of \(N\), \(K\), and the permutation \(P\) in the required format.
+
+You can run this script to generate random test cases for the given problem. Each time you run it, it will produce a new test case. Here are a few example outputs:
+
+### Example Output:
+```
+4 2
+4 3 2 1
+```
+
+```
+5 1
+5 1 3 2 4
+```
+
+```
+8 3
+4 7 8 5 1 6 3 2
+```
+
+This way, you can generate an extensive set of test cases to test the robustness and correctness of your solution to the problem.

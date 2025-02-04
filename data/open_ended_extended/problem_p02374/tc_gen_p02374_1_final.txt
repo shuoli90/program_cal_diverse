@@ -1,0 +1,83 @@
+Certainly! Below is the test case generator for the "Range Query on a Tree" problem.
+
+```python
+import random
+
+def generate_tree(n):
+    """
+    Generates a random tree with `n` nodes. The tree is represented as an adjacency list where
+    each node has a unique ID from 0 to n-1 and the root is node 0.
+    """
+    from collections import defaultdict
+    import itertools
+
+    # Create a list of all nodes except the root
+    nodes = list(range(1, n))
+    random.shuffle(nodes)
+
+    # Initialize tree structure
+    tree = defaultdict(list)
+    
+    # Root node to be used for parent assignment
+    available_parents = [0]
+
+    # Assign each node a parent
+    for node in nodes:
+        parent = random.choice(available_parents)
+        tree[parent].append(node)
+        available_parents.append(node)
+
+    # Convert tree structure to the desired format
+    tree_list = []
+    for i in range(n):
+        children = sorted(tree[i])
+        tree_list.append(f"{len(children)} " + " ".join(map(str, children)))
+    
+    return tree_list
+
+def generate_queries(n, q):
+    """
+    Generates `q` random queries for a tree with `n` nodes.
+    """
+    queries = []
+    for _ in range(q):
+        query_type = random.choice([0, 1])
+        if query_type == 0:
+            v = random.randint(1, n-1)
+            w = random.randint(1, 10000)
+            queries.append(f"0 {v} {w}")
+        else:
+            u = random.randint(1, n-1)
+            queries.append(f"1 {u}")
+    return queries
+
+def tcgen():
+    # Number of nodes in the tree
+    n = random.randint(2, 100000)
+    
+    # Generate the tree structure
+    tree = generate_tree(n)
+    
+    # Number of queries
+    q = random.randint(2, 200000)
+    
+    # Generate the queries
+    queries = generate_queries(n, q)
+    
+    # Combine everything into the final format
+    output = [str(n)] + tree + [str(q)] + queries
+    return "\n".join(output)
+
+# Example usage:
+print(tcgen())
+```
+
+### Explanation:
+1. **`generate_tree(n)`**: This function generates a tree with `n` nodes. The tree is created using a list of nodes and assigning each node a parent randomly from the available parents. The tree is then converted into the required format.
+2. **`generate_queries(n, q)`**: This function generates `q` random queries for the tree. The queries are either of type `0 v w` or `1 u`, generated randomly.
+3. **`tcgen()`**: This function generates the complete test case in the required format by calling `generate_tree(n)` and `generate_queries(n, q)`, and then combines them into a single output string.
+
+### Notes:
+- The tree structure ensures that each node has a unique parent, and the parent-child relationships are maintained.
+- The queries are generated randomly and respect the constraints provided.
+- This generator can handle the upper limits of the problem constraints efficiently.

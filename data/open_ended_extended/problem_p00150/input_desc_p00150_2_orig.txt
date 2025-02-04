@@ -1,0 +1,22 @@
+An integer n (5 ≤ n ≤ 10000).
+
+The end of the input is indicated by a line containing one zero.
+
+### Example Input:
+
+```
+12
+100
+200
+300
+0
+```
+
+### Function Signature:
+Write a function f(inputs) that takes in the input.
+```python
+def f(inputs: List[int]):
+    ''' 
+    inputs: a list of integers 
+    '''
+```

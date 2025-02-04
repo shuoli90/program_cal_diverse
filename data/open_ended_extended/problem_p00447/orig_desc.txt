@@ -1,0 +1,54 @@
+Constellation
+Problem
+You are searching for a constellation from a photo of the night sky. The photo always includes exactly one figure of the same shape, orientation, and size as the constellation you are looking for. However, the photo may contain extra stars that are not part of the constellation. 
+For example, the constellation in Figure 1 is included in the photo in Figure 2 (indicated by the enclosed circle). When the coordinates of the stars in the given constellation are moved parallel to the x-axis by 2 and parallel to the y-axis by −3, they match the position in the photo. 
+Write a program that, given the shape of the constellation you are looking for and the positions of the stars in the photo, finds the amount by which to move the constellation in order to match the positions in the photo.
+Figure 1: Constellation you are looking forFigure 2: Photo of the night sky
+Input
+The input consists of multiple datasets. Each dataset is given in the following format.
+The first line of the input contains the number of stars m that make up the constellation you are looking for. The following m lines contain integers separated by a space that indicate the x and y coordinates of the m stars that make up the constellation you are looking for. The (m+2)-th line contains the number of stars n in the photo. The following n lines contain integers separated by a space that indicate the x and y coordinates of the n stars in the photo. 
+All m stars that make up the constellation are at different positions. All n stars in the photo are at different positions. 1 ≤ m ≤ 200, 1 ≤ n ≤ 1000. The x and y coordinates of the stars are all between 0 and 1000000. 
+If m is 0, it indicates the end of the input. There will be no more than 5 datasets. 
+Output
+For each dataset, write a single line of output consisting of two integers separated by a space. The first integer indicates the amount by which to move the constellation parallel to the x-axis, and the second integer indicates the amount by which to move the constellation parallel to the y-axis in order to match the positions in the photo. 
+Sample Input
+5
+8 5
+6 4
+4 3
+7 10
+0 10
+10
+10 5
+2 7
+9 7
+8 10
+10 2
+1 2
+8 1
+6 7
+6 0
+0 9
+5
+904207 809784
+845370 244806
+499091 59863
+638406 182509
+435076 362268
+10
+757559 866424
+114810 239537
+519926 989458
+461089 424480
+674361 448440
+81851 150384
+459107 795405
+299682 6700
+254125 362183
+50795 541942
+0
+Sample Output
+2 -3
+-384281 179674
+Sample Input 1 corresponds to the figure above. 
+The problem statement and test data are provided by the Information Olympiad Japan Committee.

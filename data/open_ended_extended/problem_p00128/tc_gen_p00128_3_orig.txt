@@ -1,0 +1,61 @@
+Sure, here's a test case generator for the given Soroban problem:
+
+```python
+import random
+
+def generate_soroban_digit(digit):
+    soroban_patterns = {
+        '0': ["**** ", "    *", "=====", "*****", "*****"],
+        '1': ["* ***", "    *", "=====", "*****", "*****"],
+        '2': ["** **", "    *", "=====", "*****", "*****"],
+        '3': ["*** *", "    *", "=====", "*****", "*****"],
+        '4': ["**** ", "    *", "=====", "**** ", "    *"],
+        '5': ["**** ", "*   *", "=====", "**** ", "*   *"],
+        '6': ["**** ", "**  *", "=====", "**** ", "**  *"],
+        '7': ["**** ", "*** *", "=====", "**** ", "*** *"],
+        '8': ["**** ", "**** ", "=====", "**** ", "**** "],
+        '9': ["**** ", "* ***", "=====", "**** ", "* ***"]
+    }
+    
+    return soroban_patterns[digit]
+
+def print_soroban_number(number):
+    beads = ["", "", "", "", ""]
+    for digit in number:
+        patterns = generate_soroban_digit(digit)
+        for i in range(5):
+            beads[i] += patterns[i] + " "
+    for row in beads:
+        print(row.strip())
+
+def tcgen():
+    num_cases = random.randint(1, 1024)
+    cases = []
+    
+    for _ in range(num_cases):
+        number = str(random.randint(0, 99999)).zfill(5)
+        cases.append(number)
+    
+    return cases
+
+def main():
+    test_cases = tcgen()
+    for case in test_cases:
+        print(case)
+    print("\n")
+    
+    for case in test_cases:
+        print_soroban_number(case)
+        print("\n")
+
+if __name__ == "__main__":
+    main()
+```
+
+Here's what the script does:
+1. **`generate_soroban_digit(digit)`**: This function takes a single digit as input and returns the soroban bead pattern for that digit.
+2. **`print_soroban_number(number)`**: This function takes a 5-digit number as input and constructs the soroban bead arrangement by concatenating the patterns of each digit.
+3. **`tcgen()`**: This function generates a random number of test cases (between 1 and 1024). Each test case is a random number with up to 5 digits.
+4. **`main()`**: This function generates the test cases and prints both the numbers and their corresponding soroban bead arrangements.
+
+This generator should help you create a variety of test cases for the Soroban problem.

@@ -1,0 +1,74 @@
+Sure, I can help you create a test case generator for the given problem statement. Here's the test case generator function for the "Mobile Computing" problem:
+
+```python
+import random
+
+def generate_random_weight():
+    return random.randint(1, 1000)
+
+def generate_random_room_width():
+    return round(random.uniform(0.00001, 10.0 - 0.00001), 8)
+
+def tcgen():
+    num_datasets = random.randint(1, 10)  # Number of datasets to be generated
+    datasets = []
+    
+    for _ in range(num_datasets):
+        r = generate_random_room_width()
+        s = random.randint(1, 6)  # Number of stones
+        weights = [generate_random_weight() for _ in range(s)]
+        datasets.append((r, s, weights))
+    
+    return datasets
+
+def format_test_case(datasets):
+    test_case_str = f"{len(datasets)}\n"
+    for r, s, weights in datasets:
+        test_case_str += f"{r}\n{s}\n"
+        test_case_str += "\n".join(map(str, weights)) + "\n"
+    return test_case_str.strip()
+
+# Generate test cases
+datasets = tcgen()
+test_case_str = format_test_case(datasets)
+print(test_case_str)
+```
+
+### Explanation:
+
+1. **`generate_random_weight` Function**: Generates a random weight for a stone between 1 and 1000.
+2. **`generate_random_room_width` Function**: Generates a random room width between very close to 0 and just below 10, formatted to 8 decimal places for precision.
+3. **`tcgen` Function**: 
+   - Generates a random number of datasets (between 1 and 10 for testing purposes; you can adjust this range as needed).
+   - For each dataset, it generates:
+     - `r`: A random room width.
+     - `s`: A random number of stones (between 1 and 6).
+     - `weights`: A list of random weights for the stones.
+   - Appends each dataset to a list of datasets.
+4. **`format_test_case` Function**: Formats the generated datasets into a string that matches the input format specified in the problem statement.
+
+### Sample Output:
+
+The `print(test_case_str)` will display the generated test cases in the format expected by the problem statement. Here's an example of what the output might look like:
+
+```
+3
+5.67890123
+4
+123
+456
+789
+101
+2.34567890
+5
+234
+567
+890
+123
+456
+9.87654321
+1
+999
+```
+
+This generator will create varied test cases to help you thoroughly test your solution to the problem.

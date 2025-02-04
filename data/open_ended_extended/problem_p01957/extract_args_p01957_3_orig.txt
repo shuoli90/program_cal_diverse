@@ -1,0 +1,8 @@
+def extract_arguments(fh):
+    S = fh.readline().strip()
+    N = S.count('[')
+    wins = {}
+    for _ in range(N):
+        contestant, wins_count = fh.readline().strip().split()
+        wins[contestant] = int(wins_count)
+    return S, wins

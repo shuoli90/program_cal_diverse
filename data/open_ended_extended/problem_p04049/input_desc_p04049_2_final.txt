@@ -1,0 +1,25 @@
+An integer N (2 ≤ N ≤ 2000), representing some quantity or size.
+An integer K (1 ≤ K ≤ N-1), representing another quantity or size.
+A list of pairs of integers [(A1, B1), (A2, B2), ..., (AN-1, BN-1)], where each integer in the pairs is between 1 and N.
+
+### Example Input:
+
+```
+6 2
+1 2
+3 2
+4 2
+1 6
+5 6
+```
+
+### Function Signature:
+Write a function f(N, K, edges) that takes in the input. 
+```python
+def f(N: int, K: int, edges: List[Tuple[int, int]]):
+    '''
+    N: an integer
+    K: an integer
+    edges: a list of pairs of integers
+    '''
+```

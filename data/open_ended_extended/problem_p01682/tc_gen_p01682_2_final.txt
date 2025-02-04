@@ -1,0 +1,62 @@
+Sure, I'll write a test case generator for the given problem statement. This generator will create various valid expressions in the Shipura language and ensure the inputs cover different edge cases and complexities.
+
+Here's the Python code for the test case generator:
+
+```python
+import random
+
+def generate_number():
+    return str(random.randint(0, 1_000_000_000))
+
+def generate_expr(depth=0):
+    if depth > 5 or random.random() < 0.3:
+        # Generate a terminal expression (number or S<expr>)
+        if random.random() < 0.5:
+            # Generate a number
+            return generate_number()
+        else:
+            # Generate a S<expr>
+            return f"S< {generate_expr(depth + 1)} >"
+    else:
+        # Generate a composite expression (expr >> term)
+        return f"{generate_expr(depth + 1)} >> {generate_term(depth + 1)}"
+
+def generate_term(depth=0):
+    if random.random() < 0.5:
+        return generate_number()
+    else:
+        return f"S< {generate_expr(depth + 1)} >"
+
+def tcgen():
+    test_cases = []
+    for _ in range(random.randint(1, 100)):
+        expr = generate_expr()
+        test_cases.append(expr)
+    
+    test_cases.append("#")
+    return test_cases
+
+# Example usage
+if __name__ == "__main__":
+    test_cases = tcgen()
+    for case in test_cases:
+        print(case)
+```
+
+### Explanation:
+
+1. **generate_number()**:
+   - Generates a random number between 0 and 1,000,000,000.
+
+2. **generate_expr(depth=0)**:
+   - Recursively generates an expression. If the recursion depth exceeds 5 or a random threshold is met, it generates a terminal expression (either a number or `S<expr>`).
+   - Otherwise, it generates a composite expression `expr >> term`.
+
+3. **generate_term(depth=0)**:
+   - Generates a terminal term (either a number or `S<expr>`).
+
+4. **tcgen()**:
+   - Calls `generate_expr()` to create expressions.
+   - Appends the terminating `#` to signal the end of the input.
+
+This generator creates a diverse set of test cases of varying complexity, ensuring that the expressions are valid according to the Shipura language syntax.

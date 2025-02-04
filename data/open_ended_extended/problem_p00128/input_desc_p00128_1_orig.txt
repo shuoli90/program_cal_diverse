@@ -1,0 +1,19 @@
+Canonicalized Input Description:
+
+Multiple test cases are given.
+Each test case consists of a single line containing a number (integer) of up to 5 digits.
+The number of test cases does not exceed 1024.
+
+### Example Input:
+
+```
+2006
+1111
+```
+
+### Function Signature:
+Write a function f(inputs) that takes in the input.
+def f(inputs: List[str]):
+    '''
+    inputs: a list of strings
+    '''

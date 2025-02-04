@@ -1,0 +1,27 @@
+Sure, I can help you write a test case generator for the provided problem statement. Given the constraints, especially the very large bounds for `n` and `m`, our generator will produce values within these bounds, but we should be mindful of the potential computational challenges involved in generating very large numbers.
+
+Here's a Python function to generate test cases for the problem statement "Ebi-chan and Integer Sequences":
+
+```python
+import random
+
+def tcgen():
+    # Define the modulo constant
+    MOD = 10**9 + 7
+    
+    # Generate a random value for n within the specified bounds
+    n = random.randint(1, 10**15)
+    
+    # Generate a random value for m within the specified bounds
+    m = random.randint(0, 10**15)
+    
+    return n, m
+
+# Example usage of the test case generator
+n, m = tcgen()
+print(f"{n} {m}")
+```
+
+This function will generate a random pair `(n, m)` where `1 ≤ n ≤ 10^15` and `0 ≤ m ≤ 10^15`. Note that due to the large range of possible values, the integers generated can be very large, and the output may not fit in standard 32-bit integers.
+
+Please keep in mind that handling such large numbers might require efficient algorithms and data structures, especially given the constraints of competitive programming environments.

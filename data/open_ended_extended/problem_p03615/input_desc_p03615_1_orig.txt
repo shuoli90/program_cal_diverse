@@ -1,0 +1,20 @@
+An integer N (1 ≤ N ≤ 200), representing some quantity or size.
+A list of N tuples, where each tuple contains two integers (x_i, y_i) with 0 ≤ x_i, y_i < 10^4 and x_i and y_i are distinct for different tuples.
+
+### Example Input:
+
+```
+4
+0 0
+0 1
+1 0
+1 1
+```
+
+### Function Signature:
+Write a function f(N, points) that takes in the input.
+def f(N: int, points: List[Tuple[int, int]]):
+    '''
+    N: an integer
+    points: a list of tuples, each containing two integers
+    '''

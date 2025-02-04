@@ -1,0 +1,43 @@
+Certainly! Below is a test case generator for the given problem statement. This generator will create random test cases based on the constraints provided.
+
+```python
+import random
+
+def tcgen():
+    Q = random.randint(1, 100)
+    queries = []
+    
+    for _ in range(Q):
+        A_i = random.randint(0, 10**9)
+        M_i = random.randint(1, 10**9)
+        queries.append((A_i, M_i))
+    
+    return Q, queries
+
+def print_test_case(Q, queries):
+    print(Q)
+    for A_i, M_i in queries:
+        print(A_i, M_i)
+
+# Example usage:
+if __name__ == "__main__":
+    Q, queries = tcgen()
+    print_test_case(Q, queries)
+```
+
+The `tcgen` function generates a random number of queries \(Q\) (between 1 and 100). For each query, it picks random values for \(A_i\) (between 0 and \(10^9\)) and \(M_i\) (between 1 and \(10^9\)). The `print_test_case` function prints the generated test case in the required format.
+
+You can run the script to generate and print a random test case. Here is an example of how the generated output might look:
+
+```plaintext
+7
+12345678 98765432
+0 1
+999999999 1000000000
+54321 1234567
+10 7
+177 168
+2028 88772
+```
+
+This output corresponds to 7 queries with the respective pairs of \(A_i\) and \(M_i\).

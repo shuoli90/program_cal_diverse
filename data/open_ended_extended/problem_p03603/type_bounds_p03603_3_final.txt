@@ -1,0 +1,11 @@
+Types: 
+- N: int
+- P: List[int]
+- X: List[int]
+
+Ranges: 
+- 1 ≤ N ≤ 1,000
+- 1 ≤ P_i ≤ i - 1 (for 2 ≤ i ≤ N)
+- 0 ≤ X_i ≤ 5,000
+
+Addtl Info: None

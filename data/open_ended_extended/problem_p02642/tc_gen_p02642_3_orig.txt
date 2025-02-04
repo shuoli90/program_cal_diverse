@@ -1,0 +1,29 @@
+Sure! Let's create a test case generator for the problem statement provided. This generator will create random test cases adhering to the given constraints.
+
+Here is the test case generator function:
+
+```python
+import random
+
+def tcgen():
+    # Generate a random integer N (1 ≤ N ≤ 2 * 10^5)
+    N = random.randint(1, 2 * 10**5)
+    
+    # Generate a list of N integers where each integer A[i] (1 ≤ A[i] ≤ 10^6)
+    A = [random.randint(1, 10**6) for _ in range(N)]
+    
+    return N, A
+
+# Function to print the test case in the required format
+def print_test_case():
+    N, A = tcgen()
+    print(N)
+    print(" ".join(map(str, A)))
+
+# Example usage
+print_test_case()
+```
+
+This function `tcgen` generates a random integer `N` within the specified range and a list of `N` integers where each integer falls within the specified range. The `print_test_case` function then formats and prints the generated test case in the required format.
+
+You can run the `print_test_case` function to generate and print a random test case. Each call to this function will produce a new test case that adheres to the problem constraints.

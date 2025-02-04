@@ -1,0 +1,59 @@
+Sure! Let's write a test case generator for the given problem statement. The generator will produce multiple datasets, each containing a line of text that may include the word "Hoshino", which needs to be replaced with "Hoshina".
+
+Here's the test case generator code for the given problem:
+
+```python
+import random
+import string
+
+def generate_random_text(length):
+    """Generates a random string of the specified length."""
+    parts = []
+    while length > 0:
+        word_length = random.randint(1, min(10, length))
+        word = ''.join(random.choices(string.ascii_letters + ' ', k=word_length))
+        parts.append(word)
+        length -= word_length
+    return ''.join(parts).strip()
+
+def tcgen():
+    # Number of datasets
+    n = random.randint(1, 10)
+    
+    datasets = []
+    for _ in range(n):
+        # Decide if "Hoshino" should be included in the text
+        include_hoshino = random.choice([True, False])
+        
+        if include_hoshino:
+            length = random.randint(1, 1000 - len("Hoshino"))
+            position = random.randint(0, length)
+            text = generate_random_text(position) + "Hoshino" + generate_random_text(length - position)
+        else:
+            length = random.randint(1, 1000)
+            text = generate_random_text(length)
+        
+        datasets.append(text)
+    
+    return n, datasets
+
+# Example usage
+if __name__ == "__main__":
+    n, datasets = tcgen()
+    print(n)
+    for text in datasets:
+        print(text)
+```
+
+### Explanation:
+
+- `generate_random_text(length)`: This helper function generates a random string of the specified length using letters and spaces. It breaks the text into words of random lengths to simulate more realistic sentences.
+- `tcgen()`: This function generates the test cases:
+  - It first selects a random number `n` (1 to 10) representing the number of datasets.
+  - For each dataset, it decides randomly whether to include the word "Hoshino".
+  - If "Hoshino" is included, it constructs a string of random text with "Hoshino" inserted at a random position.
+  - If "Hoshino" is not included, it generates a random text of up to 1000 characters.
+  - The generated text is appended to the list of datasets.
+- Finally, it returns the number of datasets and the list of datasets.
+
+You can run this script to generate test cases for the problem statement. The output will be the number of datasets followed by the text for each dataset. Use these test cases to test your solution to the problem.

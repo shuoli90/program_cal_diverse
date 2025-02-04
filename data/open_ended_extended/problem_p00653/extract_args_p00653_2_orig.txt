@@ -1,0 +1,16 @@
+def extract_arguments(fh):
+    datasets = []
+    while True:
+        line = fh.readline().strip()
+        if not line:
+            break
+        r, c, q = map(int, line.split())
+        grid = []
+        for _ in range(r):
+            grid.append(list(map(int, fh.readline().strip().split())))
+        queries = []
+        for _ in range(q):
+            r1, c1, r2, c2 = map(int, fh.readline().strip().split())
+            queries.append((r1, c1, r2, c2))
+        datasets.append((r, c, q, grid, queries))
+    return datasets

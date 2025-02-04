@@ -1,0 +1,28 @@
+An integer \(N\) (1 ≤ \(N\) ≤ 100), representing some quantity or size.  
+An integer \(M\) (1 ≤ \(M\) ≤ 100), representing some quantity or size.  
+A list of \(N\) tuples, where each tuple contains three integers (x, y, v), with 0 ≤ x, y ≤ 10000 and 1 ≤ v ≤ 100.  
+A list of \(M\) tuples, where each tuple contains two integers (x', y'), with 0 ≤ x', y' ≤ 10000.
+
+### Example Input:
+
+```
+2 2
+10 20 1
+0 10 1
+0 10
+10 0
+0 0
+```
+
+### Function Signature:
+Write a function `f(inputs)` that takes in the input.
+```python
+def f(inputs: List[Tuple[int, int, List[Tuple[int, int, int]], List[Tuple[int, int]]]]):
+    '''
+    inputs: a list of tuples, each containing:
+        - an integer N
+        - an integer M
+        - a list of N tuples (x, y, v)
+        - a list of M tuples (x', y')
+    '''
+```

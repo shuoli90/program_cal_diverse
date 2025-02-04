@@ -1,0 +1,73 @@
+Sure, I can help you write a test case generator for the given problem statement. Here is a Python function that generates random test cases for the "Analyzing Login/Logout Records" problem:
+
+```python
+import random
+
+def generate_time():
+    # Generating a random time between 540 (9:00 AM) and 1260 (9:00 PM)
+    return random.randint(540, 1260)
+
+def generate_record(N, M):
+    t = generate_time()
+    n = random.randint(1, N)
+    m = random.randint(1, M)
+    s = random.choice([0, 1])
+    return (t, n, m, s)
+
+def generate_query(M):
+    ts = generate_time()
+    te = random.randint(ts + 1, 1260)  # Ensure te is greater than ts
+    m = random.randint(1, M)
+    return (ts, te, m)
+
+def tcgen():
+    datasets = []
+    
+    number_of_datasets = random.randint(1, 10)
+    
+    for _ in range(number_of_datasets):
+        N = random.randint(1, 1000)  # Number of PCs
+        M = random.randint(1, 10000) # Number of students
+        r = random.randint(2, 1000)  # Number of records
+        q = random.randint(1, 50)    # Number of queries
+        
+        records = []
+        for _ in range(r):
+            records.append(generate_record(N, M))
+        
+        queries = []
+        for _ in range(q):
+            queries.append(generate_query(M))
+        
+        datasets.append((N, M, r, records, q, queries))
+    
+    return datasets
+
+def print_test_case(datasets):
+    for dataset in datasets:
+        N, M, r, records, q, queries = dataset
+        print(f"{N} {M}")
+        print(r)
+        for record in records:
+            print(f"{record[0]} {record[1]} {record[2]} {record[3]}")
+        print(q)
+        for query in queries:
+            print(f"{query[0]} {query[1]} {query[2]}")
+    print("0 0")
+
+# Generate and print a test case
+datasets = tcgen()
+print_test_case(datasets)
+```
+
+This test case generator does the following:
+1. Randomly generates the number of datasets.
+2. For each dataset, it randomly generates:
+   - The number of PCs (N).
+   - The number of students (M).
+   - The number of records (r).
+   - The number of queries (q).
+3. Generates random records ensuring that the times are within the specified range and that the records are in ascending order of time.
+4. Generates random queries within the specified time range.
+
+Finally, it prints the generated test cases in the required format. You can modify the parameters and constraints as needed to suit your testing purposes.

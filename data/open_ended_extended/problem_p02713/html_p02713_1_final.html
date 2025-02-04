@@ -1,0 +1,134 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p02713 - Generation 1</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p02713 - Generation 1</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>
+Score : 300 points
+Problem StatementFind \displaystyle{\sum_{a=1}^{K}\sum_{b=1}^{K}\sum_{c=1}^{K} \gcd(a,b,c)}.
+Here \gcd(a,b,c) denotes the greatest common divisor of a, b, and c.
+Constraints
+1 \leq K \leq 200
+K is an integer.
+InputInput is given from Standard Input in the following format:
+K
+OutputPrint the value of \displaystyle{\sum_{a=1}^{K}\sum_{b=1}^{K}\sum_{c=1}^{K} \gcd(a,b,c)}.
+Sample Input 12
+Sample Output 19
+\gcd(1,1,1)+\gcd(1,1,2)+\gcd(1,2,1)+\gcd(1,2,2)
++\gcd(2,1,1)+\gcd(2,1,2)+\gcd(2,2,1)+\gcd(2,2,2)
+=1+1+1+1+1+1+1+2=9
+Thus, the answer is 9.
+Sample Input 2200
+Sample Output 210813692
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An integer K (1 ≤ K ≤ 200).
+
+### Example Input:
+
+```
+12
+```
+
+### Function Signature:
+Write a function f(K) that takes in the input.
+def f(K: int):
+    '''
+    K: an integer
+    '''</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Here's a test case generator for the given problem statement:
+
+```python
+import random
+
+def tcgen():
+    # Generate a random integer K within the given constraints
+    K = random.randint(1, 200)
+    
+    return K
+
+# Example usage
+if __name__ == "__main__":
+    # Generate a test case
+    K = tcgen()
+    
+    # Print the test case
+    print(K)
+```
+
+This generator will produce a random integer \( K \) in the range from 1 to 200, as required by the problem constraints. You can then use this test case to run your solution and verify its correctness.
+
+To explain it step by step:
+
+1. **Importing the `random` module:** This is necessary to generate random numbers.
+2. **Defining the `tcgen` function:** This function will generate a single random integer \( K \) within the range [1, 200].
+3. **Using `random.randint(1, 200)` to generate the random integer \( K \):** This method ensures that \( K \) will always be within the specified constraints.
+4. **Returning \( K \):** The function returns the generated \( K \).
+5. **Usage example:** This is a simple example of how to use the `tcgen` function to generate and print a test case.
+
+You can execute the provided code snippet to generate and print random test cases for your problem.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    K = int(fh.readline().strip())
+    return K</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

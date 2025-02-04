@@ -1,0 +1,26 @@
+Sure! Here's a test case generator for the given problem statement:
+
+```python
+import random
+import string
+
+def generate_string(length):
+    return ''.join(random.choices(string.ascii_lowercase, k=length))
+
+def tcgen():
+    # Length of the strings (1 ≤ |S| ≤ 2 × 10^5)
+    length = random.randint(1, 200000)
+    
+    # Generate random strings S and T of the same length
+    S = generate_string(length)
+    T = generate_string(length)
+    
+    return S, T
+
+# Example usage
+S, T = tcgen()
+print(S)
+print(T)
+```
+
+This generator creates random strings `S` and `T` of the same length, ensuring that they fit within the constraints of the problem. You can use this in your competitive programming environment to generate test cases for the given problem.

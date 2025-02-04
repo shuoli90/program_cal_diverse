@@ -1,0 +1,3 @@
+Types: D: int, L: int
+Ranges: 1 ≤ D ≤ 10000, 2 ≤ L ≤ 10000
+Addtl Info: None

@@ -1,0 +1,20 @@
+An integer x (0 < x < 100), representing some percentage rate before a change.
+An integer y (0 < y < 100), representing some percentage rate after a change.
+An integer s (10 < s < 1000), representing some total amount before the change.
+The end of the input is specified by three zeros separated by a space.
+
+### Example Input:
+
+```
+5 8 105
+8 5 105
+1 2 24
+0 0 0
+```
+
+### Function Signature:
+Write a function f(inputs) that takes in the input as a list of tuples.
+def f(inputs: List[Tuple[int, int, int]]):
+    '''
+    inputs: a list of tuples where each tuple contains three integers
+    '''

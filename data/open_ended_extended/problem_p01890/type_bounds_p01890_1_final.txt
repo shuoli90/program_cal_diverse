@@ -1,0 +1,5 @@
+Types: N: int, g: List[int], a: List[int], b: List[int], d: List[int]
+
+Ranges: 1 ≤ N ≤ 100,000, 1 ≤ g[i] ≤ 10,000, 1 ≤ a[i], b[i] ≤ N, a[i] ≠ b[i], 1 ≤ d[i] ≤ 10,000
+
+Addtl Info: None

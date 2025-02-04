@@ -1,0 +1,20 @@
+An integer N (1 ≤ N ≤ 52), representing some quantity or size.
+A string S1 of length N, consisting of lowercase and uppercase English letters.
+A string S2 of length N, consisting of lowercase and uppercase English letters.
+
+### Example Input:
+
+```
+3
+aab
+ccb
+```
+
+### Function Signature:
+Write a function f(N, S1, S2) that takes in the input.
+def f(N: int, S1: str, S2: str):
+    '''
+    N: an integer
+    S1: a string
+    S2: a string
+    '''

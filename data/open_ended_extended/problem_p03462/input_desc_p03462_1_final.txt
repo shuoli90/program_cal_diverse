@@ -1,0 +1,18 @@
+An integer N (1 ≤ N ≤ 70), representing some quantity or size.
+An integer K (1 ≤ K ≤ 70), representing some quantity or size.
+A string s of length K, consisting of characters 'r' and 'b'.
+
+### Example Input:
+```
+12 2
+rb
+```
+
+### Function Signature:
+Write a function f(N, K, s) that takes in the input.
+def f(N: int, K: int, s: str):
+    '''
+    N: an integer
+    K: an integer
+    s: a string
+    '''

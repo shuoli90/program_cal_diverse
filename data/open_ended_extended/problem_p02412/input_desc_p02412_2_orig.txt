@@ -1,0 +1,17 @@
+An integer \( n \) (3 ≤ n ≤ 100), representing some quantity or size.
+An integer \( x \) (0 ≤ x ≤ 300), representing another quantity.
+
+### Example Input:
+```
+5 9
+0 0
+```
+
+### Function Signature:
+Write a function `f(inputs)` that takes in the input.
+```python
+def f(inputs: List[Tuple[int, int]]):
+    '''
+    inputs: a list of tuples where each tuple contains two integers
+    '''
+```

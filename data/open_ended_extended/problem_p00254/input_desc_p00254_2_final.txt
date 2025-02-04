@@ -1,0 +1,17 @@
+An integer N (1 ≤ N ≤ 9999), representing some quantity or size. If N < 1000, the upper digits are filled with 0s.
+
+### Example Input:
+
+```
+6174
+2012
+3333
+0000
+```
+
+### Function Signature:
+Write a function f(inputs) that takes in the input. 
+def f(inputs: List[int]): 
+    ''' 
+    inputs: a list of integers
+    '''

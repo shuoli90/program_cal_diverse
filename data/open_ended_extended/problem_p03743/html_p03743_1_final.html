@@ -1,0 +1,190 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p03743 - Generation 1</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p03743 - Generation 1</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>
+Score : 900 points
+Problem StatementAlice lives on a line. Today, she will travel to some place in a mysterious vehicle.
+Initially, the distance between Alice and her destination is D. When she input a number x to the vehicle, it will travel in the direction of the destination by a distance of x if this move would shorten the distance between the vehicle and the destination, and it will stay at its position otherwise. Note that the vehicle may go past the destination when the distance between the vehicle and the destination is less than x.
+Alice made a list of N numbers. The i-th number in this list is d_i. She will insert these numbers to the vehicle one by one.
+However, a mischievous witch appeared. She is thinking of rewriting one number in the list so that Alice will not reach the destination after N moves.
+She has Q plans to do this, as follows:
+Rewrite only the q_i-th number in the list with some integer so that Alice will not reach the destination.
+Write a program to determine whether each plan is feasible.
+Constraints
+1≤ N ≤ 5*10^5
+1≤ Q ≤ 5*10^5
+1≤ D ≤ 10^9
+1≤ d_i ≤ 10^9(1≤i≤N)
+1≤ q_i ≤ N(1≤i≤Q)
+D and each d_i are integers.
+InputInput is given from Standard Input in the following format:
+N D
+d_1 d_2 ... d_N
+Q
+q_1 q_2 ... q_Q
+OutputPrint Q lines. The i-th line should contain YES if the i-th plan is feasible, and NO otherwise.
+Sample Input 14 10
+3 4 3 3
+2
+4 3
+Sample Output 1NO
+YES
+For the first plan, Alice will already arrive at the destination by the first three moves, and therefore the answer is NO.
+For the second plan, rewriting the third number in the list with 5 will prevent Alice from reaching the destination as shown in the following figure, and thus the answer is YES.
+Sample Input 25 9
+4 4 2 3 2
+5
+1 4 2 3 5
+Sample Output 2YES
+YES
+YES
+YES
+YES
+Alice will not reach the destination as it is, and therefore all the plans are feasible.
+Sample Input 36 15
+4 3 5 4 2 1
+6
+1 2 3 4 5 6
+Sample Output 3NO
+NO
+YES
+NO
+NO
+YES
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>
+An integer N (1 ≤ N ≤ 5 * 10^5), representing some quantity or size.
+An integer D (1 ≤ D ≤ 10^9), representing some quantity or size.
+A list of N integers, where each integer is between 1 and 10^9.
+An integer Q (1 ≤ Q ≤ 5 * 10^5), representing some quantity or size.
+A list of Q integers, where each integer is between 1 and N.
+
+### Example Input:
+
+```
+4 10
+3 4 3 3
+2
+4 3
+```
+
+### Function Signature:
+Write a function f(N, D, A, Q, B) that takes in the input.
+def f(N: int, D: int, A: List[int], Q: int, B: List[int]):
+    '''
+    N: an integer
+    D: an integer
+    A: a list of integers
+    Q: an integer
+    B: a list of integers
+    '''
+</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>To generate test cases for the given problem, we'll need to simulate the inputs based on the constraints provided. Here is a Python function to generate test cases for the problem statement described:
+
+```python
+import random
+
+def tcgen():
+    # Generate N and D
+    N = random.randint(1, 5 * 10**5)
+    D = random.randint(1, 10**9)
+    
+    # Generate the list of distances d_i
+    d = [random.randint(1, 10**9) for _ in range(N)]
+    
+    # Generate Q
+    Q = random.randint(1, 5 * 10**5)
+    
+    # Generate the list of indices q_i
+    q = [random.randint(1, N) for _ in range(Q)]
+    
+    return N, D, d, Q, q
+
+# Example usage:
+N, D, d, Q, q = tcgen()
+
+# Printing the generated test case in the required format
+print(N, D)
+print(" ".join(map(str, d)))
+print(Q)
+print(" ".join(map(str, q)))
+```
+
+### Explanation:
+1. **N**: Random integer between 1 and 500,000 (inclusive).
+2. **D**: Random integer between 1 and 1,000,000,000 (inclusive).
+3. **d**: List of N random integers, each between 1 and 1,000,000,000 (inclusive), representing the distances Alice inputs to the vehicle.
+4. **Q**: Random integer between 1 and 500,000 (inclusive).
+5. **q**: List of Q random integers, each between 1 and N (inclusive), representing the indices where the witch might rewrite a number.
+
+This function generates a test case according to the constraints provided in the problem statement. The values are printed in the format that matches the problem's input specification.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    N, D = map(int, fh.readline().strip().split())
+    d = list(map(int, fh.readline().strip().split()))
+    Q = int(fh.readline().strip())
+    q = list(map(int, fh.readline().strip().split()))
+    return N, D, d, Q, q</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

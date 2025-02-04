@@ -1,0 +1,40 @@
+Sure! Below is the test case generator for the given problem statement:
+
+```python
+import random
+
+def tcgen():
+    # Generate N
+    N = random.randint(1, 10 ** 5)
+    
+    # Generate 3N integers, each in the range [1, 10^9]
+    a = [random.randint(1, 10 ** 9) for _ in range(3 * N)]
+    
+    return N, a
+
+# Example of using the test case generator
+N, a = tcgen()
+print(N)
+print(" ".join(map(str, a)))
+```
+
+### Explanation:
+
+1. **Generating \(N\)**:
+   - We generate \(N\) which is an integer in the range \([1, 10^5]\) as per the constraints.
+
+2. **Generating the strengths \(a_i\)**:
+   - We generate \(3N\) integers, each in the range \([1, 10^9]\) because there are \(3N\) participants.
+
+3. **Return values**:
+   - We return \(N\) and the list of strengths \(a\).
+
+### Example usage:
+
+Running the `tcgen` function will produce random test cases. For instance:
+```plaintext
+N
+a_1 a_2 a_3 ... a_{3N}
+```
+
+This generator will help you create a variety of test cases to test the robustness and efficiency of your solution to the problem.

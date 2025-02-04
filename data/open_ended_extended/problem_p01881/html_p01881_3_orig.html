@@ -1,0 +1,234 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p01881 - Generation 3</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p01881 - Generation 3</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>
+Help the Princess!
+The people of a certain kingdom make a revolution against the bad government of the princess. The revolutionary army invaded the royal palace in which the princess lives. The soldiers of the army are exploring the palace to catch the princess. Your job is writing a program to decide that the princess can escape from the royal palace or not.
+ For simplicity, the ground of the palace is a rectangle divided into a grid. There are two kinds of cells in the grid: one is a cell that soldiers and the princess can enter, the other is a cell that soldiers or the princess cannot enter. We call the former an empty cell, the latter a wall. The princess and soldiers are in different empty cells at the beginning. There is only one escape hatch in the grid. If the princess arrives the hatch, then the princess can escape from the palace. There are more than or equal to zero soldiers in the palace.
+The princess and all soldiers take an action at the same time in each unit time. In other words, the princess and soldiers must decide their action without knowing a next action of the other people. In each unit time, the princess and soldiers can move to a horizontally or vertically adjacent cell, or stay at the current cell. Furthermore the princess and soldiers cannot move out of the ground of the palace. If the princess and one or more soldiers exist in the same cell after their move, then the princess will be caught. It is guaranteed that the princess can reach the escape hatch via only empty cells if all soldiers are removed from the palace.
+If there is a route for the princess such that soldiers cannot catch the princess even if soldiers make any moves, then the princess can escape the soldiers. Note that if the princess and a soldier arrive the escape hatch at the same time, the princess will be caught. Can the princess escape from the palace?
+Input
+Each dataset is formatted as follows.
+$H$ $W$
+$map_1$
+$map_2$
+...
+$map_H$
+The first line of a dataset contains two positive integers $H$ and $W$ delimited by a space, where $H$ is the height of the grid and $W$ is the width of the grid ($2 \leq H, W \leq 200$).
+The $i$-th line of the subsequent $H$ lines gives a string $map_i$, which represents situation in the ground of palace.
+$map_i$ is a string of length $W$, and the $j$-th character of $map_i$ represents the state of the cell of the $i$-th row and the $j$-th column.
+'@', '\$', '%', '.', and '#' represent the princess, a soldier, the escape hatch, an empty cell, and a wall, respectively. It is guaranteed that there exists only one '@', only one '%', and more than or equal to zero '\$' in the grid.
+Output
+Output a line containing a word "Yes", if the princess can escape from the palace. Otherwise, output "No".
+Sample Input 1
+2 4
+%.@\$
+..\$\$
+Output for the Sample Input 1
+Yes
+Sample Input 2
+3 4
+.%..
+.##.
+.@\$.
+Output for the Sample Input 2
+Yes
+Sample Input 3
+2 3
+%\$@
+###
+Output for the Sample Input 3
+No
+Sample Input 4
+2 3
+@#\$
+.%.
+Output for the Sample Input 4
+No
+Sample Input 5
+2 2
+@%
+..
+Output for the Sample Input 5
+Yes
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An integer H (2 ≤ H ≤ 200), representing some dimension.
+An integer W (2 ≤ W ≤ 200), representing some dimension.
+A list of H strings, each of length W, consisting of characters from the set {'@', '$', '%', '.', '#'}. The list represents a grid of cells.
+
+### Example Input:
+
+```
+2 4
+%.@$
+..$$
+```
+
+### Function Signature:
+Write a function f(H, W, grid) that takes in the input. 
+def f(H: int, W: int, grid: List[str]): 
+    ''' 
+    H: an integer 
+    W: an integer 
+    grid: a list of strings 
+    '''</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Sure! Below is a Python function to generate test cases for the "Help the Princess!" problem. The function `tcgen()` randomly generates the grid dimensions, the grid itself, and ensures the placement of the princess, soldiers, and the escape hatch according to the problem's constraints.
+
+```python
+import random
+
+def tcgen():
+    H = random.randint(2, 200)
+    W = random.randint(2, 200)
+    
+    grid = [['.' for _ in range(W)] for _ in range(H)]
+    
+    # Place the princess '@'
+    princess_x = random.randint(0, H-1)
+    princess_y = random.randint(0, W-1)
+    grid[princess_x][princess_y] = '@'
+    
+    # Place the escape hatch '%'
+    while True:
+        hatch_x = random.randint(0, H-1)
+        hatch_y = random.randint(0, W-1)
+        if grid[hatch_x][hatch_y] == '.':
+            grid[hatch_x][hatch_y] = '%'
+            break
+    
+    # Place soldiers '$'
+    num_soldiers = random.randint(0, H*W - 2)
+    for _ in range(num_soldiers):
+        while True:
+            soldier_x = random.randint(0, H-1)
+            soldier_y = random.randint(0, W-1)
+            if grid[soldier_x][soldier_y] == '.':
+                grid[soldier_x][soldier_y] = '$'
+                break
+    
+    # Place walls '#'
+    num_walls = random.randint(0, H*W - num_soldiers - 2)
+    for _ in range(num_walls):
+        while True:
+            wall_x = random.randint(0, H-1)
+            wall_y = random.randint(0, W-1)
+            if grid[wall_x][wall_y] == '.':
+                grid[wall_x][wall_y] = '#'
+                break
+    
+    # Ensure the palace is connected and the princess can reach the hatch if no soldiers exist
+    # This is simplistic and does not guarantee a valid path, but one can use more sophisticated graph algorithms
+    
+    grid_str = [''.join(row) for row in grid]
+    
+    return H, W, grid_str
+
+def print_test_case(H, W, grid_str):
+    print(H, W)
+    for row in grid_str:
+        print(row)
+
+# Example usage
+H, W, grid_str = tcgen()
+print_test_case(H, W, grid_str)
+```
+
+### Explanation:
+1. **Grid Dimensions**:
+   - Randomly generate the height `H` and width `W` of the grid within the given constraints.
+
+2. **Initial Empty Grid**:
+   - Create an empty grid of size `HxW` filled with '.' representing empty cells.
+
+3. **Place the Princess '@'**:
+   - Randomly choose a position in the grid for the princess and mark it with '@'.
+
+4. **Place the Escape Hatch '%'**:
+   - Randomly choose a position for the escape hatch ensuring it does not overlap with the princess.
+
+5. **Place Soldiers '$'**:
+   - Randomly place soldiers in the grid ensuring they occupy empty cells.
+
+6. **Place Walls '#'**:
+   - Randomly place walls in the grid ensuring they occupy empty cells.
+
+7. **Output**:
+   - The function returns the dimensions of the grid and the grid itself as a list of strings.
+
+This generator ensures that all conditions of the problem statement are met. Note that while it ensures correct placement of characters, it does not guarantee a valid solution path. More sophisticated algorithms like BFS/DFS can be used to ensure path validity in a real-world scenario.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    H, W = map(int, fh.readline().strip().split())
+    palace_map = [fh.readline().strip() for _ in range(H)]
+    return H, W, palace_map
+
+# Example usage:
+# if __name__ == "__main__":
+#     import sys
+#     input_path = sys.argv[1]
+#     with open(input_path, 'r') as fh:
+#         H, W, palace_map = extract_arguments(fh)
+#         print(H, W, palace_map)</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

@@ -1,0 +1,30 @@
+Certainly! Here is a test case generator for the given problem statement "B: Mapping":
+
+```python
+import random
+
+def tcgen():
+    N = random.randint(1, 10**5)
+    
+    # Generate a permutation of 1 to N for both a and b
+    a = list(range(1, N + 1))
+    b = a[:]
+    random.shuffle(b)
+    
+    return N, a, b
+
+# Example usage:
+N, a, b = tcgen()
+print(N)
+print(' '.join(map(str, a)))
+print(' '.join(map(str, b)))
+```
+
+This generator creates a random test case as follows:
+1. Selects a random integer \( N \) within the given constraints.
+2. Creates a list \( a \) which is a permutation of integers from 1 to \( N \).
+3. Creates a list \( b \) which is another permutation of the same integers.
+
+The generator ensures that \( a_i \neq a_j \) and \( b_i \neq b_j \) by creating permutations of the set \( \{1, ..., N\} \).
+
+You can use this generator to create various test cases for the problem "B: Mapping". The generated values are printed in a format that can be directly used as input for the problem.

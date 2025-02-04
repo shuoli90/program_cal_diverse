@@ -1,0 +1,27 @@
+An integer N (1 ≤ N ≤ 10000), representing some quantity or size.  
+A list of tuples of integers of size N, where each tuple contains three integers ranging from 0 to 100.  
+The input consists of multiple datasets. The end of the input is indicated by a single line with a zero.  
+There are no more than 1000 datasets.
+
+### Example Input:
+
+```
+4
+100 70 20
+98 86 55
+80 34 36
+65 79 65
+2
+99 81 20
+66 72 90
+0
+```
+
+### Function Signature:
+Write a function f(inputs) that takes in the input.
+```python
+def f(inputs: List[Tuple[int, List[Tuple[int, int, int]]]]):
+    '''
+    inputs: a list of tuples, where each tuple contains an integer and a list of tuples
+    '''
+```

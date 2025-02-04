@@ -1,0 +1,216 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p01115 - Generation 3</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p01115 - Generation 3</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>Expression Mining
+Consider an arithmetic expression built by combining single-digit positive integers
+with addition symbols +, multiplication symbols *,
+and parentheses ( ),
+defined by the following grammar rules with the start symbol E.
+  E ::= T | E '+' T
+  T ::= F | T '*' F
+  F ::= '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9' | '(' E ')'
+When such an arithmetic expression is viewed as a string,
+its substring, that is, a contiguous sequence of characters within the string,
+may again form an arithmetic expression.
+Given an integer n and a string s representing an arithmetic expression,
+let us count the number of its substrings that can be read as arithmetic expressions
+with values computed equal to n.
+Input
+The input consists of multiple datasets, each in the following format.
+n
+s
+A dataset consists of two lines.
+In the first line, the target value n is given.
+n is an integer satisfying 1 ≤ n ≤ 109.
+The string s given in the second line
+is an arithmetic expression conforming to the grammar defined above.
+The length of s does not exceed 2×106.
+The nesting depth of the parentheses in the string is at most 1000.
+The end of the input is indicated by a line containing a single zero.
+The sum of the lengths of s
+in all the datasets does not exceed 5×106.
+Output
+For each dataset, output in one line the number of substrings of s that
+conform to the above grammar and have the value n.
+The same sequence of characters appearing at different positions should be counted separately.
+Sample Input
+3
+(1+2)*3+3
+2
+1*1*1+1*1*1
+587
+1*(2*3*4)+5+((6+7*8))*(9)
+0
+Output for the Sample Input
+4
+9
+2
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An integer N (1 ≤ N ≤ 10^9), representing a target value.
+A string S of length up to 2×10^6 consisting of digits, '+', '*', '(', and ')'.
+The input consists of multiple datasets, each containing:
+- An integer N.
+- A string S.
+
+The end of the input is indicated by a line containing a single zero.
+
+### Example Input:
+
+```
+3
+(1+2)*3+3
+2
+1*1*1+1*1*1
+587
+1*(2*3*4)+5+((6+7*8))*(9)
+0
+```
+
+### Function Signature:
+Write a function f(inputs) that takes in a list of tuples.
+def f(inputs: List[Tuple[int, str]]):
+    '''
+    inputs: a list of tuples where each tuple contains:
+        - an integer
+        - a string
+    '''</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Certainly! Let's write a test case generator to create valid inputs for the "Expression Mining" problem. This generator will produce both the integer `n` and the string `s` representing the arithmetic expression. Given the constraints, the generated test cases will ensure that the length of expressions and the depth of nesting are within allowed limits.
+
+Here's the Python code for the test case generator:
+
+```python
+import random
+
+def generate_expression(depth=0):
+    if depth > 0 and random.choice([True, False]):
+        return f"({generate_expression(depth-1)})"
+    
+    expr_type = random.choice(['single', 'add', 'mult'])
+    
+    if expr_type == 'single':
+        return random.choice('123456789')
+    elif expr_type == 'add':
+        return generate_expression(depth) + '+' + generate_expression(depth)
+    elif expr_type == 'mult':
+        return generate_expression(depth) + '*' + generate_expression(depth)
+    
+def tcgen(num_cases=1):
+    cases = []
+    total_length = 0
+    
+    for _ in range(num_cases):
+        n = random.randint(1, 10**9)
+        max_len = min(2 * 10**6, 5 * 10**6 - total_length)
+        length = random.randint(1, max_len)
+        depth = random.randint(0, 1000)
+        
+        s = generate_expression(depth)
+        
+        while len(s) > length:
+            s = generate_expression(depth)
+        
+        total_length += len(s)
+        cases.append((n, s))
+        
+        if total_length >= 5 * 10**6:
+            break
+    
+    return cases
+
+# Generate test cases
+test_cases = tcgen(num_cases=5)
+
+# Print the test cases
+for n, s in test_cases:
+    print(n)
+    print(s)
+print(0)  # End of input marker
+```
+
+### Explanation:
+
+1. **generate_expression(depth=0)**: This function recursively generates a valid arithmetic expression based on the given grammar. It ensures that the depth of the parentheses does not exceed the specified limit.
+   - If the depth is greater than 0, there is a chance to create a nested expression with parentheses.
+   - Depending on the randomly chosen expression type, it generates a single digit, an addition expression, or a multiplication expression.
+
+2. **tcgen(num_cases=1)**: This function generates multiple test cases.
+   - It initializes the total length of all expressions to ensure it does not exceed the allowed limit.
+   - For each test case, it generates a random target value `n` and a random arithmetic expression `s` with a specified maximum length and depth.
+   - The expressions are generated until their combined length reaches the maximum allowed total length.
+
+3. **Printing the test cases**: After generating the test cases, it prints them according to the problem's input format. Finally, it prints `0` to mark the end of input.
+
+This generator ensures that all generated expressions are valid and conform to the specified constraints, making it suitable for creating diverse test cases for the "Expression Mining" problem.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    datasets = []
+    while True:
+        n = int(fh.readline().strip())
+        if n == 0:
+            break
+        s = fh.readline().strip()
+        datasets.append((n, s))
+    return datasets</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

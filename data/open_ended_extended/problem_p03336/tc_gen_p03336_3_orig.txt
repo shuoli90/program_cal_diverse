@@ -1,0 +1,50 @@
+Certainly! A test case generator for the given problem statement can be written in Python. Here's a sample implementation:
+
+```python
+import random
+
+def generate_binary_string(length):
+    return '1' + ''.join(random.choice('01') for _ in range(length - 1))
+
+def tcgen():
+    N = random.randint(1, 10**6)
+    M = random.randint(1, 10**6)
+    K = random.randint(1, 10**6)
+    
+    S = generate_binary_string(N)
+    T = generate_binary_string(M)
+    
+    return N, M, K, S, T
+
+# Example usage:
+N, M, K, S, T = tcgen()
+print(N)
+print(M)
+print(K)
+print(S)
+print(T)
+```
+
+### Explanation:
+1. **generate_binary_string(length)**:
+   - This function generates a binary string of the given length, ensuring that the first character is '1'.
+
+2. **tcgen()**:
+   - This function generates the values for `N`, `M`, and `K` within their respective constraints.
+   - It uses the `generate_binary_string` function to create valid binary strings `S` and `T` of lengths `N` and `M`, respectively.
+
+### Example Output:
+When you run the `tcgen()` function, it will output values satisfying the constraints. Here is an example of what the output may look like:
+
+```
+435
+769
+123456
+100011101001010110...
+110101001010110101...
+```
+
+Note:
+- The ellipses (`...`) indicate that the binary strings `S` and `T` will be long strings, potentially up to lengths of `10^6`.
+
+Feel free to use and modify this generator according to your needs for generating test cases for this problem.

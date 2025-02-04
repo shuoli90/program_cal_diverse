@@ -1,0 +1,32 @@
+An integer N (1 ≤ N ≤ 10^2), an integer M (1 ≤ M ≤ 10^2), an integer W (1 ≤ W ≤ 10^4), and an integer T (1 ≤ T ≤ 10^4).
+A list of M tuples, each containing a string Si, an integer Vi (1 ≤ Vi ≤ 10^2), and an integer Pi (1 ≤ Pi ≤ 10^4).
+A list of N tuples, each containing an integer Li (0 ≤ Li ≤ 10^2), an integer Xi (-10^2 ≤ Xi ≤ 10^2), and an integer Yi (-10^2 ≤ Yi ≤ 10^2).
+A nested list where each sublist corresponds to a town and contains Li pairs of integers Ri,j (1 ≤ Ri,j ≤ 10^3) and Qi,j (1 ≤ Qi,j ≤ 10^4).
+
+### Example Input:
+```
+2 3 10 15
+apple 2 100
+banana 3 150
+cherry 1 200
+2 1 1
+10 300
+20 400
+1 -2 -3
+5 500
+15 600
+```
+
+### Function Signature:
+Write a function f(N, M, W, T, products, towns) that takes in the input.
+```python
+def f(N: int, M: int, W: int, T: int, products: List[Tuple[str, int, int]], towns: List[Tuple[int, int, int, List[Tuple[int, int]]]]):
+    '''
+    N: an integer
+    M: an integer
+    W: an integer
+    T: an integer
+    products: a list of tuples, each containing a string and two integers
+    towns: a list of tuples, each containing two integers, another integer, and a list of integer pairs
+    '''
+```

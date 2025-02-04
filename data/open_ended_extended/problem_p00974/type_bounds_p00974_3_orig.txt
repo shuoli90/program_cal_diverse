@@ -1,0 +1,5 @@
+Types: n: int, a: List[int]
+
+Ranges: 1 ≤ n ≤ 100,000, 1 ≤ a[i] ≤ 100,000
+
+Addtl Info: None

@@ -1,0 +1,20 @@
+Canonicalized Input Description:
+
+An integer N (1 ≤ N ≤ 100), representing some quantity or size.
+An integer A (0 ≤ A ≤ N), representing some quantity or count.
+An integer B (0 ≤ B ≤ N), representing some quantity or count.
+
+### Example Input:
+
+```
+10 3 5
+```
+
+### Function Signature:
+Write a function f(N, A, B) that takes in the input. 
+def f(N: int, A: int, B: int): 
+    ''' 
+    N: an integer 
+    A: an integer
+    B: an integer
+    '''

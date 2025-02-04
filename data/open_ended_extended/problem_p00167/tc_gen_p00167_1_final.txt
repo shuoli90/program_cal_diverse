@@ -1,0 +1,49 @@
+Sure, I can help you write a test case generator for the "Bubble Sort" problem. Below is the Python code for generating test cases:
+
+```python
+import random
+
+def tcgen():
+    datasets = []
+    
+    num_datasets = random.randint(1, 20)  # Number of datasets (1 to 20)
+    
+    for _ in range(num_datasets):
+        n = random.randint(1, 100)  # Number of elements in the dataset (1 to 100)
+        a = [random.randint(1, 1000000) for _ in range(n)]  # Elements (1 to 1000000)
+        datasets.append((n, a))
+    
+    return datasets
+
+def format_datasets(datasets):
+    output = []
+    for n, a in datasets:
+        output.append(str(n))
+        output.extend(map(str, a))
+    output.append("0")
+    return "\n".join(output)
+
+# Example usage
+datasets = tcgen()
+formatted_datasets = format_datasets(datasets)
+print(formatted_datasets)
+```
+
+### Explanation:
+
+1. **`tcgen` Function**:
+   - Generates a random number of datasets (between 1 and 20).
+   - For each dataset, generates a random number of elements `n` (between 1 and 100).
+   - For each element, generates a random integer between 1 and 1,000,000.
+   - Collects these datasets in a list.
+
+2. **`format_datasets` Function**:
+   - Takes the list of datasets and formats them into the required input format.
+   - Adds the terminating zero at the end of the input.
+
+### Example Usage:
+
+- The `tcgen` function generates the test datasets.
+- The `format_datasets` function formats these datasets into the input format expected by the problem.
+
+This generator will help you create multiple random test cases to thoroughly test your bubble sort implementation.

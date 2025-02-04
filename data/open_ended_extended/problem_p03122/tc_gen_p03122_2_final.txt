@@ -1,0 +1,32 @@
+Sure, I can create a test case generator for the given problem statement. Here's a Python function that generates test cases within the constraints specified:
+
+```python
+import random
+
+def tcgen():
+    N = random.randint(1, 10**4)
+    
+    lamps = set()
+    while len(lamps) < N:
+        x = random.randint(-10**17, 10**17)
+        y = random.randint(-10**17, 10**17)
+        lamps.add((x, y))
+    
+    lamps_list = list(lamps)
+    
+    return N, lamps_list
+
+# Generate a test case and print it in the required format
+N, lamps = tcgen()
+print(N)
+for lamp in lamps:
+    print(lamp[0], lamp[1])
+```
+
+Explanation:
+- `N` is chosen as a random integer between 1 and 10,000.
+- A set `lamps` is used to ensure that all generated (x, y) pairs are unique.
+- Pairs `(x, y)` are generated with x and y values ranging from `-10^17` to `10^17`.
+- The set `lamps` is converted to a list and returned.
+
+This function ensures that the generated test cases adhere to the constraints provided in the problem statement. The generated test cases will provide a variety of inputs that can be used to test the solution to the problem.

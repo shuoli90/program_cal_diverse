@@ -1,0 +1,149 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p03748 - Generation 1</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p03748 - Generation 1</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>
+Score : 900 points
+Problem StatementJoisino has a lot of red and blue bricks and a large box.
+She will build a tower of these bricks in the following manner.
+First, she will pick a total of N bricks and put them into the box.
+Here, there may be any number of bricks of each color in the box, as long as there are N bricks in total.
+Particularly, there may be zero red bricks or zero blue bricks.
+Then, she will repeat an operation M times, which consists of the following three steps:
+Take out an arbitrary brick from the box.
+Put one red brick and one blue brick into the box.
+Take out another arbitrary brick from the box.
+After the M operations, Joisino will build a tower by stacking the 2 \times M bricks removed from the box, in the order they are taken out.
+She is interested in the following question: how many different sequences of colors of these 2 \times M bricks are possible?
+Write a program to find the answer.
+Since it can be extremely large, print the count modulo 10^9+7.
+Constraints
+1 \leq N \leq 3000
+1 \leq M \leq 3000
+InputInput is given from Standard Input in the following format:
+N M
+OutputPrint the count of the different possible sequences of colors of 2 \times M bricks that will be stacked, modulo 10^9+7.
+Sample Input 12 3
+Sample Output 156
+A total of six bricks will be removed from the box. The only impossible sequences of colors of these bricks are the ones where the colors of the second, third, fourth and fifth bricks are all the same. Therefore, there are 2^6 - 2 \times 2 \times 2 = 56 possible sequences of colors.
+Sample Input 21000 10
+Sample Output 21048576
+Sample Input 31000 3000
+Sample Output 3693347555
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>Canonicalized Input Description: 
+
+An integer N (1 ≤ N ≤ 3000).
+An integer M (1 ≤ M ≤ 3000).
+
+### Example Input:
+
+```
+2 3
+```
+
+### Function Signature:
+Write a function f(N, M) that takes in the input.
+def f(N: int, M: int):
+    '''
+    N: an integer
+    M: an integer
+    '''</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Sure, I can help you generate test cases for the given problem. The problem seems to involve combinatorial calculations, and the constraints are fairly large. Here's a test case generator:
+
+```python
+import random
+
+def tcgen():
+    # Constraints
+    MAX_N = 3000
+    MAX_M = 3000
+
+    # Randomly generate N and M within their respective ranges
+    N = random.randint(1, MAX_N)
+    M = random.randint(1, MAX_M)
+
+    return N, M
+
+# Generate a test case
+N, M = tcgen()
+print(N, M)
+```
+
+This generator will produce random values for \( N \) and \( M \) within their respective limits, ensuring that the test cases conform to the problem's constraints. You can run this generator multiple times to create multiple test cases for the problem.
+
+Here’s an example of running the generator and printing the output:
+
+```python
+for _ in range(10):  # Generate 10 test cases
+    N, M = tcgen()
+    print(f"{N} {M}")
+```
+
+This will print 10 different test cases, each with random values for \( N \) and \( M \) within the specified ranges.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    N, M = map(int, fh.readline().strip().split())
+    return N, M</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

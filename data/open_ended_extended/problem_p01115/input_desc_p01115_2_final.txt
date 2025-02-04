@@ -1,0 +1,26 @@
+An integer n (1 ≤ n ≤ 10^9), representing some target value.
+A string s of length up to 2×10^6, conforming to a specific grammar involving digits, parentheses, and the operators '+', '*'. The nesting depth of parentheses in the string is at most 1000.
+The input consists of multiple datasets. The end of the input is indicated by a line containing a single zero. The sum of the lengths of s in all the datasets does not exceed 5×10^6.
+
+### Example Input:
+
+```
+3
+(1+2)*3+3
+2
+1*1*1+1*1*1
+587
+1*(2*3*4)+5+((6+7*8))*(9)
+0
+```
+
+### Function Signature:
+Write a function `f(inputs)` that takes in the input.
+```
+def f(inputs: List[Tuple[int, str]]):
+    ''' 
+    inputs: a list of tuples, each containing:
+        - an integer
+        - a string
+    '''
+```

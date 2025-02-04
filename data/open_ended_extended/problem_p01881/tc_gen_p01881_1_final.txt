@@ -1,0 +1,88 @@
+Sure! Here is a test case generator for the "Help the Princess!" problem:
+
+```python
+import random
+
+# Constants for grid characters
+PRINCESS = '@'
+SOLDIER = '$'
+HATCH = '%'
+EMPTY = '.'
+WALL = '#'
+
+def generate_grid(H, W):
+    """
+    Generates a grid with H rows and W columns.
+    Ensures there is exactly one princess, one escape hatch, and one or more soldiers.
+    """
+    grid = [[EMPTY for _ in range(W)] for _ in range(H)]
+
+    # Random positions for princess, hatch, and soldiers
+    princess_pos = (random.randint(0, H-1), random.randint(0, W-1))
+    hatch_pos = (random.randint(0, H-1), random.randint(0, W-1))
+
+    # Ensure princess and hatch are in different positions
+    while hatch_pos == princess_pos:
+        hatch_pos = (random.randint(0, H-1), random.randint(0, W-1))
+    
+    # Place princess and hatch in the grid
+    grid[princess_pos[0]][princess_pos[1]] = PRINCESS
+    grid[hatch_pos[0]][hatch_pos[1]] = HATCH
+
+    # Random number of soldiers
+    num_soldiers = random.randint(0, H*W - 2)  # Remaining cells for soldiers
+
+    # Place soldiers in the grid
+    for _ in range(num_soldiers):
+        soldier_pos = (random.randint(0, H-1), random.randint(0, W-1))
+        while grid[soldier_pos[0]][soldier_pos[1]] != EMPTY:
+            soldier_pos = (random.randint(0, H-1), random.randint(0, W-1))
+        grid[soldier_pos[0]][soldier_pos[1]] = SOLDIER
+
+    # Randomly place some walls
+    for _ in range(random.randint(0, H*W // 4)):
+        wall_pos = (random.randint(0, H-1), random.randint(0, W-1))
+        while grid[wall_pos[0]][wall_pos[1]] != EMPTY:
+            wall_pos = (random.randint(0, H-1), random.randint(0, W-1))
+        grid[wall_pos[0]][wall_pos[1]] = WALL
+
+    return grid
+
+def tcgen():
+    H = random.randint(2, 200)
+    W = random.randint(2, 200)
+    grid = generate_grid(H, W)
+    
+    # Convert grid to list of strings
+    grid_str = [''.join(row) for row in grid]
+    
+    return H, W, grid_str
+
+# Example of generating a test case
+H, W, grid_str = tcgen()
+print(H, W)
+for row in grid_str:
+    print(row)
+```
+
+### Explanation:
+
+1. **Constants for Grid Characters:**
+   - `PRINCESS`, `SOLDIER`, `HATCH`, `EMPTY`, and `WALL` are used to represent the different characters in the grid.
+
+2. **generate_grid Function:**
+   - This function generates a grid of size `H` x `W`.
+   - It ensures that there is exactly one princess (`'@'`), one escape hatch (`'%'`), and one or more soldiers (`'$'`).
+   - It places the princess and the hatch in different positions.
+   - Then, it places the soldiers in random empty cells.
+   - Random walls are also placed in the grid.
+
+3. **tcgen Function:**
+   - This function generates random values for `H` and `W` within the specified range (2 to 200).
+   - It then calls `generate_grid` to create the grid.
+   - The grid is then converted from a list of lists to a list of strings, as required by the problem statement.
+
+4. **Example Usage:**
+   - The example at the end demonstrates how to generate and print a test case using the `tcgen` function.
+
+This will generate random valid test cases for the "Help the Princess!" problem.

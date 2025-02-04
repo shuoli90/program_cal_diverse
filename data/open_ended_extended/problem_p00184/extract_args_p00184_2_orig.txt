@@ -1,0 +1,9 @@
+def extract_arguments(fh):
+    inputs = []
+    while True:
+        n = int(fh.readline().strip())
+        if n == 0:
+            break
+        ages = [int(fh.readline().strip()) for _ in range(n)]
+        inputs.append((n, ages))
+    return inputs

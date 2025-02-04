@@ -1,0 +1,27 @@
+### Canonicalized Input Description:
+
+Two integers W and H (3 ≤ W ≤ 500), representing some dimensions.
+H lines, each containing W characters from the set {'#', '.', 's', 'g', '*'}. 
+
+### Example Input:
+
+```
+8 6
+########
+#..##g.#
+#*#.*#.#
+#......#
+#*s#*.*#
+########
+```
+
+### Function Signature:
+Write a function `f(W, H, grid)` that takes in the input.
+```python
+def f(W: int, H: int, grid: List[str]):
+    '''
+    W: an integer
+    H: an integer
+    grid: a list of strings
+    '''
+```

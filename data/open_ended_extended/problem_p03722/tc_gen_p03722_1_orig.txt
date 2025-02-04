@@ -1,0 +1,38 @@
+To generate test cases for the given problem statement where we have a directed graph with \(N\) vertices and \(M\) edges, we need to ensure the constraints and properties mentioned in the problem statement are followed. Here's a Python function to generate such test cases:
+
+```python
+import random
+
+def generate_test_case():
+    N = random.randint(2, 1000)  # Number of vertices
+    M = random.randint(1, min(N * (N - 1), 2000))  # Number of edges
+
+    edges = set()
+    while len(edges) < M:
+        a = random.randint(1, N)
+        b = random.randint(1, N)
+        if a != b:
+            edges.add((a, b))
+
+    edges = list(edges)
+    edge_weights = [random.randint(-10**9, 10**9) for _ in range(M)]
+    
+    test_case = f"{N} {M}\n"
+    for (a, b), c in zip(edges, edge_weights):
+        test_case += f"{a} {b} {c}\n"
+
+    return test_case
+
+# Example of generating and printing a test case
+print(generate_test_case())
+```
+
+### Explanation:
+
+1. **Vertices (N)**: Randomly choose a value for \(N\) between 2 and 1000.
+2. **Edges (M)**: Randomly choose a value for \(M\) between 1 and the minimum of \(N(N-1)\) and 2000. This ensures we don't exceed the maximum number of edges as per the given constraints.
+3. **Unique Edges**: Use a set to ensure all edges \((a_i, b_i)\) are unique and \(a_i \neq b_i\).
+4. **Edge Weights**: Randomly assign weights to each edge within the range \([-10^9, 10^9]\).
+5. **Output Format**: Construct the test case in the required format.
+
+This function guarantees the generated test cases are well within the problem constraints, and ensures the graph properties required for the problem are maintained.

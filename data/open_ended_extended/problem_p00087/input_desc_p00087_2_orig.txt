@@ -1,0 +1,19 @@
+An integer \(N\) (1 ≤ \(N\) ≤ 50), representing the number of datasets.
+A list of strings \(L\) of size \(N\), where each string represents a sequence of integers and operations in Reverse Polish Notation (a string of up to 80 characters consisting of integers and operation symbols separated by a single space).
+
+### Example Input:
+
+```
+3
+10 2 12 - /
+3 4 - 7 2 3 * + *
+-1 -2 3 + +
+```
+
+### Function Signature:
+Write a function f(N, L) that takes in the input.
+def f(N: int, L: List[str]):
+    '''
+    N: an integer
+    L: a list of strings
+    '''

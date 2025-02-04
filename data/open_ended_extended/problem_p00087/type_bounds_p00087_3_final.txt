@@ -1,0 +1,3 @@
+Types: datasets: List[str]
+Ranges: Each string in datasets is up to 80 characters and contains integers and operation symbols separated by a single space. The number of datasets is no more than 50.
+Addtl Info: No formulas that divide a value by 0 or a value close to 0 will be given. Each result may include an error of up to 0.00001.

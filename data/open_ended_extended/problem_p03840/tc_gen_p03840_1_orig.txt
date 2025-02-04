@@ -1,0 +1,42 @@
+Certainly! Here is a Python function to generate test cases for the given problem statement:
+
+```python
+import random
+
+def tcgen():
+    # Generate random counts for each type of tetromino
+    a_I = random.randint(0, 10**9)
+    a_O = random.randint(0, 10**9)
+    a_T = random.randint(0, 10**9)
+    a_J = random.randint(0, 10**9)
+    a_L = random.randint(0, 10**9)
+    a_S = random.randint(0, 10**9)
+    a_Z = random.randint(0, 10**9)
+    
+    # Ensure that there is at least one tetromino
+    if a_I + a_O + a_T + a_J + a_L + a_S + a_Z == 0:
+        tetromino_type = random.choice(['a_I', 'a_O', 'a_T', 'a_J', 'a_L', 'a_S', 'a_Z'])
+        if tetromino_type == 'a_I':
+            a_I = 1
+        elif tetromino_type == 'a_O':
+            a_O = 1
+        elif tetromino_type == 'a_T':
+            a_T = 1
+        elif tetromino_type == 'a_J':
+            a_J = 1
+        elif tetromino_type == 'a_L':
+            a_L = 1
+        elif tetromino_type == 'a_S':
+            a_S = 1
+        elif tetromino_type == 'a_Z':
+            a_Z = 1
+
+    # Return the generated test case
+    return a_I, a_O, a_T, a_J, a_L, a_S, a_Z
+
+# Example usage:
+for _ in range(5):
+    print(tcgen())
+```
+
+This function generates random values for each of the tetromino counts within the given constraints. It ensures that the sum of all the tetromino counts is at least one by setting at least one of the tetromino counts to 1 if they all sum to zero. The generated test cases can be used to test the solution to the problem statement.

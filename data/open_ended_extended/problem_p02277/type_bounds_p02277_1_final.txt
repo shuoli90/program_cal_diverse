@@ -1,0 +1,3 @@
+Types: n: int, A: List[Tuple[str, int]]
+Ranges: 1 ≤ n ≤ 100,000, 1 ≤ A[i][1] ≤ 10^9, A[i][0] in {'S', 'H', 'C', 'D'}
+Addtl Info: None

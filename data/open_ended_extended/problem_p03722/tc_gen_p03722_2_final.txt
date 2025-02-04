@@ -1,0 +1,55 @@
+Sure, I can help write a test case generator for this problem. Here is the generator function that will create random test cases for the graph problem described:
+
+```python
+import random
+
+def tcgen():
+    # Number of vertices
+    N = random.randint(2, 1000)
+    
+    # Number of edges
+    max_edges = min(N * (N - 1), 2000)
+    M = random.randint(1, max_edges)
+    
+    edges = set()
+    
+    # Ensure there's a path from 1 to N
+    path = list(range(1, N + 1))
+    random.shuffle(path)
+    
+    for i in range(1, N):
+        a = path[i - 1]
+        b = path[i]
+        c = random.randint(-10**9, 10**9)
+        edges.add((a, b, c))
+    
+    # Add additional random edges
+    while len(edges) < M:
+        a = random.randint(1, N)
+        b = random.randint(1, N)
+        if a != b:
+            c = random.randint(-10**9, 10**9)
+            edges.add((a, b, c))
+    
+    edges = list(edges)
+    random.shuffle(edges)
+    
+    # Print the generated test case
+    print(f"{N} {M}")
+    for a, b, c in edges:
+        print(f"{a} {b} {c}")
+
+# Example usage
+tcgen()
+```
+
+**Explanation:**
+
+1. The number of vertices \( N \) is randomly chosen between 2 and 1000.
+2. The number of edges \( M \) is randomly chosen between 1 and the minimum of \( N(N-1) \) and 2000.
+3. A set of edges is used to avoid duplicate edges.
+4. A path ensuring connectivity from vertex 1 to vertex \( N \) is created by shuffling a range from 1 to \( N \) and ensuring each vertex connects to the next in the shuffled list.
+5. Additional random edges are added until the number of edges \( M \) is reached.
+6. The edges are shuffled and printed in the required format.
+
+You can call the `tcgen` function to generate and print a random test case for the problem.

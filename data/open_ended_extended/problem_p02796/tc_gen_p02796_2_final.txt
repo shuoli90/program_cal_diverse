@@ -1,0 +1,35 @@
+Sure! Here's the test case generator for the given problem statement about robots on a number line:
+
+```python
+import random
+
+def tcgen():
+    # Number of robots
+    N = random.randint(1, 100000)
+    
+    # Generate unique X coordinates for robots
+    X = random.sample(range(0, 10**9 + 1), N)
+    
+    # Generate arm lengths for robots
+    L = [random.randint(1, 10**9) for _ in range(N)]
+    
+    # Combine X and L into a list of tuples
+    robots = list(zip(X, L))
+    
+    return N, robots
+
+# Example usage
+N, robots = tcgen()
+print(N)
+for x, l in robots:
+    print(x, l)
+```
+
+This generator will produce valid test cases for the problem. Let's break it down:
+
+1. **N** is the number of robots, randomly chosen between 1 and 100,000.
+2. **X** is a list of unique X coordinates, ensuring that no two robots share the same position. We use `random.sample` to generate a list of unique values within the specified range.
+3. **L** is a list of arm lengths for each robot, randomly chosen between 1 and 1 billion.
+4. **robots** combines the X coordinates and arm lengths into a list of tuples for easy processing.
+
+Each call to `tcgen()` will generate a new, random test case conforming to the problem's constraints.

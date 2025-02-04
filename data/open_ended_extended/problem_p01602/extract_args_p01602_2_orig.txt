@@ -1,0 +1,8 @@
+def extract_arguments(fh):
+    n = int(fh.readline().strip())
+    inputs = []
+    for _ in range(n):
+        p, x = fh.readline().strip().split()
+        x = int(x)
+        inputs.append((p, x))
+    return inputs

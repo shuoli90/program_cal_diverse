@@ -1,0 +1,39 @@
+Sure! I can help you write a test case generator for the given problem. Here is the generator code in Python:
+
+```python
+import random
+
+def tcgen():
+    # Generate a random integer for N within the constraint
+    N = random.randint(2, 200000)
+
+    # Generate a random integer for K within the constraint
+    K = random.randint(1, N-1)
+
+    # Generate a list of N random integers for A within the constraint
+    A = [random.randint(1, 10**9) for _ in range(N)]
+
+    return N, K, A
+
+# Function to print the generated test case in the required format
+def print_test_case(N, K, A):
+    print(N, K)
+    print(' '.join(map(str, A)))
+
+# Example usage
+N, K, A = tcgen()
+print_test_case(N, K, A)
+```
+
+### Explanation:
+1. **Constraints Handling**:
+    - `N` is generated to be a random integer between 2 and 200000.
+    - `K` is generated to be a random integer between 1 and N-1.
+    - `A` is a list of `N` random integers, each between 1 and 1,000,000,000.
+
+2. **Output Format**:
+    - The test case is printed in the required format: 
+        - First, it prints the integers `N` and `K`.
+        - Then, it prints the list of `A` values.
+
+You can use this generator to create random test cases for your problem and validate your solution against these generated test cases.

@@ -1,0 +1,41 @@
+An integer N (1 ≤ N ≤ 10^5), representing some quantity.
+An integer pw (1 ≤ pw ≤ 100), representing a cost factor.
+N lines each containing four integers: vw_i (-100 ≤ vw_i ≤ 100), pf_i (1 ≤ pf_i ≤ 100), vf_i (1 ≤ vf_i ≤ 100), and th_i (-100 ≤ th_i ≤ 100), representing various properties and thresholds.
+Each dataset ends with a line containing a zero.
+
+### Example Input:
+```
+3
+10
+4 3 4 10
+5 4 5 20
+6 5 6 30
+3
+7
+-4 3 4 -10
+5 4 5 20
+6 5 6 30
+3
+1
+-4 3 4 -10
+-5 4 5 -20
+6 5 6 30
+3
+10
+-4 3 4 -10
+-5 4 5 -20
+-6 5 6 -30
+0
+```
+
+### Function Signature:
+Write a function f(inputs) that takes in the input.
+```python
+def f(inputs: List[Tuple[int, int, List[Tuple[int, int, int, int]]]]):
+    '''
+    inputs: a list of tuples where each tuple contains:
+            - an integer N
+            - an integer pw
+            - a list of N tuples, each containing four integers (vw_i, pf_i, vf_i, th_i)
+    '''
+```

@@ -1,0 +1,27 @@
+An integer N (1 ≤ N ≤ 100), representing some quantity.
+An integer M (0 ≤ M ≤ 1000), representing another quantity.
+A list of N strings, where each string is between 1 and 10 characters long and consists of only lower-case letters.
+A list of M tuples, where each tuple contains two integers (X_j, Y_j) (1 ≤ X_j, Y_j ≤ N).
+
+### Example Input:
+
+```
+2
+2
+ab
+ba
+1 1
+1 2
+```
+
+### Function Signature:
+Write a function f(N, M, words, pairs) that takes in the input.
+```python
+def f(N: int, M: int, words: List[str], pairs: List[Tuple[int, int]]):
+    '''
+    N: an integer
+    M: an integer
+    words: a list of strings
+    pairs: a list of tuples containing two integers each
+    '''
+```

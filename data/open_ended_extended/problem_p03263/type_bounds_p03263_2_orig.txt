@@ -1,0 +1,3 @@
+Types: H: int, W: int, a: List[List[int]], N: int, y_i: int, x_i: int, y_i': int, x_i': int  
+Ranges: 1 ≤ H, W ≤ 500, 0 ≤ a_{ij} ≤ 9, 0 ≤ N ≤ H * W, 1 ≤ y_i, y_i' ≤ H, 1 ≤ x_i, x_i' ≤ W  
+Addtl Info: None

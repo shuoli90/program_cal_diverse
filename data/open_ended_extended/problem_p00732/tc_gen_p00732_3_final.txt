@@ -1,0 +1,63 @@
+Here is a Python function to generate test cases for the "Twirl Around" problem statement:
+
+```python
+import random
+
+def generate_dataset():
+    # Length of the bar (1.0 ≤ L ≤ 500.0)
+    L = round(random.uniform(1.0, 500.0), 6)
+    
+    # Rotations (1.0 ≤ R ≤ 10.0)
+    R = round(random.uniform(1.0, 10.0), 6)
+    
+    # Number of vertices (3 ≤ N ≤ 100)
+    N = random.randint(3, 100)
+    
+    # Generate vertices (Xi, Yi) for the polygon
+    vertices = []
+    
+    # Ensure the first vertex meets the condition X1 ≤ -1, Y1 = 0
+    first_vertex = (random.randint(-1000, -1), 0)
+    vertices.append(first_vertex)
+    
+    # Ensure the second vertex meets the condition X2 ≥ 1, Y2 = 0
+    second_vertex = (random.randint(1, 1000), 0)
+    vertices.append(second_vertex)
+    
+    # Generate the remaining vertices
+    for _ in range(N - 2):
+        x = random.randint(-1000, 1000)
+        y = random.randint(-1000, 1000)
+        vertices.append((x, y))
+    
+    # Ensure the vertices are in counter-clockwise order (convex polygon)
+    vertices = sorted(vertices, key=lambda v: (v[1], v[0]))
+    
+    # Format dataset as a string
+    dataset = f"{L} {R} {N}\n"
+    for vertex in vertices:
+        dataset += f"{vertex[0]} {vertex[1]}\n"
+    
+    return dataset
+
+def tcgen():
+    # Number of datasets (up to 100)
+    num_datasets = random.randint(1, 100)
+    
+    # Generate datasets
+    datasets = [generate_dataset() for _ in range(num_datasets)]
+    
+    # Add the end of input indicator "0 0 0"
+    datasets.append("0 0 0\n")
+    
+    # Join datasets into a single string
+    input_data = ''.join(datasets)
+    
+    return input_data
+
+# Example usage
+if __name__ == "__main__":
+    print(tcgen())
+```
+
+This code generates a random test case for the "Twirl Around" problem, ensuring that the conditions specified for the input are met. Each dataset includes the length of the bar \(L\), the number of rotations \(R\), and the vertices of the polygon. The function `tcgen()` generates up to 100 such datasets and appends the end-of-input indicator "0 0 0" at the end.

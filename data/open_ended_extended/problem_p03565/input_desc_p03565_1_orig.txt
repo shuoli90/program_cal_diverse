@@ -1,0 +1,19 @@
+Canonicalized Input Description:
+
+A string S' consisting of lowercase English letters and '?' with a length between 1 and 50.
+A string T consisting of lowercase English letters with a length between 1 and 50.
+
+### Example Input:
+
+```
+?tc????
+coder
+```
+
+### Function Signature:
+Write a function f(S_prime, T) that takes in the input.
+def f(S_prime: str, T: str):
+    ''' 
+    S_prime: a string 
+    T: a string
+    '''

@@ -1,0 +1,14 @@
+An integer N (2 ≤ N ≤ 10^6), representing some quantity or size.
+
+### Example Input:
+
+```
+4
+```
+
+### Function Signature:
+Write a function f(N) that takes in the input.
+def f(N: int):
+    ''' 
+    N: an integer 
+    '''

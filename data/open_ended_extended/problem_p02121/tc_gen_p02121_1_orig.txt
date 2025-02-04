@@ -1,0 +1,43 @@
+Sure, I can help you write a test case generator for the Problem K: Chinol Choco. Here's the generator in Python:
+
+```python
+import random
+
+def tcgen():
+    # Generate values for n and m
+    n = random.randint(2, 200)
+    m = random.randint(1, 15)
+    
+    # Generate candidate locations for each store
+    stores = []
+    for _ in range(n):
+        a, b = random.randint(0, 1000), random.randint(0, 1000)
+        c, d = random.randint(0, 1000), random.randint(0, 1000)
+        stores.append((a, b, c, d))
+    
+    # Generate locations for each factory
+    factories = []
+    for _ in range(m):
+        x, y = random.randint(0, 1000), random.randint(0, 1000)
+        factories.append((x, y))
+
+    # Format the input as a string
+    input_str = f"{n} {m}\n"
+    for store in stores:
+        input_str += f"{store[0]} {store[1]} {store[2]} {store[3]}\n"
+    for factory in factories:
+        input_str += f"{factory[0]} {factory[1]}\n"
+    
+    return input_str
+
+# Example of generating a test case
+print(tcgen())
+```
+
+### Explanation
+- **n and m**: The generator first randomly selects the number of stores \( n \) and the number of factories \( m \) within the specified limits.
+- **Stores**: For each store, it generates two candidate coordinates \((a_i, b_i)\) and \((c_i, d_i)\) within the range \([0, 1000]\).
+- **Factories**: For each factory, it generates coordinates \((x_i, y_i)\) within the range \([0, 1000]\).
+- **Input Formatting**: The generated data is formatted into a string that matches the problem's input format, which can be used directly for testing.
+
+Feel free to run the `tcgen` function to generate test cases for your problem. Adjust the ranges or constraints if necessary to suit your needs.

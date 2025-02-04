@@ -1,0 +1,33 @@
+Fishing Competition
+Brothers Hiroshi and Kenjiro came to Lake Inawashiro to go fishing. They decided to compete against each other by assigning points to the fish they caught and adding up the total points.
+One iwana is worth a points.
+One yamame is worth b points.
+Every 10 iwana caught is worth an additional c points.
+Every 20 yamame caught is worth an additional d points.
+Write a program to determine who won the competition, or if it is a tie, based on the number of fish caught by each person.
+Input
+The input is given in the following format:
+h1 h2
+k1 k2
+a b c d
+The first line contains the number of iwana h1 (0 ≤ h1 ≤ 100) and yamame h2 (0 ≤ h2 ≤ 100) caught by Hiroshi. The second line contains the number of iwana k1 (0 ≤ k1 ≤ 100) and yamame k2 (0 ≤ k2 ≤ 100) caught by Kenjiro. The third line contains the points assigned to one iwana a (1 ≤ a ≤ 100), one yamame b (1 ≤ b ≤ 100), the additional points awarded for every 10 iwana caught c (0 ≤ c ≤ 100), and the additional points awarded for every 20 yamame caught d (0 ≤ d ≤ 100).
+Output
+Output hiroshi if Hiroshi wins, kenjiro if Kenjiro wins, or even if it is a tie.
+Sample Input 1
+5 1
+3 1
+1 2 5 5
+Sample Output 1
+hiroshi
+Sample Input 2
+5 1
+4 2
+1 2 5 5
+Sample Output 2
+kenjiro
+Sample Input 3
+0 20
+10 0
+1 1 10 0
+Sample Output 3
+even

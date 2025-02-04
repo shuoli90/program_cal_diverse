@@ -1,0 +1,43 @@
+Sure! Below is a test case generator for the given "Palindrome Generator" problem statement:
+
+```python
+import random
+
+def generate_word():
+    length = random.randint(1, 10)
+    return ''.join(random.choice('abcdefghijklmnopqrstuvwxyz') for _ in range(length))
+
+def tcgen():
+    # Generating N and M
+    N = random.randint(1, 100)
+    M = random.randint(0, 1000)
+    
+    # Generating the list of words
+    words = [generate_word() for _ in range(N)]
+    
+    # Generating pairs of words
+    pairs = []
+    for _ in range(M):
+        X_j = random.randint(1, N)
+        Y_j = random.randint(1, N)
+        pairs.append((X_j, Y_j))
+    
+    # Formatting the output
+    test_case = f"{N} {M}\n"
+    test_case += '\n'.join(words) + '\n'
+    test_case += '\n'.join(f"{x} {y}" for x, y in pairs)
+    
+    return test_case
+
+# Example usage
+print(tcgen())
+```
+
+This generator function will create a random test case for the "Palindrome Generator" problem. It does the following:
+
+1. Randomly generates `N` (number of words) between 1 and 100.
+2. Randomly generates `M` (number of ordered pairs) between 0 and 1000.
+3. Creates `N` words, each with a random length between 1 and 10 characters, consisting of lowercase letters.
+4. Generates `M` pairs of indices representing ordered pairs of words.
+
+You can call the `tcgen` function to generate a new test case each time. The test case is formatted as specified in the problem statement and returned as a string.

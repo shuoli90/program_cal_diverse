@@ -1,0 +1,12 @@
+def extract_arguments(fh):
+    data = []
+    while True:
+        n, h = map(int, fh.readline().strip().split())
+        if n == 0 and h == 0:
+            break
+        marks = []
+        for _ in range(h):
+            ci, ai, bi = fh.readline().strip().split()
+            marks.append((ci, int(ai), int(bi)))
+        data.append((n, h, marks))
+    return data

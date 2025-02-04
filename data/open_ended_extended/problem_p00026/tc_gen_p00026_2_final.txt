@@ -1,0 +1,38 @@
+Certainly! Here is a test case generator for the "Dropping Ink" problem. This generator will create a series of random ink drops on a 10x10 grid, each with a random size (Small, Medium, or Large).
+
+```python
+import random
+
+def tcgen():
+    # Constants
+    grid_size = 10
+    max_drops = 50
+    sizes = [1, 2, 3]  # Corresponding to Small, Medium, Large
+    
+    # Number of drops
+    num_drops = random.randint(1, max_drops)
+    
+    # Generate random drops
+    drops = []
+    for _ in range(num_drops):
+        x = random.randint(0, grid_size - 1)
+        y = random.randint(0, grid_size - 1)
+        size = random.choice(sizes)
+        drops.append((x, y, size))
+        
+    return drops
+
+# Example usage
+drops = tcgen()
+for drop in drops:
+    print(f"{drop[0]},{drop[1]},{drop[2]}")
+```
+
+This script will generate a random number of drops (between 1 and 50) and for each drop, it will randomly choose a position on the 10x10 grid and a size (1 for Small, 2 for Medium, and 3 for Large).
+
+**Explanation of the components of the generator:**
+1. **Constants:** Define the grid size as 10 and the maximum number of drops as 50. Also, define the available sizes.
+2. **Number of drops:** Randomly determine the number of drops to generate.
+3. **Generate random drops:** For each drop, randomly generate the (x, y) position within the grid and pick a random size from the available sizes.
+
+The output will be a sequence of drops in the format `x,y,size`, which you can feed into your "Dropping Ink" program to test its behavior with different inputs.

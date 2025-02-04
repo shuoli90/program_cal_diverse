@@ -1,0 +1,24 @@
+def extract_arguments(fh):
+    import itertools
+
+    def read_polygon(fh):
+        num_vertices = int(fh.readline().strip())
+        vertices = [tuple(map(int, fh.readline().strip().split())) for _ in range(num_vertices)]
+        return vertices
+
+    num_polygons = int(fh.readline().strip())
+    polygons = [read_polygon(fh) for _ in range(num_polygons)]
+    
+    num_occurrence_facility_pairs = int(fh.readline().strip())
+    occurrence_facility_pairs = [
+        tuple(map(int, fh.readline().strip().split()))
+        for _ in range(num_occurrence_facility_pairs)
+    ]
+
+    return num_polygons, polygons, num_occurrence_facility_pairs, occurrence_facility_pairs
+
+# if __name__ == "__main__":
+#     input_path = sys.argv[1]
+#     with open(input_path, 'r') as fh:
+#         num_polygons, polygons, num_occurrence_facility_pairs, occurrence_facility_pairs = extract_arguments(fh)
+#         f(num_polygons, polygons, num_occurrence_facility_pairs, occurrence_facility_pairs)

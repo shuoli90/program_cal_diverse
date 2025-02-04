@@ -1,0 +1,60 @@
+Given the problem statement for "Chocolate with Heart Marks," we need to generate test cases that are consistent with the input format and constraints. Here's a test case generator for this problem:
+
+```python
+import random
+
+def generate_dataset(H, W):
+    # Ensure that there are 6 or fewer '1's in the grid
+    num_ones = random.randint(0, 6)
+    total_blocks = H * W
+    dataset = ['0'] * total_blocks
+    ones_positions = random.sample(range(total_blocks), num_ones)
+    for pos in ones_positions:
+        dataset[pos] = '1'
+    # Convert the flat list to a grid format
+    grid = [dataset[i * W:(i + 1) * W] for i in range(H)]
+    return grid
+
+def generate_test_cases(num_cases=5):
+    test_cases = []
+    for _ in range(num_cases):
+        H = random.randint(1, 12)
+        W = random.randint(1, 12)
+        grid = generate_dataset(H, W)
+        test_cases.append((H, W, grid))
+    
+    # Add the terminating test case
+    test_cases.append((0, 0, []))
+    
+    return test_cases
+
+def print_test_cases(test_cases):
+    for H, W, grid in test_cases:
+        print(f"{H} {W}")
+        for row in grid:
+            print(" ".join(row))
+        if H != 0 and W != 0:
+            print()
+
+# Generate and print the test cases
+test_cases = generate_test_cases()
+print_test_cases(test_cases)
+```
+
+Explanation:
+
+1. **`generate_dataset(H, W)`**:
+   - Creates a grid of size \(H \times W\) with exactly 6 or fewer '1's (heart marks).
+   - Randomly places '1's in the grid, ensuring the constraints are met.
+
+2. **`generate_test_cases(num_cases=5)`**:
+   - Generates a specified number of test cases (default is 5).
+   - For each test case, it randomly selects the dimensions \(H\) and \(W\) (both between 1 and 12).
+   - Calls `generate_dataset` to create the grid for each test case.
+   - Appends the terminating test case `(0, 0, [])` at the end.
+
+3. **`print_test_cases(test_cases)`**:
+   - Prints the generated test cases in the required format.
+   - Ensures there is a blank line between consecutive test cases except at the end.
+
+This code will generate random but valid test cases for the given problem, including the required end marker `(0, 0)`.

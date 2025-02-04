@@ -1,0 +1,150 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p03840 - Generation 3</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p03840 - Generation 3</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>
+Score : 600 points
+Problem StatementA tetromino is a figure formed by joining four squares edge to edge.
+We will refer to the following seven kinds of tetromino as I-, O-, T-, J-, L-, S- and Z-tetrominos, respectively:
+Snuke has many tetrominos. The number of I-, O-, T-, J-, L-, S- and Z-tetrominos in his possession are a_I, a_O, a_T, a_J, a_L, a_S and a_Z, respectively.
+Snuke will join K of his tetrominos to form a rectangle that is two squares tall and 2K squares wide.
+Here, the following rules must be followed:
+When placing each tetromino, rotation is allowed, but reflection is not.
+Each square in the rectangle must be covered by exactly one tetromino.
+No part of each tetromino may be outside the rectangle.
+Snuke wants to form as large a rectangle as possible.
+Find the maximum possible value of K.
+Constraints
+0≤a_I,a_O,a_T,a_J,a_L,a_S,a_Z≤10^9
+a_I+a_O+a_T+a_J+a_L+a_S+a_Z≥1
+InputThe input is given from Standard Input in the following format:
+a_I a_O a_T a_J a_L a_S a_Z
+OutputPrint the maximum possible value of K. If no rectangle can be formed, print 0.
+Sample Input 12 1 1 0 0 0 0
+Sample Output 13
+One possible way to form the largest rectangle is shown in the following figure:
+Sample Input 20 0 10 0 0 0 0
+Sample Output 20
+No rectangle can be formed.
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>Canonicalized Input Description:
+
+Seven integers a, b, c, d, e, f, g, each between 0 and 10^9, with the condition that their sum is at least 1.
+
+### Example Input:
+
+```
+12 1 1 0 0 0 0
+```
+
+### Function Signature:
+Write a function f(inputs) that takes in the input.
+```python
+def f(inputs: List[int]):
+    '''
+    inputs: a list of seven integers
+    '''
+```</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>To generate test cases for the given problem statement, we need to create instances of the number of tetrominos Snuke has for each of the seven types: I, O, T, J, L, S, and Z. The constraints specify that each of these counts can range from 0 to \(10^9\), and the sum of these counts should be at least 1. 
+
+Here's a Python code for the test case generator:
+
+```python
+import random
+
+def tcgen():
+    # Generate random counts for each type of tetromino
+    a_I = random.randint(0, 10**9)
+    a_O = random.randint(0, 10**9)
+    a_T = random.randint(0, 10**9)
+    a_J = random.randint(0, 10**9)
+    a_L = random.randint(0, 10**9)
+    a_S = random.randint(0, 10**9)
+    a_Z = random.randint(0, 10**9)
+    
+    # Ensure at least one tetromino is present
+    if a_I + a_O + a_T + a_J + a_L + a_S + a_Z == 0:
+        tetrominos = [a_I, a_O, a_T, a_J, a_L, a_S, a_Z]
+        random_index = random.randint(0, 6)
+        tetrominos[random_index] = 1
+        a_I, a_O, a_T, a_J, a_L, a_S, a_Z = tetrominos
+    
+    return a_I, a_O, a_T, a_J, a_L, a_S, a_Z
+
+# Example usage:
+for _ in range(10):  # Generate 10 test cases for demonstration
+    print(tcgen())
+```
+
+### Explanation:
+1. **Random Integer Generation**: We use `random.randint(0, 10**9)` to generate values for each of the tetromino types, ensuring they are within the specified range.
+2. **Ensuring At Least One Tetromino**: We check if the sum of all generated counts is zero. If it is, we randomly select one tetromino type and set its count to 1 to satisfy the constraint `a_I + a_O + a_T + a_J + a_L + a_S + a_Z ≥ 1`.
+3. **Return the Counts**: The function returns the generated counts for all seven types of tetrominos.
+
+This generator can be used to create a variety of test cases for the problem, ensuring that all constraints are met.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    args = list(map(int, fh.readline().strip().split()))
+    return tuple(args)</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

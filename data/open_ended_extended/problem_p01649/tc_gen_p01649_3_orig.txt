@@ -1,0 +1,51 @@
+Sure, I can help you write a test case generator for the given problem statement. The generator will create random inputs that adhere to the constraints provided. Below is the Python implementation for the test case generator:
+
+```python
+import random
+
+def generate_random_velocity():
+    while True:
+        v_x = random.randint(-10000, 10000)
+        v_y = random.randint(-10000, 10000)
+        if v_x != 0 or v_y != 0:
+            return v_x, v_y
+
+def generate_ball_positions(n, w, h, r):
+    positions = set()
+    while len(positions) < n:
+        x = random.randint(r + 1, w - r - 1)
+        y = random.randint(r + 1, h - r - 1)
+        positions.add((x, y))
+    return list(positions)
+
+def tcgen():
+    datasets = []
+    
+    num_datasets = random.randint(1, 100)
+    for _ in range(num_datasets):
+        n = random.randint(2, 11)
+        w = random.randint(4, 1000)
+        h = random.randint(4, 1000)
+        r = random.randint(1, 100)
+        v_x, v_y = generate_random_velocity()
+        
+        ball_positions = generate_ball_positions(n, w, h, r)
+        
+        dataset = f"{n}\n{w} {h} {r} {v_x} {v_y}\n"
+        for x, y in ball_positions:
+            dataset += f"{x} {y}\n"
+        
+        datasets.append(dataset.strip())
+
+    return "\n0\n".join(datasets) + "\n0"
+
+# Example usage:
+print(tcgen())
+```
+
+### Explanation:
+1. **`generate_random_velocity` Function**: This function generates random velocities \(v_x\) and \(v_y\) ensuring that they are not both zero.
+2. **`generate_ball_positions` Function**: This function generates random positions for the balls on the table while ensuring that they do not touch the edge of the table or overlap initially.
+3. **`tcgen` Function**: This is the main test case generator function. It generates a random number of datasets (up to 100), and for each dataset, it generates random values for \(n\), \(w\), \(h\), \(r\), and the velocities. It then generates the positions of the balls and constructs the dataset string. Finally, it combines all datasets and appends '0' to indicate the end of the input.
+
+This generator will create a variety of test cases for the problem, adhering to the constraints provided.

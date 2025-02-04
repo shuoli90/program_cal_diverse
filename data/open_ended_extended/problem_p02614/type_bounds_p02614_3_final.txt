@@ -1,0 +1,3 @@
+Types: H: int, W: int, K: int, c: List[List[str]]
+Ranges: 1 ≤ H, W ≤ 6, 1 ≤ K ≤ H*W, c[i][j] in {'.', '#'}
+Addtl Info: None

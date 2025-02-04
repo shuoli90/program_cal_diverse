@@ -1,0 +1,3 @@
+Types: n: int, treasures: List[Tuple[int, int]]
+Ranges: 1 ≤ n ≤ 25, 0 < treasures[i][0] ≤ 10^6, 1 ≤ treasures[i][1] ≤ 10^6
+Addtl Info: Input ends when n = 0

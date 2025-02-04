@@ -1,0 +1,71 @@
+Sure, I can create a test case generator for the "Analyzing Login/Logout Records" problem statement. The generator will create random datasets that conform to the constraints provided. Here's the code:
+
+```python
+import random
+
+def generate_time():
+    # Generate a random time between 540 and 1260 (inclusive)
+    return random.randint(540, 1260)
+
+def generate_records(N, M, r):
+    records = []
+    for _ in range(r):
+        t = generate_time()
+        n = random.randint(1, N)
+        m = random.randint(1, M)
+        s = random.randint(0, 1)
+        records.append((t, n, m, s))
+    # Sort records by time t to satisfy the problem constraint
+    records.sort(key=lambda x: x[0])
+    return records
+
+def generate_queries(M, q):
+    queries = []
+    for _ in range(q):
+        ts = generate_time()
+        te = generate_time()
+        while te <= ts:
+            te = generate_time()
+        m = random.randint(1, M)
+        queries.append((ts, te, m))
+    return queries
+
+def dataset():
+    # Number of PCs
+    N = random.randint(1, 1000)
+    # Number of students
+    M = random.randint(1, 10000)
+    # Number of records
+    r = random.randint(2, 1000)
+    # Number of queries
+    q = random.randint(1, 50)
+    
+    records = generate_records(N, M, r)
+    queries = generate_queries(M, q)
+    
+    return (N, M, r, records, q, queries)
+
+def tcgen():
+    datasets = []
+    num_datasets = random.randint(1, 10)
+    for _ in range(num_datasets):
+        datasets.append(dataset())
+    
+    return datasets
+
+# Generate and print a sample test case
+if __name__ == "__main__":
+    test_cases = tcgen()
+    for case in test_cases:
+        N, M, r, records, q, queries = case
+        print(N, M)
+        print(r)
+        for record in records:
+            print(*record)
+        print(q)
+        for query in queries:
+            print(*query)
+        print("0 0")
+```
+
+This generator creates a number of datasets (up to 10) each with a random number of PCs, students, records, and queries within the specified ranges. Each record consists of a time, PC number, student number, and a login/logout indicator. The queries ask for usage times for specific students within given time ranges. The generated output is printed in the format required by the problem statement.

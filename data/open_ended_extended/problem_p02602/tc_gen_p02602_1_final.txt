@@ -1,0 +1,38 @@
+Sure, I can help you create a test case generator for the given problem statement. Here's the code that generates test cases for the problem "M-kun's Grades":
+
+```python
+import random
+
+def tcgen():
+    # Constraints
+    N = random.randint(2, 200000)
+    K = random.randint(1, N-1)
+    
+    A = [random.randint(1, 10**9) for _ in range(N)]
+    
+    return N, K, A
+
+def format_test_case(N, K, A):
+    return f"{N} {K}\n" + " ".join(map(str, A)) + "\n"
+
+# Generate a test case and format it
+N, K, A = tcgen()
+test_case = format_test_case(N, K, A)
+print(test_case)
+```
+
+### Explanation
+
+1. **Constraints Handling**:
+    - \(N\) is randomly chosen to be between 2 and 200,000.
+    - \(K\) is randomly chosen to be between 1 and \(N-1\).
+    - The list \(A\) is generated such that each element \(A[i]\) is between 1 and \(10^9\).
+
+2. **Formatting**:
+    - The test case is formatted to match the input requirements specified in the problem statement:
+        ```
+        N K
+        A_1 A_2 A_3 ... A_N
+        ```
+
+You can run the provided code to generate a random test case for the problem. This generator ensures that all values adhere to the constraints given in the problem statement.

@@ -1,0 +1,28 @@
+An unspecified number of blocks of input. Each block consists of several lines of strings followed by a terminating line, which is a single period symbol. After the last block, there is another terminating line, which is also a period symbol. Each string consists of lowercase letters, digits, operators `+`, `-` and `^`, parentheses `(` and `)`, and spaces. A line containing a string has no more than 80 characters.
+
+### Example Input:
+
+```
+a+b+c
+(a+b)+c
+a- (b-c)+2
+.
+4ab
+(a - b) (0-b+a) - 1a ^ 2 - b ^ 2
+2 b 2 a
+.
+108 a
+2 2 3 3 3 a
+4 a^1 27
+.
+.
+```
+
+### Function Signature:
+Write a function `f(blocks)` that takes in the input.
+```python
+def f(blocks: List[List[str]]):
+    '''
+    blocks: a list of blocks, where each block is a list of strings
+    '''
+```

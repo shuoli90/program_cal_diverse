@@ -1,0 +1,22 @@
+An integer N (2 ≤ N ≤ 10^5), representing some quantity or size.
+N-1 pairs of integers, each pair representing an edge between two vertices, where each integer in the pair is between 1 and N.
+
+### Example Input:
+
+```
+7
+1 2
+2 3
+2 4
+4 6
+6 7
+7 5
+```
+
+### Function Signature:
+Write a function f(N, edges) that takes in the input. 
+def f(N: int, edges: List[Tuple[int, int]]): 
+    ''' 
+    N: an integer 
+    edges: a list of tuples, where each tuple contains two integers
+    '''

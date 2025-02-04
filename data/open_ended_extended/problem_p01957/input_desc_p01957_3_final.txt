@@ -1,0 +1,21 @@
+An integer N (2 ≤ N ≤ 26), representing some quantity or size.
+A string S representing a hierarchical structure of length up to 51.
+N pairs of a character (a-z) and an integer (0 ≤ integer ≤ 26).
+
+### Example Input:
+
+```
+[[m-y]-[a-o]]
+o 0
+a 1
+y 2
+m 0
+```
+
+### Function Signature:
+Write a function f(S, info) that takes in the input.
+def f(S: str, info: List[Tuple[str, int]]):
+    '''
+    S: a string
+    info: a list of tuples where each tuple contains a character and an integer
+    '''

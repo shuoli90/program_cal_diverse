@@ -1,0 +1,57 @@
+Certainly! Below is a test case generator for the described problem "Twirl Around":
+
+```python
+import random
+
+def generate_polygon(n):
+    """Generates a simple polygon with `n` vertices in counter-clockwise order."""
+    points = []
+    # Start with the first point per the given constraints
+    points.append((-1, 0))
+    # Ensure subsequent points are unique and adhere to the problem's constraints
+    for i in range(1, n):
+        while True:
+            x = random.randint(-1000, 1000)
+            y = random.randint(-1000, 1000)
+            if (x, y) != points[-1] and (i != 1 or x >= 1):  # Ensure X2 >= 1, Y2 = 0 for second point
+                points.append((x, y))
+                break
+    return points
+
+def tcgen():
+    datasets = []
+    
+    num_datasets = random.randint(1, 100)
+    for _ in range(num_datasets):
+        L = round(random.uniform(1.0, 500.0), 4)
+        R = round(random.uniform(1.0, 10.0), 4)
+        N = random.randint(3, 100)
+        
+        polygon = generate_polygon(N)
+        
+        dataset = f"{L} {R} {N}\n"
+        dataset += "\n".join(f"{x} {y}" for x, y in polygon)
+        datasets.append(dataset)
+    
+    # Add the terminating line
+    datasets.append("0 0 0")
+    
+    return "\n".join(datasets)
+
+# Example usage:
+print(tcgen())
+```
+
+### Explanation:
+- **generate_polygon(n)**: This helper function generates a simple polygon with `n` vertices, ensuring that the vertices are arranged in a counter-clockwise order and adhere to the given constraints.
+- **tcgen()**:
+  - Randomly decides the number of datasets to generate, constrained to be between 1 and 100.
+  - For each dataset:
+    - Generates a random bar length \(L\) and rotation count \(R\) within the specified ranges.
+    - Generates a random number of vertices \(N\).
+    - Uses **generate_polygon(n)** to generate the vertices of the polygon.
+    - Constructs the dataset string in the specified format.
+  - Adds the terminating line "0 0 0" at the end.
+- The return value of **tcgen()** is a string that represents the entire input for the problem, which can be directly used in tests.
+
+This should cover a wide range of possible inputs for the problem, ensuring thorough testing.

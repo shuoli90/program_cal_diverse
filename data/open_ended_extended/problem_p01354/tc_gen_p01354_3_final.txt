@@ -1,0 +1,30 @@
+Certainly! Below is a Python function that generates test cases for the problem "The Castle." This generator will create random values for \(m\), \(n\), and the probabilities that cats will win against enemies in each room.
+
+```python
+import random
+
+def tcgen():
+    # Generate random values for m and n within the constraints
+    m = random.randint(1, 16)
+    n = random.randint(1, 16)
+    
+    # Generate the matrix of probabilities
+    probabilities = []
+    for _ in range(m):
+        row = [round(random.uniform(0, 1), 3) for _ in range(n)]
+        probabilities.append(row)
+    
+    # Formatting the input
+    input_str = f"{m} {n}\n"
+    for row in probabilities:
+        input_str += " ".join(format(p, ".3f") for p in row) + "\n"
+    
+    return input_str
+
+# Generate a test case
+print(tcgen())
+```
+
+This function generates random values for \(m\) and \(n\) and then creates a matrix of floating-point numbers between 0 and 1 with three decimal places. The generated test case is formatted as a string to match the input format for the problem statement. 
+
+You can use this function in your testing environment to produce different test cases for "The Castle" problem.

@@ -1,0 +1,3 @@
+Types: S: str, T: str, k: int  
+Ranges: 1 ≤ |S|, |T| ≤ 2×10^5, 1 ≤ k ≤ |T|  
+Addtl Info: S and T are composed of lowercase alphabets

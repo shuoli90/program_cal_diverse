@@ -1,0 +1,27 @@
+An integer N (2 ≤ N ≤ 100,000), representing some quantity or size.
+An integer M (1 ≤ M ≤ 200,000), representing some quantity or size.
+An integer C, representing some cost-related parameter.
+M lines follow, each containing three integers Ai, Bi (1 ≤ Ai, Bi ≤ N), and Di (1 ≤ Di ≤ 1,000,000), representing connections and distances.
+
+### Example Input:
+
+```
+5 7 10
+1 2 3
+2 3 4
+3 4 5
+4 5 6
+5 1 7
+2 4 8
+3 5 9
+```
+
+### Function Signature:
+Write a function f(N, M, C, connections) that takes in the input.
+def f(N: int, M: int, C: int, connections: List[Tuple[int, int, int]]):
+    '''
+    N: an integer
+    M: an integer
+    C: an integer
+    connections: a list of tuples, each containing three integers
+    '''

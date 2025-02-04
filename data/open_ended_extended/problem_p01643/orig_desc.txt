@@ -1,0 +1,47 @@
+Problem J: Avant-garde Art
+ICPC World Finals Day 6
+Russian Constructivism is an art movement that started in the mid-1910s in the Soviet Union.
+Mr. T, who had been staying in country R for a long time, was inspired by such things and decided to create a cool design even during the rehearsal of the ICPC World Finals.
+Mr. T says, "Only circles and line segments are enough for symbols. It is important how beautifully line segments intersect."
+Problem
+Allocate \(n\) coordinates \(1, 2, \ldots, n\) equally spaced on the circumference.
+Exactly one line segment emanates from each coordinate, and the line segment from coordinate \(i\) is connected to a different coordinate \(a_i\).
+(Conversely, the line segment from coordinate \(a_i\) is connected to coordinate \(a_{a_i} = i\).) Up to \(k\) line segments can be freely reconnected on the circumference, regardless of the coordinates or lengths. Determine the maximum size of the set of intersecting line segments.
+Input
+n k
+a1 a2 … an
+On the first line, the number of coordinates \(n\) and the number of line segments that can be reconnected \(k\) are given separated by a space.
+On the second line, the coordinate \(a_i\) that connects to the line segment at coordinate \(i\) is given separated by a space.
+Output
+After reconnecting at most \(k\) line segments,
+output the maximum size of a set of intersecting line segments on a single line.
+Constraints
+\(2 \leq n \leq 8000\)
+\(n\) is an even number.
+\(0 \leq k \leq \min(n/2, 20)\)
+\(1 \leq a_i \leq n\)
+\(a_i \neq i\)
+It is impossible to connect a line segment to itself.
+\(a_i \neq a_j (i \neq j)\)
+More than two line segments cannot be connected to the same coordinate.
+\(a_{a_i} = i\)
+If a line segment is connected from \(i\) to \(j\), then a line segment is connected from \(j\) to \(i\).
+Sample Input/Output
+Input 1
+8 0
+7 4 6 2 8 3 1 5
+Output 1
+2
+The intersecting line segments are represented by the red line segments in the figure below.
+Input 2
+8 1
+7 4 6 2 8 3 1 5
+Output 2
+3
+By reconnecting the line segment connecting 1 and 7 as shown in the figure below, three intersecting line segments can be obtained.
+Input 3
+8 0
+5 6 7 8 1 2 3 4
+Output 3
+4
+Since all line segments intersect with each other, the maximum number of intersecting line segments is 4.

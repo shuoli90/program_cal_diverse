@@ -1,0 +1,17 @@
+An integer \(a\) and an integer \(b\), where 1 ≤ \(a, b\) ≤ 10^9, separated by a space in a single line.
+
+### Example Input:
+
+```
+4 12
+```
+
+### Function Signature:
+Write a function f(a, b) that takes in the input.
+```python
+def f(a: int, b: int):
+    '''
+    a: an integer
+    b: an integer
+    '''
+```

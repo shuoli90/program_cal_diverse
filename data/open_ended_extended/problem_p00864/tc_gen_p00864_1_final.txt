@@ -1,0 +1,49 @@
+Sure! Here is the test case generator for the "Grey Area" problem:
+
+```python
+import random
+
+def tcgen():
+    test_cases = []
+    
+    while True:
+        # Randomly decide whether to generate another test case or stop
+        if random.random() < 0.2:  # 20% chance to stop
+            break
+        
+        # Generate n and w
+        n = random.randint(1, 100)
+        w = random.randint(10, 50)
+        
+        # Generate n values for the histogram
+        values = [random.randint(0, 100) for _ in range(n)]
+        
+        # Add the generated test case to the list
+        test_cases.append((n, w, values))
+    
+    # Add the end line indicating the end of input
+    test_cases.append((0, 0, []))
+    
+    return test_cases
+
+# Function to print the test cases in the required format
+def print_test_cases(test_cases):
+    for n, w, values in test_cases:
+        print(f"{n} {w}")
+        for value in values:
+            print(value)
+        if n == 0 and w == 0:
+            break
+
+# Generate and print the test cases
+test_cases = tcgen()
+print_test_cases(test_cases)
+```
+
+### Explanation:
+1. **Stopping Condition**: The generator has a 20% chance to stop generating new test cases on each iteration to ensure we don't generate an indefinite number of test cases. When it stops, it adds the `(0, 0)` line to indicate the end of the input.
+2. **Generating `n` and `w`**: `n` is chosen randomly between 1 and 100, and `w` is chosen randomly between 10 and 50.
+3. **Generating Values**: For each test case, `n` values are generated randomly between 0 and 100.
+4. **Output**: The function `print_test_cases` formats and prints the test cases in the required input format.
+
+This generator creates multiple datasets, each containing a number of value occurrences and their respective intervals, and ends with a line containing two zeros.

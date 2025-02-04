@@ -1,0 +1,17 @@
+Canonicalized Input Description:
+
+Two integers, N and K, where 1 ≤ N, K ≤ 100.
+
+### Example Input:
+
+```
+13 2
+```
+
+### Function Signature:
+Write a function f(N, K) that takes in the input.
+def f(N: int, K: int):
+    ''' 
+    N: an integer
+    K: an integer
+    '''

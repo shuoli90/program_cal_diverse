@@ -1,0 +1,3 @@
+Types: H: int, W: int, A: List[str]
+Ranges: 1 ≤ H, W ≤ 10, |A_i| = W (1 ≤ i ≤ H), A_i consists of '.' and '#'
+Addtl Info: None

@@ -1,0 +1,51 @@
+Sure, let's write a test case generator for the "Water Pipe Construction" problem. This generator will create random datasets that follow the problem's constraints. Here’s the Python code for the test case generator:
+
+```python
+import random
+
+def generate_test_case():
+    # Number of bases (3 <= n <= 100)
+    n = random.randint(3, 100)
+    
+    # Number of roads (2 <= m <= 1000)
+    m = random.randint(2, 1000)
+    
+    # Source base (1 <= s <= n)
+    s = random.randint(1, n)
+    
+    # Two distinct destination bases (1 <= g1 < g2 <= n)
+    g1 = random.randint(1, n)
+    g2 = random.randint(1, n)
+    while g1 == g2 or g1 == s or g2 == s:
+        g1 = random.randint(1, n)
+        g2 = random.randint(1, n)
+    
+    # Generate m roads with distinct bases and cost (1 <= c <= 1000)
+    roads = set()
+    while len(roads) < m:
+        b1 = random.randint(1, n)
+        b2 = random.randint(1, n)
+        while b1 == b2:
+            b2 = random.randint(1, n)
+        if (b1, b2) not in roads:
+            c = random.randint(1, 1000)
+            roads.add((b1, b2, c))
+    
+    # Print the generated test case
+    print(f"{n} {m} {s} {g1} {g2}")
+    for road in roads:
+        print(f"{road[0]} {road[1]} {road[2]}")
+    print("0 0 0 0 0")
+
+# Generate multiple test cases
+for _ in range(5):  # Generate 5 test cases
+    generate_test_case()
+```
+
+This code will generate five test cases for the "Water Pipe Construction" problem. Each test case will have the following structure:
+
+1. The first line contains five integers: the number of bases `n`, the number of roads `m`, the source base `s`, and the two destination bases `g1` and `g2`.
+2. The next `m` lines each contain three integers representing a road between two bases and the cost to lay a water pipe on that road.
+3. Finally, a line with "0 0 0 0 0" indicates the end of the input.
+
+Note that this generator ensures the constraints are met by generating valid inputs. You can adjust the number of test cases or the ranges as needed.

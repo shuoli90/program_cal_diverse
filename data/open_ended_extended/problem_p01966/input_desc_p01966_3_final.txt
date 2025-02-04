@@ -1,0 +1,23 @@
+An integer N (2 ≤ N ≤ 10^5), representing some quantity or size.
+An integer Q (1 ≤ Q ≤ 10^5), representing the number of events or operations.
+Q lines follow, each containing three integers a, b, and p:
+- An integer a (1 ≤ a < b ≤ N), representing a starting point.
+- An integer b (1 ≤ a < b ≤ N), representing an ending point.
+- An integer p (1 ≤ p ≤ 10^9), representing a quantity.
+
+### Example Input:
+
+```
+5 2
+1 4 1
+2 3 1
+```
+
+### Function Signature:
+Write a function f(N, Q, inputs) that takes in the input.
+def f(N: int, Q: int, inputs: List[Tuple[int, int, int]]):
+    ''' 
+    N: an integer 
+    Q: an integer 
+    inputs: a list of tuples, each containing three integers
+    '''

@@ -1,0 +1,234 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p03078 - Generation 2</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p03078 - Generation 2</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>
+Score: 400 points
+Problem Statement
+The Patisserie AtCoder sells cakes with number-shaped candles.
+There are X, Y and Z kinds of cakes with 1-shaped, 2-shaped and 3-shaped candles, respectively.
+Each cake has an integer value called deliciousness, as follows:
+The deliciousness of the cakes with 1-shaped candles are A_1, A_2, ..., A_X.
+The deliciousness of the cakes with 2-shaped candles are B_1, B_2, ..., B_Y.
+The deliciousness of the cakes with 3-shaped candles are C_1, C_2, ..., C_Z.
+Takahashi decides to buy three cakes, one for each of the three shapes of the candles, to celebrate ABC 123.
+There are X \times Y \times Z such ways to choose three cakes.
+We will arrange these X \times Y \times Z ways in descending order of the sum of the deliciousness of the cakes.
+Print the sums of the deliciousness of the cakes for the first, second, ..., K-th ways in this list.
+Constraints
+1 \leq X \leq 1 \ 000
+1 \leq Y \leq 1 \ 000
+1 \leq Z \leq 1 \ 000
+1 \leq K \leq \min(3 \ 000, X \times Y \times Z)
+1 \leq A_i \leq 10 \ 000 \ 000 \ 000
+1 \leq B_i \leq 10 \ 000 \ 000 \ 000
+1 \leq C_i \leq 10 \ 000 \ 000 \ 000
+All values in input are integers.
+Input
+Input is given from Standard Input in the following format:
+X Y Z K
+A_1 \ A_2 \ A_3 \ ... \ A_X
+B_1 \ B_2 \ B_3 \ ... \ B_Y
+C_1 \ C_2 \ C_3 \ ... \ C_Z
+Output
+Print K lines. The i-th line should contain the i-th value stated in the problem statement.
+Sample Input 12 2 2 8
+4 6
+1 5
+3 8
+Sample Output 119
+17
+15
+14
+13
+12
+10
+8
+There are 2 \times 2 \times 2 = 8 ways to choose three cakes, as shown below in descending order of the sum of the deliciousness of the cakes:
+(A_2, B_2, C_2): 6 + 5 + 8 = 19
+(A_1, B_2, C_2): 4 + 5 + 8 = 17
+(A_2, B_1, C_2): 6 + 1 + 8 = 15
+(A_2, B_2, C_1): 6 + 5 + 3 = 14
+(A_1, B_1, C_2): 4 + 1 + 8 = 13
+(A_1, B_2, C_1): 4 + 5 + 3 = 12
+(A_2, B_1, C_1): 6 + 1 + 3 = 10
+(A_1, B_1, C_1): 4 + 1 + 3 = 8
+Sample Input 23 3 3 5
+1 10 100
+2 20 200
+1 10 100
+Sample Output 2400
+310
+310
+301
+301
+There may be multiple combinations of cakes with the same sum of the deliciousness. For example, in this test case, the sum of A_1, B_3, C_3 and the sum of A_3, B_3, C_1 are both 301.
+However, they are different ways of choosing cakes, so 301 occurs twice in the output.
+Sample Input 310 10 10 20
+7467038376 5724769290 292794712 2843504496 3381970101 8402252870 249131806 6310293640 6690322794 6082257488
+1873977926 2576529623 1144842195 1379118507 6003234687 4925540914 3902539811 3326692703 484657758 2877436338
+4975681328 8974383988 2882263257 7690203955 514305523 6679823484 4263279310 585966808 3752282379 620585736
+Sample Output 323379871545
+22444657051
+22302177772
+22095691512
+21667941469
+21366963278
+21287912315
+21279176669
+21160477018
+21085311041
+21059876163
+21017997739
+20703329561
+20702387965
+20590247696
+20383761436
+20343962175
+20254073196
+20210218542
+20150096547
+Note that the input or output may not fit into a 32-bit integer type.
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An integer X (1 ≤ X ≤ 1000), representing some quantity.
+An integer Y (1 ≤ Y ≤ 1000), representing some quantity.
+An integer Z (1 ≤ Z ≤ 1000), representing some quantity.
+An integer K (1 ≤ K ≤ min(3000, X * Y * Z)), representing some quantity.
+A list of X integers, where each integer is between 1 and 10^10.
+A list of Y integers, where each integer is between 1 and 10^10.
+A list of Z integers, where each integer is between 1 and 10^10.
+
+### Example Input:
+
+```
+2 2 2 8
+4 6
+1 5
+3 8
+```
+
+### Function Signature:
+Write a function f(X, Y, Z, K, A, B, C) that takes in the input.
+def f(X: int, Y: int, Z: int, K: int, A: List[int], B: List[int], C: List[int]):
+    '''
+    X: an integer
+    Y: an integer
+    Z: an integer
+    K: an integer
+    A: a list of integers
+    B: a list of integers
+    C: a list of integers
+    '''</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Here is a Python function to generate test cases for the described problem statement. This function will generate random values for \(X\), \(Y\), \(Z\), \(K\), and the deliciousness arrays \(A\), \(B\), and \(C\):
+
+```python
+import random
+
+def tcgen():
+    X = random.randint(1, 1000)
+    Y = random.randint(1, 1000)
+    Z = random.randint(1, 1000)
+    K = random.randint(1, min(3000, X * Y * Z))
+    
+    A = [random.randint(1, 10**10) for _ in range(X)]
+    B = [random.randint(1, 10**10) for _ in range(Y)]
+    C = [random.randint(1, 10**10) for _ in range(Z)]
+    
+    return X, Y, Z, K, A, B, C
+
+def format_tc(X, Y, Z, K, A, B, C):
+    input_str = f"{X} {Y} {Z} {K}\n"
+    input_str += " ".join(map(str, A)) + "\n"
+    input_str += " ".join(map(str, B)) + "\n"
+    input_str += " ".join(map(str, C)) + "\n"
+    
+    return input_str
+
+# Generating a test case
+X, Y, Z, K, A, B, C = tcgen()
+print(format_tc(X, Y, Z, K, A, B, C))
+```
+
+**Explanation:**
+
+1. **Random Generation of Parameters:**
+    - **\(X\)**, **\(Y\)**, and **\(Z\)** are generated randomly between 1 and 1000.
+    - **\(K\)** is generated randomly between 1 and the minimum of 3000 and \(X \times Y \times Z\).
+    - Arrays **\(A\)**, **\(B\)**, and **\(C\)** are generated with random values between 1 and \(10^{10}\).
+
+2. **Formatting the Test Case:**
+    - The `format_tc` function formats the generated values into the required input format.
+
+3. **Printing the Test Case:**
+    - Finally, the test case is generated and printed in the required format.
+
+Run this script to create a new test case each time. This will be useful for testing various scenarios and edge cases for the problem statement.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    X, Y, Z, K = map(int, fh.readline().strip().split())
+    A = list(map(int, fh.readline().strip().split()))
+    B = list(map(int, fh.readline().strip().split()))
+    C = list(map(int, fh.readline().strip().split()))
+    return X, Y, Z, K, A, B, C</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

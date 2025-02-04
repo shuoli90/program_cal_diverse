@@ -1,0 +1,3 @@
+Types: N: int, M: int, L: int, initial_state: List[List[int]]
+Ranges: 1 ≤ N ≤ 6, 2 ≤ M ≤ 10^9, 1 ≤ L ≤ 10^9, 0 ≤ initial_state[i][j] < M
+Addtl Info: None

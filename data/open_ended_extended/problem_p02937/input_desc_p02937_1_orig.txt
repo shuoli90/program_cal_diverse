@@ -1,0 +1,19 @@
+Canonicalized Input Description:
+
+A string \( s \) of length between 1 and 10^5, consisting of lowercase English letters.
+A string \( t \) of length between 1 and 10^5, consisting of lowercase English letters.
+
+### Example Input:
+
+```
+contest
+son
+```
+
+### Function Signature:
+Write a function f(s, t) that takes in the input.
+def f(s: str, t: str):
+    '''
+    s: a string
+    t: a string
+    '''

@@ -1,0 +1,17 @@
+def extract_arguments(fh):
+    N = int(fh.readline().strip())
+    red_balls = []
+    blue_balls = []
+    for _ in range(N):
+        RX, RY, RC = map(int, fh.readline().strip().split())
+        red_balls.append((RX, RY, RC))
+    for _ in range(N):
+        BX, BY, BC = map(int, fh.readline().strip().split())
+        blue_balls.append((BX, BY, BC))
+    return N, red_balls, blue_balls
+
+# if __name__ == "__main__":
+#     input_path = sys.argv[1]
+#     with open(input_path, 'r') as fh: 
+#     N, red_balls, blue_balls = extract_arguments(fh)
+#     f(N, red_balls, blue_balls)

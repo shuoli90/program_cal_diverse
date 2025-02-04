@@ -1,0 +1,5 @@
+Types: input_string: str
+
+Ranges: 2 ≤ len(input_string) ≤ 1000, input_string consists of characters in the sets {'0'-'9'} and {'T', 'L', 'U', 'R', 'D'}
+
+Addtl Info: None

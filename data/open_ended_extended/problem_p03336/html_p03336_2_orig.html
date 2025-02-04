@@ -1,0 +1,169 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p03336 - Generation 2</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p03336 - Generation 2</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>
+Score : 2400 points
+Problem StatementTakahashi and Aoki love calculating things, so they will play with numbers now.
+First, they came up with one positive integer each. Takahashi came up with X, and Aoki came up with Y.
+Then, they will enjoy themselves by repeating the following operation K times:
+Compute the bitwise AND of the number currently kept by Takahashi and the number currently kept by Aoki. Let Z be the result.
+Then, add Z to both of the numbers kept by Takahashi and Aoki.
+However, it turns out that even for the two math maniacs this is just too much work.
+Could you find the number that would be kept by Takahashi and the one that would be kept by Aoki eventually?
+Note that input and output are done in binary.
+Especially, X and Y are given as strings S and T of length N and M consisting of 0 and 1, respectively, whose initial characters are guaranteed to be 1.
+Constraints
+1 ≤ K ≤ 10^6
+1 ≤ N,M ≤ 10^6
+The initial characters of S and T are 1.
+InputInput is given from Standard Input in the following format:
+N M K
+S
+T
+OutputIn the first line, print the number that would be kept by Takahashi eventually; in the second line, print the number that would be kept by Aoki eventually.
+Those numbers should be represented in binary and printed as strings consisting of 0 and 1 that begin with 1.
+Sample Input 12 3 3
+11
+101
+Sample Output 110000
+10010
+The values of X and Y after each operation are as follows:
+After the first operation: (X,Y)=(4,6).
+After the second operation: (X,Y)=(8,10).
+After the third operation: (X,Y)=(16,18).
+Sample Input 25 8 3
+10101
+10101001
+Sample Output 2100000
+10110100
+Sample Input 310 10 10
+1100110011
+1011001101
+Sample Output 310000100000010001000
+10000100000000100010
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An integer N (1 ≤ N ≤ 10^6), representing some quantity or size.
+An integer M (1 ≤ M ≤ 10^6), representing some quantity or size.
+An integer K (1 ≤ K ≤ 10^6), representing some quantity or size.
+A string S of length N consisting of the characters '0' and '1', with the first character guaranteed to be '1'.
+A string T of length M consisting of the characters '0' and '1', with the first character guaranteed to be '1'.
+
+### Example Input:
+
+```
+2 3 3
+11
+101
+```
+
+### Function Signature:
+Write a function `f(N, M, K, S, T)` that takes in the input. 
+```python
+def f(N: int, M: int, K: int, S: str, T: str):
+    ''' 
+    N: an integer 
+    M: an integer
+    K: an integer
+    S: a string
+    T: a string
+    '''
+```</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>To write a test case generator for the given problem statement, we'll need to generate valid inputs according to the constraints and format specified. Here is a Python function that generates test cases:
+
+```python
+import random
+
+def tcgen():
+    # Constraints
+    N = random.randint(1, 10**6)
+    M = random.randint(1, 10**6)
+    K = random.randint(1, 10**6)
+    
+    # Generate binary strings S and T of lengths N and M respectively with initial character '1'
+    S = '1' + ''.join(random.choice(['0', '1']) for _ in range(N - 1))
+    T = '1' + ''.join(random.choice(['0', '1']) for _ in range(M - 1))
+    
+    return N, M, K, S, T
+
+# Function to format the test case as a string
+def format_test_case(N, M, K, S, T):
+    return f"{N} {M} {K}\n{S}\n{T}"
+
+# Example usage
+N, M, K, S, T = tcgen()
+test_case = format_test_case(N, M, K, S, T)
+print(test_case)
+```
+
+This function `tcgen` generates random values for `N`, `M`, and `K` within the given constraints. It then creates binary strings `S` and `T` of lengths `N` and `M` respectively, ensuring that the first character of both strings is '1'. The `format_test_case` function formats the generated test case into the required input format.
+
+Note that generating very large test cases (close to the upper limits of the constraints) may not be practical for quick testing due to the high computational load and memory usage involved. For such cases, you may want to ensure that the system running the test case generator has sufficient resources.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    N, M, K = map(int, fh.readline().strip().split())
+    S = fh.readline().strip()
+    T = fh.readline().strip()
+    return N, M, K, S, T</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

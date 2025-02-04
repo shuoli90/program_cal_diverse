@@ -1,0 +1,194 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p00782 - Generation 1</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p00782 - Generation 1</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>
+Problem C:Mobile Phone Coverage
+A mobile phone company ACMICPC (Advanced Cellular, Mobile, and Internet-Connected Phone Corporation) is planning to set up a collection of antennas for mobile phones in a city called Maxnorm. The company ACMICPC has several collections for locations of antennas as their candidate plans, and now they want to know which collection is the best choice.
+for this purpose, they want to develop a computer program to find the coverage of a collection of antenna locations. Each antenna Ai has power ri, corresponding to "radius". Usually, the coverage region of the antenna may be modeled as a disk centered at the location of the antenna (xi, yi) with radius ri. However, in this city Maxnorm such a coverage region becomes the square [xi − ri, xi + ri] × [yi − ri, yi + ri]. In other words, the distance between two points (xp, yp) and (xq, yq) is measured by the max norm max{ |xp − xq|, |yp − yq|}, or, the L∞ norm, in this city Maxnorm instead of the ordinary Euclidean norm √ {(xp − xq)2 + (yp − yq)2}.
+As an example, consider the following collection of 3 antennas
+4.0 4.0 3.0
+5.0 6.0 3.0
+5.5 4.5 1.0
+depicted in the following figure
+where the i-th row represents xi, yi ri such that (xi, yi) is the position of the i-th antenna and ri is its power. The area of regions of points covered by at least one antenna is 52.00 in this case.
+Write a program that finds the area of coverage by a given collection of antenna locations.
+Input
+The input contains multiple data sets, each representing a collection of antenna locations. A data set is given in the following format.
+n
+x1 y1 r1
+x2 y2 r2
+. . .
+xn yn rn
+The first integer n is the number of antennas, such that 2 ≤ n ≤ 100. The coordinate of the i-th antenna is given by (xi, yi), and its power is ri. xi, yi and ri are fractional numbers between 0 and 200 inclusive.
+The end of the input is indicated by a data set with 0 as the value of n.
+Output
+For each data set, your program should output its sequence number (1 for the first data set, 2 for the second, etc.) and the area of the coverage region. The area should be printed with two digits to the right of the decimal point, after rounding it to two decimal places.
+The sequence number and the area should be printed on the same line with no spaces at the beginning and end of the line. The two numbers should be separated by a space.
+Sample Input
+3
+4.0 4.0 3.0
+5.0 6.0 3.0
+5.5 4.5 1.0
+2
+3.0 3.0 3.0
+1.5 1.5 1.0
+0
+Output for the Sample Input
+1 52.00
+2 36.00
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An integer n (2 ≤ n ≤ 100), representing some quantity or size.
+A list of tuples (xi, yi, ri) of size n, where each xi, yi, and ri are fractional numbers between 0 and 200 inclusive.
+
+### Example Input:
+
+```
+3
+4.0 4.0 3.0
+5.0 6.0 3.0
+5.5 4.5 1.0
+```
+
+### Function Signature:
+Write a function f(inputs) that takes in the input.
+def f(inputs: List[Tuple[float, float, float]]):
+    '''
+    inputs: a list of tuples each containing three fractional numbers
+    '''</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Sure! Let's write a test case generator for the given problem "Mobile Phone Coverage".
+
+```python
+import random
+
+def tcgen():
+    # Start with an empty list of test cases
+    test_cases = []
+    
+    # Number of cases to generate
+    num_cases = random.randint(1, 10)
+
+    for _ in range(num_cases):
+        # Randomly determine the number of antennas (2 ≤ n ≤ 100)
+        n = random.randint(2, 100)
+        
+        # Generate n antenna data
+        antennas = []
+        for _ in range(n):
+            xi = round(random.uniform(0, 200), 1)
+            yi = round(random.uniform(0, 200), 1)
+            ri = round(random.uniform(0, 200), 1)
+            antennas.append((xi, yi, ri))
+        
+        # Add the generated data set to the list of test cases
+        test_cases.append((n, antennas))
+    
+    # Add the terminator case (0)
+    test_cases.append((0, []))
+    
+    return test_cases
+
+def print_test_cases(test_cases):
+    for seq_num, (n, antennas) in enumerate(test_cases):
+        if n == 0:
+            print("0")
+        else:
+            print(n)
+            for (xi, yi, ri) in antennas:
+                print(f"{xi} {yi} {ri}")
+
+# Generate test cases
+test_cases = tcgen()
+
+# Print the generated test cases
+print_test_cases(test_cases)
+```
+
+This script generates a list of test cases for the "Mobile Phone Coverage" problem. Each test case consists of:
+- A random number of antennas (between 2 and 100).
+- For each antenna, random coordinates (xi, yi) and radius ri, all of which are fractional numbers between 0 and 200 inclusive.
+
+The format of the generated test cases matches the problem statement requirements. The test cases are printed in a format that can be used directly as input for testing the algorithm. The generator also includes a terminating data set with `n = 0`.
+
+You can run the script multiple times to generate different sets of test cases for extensive testing.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    inputs = []
+    while True:
+        n = int(fh.readline().strip())
+        if n == 0:
+            break
+        antennas = []
+        for _ in range(n):
+            x, y, r = map(float, fh.readline().strip().split())
+            antennas.append((x, y, r))
+        inputs.append(antennas)
+    return inputs
+
+# if __name__ == "__main__":
+#     input_path = sys.argv[1]
+#     with open(input_path, 'r') as fh: 
+#     inputs = extract_arguments(fh)
+#     f(inputs)</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

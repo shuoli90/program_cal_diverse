@@ -1,0 +1,85 @@
+To generate test cases for the "Cat Going Straight II" problem, we need to create multiple datasets where each dataset contains the number of pillars, the number of walls, the coordinates of the pillars, and the pairs of pillars that form the walls. The generator should ensure that the constraints and conditions given in the problem statement are met.
+
+Here's how we can implement a test case generator in Python for this problem:
+
+```python
+import random
+
+def generate_pillars(C):
+    # Generate C unique pillar coordinates within the range [-1000, 1000]
+    pillars = set()
+    while len(pillars) < C:
+        x = random.randint(-1000, 1000)
+        y = random.randint(-1000, 1000)
+        pillars.add((x, y))
+    return list(pillars)
+
+def generate_walls(C, W):
+    walls = set()
+    while len(walls) < W:
+        # Each wall is defined by two distinct pillar indices
+        si = random.randint(1, C)
+        ti = random.randint(1, C)
+        if si != ti:
+            wall = (si, ti) if si < ti else (ti, si)
+            walls.add(wall)
+    return list(walls)
+
+def tcgen():
+    # Generate a random number of datasets
+    num_datasets = random.randint(1, 50)
+    datasets = []
+    
+    for _ in range(num_datasets):
+        # Number of pillars C (3 ≤ C ≤ 100)
+        C = random.randint(3, 100)
+        # Number of walls W (3 ≤ W ≤ 300)
+        W = random.randint(3, 300)
+        
+        # Generate pillars
+        pillars = generate_pillars(C)
+        
+        # Generate walls
+        walls = generate_walls(C, W)
+        
+        datasets.append((C, W, pillars, walls))
+    
+    # End of input indicator
+    datasets.append((0, 0))
+    
+    return datasets
+
+def print_datasets(datasets):
+    for dataset in datasets:
+        C, W, pillars, walls = dataset
+        print(C, W)
+        if C == 0 and W == 0:
+            break
+        for p in pillars:
+            print(p[0], p[1])
+        for w in walls:
+            print(w[0], w[1])
+
+# Generate and print the test cases
+datasets = tcgen()
+print_datasets(datasets)
+```
+
+### Explanation:
+
+1. **Generating Pillars**:
+   - We generate `C` unique coordinates for the pillars within the range \([-1000, 1000]\). To ensure uniqueness, we use a set and keep adding new coordinates until we have `C` unique pillars.
+
+2. **Generating Walls**:
+   - We generate `W` walls by randomly selecting pairs of distinct pillars. Each wall is represented by a pair of indices referring to the pillars. We ensure no duplicate walls by using a set.
+
+3. **Creating Datasets**:
+   - We create a random number of datasets (up to 50 as per the problem constraint). For each dataset, we generate the pillars and walls and store them in a list.
+
+4. **End of Input**:
+   - After generating the datasets, we add the end-of-input indicator `(0, 0)`.
+
+5. **Printing Datasets**:
+   - The `print_datasets` function formats and prints the datasets in the required input format.
+
+This generator ensures all constraints and conditions are respected while creating diverse and valid test cases for the problem.

@@ -1,0 +1,3 @@
+Types: N: int, M: int, k_i: List[int], s_ij: List[List[int]], p_i: List[int]
+Ranges: 1 ≤ N, M ≤ 10, 1 ≤ k_i ≤ N, 1 ≤ s_ij ≤ N, p_i in {0, 1}
+Addtl Info: s_ia ≠ s_ib (a ≠ b)

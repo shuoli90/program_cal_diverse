@@ -1,0 +1,33 @@
+Certainly! Below is the test case generator for the given problem statement.
+
+```python
+import random
+
+def generate_test_case():
+    # Constraints
+    N = random.randint(1, 300)
+    M = random.randint(1, 300)
+    
+    # Generate the grid values (only 0s and 1s)
+    grid = [[random.randint(0, 1) for _ in range(M)] for _ in range(N)]
+    
+    return N, M, grid
+
+def format_test_case(N, M, grid):
+    test_case = f"{N} {M}\n"
+    for row in grid:
+        test_case += " ".join(map(str, row)) + "\n"
+    return test_case
+
+# Example usage
+N, M, grid = generate_test_case()
+print(format_test_case(N, M, grid))
+```
+
+This script defines two functions: `generate_test_case` to create a random test case following the constraints, and `format_test_case` to format the generated test case as a string in the required input format.
+
+Here's how the functions work:
+- `generate_test_case` generates random values for \( N \) and \( M \) within their respective constraints. Then, it creates an \( N \times M \) grid with each cell containing either 0 or 1.
+- `format_test_case` takes the generated grid and formats it as a string in the required input format for the problem.
+
+You can run these functions to create and print a test case for the problem.

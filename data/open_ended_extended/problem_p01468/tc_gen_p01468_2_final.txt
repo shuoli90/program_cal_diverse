@@ -1,0 +1,44 @@
+Sure, here is a Python function that generates random test cases for the given problem statement:
+
+```python
+import random
+
+def generate_test_case():
+    N = random.randint(2, 10**5)
+
+    segments = []
+    for _ in range(N):
+        x1 = random.randint(0, 100)
+        y1 = random.randint(0, 100)
+        x2, y2 = x1, y1
+        while x1 == x2 and y1 == y2:  # Ensure the endpoints are different
+            x2 = random.randint(0, 100)
+            y2 = random.randint(0, 100)
+        segments.append((x1, y1, x2, y2))
+
+    return N, segments
+
+# Example usage
+N, segments = generate_test_case()
+print(N)
+for segment in segments:
+    print(" ".join(map(str, segment)))
+```
+
+Let's break down the code:
+
+1. **N**: The number of line segments is randomly chosen between 2 and 100,000, inclusive.
+2. **segments**: Each segment is represented as a tuple of four integers (x1, y1, x2, y2) where:
+    - \(0 \leq x1, y1, x2, y2 \leq 100\)
+    - Ensuring that the two endpoints of each segment are different.
+
+### Example Usage
+
+The `generate_test_case()` function creates a single test case and prints it in the required format.
+
+### Notes on Constraints
+
+- The constraints and checks ensure that the generated segments meet the problem's requirements.
+- The random number generation is constrained to manageable sizes to ensure quick execution even with the upper limits.
+
+You can call `generate_test_case()` multiple times to generate different test cases, each with random values within the specified constraints.

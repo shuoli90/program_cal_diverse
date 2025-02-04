@@ -1,0 +1,28 @@
+All Numbers Lead to 6174
+Perform the following operation on a four-digit number N consisting of digits 0 to 9.
+Arrange the numbers in each digit of N in descending order, and let L be the resulting number.
+Arrange the numbers in each digit of N in ascending order, and let S be the resulting number.
+Set the difference L-S as the new N (one operation completed)
+Repeat from 1. for the new N
+In this case, it is known that every four-digit number eventually becomes 6174 except for numbers where all digits are the same (such as 0000, 1111, etc.). For example, when N = 2012,
+       1st operation (N = 2012): L = 2210, S = 0122, L-S = 2088
+       2nd operation (N = 2088): L = 8820, S = 0288, L-S = 8532
+       3rd operation (N = 8532): L = 8532, S = 2358, L-S = 6174
+and 6174 is reached in three operations.
+Write a program that calculates the number of operations required to reach 6174 from a four-digit number consisting of digits 0 to 9.
+Input
+The input consists of multiple datasets. The end of input is indicated by a line containing only 0000. Each dataset is given in the following format.
+N
+The dataset consists of one line, and N (1 ≤ N ≤ 9999) represents a four-digit number. If N < 1000, the upper digits are filled with 0s.
+The number of datasets does not exceed 10,000.
+Output
+For each dataset, output the number of operations required to reach 6174 on one line. However, if a number is given as input where all digits are the same, output NA.
+Sample Input
+6174
+2012
+3333
+0000
+Sample Output
+0
+3
+NA

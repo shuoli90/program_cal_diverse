@@ -1,0 +1,34 @@
+Sure, let's build a test case generator for the given problem statement. The generator will create random strings `s` and `t` with lengths that fit within the specified constraints. Here's the Python code for the test case generator:
+
+```python
+import random
+import string
+
+def generate_string(length):
+    return ''.join(random.choice(string.ascii_lowercase) for _ in range(length))
+
+def tcgen():
+    # Generating random lengths for s and t within the given constraints
+    len_s = random.randint(1, 5 * 10**5)
+    len_t = random.randint(1, 5 * 10**5)
+    
+    # Generating random strings s and t of the specified lengths
+    s = generate_string(len_s)
+    t = generate_string(len_t)
+    
+    return s, t
+
+# Example use
+s, t = tcgen()
+print(s)
+print(t)
+```
+
+This test case generator does the following:
+
+1. Defines a helper function `generate_string(length)` that generates a random string of lowercase English letters of the given length.
+2. `tcgen()` function generates random lengths for `s` and `t` within the specified constraints (1 ≤ |s| ≤ 5 x 10^5 and 1 ≤ |t| ≤ 5 x 10^5).
+3. Uses the `generate_string` function to create random strings `s` and `t` of the generated lengths.
+4. Returns the generated strings `s` and `t`.
+
+You can use this generator to create multiple test cases for the problem by calling `tcgen()` repeatedly.

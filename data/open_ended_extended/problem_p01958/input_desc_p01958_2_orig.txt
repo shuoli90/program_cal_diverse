@@ -1,0 +1,16 @@
+An integer l (1 ≤ l ≤ 10^9).
+An integer r (l ≤ r ≤ 10^9, and 0 ≤ r-l < 1,000,000).
+
+### Example Input:
+
+```
+1 9
+```
+
+### Function Signature:
+Write a function f(l, r) that takes in the input. 
+def f(l: int, r: int): 
+    ''' 
+    l: an integer
+    r: an integer
+    '''

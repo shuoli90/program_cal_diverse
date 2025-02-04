@@ -1,0 +1,65 @@
+
+Score : 1100 points
+Problem StatementThere are N strings of lowercase alphabet only. The i-th string is S_i. Every string is unique.
+Provide answers for the Q queries below. The i-th query has the following format:
+Query: An integer k_i and a string p_{i,1}p_{i,2}...p_{i,26} that results from permuting {a,b,...,z} are given. Output the sequence of the string S_{k_i} among the N strings in lexicographical order when the literal sequence is p_{i,1}<p_{i,2}<...<p_{i,26}.
+Constraints
+1 ≦ N,Q ≦ 100000
+1 ≦ |S_i| (1 ≦ i ≦ N)
+S_i (1 ≦ i ≦ N) is a string of lowercase alphabet.
+The sum of |S_i| is no more than 400000.
+Every S_i is unique.
+1 ≦ k_i ≦ N (1 ≦ i ≦ Q)
+For all 1 ≦ i ≦ Q, p_{i,1}p_{i,2}...p_{i,26} is a permutation of abcd...z.
+InputInputs are provided from standard inputs in the following form.
+N
+S_1
+:
+S_N
+Q
+k_1 p_{1,1}p_{1,2}...p_{1,26}
+:
+k_Q p_{Q,1}p_{Q,2}...p_{Q,26}
+OutputOutput Q lines.
+On line i, for the i-th query, output an integer indicating the sequence of the string S_{k_i} among the N strings in lexicographical order.
+Sample Input 15
+aa
+abbaa
+abbba
+aaab
+aaaaaba
+5
+1 abcdefghijklmnopqrstuvwxyz
+2 bacdefghijklmnopqrstuvwxyz
+3 abcdefghijklmnopqrstuvwxyz
+4 bacdefghijklmnopqrstuvwxyz
+5 abcdefghijklmnopqrstuvwxyz
+Sample Output 11
+2
+5
+4
+2
+When the literal sequence is a < b, sorting the input strings in lexicographical order yields aa, aaaaaba, aaab, abbaa, abbba. The answers to queries 1, 3, and 5 are thus 1, 5, and 2, respectively.
+When the literal sequence is b < a, sorting the input strings in lexicographical order yields abbba, abbaa, aa, aaab, aaaaaba. The answers to queries 2 and 4 are thus 2 and 4, respectively.
+Sample Input 28
+abrakatabra
+abadaba
+abracadabra
+atcoder
+grand
+contest
+ababa
+a
+6
+3 abcdefghijklmnopqrstuvwxyz
+6 qwertyuiopasdfghjklzxcvbnm
+8 poiuytrewqlkjhgfdsamnbvcxz
+2 qazwsxedcrfvtgbyhnujmikolp
+1 plokmijnuhbygvtfcrdxeszwaq
+4 mnbvcxzasdfghjklpoiuytrewq
+Sample Output 24
+8
+2
+3
+4
+7

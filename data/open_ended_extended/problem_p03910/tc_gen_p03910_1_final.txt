@@ -1,0 +1,38 @@
+Here's a test case generator for the problem statement you provided:
+
+```python
+import random
+
+def generate_test_case():
+    # Generate a random N within the range 1 to 10^7
+    N = random.randint(1, 10**7)
+    
+    return N
+
+# Example usage
+if __name__ == "__main__":
+    for _ in range(5):  # Generate 5 test cases
+        tc = generate_test_case()
+        print(tc)
+```
+
+This function `generate_test_case` will produce a test case for the problem by generating a random integer \( N \) within the given constraints (1 ≤ \( N \) ≤ 10^7).
+
+Since the output is deterministic based on the input \( N \), you can directly use this function to generate your test cases. Here's how you might use this in a test harness:
+
+```python
+def main():
+    # Generate a test case
+    N = generate_test_case()
+    
+    # Print the test case
+    print(N)
+
+# You can call main to generate and print a test case
+if __name__ == "__main__":
+    main()
+```
+
+This will print out the random \( N \) which you can then manually verify or plug into your solution to see the output.
+
+For complex and large-scale testing, you might want to save these test cases to a file or handle them programmatically within your testing framework.

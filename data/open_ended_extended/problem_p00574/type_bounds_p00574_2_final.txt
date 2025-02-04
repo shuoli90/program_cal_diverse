@@ -1,0 +1,11 @@
+Types: L: int, Q: int, S: str, T_d: List[str]
+
+Ranges: 
+1 ≤ L ≤ 20 
+1 ≤ Q ≤ 1,000,000 
+|S| = 2^L 
+S consists of the characters '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' 
+|T_d| = L 
+T_d consists of the characters '0', '1', '?' (1 ≤ d ≤ Q)
+
+Addtl Info: None

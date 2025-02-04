@@ -1,0 +1,41 @@
+Sure, here is a test case generator for the Yamanote-line Game problem statement:
+
+```python
+import random
+
+def tcgen():
+    # Generate N and d
+    N = random.randint(3, 1000)
+    d = random.randint(1, 1000)
+    
+    # Generate rewards for each station
+    p = [random.randint(1, 1000) for _ in range(N)]
+    
+    return N, d, p
+
+# Example usage:
+if __name__ == "__main__":
+    N, d, p = tcgen()
+    print(N, d)
+    print(" ".join(map(str, p)))
+```
+
+### Explanation
+1. **N** is generated randomly between 3 and 1000, as per the problem constraints.
+2. **d** is generated randomly between 1 and 1000.
+3. The list **p** contains N integers, each representing the reward at a station, randomly chosen between 1 and 1000.
+
+### Sample Output
+Running this generator might yield an output like:
+
+```
+8 457
+300 500 120 450 700 330 250 370
+```
+
+This output corresponds to:
+- 8 stations (N = 8)
+- Fare d = 457 yen
+- Rewards at the stations: `[300, 500, 120, 450, 700, 330, 250, 370]`
+
+You can then use these generated values as input for testing your solution to the problem.

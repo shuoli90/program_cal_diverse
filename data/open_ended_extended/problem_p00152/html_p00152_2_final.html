@@ -1,0 +1,217 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p00152 - Generation 2</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p00152 - Generation 2</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>Bowling
+We have decided to go bowling as a class recreation. Create a program that inputs the throwing information for each participant and outputs the performance information in order of highest score. In the case of a tie, output in order of student ID number. However, the number of participants should be between 3 and 40, and each person is assumed to have thrown one game.
+Bowling is a sport in which a player rolls a ball towards ten pins arranged in an equilateral triangle with the top pointing towards them and tries to knock them all down. If all the pins are knocked down on the first throw, it is called a strike, and the player advances to the next frame with only that throw. If it is not a strike, the player leaves the remaining pins and throws a second time. If all the pins are knocked down on the second throw, it is called a spare, and the player advances to the next frame after the second throw.
+One game consists of 10 frames. For the first through ninth frames, two throws are allowed per frame. At the beginning of each frame, all 10 pins are standing. In the tenth frame, if a strike or a spare is made, three throws are allowed. Otherwise, two throws are allowed, and the game ends.
+Example scores 1
+Example scores 2 (with a perfect score of 300)
+Scoring Method
+ In frames where there is no spare or strike, the score for that frame is the number of pins knocked down in two throws. (e.g., the fourth and eighth frames in Example 1)
+ If you get a spare, you add ten points to the number of pins knocked down, and then add the number of pins knocked down on the next throw to the score for that frame. (e.g., the relationship between the first and second frames in Example 1) In the first frame of Example 1, 20 points are scored by adding the 10 pins (points) knocked down in the second frame's first throw to the 10 points for the first throw. The same calculation method applies to the third frame.
+ If you get a strike, you add ten points to the number of pins knocked down, and then add the number of pins knocked down in the next two throws to the score for that frame. (e.g., the relationship between the second and third frames in Example 1) Of course, there may be a strike in the two subsequent throws. (e.g., the relationship between the fifth, sixth, and seventh frames in Example 1)
+ In the tenth frame only, if you get a spare or strike, the total number of pins knocked down in three throws is added to the score for the tenth frame.
+ The total score for each frame is the sum of the scores for each frame, and the highest score is 300 points.
+Input
+The input consists of multiple datasets. The end of the input is indicated by a line containing a single zero.
+Each dataset is given in the following format.
+m
+score1
+score2
+:
+scorem
+The first line contains the number of participants m (3 ≤ m ≤ 40), followed by m lines containing the participant information for person i. Each participant information is given in the following format, one line at a time.
+id s1 s2 ... sn
+The student ID number id (0 ≤ id ≤ 9999) is first, followed by the number of pins knocked down in the jth throw, sj (0 ≤ sj ≤ 10). The total number of throws, n, is between 12 and 21, and the number of pins required for scoring is given exactly.
+Output
+For each input dataset, output the student ID number and score in order of highest score. If there is a tie, output in order of student ID number. Output the student ID number and score on one line, separated by a single space.
+Sample Input
+3
+1010 6 3 10 7 1 0 7 9 1 10 6 2 4 3 9 1 9 0
+1200 5 3 9 1 7 1 0 0 8 1 10 10 4 3 9 1 8 2 9
+1101 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3
+4
+3321 8 2 10 9 1 7 0 10 10 10 0 8 10 10 10 10
+3332 5 0 10 9 1 4 1 9 0 10 10 7 1 5 2 8 1
+3335 10 10 10 10 10 10 10 10 10 10 10 10
+3340 8 2 7 3 6 4 8 2 8 2 9 1 7 3 6 4 8 2 9 1 7
+0
+Output for the Sample Input
+1200 127
+1010 123
+1101 60
+3335 300
+3321 200
+3340 175
+3332 122
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An integer m (3 ≤ m ≤ 40), representing the number of entities.
+For each entity, an integer id (0 ≤ id ≤ 9999) followed by a list of integers sj (0 ≤ sj ≤ 10) where the number of integers in the list is between 12 and 21.
+
+### Example Input:
+
+```
+3
+1010 6 3 10 7 1 0 7 9 1 10 6 2 4 3 9 1 9 0
+1200 5 3 9 1 7 1 0 0 8 1 10 10 4 3 9 1 8 2 9
+1101 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3
+```
+
+### Function Signature:
+Write a function f(inputs) that takes in the input. 
+def f(inputs: List[Tuple[int, List[int]]]): 
+    ''' 
+    inputs: a list of tuples, where each tuple consists of an integer and a list of integers 
+    '''
+</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Sure, here's a test case generator for the provided "Bowling" problem:
+
+```python
+import random
+
+def tcgen():
+    # Number of participants, between 3 and 40
+    m = random.randint(3, 40)
+    
+    participants = []
+    for _ in range(m):
+        # Generate a unique student ID between 0 and 9999
+        student_id = random.randint(0, 9999)
+        
+        throws = []
+        
+        # Generate throws for 9 frames (each frame can have 1 or 2 throws)
+        for frame in range(9):
+            first_throw = random.randint(0, 10)
+            if first_throw == 10:
+                # Strike, only one throw
+                throws.append(first_throw)
+            else:
+                # Two throws in the frame
+                second_throw = random.randint(0, 10 - first_throw)
+                throws.append(first_throw)
+                throws.append(second_throw)
+        
+        # Generate throws for the 10th frame (can have 2 or 3 throws)
+        first_throw = random.randint(0, 10)
+        throws.append(first_throw)
+        if first_throw == 10:
+            # Strike, ensure there are two more throws
+            second_throw = random.randint(0, 10)
+            throws.append(second_throw)
+            if second_throw == 10:
+                # Another strike, one more throw
+                third_throw = random.randint(0, 10)
+                throws.append(third_throw)
+            else:
+                # Two throws in the frame
+                third_throw = random.randint(0, 10 - second_throw)
+                throws.append(third_throw)
+        else:
+            # Two throws in the frame
+            second_throw = random.randint(0, 10 - first_throw)
+            throws.append(second_throw)
+            if first_throw + second_throw == 10:
+                # Spare, one more throw
+                third_throw = random.randint(0, 10)
+                throws.append(third_throw)
+        
+        participants.append((student_id, throws))
+    
+    # Format the input
+    input_data = f"{m}\n"
+    for student_id, throws in participants:
+        input_data += f"{student_id} " + " ".join(map(str, throws)) + "\n"
+    
+    return input_data.strip()
+
+# Example usage:
+print(tcgen())
+```
+
+This script generates a test case for the "Bowling" problem. It ensures the following:
+- The number of participants is between 3 and 40.
+- Each participant has a unique student ID between 0 and 9999.
+- Each participant's throws are generated such that they adhere to the constraints of a typical bowling game, including handling strikes and spares appropriately.
+- The 10th frame is handled separately to account for additional throws in case of a strike or spare.
+
+Remember to run this script in an environment where `random` is available and can be imported. The output will be a single test case formatted as per the problem statement.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    datasets = []
+    while True:
+        m = int(fh.readline().strip())
+        if m == 0:
+            break
+        participants = []
+        for _ in range(m):
+            line = fh.readline().strip().split()
+            id = int(line[0])
+            scores = list(map(int, line[1:]))
+            participants.append((id, scores))
+        datasets.append(participants)
+    return datasets</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

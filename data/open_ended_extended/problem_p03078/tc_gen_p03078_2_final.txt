@@ -1,0 +1,44 @@
+Here is a Python function to generate test cases for the described problem statement. This function will generate random values for \(X\), \(Y\), \(Z\), \(K\), and the deliciousness arrays \(A\), \(B\), and \(C\):
+
+```python
+import random
+
+def tcgen():
+    X = random.randint(1, 1000)
+    Y = random.randint(1, 1000)
+    Z = random.randint(1, 1000)
+    K = random.randint(1, min(3000, X * Y * Z))
+    
+    A = [random.randint(1, 10**10) for _ in range(X)]
+    B = [random.randint(1, 10**10) for _ in range(Y)]
+    C = [random.randint(1, 10**10) for _ in range(Z)]
+    
+    return X, Y, Z, K, A, B, C
+
+def format_tc(X, Y, Z, K, A, B, C):
+    input_str = f"{X} {Y} {Z} {K}\n"
+    input_str += " ".join(map(str, A)) + "\n"
+    input_str += " ".join(map(str, B)) + "\n"
+    input_str += " ".join(map(str, C)) + "\n"
+    
+    return input_str
+
+# Generating a test case
+X, Y, Z, K, A, B, C = tcgen()
+print(format_tc(X, Y, Z, K, A, B, C))
+```
+
+**Explanation:**
+
+1. **Random Generation of Parameters:**
+    - **\(X\)**, **\(Y\)**, and **\(Z\)** are generated randomly between 1 and 1000.
+    - **\(K\)** is generated randomly between 1 and the minimum of 3000 and \(X \times Y \times Z\).
+    - Arrays **\(A\)**, **\(B\)**, and **\(C\)** are generated with random values between 1 and \(10^{10}\).
+
+2. **Formatting the Test Case:**
+    - The `format_tc` function formats the generated values into the required input format.
+
+3. **Printing the Test Case:**
+    - Finally, the test case is generated and printed in the required format.
+
+Run this script to create a new test case each time. This will be useful for testing various scenarios and edge cases for the problem statement.

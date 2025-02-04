@@ -1,0 +1,40 @@
+Sure, I can help you write a test case generator for the given problem statement "Saizou". Here is a Python function to generate random test cases for this problem:
+
+```python
+import random
+
+def tcgen():
+    # Number of datasets
+    t = random.randint(1, 100)
+    datasets = []
+    
+    for _ in range(t):
+        # Number of blocks in the field athletics
+        n = random.randint(2, 100)
+        
+        # Heights of the blocks
+        heights = [random.randint(1, 1000) for _ in range(n)]
+        
+        datasets.append((n, heights))
+    
+    return t, datasets
+
+def print_test_case(t, datasets):
+    # Print the number of datasets
+    print(t)
+    
+    # Print each dataset
+    for n, heights in datasets:
+        print(n)
+        print(" ".join(map(str, heights)))
+
+# Example usage
+t, datasets = tcgen()
+print_test_case(t, datasets)
+```
+
+This script includes two functions:
+1. `tcgen()` - Generates a random number of datasets `t`, and for each dataset, it generates a random number of blocks `n` and a random sequence of heights.
+2. `print_test_case(t, datasets)` - Takes the generated datasets and prints them in the required format.
+
+You can call `tcgen()` to generate random test cases and `print_test_case(t, datasets)` to print the test cases in the format specified by the problem statement. You may run this script to get the test cases for your problem.

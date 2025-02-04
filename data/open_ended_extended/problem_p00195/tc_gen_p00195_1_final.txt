@@ -1,0 +1,48 @@
+Certainly! Below is the test case generator for the given problem statement "What are the popular stalls?":
+
+```python
+import random
+
+def tcgen():
+    datasets = []
+    for _ in range(random.randint(1, 100)):  # Number of datasets
+        dataset = []
+        for _ in range(5):  # For each of the 5 stores A, B, C, D, E
+            s1 = random.randint(1, 10000)  # Morning sales
+            s2 = random.randint(1, 10000)  # Afternoon sales
+            dataset.append((s1, s2))
+        datasets.append(dataset)
+    
+    return datasets
+
+def format_input(datasets):
+    input_str = ""
+    for dataset in datasets:
+        for s1, s2 in dataset:
+            input_str += f"{s1} {s2}\n"
+    input_str += "0 0\n"
+    return input_str
+
+def main():
+    datasets = tcgen()
+    input_str = format_input(datasets)
+    print(input_str)
+
+if __name__ == "__main__":
+    main()
+```
+
+### Explanation:
+
+1. **tcgen()**: This function generates random test cases.
+   - It first determines the number of datasets (between 1 and 100).
+   - For each dataset, it generates sales data for 5 stores (A, B, C, D, E).
+   - Each store's sales data consists of two integers representing morning and afternoon sales, each between 1 and 10,000.
+
+2. **format_input(datasets)**: This function formats the generated datasets into the required input format.
+   - It concatenates the morning and afternoon sales of each store in the dataset.
+   - It finally adds the "0 0" line to indicate the end of input.
+
+3. **main()**: This function orchestrates the generation and formatting of the test cases, and then prints the formatted input.
+
+You can run the script to generate and print a random test case for the problem statement. Each run will produce different sales data, ensuring varied test scenarios.

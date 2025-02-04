@@ -1,0 +1,17 @@
+Types: N: int, M: int, W: int, T: int, S: List[str], V: List[int], P: List[int], L: List[int], X: List[int], Y: List[int], R: List[List[str]], Q: List[List[int]]
+
+Ranges: 
+- 1 ≤ N ≤ 100
+- 1 ≤ M ≤ 10
+- 1 ≤ W ≤ 1000
+- 1 ≤ T ≤ 10^4
+- S[i]: str (length ≤ 20)
+- 1 ≤ V[i] ≤ 100
+- 1 ≤ P[i] ≤ 10^6
+- 1 ≤ L[i] ≤ 100
+- -10^3 ≤ X[i] ≤ 10^3
+- -10^3 ≤ Y[i] ≤ 10^3
+- R[i][j]: str (length ≤ 20)
+- 1 ≤ Q[i][j] ≤ 10^6
+
+Addtl Info: None

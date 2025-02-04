@@ -1,0 +1,35 @@
+Certainly! To generate test cases for the "Soroban" problem, we need to create random numbers with up to 5 digits and multiple test cases. Below is the test case generator for the given problem statement:
+
+```python
+import random
+
+def tcgen():
+    # Number of test cases
+    T = random.randint(1, 1024)
+    
+    test_cases = []
+    
+    for _ in range(T):
+        num = random.randint(0, 99999)
+        test_cases.append(num)
+    
+    return test_cases
+
+# Generating and printing test cases
+test_cases = tcgen()
+for test_case in test_cases:
+    print(test_case)
+```
+
+### Explanation of the Test Case Generator:
+
+1. **Number of Test Cases (T)**:
+   - Randomly generate the number of test cases, ensuring it is between 1 and 1024.
+
+2. **Generating Numbers**:
+   - For each test case, generate a random number between 0 and 99999 to ensure it is up to 5 digits.
+
+3. **Output**:
+   - The test cases are stored in a list and printed one by one.
+
+When the generated test cases are used as input to the program, each number will be formatted according to the soroban bead arrangement rules specified in the problem statement. The output will need to be formatted so that there is a blank line between each test case's output.

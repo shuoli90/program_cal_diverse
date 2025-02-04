@@ -1,0 +1,5 @@
+Types: N: int, A: int, K: int, SA: List[int]
+
+Ranges: 1 ≤ N ≤ 10^5, 1 ≤ A ≤ 26, 1 ≤ K ≤ 10^{18}, 1 ≤ SA_i ≤ N
+
+Addtl Info: i ≠ j implies SA_i ≠ SA_j

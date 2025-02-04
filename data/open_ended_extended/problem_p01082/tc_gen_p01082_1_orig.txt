@@ -1,0 +1,57 @@
+Sure, I can help you build a test case generator for "Problem K: Escape of Lappin the Phantom Thief." Here is a Python script to generate random test cases based on the problem constraints:
+
+```python
+import random
+
+def tcgen():
+    # Constraints
+    n = random.randint(1, 5 * 10**4)
+    m = random.randint(1, 5 * 10**4)
+    k = random.randint(1, min(10**5, n * m))
+    
+    # Generate unique robot coordinates
+    coordinates = set()
+    while len(coordinates) < k:
+        x = random.randint(0, n - 1)
+        y = random.randint(0, m - 1)
+        coordinates.add((x, y))
+    
+    coordinates = list(coordinates)
+    
+    return n, m, k, coordinates
+
+# Example usage
+n, m, k, coordinates = tcgen()
+print(n, m, k)
+for (x, y) in coordinates:
+    print(x, y)
+```
+
+### Explanation
+
+1. **Constraints**:
+   - \( n \) and \( m \) are generated randomly within the range [1, 50,000].
+   - \( k \) is generated randomly within the range [1, min(100,000, \( n \times m \))].
+
+2. **Generating Robot Coordinates**:
+   - A set is used to ensure all coordinates are unique.
+   - Random coordinates (xi, yi) are generated until there are \( k \) unique coordinates.
+
+3. **Output**:
+   - The first line contains \( n \), \( m \), and \( k \).
+   - The following \( k \) lines contain the coordinates of the robots.
+
+### Sample Output
+
+Here’s an example of how the output might look when you run the test case generator:
+
+```
+20438 38570 5
+3145 28273
+18230 10446
+14786 16991
+12120 327
+783 3778
+```
+
+You can use the `tcgen` function to generate multiple test cases for thorough testing of your solution.

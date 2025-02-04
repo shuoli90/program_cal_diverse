@@ -1,0 +1,145 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p03005 - Generation 2</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p03005 - Generation 2</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>
+Score : 100 points
+Problem StatementTakahashi is distributing N balls to K persons.
+If each person has to receive at least one ball, what is the maximum possible difference in the number of balls received between the person with the most balls and the person with the fewest balls?
+Constraints
+1 \leq K \leq N \leq 100
+All values in input are integers.
+InputInput is given from Standard Input in the following format:
+N K
+OutputPrint the maximum possible difference in the number of balls received.
+Sample Input 13 2
+Sample Output 11
+The only way to distribute three balls to two persons so that each of them receives at least one ball is to give one ball to one person and give two balls to the other person.
+Thus, the maximum possible difference in the number of balls received is 1.
+Sample Input 23 1
+Sample Output 20
+We have no choice but to give three balls to the only person, in which case the difference in the number of balls received is 0.
+Sample Input 38 5
+Sample Output 33
+For example, if we give 1, 4, 1, 1, 1 balls to the five persons, the number of balls received between the person with the most balls and the person with the fewest balls would be 3, which is the maximum result.
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An integer N (1 ≤ N ≤ 100), representing some quantity or size.
+An integer K (1 ≤ K ≤ N), representing another quantity or size.
+
+### Example Input:
+
+```
+13 2
+```
+
+### Function Signature:
+Write a function f(N, K) that takes in the input. 
+def f(N: int, K: int): 
+    ''' 
+    N: an integer 
+    K: an integer
+    '''</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Sure! Here is a test case generator for the provided problem statement about distributing balls to people:
+
+```python
+import random
+
+def tcgen():
+    # Generate random values for N and K such that 1 <= K <= N <= 100
+    N = random.randint(1, 100)
+    K = random.randint(1, N)
+    return N, K
+
+# Example usage
+N, K = tcgen()
+print(N, K)
+```
+
+### Explanation:
+1. **N**: Total number of balls, randomly chosen between 1 and 100.
+2. **K**: Number of persons, which must be at least 1 and at most **N**.
+
+This generator ensures that the constraints of the problem are respected (1 ≤ K ≤ N ≤ 100). You can run this function multiple times to generate different test cases. Here are a few example outputs from this generator:
+
+1. **Example Output 1**:
+   ```
+   53 24
+   ```
+
+2. **Example Output 2**:
+   ```
+   98 98
+   ```
+
+3. **Example Output 3**:
+   ```
+   15 5
+   ```
+
+Each run of the `tcgen` function will produce a different pair of values for **N** and **K**, suitable for testing various scenarios in the problem.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    N, K = map(int, fh.readline().strip().split())
+    return N, K</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

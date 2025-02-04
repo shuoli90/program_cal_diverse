@@ -1,0 +1,3 @@
+Types: W: int, H: int, grid: List[List[str]]  
+Ranges: 3 ≤ W, H ≤ 30, grid contains {'@', '<', 'a'-'z', 'A'-'Z', '#', '.'}  
+Addtl Info: grid is W × H in size, surrounded by '#', exactly one '@' and one '<', up to 8 distinct uppercase and lowercase labels

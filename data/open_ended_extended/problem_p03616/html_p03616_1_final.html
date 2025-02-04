@@ -1,0 +1,227 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p03616 - Generation 1</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p03616 - Generation 1</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>
+Score : 700 points
+Problem StatementWe have a sandglass consisting of two bulbs, bulb A and bulb B. These bulbs contain some amount of sand.
+When we put the sandglass, either bulb A or B lies on top of the other and becomes the upper bulb. The other bulb becomes the lower bulb.
+The sand drops from the upper bulb to the lower bulb at a rate of 1 gram per second.
+When the upper bulb no longer contains any sand, nothing happens.
+Initially at time 0, bulb A is the upper bulb and contains a grams of sand; bulb B contains X-a grams of sand (for a total of X grams).
+We will turn over the sandglass at time r_1,r_2,..,r_K. Assume that this is an instantaneous action and takes no time. Here, time t refer to the time t seconds after time 0.
+You are given Q queries.
+Each query is in the form of (t_i,a_i).
+For each query, assume that a=a_i and find the amount of sand that would be contained in bulb A at time t_i.
+Constraints
+1≤X≤10^9
+1≤K≤10^5
+1≤r_1<r_2< .. <r_K≤10^9
+1≤Q≤10^5
+0≤t_1<t_2< .. <t_Q≤10^9
+0≤a_i≤X (1≤i≤Q)
+All input values are integers.
+InputThe input is given from Standard Input in the following format:
+X
+K
+r_1 r_2 .. r_K
+Q
+t_1 a_1
+t_2 a_2
+:
+t_Q a_Q
+OutputFor each query, print the answer in its own line.
+Sample Input 1180
+3
+60 120 180
+3
+30 90
+61 1
+180 180
+Sample Output 160
+1
+120
+In the first query, 30 out of the initial 90 grams of sand will drop from bulb A, resulting in 60 grams.
+In the second query, the initial 1 gram of sand will drop from bulb A, and nothing will happen for the next 59 seconds. Then, we will turn over the sandglass, and 1 second after this, bulb A contains 1 gram of sand at the time in question.
+Sample Input 2100
+1
+100000
+4
+0 100
+90 100
+100 100
+101 100
+Sample Output 2100
+10
+0
+0
+In every query, the upper bulb initially contains 100 grams, and the question in time comes before we turn over the sandglass.
+Sample Input 3100
+5
+48 141 231 314 425
+7
+0 19
+50 98
+143 30
+231 55
+342 0
+365 100
+600 10
+Sample Output 319
+52
+91
+10
+58
+42
+100
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>Canonicalized Input Description:
+
+An integer X (1 ≤ X ≤ 10^9).
+An integer K (1 ≤ K ≤ 10^5).
+A list of K integers, each between 1 and 10^9, in ascending order.
+An integer Q (1 ≤ Q ≤ 10^5).
+A list of Q tuples, each containing:
+  - An integer t_i (0 ≤ t_i ≤ 10^9), in ascending order.
+  - An integer a_i (0 ≤ a_i ≤ X).
+
+### Example Input:
+
+```
+180
+3
+60 120 180
+3
+30 90
+61 1
+180 180
+```
+
+### Function Signature:
+Write a function f(X, K, r, Q, queries) that takes in the input.
+```python
+def f(X: int, K: int, r: List[int], Q: int, queries: List[Tuple[int, int]]):
+    ''' 
+    X: an integer 
+    K: an integer
+    r: a list of integers
+    Q: an integer
+    queries: a list of tuples
+    '''
+```</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Certainly! Here's a Python function to generate test cases for the given sandglass problem:
+
+```python
+import random
+
+def tcgen():
+    # Constraints
+    X = random.randint(1, 10**9)  # Total amount of sand
+    K = random.randint(1, 10**5)  # Number of turn-over times
+
+    # Generate K unique turn-over times in increasing order
+    r = sorted(random.sample(range(1, 10**9 + 1), K))
+
+    Q = random.randint(1, 10**5)  # Number of queries
+
+    # Generate Q unique query times in increasing order
+    t = sorted(random.sample(range(0, 10**9 + 1), Q))
+
+    # Generate corresponding amounts of sand in bulb A for each query
+    a = [random.randint(0, X) for _ in range(Q)]
+
+    # Construct the input format
+    input_data = f"{X}\n{K}\n" + " ".join(map(str, r)) + f"\n{Q}\n"
+    for i in range(Q):
+        input_data += f"{t[i]} {a[i]}\n"
+
+    return input_data
+
+# Example usage
+print(tcgen())
+```
+
+Here's what the function does:
+
+1. Generates a random integer `X` between 1 and \(10^9\), representing the total amount of sand.
+2. Generates a random integer `K` between 1 and \(10^5\), representing the number of turn-over times.
+3. Creates a list of `K` unique turn-over times `r` in increasing order.
+4. Generates a random integer `Q` between 1 and \(10^5\), representing the number of queries.
+5. Creates a list of `Q` unique query times `t` in increasing order.
+6. Generates a list of random amounts of sand `a` for each query.
+7. Constructs the input in the required format.
+
+You can use this generator function to create various test cases for the sandglass problem.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    X = int(fh.readline().strip())
+    K = int(fh.readline().strip())
+    r = list(map(int, fh.readline().strip().split()))
+    Q = int(fh.readline().strip())
+    queries = []
+    for _ in range(Q):
+        t, a = map(int, fh.readline().strip().split())
+        queries.append((t, a))
+    return X, K, r, Q, queries</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

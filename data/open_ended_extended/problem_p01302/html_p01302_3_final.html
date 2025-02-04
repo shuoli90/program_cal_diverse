@@ -1,0 +1,269 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p01302 - Generation 3</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p01302 - Generation 3</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>
+Problem J: Cave Explorer
+Mike Smith is a man exploring caves all over the world.
+One day, he faced a scaring creature blocking his way. He got scared, but in short time he took
+his knife and then slashed it to attempt to kill it. Then they were split into parts, which soon
+died out but the largest one. He slashed the creature a couple of times more to make it small
+enough, and finally became able to go forward.
+Now let us think of his situation in a mathematical way. The creature is considered to be a
+polygon, convex or concave. Mike slashes this creature straight with his knife in some direction.
+We suppose here the direction is given for simpler settings, while the position is arbitrary. Then
+all split parts but the largest one disappears.
+Your task is to write a program that calculates the area of the remaining part when the creature
+is slashed in such a way that the area is minimized.
+Input
+The input is a sequence of datasets. Each dataset is given in the following format:
+n
+vx vy
+x1 y1
+       ...
+xn yn
+The first line contains an integer n, the number of vertices of the polygon that represents the
+shape of the creature (3 ≤ n ≤ 100). The next line contains two integers vx and vy, where
+(vx, vy) denote a vector that represents the direction of the knife (-10000 ≤ vx, vy ≤ 10000,
+vx2 + vy2 > 0). Then n lines follow. The i-th line contains two integers xi and yi, where (xi, yi)
+denote the coordinates of the i-th vertex of the polygon (0 ≤ xi, yi ≤ 10000).
+The vertices are given in the counterclockwise order. You may assume the polygon is always
+simple, that is, the edges do not touch or cross each other except for end points.
+The input is terminated by a line with a zero. This should not be processed.
+Output
+For each dataset, print the minimum possible area in a line. The area may be printed with
+an arbitrary number of digits after the decimal point, but should not contain an absolute error
+greater than 10-2.
+Sample Input
+5
+0 1
+0 0
+5 0
+1 1
+5 2
+0 2
+7
+9999 9998
+0 0
+2 0
+3 1
+1 1
+10000 9999
+2 2
+0 2
+0
+Output for the Sample Input
+2.00
+2.2500000
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An integer \( n \) (3 ≤ \( n \) ≤ 100), representing some quantity.
+Two integers \( vx \) and \( vy \) (-10000 ≤ \( vx, vy \) ≤ 10000, \( vx^2 + vy^2 > 0 \)), representing some vector.
+A list of \( n \) pairs of integers, where each pair \( (x_i, y_i) \) (0 ≤ \( x_i, y_i \) ≤ 10000), representing some coordinates.
+
+### Example Input:
+
+```
+5
+0 1
+0 0
+5 0
+1 1
+5 2
+0 2
+```
+
+### Function Signature:
+Write a function f(n, vx, vy, coordinates) that takes in the input.
+```python
+def f(n: int, vx: int, vy: int, coordinates: List[Tuple[int, int]]):
+    '''
+    n: an integer
+    vx: an integer
+    vy: an integer
+    coordinates: a list of tuples, where each tuple contains two integers
+    '''
+```</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Sure, here's a test case generator for the provided problem "Cave Explorer":
+
+```python
+import random
+
+def generate_polygon(n):
+    """ Generate a simple polygon with n vertices """
+    points = []
+    for _ in range(n):
+        x = random.randint(0, 10000)
+        y = random.randint(0, 10000)
+        points.append((x, y))
+    return points
+
+def is_simple_polygon(polygon):
+    """ Check if a given polygon is simple (no self-intersecting) """
+    def orientation(p, q, r):
+        """ Return the orientation of the triplet (p, q, r).
+        0 -> p, q and r are collinear
+        1 -> Clockwise
+        2 -> Counterclockwise
+        """
+        val = (q[1] - p[1]) * (r[0] - q[0]) - (q[0] - p[0]) * (r[1] - q[1])
+        if val == 0:
+            return 0
+        elif val > 0:
+            return 1
+        else:
+            return 2
+
+    def do_intersect(p1, q1, p2, q2):
+        """ Return true if line segment 'p1q1' and 'p2q2' intersect. """
+        o1 = orientation(p1, q1, p2)
+        o2 = orientation(p1, q1, q2)
+        o3 = orientation(p2, q2, p1)
+        o4 = orientation(p2, q2, q1)
+
+        if o1 != o2 and o3 != o4:
+            return True
+
+        if o1 == 0 and on_segment(p1, p2, q1):
+            return True
+
+        if o2 == 0 and on_segment(p1, q2, q1):
+            return True
+
+        if o3 == 0 and on_segment(p2, p1, q2):
+            return True
+
+        if o4 == 0 and on_segment(p2, q1, q2):
+            return True
+
+        return False
+
+    def on_segment(p, q, r):
+        """ Check if point q lies on line segment 'pr' """
+        if (q[0] <= max(p[0], r[0]) and q[0] >= min(p[0], r[0]) and
+            q[1] <= max(p[1], r[1]) and q[1] >= min(p[1], r[1])):
+            return True
+        return False
+
+    n = len(polygon)
+    for i in range(n):
+        for j in range(i + 1, n):
+            if do_intersect(polygon[i - 1], polygon[i], polygon[j - 1], polygon[j]):
+                return False
+    return True
+
+def tcgen():
+    datasets = []
+    while True:
+        n = random.randint(3, 100)
+        vx = random.randint(-10000, 10000)
+        vy = random.randint(-10000, 10000)
+        while vx == 0 and vy == 0:
+            vx = random.randint(-10000, 10000)
+            vy = random.randint(-10000, 10000)
+            
+        polygon = generate_polygon(n)
+        # Ensure the polygon is simple
+        while not is_simple_polygon(polygon):
+            polygon = generate_polygon(n)
+            
+        dataset = [str(n)]
+        dataset.append(f"{vx} {vy}")
+        for x, y in polygon:
+            dataset.append(f"{x} {y}")
+        
+        datasets.append("\n".join(dataset))
+        
+        # Randomly decide if this is the last dataset
+        if random.random() < 0.1:
+            break
+    
+    datasets.append("0")
+    return "\n".join(datasets)
+
+# Generate a test case
+print(tcgen())
+```
+
+### Explanation:
+1. **Polygon Generation**: The `generate_polygon` function generates random points within the given constraints, ensuring that the polygon is simple (doesn't self-intersect) using the `is_simple_polygon` function.
+2. **Vector Generation**: Generates a random vector \((vx, vy)\) ensuring that it is not \((0, 0)\).
+3. **Dataset Construction**: Constructs a dataset with the required format.
+4. **Termination**: The generation loop randomly decides when to stop adding datasets to simulate the input termination with a line containing zero.
+
+This generator can produce multiple datasets in one run, adhering to the problem's constraints and ensuring the polygons are simple.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    datasets = []
+    while True:
+        n = int(fh.readline().strip())
+        if n == 0:
+            break
+        vx, vy = map(int, fh.readline().strip().split())
+        vertices = []
+        for _ in range(n):
+            x, y = map(int, fh.readline().strip().split())
+            vertices.append((x, y))
+        datasets.append((n, (vx, vy), vertices))
+    return datasets</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

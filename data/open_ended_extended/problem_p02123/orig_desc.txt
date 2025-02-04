@@ -1,0 +1,98 @@
+Problem M: Fissure Puzzle Hard
+Problem
+There is a grid consisting of $N \times N$ squares. All squares are initially white. We increase the number of black squares following the procedure below.
+Choose a white square in a cell that is on an even-numbered row and an even-numbered column. The chosen square is changed to black. Furthermore, the white squares adjacent to the chosen square in each direction, north, south, east, and west, are changed to black in a chain until there is no white square in that direction. (See the example below.)
+□□□□□□□□□
+□□□□□□□□□
+□□□□□□□□□
+□□□□□□□□□
+□□□□□□□□□
+□□□□□□□□□
+□□□□□□□□□
+□□□□□□□□□
+□□□□□□□□□
+↓ choose the square in the 4th row from the top and the 6th column
+□□□□□■□□□
+□□□□□■□□□
+□□□□□■□□□
+■■■■■■■■■
+□□□□□■□□□
+□□□□□■□□□
+□□□□□■□□□
+□□□□□■□□□
+□□□□□■□□□
+↓ choose the square in the 2nd row from the top and the 2nd column
+□■□□□■□□□
+■■■■■■□□□
+□■□□□■□□□
+■■■■■■■■■
+□□□□□■□□□
+□□□□□■□□□
+□□□□□■□□□
+□□□□□■□□□
+□□□□□■□□□
+↓ choose the square in the 6th row from the top and the 8th column
+□■□□□■□□□
+■■■■■■□□□
+□■□□□■□□□
+■■■■■■■■■
+□□□□□■□■□
+□□□□□■■■■
+□□□□□■□■□
+□□□□□■□■□
+□□□□□■□■□
+You want to create a grid where the color of the square at the $i$-th row from the top and the $j$-th column from the left is $A_{i,j}$. Determine whether it is possible to create such a grid. If possible, find the places and order of the squares to be selected.
+Input
+The input is given in the following format.
+$N$
+$A_{1,1}$ $A_{1,2}$ ... $A_{1,N}$
+$A_{2,1}$ $A_{2,2}$ ... $A_{2,N}$
+...
+$A_{N,1}$ $A_{N,2}$ ... $A_{N,N}$
+  When $A_{i,j}$ is 'o', it means that the square at the $i$-th row from the top and the $j$-th column from the left is white, and when it is 'x', it means that the square is black.
+Constraints
+$3 \le N \le 2047$
+$N$ is odd.
+$A_{i,j}$ is either 'o' or 'x'.
+Output
+If it is impossible, output -1 in one line.
+If it is possible, output the number of squares to be selected in the first line, the row number from the top of the $i$-th square to be selected in the $2i$-th line, and the column number from the left to be selected in the $2i+1$-th line. If it is not uniquely determined, output the smallest one in lexicographic order.
+Sample Input 1
+5
+oxooo
+oxooo
+oxooo
+xxxxx
+oxooo
+Sample Output 1
+1
+4
+2
+Sample Input 2
+9
+oxoooooxo
+oxxxxxxxx
+oxoooooxo
+xxxxxxxxx
+oxoxooooo
+oxxxxxxxx
+oxoxoxooo
+oxoxxxxxx
+oxoxoxooo
+Sample Output 2
+4
+4
+2
+2
+8
+6
+4
+8
+6
+Sample Input 3
+3
+oxx
+oxx
+ooo
+Sample Output 3
+-1

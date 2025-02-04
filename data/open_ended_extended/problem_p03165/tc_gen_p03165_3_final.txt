@@ -1,0 +1,36 @@
+To write a test case generator for the given problem statement, we need to generate random strings `s` and `t` that fit within the given constraints. Here, each string can be up to 3000 characters long, and they consist of lowercase English letters.
+
+Here's a Python function that can generate such test cases, using the `random` module:
+
+```python
+import random
+import string
+
+def tcgen():
+    # Define the constraints
+    max_len = 3000
+    min_len = 1
+    
+    # Generate random lengths for s and t within the constraints
+    len_s = random.randint(min_len, max_len)
+    len_t = random.randint(min_len, max_len)
+    
+    # Generate random strings s and t consisting of lowercase English letters
+    s = ''.join(random.choices(string.ascii_lowercase, k=len_s))
+    t = ''.join(random.choices(string.ascii_lowercase, k=len_t))
+    
+    return s, t
+
+# Example usage:
+s, t = tcgen()
+print("s:", s)
+print("t:", t)
+```
+
+This function does the following:
+1. Defines the constraints for the string lengths.
+2. Generates random lengths for `s` and `t` between 1 and 3000.
+3. Creates random strings `s` and `t` using lowercase English letters.
+4. Returns the strings `s` and `t`.
+
+You can use the generated strings to test the program that finds the longest common subsequence. For competitive programming problems, it's useful to ensure your function works on edge cases, such as very short and very long strings, which this generator can help you test.

@@ -1,0 +1,32 @@
+An integer n (2 ≤ n ≤ 10000), representing some quantity or size.
+A list of strings of size n, where each string consists of up to 32 lowercase English letters.
+Multiple datasets are given as input. The end of the input is indicated by a single zero line. There are no more than 50 datasets.
+
+### Example Input:
+
+```
+5
+apple
+yellow
+georgia
+king
+email
+7
+apple
+yellow
+georgia
+king
+email
+wink
+lucky
+0
+```
+
+### Function Signature:
+Write a function f(inputs) that takes in the input.
+```python
+def f(inputs: List[Tuple[int, List[str]]]):
+    '''
+    inputs: a list of tuples, where each tuple contains an integer and a list of strings
+    '''
+```

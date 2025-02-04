@@ -1,0 +1,3 @@
+Types: test_cases: List[int]
+Ranges: 0 ≤ test_cases[i] ≤ 99999, len(test_cases) ≤ 1024
+Addtl Info: None

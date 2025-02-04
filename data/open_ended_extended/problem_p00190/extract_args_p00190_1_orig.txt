@@ -1,0 +1,14 @@
+def extract_arguments(fh):
+    datasets = []
+    while True:
+        p1 = fh.readline().strip()
+        if p1 == '-1':
+            break
+        p2 = list(map(int, fh.readline().strip().split()))
+        p3 = list(map(int, fh.readline().strip().split()))
+        p4 = list(map(int, fh.readline().strip().split()))
+        p5 = list(map(int, fh.readline().strip().split()))
+        p6 = int(fh.readline().strip())
+        dataset = (int(p1), p2, p3, p4, int(p5[0]), p5[1:], p6)
+        datasets.append(dataset)
+    return datasets

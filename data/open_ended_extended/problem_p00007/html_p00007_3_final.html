@@ -1,0 +1,160 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p00007 - Generation 3</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p00007 - Generation 3</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>
+Debt Hell
+Your friend who lives in undisclosed country is involved in debt. He is borrowing 100,000-yen from a loan shark. The loan shark adds 5% interest of the debt and rounds it to the nearest 1,000 above week by week.
+Write a program which computes the amount of the debt in n weeks. 
+Input
+An integer n (0 ≤ n ≤ 100) is given in a line.
+Output
+Print the amout of the debt in a line.
+Sample Input
+5
+Output for the Sample Input
+130000
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An integer \( n \) (0 ≤ \( n \) ≤ 100).
+
+### Example Input:
+
+```
+5
+```
+
+### Function Signature:
+Write a function f(n) that takes in the input.
+def f(n: int):
+    '''
+    n: an integer
+    '''</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>To write a test case generator for the "Debt Hell" problem, we need to generate random values for the input `n` (which represents the number of weeks). The calculation for the amount of debt is straightforward once we have `n`.
+
+Here's how we can write the test case generator:
+
+```python
+import random
+
+def debt_hell_tcgen():
+    # Generate a random value for n within the given range
+    n = random.randint(0, 100)
+    
+    return n
+
+# Example usage:
+for _ in range(5):
+    n = debt_hell_tcgen()
+    print(n)
+```
+
+This generator will just create random test cases for `n` within the specified range [0, 100]. 
+
+Additionally, we can also write a function to compute the debt after `n` weeks to verify the test cases:
+
+```python
+def compute_debt(n):
+    debt = 100000
+    for _ in range(n):
+        debt = ((debt * 105) + 999) // 1000 * 1000
+    return debt
+
+# Example usage:
+for _ in range(5):
+    n = debt_hell_tcgen()
+    print(f"n: {n}")
+    print(f"Debt after {n} weeks: {compute_debt(n)}")
+```
+
+This way, you can generate test cases and verify the results using the `compute_debt` function. Here's an example of how the generator and computation work together:
+
+```python
+# Generate and compute debt for 5 random test cases
+for _ in range(5):
+    n = debt_hell_tcgen()
+    print(f"n: {n}")
+    print(f"Debt after {n} weeks: {compute_debt(n)}")
+```
+
+This will produce output similar to:
+
+```
+n: 45
+Debt after 45 weeks: 1160000
+n: 88
+Debt after 88 weeks: 4310000
+n: 12
+Debt after 12 weeks: 170000
+n: 7
+Debt after 7 weeks: 153000
+n: 62
+Debt after 62 weeks: 2410000
+```
+
+In this way, you can generate and test various scenarios for the "Debt Hell" problem.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    n = int(fh.readline().strip())
+    return n</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

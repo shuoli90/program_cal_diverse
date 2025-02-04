@@ -1,0 +1,143 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p00254 - Generation 3</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p00254 - Generation 3</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>All Numbers Lead to 6174
+Perform the following operation on a four-digit number N consisting of digits 0 to 9.
+Arrange the numbers in each digit of N in descending order, and let L be the resulting number.
+Arrange the numbers in each digit of N in ascending order, and let S be the resulting number.
+Set the difference L-S as the new N (one operation completed)
+Repeat from 1. for the new N
+In this case, it is known that every four-digit number eventually becomes 6174 except for numbers where all digits are the same (such as 0000, 1111, etc.). For example, when N = 2012,
+       1st operation (N = 2012): L = 2210, S = 0122, L-S = 2088
+       2nd operation (N = 2088): L = 8820, S = 0288, L-S = 8532
+       3rd operation (N = 8532): L = 8532, S = 2358, L-S = 6174
+and 6174 is reached in three operations.
+Write a program that calculates the number of operations required to reach 6174 from a four-digit number consisting of digits 0 to 9.
+Input
+The input consists of multiple datasets. The end of input is indicated by a line containing only 0000. Each dataset is given in the following format.
+N
+The dataset consists of one line, and N (1 ≤ N ≤ 9999) represents a four-digit number. If N < 1000, the upper digits are filled with 0s.
+The number of datasets does not exceed 10,000.
+Output
+For each dataset, output the number of operations required to reach 6174 on one line. However, if a number is given as input where all digits are the same, output NA.
+Sample Input
+6174
+2012
+3333
+0000
+Sample Output
+0
+3
+NA
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An integer \(N\) (1 ≤ \(N\) ≤ 9999), representing a four-digit number. If \(N < 1000\), the upper digits are filled with 0s. The number of datasets does not exceed 10,000. Input ends when \(N\) is 0000.
+
+### Example Input:
+
+```
+6174
+2012
+3333
+0000
+```
+
+### Function Signature:
+Write a function f(inputs) that takes in the input.
+```python
+def f(inputs: List[int]):
+    '''
+    inputs: a list of integers
+    '''
+```</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Certainly! Here is a test case generator for the problem statement "All Numbers Lead to 6174":
+
+```python
+import random
+
+def tcgen():
+    test_cases = []
+    for _ in range(random.randint(1, 10000)):  # Number of datasets, up to 10,000
+        N = random.randint(0, 9999)
+        test_cases.append(f"{N:04d}")  # Ensure N is a four-digit number with leading zeros if necessary
+
+    test_cases.append("0000")  # End of input indicated by "0000"
+    
+    return "\n".join(test_cases)
+
+# Example usage:
+print(tcgen())
+```
+
+This function generates a series of test cases, ensuring each number is a four-digit number (with leading zeros if necessary) and adds the end-of-input indicator "0000". The number of datasets is randomly chosen up to 10,000 as specified in the problem statement.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    inputs = []
+    while True:
+        N = fh.readline().strip()
+        if N == "0000":
+            break
+        inputs.append(int(N))
+    return inputs</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

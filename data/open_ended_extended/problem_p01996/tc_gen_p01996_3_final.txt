@@ -1,0 +1,40 @@
+Sure, here is a test case generator for the given problem statement:
+
+```python
+import random
+
+def tcgen():
+    # Generate N in the range [1, 1000]
+    N = random.randint(1, 1000)
+    
+    # Generate M in the range [1, N]
+    M = random.randint(1, N)
+    
+    # Generate a list of M unique sorted integers from the range [1, N]
+    A = sorted(random.sample(range(1, N + 1), M))
+    
+    return N, M, A
+
+# Example usage:
+N, M, A = tcgen()
+print(N, M)
+print(" ".join(map(str, A)))
+```
+
+This function generates random test cases for the problem. Here's a breakdown of how it works:
+
+1. It generates `N`, the total number of seats, within the range [1, 1000].
+2. It generates `M`, the number of students, within the range [1, N].
+3. It generates a sorted list `A` of `M` unique integers within the range [1, N] (representing the seats occupied by students).
+
+The output consists of `N` and `M` followed by the list `A`, which are the seats occupied by the students.
+
+### Example output:
+```
+10 3
+2 5 9
+```
+
+In this example, there are 10 seats and 3 students sitting in seats 2, 5, and 9.
+
+You can use this generator to create various test cases to thoroughly test your solution to the problem.

@@ -1,0 +1,29 @@
+An integer H (1 ≤ H ≤ 100), representing some quantity.
+An integer W (1 ≤ W ≤ 100), representing some quantity.
+A list of H strings, each of length W, containing only the characters ' ', '@', '#', '*'.
+
+### Example Input:
+
+```
+10 10
+####
+#####@@
+@#
+@@@@@#*#*
+@##***@@@*
+#****#*@**
+##@*#@@*##
+*@@@@*@@@#
+***#@*@##*
+*@@@*@@##@
+*@*#*@##**
+@****#@@#@
+0 0
+```
+
+### Function Signature:
+Write a function f(inputs) that takes in a list of tuples, where each tuple represents a dataset. Each tuple consists of an integer H, an integer W, and a list of H strings.
+def f(inputs: List[Tuple[int, int, List[str]]]):
+    '''
+    inputs: a list of tuples, each containing an integer H, an integer W, and a list of H strings
+    '''

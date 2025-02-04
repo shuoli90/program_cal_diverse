@@ -1,0 +1,99 @@
+The Last Line of Defense
+In a certain country that was frequently invaded by unidentified creatures, it was decided to protect important facilities with a new defense weapon.
+This weapon can damage unidentified creatures by filling a polygonal area with a special gas. If the concentration of the gas changes during the invasion of the unidentified creature, it will cause damage equal to the absolute value of the concentration difference. No damage is caused when the gas concentration is moving in the same area. 
+With current technology, the concentration of gas can only be constant, so the country decided to deploy multiple new defense weapons. The gas concentration is the same for all weapons, and the parts included in the areas of multiple weapons have their concentrations added together.
+Based on the location where the unidentified creature appears and the location of the important facility, please find the minimum damage that the unidentified creature will receive when invading the important facility. 
+However, it is assumed that the intrusion route of the unidentified creature does not include the vertices of the polygon or the intersection with other polygons. In addition, the unidentified creature does not invade along the edge of the polygon.
+Input
+The input is given in the following format.
+Number of polygonsNumber of polygon verticesx-coordinate y-coordinatex-coordinate y-coordinate...Number of polygon verticesx-coordinate y-coordinatex-coordinate y-coordinate...Number of occurrence points and important facility datax-coordinate of the occurrence position y-coordinate of the occurrence position x-coordinate of the important facility y-coordinate of the important facilityx-coordinate of the occurrence position y-coordinate of the occurrence position x-coordinate of the important facility y-coordinate of the important facility...
+Constraints
+The coordinates included in the input are integers with absolute values up to 1,000.
+The number of polygons is 1 to 5.
+The number of polygon vertices is 3 to 5.
+The number of data for the occurrence point and important facility is 1 to 100.
+A polygon refers to a polygon that can be created by connecting the given vertices in order, and has no self-intersection.
+Neither the occurrence point nor the important facility is on the vertex or the edge of the polygon.
+Output
+Output the minimum damage that the unidentified creature will receive when invading the important facility for each pair of occurrence point and important facility data on a separate line.
+Sample Input 1
+2
+4
+0 4
+1 1
+3 1
+4 4
+3
+6 0
+10 0
+8 7
+1
+2 3 9 1
+Output for the Sample Input 1
+2
+One point of damage is inflicted when leaving the first polygon, and another one when entering the second polygon.
+Sample Input 2
+1
+4
+0 0
+10 0
+10 10
+0 10
+2
+15 5 5 5
+5 5 15 5
+Output for the Sample Input 2
+1
+1
+Damage occurs when the unidentified creature enters the polygon in the first data.
+Damage occurs when the unidentified creature leaves the polygon in the second data.
+Sample Input 3
+2
+4
+0 0
+10 0
+10 10
+0 10
+4
+10 0
+20 0
+20 10
+10 10
+1
+5 5 15 5
+Output for the Sample Input 3
+0
+Since there is no change in concentration when the unidentified creature moves from the first polygon to the second polygon, damage cannot be inflicted.
+Sample Input 4
+2
+3
+0 0
+10 0
+5 10
+3
+5 0
+15 0
+10 10
+1
+5 5 10 5
+Output for the Sample Input 4
+2
+The areas of the occurrence point and important facility contact at a point, but the unidentified creature does not invade through this point.
+Sample Input 5
+2
+4
+0 0
+10 0
+10 10
+0 10
+4
+0 0
+10 0
+10 10
+0 10
+2
+15 5 5 5
+5 5 15 5
+Output for the Sample Input 5
+2
+2

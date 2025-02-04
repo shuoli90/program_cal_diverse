@@ -1,0 +1,23 @@
+An integer N (2 ≤ N ≤ 26), representing some quantity or size.
+A string S that follows a specific format containing exactly N unique lowercase letters.
+A list of tuples of the form (char, int), where char is a unique lowercase letter from the string S and int (0 ≤ int ≤ 26) represents some quantity associated with the letter.
+
+### Example Input:
+
+```
+[[m-y]-[a-o]]
+o 0
+a 1
+y 2
+m 0
+```
+
+### Function Signature:
+Write a function f(S, inputs) that takes in the input.
+```python
+def f(S: str, inputs: List[Tuple[str, int]]):
+    '''
+    S: a string
+    inputs: a list of tuples
+    '''
+```

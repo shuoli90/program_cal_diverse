@@ -1,0 +1,170 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p03544 - Generation 1</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p03544 - Generation 1</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>
+Score : 200 points
+Problem StatementIt is November 18 now in Japan. By the way, 11 and 18 are adjacent Lucas numbers.
+You are given an integer N. Find the N-th Lucas number.
+Here, the i-th Lucas number L_i is defined as follows:
+L_0=2
+L_1=1
+L_i=L_{i-1}+L_{i-2} (i≥2)
+Constraints
+1≤N≤86
+It is guaranteed that the answer is less than 10^{18}.
+N is an integer.
+InputInput is given from Standard Input in the following format:
+N
+OutputPrint the N-th Lucas number.
+Sample Input 15
+Sample Output 111
+L_0=2
+L_1=1
+L_2=L_0+L_1=3
+L_3=L_1+L_2=4
+L_4=L_2+L_3=7
+L_5=L_3+L_4=11
+Thus, the 5-th Lucas number is 11.
+Sample Input 286
+Sample Output 2939587134549734843
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An integer N (1 ≤ N ≤ 86), representing some quantity or size.
+
+### Example Input:
+
+```
+15
+```
+
+### Function Signature:
+Write a function f(N) that takes in the input.
+def f(N: int):
+    '''
+    N: an integer
+    '''</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Here is a test case generator for the given problem statement, which generates the N-th Lucas number:
+
+```python
+import random
+
+def tcgen():
+    N = random.randint(1, 86)
+    return N
+
+# Example Usage
+if __name__ == "__main__":
+    N = tcgen()
+    print(N)
+```
+
+### Explanation:
+
+1. **N Generation**: The generator function `tcgen()` generates a random integer \( N \) within the given constraint \( 1 \leq N \leq 86 \). This range is ensured using `random.randint(1, 86)`.
+2. **Output**: The function returns the randomly generated \( N \).
+
+### Example Usage:
+
+When you call `tcgen()`, it will produce a random \( N \). For example:
+
+```python
+N = tcgen()
+print(N)
+```
+
+This will print a random integer \( N \) within the range \([1, 86]\), suitable for testing the problem of finding the N-th Lucas number.
+
+To actually compute the N-th Lucas number for verification or further testing, you can use the following function:
+
+```python
+def nth_lucas_number(N):
+    if N == 0:
+        return 2
+    elif N == 1:
+        return 1
+    else:
+        L0, L1 = 2, 1
+        for _ in range(2, N + 1):
+            L_next = L0 + L1
+            L0, L1 = L1, L_next
+        return L1
+
+# Example Usage
+if __name__ == "__main__":
+    N = tcgen()
+    print("Generated N:", N)
+    print("N-th Lucas Number:", nth_lucas_number(N))
+```
+
+### Explanation of the Lucas Number Calculation:
+
+1. **Base Cases**: For \( N = 0 \) and \( N = 1 \), the Lucas numbers are 2 and 1, respectively.
+2. **Iterative Calculation**: For \( N \geq 2 \), the Lucas number is calculated iteratively using the relation \( L_i = L_{i-1} + L_{i-2} \).
+
+This will generate the required Lucas number for the given \( N \).</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    N = int(fh.readline().strip())
+    return (N,)</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

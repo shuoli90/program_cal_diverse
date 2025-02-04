@@ -1,0 +1,60 @@
+Sure, I can write a test case generator for the given problem statement. Here is the Python function that generates random test cases based on the provided specifications:
+
+```python
+import random
+
+def tcgen():
+    # Number of test cases
+    N = random.randint(1, 10)  # Let's limit to 10 test cases for manageability
+
+    test_cases = []
+    
+    for _ in range(N):
+        # Generate random dimensions for the grid
+        W = random.randint(1, 20)
+        H = random.randint(1, 20)
+        
+        # Generate the grid with random values
+        grid = [[random.randint(0, 9999) for _ in range(W)] for _ in range(H)]
+        
+        test_cases.append((W, H, grid))
+    
+    return N, test_cases
+
+# Example usage:
+if __name__ == "__main__":
+    N, test_cases = tcgen()
+    print(N)
+    for i, case in enumerate(test_cases, start=1):
+        W, H, grid = case
+        print(W, H)
+        for row in grid:
+            print(' '.join(map(str, row)))
+```
+
+### Explanation:
+- The `tcgen` function generates:
+  - `N`: the number of test cases (randomly selected between 1 and 10 for practicality).
+  - For each test case:
+    - Random dimensions `W` and `H` for the grid, both chosen between 1 and 20.
+    - A `grid` of size `H` x `W` with random values between 0 and 9999 representing the oil reserves.
+- The function returns the number of test cases and the list of test cases, each consisting of the dimensions and the grid.
+
+### Example Output:
+Here is what the output might look like for a single run:
+```
+3
+5 4
+563 234 9876 2345 1234
+678 2345 1234 7890 4321
+2345 6789 4321 987 234
+123 567 890 345 678
+17 8
+1234 5678 910 1112 345 678 890 567 678 234 987 123 456 789 123 456 678
+987 654 321 456 789 234 567 123 456 789 123 456 789 123 456 789
+234 567 123 456 789 123 456 789 123 456 789 123 456 789 123 456 789
+123 456 789 123 456 789 123 456 789 123 456 789 123 456 789 123 456 789
+...
+```
+
+This generator ensures that the test cases conform to the constraints and format specified in the problem statement.

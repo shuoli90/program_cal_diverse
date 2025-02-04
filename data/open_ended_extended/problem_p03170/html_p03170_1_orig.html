@@ -1,0 +1,189 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p03170 - Generation 1</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p03170 - Generation 1</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>
+Score : 100 points
+Problem StatementThere is a set A = \{ a_1, a_2, \ldots, a_N \} consisting of N positive integers.
+Taro and Jiro will play the following game against each other.
+Initially, we have a pile consisting of K stones.
+The two players perform the following operation alternately, starting from Taro:
+Choose an element x in A, and remove exactly x stones from the pile.
+A player loses when he becomes unable to play.
+Assuming that both players play optimally, determine the winner.
+Constraints
+All values in input are integers.
+1 \leq N \leq 100
+1 \leq K \leq 10^5
+1 \leq a_1 < a_2 < \cdots < a_N \leq K
+InputInput is given from Standard Input in the following format:
+N K
+a_1 a_2 \ldots a_N
+OutputIf Taro will win, print First; if Jiro will win, print Second.
+Sample Input 12 4
+2 3
+Sample Output 1First
+If Taro removes three stones, Jiro cannot make a move.
+Thus, Taro wins.
+Sample Input 22 5
+2 3
+Sample Output 2Second
+Whatever Taro does in his operation, Jiro wins, as follows:
+If Taro removes two stones, Jiro can remove three stones to make Taro unable to make a move.
+If Taro removes three stones, Jiro can remove two stones to make Taro unable to make a move.
+Sample Input 32 7
+2 3
+Sample Output 3First
+Taro should remove two stones. Then, whatever Jiro does in his operation, Taro wins, as follows:
+If Jiro removes two stones, Taro can remove three stones to make Jiro unable to make a move.
+If Jiro removes three stones, Taro can remove two stones to make Jiro unable to make a move.
+Sample Input 43 20
+1 2 3
+Sample Output 4Second
+Sample Input 53 21
+1 2 3
+Sample Output 5First
+Sample Input 61 100000
+1
+Sample Output 6Second
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An integer N (1 ≤ N ≤ 100), representing some quantity or size.  
+An integer K (1 ≤ K ≤ 100000), representing another quantity.  
+A list of N integers, where each integer is between 1 and K, and the list is strictly increasing.
+
+### Example Input:
+
+```
+2
+5
+2 3
+```
+
+### Function Signature:
+Write a function f(N, K, A) that takes in the input.
+```python
+def f(N: int, K: int, A: List[int]):
+    '''
+    N: an integer
+    K: an integer
+    A: a list of integers
+    '''
+```</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Sure, let's write a test case generator for the competitive programming problem you've described. The generator will create random values for \( N \), \( K \), and the set \( A \).
+
+Here is the Python code for the test case generator:
+
+```python
+import random
+
+def tcgen():
+    # Generate a random value for N (1 ≤ N ≤ 100)
+    N = random.randint(1, 100)
+    
+    # Generate a random value for K (1 ≤ K ≤ 10^5)
+    K = random.randint(1, 10**5)
+    
+    # Generate a sorted list of N unique integers for A, where 1 ≤ a_1 < a_2 < ... < a_N ≤ K
+    A = sorted(random.sample(range(1, K + 1), N))
+    
+    return N, K, A
+
+# Generate a random test case and print it
+if __name__ == "__main__":
+    N, K, A = tcgen()
+    print(N)
+    print(K)
+    print(" ".join(map(str, A)))
+```
+
+This script will generate a test case with the following steps:
+1. Randomly select \( N \) within the range \([1, 100]\).
+2. Randomly select \( K \) within the range \([1, 10^5]\).
+3. Generate a sorted list \( A \) of \( N \) unique integers such that \( 1 \leq a_1 < a_2 < \ldots < a_N \leq K \).
+
+You can run this script to get random test cases for the problem. Each run will produce different values for \( N \), \( K \), and the list \( A \), ensuring a wide variety of test cases for thorough testing.
+
+Here is an example of how to use this generator:
+
+```python
+# Example usage
+N, K, A = tcgen()
+print(f"N = {N}")
+print(f"K = {K}")
+print(f"A = {A}")
+```
+
+This will print a generated test case in a format that you can use directly for your problem statement.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    N, K = map(int, fh.readline().strip().split())
+    A = list(map(int, fh.readline().strip().split()))
+    return N, K, A
+
+# if __name__ == "__main__":
+#     input_path = sys.argv[1]
+#     with open(input_path, 'r') as fh:
+#         N, K, A = extract_arguments(fh)
+#         f(N, K, A)</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

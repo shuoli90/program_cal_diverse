@@ -1,0 +1,32 @@
+An integer \(N\) (2 ≤ \(N\) ≤ 1000), representing some quantity or size.
+A list of \(N\) values where each value is either a character 'x' or an integer between \(-10^9\) and \(10^9\).
+The end of input is indicated by a single 0, which is not included in the datasets.
+
+### Example Input:
+
+```
+5
+1 x 2 4 x
+2
+x x
+2
+1 2
+2
+2 1
+2
+1000000000 x
+4
+x 2 1 x
+0
+```
+
+### Function Signature:
+Write a function f(inputs) that takes in the input.
+```python
+def f(inputs: List[Tuple[int, List[Union[int, str]]]]):
+    ''' 
+    inputs: a list of tuples, where each tuple contains:
+        - an integer N: the size
+        - a list of N values: a mix of integers and characters
+    '''
+```

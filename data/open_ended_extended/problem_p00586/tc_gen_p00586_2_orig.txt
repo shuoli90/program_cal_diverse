@@ -1,0 +1,39 @@
+To generate test cases for the "A + B Problem," we need to create pairs of integers within the specified range and format the output accordingly. The input consists of multiple lines until EOF, hence the test case generator will produce a variable number of lines each containing a pair of integers between -1000 and 1000. 
+
+Here's the test case generator for the "A + B Problem":
+
+```python
+import random
+
+def tcgen(num_cases=10):
+    # Generate a random number of cases if not specified (between 1 and 100 for variety)
+    if num_cases is None:
+        num_cases = random.randint(1, 100)
+    
+    test_cases = []
+    
+    for _ in range(num_cases):
+        A = random.randint(-1000, 1000)
+        B = random.randint(-1000, 1000)
+        test_cases.append((A, B))
+    
+    return test_cases
+
+# Example of how to use the generator and print the test cases
+if __name__ == "__main__":
+    test_cases = tcgen()
+    
+    for a, b in test_cases:
+        print(f"{a} {b}")
+```
+
+### Explanation:
+1. **Import `random` module**: Used to generate random integers.
+2. **Function `tcgen(num_cases=10)`**:
+    - **Parameter `num_cases`**: Optional parameter to specify how many test cases to generate. Defaults to 10 if not specified.
+    - **If `num_cases` is `None`**: Randomly selects a number of cases between 1 and 100 to add variety.
+    - **Generate pairs**: For each test case, it generates two integers `A` and `B` within the range [-1000, 1000] and appends the pair `(A, B)` to the list `test_cases`.
+3. **Return `test_cases`**: The function returns the list of generated test cases.
+4. **Example usage**: The script prints each test case in the required format.
+
+This generator can easily be adapted to produce different numbers of test cases by changing the `num_cases` parameter. It ensures that the generated pairs are within the given constraints and formats them correctly for the problem statement.

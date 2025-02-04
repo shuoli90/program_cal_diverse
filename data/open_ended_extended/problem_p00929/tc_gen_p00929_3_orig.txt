@@ -1,0 +1,43 @@
+Sure, I can help with that! Here's a test case generator for the given problem statement "There is No Alternative":
+
+```python
+import random
+
+def tcgen():
+    # Number of islands
+    N = random.randint(3, 500)
+    
+    # Number of possible bridges
+    M = random.randint(N - 1, min(50000, N * (N - 1) // 2))
+    
+    bridge_set = set()
+    
+    # Generate M bridges
+    bridges = []
+    for _ in range(M):
+        while True:
+            S = random.randint(1, N - 1)
+            D = random.randint(S + 1, N)
+            if (S, D) not in bridge_set:
+                bridge_set.add((S, D))
+                break
+        C = random.randint(1, 10000)
+        bridges.append((S, D, C))
+    
+    return N, M, bridges
+
+# Printing a test case example
+N, M, bridges = tcgen()
+print(N, M)
+for bridge in bridges:
+    print(bridge[0], bridge[1], bridge[2])
+```
+
+This test case generator produces random test cases for the given problem. Here's a breakdown of what it does:
+
+1. **Number of Islands (`N`)**: Picks a random number of islands between 3 and 500.
+2. **Number of Possible Bridges (`M`)**: Picks a random number of bridges between `N - 1` and the minimum of 50000 and the maximum possible number of unique bridges for `N` islands.
+3. **Bridge Generation**: Ensures that each pair of islands `(S, D)` is unique and generates a random cost `C` for each bridge.
+4. **Output**: Prints the number of islands, the number of bridges, and the details of each bridge.
+
+You can run this script to generate different test cases as needed.

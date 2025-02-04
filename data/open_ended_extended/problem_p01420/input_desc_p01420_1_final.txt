@@ -1,0 +1,27 @@
+An integer N (1 ≤ N ≤ 100), representing some quantity.
+An integer M (0 ≤ M ≤ 50), representing some quantity.
+An integer L (1 ≤ L ≤ 100,000), representing some quantity.
+A list of N tuples, each containing three integers (P_i, T_i, V_i), where:
+- 0 ≤ P_i ≤ 100
+- 0 ≤ T_i ≤ 100
+- 0 ≤ V_i ≤ 100
+
+### Example Input:
+
+```
+2 2 50
+30 50 1
+30 50 2
+```
+
+### Function Signature:
+Write a function f(N, M, L, runners) that takes in the input.
+```python
+def f(N: int, M: int, L: int, runners: List[Tuple[int, int, int]]):
+    ''' 
+    N: an integer 
+    M: an integer
+    L: an integer
+    runners: a list of tuples, each containing three integers
+    '''
+```

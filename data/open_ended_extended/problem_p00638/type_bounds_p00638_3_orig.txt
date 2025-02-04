@@ -1,0 +1,5 @@
+Types: n: int, islands: List[Tuple[int, int]]
+
+Ranges: 1 ≤ n ≤ 25, 0 ≤ treasures ≤ 10^3, 0 ≤ max_weight ≤ 10^3
+
+Addtl Info: The end of input is represented by a case with n = 0.

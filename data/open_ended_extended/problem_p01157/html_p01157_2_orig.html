@@ -1,0 +1,270 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p01157 - Generation 2</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p01157 - Generation 2</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>
+Problem C: Online Quizu System
+ICPC (Internet Contents Providing Company) is working on a killer game named Quiz Millionaire Attack.
+It is a quiz system played over the Internet. You are joining ICPC as an engineer, and you are responsible
+for designing a protocol between clients and the game server for this system. As bandwidth assigned for
+the server is quite limited, data size exchanged between clients and the server should be reduced as much
+as possible. In addition, all clients should be well synchronized during the quiz session for a simultaneous
+play. In particular, much attention should be paid to the delay on receiving packets.
+To verify that your protocol meets the above demands, you have decided to simulate the communication
+between clients and the server and calculate the data size exchanged during one game.
+A game has the following process. First, players participating and problems to be used are fixed. All
+players are using the same client program and already have the problem statements downloaded, so you
+don’t need to simulate this part. Then the game begins. The first problem is presented to the players,
+and the players answer it within a fixed amount of time. After that, the second problem is presented,
+and so forth. When all problems have been completed, the game ends. During each problem phase,
+the players are notified of what other players have done. Before you submit your answer, you can know
+who have already submitted their answers. After you have submitted your answer, you can know what
+answers are submitted by other players.
+When each problem phase starts, the server sends a synchronization packet for problem-start to all the
+players, and begins a polling process. Every 1,000 milliseconds after the beginning of polling, the server
+checks whether it received new answers from the players strictly before that moment, and if there are
+any, sends a notification to all the players:
+ If a player hasn’t submitted an answer yet, the server sends it a notification packet type A describing
+  others’ answers about the newly received answers.
+ If a player is one of those who submitted the newly received answers, the server sends it a notification
+  packet type B describing others’ answers about all the answers submitted by other players (i.e.
+  excluding the player him/herself’s answer) strictly before that moment.
+ If a player has already submitted an answer, the server sends it a notification packet type B describing
+  others’ answers about the newly received answers.
+ Note that, in all above cases, notification packets (both types A and B) must contain information
+  about at least one player, and otherwise a notification packet will not be sent.
+When 20,000 milliseconds have passed after sending the synchronization packet for problem-start, the
+server sends notification packets of type A or B if needed, and then sends a synchronization packet for
+problem-end to all the players, to terminate the problem.
+On the other hand, players will be able to answer the problem after receiving the synchronization packet
+for problem-start and before receiving the synchronization packet for problem-end. Answers will be sent
+using an answer packet.
+The packets referred above have the formats shown by the following tables.
+Input
+The input consists of multiple test cases. Each test case begins with a line consisting of two integers
+M and N (1 ≤ M, N ≤ 100), denoting the number of players and problems, respectively. The next
+line contains M non-negative integers D0 , D1 , . . . , DM - 1 , denoting the communication delay between
+each players and the server (players are assigned ID’s ranging from 0 to M - 1, inclusive). Then follow
+N blocks describing the submissions for each problem. Each block begins with a line containing an
+integer L, denoting the number of players that submitted an answer for that problem. Each of the
+following L lines gives the answer from one player, described by three fields P, T, and A separated by a
+whitespace. Here P is an integer denoting the player ID, T is an integer denoting the time elapsed from the reception of synchronization packet for problem-start and the submission on the player’s side, and A
+is an alphanumeric string denoting the player’s answer, whose length is between 1 and 9, inclusive. Those
+L lines may be given in an arbitrary order. You may assume that all answer packets will be received by
+the server within 19,999 milliseconds (inclusive) after sending synchronization packet for problem-start.
+The input is terminated by a line containing two zeros.
+Output
+For each test case, you are to print M + 1 lines. In the first line, print the data size sent and received
+by the server, separated by a whitespace. In the next M lines, print the data size sent and received by
+each player, separated by a whitespace, in ascending order of player ID. Print a blank line between two
+consecutive test cases.
+Sample Input
+3 2
+1 2 10
+3
+0 3420 o
+1 4589 o
+2 4638 x
+3
+1 6577 SUZUMIYA
+2 7644 SUZUMIYA
+0 19979 YASUZUMI
+4 2
+150 150 150 150
+4
+0 1344 HOGEHOGE
+1 1466 HOGEHOGE
+2 1789 HOGEHOGE
+3 19100 GEHO
+2
+2 1200 SETTEN
+3 700 SETTEN
+0 0
+Output for the Sample Input
+177 57
+19 58
+19 57
+19 62
+253 70
+13 58
+13 58
+24 66
+20 71
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An integer M (1 ≤ M ≤ 100), representing some quantity.
+An integer N (1 ≤ N ≤ 100), representing some quantity.
+A list of M non-negative integers, each between 0 and 100, representing some delays.
+For each of the N blocks, an integer L, representing some quantity.
+For each of the L lines within each block, an integer P (0 ≤ P < M), an integer T (0 ≤ T < 19999), and a string A (length 1 to 9).
+
+### Example Input:
+
+```
+3 2
+1 2 10
+3
+0 3420 o
+1 4589 o
+2 4638 x
+3
+1 6577 SUZUMIYA
+2 7644 SUZUMIYA
+0 19979 YASUZUMI
+0 0
+```
+
+### Function Signature:
+Write a function f(inputs) that takes in the input.
+```python
+def f(inputs: List[Tuple[int, int, List[int], List[Tuple[int, List[Tuple[int, int, str]]]]]]):
+    '''
+    inputs: a list of tuples, where each tuple contains:
+        - an integer M
+        - an integer N
+        - a list of M non-negative integers
+        - a list of N tuples, each containing:
+            - an integer L
+            - a list of L tuples, each containing:
+                - an integer P
+                - an integer T
+                - a string A
+    '''
+```</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Certainly! Below is the test case generator for the given problem statement "Online Quizu System".
+
+```python
+import random
+import string
+
+def generate_player_delays(M):
+    return [random.randint(0, 1000) for _ in range(M)]
+
+def generate_submissions(N, M):
+    submissions = []
+    for _ in range(N):
+        L = random.randint(0, M)  # Number of players that submitted an answer for this problem
+        problem_submissions = []
+        for _ in range(L):
+            P = random.randint(0, M-1)  # Player ID
+            T = random.randint(0, 19999)  # Time elapsed
+            A = ''.join(random.choices(string.ascii_uppercase + string.digits, k=random.randint(1, 9)))  # Answer
+            problem_submissions.append((P, T, A))
+        submissions.append(problem_submissions)
+    return submissions
+
+def tcgen():
+    M = random.randint(1, 100)
+    N = random.randint(1, 100)
+    delays = generate_player_delays(M)
+    submissions = generate_submissions(N, M)
+
+    # Format the output to match the input specification
+    input_data = f"{M} {N}\n"
+    input_data += ' '.join(map(str, delays)) + "\n"
+    for problem_submissions in submissions:
+        input_data += f"{len(problem_submissions)}\n"
+        for submission in problem_submissions:
+            input_data += f"{submission[0]} {submission[1]} {submission[2]}\n"
+    input_data += "0 0\n"
+    
+    return input_data
+
+# Example of generating a test case
+print(tcgen())
+```
+
+This script generates the input for a test case for the "Online Quizu System" problem. Here's a breakdown of what the code does:
+
+1. **generate_player_delays(M)**: Generates a list of delays for M players.
+2. **generate_submissions(N, M)**: Generates a list of submissions for N problems. Each problem can have up to M submissions.
+3. **tcgen()**: Generates the entire test case in the format specified in the problem statement.
+
+The test case generator outputs the input in the required format, including the number of players, number of problems, delays, and submissions. You can use the generated input to test the function that solves the problem.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    results = []
+    while True:
+        M, N = map(int, fh.readline().strip().split())
+        if M == 0 and N == 0:
+            break
+        delays = list(map(int, fh.readline().strip().split()))
+        problems = []
+        for _ in range(N):
+            L = int(fh.readline().strip())
+            submissions = []
+            for _ in range(L):
+                P, T, A = fh.readline().strip().split()
+                P, T = int(P), int(T)
+                submissions.append((P, T, A))
+            problems.append(submissions)
+        results.append((M, N, delays, problems))
+    return results
+
+# if __name__ == "__main__":
+#     input_path = sys.argv[1]
+#     with open(input_path, 'r') as fh:
+#         test_cases = extract_arguments(fh)
+#         for case in test_cases:
+#             f(case)</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

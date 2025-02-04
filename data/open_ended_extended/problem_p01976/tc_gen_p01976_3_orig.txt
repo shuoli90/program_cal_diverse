@@ -1,0 +1,46 @@
+To write a test case generator for the "C: Matching" problem, we need to create random sequences of integers that respect the given constraints. Here’s a possible implementation:
+
+```python
+import random
+
+def tcgen():
+    # Generate a random length for the sequence, N
+    N = random.randint(1, 10**5)
+    
+    # Generate a random sequence of integers of length N, where each integer is between 1 and 10^9
+    A = [random.randint(1, 10**9) for _ in range(N)]
+    
+    return N, A
+
+# Function to format the generated test case into the proper input format
+def format_test_case(N, A):
+    return f"{N}\n{' '.join(map(str, A))}"
+
+# Example Usage
+N, A = tcgen()
+formatted_test_case = format_test_case(N, A)
+print(formatted_test_case)
+```
+
+### Explanation:
+
+1. **`tcgen` Function**:
+   - **N**: Randomly selects an integer between 1 and 100,000 (inclusive) to be the length of the sequence.
+   - **A**: Generates a list of N random integers, each between 1 and 1,000,000,000 (inclusive).
+
+2. **`format_test_case` Function**:
+   - Takes the generated values N and A to format them properly as a competitive programming test case input.
+   - The function produces a string where the first line is the integer N and the second line is the space-separated sequence of integers.
+
+### Example Output:
+
+Running the provided example usage code might produce output like:
+
+```
+8
+482328738 293847293 849203849 203948203 123456789 987654321 111111111 222222222
+```
+
+This output is a well-formed test case for the problem "C: Matching". The sequence length is 8, and it contains 8 randomly generated integers between 1 and 1,000,000,000. 
+
+Feel free to run the example usage code to generate different test cases as needed.

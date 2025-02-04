@@ -1,0 +1,41 @@
+Certainly! Here's a test case generator for the given problem statement:
+
+```python
+import random
+
+def tcgen():
+    # Generate N and K within the specified constraints
+    N = random.randint(2, 6000)
+    K = random.randint(2, N)
+    
+    vacant_lots = set()
+    
+    while len(vacant_lots) < N:
+        x = random.randint(1, 1000000)
+        y = random.randint(1, 1000000)
+        
+        # Ensure the xi mod 2 = floor(yi / 2) mod 2 condition
+        if x % 2 == (y // 2) % 2:
+            vacant_lots.add((x, y))
+    
+    vacant_lots = list(vacant_lots)
+    
+    # Format the output as required
+    result = []
+    result.append(f"{N} {K}")
+    for lot in vacant_lots:
+        result.append(f"{lot[0]} {lot[1]}")
+    
+    return "\n".join(result)
+
+# Example usage
+test_case = tcgen()
+print(test_case)
+```
+
+This generator ensures that:
+1. \(N\) and \(K\) are within the specified constraints.
+2. Each coordinate pair \((x_i, y_i)\) satisfies the condition \(x_i \mod 2 = \left\lfloor \frac{y_i}{2} \right\rfloor \mod 2\).
+3. No two vacant lots have the same coordinates.
+
+You can use this function to generate random test cases for your problem. Each call to `tcgen()` will produce a new test case formatted as a string, which you can then use to test your solution.

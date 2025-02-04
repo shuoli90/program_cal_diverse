@@ -1,0 +1,39 @@
+Certainly! Below is a test case generator for the given "K-th String" problem statement. The generator will create random inputs for \(N\), \(A\), \(K\), and the suffix array \(SA\) while adhering to the constraints provided.
+
+```python
+import random
+
+def tcgen():
+    # Generate N
+    N = random.randint(1, 10**5)
+    
+    # Generate A
+    A = random.randint(1, 26)
+    
+    # Generate K
+    K = random.randint(1, 10**18)
+    
+    # Generate SA as a permutation of numbers from 1 to N
+    SA = list(range(1, N + 1))
+    random.shuffle(SA)
+    
+    return N, A, K, SA
+
+def format_test_case(N, A, K, SA):
+    test_case = f"{N} {A} {K}\n"
+    test_case += "\n".join(map(str, SA))
+    return test_case
+
+# Example usage
+N, A, K, SA = tcgen()
+test_case = format_test_case(N, A, K, SA)
+print(test_case)
+```
+
+### Explanation:
+1. **N**: The length of the string is randomly chosen between 1 and \(10^5\).
+2. **A**: The number of distinct characters in the string is randomly chosen between 1 and 26.
+3. **K**: The position of the lexicographically smallest string is randomly chosen between 1 and \(10^{18}\).
+4. **SA**: The suffix array is generated as a permutation of the numbers from 1 to \(N\).
+
+The function `tcgen` generates the raw values, and `format_test_case` formats them into the required input format for the problem statement. This ensures that the test cases are both valid and diverse, covering a wide range of possible inputs.

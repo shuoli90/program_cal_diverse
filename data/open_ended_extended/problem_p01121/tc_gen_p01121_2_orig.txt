@@ -1,0 +1,48 @@
+Here is a Python script that generates test cases for the "Cube Surface Puzzle" problem statement:
+
+```python
+import random
+
+def generate_piece(n):
+    piece = []
+    for _ in range(n):
+        row = ''.join(random.choice(['X', '.']) for _ in range(n))
+        piece.append(row)
+    return piece
+
+def tcgen():
+    datasets = []
+    num_datasets = random.randint(1, 200)
+    
+    for _ in range(num_datasets):
+        n = random.choice([3, 5, 7, 9])
+        pieces = []
+        for _ in range(6):
+            pieces.extend(generate_piece(n))
+        datasets.append((n, pieces))
+    
+    return datasets
+
+def format_datasets(datasets):
+    formatted = []
+    for dataset in datasets:
+        n, pieces = dataset
+        formatted.append(str(n))
+        formatted.extend(pieces)
+    formatted.append('0')  # Indicating end of input
+    return '\n'.join(formatted)
+
+# Generate test cases
+datasets = tcgen()
+formatted_data = format_datasets(datasets)
+
+# Output the generated test cases
+print(formatted_data)
+```
+
+**Explanation:**
+1. `generate_piece(n)`: This function generates a single piece of size \(n \times n\) with each cell randomly being either 'X' or '.'.
+2. `tcgen()`: This function generates a random number of datasets (up to 200). For each dataset, it randomly chooses an odd \(n\) from {3, 5, 7, 9} and then generates 6 pieces for the cube.
+3. `format_datasets(datasets)`: This function formats the datasets into the required input format for the given problem. It ends the formatted data with a "0" to indicate the end of input.
+
+Running this script will provide you with a set of test cases formatted according to the problem statement. Each test case will be a set of six pieces that you need to determine if they can form a valid cube.

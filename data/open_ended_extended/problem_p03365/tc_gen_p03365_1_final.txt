@@ -1,0 +1,43 @@
+Certainly! Below is a Python function that generates test cases for the given problem statement:
+
+```python
+import random
+
+def tcgen():
+    # Define the constraints
+    MIN_N = 2
+    MAX_N = 10**6
+    MOD = 10**9 + 7
+    
+    # Generate a random value for N within the given constraints
+    N = random.randint(MIN_N, MAX_N)
+    
+    return N
+
+# Example usage:
+if __name__ == "__main__":
+    # Generate a test case
+    print(tcgen())
+```
+
+### Explanation
+1. **Constraints**:
+    - \( N \) ranges from 2 to \( 10^6 \).
+   
+2. **Function `tcgen`**:
+    - Randomly selects an integer \( N \) within the given constraints.
+    - Returns \( N \).
+
+### Example Usage
+Run the script and it will print a random integer \( N \) within the specified range, which represents the number of squares.
+
+### Testing
+To test the function, you can simply call `tcgen()` multiple times to see different generated values for \( N \). Make sure to integrate this with your solution to verify correctness with various input sizes.
+
+```python
+if __name__ == "__main__":
+    for _ in range(5):  # Generate 5 test cases for demonstration
+        print(tcgen())
+```
+
+This would give you a good spread of values for \( N \) to test against your solution for correctness and performance.

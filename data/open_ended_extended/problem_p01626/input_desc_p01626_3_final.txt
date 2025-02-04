@@ -1,0 +1,35 @@
+### Canonicalized Input Description:
+
+An integer N (1 ≤ N ≤ 10^3), representing some quantity or size.
+A list of tuples P of size N, where each tuple consists of two integers x and y (−10^4 ≤ x, y ≤ 10^4), representing some coordinates or points.
+A list of M tuples B, each of size K, where each tuple consists of K pairs of integers (x, y) (−10^4 ≤ x, y ≤ 10^4), representing some polygons.
+
+### Example Input:
+
+```
+3
+2 3
+-1 4
+5 6
+2
+4
+1 2
+2 3
+3 4
+4 5
+3
+0 0
+-1 -1
+-2 -2
+```
+
+### Function Signature:
+Write a function f(N, P, B) that takes in the input.
+```python
+def f(N: int, P: List[Tuple[int, int]], B: List[List[Tuple[int, int]]]):
+    '''
+    N: an integer
+    P: a list of tuples, each containing two integers
+    B: a list of lists, each containing tuples of two integers
+    '''
+```

@@ -1,0 +1,3 @@
+Types: S: str
+Ranges: 1 ≤ len(S) ≤ 1000, S contains only lowercase English letters
+Addtl Info: None

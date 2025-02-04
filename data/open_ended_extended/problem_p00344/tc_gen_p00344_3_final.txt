@@ -1,0 +1,40 @@
+Sure! Below is a test case generator for the given "Circular Sugoroku" problem. This generator will create random valid inputs according to the problem's constraints.
+
+```python
+import random
+
+def tcgen():
+    # Number of squares N
+    N = random.randint(1, 100000)
+    
+    # Values on each square a1, a2, ..., aN
+    A = [random.randint(1, 10**9) for _ in range(N)]
+    
+    return N, A
+
+# Example usage:
+N, A = tcgen()
+print(N)
+print(" ".join(map(str, A)))
+```
+
+This function generates:
+- `N`: A random integer between 1 and 100000, inclusive.
+- `A`: A list of `N` integers, each between 1 and 10^9, inclusive.
+
+### Explanation:
+1. **N**: The number of squares in the sugoroku board is generated randomly within the specified range (1 to 100000).
+2. **A**: The list comprehension generates `N` integers where each integer is randomly chosen within the range 1 to 10^9.
+
+### Example Output:
+The output of running the `tcgen()` function might look like:
+```
+5
+123456789 987654321 123456789 987654321 123456789
+```
+
+This can be directly used as input for the problem statement.
+
+### Additional Notes:
+- This generator creates a wide variety of test cases, including edge cases where `N` is at its minimum or maximum value.
+- Each generated test case adheres to the constraints provided in the problem statement.

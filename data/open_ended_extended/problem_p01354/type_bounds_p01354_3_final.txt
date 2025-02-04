@@ -1,0 +1,5 @@
+Types: m: int, n: int, probabilities: List[List[float]]
+
+Ranges: 1 ≤ m ≤ 16, 1 ≤ n ≤ 16, 0 ≤ probabilities[i][j] ≤ 1
+
+Addtl Info: Probabilities are given up to three decimal places

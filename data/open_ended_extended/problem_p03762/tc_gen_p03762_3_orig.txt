@@ -1,0 +1,47 @@
+Sure! Here's a test case generator for the given problem statement:
+
+```python
+import random
+
+def generate_sorted_unique_integers(size, lower_bound, upper_bound):
+    # Generate a sorted list of unique integers within the given range
+    numbers = set()
+    while len(numbers) < size:
+        numbers.add(random.randint(lower_bound, upper_bound))
+    return sorted(numbers)
+
+def test_case_generator():
+    # Constraints
+    lower_n = 2
+    upper_n = 10**5
+    lower_m = 2
+    upper_m = 10**5
+    lower_bound = -10**9
+    upper_bound = 10**9
+
+    # Generate n and m within the given constraints
+    n = random.randint(lower_n, upper_n)
+    m = random.randint(lower_m, upper_m)
+
+    # Generate sorted unique x coordinates
+    x_coordinates = generate_sorted_unique_integers(n, lower_bound, upper_bound)
+    
+    # Generate sorted unique y coordinates
+    y_coordinates = generate_sorted_unique_integers(m, lower_bound, upper_bound)
+
+    return n, m, x_coordinates, y_coordinates
+
+# Example usage:
+n, m, x_coordinates, y_coordinates = test_case_generator()
+print(n, m)
+print(' '.join(map(str, x_coordinates)))
+print(' '.join(map(str, y_coordinates)))
+```
+
+This code generates random test cases adhering to the constraints of the problem. Here's what each part does:
+
+1. **generate_sorted_unique_integers**: This function generates a sorted list of unique integers within a specified range.
+2. **test_case_generator**: This function uses the above helper to generate `n` and `m`, as well as sorted unique `x_coordinates` and `y_coordinates`.
+3. **Example usage**: This part demonstrates how to call the test case generator and print the results in the required format.
+
+By running the `test_case_generator` function, you will get random test cases for the problem, ensuring the constraints are respected.

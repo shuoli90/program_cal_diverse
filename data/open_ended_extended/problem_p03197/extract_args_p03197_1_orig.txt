@@ -1,0 +1,12 @@
+def extract_arguments(fh):
+    N = int(fh.readline().strip())
+    A = []
+    for _ in range(N):
+        A.append(int(fh.readline().strip()))
+    return N, A
+
+# if __name__ == "__main__":
+#     input_path = sys.argv[1]
+#     with open(input_path, 'r') as fh: 
+#     N, A = extract_arguments(fh)
+#     f(N, A)

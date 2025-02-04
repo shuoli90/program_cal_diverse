@@ -1,0 +1,36 @@
+Certainly! Here is the test case generator for the given problem statement:
+
+```python
+import random
+
+def tcgen():
+    # Number of queries
+    Q = random.randint(1, 100)
+    
+    queries = []
+    
+    for _ in range(Q):
+        # Ai can be 0 or any integer up to 10^9
+        A_i = random.randint(0, 10**9)
+        # Mi can be any integer from 1 to 10^9
+        M_i = random.randint(1, 10**9)
+        queries.append((A_i, M_i))
+        
+    return Q, queries
+
+# Example of how to use the generated test case
+Q, queries = tcgen()
+print(Q)
+for A_i, M_i in queries:
+    print(A_i, M_i)
+```
+
+In the test case generator:
+
+1. `Q` is randomly chosen between 1 and 100.
+2. For each query, `A_i` is randomly chosen between 0 and \(10^9\).
+3. `M_i` is randomly chosen between 1 and \(10^9\). 
+
+The function returns `Q` and the list of queries, each containing a tuple `(A_i, M_i)`.
+
+To see how the test case generator works, you can run the `tcgen` function and print the values.

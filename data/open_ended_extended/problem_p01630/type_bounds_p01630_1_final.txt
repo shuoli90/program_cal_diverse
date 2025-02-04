@@ -1,0 +1,3 @@
+Types: N: int, bit_line: str
+Ranges: 1 ≤ N ≤ 10, bit_line is a string of length 2^N consisting of '0' and '1'
+Addtl Info: None

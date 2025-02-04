@@ -1,0 +1,23 @@
+An even integer \(N\) (2 ≤ \(N\) ≤ 1000).
+
+The input ends with a single zero which should not be processed.
+
+### Example Input:
+```
+2
+4
+6
+8
+10
+52
+0
+```
+
+### Function Signature:
+Write a function f(inputs) that takes in a list of tuples, each containing an even integer \(N\).
+```python
+def f(inputs: List[int]):
+    '''
+    inputs: a list of even integers
+    '''
+```

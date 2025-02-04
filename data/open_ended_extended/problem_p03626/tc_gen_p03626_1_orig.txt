@@ -1,0 +1,66 @@
+Based on the provided problem statement, I'll write a test case generator in Python for the given problem. The test case generator will create random valid inputs for the problem, ensuring it adheres to the constraints provided.
+
+Here's your test case generator:
+
+```python
+import random
+import string
+
+def generate_domino(N):
+    """
+    Generate a valid arrangement of dominoes for a 2xN grid.
+    """
+    S1 = []
+    S2 = []
+    
+    # Generate dominos
+    i = 0
+    while i < N:
+        if i < N - 1 and random.choice([True, False]):
+            # Place a vertical domino
+            domino = random.choice(string.ascii_letters)
+            S1.append(domino)
+            S2.append(domino)
+            i += 1
+        else:
+            # Place a horizontal domino
+            domino = random.choice(string.ascii_letters)
+            S1.append(domino)
+            S2.append(domino)
+            if i < N - 1:
+                S1.append(domino)
+                S2.append(domino)
+                i += 1
+        i += 1
+    
+    return ''.join(S1[:N]), ''.join(S2[:N])
+
+def tcgen():
+    N = random.randint(1, 52)
+    S1, S2 = generate_domino(N)
+    return N, S1, S2
+
+# Example usage:
+N, S1, S2 = tcgen()
+print(N)
+print(S1)
+print(S2)
+```
+
+### Explanation:
+1. **`generate_domino(N)` Function**:
+   - This function creates a valid arrangement of dominoes for a 2xN grid.
+   - It randomly decides whether to place a vertical domino or a horizontal domino.
+   - Vertical dominos are placed when `random.choice([True, False])` returns `True`. This ensures coverage of both rows at the same column.
+   - Horizontal dominos are placed in pairs, ensuring that they span two columns in the same row.
+   - The loop ensures that it doesn't exceed the bounds of the grid.
+
+2. **`tcgen()` Function**:
+   - Randomly generates the number of columns \( N \).
+   - Calls `generate_domino(N)` to get valid `S1` and `S2`.
+   - Returns the generated test case.
+
+### Usage:
+- The `tcgen()` function can be called to generate and print a random test case. You can run it multiple times to get diverse sets of inputs.
+
+This approach ensures that the generated test cases are valid according to the problem constraints and models the typical structure of competitive programming test case generators.

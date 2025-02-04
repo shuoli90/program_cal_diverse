@@ -1,0 +1,47 @@
+Sure! Let's create a test case generator based on the problem statement you provided. The generator will create random values for the number of switches, bulbs, their connections, and the parity conditions for each bulb. Here's a Python function to generate test cases:
+
+```python
+import random
+
+def generate_test_case():
+    N = random.randint(1, 10)  # Number of switches
+    M = random.randint(1, 10)  # Number of bulbs
+    
+    bulbs = []
+    for _ in range(M):
+        k_i = random.randint(1, N)
+        s_i = random.sample(range(1, N + 1), k_i)  # Choose k_i unique switches
+        bulbs.append((k_i, s_i))
+    
+    p = [random.randint(0, 1) for _ in range(M)]  # Parity conditions for each bulb
+    
+    print(N, M)
+    for b in bulbs:
+        print(b[0], ' '.join(map(str, b[1])))
+    print(' '.join(map(str, p)))
+
+# Example usage
+generate_test_case()
+```
+
+### Explanation
+1. **N and M**: Generate the number of switches (`N`) and bulbs (`M`), both within the range [1, 10].
+2. **Bulb Connections**: For each bulb, determine the number of switches it's connected to (`k_i`) and then choose `k_i` unique switches randomly from the range [1, N].
+3. **Parity Conditions**: Generate a list of parity conditions (`p_i`) for each bulb, where each condition is either 0 or 1.
+4. **Output Format**: Print the generated input in the specified format.
+
+### Example Output
+The function will produce output in the form:
+```
+3 2
+2 1 2
+1 3
+0 1
+```
+This output corresponds to:
+- 3 switches and 2 bulbs.
+- Bulb 1 is connected to switches 1 and 2.
+- Bulb 2 is connected to switch 3.
+- Parity conditions: Bulb 1 lights up if the number of "on" switches is even, and Bulb 2 lights up if the number of "on" switches is odd.
+
+You can call `generate_test_case()` multiple times to generate different test cases for your problem.

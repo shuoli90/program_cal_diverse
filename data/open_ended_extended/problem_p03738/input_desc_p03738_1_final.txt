@@ -1,0 +1,18 @@
+An integer A (1 ≤ A < 10^101) without leading zeros.
+An integer B (1 ≤ B < 10^101) without leading zeros.
+
+### Example Input:
+
+```
+36
+24
+```
+
+### Function Signature:
+Write a function f(inputs) that takes in the input.
+```python
+def f(inputs: List[Tuple[str, str]]):
+    ''' 
+    inputs: a list of tuples, where each tuple contains two strings representing integers
+    '''
+```

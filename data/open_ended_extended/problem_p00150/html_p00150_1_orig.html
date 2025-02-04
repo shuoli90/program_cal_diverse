@@ -1,0 +1,191 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p00150 - Generation 1</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p00150 - Generation 1</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>
+Twin Prime
+Prime numbers are widely applied for cryptographic and communication technology.
+A twin prime is a prime number that differs from another prime number by 2.
+For example, (5, 7) and (11, 13) are twin prime pairs.
+In this problem, we call the greater number of a twin prime "size of the twin prime."
+Your task is to create a program which reads an integer n and prints a twin prime which has the maximum size among twin primes less than or equals to n
+You may assume that 5 ≤ n ≤ 10000.
+Input
+The input is a sequence of datasets. The end of the input is indicated by a line containing one zero. Each dataset is formatted as follows:
+n (integer)
+Output
+For each dataset, print the twin prime p and q (p < q). p and q should be separated by a single space.
+Sample Input
+12
+100
+200
+300
+0
+Output for the Sample Input
+5 7
+71 73
+197 199
+281 283
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An integer \( n \) (5 ≤ \( n \) ≤ 10000). The sequence of inputs ends with a 0.
+
+### Example Input:
+
+```
+12
+100
+200
+300
+0
+```
+
+### Function Signature:
+Write a function f(inputs) that takes in the input.
+```python
+def f(inputs: List[int]):
+    '''
+    inputs: a list of integers
+    '''
+```</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Certainly! To generate test cases for the "Twin Prime" problem, we need to create a sequence of datasets, where each dataset consists of an integer \( n \) (5 ≤ \( n \) ≤ 10000), and the last dataset is indicated by a line containing zero.
+
+Here's how we can write a test case generator for the given problem:
+
+```python
+import random
+
+def generate_primes_up_to(max_n):
+    """ Sieve of Eratosthenes to generate all primes up to max_n """
+    sieve = [True] * (max_n + 1)
+    sieve[0] = sieve[1] = False
+    for start in range(2, int(max_n**0.5) + 1):
+        if sieve[start]:
+            for multiple in range(start*start, max_n + 1, start):
+                sieve[multiple] = False
+    return [num for num, is_prime in enumerate(sieve) if is_prime]
+
+
+def find_twin_primes(primes):
+    """ Find all twin primes from a list of primes """
+    twin_primes = []
+    for i in range(len(primes) - 1):
+        if primes[i + 1] - primes[i] == 2:
+            twin_primes.append((primes[i], primes[i+1]))
+    return twin_primes
+
+
+def tcgen():
+    # Generate a random number of test cases between 1 and 20
+    num_tests = random.randint(1, 20)
+    test_cases = []
+    
+    for _ in range(num_tests):
+        n = random.randint(5, 10000)
+        test_cases.append(n)
+    
+    # Append the terminating zero to indicate the end of input
+    test_cases.append(0)
+    
+    return test_cases
+
+
+def main():
+    test_cases = tcgen()
+    primes = generate_primes_up_to(10000)
+    twin_primes = find_twin_primes(primes)
+    
+    for n in test_cases:
+        if n == 0:
+            break
+        result = None
+        for p, q in reversed(twin_primes):
+            if q <= n:
+                result = (p, q)
+                break
+        if result:
+            print(f"{result[0]} {result[1]}")
+        else:
+            print("No twin prime found")
+
+if __name__ == "__main__":
+    main()
+```
+
+### Explanation:
+1. **Prime Generation**: We use the Sieve of Eratosthenes to generate all prime numbers up to 10000. This is efficient and easy to implement.
+2. **Twin Prime Identification**: We then find all twin primes from the generated list of prime numbers.
+3. **Test Case Generation**: The `tcgen` function generates a random number of test cases (between 1 and 20) with each \( n \) in the range [5, 10000]. It appends a terminating zero at the end.
+4. **Main Function**: For each \( n \) in the test cases, we find the largest twin prime pair such that both primes are less than or equal to \( n \).
+
+This script will generate and handle test cases as specified in the problem statement. Use the `tcgen` function to get the test cases, and the `main` function simulates the problem's expected behavior.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    inputs = []
+    while True:
+        line = fh.readline().strip()
+        if line == '0':
+            break
+        inputs.append(int(line))
+    return inputs</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

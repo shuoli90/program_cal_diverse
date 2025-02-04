@@ -1,0 +1,3 @@
+Types: NAB: int, NBA: int, trains_A_to_B: List[Tuple[int, int, int]], trains_B_to_A: List[Tuple[int, int, int]]
+Ranges: 0 ≤ NAB, 0 ≤ NBA, NAB + NBA ≤ 50, 1 ≤ Ci ≤ 10, 0 ≤ Di, Ai < 86400
+Addtl Info: None

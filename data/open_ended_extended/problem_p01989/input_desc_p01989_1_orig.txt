@@ -1,0 +1,16 @@
+Canonicalized Input Description:
+
+A string S of digits with length between 4 and 12, inclusive.
+
+### Example Input:
+
+```
+123456789
+```
+
+### Function Signature:
+Write a function f(S) that takes in the input.
+def f(S: str):
+    '''
+    S: a string of digits
+    '''

@@ -1,0 +1,61 @@
+Sure! Here's a test case generator for the problem "Rescue a Postal Worker":
+
+```python
+import random
+
+def generate_graph(n, m):
+    edges = []
+    edge_set = set()
+    
+    while len(edges) < m:
+        u = random.randint(1, n)
+        v = random.randint(1, n)
+        if u != v and (u, v) not in edge_set and (v, u) not in edge_set:
+            w = random.randint(1, 1000)
+            edges.append((u, v, w))
+            edge_set.add((u, v))
+            edge_set.add((v, u))
+    
+    return edges
+
+def generate_mail(n, k):
+    mail_positions = []
+    mail_set = set()
+    
+    while len(mail_positions) < k:
+        s = random.randint(1, n)
+        t = random.randint(1, n)
+        if s != t and s not in mail_set and t not in mail_set:
+            mail_positions.append((s, t))
+            mail_set.add(s)
+            mail_set.add(t)
+    
+    return mail_positions
+
+def tcgen():
+    n = random.randint(3, 1000)  # Number of vertices
+    m = random.randint(1, 2000)  # Number of edges
+    k = random.randint(1, 6)     # Number of mails
+    p = random.randint(1, n)     # Starting vertex
+    
+    edges = generate_graph(n, m)
+    mail_positions = generate_mail(n, k)
+    
+    print(n, m, k, p)
+    for edge in edges:
+        print(edge[0], edge[1], edge[2])
+    for mail in mail_positions:
+        print(mail[0], mail[1])
+
+# Generate a test case
+tcgen()
+```
+
+### Explanation
+
+1. **generate_graph(n, m)**: Generates a graph with `n` vertices and `m` edges, ensuring no self-loops or multiple edges.
+2. **generate_mail(n, k)**: Generates `k` mail drop and destination points ensuring there are no duplicates and conflicts with the starting vertex.
+3. **tcgen()**: Combines the above functions to generate a complete test case.
+
+### Usage
+The `tcgen` function will print the input format as specified in the problem statement. You can call this function to generate random test cases for your problem "Rescue a Postal Worker".

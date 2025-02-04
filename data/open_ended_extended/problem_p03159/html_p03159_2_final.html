@@ -1,0 +1,217 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p03159 - Generation 2</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p03159 - Generation 2</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>
+Score : 600 points
+Problem StatementThe server in company A has a structure where N devices numbered 1, 2, ..., N are connected with N - 1 cables.
+The i-th cable connects Device U_i and Device V_i.
+Any two different devices are connected through some number of cables.
+Each device v (1 \leq v \leq N) has a non-zero integer A_v, which represents the following:
+If A_v < 0, Device v is a computer that consumes an electric power of -A_v.
+If A_v > 0, Device v is a battery that supplies an electric power of A_v.
+You have decided to disconnect some number of cables (possibly zero) to disable the server.
+When some cables are disconnected, the devices will be divided into some number of connected components.
+The server will be disabled if all of these connected components satisfy one of the following conditions:
+There is no computer in the connected component. That is, A_v is positive for every device v that belongs to the connected component.
+There is not enough supply of electric power in the connected component. That is, the sum of A_v over all devices v that belong to the connected component is negative.
+At least how many cables do you need to disconnect in order to disable the server?
+Constraints
+1 \leq N \leq 5 000
+1 \leq |A_i| \leq 10^9 (1 \leq i \leq N)
+1 \leq U_i, V_i \leq N (1 \leq i \leq N - 1)
+U_i \neq V_i (1 \leq i \leq N - 1)
+Any two different devices are connected through some number of cables.
+All values in input are integers.
+InputInput is given from Standard Input in the following format:
+N
+A_1 A_2 ... A_N
+U_1 V_1
+U_2 V_2
+:
+U_{N - 1} V_{N - 1}
+OutputPrint the answer.
+Sample Input 17
+-2 7 5 6 -8 3 4
+1 2
+2 3
+2 4
+1 5
+5 6
+5 7
+Sample Output 11
+We should disconnect the cable connecting Device 1 and Device 2.
+Sample Input 24
+1 2 3 4
+1 2
+1 3
+1 4
+Sample Output 20
+Sample Input 36
+10 -1 10 -1 10 -1
+1 2
+2 3
+3 4
+4 5
+5 6
+Sample Output 35
+Sample Input 48
+-2 3 6 -2 -2 -5 3 2
+3 4
+7 6
+6 2
+8 2
+5 3
+1 8
+3 7
+Sample Output 43
+Sample Input 510
+3 4 9 6 1 5 -1 10 -10 -10
+7 4
+5 6
+8 1
+9 5
+7 1
+10 3
+2 8
+4 10
+9 2
+Sample Output 53
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An integer \(N\) (1 ≤ \(N\) ≤ 5000), representing some quantity or size.
+A list of \(N\) non-zero integers \(A\), where each integer is between -10^9 and 10^9.
+A list of \(N-1\) pairs of integers, where each integer in the pair is between 1 and \(N\).
+
+### Example Input:
+
+```
+7
+-2 7 5 6 -8 3 4
+1 2
+2 3
+2 4
+1 5
+5 6
+5 7
+```
+
+### Function Signature:
+Write a function f(N, A, cables) that takes in the input.
+def f(N: int, A: List[int], cables: List[Tuple[int, int]]):
+    '''
+    N: an integer
+    A: a list of integers
+    cables: a list of tuples
+    '''</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Sure, let's create a test case generator for the given problem statement. We'll need to generate random values for \(N\), the array \(A\), and the connections between devices \(U\) and \(V\). Here's a Python script that can generate such test cases:
+
+```python
+import random
+
+def tcgen():
+    # Generate a random N (number of devices) within the constraints
+    N = random.randint(1, 5000)
+    
+    # Generate the array A of size N with values between -10^9 and 10^9, non-zero
+    A = [random.randint(1, 10**9) * random.choice([-1, 1]) for _ in range(N)]
+    
+    # Generate the N-1 cables (edges) ensuring they form a valid tree
+    edges = []
+    for i in range(2, N + 1):
+        # Connect each new node to any of the previous nodes
+        edges.append((i, random.randint(1, i - 1)))
+
+    return N, A, edges
+
+def print_test_case():
+    N, A, edges = tcgen()
+    print(N)
+    print(" ".join(map(str, A)))
+    for u, v in edges:
+        print(u, v)
+
+# Example of generating and printing a test case
+print_test_case()
+```
+
+### Explanation:
+1. **Generating N**: We randomly choose \(N\) within the given constraints (1 ≤ \(N\) ≤ 5000).
+2. **Generating A**: We create an array \(A\) of size \(N\) with each element being a non-zero integer within the range \([-10^9, 10^9]\).
+3. **Generating edges**: We form a tree by connecting each new node \(i\) (from 2 to \(N\)) to any of the previous nodes (1 to \(i-1\)). This ensures the tree structure is maintained, meaning the graph is connected and acyclic.
+4. **Printing the test case**: The function `print_test_case` prints the generated test case in the required format.
+
+This script will produce random test cases each time it is run, which can be used to test the competitive programming problem.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    N = int(fh.readline().strip())
+    A = list(map(int, fh.readline().strip().split()))
+    cables = [tuple(map(int, fh.readline().strip().split())) for _ in range(N - 1)]
+    return (N, A, cables)
+
+# if __name__ == "__main__":
+#     input_path = sys.argv[1]
+#     with open(input_path, 'r') as fh: 
+#         N, A, cables = extract_arguments(fh)
+#         f(N, A, cables)</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

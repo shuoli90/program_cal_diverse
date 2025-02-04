@@ -1,0 +1,4 @@
+def extract_arguments(fh):
+    N, M = map(int, fh.readline().strip().split())
+    LR = [tuple(map(int, fh.readline().strip().split())) for _ in range(N)]
+    return N, M, LR

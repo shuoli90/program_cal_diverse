@@ -1,0 +1,29 @@
+Sure! Here's a test case generator for the given problem statement about zeros and ones on a blackboard.
+
+```python
+import random
+
+def is_divisible(N, M, K):
+    return (N + M - 1) % (K - 1) == 0
+
+def tcgen():
+    while True:
+        N = random.randint(1, 2000)
+        M = random.randint(1, 2000)
+        K = random.randint(2, 2000)
+        if is_divisible(N, M, K):
+            break
+    
+    return N, M, K
+
+# Generate a test case
+N, M, K = tcgen()
+print(N, M, K)
+```
+
+Explanation:
+1. **Function `is_divisible`**: This helper function checks if \(N + M - 1\) is divisible by \(K - 1\).
+2. **Function `tcgen`**: This is the main test case generator function. It generates random values for \(N\), \(M\), and \(K\) within the given constraints. It ensures that \(N + M - 1\) is divisible by \(K - 1\) by using the `is_divisible` function.
+3. **Generating a test case**: Calls the `tcgen` function to generate a valid test case and prints the values.
+
+You can run this script multiple times to generate different test cases. The generated test cases will always satisfy the constraint \(N + M - 1\) is divisible by \(K - 1\).

@@ -1,0 +1,27 @@
+An integer L (1 ≤ L ≤ 20) and an integer Q (1 ≤ Q ≤ 1,000,000), separated by a space.
+A string S of length 2^L, consisting of the characters 0-9.
+Q strings, each of length L, consisting of the characters 0, 1, and ?.
+
+### Example Input:
+
+```
+3 5
+12345678
+000
+0??
+1?0
+?11
+???
+```
+
+### Function Signature:
+Write a function f(L, Q, S, T) that takes in the input.
+```python
+def f(L: int, Q: int, S: str, T: List[str]):
+    '''
+    L: an integer
+    Q: an integer
+    S: a string
+    T: a list of strings
+    '''
+```

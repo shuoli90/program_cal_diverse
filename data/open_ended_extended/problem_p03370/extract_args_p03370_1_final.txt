@@ -1,0 +1,6 @@
+def extract_arguments(fh):
+    first_line = fh.readline().strip().split()
+    N = int(first_line[0])
+    X = int(first_line[1])
+    m = [int(fh.readline().strip()) for _ in range(N)]
+    return N, X, m

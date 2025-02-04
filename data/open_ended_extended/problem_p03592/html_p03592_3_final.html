@@ -1,0 +1,159 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p03592 - Generation 3</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p03592 - Generation 3</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>
+Score : 200 points
+Problem StatementWe have a grid with N rows and M columns of squares. Initially, all the squares are white.
+There is a button attached to each row and each column.
+When a button attached to a row is pressed, the colors of all the squares in that row are inverted; that is, white squares become black and vice versa.
+When a button attached to a column is pressed, the colors of all the squares in that column are inverted.
+Takahashi can freely press the buttons any number of times. Determine whether he can have exactly K black squares in the grid.
+Constraints
+1 \leq N,M \leq 1000
+0 \leq K \leq NM
+InputInput is given from Standard Input in the following format:
+N M K
+OutputIf Takahashi can have exactly K black squares in the grid, print Yes; otherwise, print No.
+Sample Input 12 2 2
+Sample Output 1Yes
+Press the buttons in the order of the first row, the first column.
+Sample Input 22 2 1
+Sample Output 2No
+Sample Input 33 5 8
+Sample Output 3Yes
+Press the buttons in the order of the first column, third column, second row, fifth column.
+Sample Input 47 9 20
+Sample Output 4No
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An integer N (1 ≤ N ≤ 1000), representing some quantity or size.
+An integer M (1 ≤ M ≤ 1000), representing some quantity or size.
+An integer K (0 ≤ K ≤ NM).
+
+### Example Input:
+
+```
+2 2 2
+```
+
+### Function Signature:
+Write a function f(N, M, K) that takes in the input.
+
+```python
+def f(N: int, M: int, K: int):
+    ''' 
+    N: an integer 
+    M: an integer
+    K: an integer
+    '''
+```</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Sure, here is a test case generator for the given problem statement:
+
+```python
+import random
+
+def tcgen():
+    N = random.randint(1, 1000)
+    M = random.randint(1, 1000)
+    K = random.randint(0, N * M)
+    
+    return N, M, K
+
+# Example usage to generate a test case
+if __name__ == "__main__":
+    N, M, K = tcgen()
+    print(N, M, K)
+```
+
+### Explanation:
+1. **N**: Number of rows in the grid, chosen randomly between 1 and 1000.
+2. **M**: Number of columns in the grid, chosen randomly between 1 and 1000.
+3. **K**: Number of black squares desired, chosen randomly between 0 and \(N \times M\).
+
+### Example Output:
+Running the `tcgen()` function will produce outputs in the format:
+```
+N M K
+```
+where `N`, `M`, and `K` are integers that meet the problem's constraints.
+
+### Sample Outputs:
+1. `tcgen()` might generate:
+   ```
+   500 600 150000
+   ```
+   This would mean a grid of 500 rows and 600 columns, and the goal is to have exactly 150000 black squares.
+
+2. Another run might generate:
+   ```
+   1000 1000 500000
+   ```
+   This would mean a grid of 1000 rows and 1000 columns, and the goal is to have exactly 500000 black squares.
+
+This generator ensures that all possible edge cases and typical scenarios are covered by randomizing within the problem constraints.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    N, M, K = map(int, fh.readline().strip().split())
+    return N, M, K</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

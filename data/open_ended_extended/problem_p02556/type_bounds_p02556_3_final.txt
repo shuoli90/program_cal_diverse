@@ -1,0 +1,3 @@
+Types: N: int, points: List[Tuple[int, int]]
+Ranges: 2 ≤ N ≤ 2 × 10^5, 1 ≤ x_i, y_i ≤ 10^9
+Addtl Info: None

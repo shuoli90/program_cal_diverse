@@ -1,0 +1,58 @@
+Sure, I can help you write a test case generator for the problem "Mobile Computing." Here is a Python script that generates random test cases for this problem:
+
+```python
+import random
+
+def generate_test_case():
+    # Number of datasets (randomly chosen between 1 to 5 for simplicity)
+    num_datasets = random.randint(1, 5)
+    
+    test_cases = []
+    
+    for _ in range(num_datasets):
+        # Room width (random float between 0 and 10)
+        r = round(random.uniform(0.00001, 9.99999), 5)  # using 5 decimal places for precision
+        
+        # Number of stones (between 1 and 6)
+        s = random.randint(1, 6)
+        
+        # Weights of the stones (between 1 and 1000)
+        weights = [random.randint(1, 1000) for _ in range(s)]
+        
+        test_cases.append((r, s, weights))
+    
+    return num_datasets, test_cases
+
+def format_test_case(num_datasets, test_cases):
+    result = [str(num_datasets)]
+    for r, s, weights in test_cases:
+        result.append(f"{r}")
+        result.append(f"{s}")
+        result.extend(map(str, weights))
+    return "\n".join(result)
+
+def tcgen():
+    num_datasets, test_cases = generate_test_case()
+    return format_test_case(num_datasets, test_cases)
+
+# Example of generating a test case
+print(tcgen())
+```
+
+### Explanation:
+
+1. **generate_test_case Function**:
+   - Generates the number of datasets (`num_datasets`), which is a random integer between 1 and 5.
+   - For each dataset:
+     - Generates a random room width `r` as a float between 0.00001 and 9.99999, rounded to 5 decimal places.
+     - Generates a random number of stones `s` between 1 and 6.
+     - Generates a list of stone weights, each a random integer between 1 and 1000.
+
+2. **format_test_case Function**:
+   - Formats the generated test cases into the required input format for the problem statement.
+   - Combines all the parts into a single string suitable for competitive programming input.
+
+3. **tcgen Function**:
+   - Calls the above functions to generate and format the test cases, then simply prints the result.
+
+You can run this script to get a random test case each time. It ensures the test cases conform to the constraints specified in the problem statement.

@@ -1,0 +1,29 @@
+An integer L (1.0 ≤ L ≤ 500.0), representing some length.
+A decimal R (1.0 ≤ R ≤ 10.0), representing some count.
+An integer N (3 ≤ N ≤ 100), representing some quantity.
+N pairs of integers (Xi, Yi) (-1000 ≤ Xi ≤ 1000, -1000 ≤ Yi ≤ 1000), where each pair represents coordinates.
+
+### Example Input:
+
+```
+4.0 2.0 8
+-1 0
+5 0
+5 -2
+7 -2
+7 0
+18 0
+18 6
+-1 6
+```
+
+### Function Signature:
+Write a function f(inputs) that takes in the input as a list of tuples. 
+def f(inputs: List[Tuple[float, float, int, List[Tuple[int, int]]]]): 
+    ''' 
+    inputs: a list of tuples, where each tuple contains:
+        L: a decimal
+        R: a decimal
+        N: an integer
+        coordinates: a list of tuples of integers
+    '''

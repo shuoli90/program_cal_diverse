@@ -1,0 +1,207 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p02348 - Generation 1</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p02348 - Generation 1</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>
+Range Update Query (RUQ)
+Write a program which manipulates a sequence A = {a0, a1, . . .  , an−1} with the following operations:
+update(s, t, x): change as, as+1, ..., at to x.
+find(i): output the value of ai.
+Note that the initial values of ai (i = 0, 1, . . .  , n−1) are  231-1.
+Input
+n q
+query1
+query2
+:
+queryq
+  In the first line, n (the number of elements in A) and q (the number of queries) are given. Then, ith query queryi is given in the following format:
+0 s t x 
+  or
+1 i
+  The first digit represents the type of the query. '0' denotes update(s, t, x) and '1' denotes find(i).
+Output
+For each find operation, print the value.
+Constraints
+1 ≤ n ≤ 100000
+1 ≤ q ≤ 100000
+0 ≤ s ≤ t < n
+0 ≤ i < n
+0 ≤ x < 231−1
+Sample Input 1
+3 5
+0 0 1 1
+0 1 2 3
+0 2 2 2
+1 0
+1 1
+Sample Output 1
+1
+3
+Sample Input 2
+1 3
+1 0
+0 0 0 5
+1 0
+Sample Output 2
+2147483647
+5
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An integer n (1 ≤ n ≤ 100000), representing some quantity or size.
+An integer q (1 ≤ q ≤ 100000), representing the number of queries.
+A list of q queries, where each query is either:
+  - "0 s t x", where 0 ≤ s ≤ t < n and 0 ≤ x < 2^31−1
+  - "1 i", where 0 ≤ i < n
+
+### Example Input:
+
+```
+3 5
+0 0 1 1
+0 1 2 3
+0 2 2 2
+1 0
+1 1
+```
+
+### Function Signature:
+Write a function f(inputs) that takes in the input.
+def f(inputs: List[Tuple[int, int, List[Union[Tuple[int, int, int, int], Tuple[int, int]]]]]):
+    ''' 
+    inputs: a list of tuples, with each tuple containing:
+        - an integer
+        - an integer
+        - a list of queries, where each query is either:
+            - a tuple of four integers
+            - a tuple of two integers
+    '''</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Certainly! Below is a test case generator for the "Range Update Query (RUQ)" problem statement. This generator will create random but valid test cases within the specified constraints.
+
+```python
+import random
+
+def tcgen():
+    # Define the maximum values based on constraints
+    MAX_N = 100000
+    MAX_Q = 100000
+    MAX_X = 2**31 - 2  # since x < 2^31 - 1
+
+    # Generate n (number of elements in A) and q (number of queries)
+    n = random.randint(1, MAX_N)
+    q = random.randint(1, MAX_Q)
+
+    queries = []
+    for _ in range(q):
+        query_type = random.randint(0, 1)  # Choose between 0 (update) and 1 (find)
+        if query_type == 0:
+            # update(s, t, x)
+            s = random.randint(0, n-1)
+            t = random.randint(s, n-1)
+            x = random.randint(0, MAX_X)
+            queries.append(f"0 {s} {t} {x}")
+        else:
+            # find(i)
+            i = random.randint(0, n-1)
+            queries.append(f"1 {i}")
+
+    # Join all queries into a single string with newline separation
+    query_str = "\n".join(queries)
+    
+    # Return the complete test case as a single string
+    return f"{n} {q}\n{query_str}"
+
+# Example usage:
+random.seed(0)  # For reproducibility
+test_case = tcgen()
+print(test_case)
+```
+
+### Explanation
+
+1. **Generate `n` and `q`:**
+   - `n` is chosen randomly between 1 and 100000.
+   - `q` is chosen randomly between 1 and 100000.
+
+2. **Generate Queries:**
+   - Loop `q` times to generate `q` queries.
+   - For each query, randomly decide whether it is an update query (`0 s t x`) or a find query (`1 i`).
+   - If it's an update query (`0`):
+     - Randomly choose `s` between 0 and `n-1`.
+     - Randomly choose `t` between `s` and `n-1` (ensuring `s <= t`).
+     - Randomly choose `x` between 0 and `2^31-2`.
+   - If it's a find query (`1`):
+     - Randomly choose `i` between 0 and `n-1`.
+
+3. **Format the Output:**
+   - Format the test case into the required string format that can be directly printed or saved to a file.
+
+This generator ensures that all generated test cases are valid according to the problem constraints and provides a sufficient variety of test scenarios.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    n, q = map(int, fh.readline().strip().split())
+    queries = []
+    for _ in range(q):
+        query = list(map(int, fh.readline().strip().split()))
+        queries.append(tuple(query))
+    return n, q, queries</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

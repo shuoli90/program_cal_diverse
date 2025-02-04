@@ -1,0 +1,64 @@
+D: Rescue a Postal Worker
+Story
+You have achieved your long-time dream of getting a job at a post office this spring. You have been assigned a delivery area, and it is your first job with high spirits. However, because you were too excited, you did not notice that there was a hole in the bag containing the mail and dropped all the mail that was in it. However, because you had GPS on all the mail, which was well prepared, you can know where the mail has fallen.
+You want to finish the delivery as quickly as possible because you may exceed the scheduled delivery time by picking up the mail again. Find the shortest time to collect all the dropped mail and deliver it to its respective destination.
+Problem
+Consider an undirected graph for the delivery area you are in charge of. When considering an undirected graph consisting of n vertices, each vertex is assigned a number from 1 to n. When the number of mail dropped, the vertex that it fell on, and the destination vertex of each mail are given, find the shortest time to collect all the mail and deliver it to its respective destination. At this time, it is acceptable that other dropped mail exists that has not been picked up when delivering a certain mail to its destination. It is also acceptable to be at any vertex when the delivery is completed.
+Here, there is at most one piece of mail or delivery destination on each vertex, and there is no mail or delivery destination at the starting vertex. The undirected graph given is a simple graph, that is, a graph without self-loops or multiple edges.
+Input Format
+The format of the input data is as follows:
+n m k p
+x_1 y_1 w_1
+...
+x_m y_m w_m
+s_1 t_1
+...
+s_k t_k
+On the first line, the number of vertices in the undirected graph n (3 ≤ n ≤ 1,000), the number of edges m (1 ≤ m ≤ 2,000), the number of dropped mail k (1 ≤ k ≤ 6), and the starting vertex p (1 ≤ p ≤ n) are given. The input items in the line are given separated by one space.
+In the next m lines, the information of the edges in the graph is given. The i-th line gives the two endpoints x_i (1 ≤ x_i ≤ n) and y_i (1 ≤ y_i ≤ n) of the i-th edge and its weight w_i (1 ≤ w_i ≤ 1,000).
+On the next k lines, the vertex where the dropped mail is located, s_j (1 ≤ s_j ≤ n), and the destination vertex of the mail t_j (1 ≤ t_j ≤ n) are given.
+Here, the given graph has no self-loops or multiple edges, and there are no mail or delivery destinations at the starting vertex or any vertex where mail has fallen.
+Output Format
+Output the shortest time to deliver all the mail to its respective destination in one line, starting from vertex p. If it is not possible to deliver, output "Cannot deliver".
+Sample Input 1
+5 6 1 1
+1 3 5
+1 2 2
+2 3 1
+3 5 4
+3 4 2
+4 5 3
+3 5
+Sample Output 1
+7
+Sample Input 2
+5 6 1 1
+1 3 5
+1 2 2
+2 3 1
+3 5 4
+3 4 2
+4 5 3
+5 3
+Sample Output 2
+11
+Sample Input 3
+3 1 1 1
+1 2 1
+2 3
+Sample Output 3
+Cannot deliver
+Sample Input 4
+5 8 2 3
+1 2 1
+2 3 4
+3 4 5
+4 5 3
+5 1 4
+1 3 3
+2 5 1
+5 3 4
+1 2
+5 4
+Sample Output 3
+8

@@ -1,0 +1,223 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p01459 - Generation 1</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p01459 - Generation 1</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>
+A Light Road
+There is an evil creature in a square on N-by-M grid (2 \leq N, M \leq 100),
+and you want to kill it using a laser generator located in a different square.
+Since the location and direction of the laser generator are fixed,
+you may need to use several mirrors to reflect laser beams.
+There are some obstacles on the grid and you have a limited  number of mirrors.
+Please find out whether it is possible to kill the creature,
+and if possible, find the minimum number of mirrors.
+There are two types of single-sided mirrors;
+type P mirrors can be placed at the angle of 45 or 225 degrees from east-west direction,
+and type Q mirrors can be placed with at the angle of 135 or 315 degrees.
+For example, four mirrors are located properly, laser go through like the following. 
+Note that mirrors are single-sided,
+and thus back side (the side with cross in the above picture) is not reflective.
+You have A type P mirrors, and also A type Q mirrors (0 \leq A \leq 10).
+Although you cannot put mirrors onto the squares with the creature or the laser generator,
+laser beam can pass through the square.
+Evil creature is killed if the laser reaches the square  it is  in.
+Input
+Each test case consists of several lines.
+The first line contains three integers, N, M, and A.
+Each of the following N lines contains M characters,
+and represents the grid information.
+'#', '.', 'S', 'G' indicates obstacle, empty square,
+the location of the laser generator, and the location of the evil creature, respectively.
+The first line shows the information in northernmost squares
+and the last line shows the information in southernmost squares.
+ You can assume that there is exactly one laser generator and exactly one creature,
+and the laser generator emits laser beam always toward the south.
+Output
+Output the minimum number of mirrors used if you can kill creature, or -1 otherwise.
+Sample Input 1
+3 3 2
+S#.
+...
+.#G
+Output for the Sample Input 1
+2
+Sample Input 2
+3 3 1
+S#.
+...
+.#G
+Output for the Sample Input 2
+-1
+Sample Input 3
+3 3 1
+S#G
+...
+.#.
+Output for the Sample Input 3
+2
+Sample Input 4
+4 3 2
+S..
+...
+..#
+.#G
+Output for the Sample Input 4
+-1
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>Canonicalized Input Description:
+
+An integer N (2 ≤ N ≤ 100), representing some quantity or size.
+An integer M (2 ≤ M ≤ 100), representing some quantity or size.
+An integer A (0 ≤ A ≤ 10), representing some quantity or size.
+A grid of size NxM, where each cell contains one of the following characters: {'#', '.', 'S', 'G'}.
+
+### Example Input:
+
+```
+3 3 2
+S#.
+...
+.#G
+```
+
+### Function Signature:
+Write a function f(N, M, A, grid) that takes in the input.
+def f(N: int, M: int, A: int, grid: List[str]):
+    '''
+    N: an integer
+    M: an integer
+    A: an integer
+    grid: a list of strings
+    '''</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Sure, here's a test case generator for the problem "A Light Road":
+
+```python
+import random
+
+def generate_grid(N, M):
+    grid = [['.' for _ in range(M)] for _ in range(N)]
+    
+    # Place the laser generator 'S'
+    while True:
+        sx, sy = random.randint(0, N-1), random.randint(0, M-1)
+        if grid[sx][sy] == '.':
+            grid[sx][sy] = 'S'
+            break
+    
+    # Place the evil creature 'G'
+    while True:
+        gx, gy = random.randint(0, N-1), random.randint(0, M-1)
+        if grid[gx][gy] == '.' and (gx != sx or gy != sy):
+            grid[gx][gy] = 'G'
+            break
+    
+    # Place some obstacles '#'
+    num_obstacles = random.randint(0, N * M // 4)
+    for _ in range(num_obstacles):
+        while True:
+            ox, oy = random.randint(0, N-1), random.randint(0, M-1)
+            if grid[ox][oy] == '.':
+                grid[ox][oy] = '#'
+                break
+    
+    return grid
+
+def tcgen():
+    N = random.randint(2, 100)
+    M = random.randint(2, 100)
+    A = random.randint(0, 10)
+    
+    grid = generate_grid(N, M)
+    
+    return N, M, A, grid
+
+def print_test_case(N, M, A, grid):
+    print(N, M, A)
+    for row in grid:
+        print(''.join(row))
+
+# Example usage
+N, M, A, grid = tcgen()
+print_test_case(N, M, A, grid)
+```
+
+Explanation:
+
+1. **Grid Generation (`generate_grid` function)**: This function creates an `N x M` grid filled with empty squares ('.'). It then places the laser generator ('S') and the evil creature ('G') in random locations, ensuring they do not overlap. It also places a random number of obstacles ('#') in the grid.
+2. **Test Case Generation (`tcgen` function)**: This function generates random values for `N`, `M`, and `A` within the specified ranges and calls `generate_grid` to create the grid setup.
+3. **Print Test Case (`print_test_case` function)**: This function formats and prints the generated test case in the specified format.
+
+Run the example usage at the bottom to get a random test case in the required format.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    N, M, A = map(int, fh.readline().strip().split())
+    grid = [fh.readline().strip() for _ in range(N)]
+    return N, M, A, grid
+
+# if __name__ == "__main__":
+#     input_path = sys.argv[1]
+#     with open(input_path, 'r') as fh: 
+#     N, M, A, grid = extract_arguments(fh)
+#     f(N, M, A, grid)</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

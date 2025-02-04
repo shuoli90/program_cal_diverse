@@ -1,0 +1,50 @@
+Sure, I can write a test case generator for the "Speed" game problem. Given the detailed rules and constraints, the generator will produce valid inputs for the game simulation. Let's implement it in Python:
+
+Here's the test case generator for the "Speed" problem:
+
+```python
+import random
+
+def generate_card_set():
+    suits = ['S', 'H', 'D', 'C']
+    ranks = ['A', 'K', 'Q', 'J', 'X', '9', '8', '7', '6', '5', '4', '3', '2']
+    deck = [suit + rank for suit in suits for rank in ranks]
+    random.shuffle(deck)
+    return deck
+
+def generate_test_case():
+    # Generate a shuffled deck of cards
+    deck = generate_card_set()
+    
+    # Split the deck into two parts for Robot A and Robot B
+    NA = random.randint(1, len(deck)//2)
+    deck_A = deck[:NA]
+    
+    NB = random.randint(1, len(deck) - NA)
+    deck_B = deck[NA:NA + NB]
+    
+    # Format the test case
+    test_case = f"{NA}\n{' '.join(deck_A)}\n{NB}\n{' '.join(deck_B)}\n"
+    
+    return test_case
+
+def generate_test_cases(num_cases):
+    test_cases = []
+    for _ in range(num_cases):
+        test_cases.append(generate_test_case())
+    test_cases.append("0\n")  # End of input indicator
+    return test_cases
+
+# Generating 5 test cases as an example
+for test_case in generate_test_cases(5):
+    print(test_case)
+```
+
+### Explanation
+1. **generate_card_set()**: This function creates a full deck of cards, shuffles the deck, and returns it. The deck contains cards from all four suits ('S', 'H', 'D', 'C') and the specified ranks ('A', 'K', 'Q', 'J', 'X', '9', '8', '7', '6', '5', '4', '3', '2').
+
+2. **generate_test_case()**: This function uses the shuffled deck to create a test case. It splits the deck into two parts for Robot A and Robot B, ensuring that neither robot gets more than half of the cards. The function returns the formatted test case as a string.
+
+3. **generate_test_cases(num_cases)**: This function generates a specified number of test cases and appends an end-of-input indicator ('0\n'). It returns a list of test cases.
+
+The provided example generates 5 test cases and prints them. You can adjust the number of test cases by changing the argument passed to `generate_test_cases(num_cases)`. Each test case is printed in the format required by the problem statement.

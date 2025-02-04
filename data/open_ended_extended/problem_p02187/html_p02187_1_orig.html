@@ -1,0 +1,169 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p02187 - Generation 1</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p02187 - Generation 1</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>F: Partial String Decomposition
+Problem
+Given two strings S and T, and an integer k. Determine if S can be constructed by concatenating continuous substrings of T that have a length of at least k.
+Here, a continuous substring s[l, r] = s_l s_{l+1} ... s_r (1 \leq l \leq r \leq n) of a string s = s_1 s_2 ... s_n refers to a string that can be obtained by extracting characters from position l to position r of s, and its length is r - l + 1.
+Input Format
+S
+T
+k
+Constraints
+Both S and T are composed of lowercase alphabets.
+1 \leq |S|, |T| \leq 2\times 10^5
+1 \leq k \leq |T|
+Output Format
+If S can be constructed, output Yes; otherwise, output No.
+Sample Input 1
+abracadabra
+cadabra
+4
+Sample Output 1
+Yes
+By concatenating the continuous substrings abra and cadabra of T (both of which have a length of at least 4), we can construct abracadabra, which is equal to S.
+Sample Input 2
+abcd
+zcba
+1
+Sample Output 2
+No
+Sample Input 3
+abc
+zcba
+1
+Sample Output 3
+Yes
+Sample Input 4
+abcdefg
+abcddefg
+4
+Sample Output 4
+No</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>Canonicalized Input Description:
+
+A string S composed of lowercase alphabets.
+A string T composed of lowercase alphabets.
+An integer k (1 ≤ k ≤ |T|).
+
+### Example Input:
+
+```
+abracadabra
+cadabra
+4
+```
+
+### Function Signature:
+Write a function f(S, T, k) that takes in the input. 
+def f(S: str, T: str, k: int):
+    ''' 
+    S: a string 
+    T: a string
+    k: an integer
+    '''</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>To generate test cases for the problem "Partial String Decomposition," we will need to produce valid instances of the input (strings S and T, and integer k) while ensuring they fall within the specified constraints. Here is the test case generator:
+
+```python
+import random
+import string
+
+def generate_string(length):
+    return ''.join(random.choices(string.ascii_lowercase, k=length))
+
+def tcgen():
+    # Generate lengths for S and T
+    len_S = random.randint(1, 2 * 10**5)
+    len_T = random.randint(1, 2 * 10**5)
+    
+    S = generate_string(len_S)
+    T = generate_string(len_T)
+    
+    # Generate k such that 1 <= k <= len(T)
+    k = random.randint(1, len_T)
+
+    return S, T, k
+
+# Example usage
+if __name__ == "__main__":
+    S, T, k = tcgen()
+    print(S)
+    print(T)
+    print(k)
+```
+
+In this generator:
+- `generate_string(length)` generates a random string of given length using lowercase alphabets.
+- `tcgen()` creates random lengths for strings S and T within the given constraints.
+- It generates a random value for `k` ensuring it is between 1 and the length of T.
+
+You can run this script to generate various test cases for the problem.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    S = fh.readline().strip()
+    T = fh.readline().strip()
+    k = int(fh.readline().strip())
+    return S, T, k</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

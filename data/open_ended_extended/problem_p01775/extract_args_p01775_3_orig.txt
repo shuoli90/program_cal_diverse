@@ -1,0 +1,11 @@
+def extract_arguments(fh):
+    n, m, k, p = map(int, fh.readline().strip().split())
+    edges = []
+    for _ in range(m):
+        x, y, w = map(int, fh.readline().strip().split())
+        edges.append((x, y, w))
+    mails = []
+    for _ in range(k):
+        s, t = map(int, fh.readline().strip().split())
+        mails.append((s, t))
+    return n, m, k, p, edges, mails

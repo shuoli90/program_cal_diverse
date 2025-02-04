@@ -1,0 +1,42 @@
+Sure! Here's a test case generator for the "Deadlock Detection" problem:
+
+```python
+import random
+import string
+
+def tcgen():
+    # Generate a random length for the instruction sequence
+    n = random.randint(1, 10000)
+    
+    # Generate the instruction sequence
+    # Ensure the sequence ends with 'u'
+    s = ''.join(random.choices('0123456789u', k=n-1)) + 'u'
+    
+    return n, s
+
+# Generate multiple test cases
+def generate_test_cases(num_cases):
+    test_cases = []
+    for _ in range(num_cases):
+        n, s = tcgen()
+        test_cases.append((n, s))
+    return test_cases
+
+# Example usage:
+if __name__ == "__main__":
+    num_cases = 5  # Number of test cases you want to generate
+    test_cases = generate_test_cases(num_cases)
+    
+    for n, s in test_cases:
+        print(n)
+        print(s)
+```
+
+### Explanation:
+
+1. **Random Length (`n`):** The length of the instruction sequence `n` is generated randomly between 1 and 10,000.
+2. **Instruction Sequence (`s`):** The sequence is generated using `random.choices` to choose from digits `0-9` and `u`. The sequence is ensured to end with `u` by appending 'u' at the end.
+3. **Multiple Test Cases:** The `generate_test_cases` function generates multiple test cases by calling `tcgen()` multiple times.
+4. **Example Usage:** The example usage generates 5 test cases and prints them.
+
+This will help you generate a variety of test cases that can be used to thoroughly test the deadlock detection logic.

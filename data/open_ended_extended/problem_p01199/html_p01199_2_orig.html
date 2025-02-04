@@ -1,0 +1,197 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p01199 - Generation 2</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p01199 - Generation 2</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>
+Flame of Nucleus
+Year 20XX — a nuclear explosion has burned the world. Half the people on the planet have died. Fearful.
+One city, fortunately, was not directly damaged by the explosion. This city consists of N domes (numbered 1
+through N inclusive) and M bidirectional transportation pipelines connecting the domes. In dome i, Pi citizens
+reside currently and there is a nuclear shelter capable of protecting Ki citizens. Also, it takes Di days to travel
+from one end to the other end of pipeline i.
+It has been turned out that this city will be polluted by nuclear radiation in L days after today. So each citizen
+should take refuge in some shelter, possibly traveling through the pipelines. Citizens will be dead if they reach
+their shelters in exactly or more than L days.
+How many citizens can survive at most in this situation?
+Input
+The input consists of multiple test cases. Each test case begins with a line consisting of three integers N, M
+and L (1 ≤ N ≤ 100, M ≥ 0, 1 ≤ L ≤ 10000). This is followed by M lines describing the configuration of
+transportation pipelines connecting the domes. The i-th line contains three integers Ai, Bi and Di (1 ≤ Ai < Bi ≤
+N, 1 ≤ Di ≤ 10000), denoting that the i-th pipeline connects dome Ai and Bi. There is at most one pipeline
+between any pair of domes. Finally, there come two lines, each consisting of N integers. The first gives P1 , . . .,
+PN (0 ≤ Pi ≤ 106) and the second gives K1 , . . ., KN (0 ≤ Ki ≤ 106).
+The input is terminated by EOF. All integers in each line are separated by a whitespace.
+Output
+For each test case, print in a line the maximum number of people who can survive.
+Sample Input
+1 0 1
+51
+50
+2 1 1
+1 2 1
+1000 0
+0 1000
+4 3 5
+1 2 4
+1 3 1
+3 4 2
+0 1000 1000 1000
+3000 0 0 0
+Output for the Sample Input
+50
+0
+3000
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An integer N (1 ≤ N ≤ 100), an integer M (M ≥ 0), and an integer L (1 ≤ L ≤ 10000).
+M lines follow, each containing three integers Ai, Bi, and Di (1 ≤ Ai < Bi ≤ N, 1 ≤ Di ≤ 10000).
+Two lines follow, each containing N integers.
+The input is terminated by EOF. All integers in each line are separated by a whitespace.
+
+### Example Input:
+```
+2 1 1
+1 2 1
+1000 0
+0 1000
+```
+
+### Function Signature:
+Write a function f(inputs) that takes in the input.
+```python
+def f(inputs: List[Tuple[int, int, int, List[Tuple[int, int, int]], List[int], List[int]]]):
+    '''
+    inputs: a list of tuples, where each tuple represents a single test case.
+    '''
+```</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Sure, I can help you write a test case generator for the "Flame of Nucleus" problem. Here's a Python function that generates random test cases according to the given problem statement:
+
+```python
+import random
+
+def generate_test_case():
+    # Generate N, M, and L
+    N = random.randint(1, 100)
+    M = random.randint(0, N*(N-1)//2)  # Maximum M is the number of unique pairs of domes
+    L = random.randint(1, 10000)
+    
+    # Generate M pipelines
+    pipelines = []
+    existing_pairs = set()
+    for _ in range(M):
+        while True:
+            A = random.randint(1, N)
+            B = random.randint(1, N)
+            if A != B and (A, B) not in existing_pairs and (B, A) not in existing_pairs:
+                existing_pairs.add((A, B))
+                Di = random.randint(1, 10000)
+                pipelines.append((A, B, Di))
+                break
+    
+    # Generate P and K arrays
+    P = [random.randint(0, 10**6) for _ in range(N)]
+    K = [random.randint(0, 10**6) for _ in range(N)]
+    
+    # Prepare the test case in the required format
+    test_case = f"{N} {M} {L}\n"
+    for A, B, Di in pipelines:
+        test_case += f"{A} {B} {Di}\n"
+    test_case += ' '.join(map(str, P)) + '\n'
+    test_case += ' '.join(map(str, K)) + '\n'
+    
+    return test_case
+
+def tcgen(num_cases=5):
+    test_cases = [generate_test_case() for _ in range(num_cases)]
+    return '\n'.join(test_cases)
+
+# Example usage:
+print(tcgen(3))
+```
+
+This generator creates `num_cases` test cases:
+
+1. **N** is the number of domes, and it's randomly chosen between 1 and 100.
+2. **M** is the number of pipelines, and it's randomly chosen between 0 and the maximum number of unique pairs of domes.
+3. **L** is the number of days until nuclear radiation, and it's randomly chosen between 1 and 10000.
+4. For each pipeline, it randomly selects two distinct domes and a travel time **Di** between 1 and 10000.
+5. **P** and **K** arrays are randomly filled with integers between 0 and 10^6.
+
+This function generates the test case as a string formatted according to the problem's input specification. The `tcgen` function is a wrapper that generates a specified number of such test cases and joins them into a single string separated by newlines for easy multiple test case handling.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    test_cases = []
+    while True:
+        line = fh.readline().strip()
+        if not line:
+            break
+        N, M, L = map(int, line.split())
+        pipelines = []
+        for _ in range(M):
+            Ai, Bi, Di = map(int, fh.readline().strip().split())
+            pipelines.append((Ai, Bi, Di))
+        P = list(map(int, fh.readline().strip().split()))
+        K = list(map(int, fh.readline().strip().split()))
+        test_cases.append((N, M, L, pipelines, P, K))
+    return test_cases</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

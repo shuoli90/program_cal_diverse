@@ -1,0 +1,11 @@
+def extract_arguments(fh):
+    inputs = []
+    while True:
+        n = int(fh.readline().strip())
+        if n == 0:
+            break
+        pieces = []
+        for _ in range(6 * n):
+            pieces.append(fh.readline().strip())
+        inputs.append((n, pieces))
+    return inputs

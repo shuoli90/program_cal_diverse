@@ -1,0 +1,40 @@
+Sure, here is a test case generator for the "Monday-Saturday Prime Factors" problem:
+
+```python
+import random
+
+def is_monday_saturday_number(n):
+    return n % 7 == 1 or n % 7 == 6
+
+def generate_monday_saturday_numbers(limit):
+    monday_saturday_numbers = []
+    for i in range(2, limit):
+        if is_monday_saturday_number(i):
+            monday_saturday_numbers.append(i)
+    return monday_saturday_numbers
+
+def generate_test_case():
+    limit = 300000
+    monday_saturday_numbers = generate_monday_saturday_numbers(limit)
+    
+    test_cases = []
+    number_of_cases = random.randint(1, 10)
+    for _ in range(number_of_cases):
+        test_case = random.choice(monday_saturday_numbers)
+        test_cases.append(test_case)
+    
+    test_cases.append(1)  # End of input
+    return test_cases
+
+# Example of generating a test case
+test_cases = generate_test_case()
+for tc in test_cases:
+    print(tc)
+```
+
+This script defines several functions:
+1. `is_monday_saturday_number` checks if a number is a "Monday-Saturday number".
+2. `generate_monday_saturday_numbers` generates all "Monday-Saturday numbers" up to a given limit.
+3. `generate_test_case` generates a random list of "Monday-Saturday numbers" and appends a `1` to signify the end of input as per the problem statement.
+
+The generated test cases will be random but constrained within the problem's limits. The script makes sure the "Monday-Saturday numbers" are chosen correctly and the input format follows the given constraints.

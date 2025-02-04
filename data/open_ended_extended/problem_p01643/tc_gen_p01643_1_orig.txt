@@ -1,0 +1,52 @@
+Sure, I can help you write a test case generator for the given problem "Avant-garde Art". The goal is to generate random, valid inputs according to the specified constraints.
+
+Here's a Python function to generate test cases for this problem:
+
+```python
+import random
+
+def generate_permutation(n):
+    """
+    Generate a valid permutation where a_i != i and a_{a_i} = i.
+    """
+    p = list(range(1, n+1))
+    while True:
+        random.shuffle(p)
+        valid = True
+        for i in range(n):
+            if p[i] == i+1 or p[p[i]-1] != i+1:
+                valid = False
+                break
+        if valid:
+            return p
+
+def tcgen():
+    n = random.choice([i for i in range(2, 8001, 2)])  # n must be an even number between 2 and 8000
+    k = random.randint(0, min(n//2, 20))  # k is between 0 and min(n/2, 20)
+    
+    a = generate_permutation(n)
+    
+    return n, k, a
+
+# Example usage
+if __name__ == "__main__":
+    for _ in range(5):  # Generate 5 test cases
+        n, k, a = tcgen()
+        print(n, k)
+        print(' '.join(map(str, a)))
+```
+
+### Explanation:
+
+1. **generate_permutation(n)**:
+   - This function generates a valid permutation of size `n` where no element is mapped to itself and the condition `a_{a_i} = i` is satisfied. This is done by shuffling the list and checking the conditions.
+
+2. **tcgen()**:
+   - `n` is chosen as a random even number between 2 and 8000.
+   - `k` is chosen as a random integer between 0 and `min(n/2, 20)`.
+   - The valid permutation `a` is generated using the `generate_permutation(n)` function.
+
+3. **Example usage**:
+   - The loop generates 5 random test cases and prints them.
+
+This generator ensures that the input constraints and properties are respected, producing valid test cases for the problem.

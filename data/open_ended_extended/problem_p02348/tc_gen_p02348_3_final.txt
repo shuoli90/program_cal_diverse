@@ -1,0 +1,57 @@
+Sure, I'll help you write a test case generator for the "Range Update Query (RUQ)" problem. Here’s the code:
+
+```python
+import random
+
+def tcgen():
+    # Constraints
+    MAX_N = 100000
+    MAX_Q = 100000
+    MAX_X = 2**31 - 1
+
+    # Generate random n and q within the constraints
+    n = random.randint(1, MAX_N)
+    q = random.randint(1, MAX_Q)
+
+    # Initialize list of queries
+    queries = []
+
+    for _ in range(q):
+        query_type = random.choice([0, 1])
+        if query_type == 0:
+            s = random.randint(0, n - 1)
+            t = random.randint(s, n - 1)
+            x = random.randint(0, MAX_X)
+            queries.append(f"0 {s} {t} {x}")
+        else:
+            i = random.randint(0, n - 1)
+            queries.append(f"1 {i}")
+
+    # First line is n and q
+    input_data = f"{n} {q}\n" + "\n".join(queries)
+    return input_data
+
+# Example usage:
+print(tcgen())
+```
+
+### Explanation:
+1. **Constraints Definitions**:
+    - `MAX_N` is the maximum number of elements in the sequence `A`.
+    - `MAX_Q` is the maximum number of queries.
+    - `MAX_X` is the maximum value for `x`, which is \(2^{31} - 1\).
+
+2. **Random Generators**:
+    - `n` is randomly chosen between 1 and `MAX_N`.
+    - `q` is randomly chosen between 1 and `MAX_Q`.
+
+3. **Query Generation**:
+    - For each query, randomly decide the query type (`0` for update and `1` for find).
+    - If the query is `0`, randomly generate `s`, `t`, and `x` according to the constraints.
+    - If the query is `1`, randomly generate `i` according to the constraints.
+
+4. **Output Formatting**:
+    - The first line contains `n` and `q`.
+    - The following lines are the generated queries.
+
+The `tcgen` function returns a string representing the input data of the problem. You can use this function to generate various test cases for your competitive programming problem.

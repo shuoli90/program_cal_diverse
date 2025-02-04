@@ -1,0 +1,3 @@
+Types: H: int, W: int, map: List[str]
+Ranges: 2 ≤ H, W ≤ 200, len(map[i]) = W for 1 ≤ i ≤ H
+Addtl Info: '@', '%', and '$' appear exactly once each in the grid, with '@' representing the princess, '%' the escape hatch, and '$' soldiers (zero or more soldiers can be present). The grid is made up of '.', '#', '@', '%', and '$'.

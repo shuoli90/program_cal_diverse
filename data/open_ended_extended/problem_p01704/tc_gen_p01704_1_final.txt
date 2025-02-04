@@ -1,0 +1,55 @@
+Certainly! Below is a Python test case generator function for the given problem statement:
+
+```python
+import random
+
+def generate_test_case():
+    # Generate a random number of flower seeds within the given constraints
+    N = random.randint(1, 10**5)
+    
+    # Generate a random cost of watering one liter
+    pw = random.randint(1, 100)
+    
+    # Generate the details for each flower
+    flowers = []
+    for _ in range(N):
+        vw_i = random.randint(-100, 100)
+        pf_i = random.randint(1, 100)
+        vf_i = random.randint(1, 100)
+        th_i = random.randint(-100, 100)
+        flowers.append((vw_i, pf_i, vf_i, th_i))
+    
+    # Convert the generated data to the required input format
+    input_data = f"{N}\n{pw}\n"
+    for vw_i, pf_i, vf_i, th_i in flowers:
+        input_data += f"{vw_i} {pf_i} {vf_i} {th_i}\n"
+    
+    return input_data
+
+# Example usage:
+test_case = generate_test_case()
+print(test_case)
+```
+
+This function generates a single test case following the constraints and format described in the problem statement. You can call the `generate_test_case` function multiple times to create as many datasets as needed for testing.
+
+If you want to generate multiple datasets in a single input, you can modify the function as follows:
+
+```python
+def generate_multiple_test_cases(num_datasets):
+    datasets = []
+    for _ in range(num_datasets):
+        datasets.append(generate_test_case())
+    
+    # Add the termination line '0'
+    datasets.append("0")
+    
+    return "\n".join(datasets)
+
+# Example usage:
+num_datasets = 5  # Number of datasets to generate
+test_cases = generate_multiple_test_cases(num_datasets)
+print(test_cases)
+```
+
+This modified function generates multiple datasets and concatenates them, ensuring an end-of-input indicator (`0`). Adjust `num_datasets` to the required number of datasets you wish to generate.

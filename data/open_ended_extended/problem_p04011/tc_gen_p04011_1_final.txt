@@ -1,0 +1,45 @@
+Sure, I can help you write a test case generator for the given problem statement. Here is the Python code that generates random test cases based on the constraints provided:
+
+```python
+import random
+
+def tcgen():
+    N = random.randint(1, 10000)
+    K = random.randint(1, 10000)
+    
+    # Ensure X > Y
+    Y = random.randint(1, 9999)
+    X = random.randint(Y + 1, 10000)
+    
+    return N, K, X, Y
+
+# Example of how to use the test case generator
+if __name__ == "__main__":
+    for _ in range(10):  # Generate 10 test cases as an example
+        test_case = tcgen()
+        print(f"N: {test_case[0]}, K: {test_case[1]}, X: {test_case[2]}, Y: {test_case[3]}")
+```
+
+This generator ensures that each test case adheres to the problem's constraints:
+
+- \(1 \leq N, K \leq 10000\)
+- \(1 \leq Y < X \leq 10000\)
+
+You can run this script to generate multiple test cases for your problem. Each test case consists of the values for \(N\), \(K\), \(X\), and \(Y\). Here's an example of how you might use the generated values in your code:
+
+```python
+def calculate_total_accommodation_fee(N, K, X, Y):
+    if N <= K:
+        return N * X
+    else:
+        return K * X + (N - K) * Y
+
+# Example of how to use the generated test cases
+if __name__ == "__main__":
+    for _ in range(10):  # Generate 10 test cases as an example
+        N, K, X, Y = tcgen()
+        total_fee = calculate_total_accommodation_fee(N, K, X, Y)
+        print(f"N: {N}, K: {K}, X: {X}, Y: {Y}, Total Fee: {total_fee}")
+```
+
+This way, you can test the function `calculate_total_accommodation_fee` with randomly generated test cases to ensure it works correctly under various scenarios.

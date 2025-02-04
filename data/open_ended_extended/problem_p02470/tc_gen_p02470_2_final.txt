@@ -1,0 +1,15 @@
+Sure! To generate test cases for the given problem regarding Euler's Phi Function, we need to come up with a variety of values for \( n \) within the specified range. Here's a test case generator for this problem:
+
+```python
+import random
+
+def tcgen():
+    n = random.randint(1, 1000000000)
+    return n
+
+# Example usage:
+for _ in range(5):  # Generate 5 test cases
+    print(tcgen())
+```
+
+This generator will produce random values for \( n \) within the range from 1 to 1,000,000,000, which should be suitable for testing the problem's constraints. Each call to `tcgen()` will yield a new random integer \( n \) to use as a test case. You can generate as many test cases as needed by calling the function multiple times.

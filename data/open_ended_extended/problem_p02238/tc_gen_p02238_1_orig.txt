@@ -1,0 +1,42 @@
+Sure, I can help you create a test case generator for the Depth First Search (DFS) problem.
+
+Here's a Python function to generate test cases for the given problem statement:
+
+```python
+import random
+
+def generate_graph(n):
+    graph = []
+    for u in range(1, n + 1):
+        k = random.randint(0, n - 1)  # Number of adjacent vertices
+        adj_vertices = random.sample(range(1, n + 1), k)
+        adj_vertices.sort()  # Ensure IDs are in ascending order
+        graph.append([u, k] + adj_vertices)
+    return graph
+
+def tcgen():
+    n = random.randint(1, 100)
+    graph = generate_graph(n)
+    
+    return n, graph
+
+def format_test_case(n, graph):
+    formatted_graph = "\n".join(" ".join(map(str, line)) for line in graph)
+    return f"{n}\n{formatted_graph}"
+
+# Generate a test case
+n, graph = tcgen()
+print(format_test_case(n, graph))
+```
+
+### Explanation:
+
+1. **`generate_graph(n)`**: This function generates a random graph with `n` vertices. Each vertex `u` has a randomly determined number of adjacent vertices `k`, and we ensure that the adjacent vertices are listed in ascending order as required.
+
+2. **`tcgen()`**: This function generates a random integer `n` (number of vertices) and calls `generate_graph(n)` to create the graph. It then returns the number of vertices and the adjacency list.
+
+3. **`format_test_case(n, graph)`**: This utility function formats the generated test case into the required input format for the problem.
+
+4. **Generate and print a test case**: The last part of the code generates a test case and prints it in the required format.
+
+You can run the script to generate a random test case each time. The generated test cases will adhere to the constraints and format specified in the problem statement.

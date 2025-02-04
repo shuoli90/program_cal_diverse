@@ -1,0 +1,3 @@
+Types: N: int, M: int, L: int, K: int, A: int, H: int, freezing_cities: List[int], roads: List[Tuple[int, int, int]]
+Ranges: 2 ≤ N ≤ 100, 1 ≤ M ≤ 100, 0 ≤ L ≤ N - 2, 0 ≤ K, 0 ≤ A < N, 0 ≤ H < N
+Addtl Info: freezing_cities contains L integers each in the range [0, N-1] (excluding A and H), roads contains K tuples (X, Y, T) where 0 ≤ X, Y < N and 0 ≤ T

@@ -1,0 +1,31 @@
+Sure, here is a test case generator for the given problem statement. This generator will create random test cases based on the constraints provided.
+
+```python
+import random
+
+def tcgen():
+    N = random.randint(1, 10**5)
+    K = random.randint(1, 10**5)
+    
+    # Generate a random string S of length N with characters 'L' or 'R'
+    S = ''.join(random.choice('LR') for _ in range(N))
+    
+    return N, K, S
+
+# Example usage
+if __name__ == "__main__":
+    for _ in range(5):  # Generate 5 test cases for demonstration
+        N, K, S = tcgen()
+        print(N, K)
+        print(S)
+```
+
+This test case generator will produce random values for `N` and `K` within the specified constraints and generate a random string `S` of length `N` consisting of characters 'L' and 'R'. The example usage part will generate and print five test cases.
+
+Here's how the output might look for a single generated test case:
+```
+95341 28470
+LRLRLLRRLLRRL... (and so on, a string of length 95341)
+```
+
+You can use this generator to create multiple test cases for thorough testing of your solution.

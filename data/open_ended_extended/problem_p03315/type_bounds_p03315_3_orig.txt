@@ -1,0 +1,3 @@
+Types: S: str  
+Ranges: length of S = 4, each character in S is either '+' or '-'  
+Addtl Info: None

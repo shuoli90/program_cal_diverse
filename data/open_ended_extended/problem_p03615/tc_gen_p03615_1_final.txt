@@ -1,0 +1,41 @@
+To generate test cases for the given problem statement, we need to create a function that generates a random set of points on a 2D plane within the given constraints. This function will randomly select the number of points \(N\) and their respective coordinates \((x_i, y_i)\).
+
+Here's the test case generator for the problem statement:
+
+```python
+import random
+
+def tcgen():
+    # Number of points
+    N = random.randint(1, 200)
+    
+    # Generate N unique points
+    points = set()
+    while len(points) < N:
+        x = random.randint(0, 10**4 - 1)
+        y = random.randint(0, 10**4 - 1)
+        points.add((x, y))
+    
+    points = list(points)
+    
+    return N, points
+
+def format_test_case(N, points):
+    test_case = f"{N}\n"
+    for x, y in points:
+        test_case += f"{x} {y}\n"
+    return test_case
+
+# Example usage
+N, points = tcgen()
+test_case = format_test_case(N, points)
+print(test_case)
+```
+
+### Explanation
+1. **Number of Points \(N\)**: The number of points is chosen randomly within the range [1, 200].
+2. **Generating Unique Points**: We generate \(N\) unique points by ensuring that each coordinate pair \((x_i, y_i)\) is unique.
+3. **Coordinate Values**: Each coordinate is randomly chosen within the range [0, 9999].
+4. **Formatting the Output**: The `format_test_case` function formats the generated points to match the required input format for the problem.
+
+You can use this generator to create multiple test cases for your competitive programming problem.

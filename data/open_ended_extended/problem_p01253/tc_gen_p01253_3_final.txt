@@ -1,0 +1,46 @@
+Sure! Here is a test case generator for the "Deadly Dice Game" problem:
+
+```python
+import random
+
+def tcgen():
+    # Randomly generating values for N and T within their given constraints
+    N = random.randint(1, 2000)
+    T = random.randint(1, 2000)
+    
+    # Generating a random string of 'R' and 'B' of length N
+    cells = ''.join(random.choice(['R', 'B']) for _ in range(N))
+    
+    return N, T, cells
+
+def main():
+    # Generate a number of test cases, for example, 5
+    num_test_cases = 5
+
+    for _ in range(num_test_cases):
+        N, T, cells = tcgen()
+        print(f"{N} {T}")
+        print(cells)
+    
+    # End of input
+    print("0 0")
+
+if __name__ == "__main__":
+    main()
+```
+
+### Explanation:
+1. **N and T Randomization:**
+   - `N` and `T` are randomly selected between 1 and 2000.
+
+2. **Cells Generation:**
+   - The string `cells` is generated randomly, consisting of characters 'R' and 'B' with a length of `N`.
+
+3. **Test Case Format:**
+   - Each test case starts with a line containing `N` and `T`.
+   - The next line contains the string of cell colors.
+
+4. **Terminating Input:**
+   - After generating the required number of test cases, the generator prints `0 0` to indicate the end of input.
+
+This generator produces random valid test cases for the given problem and should help you test your solution comprehensively.

@@ -1,0 +1,20 @@
+Canonicalized Input Description:
+
+A series of pairs of integers A and B separated by a space, one pair of integers per line. The input is terminated by EOF.
+
+-1000 ≤ A, B ≤ 1000
+
+### Example Input:
+
+```
+1 2
+10 5
+100 20
+```
+
+### Function Signature:
+Write a function f(inputs) that takes in the input.
+def f(inputs: List[Tuple[int, int]]): 
+    ''' 
+    inputs: a list of tuples, where each tuple contains two integers
+    '''

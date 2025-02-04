@@ -1,0 +1,32 @@
+Sure, I can write a test case generator for the given problem statement. Here’s how you can generate test cases for this problem:
+
+```python
+import random
+
+def tcgen():
+    # Generate two equal numbers
+    common_value = random.randint(-100, 100)
+    
+    # Generate a different number
+    different_value = common_value
+    while different_value == common_value:
+        different_value = random.randint(-100, 100)
+    
+    # Place the different value in a random position among the three
+    positions = [common_value, common_value, different_value]
+    random.shuffle(positions)
+    
+    A, B, C = positions
+    return A, B, C
+
+# Example usage:
+for _ in range(5):
+    print(tcgen())
+```
+
+Here's a breakdown of the test case generator:
+1. **Generate two equal numbers:** `common_value` is randomly chosen within the range -100 to 100.
+2. **Generate a different number:** `different_value` is chosen such that it is different from `common_value`.
+3. **Place the different value randomly:** The different number is shuffled into one of the three positions (A, B, C).
+
+This generator strictly follows the constraints and ensures that two out of the three numbers are the same, and one is different.

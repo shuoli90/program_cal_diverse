@@ -1,0 +1,200 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p00124 - Generation 2</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p00124 - Generation 2</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>League Standings Score Sheet
+There are league and tournament games in sports. In soccer leagues, points are awarded for wins, losses, and draws, and rankings are determined by those points. The points awarded for each are as follows: win (3 points), loss (0 points), and draw (1 point).
+Create a program that inputs the number of teams and their league record, sorts them in order of good performance (based on the number of points) and outputs the team name and points. In case of a tie in points, output in the order of input.
+Input
+Multiple data sets will be given. Each data set will be in the following format:
+n
+name1 w1 l1 d1
+name2 w2 l2 d2
+:
+namen wn ln dn
+The number of teams, n (n ≤ 10), is given on the first line. On the following n lines, the name namei of team i (up to 20 alphabets), the number of wins wi, the number of losses li, and the number of draws di (0 ≤ wi, li, di ≤ 9) are given, separated by spaces.
+When the number of teams is 0, the input is terminated. The number of data sets will not exceed 50.
+Output
+For each data set, output a list of the sorted teams. On the i-th line, output the name and points of the i-th team separated by a comma.
+Insert one blank line between data sets.
+Sample Input
+4
+Japan 1 0 2
+Egypt 1 2 0
+Canada 0 2 1
+Spain 2 0 1
+3
+India 0 2 0
+Poland 1 0 1
+Italy 1 0 1
+0
+Output for the Sample Input
+Spain,7
+Japan,5
+Egypt,3
+Canada,1
+Poland,4
+Italy,4
+India,0
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>An integer n (0 ≤ n ≤ 10), representing some quantity or size.
+A list of n tuples, each containing:
+- A string of up to 20 characters.
+- Three integers (0 ≤ each integer ≤ 9).
+
+Multiple sets of inputs are provided. Each set follows the above format, and the input ends when n is 0. The number of data sets will not exceed 50.
+
+### Example Input:
+
+```
+4
+TeamA 1 0 2
+TeamB 1 2 0
+TeamC 0 2 1
+TeamD 2 0 1
+3
+TeamE 0 2 0
+TeamF 1 0 1
+TeamG 1 0 1
+0
+```
+
+### Function Signature:
+Write a function f(inputs) that takes in the input.
+def f(inputs: List[Tuple[int, List[Tuple[str, int, int, int]]]]): 
+    ''' 
+    inputs: a list of tuples
+    '''</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Sure, here's a test case generator for the "League Standings Score Sheet" problem:
+
+```python
+import random
+import string
+
+def generate_team_name():
+    length = random.randint(1, 20)
+    return ''.join(random.choices(string.ascii_uppercase + string.ascii_lowercase, k=length))
+
+def generate_team_record():
+    w = random.randint(0, 9)
+    l = random.randint(0, 9)
+    d = random.randint(0, 9)
+    return w, l, d
+
+def generate_data_set():
+    n = random.randint(1, 10)
+    teams = []
+    for _ in range(n):
+        name = generate_team_name()
+        w, l, d = generate_team_record()
+        teams.append((name, w, l, d))
+    return n, teams
+
+def tcgen():
+    data_sets = []
+    num_data_sets = random.randint(1, 50)
+    for _ in range(num_data_sets):
+        n, teams = generate_data_set()
+        data_sets.append((n, teams))
+    data_sets.append((0, []))  # Termination condition
+    return data_sets
+
+# Example usage:
+for data_set in tcgen():
+    n, teams = data_set
+    if n == 0:
+        print(0)
+    else:
+        print(n)
+        for team in teams:
+            print(f"{team[0]} {team[1]} {team[2]} {team[3]}")
+        print()  # Blank line between data sets
+```
+
+### Explanation:
+
+1. **generate_team_name()**: Generates a random team name of up to 20 characters.
+2. **generate_team_record()**: Generates a random win, loss, and draw record.
+3. **generate_data_set()**: Generates one dataset containing a random number of teams (between 1 and 10) and their respective records.
+4. **tcgen()**: Generates multiple data sets and appends a termination dataset with `n = 0` to signify the end of input.
+
+You can run `tcgen()` to generate multiple test cases and print them in the format specified by the problem statement. The termination condition `0` ensures the input ends properly.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    data_sets = []
+    while True:
+        n = int(fh.readline().strip())
+        if n == 0:
+            break
+        teams = []
+        for _ in range(n):
+            parts = fh.readline().strip().split()
+            name = parts[0]
+            w = int(parts[1])
+            l = int(parts[2])
+            d = int(parts[3])
+            teams.append((name, w, l, d))
+        data_sets.append(teams)
+    return data_sets</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

@@ -1,0 +1,62 @@
+Sure, let's create a test case generator for the problem "Map of Ninja House". This generator will produce valid input sequences that simulate the exploration described in the problem statement. The generated test cases will help you test your solution effectively.
+
+Here's the generator:
+
+```python
+import random
+
+def generate_ninja_house_record():
+    num_rooms = random.randint(2, 10)  # Number of rooms in the Ninja House
+    doors = []
+    for _ in range(num_rooms):
+        doors.append(random.randint(2, 5))  # Each room has between 2 and 5 doors
+
+    record = []
+    visited = [False] * num_rooms
+    stack = [(0, doors[0])]
+    visited[0] = True
+    
+    while stack:
+        room, remaining_doors = stack[-1]
+        if remaining_doors > 0:
+            if not visited[room]:
+                record.append(doors[room])
+                visited[room] = True
+            next_room = random.randint(0, num_rooms - 1)
+            if not visited[next_room]:
+                record.append(doors[next_room])
+                stack.append((next_room, doors[next_room]))
+            else:
+                record.append(-(stack.index((next_room, doors[next_room])) + 1 - (len(stack) - 1)))
+            stack[-1] = (room, remaining_doors - 1)
+        else:
+            stack.pop()
+            if stack:
+                stack[-1] = (stack[-1][0], stack[-1][1] - 1)
+
+    record.append(0)
+    return ' '.join(map(str, record))
+
+def generate_test_cases():
+    n = random.randint(1, 5) # Number of records
+    test_cases = f"{n}\n"
+    for _ in range(n):
+        test_cases += generate_ninja_house_record() + "\n"
+    return test_cases.strip()
+
+# Example usage:
+if __name__ == "__main__":
+    print(generate_test_cases())
+```
+
+### Explanation:
+1. **generate_ninja_house_record**:
+    - Generates a single exploration record for a Ninja House.
+    - Randomly decides the number of rooms and the number of doors in each room.
+    - Simulates the exploration process according to the rules specified in the problem statement, keeping track of visited rooms and recording the movements.
+    - Ends the record with a `0`.
+    
+2. **generate_test_cases**:
+    - Generates multiple exploration records (between 1 and 5 for simplicity) and combines them into a single test case input.
+
+This generator creates realistic test cases for the Ninja House exploration problem. You can adjust the parameters (like the number of rooms or the range of doors) to generate more diverse and challenging test cases.

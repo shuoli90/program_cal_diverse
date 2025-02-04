@@ -1,0 +1,30 @@
+An integer \(q\) (1 ≤ \(q\) ≤ 200,000), representing some quantity or size.
+A list of \(q\) queries where each query is one of the following formats:
+- `0 key x`: Insert operation with a string `key` (1 ≤ length of `key` ≤ 20, consisting of lower-case letters) and an integer `x` (1 ≤ `x` ≤ 1,000,000,000)
+- `1 key`: Get operation with a string `key` (1 ≤ length of `key` ≤ 20, consisting of lower-case letters)
+- `2 key`: Delete operation with a string `key` (1 ≤ length of `key` ≤ 20, consisting of lower-case letters)
+- `3 L R`: Dump operation with two strings `L` and `R` (1 ≤ length of `L`, `R` ≤ 20, consisting of lower-case letters, `L` ≤ `R` in lexicographic order)
+
+### Example Input:
+```
+9
+0 blue 4
+0 red 1
+0 white 5
+1 red
+1 blue
+2 red
+1 black
+1 red
+3 w z
+```
+
+### Function Signature:
+Write a function `f(q, queries)` that takes in the input.
+```python
+def f(q: int, queries: List[Tuple[int, Union[Tuple[str, int], str, Tuple[str, str]]]]):
+    '''
+    q: an integer
+    queries: a list of tuples, where each tuple represents a query
+    '''
+```

@@ -1,0 +1,39 @@
+Certainly! Here is a Python test case generator for the given competitive programming problem:
+
+```python
+import random
+
+def tcgen():
+    H = random.randint(1, 10)
+    W = random.randint(1, 1000)
+    K = random.randint(1, H * W)
+    
+    S = []
+    for _ in range(H):
+        row = ''.join(random.choice(['0', '1']) for _ in range(W))
+        S.append(row)
+    
+    return H, W, K, S
+
+def format_test_case(H, W, K, S):
+    formatted_input = f"{H} {W} {K}\n" + "\n".join(S)
+    return formatted_input
+
+# Example usage:
+H, W, K, S = tcgen()
+test_case = format_test_case(H, W, K, S)
+print(test_case)
+```
+
+This generator produces random test cases that fit the constraints specified in the problem statement. It generates random values for H, W, and K, and then constructs a random grid \( S \) of size \( H \times W \) where each cell is either '0' or '1'. The `format_test_case` function formats the generated values into the required input format.
+
+You can run this generator function multiple times to create different test cases. Here's an example of how the output might look:
+
+```
+3 5 4
+11001
+00100
+11110
+```
+
+This output can be directly used as an input for the problem.

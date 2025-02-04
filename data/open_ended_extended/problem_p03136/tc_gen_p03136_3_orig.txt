@@ -1,0 +1,42 @@
+To generate test cases for the given problem statement, we need to follow the constraints and the theorem provided. Here's a test case generator function that adheres to the problem constraints and ensures valid random input based on the conditions:
+
+```python
+import random
+
+def tcgen():
+    # Number of sides for the polygon
+    N = random.randint(3, 10)
+    
+    # List of side lengths
+    L = [random.randint(1, 100) for _ in range(N)]
+    
+    return N, L
+
+# Function to format the test case for easy use
+def format_test_case(N, L):
+    return f"{N}\n{' '.join(map(str, L))}"
+
+# Example usage
+if __name__ == "__main__":
+    N, L = tcgen()
+    test_case = format_test_case(N, L)
+    print(test_case)
+```
+
+### Explanation:
+1. **N**: We randomly generate the number of sides \(N\) for the polygon, ensuring it is between 3 and 10 (inclusive) as per the problem constraints.
+2. **L**: We generate a list of \(N\) side lengths, each being a random integer between 1 and 100 (inclusive).
+3. **format_test_case**: This helper function formats the test case in the way it is expected for input, making it easier to visualize and use directly.
+
+### Example Output:
+Here is what an example output could look like when you run the test case generator:
+
+```
+7
+14 56 23 45 67 89 12
+```
+
+### Running the Generator:
+Every time you run the `tcgen` function, it will produce a new random test case that you can use to test your solution.
+
+This generator ensures that the test cases are within the constraints and can be used to validate the implementation of the solution effectively.

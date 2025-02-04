@@ -1,0 +1,7 @@
+def extract_arguments(fh):
+    N, M, L = map(int, fh.readline().strip().split())
+    runners = []
+    for _ in range(N):
+        P, T, V = map(int, fh.readline().strip().split())
+        runners.append((P, T, V))
+    return N, M, L, runners

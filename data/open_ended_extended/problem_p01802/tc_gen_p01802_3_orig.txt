@@ -1,0 +1,52 @@
+Sure, let's create a test case generator for the given problem statement. The test cases will be based on the constraints provided:
+
+1. \(D\) should be an integer between 1 and 100 inclusive.
+2. \(E\) should be an integer between 1 and 100 inclusive.
+3. We need multiple data sets, up to 100 in one input.
+4. The end of the input should be indicated by a line consisting of two zeros separated by a space.
+
+Here's the test case generator:
+
+```python
+import random
+
+def tcgen(num_tests=100):
+    test_cases = []
+    
+    for _ in range(num_tests):
+        D = random.randint(1, 100)
+        E = random.randint(1, 100)
+        test_cases.append((D, E))
+    
+    # Append the terminating line "0 0"
+    test_cases.append((0, 0))
+    
+    return test_cases
+
+# Example usage
+if __name__ == "__main__":
+    test_cases = tcgen()
+    for D, E in test_cases:
+        print(D, E)
+```
+
+### Explanation:
+1. **Random Selection of \(D\) and \(E\)**:
+   - We generate random integers for \(D\) and \(E\) within their respective ranges (1 to 100).
+
+2. **Appending the Termination Line**:
+   - We append the line `(0, 0)` at the end to indicate the end of the input.
+
+3. **Output Format**:
+   - Each test case is printed in the required format with \(D\) and \(E\) separated by a space.
+
+### Example Output:
+```
+45 23
+12 98
+99 45
+...
+0 0
+```
+
+You can adjust `num_tests` to generate fewer or more test cases as needed, with a maximum of 100 as per the problem's constraints.

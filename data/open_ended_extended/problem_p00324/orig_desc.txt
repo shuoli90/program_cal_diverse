@@ -1,0 +1,33 @@
+Complete Equality Bilateral Trade
+The country of Aizu in cyberspace is engaged in information trade with the country of Wakamatsu. The two countries are achieving economic development by exchanging useful data with each other. Both countries, which have a national policy of philanthropy, equality, and above all, the old Aizu phrase "What cannot be done should not be done," conduct regular surveys of trade conditions.
+In the survey, a table is given that calculates the value obtained by subtracting the outflow from the inflow of data from Aizu country in byte units every 1 nanosecond. From this table, find the longest interval whose total sum is zero. The longer this interval, the more equality is maintained.
+Given a table that records the trade conditions, write a program to find the length of the longest interval whose sum is zero.
+Input
+The input is given in the following format.
+N
+d1
+d2
+:
+dN
+The number of values in the table N (1 ≤ N ≤ 200000) is given on the first line. The following N lines give the integer values di (-109 ≤ di ≤ 109) written in the i-th line of the table.
+Output
+Output the length of the longest interval whose sum is zero obtained from the table on a single line. If there is no such interval, output "0" on a single line.
+Sample Input 1
+5
+18
+102
+-155
+53
+32
+Sample Output 1
+3
+In the first example, the sum of the values from the second to the fourth rows becomes zero, so the longest interval becomes three.
+Sample Input 2
+4
+1
+1
+-1
+-1
+Sample Output 2
+4
+In the second example, the sum of the second and third rows becomes zero, but the sum of the first to fourth rows also becomes zero, so the longest interval becomes four.

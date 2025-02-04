@@ -1,0 +1,28 @@
+
+Score : 1000 points
+Problem StatementYou are given a string S consisting of digits between 1 and 9, inclusive.
+You will insert at most K commas (,) into this string to separate it into multiple numbers.
+Your task is to minimize the maximum number among those produced by inserting commas. Find minimum possible such value.
+Constraints
+0 ≦ K < |S| ≦ 100,000
+S consists of digits between 1 and 9, inclusive.
+Partial Scores
+In the test set worth 100 points, |S| ≦ 2.
+In the test set worth another 100 points, |S| ≦ 16.
+In the test set worth another 200 points, |S| ≦ 100.
+In the test set worth another 200 points, |S| ≦ 2,000.
+InputThe input is given from Standard Input in the following format:
+K
+S
+OutputPrint the minimum possible value.
+Sample Input 12
+15267315
+Sample Output 1315
+When the string is separated into 152, 67 and 315, the maximum among these is 315, which is the minimum possible value.
+Sample Input 20
+12456174517653111
+Sample Output 212456174517653111
+12456174517653111 itself is the answer.
+Sample Input 38
+127356176351764127645176543176531763517635176531278461856198765816581726586715987216581
+Sample Output 35317635176

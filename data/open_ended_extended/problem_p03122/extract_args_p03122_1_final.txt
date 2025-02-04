@@ -1,0 +1,13 @@
+def extract_arguments(fh):
+    N = int(fh.readline().strip())
+    lamps = []
+    for _ in range(N):
+        x, y = map(int, fh.readline().strip().split())
+        lamps.append((x, y))
+    return N, lamps
+
+# if __name__ == "__main__":
+#     input_path = sys.argv[1]
+#     with open(input_path, 'r') as fh:
+#         N, lamps = extract_arguments(fh)
+#         f(N, lamps)

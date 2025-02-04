@@ -1,0 +1,48 @@
+Sure, I'll write a test case generator for the "Queue" problem statement. This generator will create a random number of queues and perform a random sequence of operations on them, following the given constraints.
+
+Here's the implementation:
+
+```python
+import random
+
+def tcgen():
+    # Number of queues (1 ≤ n ≤ 1,000)
+    n = random.randint(1, 1000)
+    
+    # Number of queries (1 ≤ q ≤ 200,000)
+    q = random.randint(1, 200000)
+    
+    queries = []
+    
+    for _ in range(q):
+        operation = random.randint(0, 2)
+        t = random.randint(0, n-1)
+        
+        if operation == 0:
+            # enqueue operation
+            x = random.randint(-1000000000, 1000000000)
+            queries.append(f"0 {t} {x}")
+        else:
+            # front or dequeue operation
+            queries.append(f"{operation} {t}")
+    
+    return n, q, queries
+
+# Example usage:
+n, q, queries = tcgen()
+
+print(n, q)
+for query in queries:
+    print(query)
+```
+
+The `tcgen` function generates:
+
+1. A random number of queues \( n \) within the range [1, 1000].
+2. A random number of queries \( q \) within the range [1, 200000].
+3. A sequence of \( q \) operations:
+   - Enqueue operations (0 \( t \) \( x \)) with a random queue index \( t \) and a random integer \( x \) within the range [-1,000,000,000, 1,000,000,000].
+   - Front operations (1 \( t \)) with a random queue index \( t \).
+   - Dequeue operations (2 \( t \)) with a random queue index \( t \).
+
+This will ensure that the generated test cases cover a wide range of possible scenarios within the given constraints.

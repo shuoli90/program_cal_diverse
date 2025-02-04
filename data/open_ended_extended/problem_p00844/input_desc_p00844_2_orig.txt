@@ -1,0 +1,33 @@
+An integer L (0.1 < L < 50.0), representing some quantity.
+Two polygons where each polygon is defined as:
+    - An integer n (2 < n < 15), representing the number of vertices.
+    - A sequence of n pairs of nonnegative integers, each less than 500, representing the x- and y-coordinates of the vertices.
+
+### Example Input:
+
+```
+10.5235
+3
+0 0
+100 100
+0 100
+4
+0 50
+20 50
+20 80
+0 80
+```
+
+### Function Signature:
+Write a function f(inputs) that takes in the input. 
+def f(inputs: List[Tuple[float, List[Tuple[int, List[Tuple[int, int]]]], List[Tuple[int, List[Tuple[int, int]]]]]]): 
+    ''' 
+    inputs: a list of tuples where each tuple contains:
+        - L: a float
+        - Polygon1: a tuple containing:
+            - n1: an integer
+            - vertices1: a list of tuples containing pairs of integers
+        - Polygon2: a tuple containing:
+            - n2: an integer
+            - vertices2: a list of tuples containing pairs of integers
+    '''

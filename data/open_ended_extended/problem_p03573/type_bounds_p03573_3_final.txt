@@ -1,0 +1,3 @@
+Types: A: int, B: int, C: int
+Ranges: -100 ≤ A, B, C ≤ 100
+Addtl Info: The input satisfies the condition that two out of the three integers are the same and the remaining one is different.

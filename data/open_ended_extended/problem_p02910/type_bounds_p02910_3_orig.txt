@@ -1,0 +1,3 @@
+Types: S: str
+Ranges: 1 ≤ len(S) ≤ 100, S[i] in {'L', 'R', 'U', 'D'}
+Addtl Info: None

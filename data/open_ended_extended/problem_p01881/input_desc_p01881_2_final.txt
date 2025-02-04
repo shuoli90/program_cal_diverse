@@ -1,0 +1,20 @@
+An integer H (2 ≤ H ≤ 200), representing some quantity or size.
+An integer W (2 ≤ W ≤ 200), representing some quantity or size.
+H lines of strings of length W, where each character in the string is one of {'@', '$', '%', '.', '#'}. 
+
+### Example Input:
+
+```
+2 4
+%.@$
+..$$
+```
+
+### Function Signature:
+Write a function f(H, W, grid) that takes in the input.
+def f(H: int, W: int, grid: List[str]):
+    '''
+    H: an integer
+    W: an integer
+    grid: a list of strings
+    '''

@@ -1,0 +1,57 @@
+Sure! Here is a test case generator for the problem statement "Alice and Bob":
+
+```python
+import random
+
+def generate_rectangle():
+    x1 = random.randint(-10000, 10000)
+    y1 = random.randint(-10000, 10000)
+    x2 = random.randint(x1 + 1, 10000)  # Ensure x2 > x1
+    y2 = random.randint(y1 + 1, 10000)  # Ensure y2 > y1
+    return x1, y1, x2, y2
+
+def generate_coordinates():
+    return random.randint(-10000, 10000), random.randint(-10000, 10000)
+
+def tcgen():
+    datasets = []
+    
+    # Random number of datasets
+    num_datasets = random.randint(1, 10)
+    for _ in range(num_datasets):
+        # Random number of buildings
+        N = random.randint(1, 30)
+        buildings = [generate_rectangle() for _ in range(N)]
+        
+        # Alice's and Bob's coordinates
+        Ax, Ay = generate_coordinates()
+        Bx, By = generate_coordinates()
+        
+        dataset = {
+            'N': N,
+            'buildings': buildings,
+            'Alice': (Ax, Ay),
+            'Bob': (Bx, By)
+        }
+        
+        datasets.append(dataset)
+    
+    return datasets
+
+def format_datasets(datasets):
+    formatted_data = ""
+    for dataset in datasets:
+        formatted_data += f"{dataset['N']}\n"
+        for building in dataset['buildings']:
+            formatted_data += f"{building[0]} {building[1]} {building[2]} {building[3]}\n"
+        formatted_data += f"{dataset['Alice'][0]} {dataset['Alice'][1]} {dataset['Bob'][0]} {dataset['Bob'][1]}\n"
+    formatted_data += "0\n"
+    return formatted_data
+
+if __name__ == "__main__":
+    datasets = tcgen()
+    formatted_data = format_datasets(datasets)
+    print(formatted_data)
+```
+
+This code generates random test cases for the problem "Alice and Bob". It creates a random number of datasets, each containing a random number of buildings as well as the coordinates for Alice and Bob. The generated datasets are formatted into the required input format for the problem. You can run this script to generate and print new test cases.

@@ -1,0 +1,19 @@
+def extract_arguments(fh):
+    inputs = []
+    while True:
+        M, N = map(int, fh.readline().strip().split())
+        if M == 0 and N == 0:
+            break
+        delays = list(map(int, fh.readline().strip().split()))
+        problems = []
+        for _ in range(N):
+            L = int(fh.readline().strip())
+            submissions = []
+            for _ in range(L):
+                P, T, A = fh.readline().strip().split()
+                P = int(P)
+                T = int(T)
+                submissions.append((P, T, A))
+            problems.append(submissions)
+        inputs.append((M, N, delays, problems))
+    return inputs

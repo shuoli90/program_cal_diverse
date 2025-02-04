@@ -1,0 +1,7 @@
+def extract_arguments(fh):
+    uaz = tuple(map(int, fh.readline().strip().split()))
+    enemy = tuple(map(int, fh.readline().strip().split()))
+    barrier1 = tuple(map(int, fh.readline().strip().split()))
+    barrier2 = tuple(map(int, fh.readline().strip().split()))
+    barrier3 = tuple(map(int, fh.readline().strip().split()))
+    return uaz, enemy, barrier1, barrier2, barrier3

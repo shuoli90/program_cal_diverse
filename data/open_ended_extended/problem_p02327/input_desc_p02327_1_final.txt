@@ -1,0 +1,23 @@
+An integer H and an integer W (1 ≤ H, W ≤ 1400), representing some dimensions.
+A list of H lists, each containing W integers, where each integer is either 0 or 1.
+
+### Example Input:
+
+```
+4 5
+0 0 1 0 0
+1 0 0 0 0
+0 0 0 1 0
+0 0 0 1 0
+```
+
+### Function Signature:
+Write a function f(H, W, matrix) that takes in the input. 
+```python
+def f(H: int, W: int, matrix: List[List[int]]):
+    ''' 
+    H: an integer 
+    W: an integer 
+    matrix: a list of lists of integers
+    '''
+```

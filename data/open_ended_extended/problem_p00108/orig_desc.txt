@@ -1,0 +1,20 @@
+Frequency of appearance operation
+There is a transformation operation for a finite sequence called a frequency of appearance operation. The result of transforming the sequence S = {s1, s2, ..., sn} is a sequence of the same length. If we define the result as C = {c1, c2, ..., cn}, then ci represents the number of times si appears in the sequence S.
+For example, if S = {3, 4, 1, 5, 9, 2, 6, 5, 3}, then C = {2, 1, 1, 2, 1, 1, 1, 2, 2}. Performing a frequency of appearance operation on this sequence C gives us P = {4, 5, 5, 4, 5, 5, 5, 4, 4}. This sequence does not change with frequency of appearance operations. Such a sequence P is called a fixed point of the sequence S. It is known that for any sequence, the fixed point can be obtained by repeating the frequency of appearance operation.
+The example below shows the procedure for the frequency of appearance operation. The first line represents the sequence S, the second line represents the sequence C, and the last line represents the sequence P. We count the number of occurrences and find ci by listing the number of times the first element (s1=2) in the sequence S appears in the same way as the second element (s2=7) with two elements.
+Write a program that takes the length of the sequence n and the sequence S as input and outputs the fixed-point sequence P and the minimum number of frequency of appearance operations required to obtain P.
+Input
+Multiple datasets are given. Each dataset is given in the following format.
+n
+s1 s2 ... sn
+The first line contains an integer n (n ≤ 12) representing the length of the sequence. The second line contains integers si (1 ≤ si ≤ 100) representing the elements of the sequence S separated by spaces.
+The input ends with a line containing a single 0. There are no more than 200 datasets.
+Output
+For each dataset, output the minimum number of times the frequency of appearance operation is performed (an integer) on the first line and the elements p1, p2, ..., pn of the corresponding fixed-point sequence P on the second line, separated by spaces.
+Sample Input
+10
+4 5 1 1 4 5 12 3 5 4
+0
+Output for the Sample Input
+3
+6 6 4 4 6 6 4 4 6 6

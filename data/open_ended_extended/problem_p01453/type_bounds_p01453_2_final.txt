@@ -1,0 +1,5 @@
+Types: W: int, H: int, maze: List[List[str]]
+
+Ranges: 3 ≤ W ≤ 500, 3 ≤ H ≤ 500, maze: List of H strings, each of length W, containing only characters {'.', '#', 's', 'g', '*'}
+
+Addtl Info: 's' and 'g' appear exactly once each in the data. The outermost layer of the maze is surrounded by walls.

@@ -1,0 +1,36 @@
+Problem H: Count Words
+Problem
+  There are $M$ types of characters. Create a string of length $N$ using these characters. How many strings have at least $K$ different types of characters used in them? Find the answer modulo $998244353$.
+  Here two strings of length $N$ are considered different if there exists an $i$ $(1 \leq i \leq N)$ such that $S_i \neq T_i$ where $S = S_1S_2 \ldots S_N$ and $T = T_1T_2 \ldots T_N$.
+Input
+The input is given in the following format:
+$M$ $N$ $K$
+  $M, N,$ and $K$ are given on a single line separated by a single space.
+Constraints
+The input satisfies the following constraints:
+$1 \leq M \leq 10^{18} $
+$1 \leq N \leq 10^{18} $
+$1 \leq K \leq 1000 $
+All input values are integers.
+Output
+  Print the number of strings of length $N$ using $M$ characters such that at least $K$ different types of characters are used. The answer should be printed modulo $998244353$.
+Sample Input 1
+2 10 1
+Sample Output 1
+1024
+Sample Input 2
+1 1 2
+Sample Output 2
+0
+Sample Input 3
+5 10 3
+Sample Output 3
+9755400
+Sample Input 4
+7 8 3
+Sample Output 4
+5759460
+Sample Input 5
+1000000000000000000 1000000000000000000 1000
+Sample Output 5
+133611974

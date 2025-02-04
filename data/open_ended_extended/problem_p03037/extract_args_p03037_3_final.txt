@@ -1,0 +1,7 @@
+def extract_arguments(fh):
+    N, M = map(int, fh.readline().strip().split())
+    gates = []
+    for _ in range(M):
+        L, R = map(int, fh.readline().strip().split())
+        gates.append((L, R))
+    return N, M, gates

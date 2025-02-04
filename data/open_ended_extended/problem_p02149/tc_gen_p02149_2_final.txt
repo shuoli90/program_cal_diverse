@@ -1,0 +1,31 @@
+Sure! For the given problem, we need to create a test case generator that will produce valid test cases according to the problem constraints. Here is the Python function to generate such test cases:
+
+```python
+import random
+
+def tcgen():
+    # Generate distinct values for a, b, and c
+    a = random.randint(1, 5000)
+    b = a
+    c = a
+    while b == a:
+        b = random.randint(1, 5000)
+    while c == a or c == b:
+        c = random.randint(1, 5000)
+    
+    return a, b, c
+
+# Example usage
+for _ in range(5):
+    a, b, c = tcgen()
+    print(f"{a} {b} {c}")
+```
+
+This function generates three distinct integers \( a \), \( b \), and \( c \) within the given constraints. Here's a breakdown of how it works:
+
+1. It first initializes \( a \) with a random integer between 1 and 5000.
+2. It then initializes \( b \) and \( c \) to \( a \) to ensure that the initial values are the same.
+3. It uses a while loop to ensure that \( b \) and \( c \) are distinct from \( a \) and each other.
+4. Finally, it returns the three distinct values \( a \), \( b \), and \( c \).
+
+You can run this function multiple times to generate different test cases. Each time, the function will produce a valid set of inputs according to the problem constraints.

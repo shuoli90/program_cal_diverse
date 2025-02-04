@@ -1,0 +1,37 @@
+An integer M (1 ≤ M ≤ 100), representing some quantity.
+An integer N (1 ≤ N ≤ 100), representing some quantity.
+A list of M non-negative integers D, where each integer is between 0 and 10000, inclusive.
+N blocks describing submissions:
+- Each block starts with an integer L (0 ≤ L ≤ 100), representing the number of submissions.
+- Each of the following L lines contains three fields: an integer P (0 ≤ P < M), an integer T (0 ≤ T ≤ 19999), and a string A (length between 1 and 9 inclusive, alphanumeric).
+
+Example Input:
+
+```
+3 2
+1 2 10
+3
+0 3420 o
+1 4589 o
+2 4638 x
+3
+1 6577 SUZUMIYA
+2 7644 SUZUMIYA
+0 19979 YASUZUMI
+```
+
+Function Signature:
+Write a function f(inputs) that takes in a list of tuples containing all the described inputs.
+def f(inputs: List[Tuple[int, int, List[int], List[Tuple[int, List[Tuple[int, int, str]]]]]]):
+    '''
+    inputs: a list of tuples where each tuple contains:
+        - an integer M
+        - an integer N
+        - a list of M non-negative integers D
+        - a list of N tuples, each containing:
+            - an integer L
+            - a list of L tuples, each containing:
+                - an integer P
+                - an integer T
+                - a string A
+    '''

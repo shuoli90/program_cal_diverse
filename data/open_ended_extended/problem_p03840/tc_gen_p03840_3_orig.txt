@@ -1,0 +1,37 @@
+To generate test cases for the given problem statement, we need to create instances of the number of tetrominos Snuke has for each of the seven types: I, O, T, J, L, S, and Z. The constraints specify that each of these counts can range from 0 to \(10^9\), and the sum of these counts should be at least 1. 
+
+Here's a Python code for the test case generator:
+
+```python
+import random
+
+def tcgen():
+    # Generate random counts for each type of tetromino
+    a_I = random.randint(0, 10**9)
+    a_O = random.randint(0, 10**9)
+    a_T = random.randint(0, 10**9)
+    a_J = random.randint(0, 10**9)
+    a_L = random.randint(0, 10**9)
+    a_S = random.randint(0, 10**9)
+    a_Z = random.randint(0, 10**9)
+    
+    # Ensure at least one tetromino is present
+    if a_I + a_O + a_T + a_J + a_L + a_S + a_Z == 0:
+        tetrominos = [a_I, a_O, a_T, a_J, a_L, a_S, a_Z]
+        random_index = random.randint(0, 6)
+        tetrominos[random_index] = 1
+        a_I, a_O, a_T, a_J, a_L, a_S, a_Z = tetrominos
+    
+    return a_I, a_O, a_T, a_J, a_L, a_S, a_Z
+
+# Example usage:
+for _ in range(10):  # Generate 10 test cases for demonstration
+    print(tcgen())
+```
+
+### Explanation:
+1. **Random Integer Generation**: We use `random.randint(0, 10**9)` to generate values for each of the tetromino types, ensuring they are within the specified range.
+2. **Ensuring At Least One Tetromino**: We check if the sum of all generated counts is zero. If it is, we randomly select one tetromino type and set its count to 1 to satisfy the constraint `a_I + a_O + a_T + a_J + a_L + a_S + a_Z ≥ 1`.
+3. **Return the Counts**: The function returns the generated counts for all seven types of tetrominos.
+
+This generator can be used to create a variety of test cases for the problem, ensuring that all constraints are met.

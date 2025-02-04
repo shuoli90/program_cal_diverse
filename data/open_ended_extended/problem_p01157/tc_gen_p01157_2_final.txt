@@ -1,0 +1,50 @@
+Certainly! Below is the test case generator for the given problem statement "Online Quizu System".
+
+```python
+import random
+import string
+
+def generate_player_delays(M):
+    return [random.randint(0, 1000) for _ in range(M)]
+
+def generate_submissions(N, M):
+    submissions = []
+    for _ in range(N):
+        L = random.randint(0, M)  # Number of players that submitted an answer for this problem
+        problem_submissions = []
+        for _ in range(L):
+            P = random.randint(0, M-1)  # Player ID
+            T = random.randint(0, 19999)  # Time elapsed
+            A = ''.join(random.choices(string.ascii_uppercase + string.digits, k=random.randint(1, 9)))  # Answer
+            problem_submissions.append((P, T, A))
+        submissions.append(problem_submissions)
+    return submissions
+
+def tcgen():
+    M = random.randint(1, 100)
+    N = random.randint(1, 100)
+    delays = generate_player_delays(M)
+    submissions = generate_submissions(N, M)
+
+    # Format the output to match the input specification
+    input_data = f"{M} {N}\n"
+    input_data += ' '.join(map(str, delays)) + "\n"
+    for problem_submissions in submissions:
+        input_data += f"{len(problem_submissions)}\n"
+        for submission in problem_submissions:
+            input_data += f"{submission[0]} {submission[1]} {submission[2]}\n"
+    input_data += "0 0\n"
+    
+    return input_data
+
+# Example of generating a test case
+print(tcgen())
+```
+
+This script generates the input for a test case for the "Online Quizu System" problem. Here's a breakdown of what the code does:
+
+1. **generate_player_delays(M)**: Generates a list of delays for M players.
+2. **generate_submissions(N, M)**: Generates a list of submissions for N problems. Each problem can have up to M submissions.
+3. **tcgen()**: Generates the entire test case in the format specified in the problem statement.
+
+The test case generator outputs the input in the required format, including the number of players, number of problems, delays, and submissions. You can use the generated input to test the function that solves the problem.

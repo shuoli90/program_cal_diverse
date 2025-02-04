@@ -1,0 +1,3 @@
+Types: N: int, words: List[str]
+Ranges: 1 ≤ N ≤ 10, 1 ≤ len(words[i]) ≤ 10
+Addtl Info: words[i] contains only lowercase letters of the alphabet

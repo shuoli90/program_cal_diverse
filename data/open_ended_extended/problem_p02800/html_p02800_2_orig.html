@@ -1,0 +1,191 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p02800 - Generation 2</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p02800 - Generation 2</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>
+Score : 1100 points
+Problem StatementWe have an H \times W grid, where each square is painted white or black in the initial state.
+Given are strings A_1, A_2, ..., A_H representing the colors of the squares in the initial state.
+For each pair (i, j) (1 \leq i \leq H, 1 \leq j \leq W), if the j-th character of A_i is ., the square at the i-th row and j-th column is painted white; if that character is #, that square is painted black.
+Among the 2^{HW} ways for each square in the grid to be painted white or black, how many can be obtained from the initial state by performing the operations below any number of times (possibly zero) in any order? Find this count modulo 998,244,353.
+Choose one row, then paint all the squares in that row white.
+Choose one row, then paint all the squares in that row black.
+Choose one column, then paint all the squares in that column white.
+Choose one column, then paint all the squares in that column black.
+Constraints
+1 \leq H, W \leq 10
+|A_i| = W (1 \leq i \leq H)
+All strings A_i consist of . and #.
+H and W are integers.
+InputInput is given from Standard Input in the following format:
+H W
+A_1
+A_2
+\vdots
+A_H
+OutputPrint the answer.
+Sample Input 12 2
+#.
+.#
+Sample Output 115
+For example, if we paint the second row black, the grid becomes:
+#.
+##
+Sample Input 23 3
+...
+...
+...
+Sample Output 2230
+Sample Input 32 4
+#...
+...#
+Sample Output 3150
+Sample Input 46 7
+.......
+.......
+.#.....
+..#....
+.#.#...
+.......
+Sample Output 4203949910
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>Canonicalized Input Description:
+
+An integer H (1 ≤ H ≤ 10), representing some dimension.
+An integer W (1 ≤ W ≤ 10), representing some dimension.
+A list of H strings, each of length W, consisting of characters from the set {'.', '#'}. 
+
+### Example Input:
+
+```
+2 2
+#.
+.#
+```
+
+### Function Signature:
+Write a function f(H, W, A) that takes in the input. 
+```python
+def f(H: int, W: int, A: List[str]):
+    '''
+    H: an integer
+    W: an integer
+    A: a list of strings
+    '''
+```</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Sure, I can help you write a test case generator for the given problem statement. Here's a Python script that generates test cases according to the constraints specified:
+
+```python
+import random
+
+def generate_grid(H, W):
+    grid = []
+    for _ in range(H):
+        row = ''.join(random.choice(['.', '#']) for _ in range(W))
+        grid.append(row)
+    return grid
+
+def tcgen():
+    H = random.randint(1, 10)
+    W = random.randint(1, 10)
+    grid = generate_grid(H, W)
+    
+    return H, W, grid
+
+def print_test_case(H, W, grid):
+    print(H, W)
+    for row in grid:
+        print(row)
+
+# Example of generating a test case and printing it
+H, W, grid = tcgen()
+print_test_case(H, W, grid)
+```
+
+### Explanation:
+1. **`generate_grid(H, W)`**: This function generates an H x W grid where each cell is either '.' (white) or '#' (black). Each character in a row is chosen randomly from the set {'.', '#'}.
+2. **`tcgen()`**: This function generates random values for H and W within the constraints (1 ≤ H, W ≤ 10). It then uses `generate_grid(H, W)` to create the grid.
+3. **`print_test_case(H, W, grid)`**: This function prints the test case in the format required by the problem statement.
+
+### Example Output:
+Running the script will produce output similar to the following:
+
+```
+7 5
+.#...
+##..#
+.#.#.
+..###
+.#..#
+#.###
+.####
+```
+
+The script allows you to generate random valid test cases which can be useful for testing the solution to the problem statement. You can modify or extend the script to generate larger sets of test cases or add additional functionality as needed.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    H, W = map(int, fh.readline().strip().split())
+    A = [fh.readline().strip() for _ in range(H)]
+    return H, W, A</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

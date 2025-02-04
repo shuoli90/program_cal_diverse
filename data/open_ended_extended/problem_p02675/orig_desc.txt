@@ -1,0 +1,24 @@
+
+Score: 100 points
+Problem
+Snuke, a cat, wants to play the popular Japanese game "ÅtCoder". Therefore, Iroha-chan decided to teach Snuke Japanese.
+In Japanese, when counting pencils, you attach the counter word "hon" after the number. The reading of this counter word "hon" differs depending on the number. Specifically, when using the expression "N hon" to mean "N pencils", it is read as follows:
+When the last digit of N is 2, 4, 5, 7, or 9, it is read as "hon".
+When the last digit of N is 0, 1, 6, or 8, it is read as "pon".
+When the last digit of N is 3, it is read as "bon".
+Given N, write a program to output how to read "N hon" using the counter word "hon".
+Constraints
+N is an integer between 1 and 999 (inclusive).
+Input
+The input is given in the following format from standard input:
+N
+Output
+Output how to read "N hon" using the counter word "hon".
+Sample Input 116
+Sample Output 1pon
+Since the last digit of 16 is 6, "16 hon" is read as "pon".
+Sample Input 22
+Sample Output 2hon
+Since the last digit of 2 is 2, "2 hon" is read as "hon".
+Sample Input 3183
+Sample Output 3bon

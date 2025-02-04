@@ -1,0 +1,63 @@
+To generate test cases for the given problem statement, you need to create sequences of integers and quadruples according to the constraints provided. 
+
+Here's a Python function that generates random test cases for this problem:
+
+```python
+import random
+
+def tcgen():
+    # Constants
+    MAX_N = 10
+    MAX_M = 10
+    MAX_Q = 50
+    MAX_D = 10**5
+
+    # Generate N, M, Q
+    N = random.randint(2, MAX_N)
+    M = random.randint(1, MAX_M)
+    Q = random.randint(1, MAX_Q)
+    
+    quadruples = []
+    used_combinations = set()
+    
+    while len(quadruples) < Q:
+        a_i = random.randint(1, N-1)  # 1 ≤ a_i < N
+        b_i = random.randint(a_i + 1, N)  # a_i < b_i ≤ N
+        c_i = random.randint(0, M-1)  # 0 ≤ c_i ≤ M-1
+        d_i = random.randint(1, MAX_D)  # 1 ≤ d_i ≤ 10^5
+        
+        # Ensure unique (a_i, b_i, c_i) combinations
+        if (a_i, b_i, c_i) not in used_combinations:
+            used_combinations.add((a_i, b_i, c_i))
+            quadruples.append((a_i, b_i, c_i, d_i))
+    
+    return N, M, Q, quadruples
+
+def format_test_case(N, M, Q, quadruples):
+    result = f"{N} {M} {Q}\n"
+    for a_i, b_i, c_i, d_i in quadruples:
+        result += f"{a_i} {b_i} {c_i} {d_i}\n"
+    return result
+
+if __name__ == "__main__":
+    # Generate a test case
+    N, M, Q, quadruples = tcgen()
+    
+    # Format the generated test case
+    test_case = format_test_case(N, M, Q, quadruples)
+    print(test_case)
+```
+
+### Explanation:
+
+1. **Constants**: Define the maximum values for \(N\), \(M\), \(Q\), and \(d_i\) according to problem constraints.
+2. **Generate N, M, Q**: Randomly generate values for \(N\), \(M\), and \(Q\) within the specified constraints.
+3. **Generate quadruples**: Create a list of quadruples \((a_i, b_i, c_i, d_i)\) ensuring that:
+    - \(a_i < b_i\)
+    - \(1 \leq a_i < b_i \leq N\)
+    - \(0 \leq c_i \leq M - 1\)
+    - \(1 \leq d_i \leq 10^5\)
+    - \((a_i, b_i, c_i)\) combinations are unique.
+4. **Format test case**: Convert the generated values into the required input format.
+
+This function generates random test cases adhering to the problem constraints and outputs them in the appropriate format for competitive programming inputs.

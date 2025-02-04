@@ -1,0 +1,3 @@
+Types: n: int, pieces: List[List[str]]
+Ranges: 3 ≤ n ≤ 9 (n is odd), pieces: 6n × n grid where each cell is {'X', '.'}
+Addtl Info: None

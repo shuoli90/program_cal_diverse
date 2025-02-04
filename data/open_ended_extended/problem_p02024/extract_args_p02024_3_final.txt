@@ -1,0 +1,3 @@
+def extract_arguments(fh):
+    H, W, S, T = map(int, fh.readline().strip().split())
+    return H, W, S, T

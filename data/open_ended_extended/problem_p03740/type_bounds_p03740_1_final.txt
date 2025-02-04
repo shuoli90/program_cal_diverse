@@ -1,0 +1,3 @@
+Types: X: int, Y: int  
+Ranges: 0 ≤ X, Y ≤ 10^{18}  
+Addtl Info: None

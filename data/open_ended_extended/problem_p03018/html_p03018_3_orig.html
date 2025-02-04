@@ -1,0 +1,149 @@
+
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Problem p03018 - Generation 3</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f4f4f4;
+                }
+                .code-container {
+                    display: flex;
+                    flex-wrap: wrap; /* Allows wrapping if the total width exceeds the viewport */
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .code-box {
+                    width: 22%; /* Adjusted width to fit all four */
+                    min-width: 200px; /* Ensures that boxes don't get too small */
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin: 0px; /* Adds some spacing between boxes */
+                }
+                .code-box pre {
+                    white-space: pre-wrap;
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+                .explanation {
+                    background-color: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    padding: 10px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Problem p03018 - Generation 3</h1>
+            <div class="code-container">
+                <!-- Original Description -->
+                <div class="code-box">
+                    <h2>Orig Description</h2>
+                    <pre>
+Score : 600 points
+Problem StatementYou are given a string s consisting of A, B and C.
+Snuke wants to perform the following operation on s as many times as possible:
+Choose a contiguous substring of s that reads ABC and replace it with BCA.
+Find the maximum possible number of operations.
+Constraints
+1 \leq |s| \leq 200000
+Each character of s is A, B and C.
+InputInput is given from Standard Input in the following format:
+s
+OutputFind the maximum possible number of operations.
+Sample Input 1ABCABC
+Sample Output 13
+You can perform the operations three times as follows: ABCABC → BCAABC → BCABCA → BCBCAA. This is the maximum result.
+Sample Input 2C
+Sample Output 20
+Sample Input 3ABCACCBABCBCAABCB
+Sample Output 36
+</pre>
+                </div>
+                <!-- Extracted Specification -->
+                <div class="code-box">
+                    <h2>Extracted Specification</h2>
+                    <pre>Canonicalized Input Description:
+
+A string \( s \) consisting only of the characters 'A', 'B', and 'C', with length between 1 and 200000.
+
+### Example Input:
+
+```
+ABCABC
+```
+
+### Function Signature:
+Write a function f(s) that takes in the input.
+```python
+def f(s: str):
+    '''
+    s: a string
+    '''
+```</pre>
+                </div>
+                <!-- TC Generator -->
+                <div class="code-box">
+                    <h2>Test Case Generator</h2>
+                    <pre>Sure, I can help you write a test case generator for the given problem. The generator will create random strings of varying lengths containing the characters 'A', 'B', and 'C'. Here's the code:
+
+```python
+import random
+
+def tcgen():
+    # Generate a random length for the string s
+    length = random.randint(1, 200000)
+    
+    # Generate a random string of the given length consisting of 'A', 'B', and 'C'
+    s = ''.join(random.choice('ABC') for _ in range(length))
+    
+    return s
+
+# Example usage:
+for _ in range(5):  # Generate 5 test cases
+    print(tcgen())
+```
+
+### Explanation
+
+1. **Length of String**: We generate a random integer between 1 and 200,000 for the length of the string, ensuring it meets the problem constraints.
+
+2. **Generate String**: We then generate a string of the specified length composed of random characters chosen from the set {'A', 'B', 'C'}.
+
+3. **Output**: The function returns the generated string.
+
+This will generate test cases of varying lengths and compositions, ensuring comprehensive coverage for the problem.
+
+### Example Output
+
+Here's an example of what the output might look like when you run the `tcgen()` function:
+
+```
+BCABCA
+A
+CABCBACBACBBAC
+...
+```
+
+Each string will be a random sequence of 'A', 'B', and 'C', suitable for testing the competitive programming problem's solution.</pre>
+                </div>
+                <!-- Extract Arguments -->
+                <div class="code-box">
+                    <h2>Extract Arguments</h2>
+                    <pre>def extract_arguments(fh):
+    s = fh.readline().strip()
+    return s</pre>
+                </div>
+            </div>
+        </body>
+        </html>
+    

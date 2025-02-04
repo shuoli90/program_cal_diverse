@@ -1,0 +1,25 @@
+Certainly! Here is the test case generator for the given problem statement:
+
+```python
+import random
+
+def tcgen():
+    # Constraints
+    N = random.randint(1, 100)
+    K = random.randint(1, 100)
+    
+    return N, K
+
+# Example usage
+if __name__ == "__main__":
+    test_cases = [tcgen() for _ in range(10)]
+    for i, (N, K) in enumerate(test_cases):
+        print(f"Sample Input {i+1}")
+        print(f"{N} {K}")
+        # Optionally, you can also call the solution function to print the expected output.
+        # For now, we just print the inputs.
+```
+
+This generator will create random test cases for the problem ensuring that values of \(N\) and \(K\) are within the given constraints (1 ≤ \(N, K\) ≤ 100). Each call to `tcgen()` will return a tuple (N, K) representing a test case.
+
+You can run this script and it will generate multiple sample inputs, which you can use to test your solution.

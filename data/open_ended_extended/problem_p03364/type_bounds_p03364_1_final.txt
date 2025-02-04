@@ -1,0 +1,3 @@
+Types: N: int, S: List[List[str]]
+Ranges: 1 ≤ N ≤ 300, S_{i,j} is a lowercase English letter
+Addtl Info: None

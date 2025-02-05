@@ -1,3 +1,5 @@
+Multiple datasets, each dataset consists of the following:
+
 An integer \( n \) (3 ≤ \( n \) ≤ 100), representing some quantity or size.
 Two integers \( vx \) and \( vy \) (-10000 ≤ \( vx, vy \) ≤ 10000), where \( vx \) and \( vy \) are non-zero vectors.
 A list of \( n \) pairs of integers, where each pair (xi, yi) represents coordinates (0 ≤ \( xi, yi \) ≤ 10000).

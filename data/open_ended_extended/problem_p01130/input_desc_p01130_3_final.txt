@@ -1,3 +1,5 @@
+Multiple datasets, each dataset consists of the following:
+
 An integer n (3 ≤ n ≤ 100), representing some quantity or size.
 An integer m (2 ≤ m ≤ 1000), representing some quantity or size.
 An integer s (1 ≤ s ≤ n), representing some quantity or size, distinct from g1 and g2.

@@ -4,6 +4,7 @@ An integer D1 (1 ≤ D1 ≤ 31).
 An integer Y2 (1 ≤ Y2 ≤ 10^18).
 An integer M2 (1 ≤ M2 ≤ 12).
 An integer D2 (1 ≤ D2 ≤ 31).
+Additional constraints: 1 ≤ Y1 ≤ Y2 ≤ 10^18
 
 ### Example Input:
 

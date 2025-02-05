@@ -1,3 +1,5 @@
+Multiple datasets, each dataset consists of the following:
+
 An integer ns (1 ≤ ns ≤ 10), representing some quantity.
 An integer nl (1 ≤ nl ≤ 20), representing some quantity.
 nl sets of three integers si1, si2, di, where:

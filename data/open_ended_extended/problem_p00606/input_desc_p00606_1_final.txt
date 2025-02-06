@@ -1,7 +1,7 @@
+Multiple datasets, each dataset consists of the following:
+
 An integer n (n ≤ 15), representing some quantity.
 Three distinct characters s, t, b from the set {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I'}.
-
-The input ends with a dataset which consists of single 0 for n.
 
 ### Example Input:
 
@@ -12,7 +12,6 @@ E A C
 E B C
 2
 E A B
-0
 ```
 
 ### Function Signature:

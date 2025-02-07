@@ -13,11 +13,11 @@ A list of N tuples, where each tuple contains two integers (X, Y) such that (1 â
 ### Function Signature:
 Write a function f(H, W, N, obstacles) that takes in the input.
 ```python
-def f(H: int, W: int, N: int, obstacles: List[Tuple[int, int]]):
+def f(H: int, W: int, N: int, tups: List[Tuple[int, int]]):
     '''
     H: an integer
     W: an integer
     N: an integer
-    obstacles: a list of tuples, where each tuple contains two integers
+    tups: a list of tuples, where each tuple contains two integers
     '''
 ```

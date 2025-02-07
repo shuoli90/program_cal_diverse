@@ -13,11 +13,11 @@ A list of N-1 tuples, each containing three integers (u, v, c) where 1 ≤ u < v
 ```
 
 ### Function Signature:
-Write a function f(N, W, P, roads) that takes in the input. 
-def f(N: int, W: int, P: List[int], roads: List[Tuple[int, int, int]]): 
+Write a function f(N, W, P, tups) that takes in the input. 
+def f(N: int, W: int, P: List[int], tups: List[Tuple[int, int, int]]): 
     ''' 
     N: an integer 
     W: an integer 
     P: a list of integers 
-    roads: a list of tuples, each containing three integers 
+    tups: a list of tuples, each containing three integers 
     '''

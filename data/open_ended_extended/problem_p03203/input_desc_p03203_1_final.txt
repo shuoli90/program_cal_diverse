@@ -11,7 +11,7 @@ A list of N tuples, where each tuple contains two integers (X, Y) such that (1 â
 ```
 
 ### Function Signature:
-Write a function f(H, W, N, obstacles) that takes in the input.
+Write a function f(H, W, N, tups) that takes in the input.
 ```python
 def f(H: int, W: int, N: int, tups: List[Tuple[int, int]]):
     '''

@@ -1,3 +1,5 @@
+The input consists of multiple datasets. Each dataset is given in the following format:
+
 An integer n (0 ≤ n ≤ 500), representing some dimension or size.
 An integer h (0 ≤ h ≤ 200), representing some quantity.
 A list of h tuples (ci, ai, bi), where:

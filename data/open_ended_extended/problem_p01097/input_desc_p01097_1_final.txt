@@ -1,17 +1,17 @@
-
+Multiple datasets, each dataset consists of the following:
 An integer n (1 ≤ n ≤ 2000), an integer k (1 ≤ k ≤ n), and an integer s (3 ≤ s ≤ 100).
 A list of n tuples, each containing three integers where each integer is between -4×10^7 and 4×10^7.
 
 ### Example Input:
 
 ```
-6 4 10
+1 1 100
 100 100 100
-106 102 102
-112 110 104
-104 116 102
-100 114 104
-92 107 100
+4 4 10
+100 100 100
+108 94 100
+116 100 100
+108 106 100
 ```
 
 ### Function Signature:

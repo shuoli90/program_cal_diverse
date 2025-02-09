@@ -1,3 +1,5 @@
+The input consists of multiple datasets. Each dataset is given in the following format:
+
 An integer or float L (0.1 < L < 50.0).
 A polygon represented by:
   - An integer n (2 < n < 15), representing the number of vertices.

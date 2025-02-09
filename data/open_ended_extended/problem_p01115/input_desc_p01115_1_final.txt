@@ -1,3 +1,5 @@
+The input consists of multiple datasets, each in the following format:
+
 An integer n (1 ≤ n ≤ 10^9).
 A string s of arithmetic expressions conforming to specific grammar rules.
 The length of s does not exceed 2×10^6.

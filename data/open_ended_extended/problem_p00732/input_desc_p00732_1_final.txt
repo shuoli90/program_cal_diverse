@@ -1,3 +1,6 @@
+The input consists of multiple datasets.  The number of datasets is no more than 100.  The end of the input is represented
+by "0 0 0".
+
 An integer L (1.0 ≤ L ≤ 500.0), a decimal fraction representing some quantity.
 An integer R (1.0 ≤ R ≤ 10.0), a decimal fraction representing some count.
 An integer N (3 ≤ N ≤ 100), representing some quantity or size.

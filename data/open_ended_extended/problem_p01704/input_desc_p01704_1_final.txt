@@ -1,3 +1,5 @@
+The input consists of multiple datasets. Each dataset is given in the following format:
+
 An integer N (1 ≤ N ≤ 10^5), representing some quantity.
 An integer pw (1 ≤ pw ≤ 100), representing a cost factor.
 N lines each containing four integers: vw_i (-100 ≤ vw_i ≤ 100), pf_i (1 ≤ pf_i ≤ 100), vf_i (1 ≤ vf_i ≤ 100), and th_i (-100 ≤ th_i ≤ 100), representing various properties and thresholds.

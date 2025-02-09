@@ -1,3 +1,5 @@
+The input consists of multiple datasets, each in the following format:
+
 An integer n (3 ≤ n ≤ 100), representing some quantity or size.
 A list of tuples of integers of size n, where each tuple contains two integers between 0 and 10000.
 

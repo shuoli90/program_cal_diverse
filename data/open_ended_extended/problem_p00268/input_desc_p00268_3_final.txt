@@ -1,3 +1,5 @@
+The input consists of multiple datasets. The end of the input is indicated by two zeros. Each dataset is given in the following format:
+
 An integer C (3 ≤ C ≤ 100) and an integer W (3 ≤ W ≤ 300).
 C pairs of integers (x, y) where -1000 ≤ x, y ≤ 1000.
 W pairs of integers (s, t) where 1 ≤ s, t ≤ C.

@@ -1,4 +1,9 @@
-An integer n (1 ≤ n ≤ 100), followed by n integers, each on a new line (1 ≤ each integer ≤ 1000000). The input consists of multiple datasets. The end of the input is indicated by a single zero. The number of datasets does not exceed 20.
+Multiple datasets are given, each of the following format:
+
+An integer n (1 ≤ n ≤ 100), followed by n integers, each (1 ≤ each integer ≤ 1000000). 
+The number of datasets does not exceed 20.
+
+The dataset is terminated by a single zero, and is provided in a processed format. 
 
 ### Example Input:
 
@@ -20,7 +25,6 @@ An integer n (1 ≤ n ≤ 100), followed by n integers, each on a new line (1 �
 3
 2
 1
-0
 ```
 
 ### Function Signature:

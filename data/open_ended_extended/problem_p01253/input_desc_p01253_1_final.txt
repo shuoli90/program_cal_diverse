@@ -1,3 +1,5 @@
+Multiple datasets are given, each of the following format:
+
 An integer N (1 ≤ N ≤ 2000) representing some quantity or size.
 An integer T (1 ≤ T ≤ 2000) representing some quantity or size.
 A string S of length N consisting of characters 'R' and 'B'.
@@ -7,6 +9,10 @@ A string S of length N consisting of characters 'R' and 'B'.
 ```
 6 1
 RBRBRB
+10 2
+RBBBRBBBBB
+10 10
+RBBBBBBBBB
 ```
 
 ### Function Signature:

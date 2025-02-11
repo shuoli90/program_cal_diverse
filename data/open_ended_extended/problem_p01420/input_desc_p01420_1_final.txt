@@ -15,13 +15,13 @@ A list of N tuples, each containing three integers (P_i, T_i, V_i), where:
 ```
 
 ### Function Signature:
-Write a function f(N, M, L, runners) that takes in the input.
+Write a function f(N, M, L, values) that takes in the input.
 ```python
-def f(N: int, M: int, L: int, runners: List[Tuple[int, int, int]]):
+def f(N: int, M: int, L: int, values: List[Tuple[int, int, int]]):
     ''' 
     N: an integer 
     M: an integer
     L: an integer
-    runners: a list of tuples, each containing three integers
+    values: a list of tuples, each containing three integers
     '''
 ```

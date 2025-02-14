@@ -1,3 +1,5 @@
+Multiple datasets are given, each of the following format:
+
 An integer M (1 ≤ M ≤ 100), representing some quantity.
 An integer N (1 ≤ N ≤ 100), representing some quantity.
 A list of M non-negative integers \(D\), where each integer \(D[i]\) represents some value between 0 and 10^4.

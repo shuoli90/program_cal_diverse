@@ -15,11 +15,11 @@ Q strings, each of length L, consisting of characters {'0', '1', '?'}.
 ```
 
 ### Function Signature:
-Write a function f(L, Q, S, complaints) that takes in the input. 
-def f(L: int, Q: int, S: str, complaints: List[str]): 
+Write a function f(L, Q, S, strs) that takes in the input. 
+def f(L: int, Q: int, S: str, strs: List[str]): 
     ''' 
     L: an integer 
     Q: an integer 
     S: a string 
-    complaints: a list of strings 
+    strs: a list of strings 
     '''

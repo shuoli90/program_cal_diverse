@@ -1,3 +1,5 @@
+The input consists of multiple datasets, each in the following format:
+
 An integer l (1 ≤ l ≤ 100,000) and an integer d (0 ≤ d ≤ 5,000).
 Three strings of length l consisting of only lower and upper case alphabets.
 The input ends with a line containing two zeros, which should not be processed.

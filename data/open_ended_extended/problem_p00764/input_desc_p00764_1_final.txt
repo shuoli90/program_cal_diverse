@@ -1,3 +1,5 @@
+The input is a sequence of datasets. Each dataset is given in the following format:
+
 An integer n (3 ≤ n ≤ 100), representing some quantity or size.
 n lines of three integers each, where:
 - The first integer xi (0 ≤ xi ≤ 1000) represents a value.

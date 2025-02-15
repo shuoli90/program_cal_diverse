@@ -1,3 +1,5 @@
+The input is a sequence of datasets. Each dataset is given in the following format:
+
 An integer n (3 ≤ n ≤ 100), representing the number of nodes in a graph.
 An integer m, representing the number of edges in the graph.
 An integer p, representing the number of special nodes.

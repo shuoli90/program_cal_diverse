@@ -1,9 +1,9 @@
-An integer \( n \) (1 ≤ \( n \) ≤ 10), representing some quantity or size. The number of data sets will not exceed 50.
-Multiple lines follow, with each line containing:
+An integer \( n \) (1 ≤ \( n \) ≤ 10), representing some quantity or size. 
+A list of n tuples, each containing:
 - A string (up to 20 alphabets) representing a name.
 - Three integers \( w \), \( l \), \( d \) (0 ≤ \( w, l, d \) ≤ 9), representing some quantities.
 
-The input ends when \( n = 0 \).
+Multiple sets of inputs are provided. Each set follows the above format, and the input ends when n is 0. The number of data sets will not exceed 50.
 
 ### Example Input:
 

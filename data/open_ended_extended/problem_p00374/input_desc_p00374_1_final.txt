@@ -39,16 +39,17 @@ M integers b_i (1 ≤ b_i ≤ 3000), representing some values, with the relation
 ```
 
 ### Function Signature:
-Write a function f(inputs) that takes in the input.
+Write a function f(N, M, X, Y, lengths, bends) that takes in the input.
 ```python
-def f(inputs: List[Tuple[int, int, int, int, List[int], List[int]]]):
+def f(N: int, M: int, X: int, Y: int, lengths: List[int], bends: List[int]):
     '''
-    inputs: a list of tuples where each tuple contains:
-        - an integer N
-        - an integer M
-        - an integer X
-        - an integer Y
-        - a list of N integers
-        - a list of M integers
+    Args:
+    N (int): An integer between 6 and 6000
+    M (int): An integer between 0 and N
+    X (int): An integer between 0 and 6
+    Y (int): An integer between 0 and 12, where 2X + Y = 12
+    lengths (List[int]): A list of N integers between 1 and 6000
+    bends (List[int]): A list of M integers between 1 and 3000, where for each i,
+                        1 ≤ lengths[i] - bends[i] ≤ 3000
     '''
 ```

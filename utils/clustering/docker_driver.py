@@ -45,7 +45,7 @@ if __name__ == '__main__':
         
         try: 
             if open_ended:
-                p = subprocess.run(['python', soln_file, input_file], stdout=open(output_file, 'w'), stderr=subprocess.PIPE, timeout=timeout)
+                p = subprocess.run(['python', soln_file, input_file, output_file], stdout=subprocess.PIPE, stderr=subprocess.PIPE, timeout=timeout)
             else: 
                 p = subprocess.run(['python', soln_file], stdin=open(input_file, 'r'), stdout=open(output_file, 'w'), stderr=subprocess.PIPE, timeout=timeout)
             if p.returncode != 0:

@@ -18,11 +18,11 @@ def f(N: int):
     N: an integer
     '''
 
-Now please implement the function f; do not return anything, the function f should print the result of the operation.
+Now please implement the function f. The function f will return the result of the operation. The function should return something in all cases. 
 It should terminate within 30 seconds.
 
 def f(N: int):
-    print(n**2)
+    return n**2
 
 ### Input Description:
 
@@ -42,7 +42,7 @@ def f(N: float):
     N: a float
     '''
 
-Now please implement the function f; do not return anything, the function f should print the result of the operation.
+Now please implement the function f. The function f will return the result of the operation. The function should return something in all cases. 
 It should terminate within 30 seconds.
 
 def f(N: float):
@@ -50,7 +50,7 @@ def f(N: float):
     while N > 1:
         N = N / 2
         i += 1
-    print(i)
+    return i
 
 ## DESCRIPTION 
 

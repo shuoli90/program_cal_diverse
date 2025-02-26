@@ -180,6 +180,41 @@ def distinct_n(corpus: List[str], n: int, ftokenizer: Callable[[str], List[str]]
     # TODO: return np.nan if there are no valid n-grams in the corpus
     return len(ngrams_set) / sum(map(len, ngrams_list)) if sum(map(len, ngrams_list)) > 1 else np.nan
 
+# Adapted from https://github.com/facebookresearch/rlfh-gen-div/blob/7291e6deb5127ca07497da21b4bd72e4f4afab4e/rlvsil/diversity/diversity_metrics.py#L39
+# class ExpectationAdjustedDistinctNgrams(metric.DiversityMetric):
+#     # Taken from https://arxiv.org/abs/2202.13587
+
+#     default_config = {"n": 3, "vocab_size": 50257}
+#     name = "ead_averaged_distinct_ngrams"
+
+#     def __init__(self, config):
+#         super().__init__(config)
+#         self.name = "ead_averaged_distinct_ngrams"
+
+#         # validate config
+#         self.uint_assert("n")
+
+def ead_normalized_unique_ngrams(corpus: List[str], n: int, ftokenizer: Callable[[str], List[str]], remove_comments: bool = False, 
+                                 vocab_size: int = 128256): 
+    """
+    Calc expectation-adjusted portion of unique n-grams out of all n-grams.
+    :param ngram_lists: list of lists of ngrams
+    :return: value in (0,1]
+    """
+    _ngrams = [ngram for seq in corpus for ngram in ngrams(ftokenizer(seq, remove_comments), n)]
+    N = len(set(_ngrams))
+    C = len(_ngrams)
+    V = vocab_size
+
+    try:
+        ead = N / (V * (1 - ((V - 1) / V) ** C))
+    except ZeroDivisionError:
+        ead = np.nan
+    return ead
+
+
+
+
 
 def could_yield_nan(sequence: str, ftokenizer: Callable[[str, bool], List[str]], n: int, remove_comments: bool) -> bool:
     # Implement a check to predict if tokenizing this sequence might result in an empty list of n-grams
@@ -206,6 +241,31 @@ def bootstrap_distinct_n(corpus: List[str], n: int, ftokenizer: Callable[[str, b
         sub_sample = choices(filtered_corpus, k=subsample_size)
         distinct_score = distinct_n(sub_sample, n, ftokenizer, remove_comments)
         stats.append(distinct_score)
+    if any(np.isnan(stats)):
+        print(f"Warning: some of the bootstrapped samples resulted in NaN values; the number of such samples is {np.sum(np.isnan(stats))}, ignoring them.")
+    return np.nanmean(stats)  # Use nanmean to handle np.nan safely
+
+
+def bootstrap_ead_normalized_unique_ngrams(corpus: List[str], n: int, ftokenizer: Callable[[str, bool], List[str]], remove_comments: bool, 
+                                           iterations: int = 100, vocab_size: int = 128256, subsample_size: int = 100) -> float:
+    import random
+    from random import choices
+    random.seed(42)
+
+    # Filter out empty or None elements from the corpus
+    filtered_corpus = [seq for seq in corpus if seq and seq.strip()]
+
+    # Further remove elements that could yield nan after tokenization and processing
+    filtered_corpus = [seq for seq in filtered_corpus if not could_yield_nan(seq, ftokenizer, n, remove_comments)]
+    
+    if len(filtered_corpus) < subsample_size:
+        return np.nan
+
+    stats = []
+    for _ in range(iterations):
+        sub_sample = choices(filtered_corpus, k=subsample_size)
+        ead_score = ead_normalized_unique_ngrams(sub_sample, n, ftokenizer, remove_comments, vocab_size)
+        stats.append(ead_score)
     if any(np.isnan(stats)):
         print(f"Warning: some of the bootstrapped samples resulted in NaN values; the number of such samples is {np.sum(np.isnan(stats))}, ignoring them.")
     return np.nanmean(stats)  # Use nanmean to handle np.nan safely

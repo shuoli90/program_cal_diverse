@@ -337,14 +337,15 @@ def tqdm_joblib(tqdm_object):
 #             program, testcases, outputs, tcgen_image, client, n_test_cases=n_test_cases, verbose_docker=verbose_docker, open_ended=open_ended
 #         ) for program in programs)
 
+from copy import deepcopy
 
-
-def parallel_subtree_analysis(source_codes, n_jobs = -1, heights=[3,4,5,6], verbose=False, do_bootstrap=False, do_jaccard=False, iterations=100, subsample_size=2, jaccard_iterations=-1):
+# def parallel_subtree_analysis(source_codes, n_jobs = -1, heights=[3,4,5,6], verbose=False, do_bootstrap=False, do_jaccard=False, iterations=100, subsample_size=2, jaccard_iterations=-1):
+def parallel_subtree_analysis(source_codes, n_jobs = -1, heights=[3,4,5,6], verbose=False, iterations=100, subsample_size=2, jaccard_iterations=-1):
     assert len(heights) > 0, "Must provide at least one height to analyze"
     assert min(heights) >= 1, "Height must be at least 1"
     assert max(heights) <= 10, "Height must be at most 10"
     assert all(isinstance(height, int) for height in heights), "All heights must be integers"
-    assert not (do_bootstrap and do_jaccard), "Cannot do both bootstrapping and Jaccard distance calculation"
+    # assert not (do_bootstrap and do_jaccard), "Cannot do both bootstrapping and Jaccard distance calculation"
 
     # _subtree_analysis = lambda source_code: AllSubtreeAnalysis(source_code)
     def _subtree_analysis(source_code):
@@ -367,6 +368,14 @@ def parallel_subtree_analysis(source_codes, n_jobs = -1, heights=[3,4,5,6], verb
         "stripped_subtrees": {},
         "obfuscated_subtrees": {}, 
     }
+    result_type_2_result_dict = {
+        "normal": deepcopy(result_dict),
+        "bootstrap": deepcopy(result_dict),
+        "jaccard": deepcopy(result_dict),
+        "ead": deepcopy(result_dict),
+        "ead_bootstrap": deepcopy(result_dict),
+    }
+    
     def prop_distinct(subtree_analysis_list, height, typ: str):
         # get subtrees and flatten
         # if None, there likely was an error processing the source code
@@ -386,6 +395,38 @@ def parallel_subtree_analysis(source_codes, n_jobs = -1, heights=[3,4,5,6], verb
         n_union = len(set(subtrees_1).union(set(subtrees_2)))
         jaccard_sim = n_intersect / n_union if n_union > 0 else np.nan
         return 1 - jaccard_sim
+    
+    def ead(subtree_analysis_list, height, typ: str):
+        subtrees = [subtree for subtree_analysis in subtree_analysis_list if subtree_analysis is not None for subtree in subtree_analysis.get_subtrees(typ, height)]
+        N = len(set(subtrees))
+        C = len(subtrees)
+        V = 1000000
+        try:
+            ead = N / (V * (1 - ((V - 1) / V) ** C))
+        except ZeroDivisionError:
+            ead = np.nan
+        return ead
+
+    def ead_bootstrapped(subtree_analysis_list, height, typ: str, iterations=100, subsample_size=2):
+        import random 
+        from random import choices
+        random.seed(42)
+        
+        subtree_analysis_list = [subtree_analysis for subtree_analysis in subtree_analysis_list if subtree_analysis is not None]
+        if len(subtree_analysis_list) < subsample_size:
+            logging.warning(f"Subsample size is greater than the number of valid subtree analyses; returning NaN; out of {len(subtree_analysis_list)} there were {len(subtree_analysis_list)} non-empty analyses")
+            return np.nan
+        
+        eads = []
+        for _ in range(iterations):
+            # Sample with replacement from the subtree analysis list
+            sampled_subtree_analysis = choices(subtree_analysis_list, k=subsample_size)
+            # Calculate the EAD for the sample
+            ead_value = ead(sampled_subtree_analysis, height, typ)
+            eads.append(ead_value)
+    
+        # Return the average of the calculated EADs, ignoring NaN values
+        return np.nanmean(eads)
     
     # def prop_distinct(subtree_analysis_list, height, typ: str):
     #     # Flatten the list of subtrees while filtering out None values
@@ -437,25 +478,50 @@ def parallel_subtree_analysis(source_codes, n_jobs = -1, heights=[3,4,5,6], verb
         return np.nanmean(jaccard_dists)
      
     
-    if do_bootstrap:
-        for height in tqdm(heights, desc="Calculating Proportion of Distinct Subtrees"):
-            result_dict["plain_subtrees"][height] = prop_distinct_bootstrapped(results, height, "plain", iterations, subsample_size)
-            result_dict["stripped_subtrees"][height] = prop_distinct_bootstrapped(results, height, "stripped", iterations, subsample_size)
-            result_dict["obfuscated_subtrees"][height] = prop_distinct_bootstrapped(results, height, "obfuscated", iterations, subsample_size)
-            
-    elif do_jaccard:
-        for height in tqdm(heights, desc="Calculating Jaccard Distance"):
-            result_dict["plain_subtrees"][height] = jaccard_distance_driver(results, height, "plain", jaccard_iterations)
-            result_dict["stripped_subtrees"][height] = jaccard_distance_driver(results, height, "stripped", jaccard_iterations)
-            result_dict["obfuscated_subtrees"][height] = jaccard_distance_driver(results, height, "obfuscated", jaccard_iterations)
-            
-    else: 
-        for height in tqdm(heights, desc="Calculating Proportion of Distinct Subtrees"):
-            result_dict["plain_subtrees"][height] = prop_distinct(results, height, "plain") 
-            result_dict["stripped_subtrees"][height] = prop_distinct(results, height, "stripped")
-            result_dict["obfuscated_subtrees"][height] = prop_distinct(results, height, "obfuscated")
+    for height in tqdm(heights, desc="Calculating Proportion of Distinct Subtrees"):
+        result_type_2_result_dict["normal"]["plain_subtrees"][height] = prop_distinct(results, height, "plain")
+        result_type_2_result_dict["normal"]["stripped_subtrees"][height] = prop_distinct(results, height, "stripped")
+        result_type_2_result_dict["normal"]["obfuscated_subtrees"][height] = prop_distinct(results, height, "obfuscated")
         
-    return result_dict
+        result_type_2_result_dict["bootstrap"]["plain_subtrees"][height] = prop_distinct_bootstrapped(results, height, "plain", iterations, subsample_size)
+        result_type_2_result_dict["bootstrap"]["stripped_subtrees"][height] = prop_distinct_bootstrapped(results, height, "stripped", iterations, subsample_size)
+        result_type_2_result_dict["bootstrap"]["obfuscated_subtrees"][height] = prop_distinct_bootstrapped(results, height, "obfuscated", iterations, subsample_size)
+        
+        result_type_2_result_dict["jaccard"]["plain_subtrees"][height] = jaccard_distance_driver(results, height, "plain", jaccard_iterations)
+        result_type_2_result_dict["jaccard"]["stripped_subtrees"][height] = jaccard_distance_driver(results, height, "stripped", jaccard_iterations)
+        result_type_2_result_dict["jaccard"]["obfuscated_subtrees"][height] = jaccard_distance_driver(results, height, "obfuscated", jaccard_iterations)
+        
+        result_type_2_result_dict["ead"]["plain_subtrees"][height] = ead(results, height, "plain")
+        result_type_2_result_dict["ead"]["stripped_subtrees"][height] = ead(results, height, "stripped")
+        result_type_2_result_dict["ead"]["obfuscated_subtrees"][height] = ead(results, height, "obfuscated")
+        
+        result_type_2_result_dict["ead_bootstrap"]["plain_subtrees"][height] = ead_bootstrapped(results, height, "plain", iterations, subsample_size)
+        result_type_2_result_dict["ead_bootstrap"]["stripped_subtrees"][height] = ead_bootstrapped(results, height, "stripped", iterations, subsample_size)
+        result_type_2_result_dict["ead_bootstrap"]["obfuscated_subtrees"][height] = ead_bootstrapped(results, height, "obfuscated", iterations, subsample_size)
+        
+    return result_type_2_result_dict
+        
+        
+    
+    # if do_bootstrap:
+    #     for height in tqdm(heights, desc="Calculating Proportion of Distinct Subtrees"):
+    #         result_dict["plain_subtrees"][height] = prop_distinct_bootstrapped(results, height, "plain", iterations, subsample_size)
+    #         result_dict["stripped_subtrees"][height] = prop_distinct_bootstrapped(results, height, "stripped", iterations, subsample_size)
+    #         result_dict["obfuscated_subtrees"][height] = prop_distinct_bootstrapped(results, height, "obfuscated", iterations, subsample_size)
+            
+    # elif do_jaccard:
+    #     for height in tqdm(heights, desc="Calculating Jaccard Distance"):
+    #         result_dict["plain_subtrees"][height] = jaccard_distance_driver(results, height, "plain", jaccard_iterations)
+    #         result_dict["stripped_subtrees"][height] = jaccard_distance_driver(results, height, "stripped", jaccard_iterations)
+    #         result_dict["obfuscated_subtrees"][height] = jaccard_distance_driver(results, height, "obfuscated", jaccard_iterations)
+            
+    # else: 
+    #     for height in tqdm(heights, desc="Calculating Proportion of Distinct Subtrees"):
+    #         result_dict["plain_subtrees"][height] = prop_distinct(results, height, "plain") 
+    #         result_dict["stripped_subtrees"][height] = prop_distinct(results, height, "stripped")
+    #         result_dict["obfuscated_subtrees"][height] = prop_distinct(results, height, "obfuscated")
+        
+    # return result_dict
 
 
     

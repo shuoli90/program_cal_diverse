@@ -1,3 +1,5 @@
+Multiple datasets, each with the following format:
+
 An integer N (2 ≤ N ≤ 6), representing some quantity or size.
 N pairs of integers (low_i, high_i) (1 ≤ low_i ≤ high_i ≤ 99).
 
@@ -7,11 +9,15 @@ N pairs of integers (low_i, high_i) (1 ≤ low_i ≤ high_i ≤ 99).
 2
 1 11
 1 11
+3
+1 11
+1 11
+1 11
 ```
 
 ### Function Signature:
 Write a function f(inputs) that takes in the input.
-def f(inputs: List[Tuple[int, int]]):
+def f(inputs: List[Tuple[int, List[int]]]):
     '''
     inputs: a list of tuples, each containing two integers
     '''

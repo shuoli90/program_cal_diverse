@@ -13,7 +13,9 @@ A list of N tuples, each containing two integers (X, Y), where each integer is b
 
 ### Function Signature:
 Write a function f(inputs) that takes in the input.
-def f(inputs: List[Tuple[int, int]]):
+def f(N: int, A: List[int], B: List[int]):
     '''
-    inputs: a list of tuples, each containing two integers
+    N: int, the number of elements in the list
+    A: List[int], the list of first element of the tuples
+    B: List[int], the list of second element of the tuples
     '''

@@ -18,14 +18,16 @@ logging.basicConfig(level=logging.INFO)
 
 ### we will have a list of the directories we want to merge for re-evaluation 
 
-ALL_EXPERIMENT_OUTPUT_ROOT = "/data1/shypula/prog_diversity/all_experiments/"
+ALL_EXPERIMENT_OUTPUT_ROOT = "/data0/shypula/prog_diversity/all_experiments/"
 
 # RUN_NAME = "Open_Ended_Reevaluation_Cosine_Bootstrap_NoExecute_FineGrainedSemantic"
 # RUN_NAME = "Directed_Reevaluation_Cosine_Bootstrap_NoExecute_FineGrainedSemantic"
 # RUN_NAME = "Human_Directed_Reevaluation_Cosine_Bootstrap_FineGrainedSemantic"
 
-RUN_NAME = "Open_Ended_Reevaluation_JaccPairwise_wllama31"
-# RUN_NAME = "Directed_Reevaluation_JaccPairwise_wCommercial"
+# RUN_NAME = "Open_Ended_Reevaluation_EAD_Open_and_Commercial"
+# RUN_NAME = "Directed_Reevaluation_EAD_Open_and_Commercial"
+RUN_NAME = "Open_Ended_Reeavluation_Rebuttal_v2"
+
 
 DIRECTORY_PATHS=[
     # "/data1/shypula/prog_diversity/all_experiments/Model_Prompt_Temp_Sweep_2024-06-21_22-18-19", 
@@ -38,8 +40,8 @@ DIRECTORY_PATHS=[
     # "/data1/shypula/prog_diversity/all_experiments/human_directed_eval_cosine_bootstrap_finegrained_2024-07-25_16-36-08"
     # "/data1/shypula/prog_diversity/all_experiments/Open_Ended_Reevaluation_Cosine_Bootstrap_2024-07-18_00-57-36",
     # "/data1/shypula/prog_diversity/all_experiments/OpenEndedDopt4AndBigEval_2024-07-23_02-53-17" 
-    "/data1/shypula/prog_diversity/all_experiments/Open_Ended_Reevaluation_Cosine_Bootstrap_NoExecute_FineGrainedSemantic_2024-07-26_00-34-22", 
-    "/data1/shypula/prog_diversity/all_experiments/OpenEndedLlama3.1_2024-07-25_23-53-56"
+    # "/data1/shypula/prog_diversity/all_experiments/Open_Ended_Reevaluation_Cosine_Bootstrap_NoExecute_FineGrainedSemantic_2024-07-26_00-34-22", 
+    # "/data1/shypula/prog_diversity/all_experiments/OpenEndedLlama3.1_2024-07-25_23-53-56"
     # "/data1/shypula/prog_diversity/all_experiments/Directed_Reevaluation_Cosine_Bootstrap_NoExecute_FineGrainedSemantic_2024-07-25_02-06-22", 
     # "/home/bzhang16/program_cal_diverse/all_experiments/directed_debug_2024-07-24_01-56-45", 
     # "/home/bzhang16/program_cal_diverse/all_experiments/directed_debug_2024-07-25_01-58-33", 
@@ -48,6 +50,24 @@ DIRECTORY_PATHS=[
     # "/home/bzhang16/program_cal_diverse/all_experiments/directed_debug_2024-07-25_02-02-06",   
     # "/home/bzhang16/program_cal_diverse/all_experiments/directed_debug_2024-07-25_04-16-01", 
     # "/home/bzhang16/program_cal_diverse/all_experiments/directed_debug_2024-07-25_04-17-40"
+    
+    
+    # "/data1/shypula/prog_diversity/all_experiments/Open_Ended_Reevaluation_JaccPairwise_wllama31_2024-07-27_23-25-20", 
+    # "/data1/shypula/prog_diversity/all_experiments/OpenEndedCommercialV2_2024-08-01_18-11-06", 
+    # "/data1/shypula/prog_diversity/all_experiments/OpenEndedCommercialV2_2024-08-01_04-18-01"
+    
+    
+    # "/data1/shypula/prog_diversity/all_experiments/Directed_Reevaluation_JaccPairwise_wCommercial_2024-07-27_23-17-29", 
+    # "/data1/shypula/prog_diversity/all_experiments/DirectedLlama3.1_2024-07-26_12-25-18", 
+    # "/data1/shypula/prog_diversity/all_experiments/DirectedMetallamaCodellama70B_2024-07-27_21-24-27", 
+    # "/data1/shypula/prog_diversity/all_experiments/DirectedMetallamaCodellama70B_2024-07-29_01-29-55", 
+    # "/data1/shypula/prog_diversity/all_experiments/DirectedCommercialV2_2024-08-01_04-20-02", 
+    # "/data1/shypula/prog_diversity/all_experiments/DirectedCommercialV2_2024-08-01_17-55-50"
+    "/data1/shypula/prog_diversity/rebuttals/rebuttal_pt1", 
+    "/data1/shypula/prog_diversity/rebuttals/rebuttal_pt2", 
+    "/data1/shypula/prog_diversity/rebuttals/rebuttal_pt3"
+    
+    
 ]
 
 # REEXECUTE = False
@@ -59,11 +79,12 @@ EXTRA_VERBOSE = False
 
 FIX_OLD_FORMAT = False
 
-EVAL_WORKERS = 10
+EVAL_WORKERS = 5
 
 # MODEL_SIM_ENDPOINT_URL='http://73.13.33.233'
 # MODEL_SIM_ENDPOINT_PORT=80
 MODEL_SIM_ENDPOINT_URL='http://presto.seas.upenn.edu'
+# MODEL_SIM_ENDPOINT_PORT=8888
 MODEL_SIM_ENDPOINT_PORT=8877
 # MODEL_SIM_ENDPOINT_PORT=8888
 
@@ -82,6 +103,11 @@ def capture_i_and_coh_j(text):
         logging.critical(f"Error in parsing the output_record: {text}")
         return 99, "coh_99"
 
+config_replacement_dict = {
+    "/data1/shypula/pie_results/rebuttal/OpenEndedRebuttal_2024-11-25_05-01-48": "/data1/shypula/prog_diversity/rebuttals/rebuttal_pt1", 
+    "/data1/shypula/pie_results/rebuttal/OpenEndedRebuttal_2024-11-26_05-12-35": "/data1/shypula/prog_diversity/rebuttals/rebuttal_pt2", 
+    "/data1/shypula/pie_results/rebuttal/OpenEndedRebuttal_2024-11-27_21-05-00": "/data1/shypula/prog_diversity/rebuttals/rebuttal_pt3"
+}
 
 def main(DIRECTORY_PATHS): 
     
@@ -116,13 +142,26 @@ def main(DIRECTORY_PATHS):
             this_dir_yaml_paths = [line.strip() for line in f.readlines()]
             
         for yaml_path in this_dir_yaml_paths: 
+            # use the dict to change the path 
+            # substitute over both patterns to get the new path 
+            
             ## open the yaml file
-            yaml_path = yaml_path.replace("../all_experiments/directed_debug", "/home/bzhang16/program_cal_diverse/all_experiments/directed_debug")
+            for old_path, new_path in config_replacement_dict.items(): 
+                yaml_path = yaml_path.replace(old_path, new_path)
+                
             with open(yaml_path, 'r') as f: 
                 yaml_dict = yaml.load(f, Loader=yaml.FullLoader)
                 
-            this_experiment_output_dir = yaml_dict["experiment_output_dir"].replace("../all_experiments/directed_debug", "/home/bzhang16/program_cal_diverse/all_experiments/directed_debug")
-            this_experiment_output_root = yaml_dict["experiment_output_root"].replace("../all_experiments/directed_debug", "/home/bzhang16/program_cal_diverse/all_experiments/directed_debug")
+            # this_experiment_output_dir = yaml_dict["experiment_output_dir"]#.replace("../all_experiments/directed_debug", "/home/bzhang16/program_cal_diverse/all_experiments/directed_debug")
+            # this_experiment_output_root = yaml_dict["experiment_output_root"]#.replace("../all_experiments/directed_debug", "/home/bzhang16/program_cal_diverse/all_experiments/directed_debug")
+            this_experiment_output_dir = yaml_dict["experiment_output_dir"]
+            this_experiment_output_root = yaml_dict["experiment_output_root"]
+            for old_path, new_path in config_replacement_dict.items(): 
+                this_experiment_output_dir = this_experiment_output_dir.replace(old_path, new_path)
+                this_experiment_output_root = this_experiment_output_root.replace(old_path, new_path)
+            
+            # this_experiment_output_dir = this_experiment_output_dir.replace("/data1/shypula", "/data0/shypula")
+            # this_experiment_output_root = this_experiment_output_root.replace("/data1/shypula", "/data0/shypula")
             
             this_experiment_id = os.path.basename(this_experiment_output_dir)
             assert this_experiment_output_root == directory_path, f"experiment_output_root is not the same as the directory path, something weird is going on: {this_experiment_output_root} != {directory_path}"
@@ -133,7 +172,7 @@ def main(DIRECTORY_PATHS):
                     if c1 != c2: 
                         print(f"Index {i}: {c1} != {c2}")
                 pdb.set_trace()
-            assert this_experiment_output_dir == os.path.join(directory_path, this_experiment_id), f"experiment_output_dir is not the same as the directory path, something weird is going on: {this_experiment_output_dir} != {os.path.join(directory_path, this_experiment_id)}"
+            assert this_experiment_output_dir.strip() == os.path.join(directory_path, this_experiment_id).strip(), f"experiment_output_dir is not the same as the directory path, something weird is going on: {this_experiment_output_dir} != {os.path.join(directory_path, this_experiment_id)}"
             
             ## only copy over if there is a results.jsonl file
             if not os.path.exists(os.path.join(this_experiment_output_dir, 'results.jsonl')): 

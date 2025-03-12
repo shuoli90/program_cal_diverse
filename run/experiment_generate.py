@@ -151,7 +151,7 @@ if __name__ == '__main__':
         if 'gpt' in args.model or 'babbage' in args.model or 'davinci' in args.model:
             pipe = gpt.GPTModel(model_name=args.model)
             
-        elif args.model in ['SONNET', 'HAIKU', 'OPUS']:
+        elif any([model in args.model for model in ['SONNET', 'HAIKU', 'OPUS', "SONNET3.5"]]):
             pipe = claude.ClaudeModel(model_name=args.model)
             
         else:
@@ -233,7 +233,7 @@ if __name__ == '__main__':
                 do_sample=True, 
                 top_p=args.top_p,
                 top_k=None,
-                return_dict_in_generate=True, 
+                return_dict_in_generate=False, 
                 batch_size=args.batch_size,
             )
             

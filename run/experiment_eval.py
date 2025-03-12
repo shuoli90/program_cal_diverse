@@ -275,12 +275,15 @@ if __name__ == '__main__':
         
         # this is a bit complex; but we also want to add the original code (raw, un-formatted), back into the 
         # individual (generation) record for better logging + analysis
-        # so we move the lists of raw/formatted -> individual records
-        for record in sorted_records:
-            record["formatted_code"] = result['formatted_programs'][record['generation_id']]
-            record["raw_generation"] = result['raw_generations'][record['generation_id']]
+        # so we move the lists of raw/formatted -> individual records)
+        # we also re-annotate the code with the program number to prevent clobbering later with dicts 
+        for i, record in enumerate(sorted_records):
+            record["formatted_code"] = f"#Program {i}\n{result['formatted_programs'][record['generation_id']]}"
+            record["raw_generation"] = f"#Program {i}\n{result['raw_generations'][record['generation_id']]}"
             # add the original code here that is not formatted, but is extracted 
-            record["extracted_code"] = result['programs'][record['generation_id']]
+            record["extracted_code"] = f"#Program {i}\n{result['programs'][record['generation_id']]}"
+            record["code"] = f"#Program {i}\n{record['code']}"
+
 
         coherent_records = clustering.get_coherent_records(sorted_records)
         syn_correct_records = clustering.get_syn_correct_records(sorted_records)
@@ -408,6 +411,20 @@ if __name__ == '__main__':
                     
                     distinct_n_jaccard = lexical_diversity.jaccard_n_grams(programs, i, lexical_diversity.get_relevant_tokens_parso, remove_comments=False, iterations=-1)
                     result[f'{recordtype}_distinct_{i}_jaccard'] = distinct_n_jaccard
+                    
+                    vocab_size = 32004 if "codellama" in args.model else 128256
+                    ead_n = lexical_diversity.ead_normalized_unique_ngrams(programs, i, lexical_diversity.get_relevant_tokens_parso, remove_comments=False, 
+                                                                           vocab_size=vocab_size)
+                    result[f'{recordtype}_ead_{i}'] = ead_n
+                    
+                    ead_n_bootstrap = lexical_diversity.bootstrap_ead_normalized_unique_ngrams(
+                        programs, i, lexical_diversity.get_relevant_tokens_parso, remove_comments=False,
+                        vocab_size=vocab_size, iterations=300, subsample_size=2
+                    )
+                    
+                    result[f'{recordtype}_ead_{i}_bootstrap'] = ead_n_bootstrap
+                    
+                    
                 logging.info(f"Lexical diversity took {datetime.datetime.now() - lexical_diversity_start}")
                     
                 logging.info(f"Calculating average cosine distance for {recordtype} programs")
@@ -467,28 +484,49 @@ if __name__ == '__main__':
                 else: 
                     corpus_self_bleu = lexical_diversity.parallel_corpus_self_bleu(programs, lexical_diversity.get_relevant_tokens_parso, n_jobs=args.eval_workers, normalize=True)
                 result[f'{recordtype}_corpus_self_bleu'] = corpus_self_bleu
-                parallel_subtree_results = parallel_subtree_analysis(programs, n_jobs=args.eval_workers, heights=[3,4,5,6], verbose=False)
+                
+                
+                parallel_subtree_type_2_result_dict = parallel_subtree_analysis(programs, n_jobs=args.eval_workers, heights=[3,4,5,6], verbose=False, 
+                                                                                iterations=300, jaccard_iterations=-1)
+                
+                parallel_subtree_results = parallel_subtree_type_2_result_dict["normal"]
+                parallel_subtree_results_bootstrap = parallel_subtree_type_2_result_dict["bootstrap"]
+                parallel_subtree_results_jaccard = parallel_subtree_type_2_result_dict["jaccard"]
+                parallel_subtree_results_ead = parallel_subtree_type_2_result_dict["ead"]
+                parallel_subtree_results_ead_bootstrap = parallel_subtree_type_2_result_dict["ead_bootstrap"]
+                
+                
+                # parallel_subtree_results = parallel_subtree_analysis(programs, n_jobs=args.eval_workers, heights=[3,4,5,6], verbose=False)
                 for key, height_results in parallel_subtree_results.items():
                     for height, v in height_results.items():
                         result[f"{recordtype}_{key}_{height}"] = v
                 # TODO: add in the bootstrap results
-                parallel_subtree_results_bootstrap = parallel_subtree_analysis(
-                    programs, n_jobs=args.eval_workers, heights=[3,4,5,6], 
-                    verbose=False, do_bootstrap=True, iterations=300, subsample_size=2
-                )
+                
+                
+                # parallel_subtree_results_bootstrap = parallel_subtree_analysis(
+                #     programs, n_jobs=args.eval_workers, heights=[3,4,5,6], 
+                #     verbose=False, do_bootstrap=True, iterations=300, subsample_size=2
+                # )
                 for key, height_results in parallel_subtree_results_bootstrap.items():
                     for height, v in height_results.items():
                         result[f"{recordtype}_{key}_{height}_bootstrap"] = v
                         
-                parallel_subtree_results_jaccard = parallel_subtree_analysis(
-                    programs, n_jobs=args.eval_workers, heights=[3,4,5,6], 
-                    verbose=False, do_jaccard=True, jaccard_iterations=-1
-                )
+                # parallel_subtree_results_jaccard = parallel_subtree_analysis(
+                #     programs, n_jobs=args.eval_workers, heights=[3,4,5,6], 
+                #     verbose=False, do_jaccard=True, jaccard_iterations=-1
+                # )
                 for key, height_results in parallel_subtree_results_jaccard.items():
                     for height, v in height_results.items():
                         result[f"{recordtype}_{key}_{height}_jaccard"] = v
-                
                         
+                for key, height_results in parallel_subtree_results_ead.items():
+                    for height, v in height_results.items():
+                        result[f"{recordtype}_{key}_{height}_ead"] = v
+                        
+                for key, height_results in parallel_subtree_results_ead_bootstrap.items():
+                    for height, v in height_results.items():
+                        result[f"{recordtype}_{key}_{height}_ead_bootstrap"] = v
+                    
                         
             else:
                 
@@ -508,6 +546,8 @@ if __name__ == '__main__':
                     result[f'{recordtype}_distinct_{i}_no_comments_bootstrap'] = np.nan
                     result[f'{recordtype}_distinct_{i}_raw_bootstrap'] = np.nan
                     result[f'{recordtype}_distinct_{i}_jaccard'] = np.nan
+                    result[f'{recordtype}_ead_{i}'] = np.nan
+                    result[f'{recordtype}_ead_{i}_bootstrap'] = np.nan
                 # result[f'{recordtype}_distinct_1'] = np.nan
                 # result[f'{recordtype}_distinct_2'] = np.nan
                 # result[f'{recordtype}_distinct_3'] = np.nan
@@ -520,6 +560,8 @@ if __name__ == '__main__':
                         result[f"{recordtype}_{key}_{height}"] = np.nan
                         result[f"{recordtype}_{key}_{height}_bootstrap"] = np.nan
                         result[f"{recordtype}_{key}_{height}_jaccard"] = np.nan
+                        result[f"{recordtype}_{key}_{height}_ead"] = np.nan
+                        result[f"{recordtype}_{key}_{height}_ead_bootstrap"] = np.nan
                                                                                                                  
             # save the results
             if recordtype == 'all':

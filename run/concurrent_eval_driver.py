@@ -29,10 +29,13 @@ results_stats_keys = results_stats_keys + ['average_cosine_distance_programs_zer
 results_stats_keys = results_stats_keys + [f"distinct_{i}" for i in range(1, 7)] + [f"distinct_{i}_no_comments" for i in range(1, 7)] + [f"distinct_{i}_raw" for i in range(1, 7)] 
 results_stats_keys = results_stats_keys + [f"distinct_{i}_bootstrap" for i in range(1, 7)] + [f"distinct_{i}_no_comments_bootstrap" for i in range(1, 7)] + [f"distinct_{i}_raw_bootstrap" for i in range(1, 7)]
 results_stats_keys = results_stats_keys + [f"distinct_{i}_jaccard" for i in range(1, 7)]
+results_stats_keys = results_stats_keys + [f"ead_{i}" for i in range(1, 7)] + [f"ead_{i}_bootstrap" for i in range(1, 7)]
 results_stats_keys = results_stats_keys + [f"{key}_{height}" for key in ['plain_subtrees', 'stripped_subtrees'] for height in [3,4,5,6]]
 # boostrap keys
 results_stats_keys = results_stats_keys + [f"{key}_{height}_bootstrap" for key in ['plain_subtrees', 'stripped_subtrees'] for height in [3,4,5,6]]
 results_stats_keys = results_stats_keys + [f"{key}_{height}_jaccard" for key in ['plain_subtrees', 'stripped_subtrees'] for height in [3,4,5,6]]
+results_stats_keys = results_stats_keys + [f"{key}_{height}_ead" for key in ['plain_subtrees', 'stripped_subtrees'] for height in [3,4,5,6]]
+results_stats_keys = results_stats_keys + [f"{key}_{height}_ead_bootstrap" for key in ['plain_subtrees', 'stripped_subtrees'] for height in [3,4,5,6]]
 # results_stats_keys = [f"{recordtype}_{key}" for recordtype in ['all', 'coh', 'err', 'acc', 'inacc'] for key in results_stats_keys]
 results_stats_keys = [f"{recordtype}_{key}" for recordtype in ['all', 'coh', 'syn', 'err', 'acc', 'inacc'] for key in results_stats_keys]
 results_stats_keys.insert(4, 'coh_semantic_proportion_of_all')
@@ -41,7 +44,16 @@ all_keys = base_keys + results_stats_keys
 
 pretty_column_widths = [46, 15] + [(len(k) + 2) for k in all_keys[2:]]
 
-MAX_WORKERS=5
+
+MAX_WORKERS=40
+
+
+config_replacement_dict = {
+    "/data1/shypula/pie_results/rebuttal/OpenEndedRebuttal_2024-11-25_05-01-48": "/data1/shypula/prog_diversity/rebuttals/rebuttal_pt1", 
+    "/data1/shypula/pie_results/rebuttal/OpenEndedRebuttal_2024-11-26_05-12-35": "/data1/shypula/prog_diversity/rebuttals/rebuttal_pt2", 
+    "/data1/shypula/pie_results/rebuttal/OpenEndedRebuttal_2024-11-27_21-05-00": "/data1/shypula/prog_diversity/rebuttals/rebuttal_pt3"
+}
+
 
 
 def parse_results(results_dir: str): 
@@ -138,6 +150,12 @@ def monitor_directories_and_run(configs_paths, experiment_directory):
                 directory = config.experiment_output_dir
                 result_path = os.path.join(directory, 'results.jsonl')
                 error_path = os.path.join(directory, 'error.txt')
+                
+                for old_path, new_path in config_replacement_dict.items(): 
+                    if old_path in directory: 
+                        directory = directory.replace(old_path, new_path)
+                        result_path = result_path.replace(old_path, new_path)
+                        error_path = error_path.replace(old_path, new_path)
 
                 if os.path.exists(result_path) or os.path.exists(error_path):
                     executor.submit(run_experiment_and_log_results, config_path, config, stats_file, stats_pretty_file, lock)

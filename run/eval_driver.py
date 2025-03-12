@@ -25,10 +25,13 @@ results_stats_keys = results_stats_keys + ['average_cosine_distance_programs_zer
 results_stats_keys = results_stats_keys + [f"distinct_{i}" for i in range(1, 7)] + [f"distinct_{i}_no_comments" for i in range(1, 7)] + [f"distinct_{i}_raw" for i in range(1, 7)] 
 results_stats_keys = results_stats_keys + [f"distinct_{i}_bootstrap" for i in range(1, 7)] + [f"distinct_{i}_no_comments_bootstrap" for i in range(1, 7)] + [f"distinct_{i}_raw_bootstrap" for i in range(1, 7)]
 results_stats_keys = results_stats_keys + [f"distinct_{i}_jaccard" for i in range(1, 7)]
+results_stats_keys = results_stats_keys + [f"ead_{i}" for i in range(1, 7)] + [f"ead_{i}_bootstrap" for i in range(1, 7)]
 results_stats_keys = results_stats_keys + [f"{key}_{height}" for key in ['plain_subtrees', 'stripped_subtrees'] for height in [3,4,5,6]]
 # boostrap keys
 results_stats_keys = results_stats_keys + [f"{key}_{height}_bootstrap" for key in ['plain_subtrees', 'stripped_subtrees'] for height in [3,4,5,6]]
 results_stats_keys = results_stats_keys + [f"{key}_{height}_jaccard" for key in ['plain_subtrees', 'stripped_subtrees'] for height in [3,4,5,6]]
+results_stats_keys = results_stats_keys + [f"{key}_{height}_ead" for key in ['plain_subtrees', 'stripped_subtrees'] for height in [3,4,5,6]]
+results_stats_keys = results_stats_keys + [f"{key}_{height}_ead_bootstrap" for key in ['plain_subtrees', 'stripped_subtrees'] for height in [3,4,5,6]]
 # results_stats_keys = [f"{recordtype}_{key}" for recordtype in ['all', 'coh', 'err', 'acc', 'inacc'] for key in results_stats_keys]
 results_stats_keys = [f"{recordtype}_{key}" for recordtype in ['all', 'coh', 'syn', 'err', 'acc', 'inacc'] for key in results_stats_keys]
 results_stats_keys.insert(4, 'coh_semantic_proportion_of_all')

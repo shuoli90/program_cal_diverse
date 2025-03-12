@@ -36,7 +36,7 @@ import subprocess
 logging.basicConfig(level=logging.INFO)
 
 
-RUN_NAME="human_directed_eval_debug_new"
+RUN_NAME="human_directed_eval_ead"
 
 MAX_PROGRAMS=-1
 

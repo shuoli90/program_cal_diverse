@@ -9,14 +9,17 @@ import subprocess
 
 
 # RUN_NAME="OpenEndedGridSearch"
-RUN_NAME="directed_debug"
+# RUN_NAME="DirectedCommercialV3"
+# RUN_NAME="OpenEndedCommercialV3"
+RUN_NAME="NewDatasetTemperatureSweep"
 
-ALL_EXPERIMENT_OUTPUT_ROOT = "../all_experiments"
+ALL_EXPERIMENT_OUTPUT_ROOT = "/data1/shypula/prog_diversity/all_experiments/"
 
 if not os.path.exists(ALL_EXPERIMENT_OUTPUT_ROOT):
     os.makedirs(ALL_EXPERIMENT_OUTPUT_ROOT, exist_ok=True)
     print(f"Created directory {ALL_EXPERIMENT_OUTPUT_ROOT}.")
-PATH_TO_HF_TOKEN = "../hf_token.txt"
+    
+PATH_TO_HF_TOKEN = "../../hf_token.txt"
 
 MAX_LENGTH=1500
 REPITITION_PENALTY=1.0
@@ -25,12 +28,14 @@ PORT=8888
 STARTUP_TIMEOUT=2000
 VOLUME="saved_models"
 GENERATION_TIMEOUT=1000
-EVAL_WORKERS=20
+EVAL_WORKERS=15
 EVAl_TIMEOUT=60
 DOCKER_MAX_WORKERS=20
 DOCKER_COMMUNICATION_TIMEOUT=2000
 MAX_PROGRAMS=-1
+# MAX_PROGRAMS=2
 USE_PREVIOUS_EXECUTIONS=False
+# MODEL_SIM_ENDPOINT_URL='http://presto.seas.upenn.edu'
 MODEL_SIM_ENDPOINT_URL='http://localhost'
 MODEL_SIM_ENDPOINT_PORT=8877
 MODEL_SIM_ENDPOINT_NAME='neulab/codebert-python'
@@ -39,14 +44,16 @@ MODEL_SIM_MAX_TOKENS=512
 # DIRECTED_DF_PATH="../data/high_solve_rate_problems/val_descriptions_and_testcases.jsonl"
 # DIRECTED_DF_PATH="/home/shypula/program_cal_diverse/data/high_solve_rate_problems/reprocessed_problem_descriptions_v7_train.jsonl"
 DIRECTED_DF_PATH="../data/high_solve_rate_problems/reprocessed_problem_descriptions_v9_solve_rate_0.4_n_testcases_15_sampled_100.jsonl"
-OPEN_DF_PATH='../data/open_ended_final/dataset_update.jsonl'
+# OPEN_DF_PATH='../data/open_ended_final/dataset_update.jsonl'
+# OPEN_DF_PATH='../data/open_ended_extended/dataset_extended.jsonl'
+OPEN_DF_PATH="../data/open_ended_extended/dataset_extended_final.jsonl"
 
 ######## Important / To-Change Parameters ########
 
-IS_DIRECTED = True
+IS_DIRECTED = False
 
 PATH_TO_DATASET = DIRECTED_DF_PATH if IS_DIRECTED else OPEN_DF_PATH
-    
+     
 DEVICES = "0,1,2,3,4,5,6,7"
 # DEVICES="6,7"
 
@@ -55,16 +62,110 @@ CONFIGS = [
            
            ## open-ended experiments:
            
+            ## directed experiments:
+           # commercial models:
+        #    ['gpt-3.5-turbo-0125', 1.0, 1.0, 100, 'directed_default', -1],
+        #    ['gpt-3.5-turbo-0125', 1.0, 1.0, 100, 'directed_two_shot', -1],
+        #    ['gpt-3.5-turbo-0125', 1.0, 1.0, 100, 'directed_two_shot_cot', -1],
+            # ['gpt-4o-mini', 1.0, 1.0, 100, 'open_ended_default', 20],
+        
+        
+        #    ['gpt-4o-mini', 1.0, 1.0, 100, 'directed_default', 10],
+        #    ['gpt-4o-mini', 1.0, 1.0, 100, 'directed_two_shot', 10],
+        #    ['gpt-4o-mini', 1.0, 1.0, 100, 'directed_two_shot_cot', 10],
+           
+        #    ['gpt-4o', 1.0, 1.0, 100, 'directed_default', 10],
+        #    ['gpt-4o', 1.0, 1.0, 100, 'directed_two_shot', 10],
+        #    ['gpt-4o', 1.0, 1.0, 100, 'directed_two_shot_cot', 10],
+           
+        #     ['HAIKU', 1.0, 1.0, 100, 'directed_default', -1],
+        #     ['HAIKU', 1.0, 1.0, 100, 'directed_two_shot', -1],
+        #     ['HAIKU', 1.0, 1.0, 100, 'directed_two_shot_cot', -1],
+           
+            # ['SONNET', 1.0, 1.0, 100, 'directed_default', -1],
+            # ['SONNET', 1.0, 1.0, 100, 'directed_two_shot', -1],
+            # ['SONNET', 1.0, 1.0, 100, 'directed_two_shot_cot', -1],
+
+        #    ['babbage-002', 1.0, 1.0, 100, 'directed_default', -1],
+        #    ['babbage-002', 1.0, 1.0, 100, 'open_ended_two_shot', -1],
+        #    ['babbage-002', 1.0, 1.0, 100, 'directed_two_shot_cot', -1],
+
+
+        #     ['SONNET', 1.0, 1.0, 100, 'directed_default', -1],
+        #     ['SONNET', 1.0, 1.0, 100, 'directed_two_shot', -1],
+        #     ['SONNET', 1.0, 1.0, 100, 'directed_two_shot_cot', -1],
+
+        #     ['HAIKU', 1.0, 1.0, 100, 'directed_default', -1],
+        #     ['HAIKU', 1.0, 1.0, 100, 'directed_two_shot', -1],
+        #     ['HAIKU', 1.0, 1.0, 100, 'directed_two_shot_cot', -1],
+
+        #     ['davinci-002', 1.0, 1.0, 100, 'directed_default', -1],
+        #    ['davinci-002', 1.0, 1.0, 100, 'directed_two_shot', -1],
+        #    ['davinci-002', 1.0, 1.0, 100, 'directed_two_shot_cot', -1],
+           
            # grid search over temp [0.6, 0.7, 0.8, 0.9, 1.0, 1.1, 1.2] 
            # top-p [1.0, .975, .95, .925, .9, .85, 0.8, 0.7]
                                             
-            #   ['meta-llama/Meta-Llama-3-8B-Instruct', 0.6, 0.975, 100, 'open_ended_default', 25],
-            #     ['meta-llama/Meta-Llama-3-8B-Instruct', 0.7, 0.975, 100, 'open_ended_default', 25],
-            #         ['meta-llama/Meta-Llama-3-8B-Instruct', 0.8, 0.975, 100, 'open_ended_default', 25],
-            #             ['meta-llama/Meta-Llama-3-8B-Instruct', 0.9, 0.975, 100, 'open_ended_default', 25], 
-            #                 ['meta-llama/Meta-Llama-3-8B-Instruct', 1.0, 0.975, 100, 'open_ended_default', 25], 
-            #                     ['meta-llama/Meta-Llama-3-8B-Instruct', 1.1, 0.975, 100, 'open_ended_default', 25], 
-            #                         ['meta-llama/Meta-Llama-3-8B-Instruct', 1.2, 0.975, 100, 'open_ended_default', 25],
+            #   ['meta-llama/Llama-3.1-8B-Instruct', 0.6, 1.0, 32, 'open_ended_default', 32],
+            #   ['meta-llama/Llama-3.1-8B-Instruct', 0.7, 1.0, 32, 'open_ended_default', 32],
+            #   ['meta-llama/Llama-3.1-8B-Instruct', 0.8, 1.0, 32, 'open_ended_default', 32],
+            #   ['meta-llama/Llama-3.1-8B-Instruct', 0.9, 1.0, 32, 'open_ended_default', 32],
+            #   ['meta-llama/Llama-3.1-8B-Instruct', 1.0, 1.0, 32, 'open_ended_default', 32],
+            #   ['meta-llama/Llama-3.1-8B-Instruct', 1.1, 1.0, 32, 'open_ended_default', 32],
+            #   ['meta-llama/Llama-3.1-8B-Instruct', 1.2, 1.0, 32, 'open_ended_default', 32],
+            #   ['meta-llama/Llama-3.1-8B-Instruct', 1.4, 1.0, 32, 'open_ended_default', 32],
+              
+            #   ['meta-llama/Llama-3.1-8B', 0.6, 1.0, 32, 'open_ended_default', 32],
+            #   ['meta-llama/Llama-3.1-8B', 0.7, 1.0, 32, 'open_ended_default', 32],
+            #   ['meta-llama/Llama-3.1-8B', 0.8, 1.0, 32, 'open_ended_default', 32],
+            #   ['meta-llama/Llama-3.1-8B', 0.9, 1.0, 32, 'open_ended_default', 32],
+            #   ['meta-llama/Llama-3.1-8B', 1.0, 1.0, 32, 'open_ended_default', 32],
+            #   ['meta-llama/Llama-3.1-8B', 1.1, 1.0, 32, 'open_ended_default', 32],
+            #   ['meta-llama/Llama-3.1-8B', 1.2, 1.0, 32, 'open_ended_default', 32],
+            #   ['meta-llama/Llama-3.1-8B', 1.4, 1.0, 32, 'open_ended_default', 32],
+              
+            #   ['meta-llama/Llama-3.1-70B-Instruct', 0.6, 1.0, 32, 'open_ended_default', 16],
+            #   ['meta-llama/Llama-3.1-70B-Instruct', 0.7, 1.0, 32, 'open_ended_default', 16],
+            #   ['meta-llama/Llama-3.1-70B-Instruct', 0.8, 1.0, 32, 'open_ended_default', 16],
+            #   ['meta-llama/Llama-3.1-70B-Instruct', 0.9, 1.0, 32, 'open_ended_default', 16],
+            #   ['meta-llama/Llama-3.1-70B-Instruct', 1.0, 1.0, 32, 'open_ended_default', 16],
+            #   ['meta-llama/Llama-3.1-70B-Instruct', 1.1, 1.0, 32, 'open_ended_default', 16],
+            #   ['meta-llama/Llama-3.1-70B-Instruct', 1.2, 1.0, 32, 'open_ended_default', 16],
+            #   ['meta-llama/Llama-3.1-70B-Instruct', 1.4, 1.0, 32, 'open_ended_default', 16],
+              
+            #   ['meta-llama/Llama-3.1-70B', 0.6, 1.0, 32, 'open_ended_default', 16],
+            #   ['meta-llama/Llama-3.1-70B', 0.7, 1.0, 32, 'open_ended_default', 16],
+            #   ['meta-llama/Llama-3.1-70B', 0.8, 1.0, 32, 'open_ended_default', 16],
+            #   ['meta-llama/Llama-3.1-70B', 0.9, 1.0, 32, 'open_ended_default', 16],
+            #   ['meta-llama/Llama-3.1-70B', 1.0, 1.0, 32, 'open_ended_default', 16],
+              ['meta-llama/Llama-3.1-70B', 1.1, 1.0, 32, 'open_ended_default', 16],
+              ['meta-llama/Llama-3.1-70B', 1.2, 1.0, 32, 'open_ended_default', 16],
+              ['meta-llama/Llama-3.1-70B', 1.4, 1.0, 32, 'open_ended_default', 16],
+                      
+              ['allenai/Llama-3.1-Tulu-3-8B-SFT', 0.6, 1.0, 32, 'open_ended_default', 32],
+              ['allenai/Llama-3.1-Tulu-3-8B-SFT', 0.7, 1.0, 32, 'open_ended_default', 32],
+              ['allenai/Llama-3.1-Tulu-3-8B-SFT', 0.8, 1.0, 32, 'open_ended_default', 32],
+              ['allenai/Llama-3.1-Tulu-3-8B-SFT', 0.9, 1.0, 32, 'open_ended_default', 32],
+              ['allenai/Llama-3.1-Tulu-3-8B-SFT', 1.0, 1.0, 32, 'open_ended_default', 32],
+              ['allenai/Llama-3.1-Tulu-3-8B-SFT', 1.1, 1.0, 32, 'open_ended_default', 32],
+              ['allenai/Llama-3.1-Tulu-3-8B-SFT', 1.2, 1.0, 32, 'open_ended_default', 32],
+              ['allenai/Llama-3.1-Tulu-3-8B-SFT', 1.4, 1.0, 32, 'open_ended_default', 32],
+              
+              ['allenai/Llama-3.1-Tulu-3-70B-SFT', 0.6, 1.0, 32, 'open_ended_default', 16],
+              ['allenai/Llama-3.1-Tulu-3-70B-SFT', 0.7, 1.0, 32, 'open_ended_default', 16],
+              ['allenai/Llama-3.1-Tulu-3-70B-SFT', 0.8, 1.0, 32, 'open_ended_default', 16],
+              ['allenai/Llama-3.1-Tulu-3-70B-SFT', 0.9, 1.0, 32, 'open_ended_default', 16],
+              ['allenai/Llama-3.1-Tulu-3-70B-SFT', 1.0, 1.0, 32, 'open_ended_default', 16],
+              ['allenai/Llama-3.1-Tulu-3-70B-SFT', 1.1, 1.0, 32, 'open_ended_default', 16],
+              ['allenai/Llama-3.1-Tulu-3-70B-SFT', 1.2, 1.0, 32, 'open_ended_default', 16],
+              ['allenai/Llama-3.1-Tulu-3-70B-SFT', 1.4, 1.0, 32, 'open_ended_default', 16],
+              
+              
+              
+            
+              
+              
+              
                                     
             #     ['meta-llama/Meta-Llama-3-8B-Instruct', 0.6, 0.95, 100, 'open_ended_default', 25],
             #         ['meta-llama/Meta-Llama-3-8B-Instruct', 0.7, 0.95, 100, 'open_ended_default', 25],  
@@ -127,32 +228,7 @@ CONFIGS = [
                              
               
               
-           ## directed experiments:
-           # commercial models:
-           ['gpt-3.5-turbo-0125', 1.0, 1.0, 100, 'directed_default', 25],
-           ['gpt-3.5-turbo-0125', 1.0, 1.0, 100, 'directed_two_shot', 25],
-           ['gpt-3.5-turbo-0125', 1.0, 1.0, 100, 'directed_two_shot_cot', 25],
-           
-           ['gpt-3.5-turbo-instruct', 1.0, 1.0, 100, 'directed_default', 25],
-           ['gpt-3.5-turbo-instruct', 1.0, 1.0, 100, 'directed_two_shot', 25],
-           ['gpt-3.5-turbo-instruct', 1.0, 1.0, 100, 'directed_two_shot_cot', 25],
-
-           ['babbage-002', 1.0, 1.0, 100, 'directed_default', 25],
-           ['babbage-002', 1.0, 1.0, 100, 'directed_two_shot', 25],
-           ['babbage-002', 1.0, 1.0, 100, 'directed_two_shot_cot', 25],
-
-           ['davinci-002', 1.0, 1.0, 100, 'directed_default', 25],
-           ['davinci-002', 1.0, 1.0, 100, 'directed_two_shot', 25],
-           ['davinci-002', 1.0, 1.0, 100, 'directed_two_shot_cot', 25],
-
-            ['SONNET', 1.0, 1.0, 100, 'directed_default', 25],
-            ['SONNET', 1.0, 1.0, 100, 'directed_two_shot', 25],
-            ['SONNET', 1.0, 1.0, 100, 'directed_two_shot_cot', 25],
-
-            ['HAIKU', 1.0, 1.0, 100, 'directed_default', 25],
-            ['HAIKU', 1.0, 1.0, 100, 'directed_two_shot', 25],
-            ['HAIKU', 1.0, 1.0, 100, 'directed_two_shot_cot', 25],
-
+          
 
            # hf models:
                      
@@ -462,8 +538,7 @@ def main(configurations):
     
     print(f"Created configuration files in {this_driver_root}.")
     print(f"Executing 'python eval_driver.py {this_driver_root} &'")
-    # os.system(" ".join(['python', 'eval_driver.py', this_driver_root, "&"]))
-    eval_driver = subprocess.Popen(["python", "eval_driver.py", this_driver_root])
+    eval_driver = subprocess.Popen(["python", "concurrent_eval_driver.py", this_driver_root])
     print(f"Executing 'python generation_driver.py {this_driver_root}'")
     os.system(" ".join(['python', 'generation_driver.py', this_driver_root]))
     print("Done Generating.")

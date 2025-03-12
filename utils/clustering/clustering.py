@@ -19,6 +19,7 @@ import requests
 import warnings
 import json 
 import numpy as np 
+from utils.clustering.open_ended_wrapper import NONE_TOKEN
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -31,6 +32,35 @@ open_ended_wrapper_abs_path = os.path.join(clustering_abs_dir, "open_ended_wrapp
 directed_abs_path = os.path.join(clustering_abs_dir, "directed_wrapper.py")
 
 import uuid 
+
+import re
+
+def contains_randomness(code_string):
+    """
+    Check if code contains any random number generation imports or usage.
+    Returns True if randomness is detected, False otherwise.
+    """
+    patterns = [
+        # Python's random module
+        r'import\s+random',
+        r'from\s+random\s+import',
+        
+        # NumPy random
+        r'import\s+numpy\.random',
+        r'from\s+numpy\.random\s+import',
+        r'np\.random\.',
+        r'numpy\.random\.',
+        
+        # SciPy random
+        r'import\s+scipy\.random',
+        r'from\s+scipy\.random\s+import',
+        r'scipy\.random\.'
+    ]
+    
+    combined_pattern = '|'.join(patterns)
+    match = re.search(combined_pattern, code_string, re.MULTILINE)
+    
+    return match is not None
 
 
 def format_open_ended_code(f_code: str, extract_arguments_code: str) -> str:
@@ -188,19 +218,31 @@ def report_coherence(output_records: List[Dict]):
     return program_2_coherence, program_2_n_outputs, program_2_n_coherent
 
 
+def record_is_coherent(output_record: Dict):
+    # check if the code contains randomness 
+    if contains_randomness(output_record["code"]):
+        return False
+    # and it doesn't have errors 
+    if any([output in ["Syntax Error", "Runtime Error", "Timeout", "Error", "Unknown Error"] for output in output_record["testcase_outputs"].values()]):
+        return False
+    # and none of the outputs are None (None token)
+    if any([output == NONE_TOKEN for output in output_record["testcase_outputs"].values()]):
+        return False
+    return True
+
 def get_coherence(output_records: List[Dict], strict=True): 
     n_outputs_list = [len(output_record["testcase_outputs"]) for output_record in output_records]
-    n_coherent_list = [len([output for output in output_record["testcase_outputs"].values() if output not in ["Syntax Error", "Runtime Error", "Timeout", "Error", "Unknown Error"]]) for output_record in output_records]
+    n_coherent_list = [len([output for output in output_record["testcase_outputs"].values() if record_is_coherent(output_record)]) for output_record in output_records]
     coherent_list = [n_coherent / n_outputs for n_coherent, n_outputs in zip(n_coherent_list, n_outputs_list)]
     if strict: 
         coherent_list = [coherent for coherent in coherent_list if coherent == 1.0]
     return coherent_list
 
 
-def record_is_coherent(output_record: Dict):
-    n_outputs = len(output_record["testcase_outputs"])
-    n_coherent = len([output for output in output_record["testcase_outputs"].values() if output not in ["Syntax Error", "Runtime Error", "Timeout", "Error", "Unknown Error"]])
-    return n_coherent == n_outputs
+# def record_is_coherent(output_record: Dict):
+#     n_outputs = len(output_record["testcase_outputs"])
+#     n_coherent = len([output for output in output_record["testcase_outputs"].values() if output not in ["Syntax Error", "Runtime Error", "Timeout", "Error", "Unknown Error"]])
+#     return n_coherent == n_outputs
 
 def record_is_syntactically_correct(output_record: Dict):
     for output in output_record["testcase_outputs"].values():
@@ -245,16 +287,26 @@ def get_inaccurate_records(output_records: List[Dict]):
 def make_semantic_strings(output_records: List[Dict]):
     program_2_semantic_string = {}
     semantic_strings_2_programs = defaultdict(list)
-    for output_record in output_records:
+    for i, output_record in enumerate(output_records):
         semantic_string = ""
-        for testcase_id, testcase_input in output_record["testcase_inputs"].items():
-            testcase_output = output_record["testcase_outputs"][testcase_id]
-            semantic_string += f"testcase_input: {testcase_input}, output: {testcase_output}\n"
-        program_2_semantic_string[output_record["code"]] = semantic_string
-        semantic_strings_2_programs[semantic_string].append(output_record["code"])
+        if not record_is_coherent(output_record):
+            semantic_string = "incoherent"
+        else: 
+            for testcase_id in sorted(output_record["testcase_inputs"].keys()):
+                testcase_input = output_record["testcase_inputs"][testcase_id]
+                testcase_output = output_record["testcase_outputs"][testcase_id]
+                semantic_string += f"testcase_input: {testcase_input}, output: {testcase_output}\n"
+        orig_code = output_record['code']
+        # we do unique problem earlier now
+        # unique_program = f"#Program {i}\n{orig_code}\n"
+        # program_2_semantic_string[unique_program] = semantic_string
+        program_2_semantic_string[orig_code] = semantic_string
+        semantic_strings_2_programs[semantic_string].append(orig_code)
     return program_2_semantic_string, semantic_strings_2_programs
 
 def calculate_pairwise_semantic_div(output_records: List[Dict], program_2_semantic_string: Dict): 
+    ## TODO: need to fix this / change the generated programs so that we can properly calculate the pairwise semantic diversity
+    
     all_programs = list([output_record["code"] for output_record in output_records])
     pairwise_different_list = []
     for i in range(len(all_programs)):

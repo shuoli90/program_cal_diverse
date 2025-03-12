@@ -5,18 +5,15 @@ import sys
 import os
 import resource
 import sys
+from collections.abc import Iterable
+
+NONE_TOKEN = "<NONE>"
 
 def limit_memory(maxsize):
     # Set maximum virtual memory to maxsize bytes
     soft, hard = resource.getrlimit(resource.RLIMIT_AS)
     resource.setrlimit(resource.RLIMIT_AS, (maxsize, hard))
 
-try:
-    # Example: Limit virtual memory to 1GB
-    limit_memory(1024 * 1024 * 1024)
-except ValueError:
-    print("Error setting memory limit. Might require elevated privileges.")
-    raise
 
 # Your Python code here
 
@@ -38,15 +35,25 @@ def extract_arguments(fh: TextIO) -> Tuple:
 
 def standardized_str(obj):
     """Convert any Python object to a standardized string representation."""
-    if isinstance(obj, dict):
+    if isinstance(obj, str):
+        return obj
+    elif isinstance(obj, dict):
         # Sort dict keys for consistent representation
         items = [f"{standardized_str(k)}:{standardized_str(v)}" for k, v in sorted(obj.items())]
         return "{" + ",".join(items) + "}"
-    elif isinstance(obj, (list, tuple)):
+    elif isinstance(obj, list): 
         return "[" + ",".join(standardized_str(x) for x in obj) + "]"
+    elif isinstance(obj, tuple):
+        return "(" + ",".join(standardized_str(x) for x in obj) + ")"
+    elif isinstance(obj, set):
+        return "{" + ",".join(standardized_str(x) for x in obj) + "}"
+    elif isinstance(obj, Iterable):
+        return "<<" + ",".join(standardized_str(x) for x in obj) + ">>"
     elif isinstance(obj, float):
         # Handle floating point precision consistently
         return f"{obj:.10g}"
+    elif obj is None:
+        return NONE_TOKEN
     else:
         return str(obj)
     
@@ -57,6 +64,13 @@ def standardized_str(obj):
 
 
 if __name__ == "__main__":
+    try:
+        # Limit virtual memory to 5GB
+        limit_memory(1024 * 1024 * 1024 * 5)
+    except ValueError:
+        print("Error setting memory limit. Might require elevated privileges.")
+        raise
+    
     input_path, output_path = sys.argv[1], sys.argv[2]
     with open(input_path, 'r') as fh: 
         inp = extract_arguments(fh)

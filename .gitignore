@@ -1,3 +1,6 @@
 data/open_ended_final/open_ended_final/
 configs/config_*
 *__pycache__*
+__pycache__/
+*.py[cod]
+*$py.class

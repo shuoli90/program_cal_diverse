@@ -61,6 +61,7 @@ MODELS= {
     'HAIKU': 'anthropic.claude-3-haiku-20240307-v1:0',
     'SONNET': 'anthropic.claude-3-sonnet-20240229-v1:0',
     'OPUS': 'anthropic.claude-3-opus-20240229-v1:0'
+    # "SONNET3.5": 'anthropic.claude-3-5-sonnet-20240620-v1:0'
 }
 
 class ClaudeModel:
@@ -80,7 +81,7 @@ class ClaudeModel:
                  return_dict_in_generate=False,
                  batch_size=1): 
         
-        if batch_size != 1:
+        if batch_size != 1 or batch_size != -1:
             logging.warning("Batch size is not implemented. It will effectively be set to 1.")
             
         if return_full_text or return_dict_in_generate:

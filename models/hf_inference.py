@@ -113,9 +113,9 @@ class HFInferenceManager:
             # command = f"docker run --detach -e HUGGING_FACE_HUB_TOKEN={self.hf_key} -e NVIDIA_VISIBLE_DEVICES={devices_list} --shm-size 1g -p {port}:80 -v {volume}:/data ghcr.io/huggingface/text-generation-inference::2.0.4 --model-id {model} --max-best-of {max_best_of}"
             # --cpus=30
             if "Meta-Llama-3.1" in model:
-                command = f"docker run --detach -e NCCL_P2P_DISABLE=1 -e HUGGING_FACE_HUB_TOKEN={self.hf_key} --gpus '\"device={devices_list}\"' --shm-size 1g -p {port}:80 -v {volume}:/data ghcr.io/huggingface/text-generation-inference:2.2.0 --model-id {model} --max-best-of {max_best_of}"
+                command = f"docker run --detach -e HUGGING_FACE_HUB_TOKEN={self.hf_key} --gpus '\"device={devices_list}\"' -p {port}:80 -v {volume}:/data ghcr.io/huggingface/text-generation-inference:3.0.1 --model-id {model} --max-best-of {max_best_of}"
             else: 
-                command = f"docker run --detach -e NCCL_P2P_DISABLE=1 -e HUGGING_FACE_HUB_TOKEN={self.hf_key} --gpus '\"device={devices_list}\"' --shm-size 1g -p {port}:80 -v {volume}:/data ghcr.io/huggingface/text-generation-inference:2.0.4 --model-id {model} --max-best-of {max_best_of}"
+                command = f"docker run --detach -e HUGGING_FACE_HUB_TOKEN={self.hf_key} --gpus '\"device={devices_list}\"' -p {port}:80 -v {volume}:/data ghcr.io/huggingface/text-generation-inference:3.0.1 --model-id {model} --max-best-of {max_best_of}"
             # command = f"docker run --detach -e HUGGING_FACE_HUB_TOKEN={self.hf_key} --gpus '\"device={devices_list}\"' -e MAX_BATCH_SIZE=1 --shm-size 1g -p {port}:80 -v {volume}:/data ghcr.io/huggingface/text-generation-inference:2.0 --model-id {model} --max-best-of {max_best_of}"
             print("Starting container with command\n", command)
             container_id = subprocess.check_output(command, shell=True).decode().strip()

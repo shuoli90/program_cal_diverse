@@ -230,10 +230,21 @@ def record_is_coherent(output_record: Dict):
         return False
     return True
 
+def output_is_coherent(output: str):
+    if output == NONE_TOKEN:
+        return False
+    elif output in ["Syntax Error", "Runtime Error", "Timeout", "Error", "Unknown Error"]:
+        return False
+    return True
+
+def coherent_proportion(output_record: Dict):
+    n_outputs = len(output_record["testcase_outputs"])
+    n_coherent = len([output for output in output_record["testcase_outputs"].values() if output_is_coherent(output)])
+    n_coherent = 0 if contains_randomness(output_record["code"]) else n_coherent
+    return n_coherent / n_outputs
+
 def get_coherence(output_records: List[Dict], strict=True): 
-    n_outputs_list = [len(output_record["testcase_outputs"]) for output_record in output_records]
-    n_coherent_list = [len([output for output in output_record["testcase_outputs"].values() if record_is_coherent(output_record)]) for output_record in output_records]
-    coherent_list = [n_coherent / n_outputs for n_coherent, n_outputs in zip(n_coherent_list, n_outputs_list)]
+    coherent_list = [coherent_proportion(output_record) for output_record in output_records]
     if strict: 
         coherent_list = [coherent for coherent in coherent_list if coherent == 1.0]
     return coherent_list

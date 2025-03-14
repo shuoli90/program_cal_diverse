@@ -330,17 +330,26 @@ if __name__ == '__main__':
                     
             # semantic_clustering
             program_2_semantic_string, semantic_strings_2_programs = clustering.make_semantic_strings(records)
-            semantic_count = len(semantic_strings_2_programs.keys())
-            pairwise_semantic_div = clustering.calculate_pairwise_semantic_div(records, program_2_semantic_string)
-            result[f'{recordtype}_semantic_count'] = semantic_count
-            result[f'{recordtype}_semantic_proportion'] = semantic_count / len(records) if len(records) > 1 else np.nan
-            result[f'{recordtype}_pairwise_semantic_prop'] = pairwise_semantic_div
-            
             # coherent 
             coherent_records = clustering.get_coherent_records(records)
             coh_program2_semantic_string, coh_semantic_strings_2_programs = clustering.make_semantic_strings(coherent_records)
             
+            semantic_count = len(semantic_strings_2_programs.keys())
             coh_semantic_count = len(coh_semantic_strings_2_programs.keys())
+            
+            
+            pairwise_semantic_div = clustering.calculate_pairwise_semantic_div(records, program_2_semantic_string)
+            result[f'{recordtype}_semantic_count_incl_incoherent'] = semantic_count
+            result[f'{recordtype}_semantic_proportion_incl_incoherent'] = semantic_count / len(records) if len(records) > 1 else np.nan
+            result[f'{recordtype}_pairwise_semantic_prop_incl_incoherent'] = pairwise_semantic_div
+            
+            
+            ## These are the true semantic counts that we care about 
+            result[f'{recordtype}_coh_semantic_count'] = coh_semantic_count
+            result[f'{recordtype}_coh_semantic_prop_of_all'] = coh_semantic_count / len(records) if len(records) > 1 else np.nan
+            
+            
+            
             coh_pairwise_semantic_div = clustering.calculate_pairwise_semantic_div(coherent_records, coh_program2_semantic_string)
             
             result[f'{recordtype}_semantic_count_wcoh'] = coh_semantic_count

@@ -16,9 +16,19 @@ from typing import List
 base_keys = ['model', 'template', 'temperature', 'top_p', 'num_return_sequences']  
 # result[f'{recordtype}_distinct_{i}_raw'] = distinct_n_raw
 
-results_stats_keys = ['coherence', 'semantic_count', 'semantic_proportion', 'accuracy']
+
+# result[f'{recordtype}_semantic_count_incl_incoherent'] = semantic_count
+#             result[f'{recordtype}_semantic_proportion_incl_incoherent'] = semantic_count / len(records) if len(records) > 1 else np.nan
+#             result[f'{recordtype}_pairwise_semantic_prop_incl_incoherent'] = pairwise_semantic_div
+            
+            
+#             ## These are the true semantic counts that we care about 
+#             result[f'{recordtype}_coh_semantic_count'] = coh_semantic_count
+#             result[f'{recordtype}_coh_semantic_prop_of_all'] = coh_semantic_count / len(records) if len(records) > 1 else np.nan
+
+results_stats_keys = ['coherence', 'coh_semantic_count', 'coh_semantic_prop_of_all', 'semantic_count_incl_incoherent', 'semantic_proportion_incl_incoherent', 'pairwise_semantic_prop_incl_incoherent', 'accuracy']
 results_stats_keys = results_stats_keys + ['semantic_count_wcoh', 'semantic_proportion_wcoh', 'semantic_count_wcoh_nonempty', 'semantic_proportion_wcoh_nonempty', 'semantic_count_wcoh_nonempty_woutput', 'semantic_proportion_wcoh_nonempty_woutput']
-results_stats_keys += ['pairwise_semantic_prop', 'pairwise_semantic_prop_wcoh', 'pairwise_semantic_prop_wcoh_nonempty', 'pairwise_semantic_prop_wcoh_nonempty_woutput']
+results_stats_keys += ['pairwise_semantic_prop_wcoh', 'pairwise_semantic_prop_wcoh_nonempty', 'pairwise_semantic_prop_wcoh_nonempty_woutput']
 # result[f'{recordtype}_average_cosine_distance_programs_zero_null'] = average_cosine_distance_zero_null
 results_stats_keys = results_stats_keys + ['average_cosine_distance_programs', 'average_cosine_distance_raw'] 
 results_stats_keys = results_stats_keys + ['average_cosine_distance_programs_zero_null', 'average_cosine_distance_raw_zero_null', 'average_cosine_distance_programs_one_null', 'average_cosine_distance_raw_one_null']
@@ -34,7 +44,7 @@ results_stats_keys = results_stats_keys + [f"{key}_{height}_ead" for key in ['pl
 results_stats_keys = results_stats_keys + [f"{key}_{height}_ead_bootstrap" for key in ['plain_subtrees', 'stripped_subtrees'] for height in [3,4,5,6]]
 # results_stats_keys = [f"{recordtype}_{key}" for recordtype in ['all', 'coh', 'err', 'acc', 'inacc'] for key in results_stats_keys]
 results_stats_keys = [f"{recordtype}_{key}" for recordtype in ['all', 'coh', 'syn', 'err', 'acc', 'inacc'] for key in results_stats_keys]
-results_stats_keys.insert(4, 'coh_semantic_proportion_of_all')
+# results_stats_keys.insert(4, 'coh_semantic_proportion_of_all')
 
 all_keys = base_keys + results_stats_keys
 

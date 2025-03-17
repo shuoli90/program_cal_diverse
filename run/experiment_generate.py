@@ -26,6 +26,7 @@ from transformers import AutoTokenizer
 
 import signal
 import traceback
+import tiktoken 
 
 
 
@@ -138,21 +139,23 @@ if __name__ == '__main__':
     with open(os.path.join(experiment_output_dir, 'config.yaml'), 'w') as f:
         yaml.dump(args.__dict__, f)
 
-    if 'tatsu' in args.model.lower() or 'codellama' in args.model.lower():
-        with open(args.path_to_hf_token, "r") as f:
-            hf_key = f.read().strip()
-        tokenizer = AutoTokenizer.from_pretrained(args.model, token=hf_key)
-    else: 
-        tokenizer = None
+    # if 'tatsu' in args.model.lower() or 'codellama' in args.model.lower():
+    #     with open(args.path_to_hf_token, "r") as f:
+    #         hf_key = f.read().strip()
+    #     tokenizer = AutoTokenizer.from_pretrained(args.model, token=hf_key)
+    # else: 
+    #     tokenizer = None
         
     pipe = None # for error handling
     try:                                                
         # Setup generation pipeline
         if 'gpt' in args.model or 'babbage' in args.model or 'davinci' in args.model:
             pipe = gpt.GPTModel(model_name=args.model)
+            tokenizer = tiktoken.encoding_for_model(args.model)
             
         elif any([model in args.model for model in ['SONNET', 'HAIKU', 'OPUS', "SONNET3.5"]]):
             pipe = claude.ClaudeModel(model_name=args.model)
+            tokenizer = tiktoken.encoding_for_model("gpt-4o")
             
         else:
             # pipe = opensource.OpensourceModel(model_name=args.model)
@@ -167,6 +170,7 @@ if __name__ == '__main__':
                                                     startup_timeout=args.startup_timeout,
                                                     generation_timeout=args.generation_timeout,
                                                     hf_key=hf_key)
+            tokenizer = AutoTokenizer.from_pretrained(args.model, token=hf_key)
             # sigint_handler = partial_handler(pipe)
             sigint_handler = partial(handler, pipe, experiment_output_dir)
             signal.signal(signal.SIGINT, sigint_handler)
@@ -211,15 +215,16 @@ if __name__ == '__main__':
             # format the prompt
             formatted_prompt = format_template_fun(prompt)
             result['formatted_prompt'] = formatted_prompt
-            if "tatsu" in args.model:
+            if "tulu-2" in args.model.lower():
                 # alpaca-from max total-tokens = 2048
                 n_prompt_tokens = len(tokenizer(formatted_prompt)['input_ids'])
-                max_tokens = min(2000 - n_prompt_tokens, args.max_length)
+                max_tokens = min(2048 - n_prompt_tokens, args.max_length - 32) # 32 just to be safe
+                logging.info(f"Tulu-2 model, max tokens: {max_tokens}")
                 
             elif "codellama" in args.model.lower():
                 n_prompt_tokens = len(tokenizer(formatted_prompt)['input_ids'])
-                max_tokens = min(4000 - n_prompt_tokens, args.max_length)
-                
+                max_tokens = min(4096 - n_prompt_tokens, args.max_length - 32) # 32 just to be safe
+                logging.info(f"Codellama model, max tokens: {max_tokens}")
             else: 
                 max_tokens = args.max_length
             

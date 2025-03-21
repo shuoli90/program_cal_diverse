@@ -54,5 +54,5 @@ def f(N: float):
 
 ## DESCRIPTION 
 
-Now please implement the function f; do not return anything, the function f should print the result of the operation.
+Now please implement the function f. The function f will return the result of the operation. The function should return something in all cases. 
 It should terminate within 30 seconds.

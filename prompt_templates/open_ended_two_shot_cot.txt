@@ -21,7 +21,7 @@ def f(N: int):
 Now please implement the function f. The function f will return the result of the operation. The function should return something in all cases. 
 It should terminate within 30 seconds.
 
-The following function will print out the square of the input number. We will take the square using the ** operator in Python within the print statement.
+The following function will return the square of the input number. We will take the square using the ** operator in Python within the print statement.
 
 def f(N: int):
     return n**2
@@ -58,5 +58,5 @@ def f(N: float):
 
 ## DESCRIPTION 
 
-Now please implement the function f; do not return anything, the function f should print the result of the operation.
-It should terminate within 30 seconds. First describe the function you would write, then implement it.
+Now please implement the function f. The function f will return the result of the operation. The function should return something in all cases. 
+It should terminate within 30 seconds.

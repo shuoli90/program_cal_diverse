@@ -1,0 +1,10 @@
+{"model": "meta-llama-Llama-3.1-8B", "temperature": 0.6, "problem_id": "p02149", "output_prog": "#Program 2", "ref_prog": "#Program 27", "score": 1.0}
+{"model": "meta-llama-Llama-3.1-8B", "temperature": 0.6, "problem_id": "p02149", "output_prog": "#Program 8", "ref_prog": "#Program 2", "score": 0.0}
+{"model": "meta-llama-Llama-3.1-8B", "temperature": 0.6, "problem_id": "p02149", "output_prog": "#Program 2", "ref_prog": "#Program 30", "score": 0.0}
+{"model": "meta-llama-Llama-3.1-8B", "temperature": 0.6, "problem_id": "p02149", "output_prog": "#Program 2", "ref_prog": "```python\ndef f(a: int, b: int, c: int):\n    ''' \n    a: an integer\n    b: an integer\n    c: an integer\n    '''\n    return a - b + c\n```", "score": 1.0}
+{"model": "meta-llama-Llama-3.1-8B", "temperature": 0.6, "problem_id": "p02149", "output_prog": "#Program 27", "ref_prog": "#Program 8", "score": 0.0}
+{"model": "meta-llama-Llama-3.1-8B", "temperature": 0.6, "problem_id": "p02149", "output_prog": "#Program 30", "ref_prog": "#Program 27", "score": 0.0}
+{"model": "meta-llama-Llama-3.1-8B", "temperature": 0.6, "problem_id": "p02149", "output_prog": "```python\ndef f(a: int, b: int, c: int):\n    ''' \n    a: an integer\n    b: an integer\n    c: an integer\n    '''\n    return a - b + c\n```", "ref_prog": "#Program 27", "score": 0.75}
+{"model": "meta-llama-Llama-3.1-8B", "temperature": 0.6, "problem_id": "p02149", "output_prog": "#Program 8", "ref_prog": "#Program 30", "score": 0.0}
+{"model": "meta-llama-Llama-3.1-8B", "temperature": 0.6, "problem_id": "p02149", "output_prog": "#Program 8", "ref_prog": "```python\ndef f(a: int, b: int, c: int):\n    ''' \n    a: an integer\n    b: an integer\n    c: an integer\n    '''\n    return a - b + c\n```", "score": 1.0}
+{"model": "meta-llama-Llama-3.1-8B", "temperature": 0.6, "problem_id": "p02149", "output_prog": "```python\ndef f(a: int, b: int, c: int):\n    ''' \n    a: an integer\n    b: an integer\n    c: an integer\n    '''\n    return a - b + c\n```", "ref_prog": "#Program 30", "score": 1.0}

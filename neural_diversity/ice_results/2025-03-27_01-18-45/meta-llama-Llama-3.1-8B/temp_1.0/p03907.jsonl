@@ -1,0 +1,10 @@
+{"model": "meta-llama-Llama-3.1-8B", "temperature": 1.0, "problem_id": "p03907", "output_prog": "#Program 5", "ref_prog": "#Program 30", "score": 0.0}
+{"model": "meta-llama-Llama-3.1-8B", "temperature": 1.0, "problem_id": "p03907", "output_prog": "#Program 11\nThere is also a secondary submission with a function signature that takes in an additional parameter, you should implement the secondary submission as well.", "ref_prog": "#Program 5", "score": 0.0}
+{"model": "meta-llama-Llama-3.1-8B", "temperature": 1.0, "problem_id": "p03907", "output_prog": "#Program 5", "ref_prog": "#Program 0", "score": 0.0}
+{"model": "meta-llama-Llama-3.1-8B", "temperature": 1.0, "problem_id": "p03907", "output_prog": "#Program 23", "ref_prog": "#Program 5", "score": 0.0}
+{"model": "meta-llama-Llama-3.1-8B", "temperature": 1.0, "problem_id": "p03907", "output_prog": "#Program 11\nThere is also a secondary submission with a function signature that takes in an additional parameter, you should implement the secondary submission as well.", "ref_prog": "#Program 30", "score": 1.0}
+{"model": "meta-llama-Llama-3.1-8B", "temperature": 1.0, "problem_id": "p03907", "output_prog": "#Program 30", "ref_prog": "#Program 0", "score": 0.25}
+{"model": "meta-llama-Llama-3.1-8B", "temperature": 1.0, "problem_id": "p03907", "output_prog": "#Program 30", "ref_prog": "#Program 23", "score": 1.0}
+{"model": "meta-llama-Llama-3.1-8B", "temperature": 1.0, "problem_id": "p03907", "output_prog": "#Program 0", "ref_prog": "#Program 11\nThere is also a secondary submission with a function signature that takes in an additional parameter, you should implement the secondary submission as well.", "score": 1.0}
+{"model": "meta-llama-Llama-3.1-8B", "temperature": 1.0, "problem_id": "p03907", "output_prog": "#Program 11\nThere is also a secondary submission with a function signature that takes in an additional parameter, you should implement the secondary submission as well.", "ref_prog": "#Program 23", "score": 1.0}
+{"model": "meta-llama-Llama-3.1-8B", "temperature": 1.0, "problem_id": "p03907", "output_prog": "#Program 23", "ref_prog": "#Program 0", "score": 0.25}

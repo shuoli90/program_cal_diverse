@@ -1,0 +1,10 @@
+{"model": "meta-llama-Llama-3.1-8B", "temperature": 0.8, "problem_id": "p03260", "output_prog": "#Program 4", "ref_prog": "#Program 29\nIf you have any questions please ask. \nGood luck! \n\n#### Example Output:\n\n```\n6\n```", "score": 1.0}
+{"model": "meta-llama-Llama-3.1-8B", "temperature": 0.8, "problem_id": "p03260", "output_prog": "#Program 10", "ref_prog": "#Program 4", "score": 0.25}
+{"model": "meta-llama-Llama-3.1-8B", "temperature": 0.8, "problem_id": "p03260", "output_prog": "```\ndef f(A: int, B: int):\n    return A + B\n```", "ref_prog": "#Program 4", "score": 1.0}
+{"model": "meta-llama-Llama-3.1-8B", "temperature": 0.8, "problem_id": "p03260", "output_prog": "#Program 22", "ref_prog": "#Program 4", "score": 0.25}
+{"model": "meta-llama-Llama-3.1-8B", "temperature": 0.8, "problem_id": "p03260", "output_prog": "#Program 29\nIf you have any questions please ask. \nGood luck! \n\n#### Example Output:\n\n```\n6\n```", "ref_prog": "#Program 10", "score": 1.0}
+{"model": "meta-llama-Llama-3.1-8B", "temperature": 0.8, "problem_id": "p03260", "output_prog": "```\ndef f(A: int, B: int):\n    return A + B\n```", "ref_prog": "#Program 29\nIf you have any questions please ask. \nGood luck! \n\n#### Example Output:\n\n```\n6\n```", "score": 1.0}
+{"model": "meta-llama-Llama-3.1-8B", "temperature": 0.8, "problem_id": "p03260", "output_prog": "#Program 22", "ref_prog": "#Program 29\nIf you have any questions please ask. \nGood luck! \n\n#### Example Output:\n\n```\n6\n```", "score": 1.0}
+{"model": "meta-llama-Llama-3.1-8B", "temperature": 0.8, "problem_id": "p03260", "output_prog": "#Program 10", "ref_prog": "```\ndef f(A: int, B: int):\n    return A + B\n```", "score": 1.0}
+{"model": "meta-llama-Llama-3.1-8B", "temperature": 0.8, "problem_id": "p03260", "output_prog": "#Program 22", "ref_prog": "#Program 10", "score": 0.0}
+{"model": "meta-llama-Llama-3.1-8B", "temperature": 0.8, "problem_id": "p03260", "output_prog": "```\ndef f(A: int, B: int):\n    return A + B\n```", "ref_prog": "#Program 22", "score": 1.0}

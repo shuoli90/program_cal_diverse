@@ -1,0 +1,10 @@
+{"model": "meta-llama-Llama-3.1-8B", "temperature": 1.0, "problem_id": "p00390", "output_prog": "#Program 30\nIf you submit a running code, but it outputs something or takes more than 30 seconds, your score may be 0 regardless of the correctness.", "ref_prog": "#Program 5", "score": 1.0}
+{"model": "meta-llama-Llama-3.1-8B", "temperature": 1.0, "problem_id": "p00390", "output_prog": "#Program 5", "ref_prog": "#Program 11", "score": 0.0}
+{"model": "meta-llama-Llama-3.1-8B", "temperature": 1.0, "problem_id": "p00390", "output_prog": "#Program 5", "ref_prog": "#Program 0", "score": 1.0}
+{"model": "meta-llama-Llama-3.1-8B", "temperature": 1.0, "problem_id": "p00390", "output_prog": "#Program 5", "ref_prog": "#Program 23", "score": 0.0}
+{"model": "meta-llama-Llama-3.1-8B", "temperature": 1.0, "problem_id": "p00390", "output_prog": "#Program 30\nIf you submit a running code, but it outputs something or takes more than 30 seconds, your score may be 0 regardless of the correctness.", "ref_prog": "#Program 11", "score": 1.0}
+{"model": "meta-llama-Llama-3.1-8B", "temperature": 1.0, "problem_id": "p00390", "output_prog": "#Program 0", "ref_prog": "#Program 30\nIf you submit a running code, but it outputs something or takes more than 30 seconds, your score may be 0 regardless of the correctness.", "score": 1.0}
+{"model": "meta-llama-Llama-3.1-8B", "temperature": 1.0, "problem_id": "p00390", "output_prog": "#Program 23", "ref_prog": "#Program 30\nIf you submit a running code, but it outputs something or takes more than 30 seconds, your score may be 0 regardless of the correctness.", "score": 1.0}
+{"model": "meta-llama-Llama-3.1-8B", "temperature": 1.0, "problem_id": "p00390", "output_prog": "#Program 0", "ref_prog": "#Program 11", "score": 0.0}
+{"model": "meta-llama-Llama-3.1-8B", "temperature": 1.0, "problem_id": "p00390", "output_prog": "#Program 23", "ref_prog": "#Program 11", "score": 0.0}
+{"model": "meta-llama-Llama-3.1-8B", "temperature": 1.0, "problem_id": "p00390", "output_prog": "#Program 23", "ref_prog": "#Program 0", "score": 1.0}

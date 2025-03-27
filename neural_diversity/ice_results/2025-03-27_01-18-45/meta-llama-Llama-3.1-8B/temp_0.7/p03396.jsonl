@@ -1,0 +1,10 @@
+{"model": "meta-llama-Llama-3.1-8B", "temperature": 0.7, "problem_id": "p03396", "output_prog": "#Program 5", "ref_prog": "#Program 30", "score": 1.0}
+{"model": "meta-llama-Llama-3.1-8B", "temperature": 0.7, "problem_id": "p03396", "output_prog": "#Program 11\n### Example Output:\n```\n4 10\n```\n### Explanation:\nThe first line is the result of the operation. The second line is the input of the operation.", "ref_prog": "#Program 5", "score": 1.0}
+{"model": "meta-llama-Llama-3.1-8B", "temperature": 0.7, "problem_id": "p03396", "output_prog": "#Program 5", "ref_prog": "#Program 0", "score": 0.0}
+{"model": "meta-llama-Llama-3.1-8B", "temperature": 0.7, "problem_id": "p03396", "output_prog": "#Program 5", "ref_prog": "#Program 23", "score": 1.0}
+{"model": "meta-llama-Llama-3.1-8B", "temperature": 0.7, "problem_id": "p03396", "output_prog": "#Program 30", "ref_prog": "#Program 11\n### Example Output:\n```\n4 10\n```\n### Explanation:\nThe first line is the result of the operation. The second line is the input of the operation.", "score": 1.0}
+{"model": "meta-llama-Llama-3.1-8B", "temperature": 0.7, "problem_id": "p03396", "output_prog": "#Program 30", "ref_prog": "#Program 0", "score": 1.0}
+{"model": "meta-llama-Llama-3.1-8B", "temperature": 0.7, "problem_id": "p03396", "output_prog": "#Program 30", "ref_prog": "#Program 23", "score": 0.0}
+{"model": "meta-llama-Llama-3.1-8B", "temperature": 0.7, "problem_id": "p03396", "output_prog": "#Program 11\n### Example Output:\n```\n4 10\n```\n### Explanation:\nThe first line is the result of the operation. The second line is the input of the operation.", "ref_prog": "#Program 0", "score": 1.0}
+{"model": "meta-llama-Llama-3.1-8B", "temperature": 0.7, "problem_id": "p03396", "output_prog": "#Program 23", "ref_prog": "#Program 11\n### Example Output:\n```\n4 10\n```\n### Explanation:\nThe first line is the result of the operation. The second line is the input of the operation.", "score": 1.0}
+{"model": "meta-llama-Llama-3.1-8B", "temperature": 0.7, "problem_id": "p03396", "output_prog": "#Program 23", "ref_prog": "#Program 0", "score": 0.0}

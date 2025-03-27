@@ -1,0 +1,10 @@
+{"model": "meta-llama-Llama-3.1-8B", "temperature": 0.6, "problem_id": "p03626", "output_prog": "#Program 5\nGood luck!", "ref_prog": "#Program 30", "score": 1.0}
+{"model": "meta-llama-Llama-3.1-8B", "temperature": 0.6, "problem_id": "p03626", "output_prog": "#Program 11", "ref_prog": "#Program 5\nGood luck!", "score": 1.0}
+{"model": "meta-llama-Llama-3.1-8B", "temperature": 0.6, "problem_id": "p03626", "output_prog": "#Program 5\nGood luck!", "ref_prog": "#Program 0", "score": 1.0}
+{"model": "meta-llama-Llama-3.1-8B", "temperature": 0.6, "problem_id": "p03626", "output_prog": "#Program 5\nGood luck!", "ref_prog": "#Program 23", "score": 1.0}
+{"model": "meta-llama-Llama-3.1-8B", "temperature": 0.6, "problem_id": "p03626", "output_prog": "#Program 11", "ref_prog": "#Program 30", "score": 1.0}
+{"model": "meta-llama-Llama-3.1-8B", "temperature": 0.6, "problem_id": "p03626", "output_prog": "#Program 0", "ref_prog": "#Program 30", "score": 1.0}
+{"model": "meta-llama-Llama-3.1-8B", "temperature": 0.6, "problem_id": "p03626", "output_prog": "#Program 23", "ref_prog": "#Program 30", "score": 1.0}
+{"model": "meta-llama-Llama-3.1-8B", "temperature": 0.6, "problem_id": "p03626", "output_prog": "#Program 11", "ref_prog": "#Program 0", "score": 1.0}
+{"model": "meta-llama-Llama-3.1-8B", "temperature": 0.6, "problem_id": "p03626", "output_prog": "#Program 23", "ref_prog": "#Program 11", "score": 0.0}
+{"model": "meta-llama-Llama-3.1-8B", "temperature": 0.6, "problem_id": "p03626", "output_prog": "#Program 0", "ref_prog": "#Program 23", "score": 1.0}

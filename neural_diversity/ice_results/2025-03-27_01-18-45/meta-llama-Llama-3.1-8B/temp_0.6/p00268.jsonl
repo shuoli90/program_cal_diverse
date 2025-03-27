@@ -1,0 +1,10 @@
+{"model": "meta-llama-Llama-3.1-8B", "temperature": 0.6, "problem_id": "p00268", "output_prog": "#Program 30", "ref_prog": "#Program 5", "score": 1.0}
+{"model": "meta-llama-Llama-3.1-8B", "temperature": 0.6, "problem_id": "p00268", "output_prog": "#Program 11", "ref_prog": "#Program 5", "score": 0.0}
+{"model": "meta-llama-Llama-3.1-8B", "temperature": 0.6, "problem_id": "p00268", "output_prog": "#Program 0", "ref_prog": "#Program 5", "score": 1.0}
+{"model": "meta-llama-Llama-3.1-8B", "temperature": 0.6, "problem_id": "p00268", "output_prog": "#Program 23\nIt should use 32 MB or less.\nIt should not raise any exceptions.\nIt should not print anything.\n\n### Example Output:\n\n```\n4\n```", "ref_prog": "#Program 5", "score": 0.0}
+{"model": "meta-llama-Llama-3.1-8B", "temperature": 0.6, "problem_id": "p00268", "output_prog": "#Program 11", "ref_prog": "#Program 30", "score": 1.0}
+{"model": "meta-llama-Llama-3.1-8B", "temperature": 0.6, "problem_id": "p00268", "output_prog": "#Program 30", "ref_prog": "#Program 0", "score": 1.0}
+{"model": "meta-llama-Llama-3.1-8B", "temperature": 0.6, "problem_id": "p00268", "output_prog": "#Program 30", "ref_prog": "#Program 23\nIt should use 32 MB or less.\nIt should not raise any exceptions.\nIt should not print anything.\n\n### Example Output:\n\n```\n4\n```", "score": 0.25}
+{"model": "meta-llama-Llama-3.1-8B", "temperature": 0.6, "problem_id": "p00268", "output_prog": "#Program 0", "ref_prog": "#Program 11", "score": 1.0}
+{"model": "meta-llama-Llama-3.1-8B", "temperature": 0.6, "problem_id": "p00268", "output_prog": "#Program 11", "ref_prog": "#Program 23\nIt should use 32 MB or less.\nIt should not raise any exceptions.\nIt should not print anything.\n\n### Example Output:\n\n```\n4\n```", "score": 0.0}
+{"model": "meta-llama-Llama-3.1-8B", "temperature": 0.6, "problem_id": "p00268", "output_prog": "#Program 23\nIt should use 32 MB or less.\nIt should not raise any exceptions.\nIt should not print anything.\n\n### Example Output:\n\n```\n4\n```", "ref_prog": "#Program 0", "score": 1.0}

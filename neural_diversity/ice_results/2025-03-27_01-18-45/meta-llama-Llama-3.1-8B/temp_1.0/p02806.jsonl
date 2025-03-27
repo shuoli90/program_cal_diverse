@@ -1,0 +1,10 @@
+{"model": "meta-llama-Llama-3.1-8B", "temperature": 1.0, "problem_id": "p02806", "output_prog": "#Program 30", "ref_prog": "#Program 5\nunit test: https://people.sc.fsu.edu/~jburkardt/py_src/tictoc/tictoc.py", "score": 0.0}
+{"model": "meta-llama-Llama-3.1-8B", "temperature": 1.0, "problem_id": "p02806", "output_prog": "#Program 5\nunit test: https://people.sc.fsu.edu/~jburkardt/py_src/tictoc/tictoc.py", "ref_prog": "#Program 11\nBest of luck!", "score": 1.0}
+{"model": "meta-llama-Llama-3.1-8B", "temperature": 1.0, "problem_id": "p02806", "output_prog": "#Program 0", "ref_prog": "#Program 5\nunit test: https://people.sc.fsu.edu/~jburkardt/py_src/tictoc/tictoc.py", "score": 1.0}
+{"model": "meta-llama-Llama-3.1-8B", "temperature": 1.0, "problem_id": "p02806", "output_prog": "#Program 5\nunit test: https://people.sc.fsu.edu/~jburkardt/py_src/tictoc/tictoc.py", "ref_prog": "#Program 23\n```", "score": 1.0}
+{"model": "meta-llama-Llama-3.1-8B", "temperature": 1.0, "problem_id": "p02806", "output_prog": "#Program 11\nBest of luck!", "ref_prog": "#Program 30", "score": 1.0}
+{"model": "meta-llama-Llama-3.1-8B", "temperature": 1.0, "problem_id": "p02806", "output_prog": "#Program 0", "ref_prog": "#Program 30", "score": 1.0}
+{"model": "meta-llama-Llama-3.1-8B", "temperature": 1.0, "problem_id": "p02806", "output_prog": "#Program 23\n```", "ref_prog": "#Program 30", "score": 0.0}
+{"model": "meta-llama-Llama-3.1-8B", "temperature": 1.0, "problem_id": "p02806", "output_prog": "#Program 11\nBest of luck!", "ref_prog": "#Program 0", "score": 1.0}
+{"model": "meta-llama-Llama-3.1-8B", "temperature": 1.0, "problem_id": "p02806", "output_prog": "#Program 11\nBest of luck!", "ref_prog": "#Program 23\n```", "score": 1.0}
+{"model": "meta-llama-Llama-3.1-8B", "temperature": 1.0, "problem_id": "p02806", "output_prog": "#Program 0", "ref_prog": "#Program 23\n```", "score": 1.0}

@@ -1,0 +1,10 @@
+{"model": "allenai-Llama-3.1-Tulu-3-8B-SFT", "temperature": 0.6, "problem_id": "p00050", "output_prog": "#Program 30\nIf you think the function will not terminate in 30 seconds for some cases, please add some constraints or limitations to it.", "ref_prog": "#Program 5", "score": 1.0}
+{"model": "allenai-Llama-3.1-Tulu-3-8B-SFT", "temperature": 0.6, "problem_id": "p00050", "output_prog": "#Program 11", "ref_prog": "#Program 5", "score": 0.25}
+{"model": "allenai-Llama-3.1-Tulu-3-8B-SFT", "temperature": 0.6, "problem_id": "p00050", "output_prog": "#Program 0", "ref_prog": "#Program 5", "score": 1.0}
+{"model": "allenai-Llama-3.1-Tulu-3-8B-SFT", "temperature": 0.6, "problem_id": "p00050", "output_prog": "#Program 5", "ref_prog": "#Program 23", "score": 1.0}
+{"model": "allenai-Llama-3.1-Tulu-3-8B-SFT", "temperature": 0.6, "problem_id": "p00050", "output_prog": "#Program 30\nIf you think the function will not terminate in 30 seconds for some cases, please add some constraints or limitations to it.", "ref_prog": "#Program 11", "score": 1.0}
+{"model": "allenai-Llama-3.1-Tulu-3-8B-SFT", "temperature": 0.6, "problem_id": "p00050", "output_prog": "#Program 0", "ref_prog": "#Program 30\nIf you think the function will not terminate in 30 seconds for some cases, please add some constraints or limitations to it.", "score": 1.0}
+{"model": "allenai-Llama-3.1-Tulu-3-8B-SFT", "temperature": 0.6, "problem_id": "p00050", "output_prog": "#Program 30\nIf you think the function will not terminate in 30 seconds for some cases, please add some constraints or limitations to it.", "ref_prog": "#Program 23", "score": 1.0}
+{"model": "allenai-Llama-3.1-Tulu-3-8B-SFT", "temperature": 0.6, "problem_id": "p00050", "output_prog": "#Program 11", "ref_prog": "#Program 0", "score": 1.0}
+{"model": "allenai-Llama-3.1-Tulu-3-8B-SFT", "temperature": 0.6, "problem_id": "p00050", "output_prog": "#Program 11", "ref_prog": "#Program 23", "score": 0.5}
+{"model": "allenai-Llama-3.1-Tulu-3-8B-SFT", "temperature": 0.6, "problem_id": "p00050", "output_prog": "#Program 0", "ref_prog": "#Program 23", "score": 1.0}

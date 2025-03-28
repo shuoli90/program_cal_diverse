@@ -1,0 +1,10 @@
+{"model": "meta-llama-Llama-3.1-8B", "temperature": 0.7, "problem_id": "p02465", "output_prog": "#Program 5\n \n### Example Output:\n```\nFalse\n```", "ref_prog": "#Program 30", "score": 1.0}
+{"model": "meta-llama-Llama-3.1-8B", "temperature": 0.7, "problem_id": "p02465", "output_prog": "#Program 5\n \n### Example Output:\n```\nFalse\n```", "ref_prog": "#Program 11", "score": 1.0}
+{"model": "meta-llama-Llama-3.1-8B", "temperature": 0.7, "problem_id": "p02465", "output_prog": "#Program 5\n \n### Example Output:\n```\nFalse\n```", "ref_prog": "#Program 0", "score": 1.0}
+{"model": "meta-llama-Llama-3.1-8B", "temperature": 0.7, "problem_id": "p02465", "output_prog": "#Program 23\n```\n>>> f(5, [1, 2, 3, 5, 8], 2, [2, 5])\n[2, 5]\n```\n\n### Example Output:\n[2, 5]", "ref_prog": "#Program 5\n \n### Example Output:\n```\nFalse\n```", "score": 1.0}
+{"model": "meta-llama-Llama-3.1-8B", "temperature": 0.7, "problem_id": "p02465", "output_prog": "#Program 11", "ref_prog": "#Program 30", "score": 1.0}
+{"model": "meta-llama-Llama-3.1-8B", "temperature": 0.7, "problem_id": "p02465", "output_prog": "#Program 0", "ref_prog": "#Program 30", "score": 1.0}
+{"model": "meta-llama-Llama-3.1-8B", "temperature": 0.7, "problem_id": "p02465", "output_prog": "#Program 23\n```\n>>> f(5, [1, 2, 3, 5, 8], 2, [2, 5])\n[2, 5]\n```\n\n### Example Output:\n[2, 5]", "ref_prog": "#Program 30", "score": 1.0}
+{"model": "meta-llama-Llama-3.1-8B", "temperature": 0.7, "problem_id": "p02465", "output_prog": "#Program 0", "ref_prog": "#Program 11", "score": 1.0}
+{"model": "meta-llama-Llama-3.1-8B", "temperature": 0.7, "problem_id": "p02465", "output_prog": "#Program 23\n```\n>>> f(5, [1, 2, 3, 5, 8], 2, [2, 5])\n[2, 5]\n```\n\n### Example Output:\n[2, 5]", "ref_prog": "#Program 11", "score": 1.0}
+{"model": "meta-llama-Llama-3.1-8B", "temperature": 0.7, "problem_id": "p02465", "output_prog": "#Program 23\n```\n>>> f(5, [1, 2, 3, 5, 8], 2, [2, 5])\n[2, 5]\n```\n\n### Example Output:\n[2, 5]", "ref_prog": "#Program 0", "score": 1.0}

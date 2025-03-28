@@ -1,0 +1,10 @@
+{"model": "meta-llama-Llama-3.1-8B", "temperature": 0.7, "problem_id": "p03222", "output_prog": "#Program 5", "ref_prog": "#Program 30", "score": 0.75}
+{"model": "meta-llama-Llama-3.1-8B", "temperature": 0.7, "problem_id": "p03222", "output_prog": "#Program 11", "ref_prog": "#Program 5", "score": 0.0}
+{"model": "meta-llama-Llama-3.1-8B", "temperature": 0.7, "problem_id": "p03222", "output_prog": "#Program 5", "ref_prog": "#Program 0", "score": 0.0}
+{"model": "meta-llama-Llama-3.1-8B", "temperature": 0.7, "problem_id": "p03222", "output_prog": "#Program 5", "ref_prog": "#Program 23\nNo error checking is needed.\n\n### Output Description:\n\nOutput the result of the operation.\n\n### Example Output:\n```\n0.6\n```", "score": 1.0}
+{"model": "meta-llama-Llama-3.1-8B", "temperature": 0.7, "problem_id": "p03222", "output_prog": "#Program 30", "ref_prog": "#Program 11", "score": 0.5}
+{"model": "meta-llama-Llama-3.1-8B", "temperature": 0.7, "problem_id": "p03222", "output_prog": "#Program 0", "ref_prog": "#Program 30", "score": 1.0}
+{"model": "meta-llama-Llama-3.1-8B", "temperature": 0.7, "problem_id": "p03222", "output_prog": "#Program 23\nNo error checking is needed.\n\n### Output Description:\n\nOutput the result of the operation.\n\n### Example Output:\n```\n0.6\n```", "ref_prog": "#Program 30", "score": 1.0}
+{"model": "meta-llama-Llama-3.1-8B", "temperature": 0.7, "problem_id": "p03222", "output_prog": "#Program 0", "ref_prog": "#Program 11", "score": 1.0}
+{"model": "meta-llama-Llama-3.1-8B", "temperature": 0.7, "problem_id": "p03222", "output_prog": "#Program 11", "ref_prog": "#Program 23\nNo error checking is needed.\n\n### Output Description:\n\nOutput the result of the operation.\n\n### Example Output:\n```\n0.6\n```", "score": 1.0}
+{"model": "meta-llama-Llama-3.1-8B", "temperature": 0.7, "problem_id": "p03222", "output_prog": "#Program 23\nNo error checking is needed.\n\n### Output Description:\n\nOutput the result of the operation.\n\n### Example Output:\n```\n0.6\n```", "ref_prog": "#Program 0", "score": 1.0}

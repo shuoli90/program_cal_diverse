@@ -1,0 +1,10 @@
+{"model": "meta-llama-Llama-3.1-8B", "temperature": 0.7, "problem_id": "p02752", "output_prog": "#Program 4", "ref_prog": "#Program 29", "score": 0.0}
+{"model": "meta-llama-Llama-3.1-8B", "temperature": 0.7, "problem_id": "p02752", "output_prog": "#Program 4", "ref_prog": "#Program 10\n```", "score": 1.0}
+{"model": "meta-llama-Llama-3.1-8B", "temperature": 0.7, "problem_id": "p02752", "output_prog": "```python\ndef f(N: int, edges: List[Tuple[int, int]]): \n    return \"\"\n```", "ref_prog": "#Program 4", "score": 1.0}
+{"model": "meta-llama-Llama-3.1-8B", "temperature": 0.7, "problem_id": "p02752", "output_prog": "#Program 4", "ref_prog": "#Program 22", "score": 0.0}
+{"model": "meta-llama-Llama-3.1-8B", "temperature": 0.7, "problem_id": "p02752", "output_prog": "#Program 29", "ref_prog": "#Program 10\n```", "score": 0.0}
+{"model": "meta-llama-Llama-3.1-8B", "temperature": 0.7, "problem_id": "p02752", "output_prog": "#Program 29", "ref_prog": "```python\ndef f(N: int, edges: List[Tuple[int, int]]): \n    return \"\"\n```", "score": 1.0}
+{"model": "meta-llama-Llama-3.1-8B", "temperature": 0.7, "problem_id": "p02752", "output_prog": "#Program 22", "ref_prog": "#Program 29", "score": 0.0}
+{"model": "meta-llama-Llama-3.1-8B", "temperature": 0.7, "problem_id": "p02752", "output_prog": "#Program 10\n```", "ref_prog": "```python\ndef f(N: int, edges: List[Tuple[int, int]]): \n    return \"\"\n```", "score": 1.0}
+{"model": "meta-llama-Llama-3.1-8B", "temperature": 0.7, "problem_id": "p02752", "output_prog": "#Program 10\n```", "ref_prog": "#Program 22", "score": 1.0}
+{"model": "meta-llama-Llama-3.1-8B", "temperature": 0.7, "problem_id": "p02752", "output_prog": "#Program 22", "ref_prog": "```python\ndef f(N: int, edges: List[Tuple[int, int]]): \n    return \"\"\n```", "score": 1.0}

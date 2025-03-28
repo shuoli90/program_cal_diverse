@@ -1,0 +1,10 @@
+{"model": "meta-llama-Llama-3.1-8B", "temperature": 1.0, "problem_id": "p00780", "output_prog": "#Program 30\nx`x`x`x", "ref_prog": "#Program 5\n```", "score": 1.0}
+{"model": "meta-llama-Llama-3.1-8B", "temperature": 1.0, "problem_id": "p00780", "output_prog": "#Program 11\nThe details of the function within the function signature are included below.", "ref_prog": "#Program 5\n```", "score": 0.0}
+{"model": "meta-llama-Llama-3.1-8B", "temperature": 1.0, "problem_id": "p00780", "output_prog": "#Program 5\n```", "ref_prog": "#Program 0", "score": 0.25}
+{"model": "meta-llama-Llama-3.1-8B", "temperature": 1.0, "problem_id": "p00780", "output_prog": "#Program 23\nGood Luck.", "ref_prog": "#Program 5\n```", "score": 1.0}
+{"model": "meta-llama-Llama-3.1-8B", "temperature": 1.0, "problem_id": "p00780", "output_prog": "#Program 30\nx`x`x`x", "ref_prog": "#Program 11\nThe details of the function within the function signature are included below.", "score": 1.0}
+{"model": "meta-llama-Llama-3.1-8B", "temperature": 1.0, "problem_id": "p00780", "output_prog": "#Program 30\nx`x`x`x", "ref_prog": "#Program 0", "score": 1.0}
+{"model": "meta-llama-Llama-3.1-8B", "temperature": 1.0, "problem_id": "p00780", "output_prog": "#Program 23\nGood Luck.", "ref_prog": "#Program 30\nx`x`x`x", "score": 1.0}
+{"model": "meta-llama-Llama-3.1-8B", "temperature": 1.0, "problem_id": "p00780", "output_prog": "#Program 0", "ref_prog": "#Program 11\nThe details of the function within the function signature are included below.", "score": 1.0}
+{"model": "meta-llama-Llama-3.1-8B", "temperature": 1.0, "problem_id": "p00780", "output_prog": "#Program 11\nThe details of the function within the function signature are included below.", "ref_prog": "#Program 23\nGood Luck.", "score": 1.0}
+{"model": "meta-llama-Llama-3.1-8B", "temperature": 1.0, "problem_id": "p00780", "output_prog": "#Program 0", "ref_prog": "#Program 23\nGood Luck.", "score": 1.0}

@@ -1,0 +1,10 @@
+{"model": "meta-llama-Llama-3.1-8B", "temperature": 1.2, "problem_id": "p01020", "output_prog": "#Program 30", "ref_prog": "#Program 5", "score": 1.0}
+{"model": "meta-llama-Llama-3.1-8B", "temperature": 1.2, "problem_id": "p01020", "output_prog": "#Program 11", "ref_prog": "#Program 5", "score": 0.0}
+{"model": "meta-llama-Llama-3.1-8B", "temperature": 1.2, "problem_id": "p01020", "output_prog": "#Program 0\n```python\ndef main():\n   ...\n   ...\n    print(f(N, T))\n\nif __name__ == \"__main__\":\n    main()\n```", "ref_prog": "#Program 5", "score": 1.0}
+{"model": "meta-llama-Llama-3.1-8B", "temperature": 1.2, "problem_id": "p01020", "output_prog": "#Program 23", "ref_prog": "#Program 5", "score": 1.0}
+{"model": "meta-llama-Llama-3.1-8B", "temperature": 1.2, "problem_id": "p01020", "output_prog": "#Program 30", "ref_prog": "#Program 11", "score": 0.0}
+{"model": "meta-llama-Llama-3.1-8B", "temperature": 1.2, "problem_id": "p01020", "output_prog": "#Program 0\n```python\ndef main():\n   ...\n   ...\n    print(f(N, T))\n\nif __name__ == \"__main__\":\n    main()\n```", "ref_prog": "#Program 30", "score": 1.0}
+{"model": "meta-llama-Llama-3.1-8B", "temperature": 1.2, "problem_id": "p01020", "output_prog": "#Program 23", "ref_prog": "#Program 30", "score": 0.0}
+{"model": "meta-llama-Llama-3.1-8B", "temperature": 1.2, "problem_id": "p01020", "output_prog": "#Program 11", "ref_prog": "#Program 0\n```python\ndef main():\n   ...\n   ...\n    print(f(N, T))\n\nif __name__ == \"__main__\":\n    main()\n```", "score": 1.0}
+{"model": "meta-llama-Llama-3.1-8B", "temperature": 1.2, "problem_id": "p01020", "output_prog": "#Program 11", "ref_prog": "#Program 23", "score": 1.0}
+{"model": "meta-llama-Llama-3.1-8B", "temperature": 1.2, "problem_id": "p01020", "output_prog": "#Program 0\n```python\ndef main():\n   ...\n   ...\n    print(f(N, T))\n\nif __name__ == \"__main__\":\n    main()\n```", "ref_prog": "#Program 23", "score": 1.0}

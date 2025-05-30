@@ -1,4 +1,4 @@
 ## DESCRIPTION 
 
-Now please implement the function f. The function f will return the result of the operation. The function should return something in all cases. 
+Now please implement the function f. The function f will return the result of the operation. The function should return a list of integers, and the list must be of length less than or equal to 1000. 
 It should terminate within 30 seconds.

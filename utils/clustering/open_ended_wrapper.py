@@ -78,6 +78,12 @@ if __name__ == "__main__":
         output = f(*inp)
     else:
         output = f(inp)
+        
+    ## new constraints for constrained generation 
+    assert isinstance(output, list) 
+    assert all(isinstance(x, int) for x in output)
+    assert len(output) < 1000 
+    
     with open(output_path, 'w') as fh:
         fh.write(standardized_str(output))
     # exit
